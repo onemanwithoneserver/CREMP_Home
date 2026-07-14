@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import MobileViewport from './components/commonfiles/MobileViewport'
 import Header, { type Page, type ViewMode } from './components/Header'
+import Home from './Home'
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('desktop')
@@ -38,12 +39,16 @@ function App() {
 
       <div className="flex-1 overflow-hidden relative z-10">
         <MobileViewport isMobile={isMobile}>
-          <div className="h-full w-full bg-white flex flex-col items-center justify-center p-6 text-center">
-            <h1 className="text-4xl font-extrabold text-gray-800 mb-4 capitalize">{activePage}</h1>
-            <p className="text-gray-500 max-w-sm">
-              This is a preview of the {activePage} view inside the {isMobile ? 'Mobile' : 'Desktop'} viewport.
-            </p>
-          </div>
+          {activePage === 'home' || activePage === 'home2' ? (
+            <Home isMobile={isMobile} />
+          ) : (
+            <div className="h-full w-full bg-white flex flex-col items-center justify-center p-6 text-center">
+              <h1 className="text-4xl font-extrabold text-gray-800 mb-4 capitalize">{activePage}</h1>
+              <p className="text-gray-500 max-w-sm">
+                This is a preview of the {activePage} view inside the {isMobile ? 'Mobile' : 'Desktop'} viewport.
+              </p>
+            </div>
+          )}
         </MobileViewport>
       </div>
     </div>

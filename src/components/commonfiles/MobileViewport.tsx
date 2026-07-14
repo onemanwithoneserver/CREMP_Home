@@ -11,7 +11,7 @@ export default function MobileViewport({ children, isMobile = false }: MobileVie
       <div 
         role="main"
         aria-label="Desktop Viewport"
-        className="flex flex-col h-full w-full overflow-y-auto scrollbar-hide bg-[#1A1A2E] @container"
+        className="h-full w-full overflow-y-auto scrollbar-hide bg-[#1A1A2E] @container"
       >
         {children}
       </div>
