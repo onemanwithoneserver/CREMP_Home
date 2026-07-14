@@ -63,45 +63,46 @@ export default function Header({
   }, [mobileMenuOpen, closeMenu])
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-[#7B2FBE] shadow-[0px_1px_8px_rgba(107,33,168,0.06)]">
+    <header className="sticky top-0 z-50 glass-strong border-b border-cremp-primary/15 shadow-elevation-1">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 gap-3">
+        <div className="flex items-center justify-between h-14 gap-3">
           <div className="flex items-center gap-2 shrink-0" aria-label="CREMP Logo">
-            <span className="text-xl font-extrabold tracking-tight text-[#3B1E54] select-none">CREMP</span>
+            <span className="text-xl font-extrabold tracking-tight text-cremp-primary select-none">CREMP</span>
+            <span className="text-[0.45rem] font-bold text-cremp-accent bg-cremp-accent/10 px-1.5 py-0.5 rounded-full">BETA</span>
           </div>
 
           <nav aria-label="View Controls" className="hidden md:flex flex-1 justify-center">
             {showViewControls && (
-              <div 
+              <div
                 role="group"
                 aria-label="Select view mode"
-                className="flex items-center bg-[#7C3AED]/10 border border-[#7C3AED]/20 rounded-[8px] p-1 gap-0.5"
+                className="flex items-center bg-cremp-primary/8 border border-cremp-primary/15 rounded p-0.5 gap-0.5"
               >
                 <button
                   type="button"
                   aria-pressed={viewMode === 'desktop'}
                   onClick={() => onViewModeChange('desktop')}
-                  className={`flex items-center gap-2 px-5 py-[7px] rounded-[8px] text-[0.76rem] font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B21A8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#7C3AED]/10 motion-reduce:transition-none ${
+                  className={`flex items-center gap-2 px-4 py-1.5 rounded text-xs font-bold transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                     viewMode === 'desktop'
-                      ? 'bg-gradient-to-br from-[#7C3AED] to-[#6B21A8] text-white shadow-md'
-                      : 'text-[#6B21A8] bg-transparent hover:bg-white/80'
+                      ? 'gradient-primary text-white shadow-elevation-1'
+                      : 'text-cremp-primary bg-transparent hover:bg-white/60'
                   }`}
                 >
-                  <Monitor size={15} strokeWidth={viewMode === 'desktop' ? 2.5 : 2} aria-hidden="true" />
-                  Desktop View
+                  <Monitor size={14} strokeWidth={viewMode === 'desktop' ? 2.5 : 2} aria-hidden="true" />
+                  Desktop
                 </button>
                 <button
                   type="button"
                   aria-pressed={viewMode === 'mobile'}
                   onClick={() => onViewModeChange('mobile')}
-                  className={`flex items-center gap-2 px-5 py-[7px] rounded-[8px] text-[0.76rem] font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B21A8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#7C3AED]/10 motion-reduce:transition-none ${
+                  className={`flex items-center gap-2 px-4 py-1.5 rounded text-xs font-bold transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                     viewMode === 'mobile'
-                      ? 'bg-gradient-to-br from-[#7C3AED] to-[#6B21A8] text-white shadow-md'
-                      : 'text-[#6B21A8] bg-transparent hover:bg-white/80'
+                      ? 'gradient-primary text-white shadow-elevation-1'
+                      : 'text-cremp-primary bg-transparent hover:bg-white/60'
                   }`}
                 >
-                  <Smartphone size={15} strokeWidth={viewMode === 'mobile' ? 2.5 : 2} aria-hidden="true" />
-                  Mobile View
+                  <Smartphone size={14} strokeWidth={viewMode === 'mobile' ? 2.5 : 2} aria-hidden="true" />
+                  Mobile
                 </button>
               </div>
             )}
@@ -109,9 +110,9 @@ export default function Header({
 
           <div className="flex items-center gap-2 shrink-0">
             {showViewControls && (
-              <div 
-                role="group" 
-                aria-label="Select view mode" 
+              <div
+                role="group"
+                aria-label="Select view mode"
                 className="flex md:hidden items-center gap-1"
               >
                 {(['desktop', 'mobile'] as const).map((v) => (
@@ -121,10 +122,10 @@ export default function Header({
                     aria-label={v === 'desktop' ? 'Desktop view' : 'Mobile view'}
                     aria-pressed={viewMode === v}
                     onClick={() => onViewModeChange(v)}
-                    className={`w-8 h-8 flex items-center justify-center rounded-[8px] border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B21A8] focus-visible:ring-offset-1 motion-reduce:transition-none ${
+                    className={`w-8 h-8 flex items-center justify-center rounded border transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                       viewMode === v
-                        ? 'border-[#7C3AED] bg-[#7C3AED]/10 text-[#6B21A8]'
-                        : 'border-[#e4e7ec] bg-white text-[#9199a8] hover:bg-gray-50 hover:text-gray-700'
+                        ? 'border-cremp-primary bg-cremp-primary/10 text-cremp-primary'
+                        : 'border-cremp-border bg-white text-cremp-text-muted hover:bg-cremp-surface-alt hover:text-cremp-text-secondary'
                     }`}
                   >
                     {v === 'desktop' ? (
@@ -138,11 +139,11 @@ export default function Header({
             )}
 
             <div className="hidden sm:flex items-center gap-2">
-              <label 
-                htmlFor="desktop-page-selector" 
-                className="text-[0.68rem] font-semibold text-[#9199a8] tracking-[0.08em] uppercase select-none whitespace-nowrap"
+              <label
+                htmlFor="desktop-page-selector"
+                className="text-[0.6rem] font-bold text-cremp-text-muted tracking-widest uppercase select-none whitespace-nowrap"
               >
-                Current View
+                View
               </label>
               <Dropdown
                 id="desktop-page-selector"
@@ -150,7 +151,7 @@ export default function Header({
                 value={activePage}
                 onChange={(v) => onNavigate(v as Page)}
                 size="sm"
-                className="w-36"
+                className="w-32"
               />
             </div>
 
@@ -161,24 +162,24 @@ export default function Header({
                 aria-haspopup="menu"
                 aria-controls={`mobile-menu-${menuId}`}
                 onClick={() => setMobileMenuOpen((v) => !v)}
-                className="flex items-center gap-1 px-3 py-[7px] rounded-[8px] border border-[#eef0f3] bg-white text-[0.78rem] font-semibold text-[#1A1A2E] shadow-sm hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B21A8] focus-visible:border-[#6B21A8] transition-all duration-200"
+                className="flex items-center gap-1 px-3 py-1.5 rounded border border-cremp-border bg-white text-xs font-semibold text-cremp-text-primary shadow-elevation-1 hover:bg-cremp-surface-alt transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary"
               >
                 {PAGE_LABELS[activePage]}
-                <ChevronDown 
-                  size={13} 
+                <ChevronDown
+                  size={12}
                   aria-hidden="true"
-                  className={`text-[#9199a8] transition-transform duration-200 motion-reduce:transition-none ${
+                  className={`text-cremp-text-muted transition-transform duration-200 motion-reduce:transition-none ${
                     mobileMenuOpen ? 'rotate-180' : ''
-                  }`} 
+                  }`}
                 />
               </button>
-              
+
               {mobileMenuOpen && (
-                <div 
+                <div
                   id={`mobile-menu-${menuId}`}
                   role="menu"
                   aria-label="Navigation Menu"
-                  className="absolute right-0 mt-2 w-40 bg-white rounded-[8px] border border-[#eef0f3] shadow-lg overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200 ease-out"
+                  className="absolute right-0 mt-2 w-36 bg-white rounded border border-cremp-border shadow-elevation-3 overflow-hidden z-50 animate-fade-in-down"
                 >
                   {(Object.keys(PAGE_LABELS) as Page[]).map((p) => {
                     const isActive = activePage === p
@@ -192,10 +193,10 @@ export default function Header({
                           onNavigate(p)
                           closeMenu()
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-[0.82rem] font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:bg-[#7C3AED]/10 focus-visible:text-[#6B21A8] motion-reduce:transition-none ${
-                          isActive 
-                            ? 'bg-[#7C3AED]/10 text-[#6B21A8]' 
-                            : 'text-[#1A1A2E] hover:bg-[#7C3AED]/5'
+                        className={`w-full text-left px-4 py-2.5 text-xs font-semibold transition-base focus-visible:outline-none focus-visible:bg-cremp-primary/10 motion-reduce:transition-none ${
+                          isActive
+                            ? 'bg-cremp-primary/10 text-cremp-primary'
+                            : 'text-cremp-text-primary hover:bg-cremp-primary/5'
                         }`}
                       >
                         {PAGE_LABELS[p]}
@@ -210,20 +211,20 @@ export default function Header({
               <button
                 type="button"
                 onClick={onClose}
-                className="hidden sm:flex items-center justify-center w-8 h-8 rounded-[8px] bg-white border border-[#eef0f3] text-[#9199a8] hover:bg-red-50 hover:text-red-500 hover:border-red-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all duration-200 ml-2 shadow-sm"
+                className="hidden sm:flex items-center justify-center w-8 h-8 rounded bg-white border border-cremp-border text-cremp-text-muted hover:bg-error-light hover:text-error hover:border-error/20 transition-base ml-1 shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
                 aria-label="Close navigation"
               >
-                <X size={16} strokeWidth={2.5} />
+                <X size={15} strokeWidth={2.5} />
               </button>
             )}
             {onClose && (
               <button
                 type="button"
                 onClick={onClose}
-                className="sm:hidden flex items-center justify-center w-8 h-8 rounded-[8px] bg-white border border-[#eef0f3] text-[#9199a8] hover:bg-red-50 hover:text-red-500 focus-visible:outline-none transition-all duration-200 shadow-sm"
+                className="sm:hidden flex items-center justify-center w-8 h-8 rounded bg-white border border-cremp-border text-cremp-text-muted hover:bg-error-light hover:text-error transition-base shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
                 aria-label="Close navigation"
               >
-                <X size={16} strokeWidth={2.5} />
+                <X size={15} strokeWidth={2.5} />
               </button>
             )}
           </div>

@@ -1,154 +1,132 @@
-import { Handshake, User, LayoutGrid, Users, LineChart, Lightbulb, Star, FileText, Briefcase } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { brokerData, consultantData } from "./data"
 
 export default function MobileEnable() {
   return (
-    <div className="relative w-full py-12 px-5 overflow-hidden bg-[#F8FAFC]">
-      <div className="relative z-10 w-full flex flex-col">
+    <div className="w-full bg-[#f8fafc] pt-12 pb-8 overflow-hidden px-5 border-t border-[#e5e7eb]">
+      
+      {/* Header */}
+      <div className="mb-8 text-left">
+        <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <span className="inline-block px-2.5 py-1 rounded-full bg-[#e0e7ff] text-[#3730a3] text-[0.55rem] font-bold tracking-widest uppercase mb-3">
+            FOR GROWTH PARTNERS
+          </span>
+        </motion.div>
+        <motion.h2 
+          initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+          className="text-[2rem] font-black text-[#111827] leading-tight tracking-tight mb-3"
+        >
+          Enable <span className="text-[#2563eb]">Growth.</span>
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+          className="text-[0.75rem] text-[#4b5563] font-medium leading-relaxed max-w-xs"
+        >
+          Share expertise. Build credibility. Connect the right opportunities.
+        </motion.p>
+      </div>
+
+      <div className="flex flex-col gap-6">
         
-        {/* Section Header */}
-        <div className="mb-8 relative">
-          <div className="inline-flex items-center bg-[#DBEAFE] text-[#1D4ED8] px-3 py-1 rounded-sm text-[0.6rem] font-bold tracking-widest uppercase mb-3">
-            For Growth Partners
-          </div>
-          <h2 className="text-[2rem] font-extrabold text-[#0B1426] leading-tight mb-3 tracking-tight">
-            Enable <br/><span className="text-[#1D4ED8]">Growth.</span>
-          </h2>
-          <p className="text-sm font-medium text-[#4A5568]">
-            Share expertise. Build credibility. Connect the right opportunities.
-          </p>
+        {/* Brokers Card */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+          className="w-full bg-white border border-[#e5e7eb] rounded-xl overflow-hidden shadow-sm flex flex-col"
+        >
+           <div className="p-5 pb-4">
+              <div className="flex items-center gap-3 mb-4">
+                 <div className="w-12 h-12 rounded-full bg-[#eff6ff] flex items-center justify-center shrink-0 border border-[#bfdbfe]">
+                    <brokerData.icon size={22} className="text-[#2563eb]" strokeWidth={1.5} />
+                 </div>
+                 <div>
+                    <h3 className="text-[1.1rem] font-black text-[#111827] leading-tight mb-0.5 whitespace-pre-line">
+                      {brokerData.title}
+                    </h3>
+                    <h4 className="text-[0.65rem] font-bold text-[#2563eb]">{brokerData.subtitle}</h4>
+                 </div>
+              </div>
+              <p className="text-[0.7rem] text-[#4b5563] font-medium leading-relaxed">
+                {brokerData.desc}
+              </p>
+           </div>
+           
+           <div className="w-full h-32 overflow-hidden border-y border-[#e5e7eb]">
+             <img 
+               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" 
+               alt="Broker working on tablet" 
+               className="w-full h-full object-cover" 
+             />
+           </div>
 
-          <div className="absolute top-0 right-0 w-[120px] h-[120px] shrink-0 opacity-40 z-[-1]"
-            style={{
-              backgroundImage: 'url("https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1000&auto=format&fit=crop")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '50%',
-              maskImage: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%)',
-              WebkitMaskImage: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%)',
-            }}
-          />
-        </div>
+           <div className="grid grid-cols-4 gap-2 px-4 py-5 bg-white">
+              {brokerData.items.map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center text-center gap-1.5">
+                   <div className="w-8 h-8 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#2563eb]">
+                      <item.icon size={14} strokeWidth={1.5} />
+                   </div>
+                   <span className="text-[0.55rem] font-bold text-[#111827] leading-tight whitespace-pre-line">
+                     {item.label}
+                   </span>
+                </div>
+              ))}
+           </div>
 
-        {/* Cards Stack */}
-        <div className="flex flex-col gap-6">
-          
-          {/* Brokers Card */}
-          <div className="bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-gray-100 p-5 flex flex-col">
-            
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center shrink-0">
-                <Handshake size={20} />
-              </div>
-              <h3 className="text-lg font-extrabold text-[#1A1A2E] leading-tight">
-                Commercial Brokers
-              </h3>
-            </div>
-            
-            <div className="text-[#1D4ED8] font-bold text-xs mb-3">Build Your Brand. Grow Your Network.</div>
-            
-            <div className="w-full h-[120px] rounded-lg overflow-hidden shrink-0 mb-4">
-              <img 
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" 
-                alt="Broker using tablet" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
-            <p className="text-[0.8rem] font-medium text-[#4A5568] leading-relaxed mb-6">
-              Showcase exclusive inventory, share market insights and connect with serious buyers, tenants and investors.
-            </p>
+           <div className="px-5 pb-5">
+             <button className="w-full bg-[#1e40af] text-white font-bold text-[0.75rem] py-3 rounded-lg shadow-sm">
+               {brokerData.buttonText}
+             </button>
+           </div>
+        </motion.div>
 
-            <div className="grid grid-cols-4 gap-2 mb-6">
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <User size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Personal<br/>Branding</span>
+        {/* Consultants Card */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+          className="w-full bg-white border border-[#e5e7eb] rounded-xl overflow-hidden shadow-sm flex flex-col"
+        >
+           <div className="p-5 pb-4">
+              <div className="flex items-center gap-3 mb-4">
+                 <div className="w-12 h-12 rounded-full bg-[#eff6ff] flex items-center justify-center shrink-0 border border-[#bfdbfe]">
+                    <consultantData.icon size={22} className="text-[#2563eb]" strokeWidth={1.5} />
+                 </div>
+                 <div>
+                    <h3 className="text-[1.1rem] font-black text-[#111827] leading-tight mb-0.5 whitespace-pre-line">
+                      {consultantData.title}
+                    </h3>
+                    <h4 className="text-[0.65rem] font-bold text-[#2563eb] whitespace-pre-line leading-tight">{consultantData.subtitle}</h4>
+                 </div>
               </div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <LayoutGrid size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Inventory<br/>Showcase</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <Users size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Buyer<br/>Connections</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <LineChart size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Lead<br/>Management</span>
-              </div>
-            </div>
+              <p className="text-[0.7rem] text-[#4b5563] font-medium leading-relaxed">
+                {consultantData.desc}
+              </p>
+           </div>
+           
+           <div className="w-full h-32 overflow-hidden border-y border-[#e5e7eb]">
+             <img 
+               src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=800&auto=format&fit=crop" 
+               alt="Chess pieces" 
+               className="w-full h-full object-cover" 
+             />
+           </div>
 
-            <button className="w-full bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white py-3 rounded-md text-sm font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm">
-              Explore Broker Solutions <span className="text-lg leading-none">→</span>
-            </button>
-          </div>
-
-          {/* Consultants Card */}
-          <div className="bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-gray-100 p-5 flex flex-col">
-            
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center shrink-0">
-                <Lightbulb size={20} />
-              </div>
-              <h3 className="text-lg font-extrabold text-[#1A1A2E] leading-tight">
-                Franchise Consultants
-              </h3>
-            </div>
-            
-            <div className="text-[#1D4ED8] font-bold text-xs mb-3">Be the Growth Catalyst.</div>
-            
-            <div className="w-full h-[120px] rounded-lg overflow-hidden shrink-0 mb-4">
-              <img 
-                src="https://images.unsplash.com/photo-1529693662653-9d480530a697?q=80&w=800&auto=format&fit=crop" 
-                alt="Chess pieces strategy" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
-            <p className="text-[0.8rem] font-medium text-[#4A5568] leading-relaxed mb-6">
-              Educate brands and investors, showcase your expertise and drive successful expansions together.
-            </p>
-
-            <div className="grid grid-cols-4 gap-2 mb-6">
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <Star size={16} strokeWidth={1.5} />
+           <div className="grid grid-cols-4 gap-2 px-4 py-5 bg-white">
+              {consultantData.items.map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center text-center gap-1.5">
+                   <div className="w-8 h-8 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#2563eb]">
+                      <item.icon size={14} strokeWidth={1.5} />
+                   </div>
+                   <span className="text-[0.55rem] font-bold text-[#111827] leading-tight whitespace-pre-line">
+                     {item.label}
+                   </span>
                 </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Expert<br/>Positioning</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <FileText size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Content<br/>Publishing</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <Users size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Brand & Investor<br/>Connections</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#1D4ED8]">
-                  <Briefcase size={16} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.55rem] font-bold text-center text-[#1A1A2E] leading-tight">Consulting<br/>Opportunities</span>
-              </div>
-            </div>
+              ))}
+           </div>
 
-            <button className="w-full bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white py-3 rounded-md text-sm font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm">
-              Explore Consultant Solutions <span className="text-lg leading-none">→</span>
-            </button>
-          </div>
-
-        </div>
+           <div className="px-5 pb-5">
+             <button className="w-full bg-[#1e40af] text-white font-bold text-[0.75rem] py-3 rounded-lg shadow-sm">
+               {consultantData.buttonText}
+             </button>
+           </div>
+        </motion.div>
 
       </div>
     </div>

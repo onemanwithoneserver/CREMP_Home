@@ -1,109 +1,98 @@
-import { Building2, Store, ShoppingBag, PlaySquare, CheckCircle, Video, Scale, Users } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { discoverCategories, discoverFeatures } from "./data"
+import { ArrowRight } from 'lucide-react'
 
 export default function MobileDiscover() {
   return (
-    <div className="relative w-full py-12 px-5 overflow-hidden bg-white">
-      <div className="relative z-10 w-full flex flex-col">
+    <div className="w-full bg-[#fdfdfd] pt-12 pb-8 overflow-hidden px-5 border-t border-[#e5e7eb]">
+      
+      {/* Header */}
+      <div className="mb-8">
+        <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <span className="inline-block px-2.5 py-1 rounded-full bg-[#dcfce7] text-[#166534] text-[0.55rem] font-bold tracking-widest uppercase mb-3">
+            FOR BUYERS, INVESTORS & TENANTS
+          </span>
+        </motion.div>
         
-        {/* Main large card */}
-        <div className="bg-gradient-to-br from-[#F0FDF4] to-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#DCFCE7] p-5 flex flex-col gap-6">
-          
-          {/* Top Content Area */}
-          <div className="flex flex-col">
-            <div className="inline-flex items-center bg-[#DCFCE7] text-[#166534] px-3 py-1 rounded-sm text-[0.6rem] font-bold tracking-widest uppercase mb-4 w-fit">
-              For Buyers, Investors & Tenants
-            </div>
-            
-            <h2 className="text-[2rem] font-extrabold text-[#0B1426] leading-tight mb-3 tracking-tight">
-              Discover <br/>Opportunities<br/>
-              with <span className="text-[#166534]">Confidence.</span>
-            </h2>
-            
-            <h4 className="text-sm font-bold text-[#166534] mb-3">Explore. Learn. Decide with Confidence.</h4>
-            
-            <p className="text-[0.8rem] font-medium text-[#4A5568] leading-relaxed mb-6">
-              Discover commercial properties, franchise opportunities and retail business opportunities while learning through expert videos, market insights and business education.
-            </p>
-
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white border border-[#DCFCE7] flex items-center justify-center text-[#166534] shadow-sm shrink-0">
-                  <Building2 size={20} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.65rem] font-bold text-[#1A1A2E] leading-tight">Commercial<br/>Properties</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white border border-[#DCFCE7] flex items-center justify-center text-[#166534] shadow-sm shrink-0">
-                  <Store size={20} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.65rem] font-bold text-[#1A1A2E] leading-tight">Franchise<br/>Opportunities</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white border border-[#DCFCE7] flex items-center justify-center text-[#166534] shadow-sm shrink-0">
-                  <ShoppingBag size={20} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.65rem] font-bold text-[#1A1A2E] leading-tight">Retail Business<br/>Opportunities</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white border border-[#DCFCE7] flex items-center justify-center text-[#166534] shadow-sm shrink-0">
-                  <PlaySquare size={20} strokeWidth={1.5} />
-                </div>
-                <span className="text-[0.65rem] font-bold text-[#1A1A2E] leading-tight">Expert<br/>Videos & Insights</span>
-              </div>
-            </div>
-
-            <button className="bg-[#166534] hover:bg-[#14532D] text-white py-3 rounded-md text-sm font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm w-full mb-6">
-              Explore Marketplace <span className="text-lg leading-none">→</span>
-            </button>
-          </div>
-
-          {/* Image and Features Area */}
-          <div className="flex flex-col relative w-full h-[300px]">
-            <div className="w-full h-full rounded-xl overflow-hidden relative shadow-inner">
-              <img 
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop" 
-                alt="Person browsing marketplace on laptop" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#F0FDF4]/90 to-transparent mix-blend-overlay" />
-            </div>
-            
-            {/* Overlaid feature list */}
-            <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-2">
-              <div className="bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-lg shadow-sm flex items-center justify-between border border-gray-100/50">
-                <span className="text-xs font-bold text-[#1A1A2E]">Verified Opportunities</span>
-                <div className="w-6 h-6 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center">
-                  <CheckCircle size={12} strokeWidth={2.5} />
-                </div>
-              </div>
-              
-              <div className="bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-lg shadow-sm flex items-center justify-between border border-gray-100/50">
-                <span className="text-xs font-bold text-[#1A1A2E]">Video-Led Discovery</span>
-                <div className="w-6 h-6 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center">
-                  <Video size={12} strokeWidth={2.5} />
-                </div>
-              </div>
-              
-              <div className="bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-lg shadow-sm flex items-center justify-between border border-gray-100/50">
-                <span className="text-xs font-bold text-[#1A1A2E]">Compare & Shortlist</span>
-                <div className="w-6 h-6 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center">
-                  <Scale size={12} strokeWidth={2.5} />
-                </div>
-              </div>
-
-              <div className="bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-lg shadow-sm flex items-center justify-between border border-gray-100/50">
-                <span className="text-xs font-bold text-[#1A1A2E]">Connect with Right Partners</span>
-                <div className="w-6 h-6 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center">
-                  <Users size={12} strokeWidth={2.5} />
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
+        <motion.h2 
+          initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+          className="text-[2rem] font-black text-[#111827] leading-[1.1] tracking-tight mb-3"
+        >
+          Discover Opportunities <br/>
+          with <span className="text-[#15803d]">Confidence.</span>
+        </motion.h2>
+        
+        <motion.h3 
+          initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+          className="text-[0.95rem] font-extrabold text-[#111827] mb-2"
+        >
+          Explore. Learn. Decide with Confidence.
+        </motion.h3>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
+          className="text-[0.75rem] text-[#4b5563] font-medium leading-relaxed mb-6"
+        >
+          Discover commercial properties, franchise opportunities and retail business opportunities while learning through expert videos, market insights and business education before making your next move.
+        </motion.p>
       </div>
+
+      {/* Image & Badges */}
+      <div className="w-full relative h-[300px] mb-8">
+         <motion.div 
+           initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+           className="absolute left-0 top-0 bottom-0 w-[75%] rounded-2xl overflow-hidden shadow-lg"
+         >
+           <img 
+             src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop" 
+             alt="Person looking at laptop" 
+             className="w-full h-full object-cover"
+           />
+         </motion.div>
+
+         {/* Floating Badges */}
+         <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+            {discoverFeatures.map((feature, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 + (idx * 0.1) }}
+                className="bg-white/95 backdrop-blur-md border border-[#e5e7eb] shadow-md rounded-lg p-2.5 flex items-center gap-2.5 w-36"
+              >
+                 <div className="w-6 h-6 rounded bg-[#f0fdf4] border border-[#bbf7d0] flex items-center justify-center shrink-0">
+                    <feature.icon size={12} className="text-[#15803d]" strokeWidth={2} />
+                 </div>
+                 <span className="text-[0.55rem] font-bold text-[#111827] leading-tight whitespace-pre-line">
+                    {feature.label}
+                 </span>
+              </motion.div>
+            ))}
+         </div>
+      </div>
+
+      {/* Categories */}
+      <motion.div 
+         initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
+         className="grid grid-cols-2 gap-3 mb-6"
+      >
+         {discoverCategories.map((cat, idx) => (
+           <div key={idx} className="bg-white border border-[#e5e7eb] rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-sm h-24">
+              <div className="w-8 h-8 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#15803d] mb-2">
+                <cat.icon size={14} strokeWidth={1.5} />
+              </div>
+              <span className="text-[0.6rem] font-bold text-[#111827] leading-tight whitespace-pre-line">
+                {cat.label}
+              </span>
+           </div>
+         ))}
+      </motion.div>
+
+      <motion.button 
+         initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}
+         className="w-full bg-[#15803d] text-white font-bold text-[0.75rem] py-3 rounded-lg shadow-sm flex items-center justify-center gap-2"
+      >
+         Explore Marketplace <ArrowRight size={14} />
+      </motion.button>
+      
     </div>
   )
 }
