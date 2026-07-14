@@ -2,8 +2,6 @@ import { useEffect, useRef, useState, useId, useCallback } from 'react'
 import { Monitor, Smartphone, ChevronDown, X } from 'lucide-react'
 import Dropdown from './commonfiles/Dropdown'
 
-import Logo from '../assets/react.svg'
-
 export type Page = 'home' | 'home2'
 export type ViewMode = 'desktop' | 'mobile'
 
@@ -68,13 +66,8 @@ export default function Header({
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-[#7B2FBE] shadow-[0px_1px_8px_rgba(107,33,168,0.06)]">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 gap-3">
-          <div className="flex items-center gap-2 shrink-0" aria-label="YardStock Logo">
-            <img 
-              src={Logo} 
-              alt="YardStock Logo" 
-              className="h-10 w-auto object-contain select-none" 
-              draggable={false} 
-            />
+          <div className="flex items-center gap-2 shrink-0" aria-label="CREMP Logo">
+            <span className="text-xl font-extrabold tracking-tight text-[#3B1E54] select-none">CREMP</span>
           </div>
 
           <nav aria-label="View Controls" className="hidden md:flex flex-1 justify-center">
