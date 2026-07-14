@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useId, useCallback } from 'react'
 import { Monitor, Smartphone, ChevronDown, X } from 'lucide-react'
 import Dropdown from './commonfiles/Dropdown'
 
-export type Page = 'home' | 'home2'
+export type Page = 'home' | 'franchise'
 export type ViewMode = 'desktop' | 'mobile'
 
 interface HeaderProps {
@@ -16,7 +16,7 @@ interface HeaderProps {
 
 const PAGE_LABELS: Record<Page, string> = {
   home: 'Home',
-  home2: 'Home2',
+  franchise: 'Franchise Page',
 }
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[]).map((p) => ({

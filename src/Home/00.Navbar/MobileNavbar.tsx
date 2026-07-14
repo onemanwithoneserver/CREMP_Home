@@ -1,7 +1,7 @@
 import { Menu, Rocket } from 'lucide-react'
 import { Button } from '../../components/ui'
 
-export default function MobileNavbar() {
+export default function MobileNavbar({}: { activeTab?: 'home' | 'franchise' }) {
   return (
     <div className="w-full bg-white border-b border-[#e5e7eb] sticky top-0 z-40 shadow-sm px-4">
       <div className="flex items-center justify-between h-16">

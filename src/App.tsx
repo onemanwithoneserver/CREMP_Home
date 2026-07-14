@@ -3,6 +3,7 @@ import MobileViewport from './components/commonfiles/MobileViewport'
 import Header, { type Page, type ViewMode } from './components/Header'
 import { PageTransition } from './components/layout'
 import Home from './Home'
+import Franchise from './Franchise'
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('desktop')
@@ -41,8 +42,10 @@ function App() {
       <div className="flex-1 overflow-hidden relative z-10">
         <MobileViewport isMobile={isMobile}>
           <PageTransition>
-            {activePage === 'home' || activePage === 'home2' ? (
+            {activePage === 'home' ? (
               <Home isMobile={isMobile} />
+            ) : activePage === 'franchise' ? (
+              <Franchise isMobile={isMobile} />
             ) : (
               <div className="h-full w-full bg-white flex flex-col items-center justify-center p-6 text-center">
                 <h1 className="text-4xl font-extrabold text-cremp-text-primary mb-4 capitalize">{activePage}</h1>

@@ -2,7 +2,7 @@ import { ChevronDown, Rocket } from 'lucide-react'
 import { Container } from '../../components/layout'
 import { Button } from '../../components/ui'
 
-export default function DesktopNavbar() {
+export default function DesktopNavbar({ activeTab = 'home' }: { activeTab?: 'home' | 'franchise' }) {
   return (
     <div className="w-full bg-white border-b border-[#e5e7eb] sticky top-0 z-40 shadow-sm">
       <Container>
@@ -26,8 +26,11 @@ export default function DesktopNavbar() {
             <a href="#" className="text-[0.85rem] font-bold text-[#0a1128] hover:text-[#b38728] transition-colors relative h-full flex items-center">
               For Investors
             </a>
-            <a href="#" className="text-[0.85rem] font-bold text-[#0a1128] hover:text-[#b38728] transition-colors relative h-full flex items-center">
+            <a href="#" className={`text-[0.85rem] font-bold transition-colors relative h-full flex items-center ${activeTab === 'franchise' ? 'text-[#b38728]' : 'text-[#0a1128] hover:text-[#b38728]'}`}>
               For Franchisors
+              {activeTab === 'franchise' && (
+                <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#b38728] rounded-t-sm" />
+              )}
             </a>
             <a href="#" className="text-[0.85rem] font-bold text-[#0a1128] hover:text-[#b38728] transition-colors relative h-full flex items-center">
               For Brokers
