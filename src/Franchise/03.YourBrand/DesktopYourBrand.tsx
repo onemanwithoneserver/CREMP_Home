@@ -5,7 +5,7 @@ import { Store, MapPin, Users, Star, PlayCircle, Search } from 'lucide-react'
 
 export default function DesktopYourBrand() {
   return (
-    <div className="w-full bg-[#fdfdfd] pt-20 pb-20 overflow-hidden relative">
+    <div className="w-full bg-[#ffffff] pt-20 pb-20 overflow-hidden relative">
       
       {/* Background radial gradient */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d97706]/5 via-transparent to-transparent pointer-events-none" />
@@ -18,7 +18,7 @@ export default function DesktopYourBrand() {
             <motion.div 
                initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             >
-               <span className="text-[0.7rem] font-bold text-[#b38728] tracking-widest uppercase mb-4 block">
+               <span className="text-[0.7rem] font-bold text-[#C79A17] tracking-widest uppercase mb-4 block">
                  {brandData.tag}
                </span>
             </motion.div>
@@ -27,7 +27,7 @@ export default function DesktopYourBrand() {
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="text-[3.8rem] font-black leading-[1.1] tracking-tight mb-8"
             >
-              <span className="text-[#0a1128] block">{brandData.titleBase}</span>
+              <span className="text-[#2A3A69] block">{brandData.titleBase}</span>
               <span className="text-[#d97706] block">{brandData.titleHighlight}</span>
             </motion.h2>
 
@@ -35,15 +35,15 @@ export default function DesktopYourBrand() {
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
               className="mb-12 flex flex-col gap-4"
             >
-              <p className="text-[1.05rem] text-[#4b5563] font-medium">{brandData.desc[0]}</p>
+              <p className="text-[1.05rem] text-[#3A4566] font-medium">{brandData.desc[0]}</p>
               
               <div className="flex flex-col gap-2 my-2">
-                <p className="text-[1.1rem] text-[#0a1128] font-bold">{brandData.desc[1]}</p>
-                <p className="text-[1.1rem] text-[#0a1128] font-bold">{brandData.desc[2]}</p>
-                <p className="text-[1.1rem] text-[#0a1128] font-bold">{brandData.desc[3]}</p>
+                <p className="text-[1.1rem] text-[#2A3A69] font-bold">{brandData.desc[1]}</p>
+                <p className="text-[1.1rem] text-[#2A3A69] font-bold">{brandData.desc[2]}</p>
+                <p className="text-[1.1rem] text-[#2A3A69] font-bold">{brandData.desc[3]}</p>
               </div>
 
-              <p className="text-[1.05rem] text-[#4b5563] font-medium leading-relaxed mt-2">{brandData.desc[4]}</p>
+              <p className="text-[1.05rem] text-[#3A4566] font-medium leading-relaxed mt-2">{brandData.desc[4]}</p>
             </motion.div>
           </div>
 
@@ -51,7 +51,7 @@ export default function DesktopYourBrand() {
           <div className="w-[20%] pt-16">
              <motion.div 
                 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-white rounded-2xl shadow-xl border border-[#e5e7eb] p-6 pr-8"
+                className="bg-white rounded-2xl shadow-xl border border-[#E2E6EE] p-6 pr-8"
              >
                 <span className="text-[0.75rem] font-bold text-[#d97706] tracking-widest uppercase mb-6 block">
                   SHOWCASE
@@ -60,10 +60,10 @@ export default function DesktopYourBrand() {
                 <div className="flex flex-col gap-5">
                    {brandData.showcaseMenu.map((item, idx) => (
                      <div key={idx} className="flex items-center gap-4 group cursor-pointer">
-                        <div className="w-10 h-10 rounded-full bg-[#fdf8f0] flex items-center justify-center shrink-0 border border-[#f6ead6] group-hover:bg-[#d97706] group-hover:text-white transition-colors text-[#6b7280]">
+                        <div className="w-10 h-10 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] group-hover:bg-[#d97706] group-hover:text-white transition-colors text-[#6B7491]">
                           <item.icon size={18} strokeWidth={1.5} />
                         </div>
-                        <span className="text-[0.85rem] font-bold text-[#4b5563] group-hover:text-[#0a1128] transition-colors whitespace-nowrap">
+                        <span className="text-[0.85rem] font-bold text-[#3A4566] group-hover:text-[#2A3A69] transition-colors whitespace-nowrap">
                           {item.text}
                         </span>
                      </div>
@@ -79,18 +79,18 @@ export default function DesktopYourBrand() {
                className="w-[120%] max-w-[700px] mr-[-100px] relative mt-10"
              >
                 {/* Tablet Frame */}
-                <div className="w-full bg-[#0a1128] rounded-[2.5rem] p-4 shadow-2xl relative border-b-[8px] border-r-[4px] border-[#000000]">
+                <div className="w-full bg-[#2A3A69] rounded-[2.5rem] p-4 shadow-2xl relative border-b-[8px] border-r-[4px] border-[#000000]">
                    {/* Tablet Screen */}
                    <div className="w-full bg-white rounded-2xl overflow-hidden flex flex-col h-[520px]">
                       
                       {/* Tablet Header */}
-                      <div className="flex items-center justify-between px-6 py-4 border-b border-[#e5e7eb]">
+                      <div className="flex items-center justify-between px-6 py-4 border-b border-[#E2E6EE]">
                          <div className="flex items-center gap-2">
                             <Store className="text-[#d97706]" size={18} />
-                            <span className="font-black text-[#0a1128] text-sm tracking-wide">YOUR BRAND</span>
+                            <span className="font-black text-[#2A3A69] text-sm tracking-wide">YOUR BRAND</span>
                          </div>
-                         <div className="flex items-center gap-6 text-[0.65rem] font-bold text-[#6b7280]">
-                            <span className="text-[#0a1128] border-b-2 border-[#d97706] pb-1">Overview</span>
+                         <div className="flex items-center gap-6 text-[0.65rem] font-bold text-[#6B7491]">
+                            <span className="text-[#2A3A69] border-b-2 border-[#d97706] pb-1">Overview</span>
                             <span>About Us</span>
                             <span>Investor Info</span>
                             <span>FAQs</span>
@@ -111,47 +111,47 @@ export default function DesktopYourBrand() {
                               <span className="text-[0.7rem] font-medium">Watch Our Story</span>
                             </button>
                          </div>
-                         <div className="absolute top-6 right-8 bg-[#0a1128] px-6 py-2 rounded">
+                         <div className="absolute top-6 right-8 bg-[#2A3A69] px-6 py-2 rounded">
                             <span className="text-white font-black tracking-widest text-sm">YOUR BRAND</span>
                          </div>
                       </div>
 
                       {/* Tablet Stats */}
-                      <div className="flex items-center justify-between px-8 py-5 border-b border-[#e5e7eb]">
+                      <div className="flex items-center justify-between px-8 py-5 border-b border-[#E2E6EE]">
                          <div className="flex items-center gap-3">
-                            <Store className="text-[#6b7280]" size={20} />
+                            <Store className="text-[#6B7491]" size={20} />
                             <div>
-                               <div className="font-bold text-[#0a1128] text-lg leading-tight">150+</div>
-                               <div className="text-[0.6rem] text-[#6b7280]">Outlets</div>
+                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">150+</div>
+                               <div className="text-[0.6rem] text-[#6B7491]">Outlets</div>
                             </div>
                          </div>
                          <div className="flex items-center gap-3">
-                            <MapPin className="text-[#6b7280]" size={20} />
+                            <MapPin className="text-[#6B7491]" size={20} />
                             <div>
-                               <div className="font-bold text-[#0a1128] text-lg leading-tight">45+</div>
-                               <div className="text-[0.6rem] text-[#6b7280]">Cities</div>
+                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">45+</div>
+                               <div className="text-[0.6rem] text-[#6B7491]">Cities</div>
                             </div>
                          </div>
                          <div className="flex items-center gap-3">
-                            <Users className="text-[#6b7280]" size={20} />
+                            <Users className="text-[#6B7491]" size={20} />
                             <div>
-                               <div className="font-bold text-[#0a1128] text-lg leading-tight">10K+</div>
-                               <div className="text-[0.6rem] text-[#6b7280]">Investors Engaged</div>
+                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">10K+</div>
+                               <div className="text-[0.6rem] text-[#6B7491]">Investors Engaged</div>
                             </div>
                          </div>
                          <div className="flex items-center gap-3">
                             <Star className="text-[#d97706]" size={20} />
                             <div>
-                               <div className="font-bold text-[#0a1128] text-lg leading-tight">4.8/5</div>
-                               <div className="text-[0.6rem] text-[#6b7280]">Investor Rating</div>
+                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">4.8/5</div>
+                               <div className="text-[0.6rem] text-[#6B7491]">Investor Rating</div>
                             </div>
                          </div>
                       </div>
 
                       {/* Tablet Videos */}
-                      <div className="p-6 flex-1 bg-[#fdfdfd]">
+                      <div className="p-6 flex-1 bg-[#ffffff]">
                          <div className="flex items-center justify-between mb-4">
-                            <span className="font-bold text-[#0a1128] text-sm">Featured Videos</span>
+                            <span className="font-bold text-[#2A3A69] text-sm">Featured Videos</span>
                             <span className="text-[0.65rem] text-[#d97706] font-bold">View all videos {'>'}</span>
                          </div>
                          <div className="grid grid-cols-4 gap-3">
@@ -165,7 +165,7 @@ export default function DesktopYourBrand() {
                                   </div>
                                   <span className="absolute bottom-1 right-1 text-[0.55rem] text-white bg-black/60 px-1 rounded">2:45</span>
                                </div>
-                               <span className="text-[0.65rem] font-bold text-[#0a1128]">Founder Story</span>
+                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Founder Story</span>
                             </div>
                             <div className="flex flex-col gap-2">
                                <div className="w-full h-20 bg-gray-200 rounded-lg relative overflow-hidden group cursor-pointer">
@@ -177,7 +177,7 @@ export default function DesktopYourBrand() {
                                   </div>
                                   <span className="absolute bottom-1 right-1 text-[0.55rem] text-white bg-black/60 px-1 rounded">3:12</span>
                                </div>
-                               <span className="text-[0.65rem] font-bold text-[#0a1128]">Store Walkthrough</span>
+                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Store Walkthrough</span>
                             </div>
                             <div className="flex flex-col gap-2">
                                <div className="w-full h-20 bg-gray-200 rounded-lg relative overflow-hidden group cursor-pointer">
@@ -189,16 +189,16 @@ export default function DesktopYourBrand() {
                                   </div>
                                   <span className="absolute bottom-1 right-1 text-[0.55rem] text-white bg-black/60 px-1 rounded">2:28</span>
                                </div>
-                               <span className="text-[0.65rem] font-bold text-[#0a1128]">Success Story</span>
+                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Success Story</span>
                             </div>
                             <div className="flex flex-col gap-2">
-                               <div className="w-full h-20 bg-[#0a1128] rounded-lg flex flex-col items-center justify-center text-white cursor-pointer hover:bg-[#111827] transition-colors">
+                               <div className="w-full h-20 bg-[#2A3A69] rounded-lg flex flex-col items-center justify-center text-white cursor-pointer hover:bg-[#2A3A69] transition-colors">
                                   <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center mb-1">
                                     <Search size={14} />
                                   </div>
                                   <span className="text-[0.55rem] font-medium">Video Search</span>
                                </div>
-                               <span className="text-[0.65rem] font-bold text-[#0a1128]">Video Search {'>'}</span>
+                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Video Search {'>'}</span>
                             </div>
                          </div>
                       </div>
@@ -212,7 +212,7 @@ export default function DesktopYourBrand() {
         {/* Bottom Outcome Banner */}
         <motion.div 
            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }}
-           className="w-full bg-[#fdf8f0] rounded-3xl border border-[#f6ead6] p-6 px-10 flex items-center gap-8 shadow-sm relative overflow-hidden"
+           className="w-full bg-[rgba(199, 154, 23, 0.05)] rounded-3xl border border-[rgba(199, 154, 23, 0.15)] p-6 px-10 flex items-center gap-8 shadow-sm relative overflow-hidden"
         >
            {/* Chart Graphic Background */}
            <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none w-1/3">
@@ -222,7 +222,7 @@ export default function DesktopYourBrand() {
              </svg>
            </div>
            
-           <div className="w-20 h-20 rounded-full bg-[#0a1128] flex items-center justify-center shrink-0 z-10 shadow-lg">
+           <div className="w-20 h-20 rounded-full bg-[#2A3A69] flex items-center justify-center shrink-0 z-10 shadow-lg">
               <brandData.outcome.icon size={36} className="text-[#d97706]" strokeWidth={1.5} />
            </div>
            
@@ -230,7 +230,7 @@ export default function DesktopYourBrand() {
               <span className="text-[0.7rem] font-bold text-[#d97706] tracking-widest uppercase mb-2">
                 {brandData.outcome.tag}
               </span>
-              <h3 className="text-2xl font-black text-[#0a1128]">
+              <h3 className="text-2xl font-black text-[#2A3A69]">
                 {brandData.outcome.text}
               </h3>
            </div>

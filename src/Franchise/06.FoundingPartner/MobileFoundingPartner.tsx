@@ -7,10 +7,10 @@ export default function MobileFoundingPartner() {
   const Btn2Icon = foundingData.buttons[1].icon;
 
   return (
-    <div className="w-full bg-[#fdfdfd] pt-12 pb-12 px-5 relative overflow-hidden">
+    <div className="w-full bg-[#ffffff] pt-12 pb-12 px-5 relative overflow-hidden">
       
       {/* Main Dark Card Container */}
-      <div className="w-full bg-[#0a1128] rounded-[2rem] p-6 flex flex-col shadow-xl relative overflow-hidden border border-[#1e293b]">
+      <div className="w-full bg-[#2A3A69] rounded-[2rem] p-6 flex flex-col shadow-xl relative overflow-hidden border border-[#1F2A4A]">
          
          {/* Subtle background glows */}
          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#d97706]/10 rounded-full blur-[80px] pointer-events-none" />
@@ -34,7 +34,7 @@ export default function MobileFoundingPartner() {
 
          <motion.p 
            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-           className="text-[0.9rem] text-[#9ca3af] font-medium leading-relaxed mb-10"
+           className="text-[0.9rem] text-[#6B7491] font-medium leading-relaxed mb-10"
          >
            {foundingData.desc}
          </motion.p>
@@ -46,11 +46,11 @@ export default function MobileFoundingPartner() {
          >
             {/* Pedestal */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[220px] h-[60px]">
-               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-10 rounded-[100%] border border-[#d97706]/30 bg-[#0a1128] shadow-[0_0_20px_rgba(217,119,6,0.15)] flex items-end justify-center pb-1">
+               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-10 rounded-[100%] border border-[#d97706]/30 bg-[#2A3A69] shadow-[0_0_20px_rgba(217,119,6,0.15)] flex items-end justify-center pb-1">
                   <span className="text-[0.55rem] font-black tracking-[0.2em] text-[#d97706]">FOUNDING PARTNER</span>
                </div>
-               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[190px] h-8 rounded-[100%] border-t border-[#d97706]/50 bg-[#111827]" />
-               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[160px] h-6 rounded-[100%] bg-gradient-to-t from-[#111827] to-[#1f2937] border border-[#374151]" />
+               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[190px] h-8 rounded-[100%] border-t border-[#d97706]/50 bg-[#2A3A69]" />
+               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[160px] h-6 rounded-[100%] bg-gradient-to-t from-[#2A3A69] to-[#1f2937] border border-[#374151]" />
             </div>
 
             {/* The Rocket */}
@@ -58,7 +58,7 @@ export default function MobileFoundingPartner() {
                <div className="absolute -bottom-3 w-5 h-10 bg-gradient-to-t from-transparent via-[#f59e0b] to-white rounded-full blur-[2px] opacity-80" />
                <div className="w-12 h-32 bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] rounded-t-[100%] rounded-b-lg shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-1/2 h-full bg-white/20" />
-                  <div className="absolute top-8 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#0a1128] border-[2px] border-[#fbbf24]" />
+                  <div className="absolute top-8 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#2A3A69] border-[2px] border-[#fbbf24]" />
                </div>
                <div className="absolute bottom-2 -left-5 w-6 h-12 bg-gradient-to-tr from-[#92400e] to-[#d97706] rounded-tl-[100%] rounded-br-md transform -skew-y-12" />
                <div className="absolute bottom-2 -right-5 w-6 h-12 bg-gradient-to-tl from-[#92400e] to-[#d97706] rounded-tr-[100%] rounded-bl-md transform skew-y-12" />
@@ -75,10 +75,10 @@ export default function MobileFoundingPartner() {
                 } ${
                   isTop ? 'top-[40px]' : 'top-[150px]'
                 }`}>
-                   <div className="w-8 h-8 rounded-full border border-[#d97706]/40 bg-[#0a1128]/80 backdrop-blur-md flex items-center justify-center text-[#d97706]">
+                   <div className="w-8 h-8 rounded-full border border-[#d97706]/40 bg-[#2A3A69]/80 backdrop-blur-md flex items-center justify-center text-[#d97706]">
                       <node.icon size={14} strokeWidth={1.5} />
                    </div>
-                   <span className="text-[0.5rem] text-[#9ca3af] font-bold text-center whitespace-pre-line leading-tight">
+                   <span className="text-[0.5rem] text-[#6B7491] font-bold text-center whitespace-pre-line leading-tight">
                      {node.label}
                    </span>
                 </div>
@@ -89,9 +89,9 @@ export default function MobileFoundingPartner() {
          {/* Benefits Box */}
          <motion.div 
            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-           className="w-full bg-[#0a1128] rounded-xl border border-[#d97706]/40 p-5 flex flex-col relative z-10"
+           className="w-full bg-[#2A3A69] rounded-xl border border-[#d97706]/40 p-5 flex flex-col relative z-10"
          >
-            <div className="flex items-center justify-center gap-3 mb-6 border-b border-[#1e293b] pb-4">
+            <div className="flex items-center justify-center gap-3 mb-6 border-b border-[#1F2A4A] pb-4">
                <div className="w-10 h-10 rounded-full border border-[#d97706]/40 flex items-center justify-center shrink-0">
                   <Gem size={18} className="text-[#d97706]" strokeWidth={1.5} />
                </div>
@@ -102,11 +102,11 @@ export default function MobileFoundingPartner() {
 
             <div className="flex flex-col gap-3 mb-6">
                {foundingData.benefits.map((benefit, idx) => (
-                 <div key={idx} className="w-full bg-[#0f172a]/50 rounded-lg border border-[#1e293b] p-3 flex items-center gap-3">
+                 <div key={idx} className="w-full bg-[#2A3A69]/50 rounded-lg border border-[#1F2A4A] p-3 flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-[#d97706] flex items-center justify-center shrink-0">
-                       <Check size={12} className="text-[#0a1128]" strokeWidth={3} />
+                       <Check size={12} className="text-[#2A3A69]" strokeWidth={3} />
                     </div>
-                    <div className="w-8 h-8 rounded-full border border-[#334155] flex items-center justify-center shrink-0 text-[#9ca3af]">
+                    <div className="w-8 h-8 rounded-full border border-[rgba(255, 255, 255, 0.1)] flex items-center justify-center shrink-0 text-[#6B7491]">
                        <benefit.icon size={14} strokeWidth={1.5} />
                     </div>
                     <span className="text-[0.85rem] font-bold text-white">
@@ -118,10 +118,10 @@ export default function MobileFoundingPartner() {
 
             <div className="flex flex-col gap-3 mb-4">
                <button className="w-full bg-gradient-to-r from-[#fbbf24] to-[#d97706] rounded-xl p-3 flex items-center justify-center gap-3">
-                  <Btn1Icon size={20} className="text-[#0a1128]" strokeWidth={2} />
+                  <Btn1Icon size={20} className="text-[#2A3A69]" strokeWidth={2} />
                   <div className="flex flex-col text-left">
-                     <span className="text-[#0a1128] font-black text-[0.95rem]">{foundingData.buttons[0].title}</span>
-                     <span className="text-[#0a1128]/80 font-bold text-[0.55rem]">{foundingData.buttons[0].subtitle}</span>
+                     <span className="text-[#2A3A69] font-black text-[0.95rem]">{foundingData.buttons[0].title}</span>
+                     <span className="text-[#2A3A69]/80 font-bold text-[0.55rem]">{foundingData.buttons[0].subtitle}</span>
                   </div>
                </button>
                
@@ -133,7 +133,7 @@ export default function MobileFoundingPartner() {
 
             <div className="flex items-center justify-center gap-1.5 mt-2">
                <ShieldCheck size={12} className="text-[#d97706]" />
-               <span className="text-[0.55rem] text-[#9ca3af]">{foundingData.bottomDisclaimer}</span>
+               <span className="text-[0.55rem] text-[#6B7491]">{foundingData.bottomDisclaimer}</span>
             </div>
          </motion.div>
 

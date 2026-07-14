@@ -1,5 +1,6 @@
 import Navbar from '../Home/00.Navbar'
-import FinalPlatformFooter from '../Home/08.FinalPlatformFooter'
+import CTA from '../Home/09.CTA'
+import Footer from '../Home/10.Footer'
 import Hero from './01.Hero'
 import Ecosystem from './02.Ecosystem'
 import YourBrand from './03.YourBrand'
@@ -15,7 +16,7 @@ interface FranchiseProps {
 
 export default function Franchise({ isMobile }: FranchiseProps) {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-[#fdfdfd]">
+    <div className="w-full min-h-screen flex flex-col bg-[#ffffff]">
       <Navbar isMobile={isMobile} activeTab="franchise" />
       <div className="flex-1 flex flex-col">
         <Hero isMobile={isMobile} />
@@ -27,7 +28,8 @@ export default function Franchise({ isMobile }: FranchiseProps) {
         <Categories isMobile={isMobile} />
         <FAQ isMobile={isMobile} />
       </div>
-      <FinalPlatformFooter isMobile={isMobile} />
+      <CTA isMobile={isMobile} />
+      <Footer isMobile={isMobile} />
     </div>
   )
 }

@@ -7,7 +7,7 @@ export default function MobileFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <div className="w-full bg-[#fdfdfd] pt-16 pb-16 px-5 relative overflow-hidden">
+    <div className="w-full bg-[#ffffff] pt-16 pb-16 px-5 relative overflow-hidden">
       
       <div className="flex flex-col items-center text-center relative z-10">
         
@@ -16,7 +16,7 @@ export default function MobileFAQ() {
            className="flex items-center gap-3 mb-4"
         >
            <div className="w-6 h-[2px] bg-[#d97706]" />
-           <span className="text-[0.55rem] font-bold text-[#b38728] tracking-widest uppercase">
+           <span className="text-[0.55rem] font-bold text-[#C79A17] tracking-widest uppercase">
              {faqData.tag}
            </span>
            <div className="w-6 h-[2px] bg-[#d97706]" />
@@ -24,14 +24,14 @@ export default function MobileFAQ() {
         
         <motion.h2 
           initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-          className="text-[2.2rem] font-black text-[#0a1128] leading-[1.1] tracking-tight mb-4 text-center"
+          className="text-[2.2rem] font-black text-[#2A3A69] leading-[1.1] tracking-tight mb-4 text-center"
         >
           {faqData.title}
         </motion.h2>
 
         <motion.p 
           initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-          className="text-[0.95rem] text-[#4b5563] font-medium leading-relaxed mb-10 text-center"
+          className="text-[0.95rem] text-[#3A4566] font-medium leading-relaxed mb-10 text-center"
         >
           {faqData.desc}
         </motion.p>
@@ -45,21 +45,21 @@ export default function MobileFAQ() {
                <motion.div 
                  key={idx}
                  initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.05 * idx }}
-                 className="bg-white border border-[#e5e7eb] rounded-xl p-4 px-5 shadow-sm cursor-pointer relative overflow-hidden text-left"
+                 className="bg-white border border-[#E2E6EE] rounded-xl p-4 px-5 shadow-sm cursor-pointer relative overflow-hidden text-left"
                  onClick={() => setOpenIdx(isOpen ? null : idx)}
                >
                   <div className="flex items-start gap-4 relative z-10">
-                     <div className="w-10 h-10 rounded-full bg-[#fdf8f0] flex items-center justify-center shrink-0 border border-[#f6ead6] mt-1">
-                        <faq.icon size={18} className="text-[#0a1128]" strokeWidth={1.5} />
+                     <div className="w-10 h-10 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] mt-1">
+                        <faq.icon size={18} className="text-[#2A3A69]" strokeWidth={1.5} />
                      </div>
                      <div className="flex flex-col flex-1 pt-1.5">
                         <div className="flex items-start justify-between w-full mb-2">
-                           <h4 className="font-bold text-[#0a1128] text-[0.9rem] leading-tight pr-2">
+                           <h4 className="font-bold text-[#2A3A69] text-[0.9rem] leading-tight pr-2">
                              {faq.q}
                            </h4>
                            <ChevronDown 
                              size={18} 
-                             className={`text-[#0a1128] transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : 'rotate-0'}`} 
+                             className={`text-[#2A3A69] transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : 'rotate-0'}`} 
                            />
                         </div>
                         
@@ -72,7 +72,7 @@ export default function MobileFAQ() {
                                transition={{ duration: 0.3 }}
                                className="overflow-hidden"
                              >
-                               <p className="text-[0.8rem] text-[#4b5563] font-medium leading-relaxed pt-1 pb-1">
+                               <p className="text-[0.8rem] text-[#3A4566] font-medium leading-relaxed pt-1 pb-1">
                                  {faq.a}
                                </p>
                              </motion.div>
@@ -88,17 +88,17 @@ export default function MobileFAQ() {
         {/* Bottom Banner */}
         <motion.div 
            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-           className="w-full bg-[#fdf8f0] border border-[#f6ead6] rounded-[1.5rem] p-6 flex flex-col items-center text-center shadow-sm relative overflow-hidden"
+           className="w-full bg-[rgba(199, 154, 23, 0.05)] border border-[rgba(199, 154, 23, 0.15)] rounded-[1.5rem] p-6 flex flex-col items-center text-center shadow-sm relative overflow-hidden"
         >
-           <div className="w-16 h-16 rounded-full bg-[#0a1128] flex flex-col items-center justify-center text-white relative shadow-md mb-5">
+           <div className="w-16 h-16 rounded-full bg-[#2A3A69] flex flex-col items-center justify-center text-white relative shadow-md mb-5">
               <div className="absolute top-2.5 w-2 h-2 bg-[#d97706] rotate-45 rounded-[1px]" />
               <faqData.banner.icon size={28} strokeWidth={1.5} className="mt-2 text-[#d97706]" />
            </div>
            
-           <h3 className="text-xl font-black text-[#0a1128] leading-tight mb-3">
+           <h3 className="text-xl font-black text-[#2A3A69] leading-tight mb-3">
              {faqData.banner.title.replace('\n', ' ')}
            </h3>
-           <p className="text-[#4b5563] font-medium text-[0.8rem] mb-8">
+           <p className="text-[#3A4566] font-medium text-[0.8rem] mb-8">
              {faqData.banner.desc}
            </p>
 
@@ -107,8 +107,8 @@ export default function MobileFAQ() {
                  <faqData.banner.btn1.icon size={16} strokeWidth={2.5} />
                  {faqData.banner.btn1.text}
               </button>
-              <button className="w-full bg-white text-[#0a1128] py-3.5 rounded-xl font-bold text-[0.85rem] shadow-sm border border-[#0a1128] flex items-center justify-center gap-2">
-                 <faqData.banner.btn2.icon size={16} strokeWidth={2.5} className="text-[#6b7280]" />
+              <button className="w-full bg-white text-[#2A3A69] py-3.5 rounded-xl font-bold text-[0.85rem] shadow-sm border border-[#2A3A69] flex items-center justify-center gap-2">
+                 <faqData.banner.btn2.icon size={16} strokeWidth={2.5} className="text-[#6B7491]" />
                  {faqData.banner.btn2.text}
               </button>
            </div>

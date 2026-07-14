@@ -5,7 +5,7 @@ import { Star, Goal, ArrowUpRight } from 'lucide-react'
 
 export default function DesktopYourMarkets() {
   return (
-    <div className="w-full bg-[#fdfdfd] pt-20 pb-20 overflow-hidden relative">
+    <div className="w-full bg-[#ffffff] pt-20 pb-20 overflow-hidden relative">
       <Container className="relative z-10">
         
         {/* Top Section */}
@@ -18,7 +18,7 @@ export default function DesktopYourMarkets() {
                className="flex items-center gap-2 mb-6"
             >
                <div className="w-6 h-[2px] bg-[#d97706]" />
-               <span className="text-[0.65rem] font-bold text-[#b38728] tracking-widest uppercase">
+               <span className="text-[0.65rem] font-bold text-[#C79A17] tracking-widest uppercase">
                  {marketData.tag}
                </span>
             </motion.div>
@@ -27,7 +27,7 @@ export default function DesktopYourMarkets() {
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="text-[3.2rem] font-black leading-[1.1] tracking-tight mb-8"
             >
-              <span className="text-[#0a1128] block">{marketData.titleBase}</span>
+              <span className="text-[#2A3A69] block">{marketData.titleBase}</span>
               <span className="text-[#d97706] block">{marketData.titleHighlight}</span>
             </motion.h2>
 
@@ -35,8 +35,8 @@ export default function DesktopYourMarkets() {
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
               className="flex flex-col gap-6"
             >
-              <p className="text-[1.1rem] text-[#0a1128] font-bold leading-relaxed">{marketData.desc[0]}</p>
-              <p className="text-[1.1rem] text-[#4b5563] font-medium leading-relaxed max-w-sm">{marketData.desc[1]}</p>
+              <p className="text-[1.1rem] text-[#2A3A69] font-bold leading-relaxed">{marketData.desc[0]}</p>
+              <p className="text-[1.1rem] text-[#3A4566] font-medium leading-relaxed max-w-sm">{marketData.desc[1]}</p>
             </motion.div>
           </div>
 
@@ -54,10 +54,10 @@ export default function DesktopYourMarkets() {
              {/* Connecting Lines */}
              <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
                {/* Just a representative dashed network connecting the centers */}
-               <path d="M 180 180 L 370 120" stroke="#9ca3af" strokeWidth="2" strokeDasharray="6 6" fill="none" />
-               <path d="M 370 120 L 560 100" stroke="#9ca3af" strokeWidth="2" strokeDasharray="6 6" fill="none" />
-               <path d="M 370 120 L 580 180" stroke="#9ca3af" strokeWidth="2" strokeDasharray="6 6" fill="none" />
-               <path d="M 370 120 L 450 280" stroke="#9ca3af" strokeWidth="2" strokeDasharray="6 6" fill="none" />
+               <path d="M 180 180 L 370 120" stroke="#6B7491" strokeWidth="2" strokeDasharray="6 6" fill="none" />
+               <path d="M 370 120 L 560 100" stroke="#6B7491" strokeWidth="2" strokeDasharray="6 6" fill="none" />
+               <path d="M 370 120 L 580 180" stroke="#6B7491" strokeWidth="2" strokeDasharray="6 6" fill="none" />
+               <path d="M 370 120 L 450 280" stroke="#6B7491" strokeWidth="2" strokeDasharray="6 6" fill="none" />
              </svg>
 
              {/* Hexagons */}
@@ -72,8 +72,8 @@ export default function DesktopYourMarkets() {
                if (hex.color === 'blue') {
                  bgColor = 'bg-[#eff6ff]';
                  borderColor = 'border-[#bfdbfe]';
-                 iconBg = 'bg-[#0a1128] text-white';
-                 badgeBg = 'bg-[#0a1128]';
+                 iconBg = 'bg-[#2A3A69] text-white';
+                 badgeBg = 'bg-[#2A3A69]';
                  badgeText = 'text-white';
                } else if (hex.color === 'gold') {
                  bgColor = 'bg-[#fffbeb]';
@@ -82,11 +82,11 @@ export default function DesktopYourMarkets() {
                  badgeBg = 'bg-[#d97706]';
                  badgeText = 'text-white';
                } else {
-                 bgColor = 'bg-[#f3f4f6]';
+                 bgColor = 'bg-[#F5F7FA]';
                  borderColor = 'border-[#d1d5db]';
-                 iconBg = 'bg-[#6b7280] text-white';
-                 badgeBg = 'bg-[#e5e7eb]';
-                 badgeText = 'text-[#4b5563]';
+                 iconBg = 'bg-[#6B7491] text-white';
+                 badgeBg = 'bg-[#E2E6EE]';
+                 badgeText = 'text-[#3A4566]';
                }
 
                return (
@@ -105,7 +105,7 @@ export default function DesktopYourMarkets() {
                           <hex.icon size={16} />
                        </div>
 
-                       <span className="font-bold text-[#0a1128] text-[0.8rem] mt-2 whitespace-nowrap">{hex.title}</span>
+                       <span className="font-bold text-[#2A3A69] text-[0.8rem] mt-2 whitespace-nowrap">{hex.title}</span>
                        <div className={`mt-1 px-2 py-0.5 rounded-[0.25rem] ${badgeBg} ${badgeText} text-[0.55rem] font-bold shadow-sm`}>
                          {hex.status}
                        </div>
@@ -117,11 +117,11 @@ export default function DesktopYourMarkets() {
         </div>
 
         {/* Bottom Split Section */}
-        <div className="w-full bg-[#fdfdfd] rounded-[2rem] border border-[#e5e7eb] flex overflow-hidden shadow-sm relative">
+        <div className="w-full bg-[#ffffff] rounded-[2rem] border border-[#E2E6EE] flex overflow-hidden shadow-sm relative">
            
            {/* Left Half (Benefits List) */}
            <div className="w-[45%] p-10 pr-12 bg-white">
-              <div className="inline-flex items-center gap-2 bg-[#0a1128] text-white px-4 py-2 rounded-full mb-8 shadow-sm">
+              <div className="inline-flex items-center gap-2 bg-[#2A3A69] text-white px-4 py-2 rounded-full mb-8 shadow-sm">
                  <Star size={16} className="text-[#d97706] fill-[#d97706]" />
                  <span className="text-[0.75rem] font-bold tracking-widest">{marketData.benefitsTitle}</span>
               </div>
@@ -129,10 +129,10 @@ export default function DesktopYourMarkets() {
               <div className="flex flex-col gap-5">
                  {marketData.benefits.map((benefit, idx) => (
                    <div key={idx} className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-[#fdf8f0] flex items-center justify-center text-[#d97706] shrink-0 border border-[#f6ead6]">
+                      <div className="w-10 h-10 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center text-[#d97706] shrink-0 border border-[rgba(199, 154, 23, 0.15)]">
                          <benefit.icon size={18} strokeWidth={2} />
                       </div>
-                      <span className="text-[0.95rem] font-bold text-[#4b5563] leading-snug">
+                      <span className="text-[0.95rem] font-bold text-[#3A4566] leading-snug">
                          {benefit.text}
                       </span>
                    </div>
@@ -141,10 +141,10 @@ export default function DesktopYourMarkets() {
            </div>
 
            {/* Divider Line */}
-           <div className="absolute left-[45%] top-10 bottom-10 w-[1px] bg-gradient-to-b from-transparent via-[#e5e7eb] to-transparent" />
+           <div className="absolute left-[45%] top-10 bottom-10 w-[1px] bg-gradient-to-b from-transparent via-[#E2E6EE] to-transparent" />
 
            {/* Right Half (Outcome 3D Graphic) */}
-           <div className="w-[55%] p-10 bg-[#fdf8f0] relative flex items-center justify-between pl-16">
+           <div className="w-[55%] p-10 bg-[rgba(199, 154, 23, 0.05)] relative flex items-center justify-between pl-16">
               
               <div className="flex flex-col">
                  <div className="inline-flex items-center gap-2 bg-[#d97706] text-white px-4 py-1.5 rounded-full mb-6 shadow-sm w-fit">
@@ -153,8 +153,8 @@ export default function DesktopYourMarkets() {
                  </div>
 
                  <h3 className="text-[2.2rem] font-black leading-[1.2]">
-                   <span className="text-[#0a1128] block">{marketData.outcome.lines[0]}</span>
-                   <span className="text-[#0a1128] block">{marketData.outcome.lines[1]}</span>
+                   <span className="text-[#2A3A69] block">{marketData.outcome.lines[0]}</span>
+                   <span className="text-[#2A3A69] block">{marketData.outcome.lines[1]}</span>
                    <span className="text-[#d97706] block">{marketData.outcome.lines[2]}</span>
                  </h3>
               </div>
@@ -162,9 +162,9 @@ export default function DesktopYourMarkets() {
               {/* Graphic Representation */}
               <div className="relative w-72 h-64">
                  {/* Map Base */}
-                 <div className="absolute bottom-4 right-4 w-56 h-32 bg-white rounded-xl shadow-xl border border-[#e5e7eb] transform rotate-[-15deg] skew-x-[20deg] flex overflow-hidden">
+                 <div className="absolute bottom-4 right-4 w-56 h-32 bg-white rounded-xl shadow-xl border border-[#E2E6EE] transform rotate-[-15deg] skew-x-[20deg] flex overflow-hidden">
                     {/* Fake map grid */}
-                    <div className="w-full h-full bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:20px_20px]" />
+                    <div className="w-full h-full bg-[linear-gradient(to_right,#E2E6EE_1px,transparent_1px),linear-gradient(to_bottom,#E2E6EE_1px,transparent_1px)] bg-[size:20px_20px]" />
                  </div>
 
                  {/* Bar Chart Rising */}
@@ -172,7 +172,7 @@ export default function DesktopYourMarkets() {
                     <div className="w-8 h-12 bg-blue-500 rounded-t-sm shadow-md" />
                     <div className="w-8 h-20 bg-blue-600 rounded-t-sm shadow-md" />
                     <div className="w-8 h-28 bg-blue-700 rounded-t-sm shadow-md" />
-                    <div className="w-8 h-36 bg-[#0a1128] rounded-t-sm shadow-md" />
+                    <div className="w-8 h-36 bg-[#2A3A69] rounded-t-sm shadow-md" />
                  </div>
                  
                  {/* Upward Arrow */}

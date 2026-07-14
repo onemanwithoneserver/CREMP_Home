@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState, useId, useCallback } from 'react'
 import { Monitor, Smartphone, ChevronDown, X } from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Dropdown from './commonfiles/Dropdown'
 
 export type Page = 'home' | 'franchise'
 export type ViewMode = 'desktop' | 'mobile'
 
 interface HeaderProps {
-  activePage: Page
-  onNavigate: (page: Page) => void
   viewMode: ViewMode
   onViewModeChange: (v: ViewMode) => void
   showViewControls?: boolean
@@ -25,8 +24,6 @@ const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[]).map((p) => ({
 }))
 
 export default function Header({
-  activePage,
-  onNavigate,
   viewMode,
   onViewModeChange,
   showViewControls = true,
@@ -35,6 +32,14 @@ export default function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const activePage: Page = location.pathname.includes('franchise') ? 'franchise' : 'home'
+
+  const handleNavigate = (page: string) => {
+    navigate(page === 'home' ? '/' : `/${page}`)
+  }
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), [])
 
@@ -149,7 +154,7 @@ export default function Header({
                 id="desktop-page-selector"
                 options={PAGE_OPTIONS}
                 value={activePage}
-                onChange={(v) => onNavigate(v as Page)}
+                onChange={(v) => handleNavigate(v)}
                 size="sm"
                 className="w-32"
               />
@@ -190,7 +195,7 @@ export default function Header({
                         role="menuitem"
                         aria-current={isActive ? 'page' : undefined}
                         onClick={() => {
-                          onNavigate(p)
+                          handleNavigate(p)
                           closeMenu()
                         }}
                         className={`w-full text-left px-4 py-2.5 text-xs font-semibold transition-base focus-visible:outline-none focus-visible:bg-cremp-primary/10 motion-reduce:transition-none ${
