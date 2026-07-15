@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import MobileViewport from './components/commonfiles/MobileViewport'
 import Header, { type ViewMode } from './components/Header'
 import { PageTransition } from './components/layout'
@@ -9,6 +9,7 @@ import Franchise from './Franchise'
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('desktop')
   const [showHeader, setShowHeader] = useState(true)
+  const location = useLocation()
 
   const isMobile = viewMode === 'mobile'
 
@@ -39,8 +40,8 @@ function App() {
 
       <div className="flex-1 overflow-hidden relative z-10">
         <MobileViewport isMobile={isMobile}>
-          <PageTransition>
-            <Routes>
+          <PageTransition motionKey={location.pathname}>
+            <Routes location={location}>
               <Route path="/" element={<Home isMobile={isMobile} />} />
               <Route path="/franchise" element={<Franchise isMobile={isMobile} />} />
               <Route path="*" element={<Navigate to="/" replace />} />

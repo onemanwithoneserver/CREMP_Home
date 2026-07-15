@@ -6,7 +6,7 @@ import Dropdown from './commonfiles/Dropdown'
 export type Page = 'home' | 'franchise'
 export type ViewMode = 'desktop' | 'mobile'
 
-interface HeaderProps {
+export interface HeaderProps {
   viewMode: ViewMode
   onViewModeChange: (v: ViewMode) => void
   showViewControls?: boolean
@@ -37,29 +37,27 @@ export default function Header({
 
   const activePage: Page = location.pathname.includes('franchise') ? 'franchise' : 'home'
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = useCallback((page: string) => {
     navigate(page === 'home' ? '/' : `/${page}`)
-  }
+  }, [navigate])
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), [])
 
   useEffect(() => {
-    function handleMouseDown(e: MouseEvent) {
+    if (!mobileMenuOpen) return
+
+    const handleMouseDown = (e: MouseEvent) => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) {
         closeMenu()
       }
     }
 
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        closeMenu()
-      }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMenu()
     }
 
-    if (mobileMenuOpen) {
-      document.addEventListener('mousedown', handleMouseDown, { capture: true, passive: true })
-      document.addEventListener('keydown', handleKeyDown, { capture: true })
-    }
+    document.addEventListener('mousedown', handleMouseDown, { capture: true, passive: true })
+    document.addEventListener('keydown', handleKeyDown, { capture: true })
 
     return () => {
       document.removeEventListener('mousedown', handleMouseDown, { capture: true })
@@ -154,7 +152,7 @@ export default function Header({
                 id="desktop-page-selector"
                 options={PAGE_OPTIONS}
                 value={activePage}
-                onChange={(v) => handleNavigate(v)}
+                onChange={handleNavigate}
                 size="sm"
                 className="w-32"
               />
@@ -216,17 +214,7 @@ export default function Header({
               <button
                 type="button"
                 onClick={onClose}
-                className="hidden sm:flex items-center justify-center w-8 h-8 rounded bg-white border border-cremp-border text-cremp-text-muted hover:bg-error-light hover:text-error hover:border-error/20 transition-base ml-1 shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
-                aria-label="Close navigation"
-              >
-                <X size={15} strokeWidth={2.5} />
-              </button>
-            )}
-            {onClose && (
-              <button
-                type="button"
-                onClick={onClose}
-                className="sm:hidden flex items-center justify-center w-8 h-8 rounded bg-white border border-cremp-border text-cremp-text-muted hover:bg-error-light hover:text-error transition-base shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+                className="flex items-center justify-center w-8 h-8 sm:ml-1 rounded bg-white border border-cremp-border text-cremp-text-muted hover:bg-error-light hover:text-error hover:border-error/20 transition-base shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
                 aria-label="Close navigation"
               >
                 <X size={15} strokeWidth={2.5} />

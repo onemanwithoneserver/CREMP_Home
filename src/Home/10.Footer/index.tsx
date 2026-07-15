@@ -23,10 +23,7 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                 </div>
                 <span className={`${isMobile ? 'text-[2rem]' : 'text-[2.2rem]'} font-black text-[#2A3A69] tracking-tight`}>P</span>
               </div>
-              <div className={`${isMobile ? 'text-[0.4rem]' : 'text-[0.45rem]'} font-extrabold tracking-[0.15em] mt-1.5 leading-[1.3] uppercase`}>
-                <span className="text-[#2A3A69]">Commercial Real Estate</span><br />
-                <span className="text-[#C79A17]">&amp; Business Opportunities</span>
-              </div>
+
             </div>
 
             <p className={`text-[0.85rem] md:text-[0.9rem] text-[#6B7491] leading-relaxed mb-6 md:mb-8 ${isMobile ? '' : 'pr-8'}`}>
