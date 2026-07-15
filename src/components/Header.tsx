@@ -67,7 +67,7 @@ export default function Header({
 
   return (
     <header className="sticky top-0 z-50 glass-strong border-b border-cremp-primary/15 shadow-elevation-1">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+      <div className="max-w-[1200px] mx-auto px-2">
         <div className="flex items-center justify-between h-14 gap-3">
           <div className="flex items-center gap-2 shrink-0" aria-label="CREMP Logo">
             <span className="text-xl font-extrabold tracking-tight text-cremp-primary select-none">CREMP</span>

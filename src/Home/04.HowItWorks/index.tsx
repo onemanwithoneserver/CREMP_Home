@@ -1,32 +1,41 @@
 import { motion } from 'framer-motion'
+import { Sparkles } from 'lucide-react'
 import { Container } from '../../components/layout'
 import { steps } from './data'
 
 export default function HowItWorks({ isMobile }: { isMobile: boolean }) {
   return (
-    <div className={`w-full bg-[#F5F7FA] ${isMobile ? 'pt-10 pb-10' : 'pt-10 pb-10'} border-t border-[#E2E6EE] overflow-hidden`}>
-      <Container>
-        <div className={`${isMobile ? 'text-left' : 'text-center max-w-4xl mx-auto'} ${isMobile ? 'mb-12' : 'mb-20'} relative z-10`}>
+    <div className={`w-full bg-[#0B101E] ${isMobile ? 'pt-16 pb-16' : 'pt-24 pb-24'} overflow-hidden relative`}>
+      {/* Background ambient glows */}
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#D7B73F]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[#2A3A69]/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <Container className="relative z-10">
+        <div className={`${isMobile ? 'text-left' : 'text-center max-w-4xl mx-auto'} ${isMobile ? 'mb-16' : 'mb-24'} relative z-10`}>
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className={`inline-block px-3 md:px-4 py-1.5 rounded-full bg-[rgba(199, 154, 23, 0.05)] text-[#C79A17] ${isMobile ? 'text-[0.6rem]' : 'text-[0.65rem]'} font-bold tracking-widest uppercase mb-4 border border-[rgba(199, 154, 23, 0.15)]`}>
-              HOW IT WORKS
-            </span>
+            <div className="inline-flex items-center rounded-full border border-[#D7B73F]/40 shadow-[0_0_15px_rgba(215,183,63,0.15)] bg-[#1A1F2E]/80 backdrop-blur-sm overflow-hidden mb-6 self-center px-4 py-1.5">
+              <Sparkles size={14} className="text-[#D7B73F] mr-2 animate-pulse" />
+              <span className={`${isMobile ? 'text-[0.65rem]' : 'text-xs'} font-bold text-[#D7B73F] tracking-wider uppercase`}>
+                HOW IT WORKS
+              </span>
+            </div>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className={`${isMobile ? 'text-[2.2rem]' : 'text-[2.8rem]'} font-extrabold text-[#2A3A69] leading-[1.1] tracking-tight mb-4 md:mb-5`}
+            transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 20 }}
+            className={`${isMobile ? 'text-[2.2rem]' : 'text-[3rem]'} font-extrabold text-white leading-[1.1] tracking-tight mb-5`}
           >
-            Your Growth Journey <br /><span className="text-[#C79A17]">Step by Step</span>
+            Your Growth Journey <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D7B73F] to-[#F9E596] drop-shadow-[0_0_15px_rgba(215,183,63,0.2)]">Step by Step</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className={`${isMobile ? 'text-[0.95rem]' : 'text-[1.05rem]'} text-[#3A4566] font-medium leading-relaxed ${isMobile ? '' : 'max-w-2xl mx-auto'}`}
+            className={`${isMobile ? 'text-[0.95rem]' : 'text-[1.1rem]'} text-white/60 font-medium leading-relaxed ${isMobile ? '' : 'max-w-2xl mx-auto'}`}
           >
             Once you join CREMP, we make it easy for you to get discovered, connect with the right people and grow your business.
           </motion.p>
@@ -34,27 +43,27 @@ export default function HowItWorks({ isMobile }: { isMobile: boolean }) {
 
         {isMobile ? (
           <div className="relative pl-6">
-            <div className="absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-[#C79A17]/10 via-[#C79A17]/30 to-[#C79A17]/10" />
-            <div className="flex flex-col gap-8">
+            <div className="absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-[#D7B73F]/0 via-[#D7B73F]/40 to-[#D7B73F]/0" />
+            <div className="flex flex-col gap-10">
               {steps.map((step, idx) => (
                 <motion.div
                   key={step.num}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="relative pl-8"
+                  transition={{ duration: 0.5, delay: idx * 0.1, type: 'spring', stiffness: 100 }}
+                  className="relative pl-8 group"
                 >
-                  <div className="absolute left-[-1.1rem] top-2 w-8 h-8 bg-white rounded-full border-4 border-[#F5F7FA] shadow-[0_0_0_1px_rgba(229,231,235,1)] flex items-center justify-center z-10">
-                    <step.icon size={12} className="text-[#C79A17]" strokeWidth={2} />
+                  <div className="absolute left-[-1.1rem] top-4 w-9 h-9 bg-[#0B101E] rounded-full border border-[#D7B73F]/40 shadow-[0_0_15px_rgba(215,183,63,0.3)] flex items-center justify-center z-10 group-hover:border-[#D7B73F] group-hover:shadow-[0_0_20px_rgba(215,183,63,0.6)] transition-all">
+                    <step.icon size={14} className="text-[#D7B73F]" strokeWidth={2.5} />
                   </div>
-                  <div className="bg-white border border-[#E2E6EE] rounded-sm p-5 shadow-sm relative overflow-hidden">
-                    <div className="absolute -right-2 -top-2 text-[3rem] font-black text-[#F5F7FA] leading-none pointer-events-none">
+                  <div className="bg-[#1A1F2E]/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl relative overflow-hidden group-hover:border-[#D7B73F]/30 transition-all">
+                    <div className="absolute -right-4 -top-6 text-[4.5rem] font-black text-white/5 leading-none pointer-events-none group-hover:text-[#D7B73F]/5 transition-colors">
                       {step.num}
                     </div>
                     <div className="relative z-10">
-                      <h4 className="text-[1.05rem] font-extrabold text-[#2A3A69] mb-1.5">{step.title}</h4>
-                      <p className="text-[0.8rem] text-[#3A4566] font-medium leading-relaxed">{step.desc}</p>
+                      <h4 className="text-[1.1rem] font-extrabold text-white mb-2 group-hover:text-[#D7B73F] transition-colors">{step.title}</h4>
+                      <p className="text-[0.85rem] text-white/60 font-medium leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -63,31 +72,36 @@ export default function HowItWorks({ isMobile }: { isMobile: boolean }) {
           </div>
         ) : (
           <div className="max-w-[1000px] mx-auto relative px-4">
-            <div className="absolute left-[50%] top-0 bottom-0 w-px bg-gradient-to-b from-[#C79A17]/10 via-[#C79A17]/30 to-[#C79A17]/10 -translate-x-1/2 hidden md:block" />
-            <div className="flex flex-col gap-16 relative">
+            {/* Center glowing timeline line */}
+            <div className="absolute left-[50%] top-0 bottom-0 w-px bg-gradient-to-b from-[#D7B73F]/0 via-[#D7B73F]/40 to-[#D7B73F]/0 -translate-x-1/2 hidden md:block shadow-[0_0_15px_rgba(215,183,63,0.3)]" />
+            <div className="flex flex-col gap-24 relative">
               {steps.map((step, idx) => {
                 const isEven = idx % 2 === 0
                 return (
                   <motion.div
                     key={step.num}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className={`flex items-center w-full relative ${isEven ? 'justify-start' : 'justify-end'}`}
+                    transition={{ duration: 0.6, delay: 0.1, type: 'spring', stiffness: 100 }}
+                    className={`flex items-center w-full relative group ${isEven ? 'justify-start' : 'justify-end'}`}
                   >
-                    <div className={`w-[calc(50%-3rem)] bg-white border border-[#E2E6EE] rounded-sm p-6 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all group relative z-10 ${isEven ? 'text-right pr-12' : 'text-left pl-12'}`}>
-                      <div className={`absolute top-4 text-[4rem] font-black text-[#F5F7FA] leading-none pointer-events-none group-hover:text-[rgba(199, 154, 23, 0.05)] transition-colors ${isEven ? 'right-6' : 'left-6'}`}>
+                    <div className={`w-[calc(50%-4rem)] bg-[#1A1F2E]/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-[0_15px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(215,183,63,0.15)] hover:border-[#D7B73F]/40 hover:-translate-y-2 transition-all relative z-10 ${isEven ? 'text-right pr-14' : 'text-left pl-14'}`}>
+                      <div className={`absolute top-6 text-[5rem] font-black text-white/5 leading-none pointer-events-none group-hover:text-[#D7B73F]/5 transition-colors ${isEven ? 'right-6' : 'left-6'}`}>
                         {step.num}
                       </div>
                       <div className="relative z-10 flex flex-col h-full justify-center">
-                        <h4 className="text-[1.2rem] font-extrabold text-[#2A3A69] mb-2">{step.title}</h4>
-                        <p className="text-[0.9rem] text-[#3A4566] font-medium leading-relaxed">{step.desc}</p>
+                        <h4 className="text-[1.3rem] font-extrabold text-white mb-3 group-hover:text-[#D7B73F] transition-colors">{step.title}</h4>
+                        <p className="text-[0.95rem] text-white/60 font-medium leading-relaxed">{step.desc}</p>
                       </div>
-                      <div className={`absolute top-1/2 -translate-y-1/2 w-12 border-t border-dashed border-[#C79A17]/30 hidden md:block ${isEven ? '-right-12' : '-left-12'}`} />
+                      
+                      {/* Connecting dashed line to center */}
+                      <div className={`absolute top-1/2 -translate-y-1/2 w-16 border-t border-dashed border-[#D7B73F]/30 hidden md:block group-hover:border-[#D7B73F]/60 transition-colors ${isEven ? '-right-16' : '-left-16'}`} />
                     </div>
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full border-4 border-[#F5F7FA] shadow-[0_0_0_1px_rgba(229,231,235,1)] flex items-center justify-center z-20 group-hover:border-[rgba(199, 154, 23, 0.05)] group-hover:shadow-[0_0_0_1px_rgba(179,135,40,0.5)] transition-colors hidden md:flex">
-                      <step.icon size={20} className="text-[#C79A17]" strokeWidth={2} />
+
+                    {/* Center Icon Node */}
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[#0B101E] rounded-full border border-[#D7B73F]/30 shadow-[0_0_20px_rgba(215,183,63,0.2)] flex items-center justify-center z-20 group-hover:border-[#D7B73F] group-hover:shadow-[0_0_30px_rgba(215,183,63,0.6)] group-hover:scale-110 transition-all hidden md:flex">
+                      <step.icon size={22} className="text-[#D7B73F]" strokeWidth={2.5} />
                     </div>
                   </motion.div>
                 )

@@ -1,6 +1,5 @@
 import Navbar from './00.Navbar'
 import Hero from './01.Hero'
-import LogoStrip from './02.LogoStrip'
 import Platform from './03.Platform'
 import HowItWorks from './04.HowItWorks'
 import Benefits from './05.Benefits'
@@ -20,7 +19,6 @@ export default function Home({ isMobile }: HomeProps) {
     <div className="w-full min-h-screen">
       <Navbar isMobile={isMobile} />
       <Hero isMobile={isMobile} />
-      <LogoStrip isMobile={isMobile} />
       <Platform isMobile={isMobile} />
       <HowItWorks isMobile={isMobile} />
       <Benefits isMobile={isMobile} />

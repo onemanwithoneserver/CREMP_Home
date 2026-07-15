@@ -10,7 +10,7 @@ export interface ContainerProps extends HTMLAttributes<HTMLElement> {
 export const Container = forwardRef<HTMLElement, ContainerProps>(
   ({ children, className = '', as: Tag = 'div', ...props }, ref) => {
     return (
-      <Tag ref={ref} className={`max-w-[1200px] mx-auto px-4 sm:px-6 ${className}`} {...props}>
+      <Tag ref={ref} className={`max-w-[1200px] mx-auto px-4 ${className}`} {...props}>
         {children}
       </Tag>
     )
