@@ -66,7 +66,7 @@ export default function Header({
   }, [mobileMenuOpen, closeMenu])
 
   return (
-    <header className="sticky top-0 z-50 glass-strong border-b border-cremp-primary/15 shadow-elevation-1">
+    <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-lg border-b border-cremp-primary/15 shadow-sm">
       <div className="max-w-[1200px] mx-auto px-2">
         <div className="flex items-center justify-between h-14 gap-3">
           <div className="flex items-center gap-2 shrink-0" aria-label="CREMP Logo">

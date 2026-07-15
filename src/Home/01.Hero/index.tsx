@@ -61,20 +61,20 @@ export default function Hero({ isMobile }: HeroProps) {
             >
               <Button
                 variant="primary"
+                iconRight={<ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />}
                 className={`!bg-gradient-to-r from-[#D7B73F] to-[#D98725] border-none !text-white font-bold rounded-[4px] shadow-lg group hover:brightness-110 transition-all ${
                   isMobile ? 'w-full py-3.5' : 'px-8 py-3.5'
                 }`}
               >
                 Explore Marketplace
-                <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
                 variant="outline"
+                icon={<PlayCircle size={18} />}
                 className={`border-white/20 text-white hover:bg-white/5 font-bold rounded-[4px] bg-transparent ${
                   isMobile ? 'w-full py-3.5' : 'px-8 py-3.5'
                 }`}
               >
-                <PlayCircle size={18} className="mr-2" />
                 How It Works
               </Button>
             </motion.div>
