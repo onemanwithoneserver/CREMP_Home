@@ -1,46 +1,64 @@
-import { Shield, BarChart2, Fingerprint, User, FileText } from 'lucide-react';
+import {
+  Building2,
+  Construction,
+  Handshake,
+  Store,
+  Briefcase,
+  ShoppingBag,
+  Clock,
+  CheckCircle2,
+  Award,
+  Headset
+} from 'lucide-react';
 
-export const featuresData = [
+export const networkCategories = [
   {
-    icon: Shield,
-    title: "Trusted Network",
-    description: "Join India's verified, secure ecosystem of businesses and professionals.",
+    icon: Building2,
+    title: "Commercial Property Owners",
     colorFamily: "blue"
   },
   {
-    icon: BarChart2,
-    title: "More Opportunities",
-    description: "Discover, engage and scale your business with curated leads.",
+    icon: Construction,
+    title: "Builders & Developers",
     colorFamily: "emerald"
   },
   {
-    icon: Fingerprint,
-    title: "Secure & Verified",
-    description: "Your critical business data, safe and protected on our blockchain-grade platform.",
-    colorFamily: "purple"
-  }
-];
-
-export const stepsData = [
-  {
-    step: 1,
-    icon: User,
-    title: "Create Account",
-    description: "Tell us about yourself and your business.",
-    colorFamily: "blue"
-  },
-  {
-    step: 2,
-    icon: FileText,
-    title: "Verify Details",
-    description: "Submit your details for verification.",
+    icon: Handshake,
+    title: "Commercial Brokers",
     colorFamily: "amber"
   },
   {
-    step: 3,
-    icon: Shield,
-    title: "Get Onboarded",
-    description: "Access premium tools and networks.",
-    colorFamily: "emerald"
+    icon: Store,
+    title: "Franchisors",
+    colorFamily: "purple"
+  },
+  {
+    icon: Briefcase,
+    title: "Business Owners",
+    colorFamily: "rose"
+  },
+  {
+    icon: ShoppingBag,
+    title: "Retail Brands",
+    colorFamily: "cyan"
+  }
+];
+
+export const vendorBenefits = [
+  {
+    icon: Clock,
+    title: "Early Access",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Priority Profile Verification",
+  },
+  {
+    icon: Award,
+    title: "Founding Partner Recognition",
+  },
+  {
+    icon: Headset,
+    title: "Product Walkthrough & Support",
   }
 ];

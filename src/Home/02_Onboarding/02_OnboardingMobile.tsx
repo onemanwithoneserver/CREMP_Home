@@ -1,131 +1,236 @@
 import { motion } from 'framer-motion';
-import { Rocket, ChevronDown, Globe, ArrowRight } from 'lucide-react';
-import { stepsData } from './data';
+import { Rocket, ArrowRight, MapPin } from 'lucide-react';
+import { networkCategories, vendorBenefits } from './data';
 import bgImage from './bg.png';
 
 export default function Mobile() {
-  const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
+  const springAnim = { type: 'spring' as const, stiffness: 100, damping: 20 };
 
   const iconColorMap: Record<string, string> = {
-    emerald: 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/20 shadow-[0_4px_10px_rgba(16,185,129,0.2)] dark:shadow-none',
-    blue: 'text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-500/10 border-blue-300 dark:border-blue-500/20 shadow-[0_4px_10px_rgba(59,130,246,0.2)] dark:shadow-none',
-    purple: 'text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/10 border-purple-300 dark:border-purple-500/20 shadow-[0_4px_10px_rgba(168,85,247,0.2)] dark:shadow-none',
-    rose: 'text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-500/10 border-rose-300 dark:border-rose-500/20 shadow-[0_4px_10px_rgba(225,29,72,0.2)] dark:shadow-none',
-    amber: 'text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-500/10 border-amber-300 dark:border-amber-500/20 shadow-[0_4px_10px_rgba(217,119,6,0.2)] dark:shadow-none',
-    cyan: 'text-cyan-700 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-500/10 border-cyan-300 dark:border-cyan-500/20 shadow-[0_4px_10px_rgba(8,145,178,0.2)] dark:shadow-none'
+    emerald: 'text-emerald-700 dark:text-emerald-400',
+    blue: 'text-blue-700 dark:text-blue-400',
+    purple: 'text-purple-700 dark:text-purple-400',
+    rose: 'text-rose-700 dark:text-rose-400',
+    amber: 'text-amber-700 dark:text-amber-400',
+    cyan: 'text-cyan-700 dark:text-cyan-400',
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#050C17] px-5 pb-8 pt-20 font-sans text-[#050C17] dark:text-white">
-      
-      {/* Cinematic Background Image */}
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#050C17] px-5 pb-10 pt-28 font-sans text-[#050C17] dark:text-white">
+      {/* Background Image */}
       <div className="absolute inset-0 bg-gray-50 dark:bg-[#050C17] z-0" />
-      <div 
-        className="absolute inset-0 z-0 opacity-10 dark:opacity-20 bg-cover bg-center bg-no-repeat mix-blend-screen"
+      <motion.div
+        className="absolute inset-0 z-0 opacity-15 dark:opacity-30 bg-cover bg-center bg-no-repeat mix-blend-multiply dark:mix-blend-screen"
         style={{ backgroundImage: `url(${bgImage})` }}
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.15 }}
+        transition={{ duration: 2, ease: 'easeOut' }}
       />
-      {/* Dark gradient overlay for readability */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50 via-gray-50/40 to-gray-50 dark:from-[#050C17] dark:via-[#050C17]/40 dark:to-[#050C17] pointer-events-none" />
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#050C17]/90 dark:via-[#050C17]/95 dark:to-[#050C17] pointer-events-none" />
+
+      {/* Floating particles */}
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={i}
+          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#F6B23B]/30 dark:block"
+          style={{
+            left: `${15 + i * 30}%`,
+            top: `${20 + i * 20}%`,
+            width: 3 + i,
+            height: 3 + i,
+          }}
+          animate={{
+            y: [-8, 8, -8],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: 4 + i,
+            repeat: Infinity,
+            delay: i * 0.8,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
 
       <div className="relative z-10 flex w-full flex-col gap-8">
         
-        <div className="flex flex-col">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
+        {/* HERO SECTION */}
+        <div className="flex flex-col z-10">
+          {/* Top Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={springAnim}
-            className="mb-5 flex w-fit items-center gap-2 rounded-full border border-[#B27F1C]/30 dark:border-[#F6B23B]/30 bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 px-3 py-1 text-[#B27F1C] dark:text-[#F6B23B] shadow-[0_0_15px_rgba(178,127,28,0.15)] dark:shadow-[0_0_15px_rgba(246,178,59,0.15)] backdrop-blur-[2px]"
+            className="mb-6 flex flex-col items-start gap-2 rounded-xl border border-[#B27F1C]/20 dark:border-[#F6B23B]/20 bg-gradient-to-br from-[#B27F1C]/10 to-transparent dark:from-[#F6B23B]/10 p-3 shadow-sm backdrop-blur-sm"
           >
-            <Rocket className="h-3.5 w-3.5" />
-            <span className="text-[10px] font-bold uppercase tracking-wider">Client Onboarding</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-[#050C17] dark:text-white">
+              <Rocket className="h-3.5 w-3.5 text-[#B27F1C] dark:text-[#F6B23B]" />
+              <span className="uppercase tracking-wide">Vendor Onboarding Open</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold text-[#B27F1C] dark:text-[#F6B23B]">
+              <span className="uppercase">Early Access</span>
+              <span className="rounded bg-[#B27F1C]/20 dark:bg-[#F6B23B]/20 px-1.5 py-0.5 font-bold uppercase">
+                Launching First in Telangana
+              </span>
+            </div>
           </motion.div>
 
-          <motion.h1 
+          {/* Heading */}
+          <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.1 }}
-            className="mb-2 text-3xl font-extrabold leading-tight tracking-tight text-[#050C17] dark:text-white"
+            className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#050C17] dark:text-white"
           >
-            Welcome to CREMP.<br/>
-            <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] dark:from-[#F6B23B] dark:to-[#ffc15e] bg-clip-text text-transparent drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
-              Let's Build Opportunities Together.
-            </span>
+            India's 1st Integrated <br />
+            <motion.span
+              className="bg-gradient-to-r from-[#d97b29] to-[#F6B23B] bg-clip-text text-transparent"
+              style={{ backgroundSize: '200% auto' }}
+              animate={{ backgroundPosition: ['0% center', '100% center', '0% center'] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+            >
+              Commercial Real Estate
+            </motion.span>{' '}
+            <br />
+            Marketplace
           </motion.h1>
+
+          {/* Subtitle */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...springAnim, delay: 0.2 }}
+            className="mb-2 flex flex-col gap-1 text-sm font-bold text-[#050C17]/80 dark:text-white/80"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-[#F6B23B]">•</span>
+              <span>Commercial Properties</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#F6B23B]">•</span>
+              <span>Franchise Expansion</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#F6B23B]">•</span>
+              <span>Retail Business Opportunities</span>
+            </div>
+          </motion.div>
         </div>
 
-        <motion.div 
+        {/* ONBOARDING CARD SECTION */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ ...springAnim, delay: 0.3 }}
-          viewport={{ once: true, margin: "-40px" }}
-          className="relative overflow-hidden rounded-[8px] border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-[#0C1525]/80 p-5 backdrop-blur-[8px] shadow-sm dark:shadow-none"
+          transition={{ ...springAnim, delay: 0.4 }}
+          viewport={{ once: true, margin: '-20px' }}
+          className="relative mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#0C1525]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
         >
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[200px] w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 blur-[60px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_black_1px,_transparent_1px)] dark:bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[length:16px_16px] opacity-[0.03] dark:opacity-[0.02]" />
-          
-          <div className="relative z-10">
-            <div className="mb-6 flex items-center justify-center gap-3">
-              <div className="h-[2px] w-8 rounded-[2px] bg-gradient-to-l from-[#B27F1C] dark:from-[#F6B23B] to-transparent" />
-              <h2 className="text-base font-bold tracking-wide text-[#050C17] dark:text-white">
-                Onboard in 3 Steps
-              </h2>
-              <div className="h-[2px] w-8 rounded-[2px] bg-gradient-to-r from-[#B27F1C] dark:from-[#F6B23B] to-transparent" />
+          <div className="p-5 sm:p-6">
+            
+            {/* Launch Info */}
+            <div className="mb-6 flex flex-col border-b border-gray-100 pb-5 dark:border-gray-800/50">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="rounded-full bg-orange-100 p-2 dark:bg-orange-500/10">
+                  <Rocket className="h-5 w-5 text-orange-500 dark:text-orange-400" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#050C17] dark:text-white leading-tight">
+                    Launching First in
+                  </h3>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-base font-bold text-orange-500 dark:text-orange-400">Telangana</span>
+                    <span className="text-xs font-bold text-gray-500 dark:text-gray-400">— Phase 1</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
+                We're currently onboarding our founding network of:
+              </p>
             </div>
 
-            <div className="flex flex-col gap-4">
-              {stepsData.map((step, idx) => (
-                <motion.div 
-                  key={step.step}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ ...springAnim, delay: 0.4 + (idx * 0.1) }}
+            {/* Network Categories Grid */}
+            <div className="mb-6 grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3">
+              {networkCategories.map((cat, idx) => (
+                <motion.div
+                  key={cat.title}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ ...springAnim, delay: 0.2 + idx * 0.05 }}
                   viewport={{ once: true }}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center text-center gap-1.5"
                 >
-                  <div className="flex w-full items-center gap-3 rounded-[8px] border border-transparent p-1 active:bg-black/5 dark:active:bg-white/5">
-                    <span className="w-6 text-right text-2xl font-black text-[#B27F1C]/30 dark:text-[#F6B23B]/50">
-                      {step.step}
-                    </span>
-                    <div className={`flex-shrink-0 rounded-[4px] border p-2.5 ${step.colorFamily ? iconColorMap[step.colorFamily] : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] text-[#B27F1C] dark:text-[#F6B23B]'}`}>
-                      <step.icon className="h-5 w-5" strokeWidth={1.8} />
-                    </div>
-                    <div className="flex flex-1 flex-col justify-center">
-                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                        {step.title}
-                      </h4>
-                    </div>
+                  <div className="flex h-10 w-10 items-center justify-center">
+                    <cat.icon 
+                      className={`h-6 w-6 ${iconColorMap[cat.colorFamily] || 'text-gray-700 dark:text-gray-300'}`} 
+                      strokeWidth={1.5} 
+                    />
                   </div>
-                  {idx < stepsData.length - 1 && (
-                    <ChevronDown className="mb-1 mt-3 h-5 w-5 text-gray-400 dark:text-gray-600/50" />
-                  )}
+                  <span className="text-[10px] font-bold leading-tight text-gray-800 dark:text-gray-200">
+                    {cat.title}
+                  </span>
                 </motion.div>
               ))}
             </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col gap-3">
+              <motion.button
+                whileTap={{ scale: 0.96 }}
+                className="group relative flex w-full items-center justify-between overflow-hidden rounded-lg bg-[#050C17] dark:bg-white px-4 py-3 text-sm font-bold text-white dark:text-[#050C17] active:bg-gray-900 dark:active:bg-gray-100"
+              >
+                <span className="relative">Request Early Access</span>
+                <ArrowRight className="relative h-4 w-4" />
+              </motion.button>
+
+              <motion.button
+                whileTap={{ scale: 0.96 }}
+                className="group relative flex w-full items-center justify-between rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111A2C] px-4 py-3 text-sm font-bold text-[#050C17] dark:text-white active:bg-gray-50 dark:active:bg-gray-800"
+              >
+                <span className="relative">Explore the Marketplace</span>
+                <ArrowRight className="relative h-4 w-4" />
+              </motion.button>
+            </div>
+          </div>
+
+          {/* Bottom text */}
+          <div className="border-t border-gray-100 bg-gray-50/50 px-4 py-3 text-center dark:border-gray-800 dark:bg-white/[0.02]">
+            <p className="text-[11px] font-medium text-gray-700 dark:text-gray-300">
+              Join early to establish your presence <span className="font-bold text-orange-600 dark:text-orange-400">before public discovery begins.</span>
+            </p>
           </div>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+        {/* FOUNDING VENDOR BENEFITS */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.5 }}
-          viewport={{ once: true, margin: "-40px" }}
-          className="relative flex flex-col items-center overflow-hidden rounded-[8px] border border-gray-200 dark:border-gray-800 bg-gradient-to-br from-white to-gray-50 dark:from-[#0C1525] dark:to-[#050C17] p-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+          viewport={{ once: true }}
+          className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-200/60 bg-white/60 p-5 backdrop-blur-md dark:border-gray-800/60 dark:bg-[#0C1525]/60"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C] dark:from-[#F6B23B] via-transparent to-transparent opacity-5 dark:opacity-10" />
+          <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-800 dark:text-gray-200">
+            Founding Vendor Benefits
+          </div>
           
-          <div className="relative z-10 flex w-full flex-col items-center">
-            <div className="mb-3 flex-shrink-0 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] p-2.5 text-[#B27F1C] dark:text-[#F6B23B]">
-              <Globe className="h-5 w-5" strokeWidth={1.8} />
-            </div>
-            <h3 className="mb-5 text-base font-semibold text-[#050C17] dark:text-white">
-              One Platform.<br/>
-              <span className="text-[#B27F1C] dark:text-[#F6B23B]">Endless Possibilities.</span>
-            </h3>
-  
-            <button className="group flex w-full items-center justify-center gap-2 rounded-[4px] bg-[#F6B23B] px-5 py-3 text-sm font-bold text-black transition-all active:scale-95 active:bg-[#ffc15e]">
-              Explore Marketplace
-              <ArrowRight className="h-4 w-4 transition-transform group-active:translate-x-1" />
-            </button>
+          <div className="flex flex-col gap-3">
+            {vendorBenefits.map((benefit, idx) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ ...springAnim, delay: 0.6 + idx * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
+                <div className="flex-shrink-0 rounded-full border border-gray-200 bg-white p-1.5 text-orange-500 shadow-sm dark:border-gray-700 dark:bg-[#111A2C] dark:text-orange-400">
+                  <benefit.icon className="h-3.5 w-3.5" />
+                </div>
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                  {benefit.title}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
