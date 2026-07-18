@@ -20,7 +20,7 @@ export const footerLinks = [
 ];
 
 export const socialLinks = [
-  { icon: LinkedinIcon, href: '#', label: 'LinkedIn' },
-  { icon: InstagramIcon, href: '#', label: 'Instagram' },
-  { icon: YoutubeIcon, href: '#', label: 'YouTube' },
+  { icon: LinkedinIcon, href: '#', label: 'LinkedIn', hoverClass: 'hover:bg-blue-100 dark:hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400 dark:hover:border-blue-500/50 hover:shadow-[0_4px_10px_rgba(37,99,235,0.2)] dark:hover:shadow-[0_4px_10px_rgba(59,130,246,0.2)]' },
+  { icon: InstagramIcon, href: '#', label: 'Instagram', hoverClass: 'hover:bg-pink-100 dark:hover:bg-pink-500/10 hover:text-pink-600 dark:hover:text-pink-400 hover:border-pink-400 dark:hover:border-pink-500/50 hover:shadow-[0_4px_10px_rgba(219,39,119,0.2)] dark:hover:shadow-[0_4px_10px_rgba(236,72,153,0.2)]' },
+  { icon: YoutubeIcon, href: '#', label: 'YouTube', hoverClass: 'hover:bg-red-100 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 hover:border-red-400 dark:hover:border-red-500/50 hover:shadow-[0_4px_10px_rgba(220,38,38,0.2)] dark:hover:shadow-[0_4px_10px_rgba(239,68,68,0.2)]' },
 ];

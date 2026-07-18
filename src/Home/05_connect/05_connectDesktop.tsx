@@ -10,21 +10,21 @@ export default function Desktop() {
       id: 'whatsapp',
       label: 'WhatsApp',
       icon: MessageCircle,
-      color: 'bg-green-500 hover:bg-green-400',
+      color: 'bg-green-500 hover:bg-green-400 text-white shadow-[0_4px_15px_rgba(34,197,94,0.4)]',
       action: () => window.open('https://wa.me/1234567890', '_blank')
     },
     {
       id: 'phone',
       label: 'Call Us',
       icon: Phone,
-      color: 'bg-blue-500 hover:bg-blue-400',
+      color: 'bg-blue-500 hover:bg-blue-400 text-white shadow-[0_4px_15px_rgba(59,130,246,0.4)]',
       action: () => window.open('tel:+1234567890', '_self')
     },
     {
       id: 'meet',
       label: 'Book a Meet',
       icon: Video,
-      color: 'bg-[#B27F1C] hover:bg-[#d49924] dark:bg-[#F6B23B] dark:hover:bg-[#ffc15e] text-white dark:text-black',
+      color: 'bg-[#B27F1C] hover:bg-[#d49924] dark:bg-[#F6B23B] dark:hover:bg-[#ffc15e] text-white dark:text-black shadow-[0_4px_15px_rgba(178,127,28,0.4)] dark:shadow-[0_4px_15px_rgba(246,178,59,0.4)]',
       action: () => window.open('https://meet.google.com', '_blank')
     }
   ];
@@ -53,7 +53,7 @@ export default function Desktop() {
                 <span className="rounded-[4px] bg-white/90 dark:bg-[#0C1525]/90 px-3 py-1.5 text-sm font-semibold text-[#050C17] dark:text-white shadow-lg backdrop-blur-sm transition-opacity group-hover:opacity-100 opacity-0 md:opacity-100 border border-gray-200 dark:border-transparent">
                   {option.label}
                 </span>
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform hover:scale-110 active:scale-95 ${option.color} ${option.id === 'meet' ? '' : 'text-white'}`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-110 active:scale-95 ${option.color}`}>
                   <option.icon className="h-5 w-5" strokeWidth={2} />
                 </div>
               </motion.button>

@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { footerLinks, socialLinks } from './data';
 import logo from '../../Logo/CREMP.png';
+import logoLight from '../../Logo/CREMP_Light.png';
+import CrempTextLogo from '../../components/CrempTextLogo';
 
 export default function Desktop() {
   const currentYear = new Date().getFullYear();
@@ -59,10 +61,11 @@ export default function Desktop() {
           {/* Logo & Copyright */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="CREMP Logo" className="h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:drop-shadow-[0_0_8px_rgba(246,178,59,0.3)]" />
+              <img src={logo} alt="CREMP Logo" className="hidden dark:block h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(246,178,59,0.3)]" />
+              <img src={logoLight} alt="CREMP Logo" className="block dark:hidden h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)]" />
               <div className="flex flex-col justify-center">
-                <span className="text-xl font-bold tracking-tight text-[#050C17] dark:text-white leading-none">CREMP</span>
-                <span className="text-gray-500 dark:text-gray-400 text-[10px] tracking-widest uppercase mt-1 leading-none">An Integrated CRE Marketplace</span>
+                <CrempTextLogo className="h-5 w-auto text-[#050C17] dark:text-white mb-[2px]" />
+                <span className="text-[#B27F1C] dark:text-[#F6B23B] text-[11px] font-medium mt-0.5 leading-none">An Integrated CRE Marketplace</span>
               </div>
             </div>
             <div className="h-8 w-px bg-gray-300 dark:bg-gray-800 hidden md:block" />
@@ -91,7 +94,7 @@ export default function Desktop() {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-[#0C1525] border border-gray-200 dark:border-gray-800 hover:border-[#B27F1C]/50 dark:hover:border-[#F6B23B]/50 hover:bg-gray-200 dark:hover:bg-[#111A2C] flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-[#B27F1C] dark:hover:text-[#F6B23B] transition-all duration-300 hover:scale-110"
+                className={`w-10 h-10 rounded-lg bg-gray-100 dark:bg-[#0C1525] border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 transition-all duration-300 hover:scale-110 ${social.hoverClass || 'hover:border-[#B27F1C]/50 dark:hover:border-[#F6B23B]/50 hover:bg-gray-200 dark:hover:bg-[#111A2C] hover:text-[#B27F1C] dark:hover:text-[#F6B23B]'}`}
               >
                 <social.icon className="w-4 h-4" />
               </a>

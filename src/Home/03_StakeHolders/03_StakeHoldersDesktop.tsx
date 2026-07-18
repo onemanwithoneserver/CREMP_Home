@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { stakeholdersData, statsData } from './data';
+import CrempTextLogo from '../../components/CrempTextLogo';
 import logo from '../../Logo/CREMP.png';
 
 export default function Desktop() {
@@ -10,6 +11,15 @@ export default function Desktop() {
   
   const handleTabChange = (id) => {
     setActiveTab(id);
+  };
+
+  const iconColorMap = {
+    emerald: 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/20 shadow-[0_4px_10px_rgba(16,185,129,0.2)] dark:shadow-none',
+    blue: 'text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-500/10 border-blue-300 dark:border-blue-500/20 shadow-[0_4px_10px_rgba(59,130,246,0.2)] dark:shadow-none',
+    purple: 'text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/10 border-purple-300 dark:border-purple-500/20 shadow-[0_4px_10px_rgba(168,85,247,0.2)] dark:shadow-none',
+    rose: 'text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-500/10 border-rose-300 dark:border-rose-500/20 shadow-[0_4px_10px_rgba(225,29,72,0.2)] dark:shadow-none',
+    amber: 'text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-500/10 border-amber-300 dark:border-amber-500/20 shadow-[0_4px_10px_rgba(217,119,6,0.2)] dark:shadow-none',
+    cyan: 'text-cyan-700 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-500/10 border-cyan-300 dark:border-cyan-500/20 shadow-[0_4px_10px_rgba(8,145,178,0.2)] dark:shadow-none'
   };
 
   return (
@@ -86,58 +96,70 @@ export default function Desktop() {
             whileInView={{ scale: 1 }}
             transition={{ type: "spring", duration: 1, delay: 0.6 }}
             viewport={{ once: true }}
-            className="relative z-10 flex h-[190px] w-[190px] flex-col items-center justify-center rounded-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#050C17] shadow-[0_0_40px_rgba(0,0,0,0.05)] dark:shadow-[0_0_40px_rgba(246,178,59,0.15)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-gray-100 dark:before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_60px_rgba(0,0,0,0.1)] dark:group-hover/orbit:shadow-[0_0_60px_rgba(246,178,59,0.25)]"
+            className="relative z-10 flex h-[190px] w-[190px] flex-col items-center justify-center rounded-full border border-gray-800 bg-[#050C17] shadow-[0_0_40px_rgba(246,178,59,0.15)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_60px_rgba(246,178,59,0.25)]"
           >
-            <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
-            <img src={logo} alt="CREMP" className="mb-2 h-16 w-auto object-contain drop-shadow-[0_0_10px_rgba(178,127,28,0.1)] dark:drop-shadow-[0_0_10px_rgba(246,178,59,0.3)] filter" />
-            <span className="text-2xl font-bold tracking-tight text-[#050C17] dark:text-white">CREMP</span>
-            <span className="mt-1 text-center text-[10px] leading-tight tracking-wider text-gray-600 dark:text-gray-400">
+            <div className="absolute inset-0 animate-ping rounded-full bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
+            <img src={logo} alt="CREMP" className="mb-2 h-16 w-auto object-contain drop-shadow-[0_0_10px_rgba(246,178,59,0.3)] filter" />
+            <CrempTextLogo className="h-6 w-auto text-white mb-1" />
+            <span className="mt-0.5 text-center text-[12px] font-medium leading-tight text-[#F6B23B]">
               An Integrated<br/>CRE Marketplace
             </span>
           </motion.div>
 
-          {stakeholdersData.map((stakeholder, index) => {
-            const isActive = activeTab === stakeholder.id;
-            const positions = [
-              { top: '65px', left: '65px' },
-              { top: '65px', right: '65px' },
-              { bottom: '65px', right: '65px' },
-              { bottom: '65px', left: '65px' },
-            ];
-            const pos = positions[index];
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+            className="absolute inset-0 z-20"
+          >
+            {stakeholdersData.map((stakeholder, index) => {
+              const isActive = activeTab === stakeholder.id;
+              const positions = [
+                { top: '65px', left: '65px' },
+                { top: '65px', right: '65px' },
+                { bottom: '65px', right: '65px' },
+                { bottom: '65px', left: '65px' },
+              ];
+              const pos = positions[index];
 
-            return (
-              <motion.div 
-                key={stakeholder.id}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ type: "spring", duration: 0.6, delay: 0.8 + (index * 0.1) }}
-                viewport={{ once: true }}
-                className="absolute z-20 flex cursor-pointer flex-col items-center justify-center"
-                style={pos}
-                onClick={() => handleTabChange(stakeholder.id)}
-              >
-                <div className="relative">
-                  {isActive && (
-                    <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] opacity-30 duration-1000" />
-                  )}
-                  <motion.div 
-                    className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full border bg-white dark:bg-[#0C1525] transition-all duration-500 ${
-                      isActive 
-                        ? 'scale-110 border-[#B27F1C] dark:border-[#F6B23B] text-[#B27F1C] dark:text-[#F6B23B] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]' 
-                        : 'border-gray-200 dark:border-gray-700 text-gray-400 hover:border-[#B27F1C]/50 dark:hover:border-[#F6B23B]/50 hover:text-[#050C17] dark:hover:text-white'
-                    }`}
-                    whileHover={!isActive ? { scale: 1.05 } : {}}
+              return (
+                <motion.div 
+                  key={stakeholder.id}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ type: "spring", duration: 0.6, delay: 0.8 + (index * 0.1) }}
+                  viewport={{ once: true }}
+                  className="absolute flex cursor-pointer flex-col items-center justify-center"
+                  style={pos}
+                  onClick={() => handleTabChange(stakeholder.id)}
+                >
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+                    className="flex flex-col items-center justify-center"
                   >
-                    <stakeholder.icon className="h-7 w-7" strokeWidth={1.8} />
+                    <div className="relative">
+                      {isActive && (
+                        <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] opacity-30 duration-1000" />
+                      )}
+                      <motion.div 
+                        className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full border bg-white dark:bg-[#0C1525] transition-all duration-500 ${
+                          isActive 
+                            ? 'scale-110 border-[#B27F1C] dark:border-[#F6B23B] text-[#B27F1C] dark:text-[#F6B23B] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]' 
+                            : 'border-gray-200 dark:border-gray-700 text-gray-400 hover:border-[#B27F1C]/50 dark:hover:border-[#F6B23B]/50 hover:text-[#050C17] dark:hover:text-white'
+                        }`}
+                        whileHover={!isActive ? { scale: 1.05 } : {}}
+                      >
+                        <stakeholder.icon className="h-7 w-7" strokeWidth={1.8} />
+                      </motion.div>
+                    </div>
+                    <span className={`mt-3 text-center text-sm font-bold transition-all duration-500 ${isActive ? 'text-[#050C17] dark:text-white drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-gray-500'}`} style={{ whiteSpace: 'pre-line' }}>
+                      {stakeholder.label}
+                    </span>
                   </motion.div>
-                </div>
-                <span className={`mt-3 text-center text-sm font-bold transition-all duration-500 ${isActive ? 'text-[#050C17] dark:text-white drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-gray-500'}`} style={{ whiteSpace: 'pre-line' }}>
-                  {stakeholder.label}
-                </span>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
 
         <div className="flex h-full flex-col">
@@ -189,7 +211,7 @@ export default function Desktop() {
                       {stakeholder.features.map((feature, fIdx) => (
                         <div key={fIdx} className="flex items-center gap-4">
                           <div className="flex-shrink-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] text-[#B27F1C] dark:text-[#F6B23B]">
+                            <div className={`flex h-10 w-10 items-center justify-center rounded-[4px] border ${feature.colorFamily ? iconColorMap[feature.colorFamily] : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] text-[#B27F1C] dark:text-[#F6B23B]'}`}>
                               <feature.icon className="h-5 w-5" strokeWidth={1.8} />
                             </div>
                           </div>
@@ -235,7 +257,7 @@ export default function Desktop() {
         <div className="flex w-full flex-1 justify-around gap-4 md:justify-end md:gap-8 lg:gap-12">
           {statsData.map((stat, idx) => (
             <div key={idx} className="flex items-center gap-3">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[4px] border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] text-[#B27F1C] dark:text-[#F6B23B]">
+              <div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[4px] border ${stat.colorFamily ? iconColorMap[stat.colorFamily] : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] text-[#B27F1C] dark:text-[#F6B23B]'}`}>
                 <stat.icon className="h-5 w-5" strokeWidth={1.8} />
               </div>
               <div className="flex flex-col">

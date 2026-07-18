@@ -6,6 +6,15 @@ import bgImage from './bg.png';
 export default function Desktop() {
   const springAnim = { type: "spring", stiffness: 100, damping: 20 };
 
+  const iconColorMap = {
+    emerald: 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/20 shadow-[0_4px_10px_rgba(16,185,129,0.2)] dark:shadow-none',
+    blue: 'text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-500/10 border-blue-300 dark:border-blue-500/20 shadow-[0_4px_10px_rgba(59,130,246,0.2)] dark:shadow-none',
+    purple: 'text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/10 border-purple-300 dark:border-purple-500/20 shadow-[0_4px_10px_rgba(168,85,247,0.2)] dark:shadow-none',
+    rose: 'text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-500/10 border-rose-300 dark:border-rose-500/20 shadow-[0_4px_10px_rgba(225,29,72,0.2)] dark:shadow-none',
+    amber: 'text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-500/10 border-amber-300 dark:border-amber-500/20 shadow-[0_4px_10px_rgba(217,119,6,0.2)] dark:shadow-none',
+    cyan: 'text-cyan-700 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-500/10 border-cyan-300 dark:border-cyan-500/20 shadow-[0_4px_10px_rgba(8,145,178,0.2)] dark:shadow-none'
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#050C17] px-6 pb-12 pt-24 font-sans text-[#050C17] dark:text-white lg:px-12">
       
@@ -81,7 +90,7 @@ export default function Desktop() {
                     <span className="text-3xl font-black text-[#B27F1C]/30 dark:text-[#F6B23B]/30 transition-colors duration-300 group-hover:text-[#B27F1C] dark:group-hover:text-[#F6B23B]">
                       {step.step}
                     </span>
-                    <div className="flex-shrink-0 rounded-[4px] border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] p-3 text-[#B27F1C] dark:text-[#F6B23B] transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#B27F1C]/50 dark:group-hover:border-[#F6B23B]/50 group-hover:shadow-[0_4px_15px_rgba(178,127,28,0.15)] dark:group-hover:shadow-[0_4px_15px_rgba(246,178,59,0.2)]">
+                    <div className={`flex-shrink-0 rounded-[4px] border p-3 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] dark:group-hover:shadow-[0_4px_15px_rgba(246,178,59,0.2)] ${step.colorFamily ? iconColorMap[step.colorFamily] : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111A2C] text-[#B27F1C] dark:text-[#F6B23B] group-hover:border-[#B27F1C]/50 dark:group-hover:border-[#F6B23B]/50'}`}>
                       <step.icon className="h-6 w-6" strokeWidth={1.8} />
                     </div>
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300 group-hover:text-[#050C17] dark:group-hover:text-white">

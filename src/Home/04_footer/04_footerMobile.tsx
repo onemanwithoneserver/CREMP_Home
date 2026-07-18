@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { footerLinks, socialLinks } from './data';
 import logo from '../../Logo/CREMP.png';
+import logoLight from '../../Logo/CREMP_Light.png';
+import CrempTextLogo from '../../components/CrempTextLogo';
 
 export default function Mobile() {
   const currentYear = new Date().getFullYear();
@@ -58,10 +60,11 @@ export default function Mobile() {
         {/* Logo */}
         <div className="flex flex-col items-center gap-3">
           <div className="flex items-center gap-2">
-            <img src={logo} alt="CREMP Logo" className="h-7 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:drop-shadow-[0_0_8px_rgba(246,178,59,0.3)]" />
+            <img src={logo} alt="CREMP Logo" className="hidden dark:block h-7 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(246,178,59,0.3)]" />
+            <img src={logoLight} alt="CREMP Logo" className="block dark:hidden h-7 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)]" />
             <div className="flex flex-col justify-center text-left">
-              <span className="text-base font-bold tracking-tight text-[#050C17] dark:text-white leading-none">CREMP</span>
-              <span className="text-gray-500 dark:text-gray-400 text-[8px] tracking-widest uppercase mt-0.5 leading-none">An Integrated CRE Marketplace</span>
+              <CrempTextLogo className="h-[14px] w-auto text-[#050C17] dark:text-white mb-[2px]" />
+              <span className="text-[#B27F1C] dark:text-[#F6B23B] text-[8.5px] font-medium mt-0.5 leading-none">An Integrated CRE Marketplace</span>
             </div>
           </div>
           <span className="text-gray-500 text-xs mt-1">
@@ -85,14 +88,14 @@ export default function Mobile() {
         {/* Socials */}
         <div className="flex items-center gap-4 mt-1">
           {socialLinks.map((social) => (
-            <a 
-              key={social.label}
-              href={social.href}
-              aria-label={social.label}
-              className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-[#0C1525] border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-[#B27F1C] dark:hover:text-[#F6B23B] transition-colors active:scale-95"
-            >
-              <social.icon className="w-4 h-4" />
-            </a>
+              <a 
+                key={social.label}
+                href={social.href}
+                aria-label={social.label}
+                className={`w-10 h-10 rounded-lg bg-gray-100 dark:bg-[#0C1525] border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 transition-all duration-300 active:scale-95 ${social.hoverClass || 'hover:border-[#B27F1C]/50 dark:hover:border-[#F6B23B]/50 hover:bg-gray-200 dark:hover:bg-[#111A2C] hover:text-[#B27F1C] dark:hover:text-[#F6B23B]'}`}
+              >
+                <social.icon className="w-4 h-4" />
+              </a>
           ))}
         </div>
 

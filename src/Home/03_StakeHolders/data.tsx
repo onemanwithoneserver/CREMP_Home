@@ -25,27 +25,33 @@ export const stakeholdersData = [
     features: [
       {
         icon: Building2,
-        title: 'Premium Asset Showcasing'
+        title: 'Premium Asset Showcasing',
+        colorFamily: 'rose'
       },
       {
         icon: Target,
-        title: 'Targeted Buyer Matching'
+        title: 'Targeted Buyer Matching',
+        colorFamily: 'blue'
       },
       {
         icon: Globe,
-        title: 'Global Market Reach'
+        title: 'Global Market Reach',
+        colorFamily: 'blue'
       },
       {
         icon: Zap,
-        title: 'Streamlined Deal Closings'
+        title: 'Streamlined Deal Closings',
+        colorFamily: 'amber'
       },
       {
         icon: LineChart,
-        title: 'Project Finance Tools'
+        title: 'Project Finance Tools',
+        colorFamily: 'emerald'
       },
       {
         icon: Shield,
-        title: 'Pre-Leasing Contracts'
+        title: 'Pre-Leasing Contracts',
+        colorFamily: 'cyan'
       }
     ],
     buttonText: 'Explore Solutions'
@@ -58,27 +64,33 @@ export const stakeholdersData = [
     features: [
       {
         icon: MapPin,
-        title: 'Strategic Site Discovery'
+        title: 'Strategic Site Discovery',
+        colorFamily: 'rose'
       },
       {
         icon: Users,
-        title: 'Verified Franchisee Matching'
+        title: 'Verified Franchisee Matching',
+        colorFamily: 'purple'
       },
       {
         icon: LineChart,
-        title: 'Rapid Network Expansion'
+        title: 'Rapid Network Expansion',
+        colorFamily: 'emerald'
       },
       {
         icon: ShieldCheck,
-        title: 'Secure Lease Agreements'
+        title: 'Secure Lease Agreements',
+        colorFamily: 'blue'
       },
       {
         icon: BarChart3,
-        title: 'Demographic Analytics'
+        title: 'Demographic Analytics',
+        colorFamily: 'cyan'
       },
       {
         icon: Zap,
-        title: 'Franchise Marketing'
+        title: 'Franchise Marketing',
+        colorFamily: 'amber'
       }
     ],
     buttonText: 'Explore Franchisor Solutions'
@@ -91,27 +103,33 @@ export const stakeholdersData = [
     features: [
       {
         icon: Briefcase,
-        title: 'Exclusive Off-Market Listings'
+        title: 'Exclusive Off-Market Listings',
+        colorFamily: 'emerald'
       },
       {
         icon: Users,
-        title: 'High-Intent Client Network'
+        title: 'High-Intent Client Network',
+        colorFamily: 'blue'
       },
       {
         icon: BarChart3,
-        title: 'Real-Time Market Analytics'
+        title: 'Real-Time Market Analytics',
+        colorFamily: 'cyan'
       },
       {
         icon: CheckCircle2,
-        title: 'End-to-End Deal Tracking'
+        title: 'End-to-End Deal Tracking',
+        colorFamily: 'emerald'
       },
       {
         icon: Zap,
-        title: 'Automated Marketing'
+        title: 'Automated Marketing',
+        colorFamily: 'amber'
       },
       {
         icon: Lock,
-        title: 'Commission Management'
+        title: 'Commission Management',
+        colorFamily: 'purple'
       }
     ],
     buttonText: 'Explore Broker Solutions'
@@ -124,27 +142,33 @@ export const stakeholdersData = [
     features: [
       {
         icon: Building2,
-        title: 'Curated High-Yield Assets'
+        title: 'Curated High-Yield Assets',
+        colorFamily: 'emerald'
       },
       {
         icon: Store,
-        title: 'Premium Franchise Partnerships'
+        title: 'Premium Franchise Partnerships',
+        colorFamily: 'rose'
       },
       {
         icon: LineChart,
-        title: 'Data-Backed Valuations'
+        title: 'Data-Backed Valuations',
+        colorFamily: 'cyan'
       },
       {
         icon: ShieldCheck,
-        title: 'Secure & Transparent Escrow'
+        title: 'Secure & Transparent Escrow',
+        colorFamily: 'amber'
       },
       {
         icon: Briefcase,
-        title: 'Portfolio Diversification'
+        title: 'Portfolio Diversification',
+        colorFamily: 'purple'
       },
       {
         icon: Zap,
-        title: 'Market Trend Alerts'
+        title: 'Market Trend Alerts',
+        colorFamily: 'cyan'
       }
     ],
     buttonText: 'Explore Investor Solutions'
@@ -155,16 +179,19 @@ export const statsData = [
   {
     icon: Lock,
     value: '100%',
-    label: 'Secure Platform'
+    label: 'Secure Platform',
+    colorFamily: 'blue'
   },
   {
     icon: Shield,
     value: 'Verified',
-    label: 'Networks'
+    label: 'Networks',
+    colorFamily: 'emerald'
   },
   {
     icon: Users,
     value: '10K+',
-    label: 'Active Users'
+    label: 'Active Users',
+    colorFamily: 'purple'
   }
 ];

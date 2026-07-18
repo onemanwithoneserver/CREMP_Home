@@ -33,7 +33,7 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
           aria-label="Mobile Device Simulator"
           className={`
             relative shrink-0 overflow-hidden bg-cremp-surface
-            shadow-2xl
+            shadow-2xl transform-gpu translate-x-0 translate-y-0
             w-full max-w-[390px] aspect-[390/844] h-[min(90vh,844px)]
             transition-all duration-500 ease-out hover:shadow-xl
             ${className}
