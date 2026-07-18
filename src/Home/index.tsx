@@ -1,33 +1,24 @@
-import Navbar from './00.Navbar'
-import Hero from './01.Hero'
-import Platform from './03.Platform'
-import HowItWorks from './04.HowItWorks'
-import Benefits from './05.Benefits'
-import Metrics from './06.Metrics'
-import Roles from './07.Roles'
-import Testimonials from './07b.Testimonials'
-import FAQ from './08.FAQ'
-import CTA from './09.CTA'
-import Footer from './10.Footer'
+import Header from './01_header';
+import Onboarding from './02_Onboarding';
+import StakeHolders from './03_StakeHolders';
+import Footer from './04_footer';
+import Connect from './05_connect';
+import { ThemeProvider } from './ThemeContext';
 
 interface HomeProps {
-  isMobile: boolean
+  isMobile: boolean;
 }
 
 export default function Home({ isMobile }: HomeProps) {
   return (
-    <div className="w-full min-h-screen">
-      <Navbar isMobile={isMobile} />
-      <Hero isMobile={isMobile} />
-      <Platform isMobile={isMobile} />
-      <HowItWorks isMobile={isMobile} />
-      <Benefits isMobile={isMobile} />
-      <Metrics isMobile={isMobile} />
-      <Roles isMobile={isMobile} />
-      <Testimonials isMobile={isMobile} />
-      <FAQ isMobile={isMobile} />
-      <CTA isMobile={isMobile} />
-      <Footer isMobile={isMobile} />
-    </div>
-  )
+    <ThemeProvider>
+      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#050C17] text-[#050C17] dark:text-white transition-colors duration-300">
+        <Header isMobile={isMobile} />
+        <Onboarding isMobile={isMobile} />
+        <StakeHolders isMobile={isMobile} />
+        <Footer isMobile={isMobile} />
+        <Connect isMobile={isMobile} />
+      </div>
+    </ThemeProvider>
+  );
 }
