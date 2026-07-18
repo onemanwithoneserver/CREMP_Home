@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import MobileViewport from './components/commonfiles/MobileViewport'
 import Header, { type ViewMode } from './components/Header'
 import { PageTransition } from './components/layout'
+import Home from './Home'
 import Franchise from './Franchise'
 
 function App() {
@@ -41,8 +42,9 @@ function App() {
         <MobileViewport isMobile={isMobile}>
           <PageTransition motionKey={location.pathname}>
             <Routes location={location}>
+              <Route path="/" element={<Home isMobile={isMobile} />} />
               <Route path="/franchise" element={<Franchise isMobile={isMobile} />} />
-              <Route path="*" element={<Navigate to="/franchise" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </PageTransition>
         </MobileViewport>
