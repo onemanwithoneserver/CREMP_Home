@@ -23,7 +23,7 @@ export default function Desktop() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#050C17] dark:text-white mb-6 tracking-tight"
           >
-            Join India's Real Estate<br />Ecosystem
+            Join Telangana's Real Estate<br />Ecosystem
           </motion.h2>
 
           <motion.p 

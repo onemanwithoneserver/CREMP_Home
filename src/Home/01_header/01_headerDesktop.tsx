@@ -30,7 +30,7 @@ export default function Desktop() {
         />
         <div className="flex flex-col justify-center">
           <CrempTextLogo className="h-5 sm:h-6 w-auto text-[#050C17] dark:text-white mb-1" />
-          <span className="mt-0.5 text-[12.5px] font-medium leading-none text-[#B27F1C] dark:text-[#F6B23B]">
+          <span className="mt-0.5 text-[8px] font-medium leading-none text-[#B27F1C] dark:text-[#F6B23B]">
             An Integrated CRE Marketplace
           </span>
         </div>
@@ -43,7 +43,7 @@ export default function Desktop() {
             href={link.href || '#'}
             className="text-sm font-medium text-gray-800 dark:text-gray-200 transition-colors hover:text-[#B27F1C] dark:hover:text-[#F6B23B]"
           >
-            {link.title || link.name}
+            {link.label}
           </a>
         ))}
       </nav>

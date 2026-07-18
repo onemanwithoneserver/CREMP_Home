@@ -1,7 +1,7 @@
-import { navLinks } from './data';
+
 import logo from '../../Logo/CREMP.png';
 import logoLight from '../../Logo/CREMP_Light.png';
-import { ArrowRight, Menu, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../ThemeContext';
 import CrempTextLogo from '../../components/CrempTextLogo';
@@ -21,7 +21,7 @@ export default function Mobile() {
         <img src={logoLight} alt="CREMP Logo" className="block dark:hidden h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)]" />
         <div className="flex flex-col justify-center">
           <CrempTextLogo className="h-[18px] w-auto text-[#050C17] dark:text-white mb-[1px]" />
-          <span className="text-[#B27F1C] dark:text-[#F6B23B] text-[6px] font-medium mt-0.5 leading-none tracking-tight uppercase">An Integrated CRE Marketplace</span>
+          <span className="text-[#B27F1C] dark:text-[#F6B23B] text-[5px] font-medium mt-0.5 leading-none tracking-tight">An Integrated CRE Marketplace</span>
         </div>
       </div>
       

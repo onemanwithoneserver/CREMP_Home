@@ -23,7 +23,7 @@ export default function Mobile() {
             viewport={{ once: true }}
             className="text-3xl font-bold text-[#050C17] dark:text-white mb-4 tracking-tight"
           >
-            Join India's Real Estate Ecosystem
+            Join Telangana's Real Estate Ecosystem
           </motion.h2>
 
           <motion.p 

@@ -8,13 +8,13 @@ import logo from '../../Logo/CREMP.png';
 export default function Mobile() {
   const [activeTab, setActiveTab] = useState(stakeholdersData[0].id);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const springAnim = { type: "spring", stiffness: 100, damping: 20 };
+  const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
   
-  const handleTabChange = (id) => {
+  const handleTabChange = (id: string) => {
     setActiveTab(id);
   };
 
-  const iconColorMap = {
+  const iconColorMap: Record<string, string> = {
     emerald: 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/20 shadow-[0_4px_10px_rgba(16,185,129,0.2)] dark:shadow-none',
     blue: 'text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-500/10 border-blue-300 dark:border-blue-500/20 shadow-[0_4px_10px_rgba(59,130,246,0.2)] dark:shadow-none',
     purple: 'text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/10 border-purple-300 dark:border-purple-500/20 shadow-[0_4px_10px_rgba(168,85,247,0.2)] dark:shadow-none',
@@ -309,7 +309,7 @@ export default function Mobile() {
   );
 }
 
-function UsersIcon(props) {
+function UsersIcon(props: any) {
   return (
     <svg
       {...props}

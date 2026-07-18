@@ -1,4 +1,4 @@
-import { Shield, BarChart2, Fingerprint, User, FileText, Globe } from 'lucide-react';
+import { Shield, BarChart2, Fingerprint, User, FileText } from 'lucide-react';
 
 export const featuresData = [
   {
