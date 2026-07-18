@@ -24,7 +24,7 @@ export default function Mobile() {
       id: 'meet',
       label: 'Book a Meet',
       icon: Video,
-      color: 'bg-[#F6B23B] hover:bg-[#ffc15e] text-black',
+      color: 'bg-[#B27F1C] hover:bg-[#d49924] dark:bg-[#F6B23B] dark:hover:bg-[#ffc15e] text-white dark:text-black',
       action: () => window.open('https://meet.google.com', '_blank')
     }
   ];
@@ -38,7 +38,7 @@ export default function Mobile() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-[90] bg-[#050C17]/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[90] bg-white/60 dark:bg-[#050C17]/60 backdrop-blur-sm"
           />
         )}
       </AnimatePresence>
@@ -63,10 +63,10 @@ export default function Mobile() {
                   onClick={option.action}
                   className="flex items-center justify-end gap-3 active:scale-95"
                 >
-                  <span className="rounded-[4px] bg-[#0C1525] px-3 py-1.5 text-xs font-semibold text-white shadow-lg">
+                  <span className="rounded-[4px] bg-white dark:bg-[#0C1525] px-3 py-1.5 text-xs font-semibold text-[#050C17] dark:text-white shadow-lg border border-gray-200 dark:border-transparent">
                     {option.label}
                   </span>
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] ${option.color} ${option.id === 'meet' ? 'text-black' : 'text-white'}`}>
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-full shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] ${option.color} ${option.id === 'meet' ? '' : 'text-white'}`}>
                     <option.icon className="h-5 w-5" strokeWidth={2} />
                   </div>
                 </motion.button>
@@ -78,7 +78,7 @@ export default function Mobile() {
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.9 }}
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#F6B23B] text-black shadow-[0_0_20px_rgba(246,178,59,0.5)] active:bg-[#ffc15e]"
+          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] text-white dark:text-black shadow-[0_0_20px_rgba(178,127,28,0.2)] dark:shadow-[0_0_20px_rgba(246,178,59,0.5)] active:bg-[#d49924] dark:active:bg-[#ffc15e]"
         >
           <motion.div
             animate={{ rotate: isOpen ? 90 : 0 }}
