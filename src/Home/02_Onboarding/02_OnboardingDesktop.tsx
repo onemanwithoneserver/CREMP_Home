@@ -20,6 +20,7 @@ export default function Desktop() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -187,15 +188,15 @@ export default function Desktop() {
               whileInView={{ scale: 1 }}
               transition={{ type: "spring", duration: 1, delay: 0.6 }}
               viewport={{ once: true }}
-              className="relative z-10 flex h-[40%] w-[40%] flex-col items-center justify-center rounded-full border border-gray-800 bg-[#050C17] shadow-[0_0_40px_rgba(246,178,59,0.15)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_60px_rgba(246,178,59,0.25)]"
+              className="relative z-10 flex h-[40%] w-[40%] flex-col items-center justify-center rounded-full border border-gray-200 bg-white dark:border-gray-800 dark:bg-[#050C17] shadow-[0_0_40px_rgba(178,127,28,0.1)] dark:shadow-[0_0_40px_rgba(246,178,59,0.15)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-gray-100 dark:before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_60px_rgba(178,127,28,0.2)] dark:group-hover/orbit:shadow-[0_0_60px_rgba(246,178,59,0.25)]"
             >
-              <div className="absolute inset-0 animate-ping rounded-full bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
+              <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
               <img
                 src={telanganaMap}
                 alt="Telangana Map"
-                className="z-10 h-[50%] w-[50%] object-contain drop-shadow-[0_0_10px_rgba(246,178,59,0.3)]"
+                className="z-10 h-[50%] w-[50%] object-contain drop-shadow-md dark:drop-shadow-[0_0_10px_rgba(246,178,59,0.3)] invert dark:invert-0 opacity-70 dark:opacity-100"
               />
-              <span className="mt-2 text-center text-[8px] font-bold leading-tight tracking-wider text-[#F6B23B] lg:text-[10px] xl:text-[12px]">
+              <span className="mt-2 text-center text-[8px] font-bold leading-tight tracking-wider text-[#B27F1C] dark:text-[#F6B23B] lg:text-[10px] xl:text-[12px]">
                 PHASE 1
               </span>
             </motion.div>
@@ -212,6 +213,7 @@ export default function Desktop() {
                   { top: '13%', right: '13%' },
                   { bottom: '13%', right: '13%' },
                   { bottom: '13%', left: '13%' },
+                  { top: '50%', left: '-5%', transform: 'translateY(-50%)' } 
                 ];
                 const pos = positions[index];
 
@@ -223,7 +225,7 @@ export default function Desktop() {
                     transition={{ type: "spring", duration: 0.6, delay: 0.8 + (index * 0.1) }}
                     viewport={{ once: true }}
                     className="absolute flex flex-col items-center justify-center"
-                    style={{ ...pos, transform: 'translate(0, 0)' }}
+                    style={{ ...pos }}
                   >
                     <motion.div
                       animate={{ rotate: -360 }}

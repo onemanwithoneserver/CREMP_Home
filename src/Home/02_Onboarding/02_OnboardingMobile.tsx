@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Rocket, ArrowRight, MapPin } from 'lucide-react';
+import { Rocket, ArrowRight } from 'lucide-react';
 import { networkCategories, vendorBenefits } from './data';
 import bgImage from './bg.png';
 
