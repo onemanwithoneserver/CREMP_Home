@@ -27,18 +27,15 @@ export default function Navbar({ isMobile, activeTab = 'home' }: { isMobile: boo
   }, [isMobile])
 
   return (
-    <motion.div
-      initial={{ y: -20, opacity: 0 }}
+    <div className="h-0 w-full sticky top-0 z-50">
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`w-full sticky top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-[#0B101E]/80 backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] border-b border-white/5'
-          : 'bg-transparent border-b border-transparent'
-      }`}
+      className="w-full sticky top-0 z-50 transition-all duration-500 pt-4 px-4 sm:px-6"
     >
-      <Container>
-        <div className={`flex items-center justify-between transition-all duration-500 ${isMobile ? 'h-16' : scrolled ? 'h-20' : 'h-24'}`}>
+      <Container className="!px-0 max-w-[1200px]">
+        <div className={`flex items-center justify-between transition-all duration-500 bg-[#0B101E]/85 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.4)] border border-white/15 rounded-[2rem] px-5 sm:px-8 ${isMobile ? 'h-16' : scrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex flex-col justify-center cursor-pointer group">
             <div className="flex items-center leading-none">
               <span className={`${isMobile ? 'text-2xl' : 'text-3xl'} font-black text-white tracking-tighter`}>CRE</span>
@@ -157,9 +154,9 @@ export default function Navbar({ isMobile, activeTab = 'home' }: { isMobile: boo
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-0 right-0 z-40 bg-[#0B101E]/95 backdrop-blur-3xl border-b border-white/5 shadow-2xl h-[100vh]"
+            className="fixed inset-0 z-40 bg-[#0B101E]/95 backdrop-blur-3xl pt-24 px-6 overflow-y-auto"
           >
-            <div className="px-6 py-8 flex flex-col gap-6">
+            <div className="py-8 flex flex-col gap-6">
               {navLinks.map((link, idx) => (
                 <motion.a
                   key={link.label}
@@ -184,5 +181,6 @@ export default function Navbar({ isMobile, activeTab = 'home' }: { isMobile: boo
         )}
       </AnimatePresence>
     </motion.div>
+    </div>
   )
 }
