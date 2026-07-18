@@ -1,0 +1,127 @@
+import { motion } from 'framer-motion';
+import { Rocket, ChevronRight, Globe, ArrowRight } from 'lucide-react';
+import { featuresData, stepsData } from './data';
+import bgImage from './bg.png';
+
+export default function Desktop() {
+  const springAnim = { type: "spring", stiffness: 100, damping: 20 };
+
+  return (
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#050C17] px-6 pb-12 pt-24 font-sans text-white lg:px-12">
+      
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ duration: 1.5 }}
+        className="pointer-events-none absolute right-0 top-0 z-0 h-full w-full bg-cover bg-right lg:w-2/3"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          maskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%), linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%), linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
+          WebkitMaskComposite: 'source-in',
+          maskComposite: 'intersect',
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-[#050C17] via-[#050C17]/90 to-transparent lg:via-[#050C17]/70" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8">
+        
+        <div className="flex max-w-2xl flex-col">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={springAnim}
+            className="mb-6 flex w-fit items-center gap-2 rounded-full border border-[#F6B23B]/30 bg-[#F6B23B]/10 px-4 py-1.5 text-[#F6B23B] shadow-[0_0_15px_rgba(246,178,59,0.15)] backdrop-blur-[2px]"
+          >
+            <Rocket className="h-4 w-4" />
+            <span className="text-xs font-bold uppercase tracking-wider">Client Onboarding</span>
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...springAnim, delay: 0.1 }}
+            className="mb-4 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl"
+          >
+            Welcome to CREMP.<br/>
+            <span className="bg-gradient-to-r from-[#F6B23B] to-[#ffc15e] bg-clip-text text-transparent drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
+              Let's Build Opportunities Together.
+            </span>
+          </motion.h1>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ ...springAnim, delay: 0.3 }}
+          viewport={{ once: true, margin: "-40px" }}
+          className="group/container relative overflow-hidden rounded-[8px] border border-gray-800 bg-[#0C1525]/80 p-6 backdrop-blur-[8px] transition-colors duration-500 hover:border-[#F6B23B]/30"
+        >
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[250px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B]/10 opacity-0 blur-[100px] transition-opacity duration-700 group-hover/container:opacity-100" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[length:16px_16px] opacity-[0.02]" />
+          
+          <div className="relative z-10">
+            <div className="mb-6 flex items-center justify-center gap-4">
+              <div className="h-[2px] w-10 rounded-[2px] bg-gradient-to-l from-[#F6B23B] to-transparent" />
+              <h2 className="text-lg font-bold tracking-wide text-white">Onboard in 3 Simple Steps</h2>
+              <div className="h-[2px] w-10 rounded-[2px] bg-gradient-to-r from-[#F6B23B] to-transparent" />
+            </div>
+
+            <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
+              {stepsData.map((step, idx) => (
+                <motion.div 
+                  key={step.step} 
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ ...springAnim, delay: 0.4 + (idx * 0.1) }}
+                  viewport={{ once: true }}
+                  className="group flex w-full flex-1 cursor-default items-center gap-3 md:w-auto"
+                >
+                  <div className="flex w-full items-center gap-4 rounded-[8px] border border-transparent p-2 transition-colors duration-300 hover:border-gray-800 hover:bg-white/5">
+                    <span className="text-3xl font-black text-[#F6B23B]/30 transition-colors duration-300 group-hover:text-[#F6B23B]">
+                      {step.step}
+                    </span>
+                    <div className="flex-shrink-0 rounded-[4px] border border-gray-700 bg-[#111A2C] p-3 text-[#F6B23B] transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#F6B23B]/50 group-hover:shadow-[0_4px_15px_rgba(246,178,59,0.2)]">
+                      <step.icon className="h-6 w-6" strokeWidth={1.8} />
+                    </div>
+                    <h4 className="text-sm font-semibold text-gray-200 transition-colors duration-300 group-hover:text-white">
+                      {step.title}
+                    </h4>
+                  </div>
+                  {idx < stepsData.length - 1 && (
+                    <ChevronRight className="ml-auto hidden h-5 w-5 flex-shrink-0 text-gray-600 transition-colors group-hover:text-[#F6B23B]/70 md:block" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ ...springAnim, delay: 0.5 }}
+          viewport={{ once: true, margin: "-40px" }}
+          className="group relative flex flex-col items-center justify-between overflow-hidden rounded-[8px] border border-gray-800 bg-gradient-to-br from-[#0C1525] to-[#050C17] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-[#F6B23B]/40 md:flex-row"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F6B23B] via-transparent to-transparent opacity-10 transition-opacity duration-500 group-hover:opacity-20" />
+          
+          <div className="relative z-10 flex items-center gap-4">
+            <div className="flex-shrink-0 rounded-full border border-gray-700 bg-[#111A2C] p-2.5 text-[#F6B23B] transition-transform duration-500 group-hover:rotate-[24deg] group-hover:scale-110">
+              <Globe className="h-5 w-5" strokeWidth={1.8} />
+            </div>
+            <h3 className="text-base font-semibold text-white">
+              One Platform. <span className="text-[#F6B23B]">Endless Possibilities.</span>
+            </h3>
+          </div>
+
+          <button className="group relative z-10 mt-4 flex w-full items-center justify-center gap-2 rounded-[4px] bg-[#F6B23B] px-6 py-2.5 text-sm font-bold text-black transition-all hover:bg-[#ffc15e] hover:shadow-[0_0_20px_rgba(246,178,59,0.3)] active:scale-95 md:mt-0 md:w-auto">
+            Explore Marketplace
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
