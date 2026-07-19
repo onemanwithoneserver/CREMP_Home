@@ -1,189 +1,190 @@
-import { motion } from 'framer-motion'
-import { foundingData } from './data'
-import { Star, Check, Gem, ShieldCheck } from 'lucide-react'
+import { motion, type Variants } from 'framer-motion';
+import { Container } from '../../components/layout';
+import { foundingData } from './data';
+import { Star, Check, Gem, ShieldCheck, ArrowUpRight } from 'lucide-react';
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 25 } },
+};
+
+const rocketFloat: Variants = {
+  animate: {
+    y: [-6, 6, -6],
+    transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+  },
+};
+
+const flameFlicker: Variants = {
+  animate: {
+    scaleY: [1, 1.25, 0.9, 1.15, 1],
+    opacity: [0.7, 1, 0.6, 1, 0.7],
+    transition: { duration: 0.4, repeat: Infinity, ease: 'linear' },
+  },
+};
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.4, 0.7, 0.4],
+    transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
+  }
+};
 
 export default function MobileFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
   const Btn2Icon = foundingData.buttons[1].icon;
 
   return (
-    <div className="w-full bg-gray-50 dark:bg-[#050C17] pt-12 pb-12 px-5 relative overflow-hidden">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-10 transition-colors duration-700 dark:bg-[#030712]">
       
-      {/* Main Dark Card Container */}
-      <div className="w-full bg-white dark:bg-[#0C1525] rounded-3xl p-6 flex flex-col shadow-xl relative overflow-hidden border border-gray-200 dark:border-gray-800/80">
-         
-         {/* Subtle background glows */}
-         <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#B27F1C] dark:bg-[#F6B23B]/10 rounded-full blur-[80px] pointer-events-none" />
+      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#F6B23B]/15" />
 
-         <motion.div 
-            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 rounded-full px-3 py-1 mb-5 w-fit bg-[#B27F1C] dark:bg-[#F6B23B]/10 backdrop-blur-sm"
-         >
-            <Star size={12} className="text-[#B27F1C] dark:text-[#F6B23B] fill-transparent" />
-            <span className="text-[0.55rem] font-bold text-[#B27F1C] dark:text-[#F6B23B] tracking-widest uppercase">
-              {foundingData.tag}
-            </span>
-         </motion.div>
-         
-         <motion.h2 
-           initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-           className="text-[2.2rem] font-black leading-[1.1] tracking-tight mb-4 text-gray-900 dark:text-white whitespace-pre-line"
-         >
-           {foundingData.title}
-         </motion.h2>
+      <Container className="relative z-10 mx-auto px-4">
+        
+        <div className="relative flex w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0C1525]">
+          
+          <div className="relative flex w-full flex-col items-center p-6 pt-10 text-center">
+            
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ show: { transition: { staggerChildren: 0.15 } } }} className="flex flex-col items-center">
+              <motion.div variants={fadeInUp} className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10">
+                <Star size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                  {foundingData.tag}
+                </span>
+              </motion.div>
+              
+              <motion.h2 variants={fadeInUp} className="mb-6 whitespace-pre-line text-[2rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[2.5rem]">
+                {foundingData.title}
+              </motion.h2>
 
-         <motion.p 
-           initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-           className="text-[0.9rem] text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-10"
-         >
-           {foundingData.desc}
-         </motion.p>
+              <motion.p variants={fadeInUp} className="max-w-[320px] text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                {foundingData.desc}
+              </motion.p>
+            </motion.div>
 
-         {/* 3D Rocket Graphic Area (Mobile Adjusted) */}
-         <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative w-full h-[280px] flex items-center justify-center mb-10"
-         >
-            {/* Pedestal */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[220px] h-[60px]">
-               <div className="absolute bottom-0 w-full h-12 bg-white dark:bg-[#0a101d] rounded-[100%] border border-[#B27F1C]/30 dark:border-[#F6B23B]/30 z-30 shadow-[0_10px_20px_rgba(178,127,28,0.15)] flex items-end justify-center pb-1.5">
-                  <span className="-translate-x-[0.4em] text-[0.6rem] font-black tracking-[0.25em] text-[#B27F1C] dark:text-[#F6B23B] pl-[0.25em]">
-                     FOUNDING PARTNER
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }} className="relative mt-12 mb-8 flex h-[320px] w-full items-center justify-center scale-75 origin-center">
+              
+              <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2">
+                <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#B27F1C]/20 blur-xl dark:bg-[#F6B23B]/15" />
+                <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#B27F1C]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#F6B23B]/30 dark:bg-[#0a101d]">
+                  <span className="-translate-x-[0.5em] pl-[0.3em] text-[0.7rem] font-black tracking-[0.3em] text-[#B27F1C] dark:text-[#F6B23B]">
+                    FOUNDING PARTNER
                   </span>
-               </div>
-               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[190px] h-8 rounded-[100%] border-t border-[#B27F1C]/50 dark:border-[#F6B23B]/50 bg-white dark:bg-[#0C1525]" />
-               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[160px] h-6 rounded-[100%] bg-gradient-to-t from-white dark:from-[#0C1525] to-gray-100 dark:to-gray-800 border border-gray-200 dark:border-gray-800" />
-            </div>
+                </div>
+                <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#B27F1C]/40 bg-gray-50 dark:border-[#F6B23B]/40 dark:bg-[#111827]" />
+                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-gray-700/80 dark:from-[#1e293b] dark:to-[#0a101d]">
+                  <div className="h-[60%] w-[60%] rounded-[100%] border border-gray-300/50 dark:border-gray-600/30" />
+                </div>
+              </div>
 
-            {/* The Rocket */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-               <div className="absolute -bottom-3 w-5 h-10 bg-gradient-to-t from-transparent via-[#f59e0b] to-white rounded-full blur-[2px] opacity-80" />
-               <div className="w-12 h-32 bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] rounded-t-[100%] rounded-b-lg shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-1/2 h-full bg-white/20" />
-                  <div className="absolute top-8 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0C1525] border-[2px] border-yellow-500 dark:border-yellow-400" />
-               </div>
-               <div className="absolute bottom-2 -left-5 w-6 h-12 bg-gradient-to-tr from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#F6B23B] rounded-tl-[100%] rounded-br-md transform -skew-y-12" />
-               <div className="absolute bottom-2 -right-5 w-6 h-12 bg-gradient-to-tl from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#F6B23B] rounded-tr-[100%] rounded-bl-md transform skew-y-12" />
-               <div className="absolute bottom-0 w-3 h-8 bg-gradient-to-t from-[#78350f] to-[#b45309] rounded-t-full z-30" />
-            </div>
+              <motion.div variants={rocketFloat} initial="animate" className="absolute bottom-[80px] left-1/2 z-40 flex -translate-x-1/2 flex-col items-center">
+                <div className="relative h-44 w-16 overflow-hidden rounded-b-[4px] rounded-t-[100%] bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] shadow-[0_20px_40px_rgba(178,127,28,0.4)] dark:shadow-[0_20px_40px_rgba(246,178,59,0.2)]">
+                  <div className="absolute right-0 top-0 h-full w-1/2 bg-white/25" />
+                  <div className="absolute left-1/2 top-12 h-8 w-8 -translate-x-1/2 rounded-full border-[3px] border-yellow-100 bg-sky-100 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] dark:border-yellow-400 dark:bg-[#0a101d]">
+                    <div className="absolute right-1 top-1 h-2 w-3 -rotate-45 rounded-full bg-white/60" />
+                  </div>
+                </div>
+                
+                <div className="absolute -left-7 bottom-2 h-16 w-8 -skew-y-12 rounded-br-[4px] rounded-tl-[100%] bg-gradient-to-tr from-[#92400e] to-[#d97706] shadow-lg" />
+                <div className="absolute -right-7 bottom-2 h-16 w-8 skew-y-12 rounded-bl-[4px] rounded-tr-[100%] bg-gradient-to-tl from-[#92400e] to-[#d97706] shadow-lg" />
+                <div className="absolute bottom-0 z-50 h-12 w-4 rounded-t-full bg-gradient-to-t from-[#78350f] to-[#b45309]" />
+                
+                <motion.div variants={flameFlicker} initial="animate" className="absolute -bottom-6 z-30 h-14 w-6 origin-top rounded-full bg-gradient-to-t from-transparent via-[#f59e0b] to-white opacity-90 blur-[2px]" />
+                <motion.div variants={flameFlicker} initial="animate" transition={{ delay: 0.1 }} className="absolute -bottom-8 z-20 h-16 w-10 origin-top rounded-full bg-gradient-to-t from-transparent via-red-500 to-yellow-300 opacity-60 blur-[4px]" />
+              </motion.div>
 
-            {/* Connecting Nodes */}
-            {foundingData.rocketNodes.map((node, idx) => {
-              const isLeft = node.pos.includes('left');
-              const isTop = node.pos.includes('top');
-              return (
-                <div key={idx} className={`absolute z-30 flex flex-col items-center gap-1 left-[50%] -translate-x-1/2 ${
-                  isLeft ? '-ml-[110px]' : 'ml-[110px]'
-                } ${
-                  isTop ? 'top-[96px]' : 'top-[208px]'
-                }`}>
-                   <div className="relative w-8 h-8 rounded-full border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 bg-white dark:bg-[#0C1525]/80 backdrop-blur-md flex items-center justify-center text-[#B27F1C] dark:text-[#F6B23B]">
-                      <node.icon size={14} strokeWidth={1.5} />
-                      
-                      {/* Straight Connection Line with dots */}
-                      <svg 
-                        className={`pointer-events-none absolute ${isLeft ? 'left-full' : 'right-full'} ${isTop ? 'top-1/2' : 'bottom-1/2'}`}
-                        style={{ width: '69px', height: '56px' }}
-                        viewBox="0 0 69 56"
-                        preserveAspectRatio="none"
-                      >
+              {foundingData.rocketNodes.map((node, idx) => {
+                const isLeft = node.pos.includes('left');
+                const isTop = node.pos.includes('top');
+                
+                return (
+                  <motion.div key={idx} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.6 + (idx * 0.1), type: "spring" }} className={`absolute z-50 flex flex-col items-center gap-2 left-[50%] -translate-x-1/2 ${isLeft ? '-ml-[150px]' : 'ml-[150px]'} ${isTop ? 'top-[100px]' : 'top-[190px]'}`}>
+                    <div className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#B27F1C]/30 bg-white/90 text-[#B27F1C] shadow-md backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#111827]/90 dark:text-[#F6B23B]">
+                      <node.icon size={18} strokeWidth={2} />
+                      <svg className={`pointer-events-none absolute ${isLeft ? 'left-full' : 'right-full'} ${isTop ? 'top-1/2' : 'bottom-1/2'}`} style={{ width: '90px', height: '40px' }} viewBox="0 0 90 40" preserveAspectRatio="none">
                         {(() => {
-                          const iconX = isLeft ? 0 : 69;
-                          const iconY = isTop ? 0 : 56;
-                          const rocketX = isLeft ? 69 : 0;
-                          const rocketY = isTop ? 56 : 0;
-                          
-                          const getPoint = (t: number) => ({
-                            cx: iconX + (rocketX - iconX) * t,
-                            cy: iconY + (rocketY - iconY) * t
-                          });
-                          
+                          const iconX = isLeft ? 0 : 90;
+                          const iconY = isTop ? 0 : 40;
+                          const rocketX = isLeft ? 90 : 0;
+                          const rocketY = isTop ? 40 : 0;
+                          const getPoint = (t: number) => ({ cx: iconX + (rocketX - iconX) * t, cy: iconY + (rocketY - iconY) * t });
                           const dots = [0.15, 0.5, 1.0].map(getPoint);
-                          
                           return (
                             <>
-                              <line 
-                                x1={iconX} y1={iconY} 
-                                x2={rocketX} y2={rocketY} 
-                                stroke="currentColor" 
-                                className="text-[#B27F1C]/40 dark:text-[#F6B23B]/40" 
-                                strokeWidth="1" 
-                                strokeDasharray="2 3" 
-                              />
+                              <line x1={iconX} y1={iconY} x2={rocketX} y2={rocketY} stroke="currentColor" className="text-[#B27F1C]/40 dark:text-[#F6B23B]/40" strokeWidth="1.5" strokeDasharray="3 4" />
                               {dots.map((pt, i) => (
-                                <circle 
-                                  key={i}
-                                  cx={pt.cx} 
-                                  cy={pt.cy} 
-                                  r={i === 2 ? "1.5" : "1"} 
-                                  className="fill-[#B27F1C] dark:fill-[#F6B23B]"
-                                />
+                                <circle key={i} cx={pt.cx} cy={pt.cy} r={i === 2 ? "2.5" : "1.5"} className="fill-[#B27F1C] dark:fill-[#F6B23B]" />
                               ))}
                             </>
                           );
                         })()}
                       </svg>
-                   </div>
-                   <span className="text-[0.5rem] text-gray-500 dark:text-gray-400 font-bold text-center whitespace-pre-line leading-tight">
-                     {node.label}
-                   </span>
-                </div>
-              )
-            })}
-         </motion.div>
-
-         {/* Benefits Box */}
-         <motion.div 
-           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-           className="w-full bg-white dark:bg-[#0C1525] rounded-xl border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 p-5 flex flex-col relative z-10"
-         >
-            <div className="flex items-center justify-center gap-3 mb-6 border-b border-gray-200 dark:border-gray-800/80 pb-4">
-               <div className="w-10 h-10 rounded-full border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 flex items-center justify-center shrink-0">
-                  <Gem size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
-               </div>
-               <h3 className="text-[1.1rem] font-bold text-[#B27F1C] dark:text-[#F6B23B]">
-                 {foundingData.benefitsTitle}
-               </h3>
-            </div>
-
-            <div className="flex flex-col gap-3 mb-6">
-               {foundingData.benefits.map((benefit, idx) => (
-                 <div key={idx} className="w-full bg-white dark:bg-[#0C1525]/50 rounded-lg border border-gray-200 dark:border-gray-800/80 p-3 flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] flex items-center justify-center shrink-0">
-                       <Check size={12} className="text-gray-900 dark:text-white" strokeWidth={3} />
                     </div>
-                    <div className="w-8 h-8 rounded-full border border-[rgba(255, 255, 255, 0.1)] flex items-center justify-center shrink-0 text-gray-500 dark:text-gray-400">
-                       <benefit.icon size={14} strokeWidth={1.5} />
-                    </div>
-                    <span className="text-[0.85rem] font-bold text-gray-900 dark:text-white">
-                       {benefit.text}
+                    <span className="text-center text-[0.65rem] font-bold leading-tight text-gray-500 dark:text-gray-400">
+                      {node.label}
                     </span>
-                 </div>
-               ))}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+
+          <div className="relative z-10 flex w-full flex-col rounded-[8px] bg-gray-50/50 p-6 shadow-inner dark:bg-[#050C17]/50">
+            <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/20 bg-[#B27F1C]/10 shadow-sm dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
+                <Gem size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                {foundingData.benefitsTitle}
+              </h3>
             </div>
 
-            <div className="flex flex-col gap-3 mb-4">
-               <button className="w-full bg-gradient-to-r from-[#FFD17A] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#F6B23B] rounded-xl p-3 flex items-center justify-center gap-3">
-                  <Btn1Icon size={20} className="text-gray-900 dark:text-white" strokeWidth={2} />
-                  <div className="flex flex-col text-left">
-                     <span className="text-gray-900 dark:text-white font-black text-[0.95rem]">{foundingData.buttons[0].title}</span>
-                     <span className="text-gray-900 dark:text-white/80 font-bold text-[0.55rem]">{foundingData.buttons[0].subtitle}</span>
+            <div className="mb-8 flex flex-col gap-3">
+              {foundingData.benefits.map((benefit, idx) => (
+                <div key={idx} className="flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-sm dark:border-gray-800/50 dark:bg-[#0C1525]/60">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10">
+                    <Check size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={3} />
                   </div>
-               </button>
-               
-               <button className="w-full bg-transparent rounded-xl border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 p-3 flex items-center justify-center gap-2">
-                  <Btn2Icon size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
-                  <span className="text-gray-900 dark:text-white font-bold text-[0.8rem]">{foundingData.buttons[1].title.replace('\n', ' ')}</span>
-               </button>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827]">
+                    <benefit.icon size={14} strokeWidth={1.5} />
+                  </div>
+                  <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">
+                    {benefit.text}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            <div className="flex items-center justify-center gap-1.5 mt-2">
-               <ShieldCheck size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-               <span className="text-[0.55rem] text-gray-500 dark:text-gray-400">{foundingData.bottomDisclaimer}</span>
+            <div className="mb-6 flex flex-col gap-3">
+              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative w-full overflow-hidden rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] p-3 text-left shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                <div className="relative z-10 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                    <Btn1Icon size={20} className="text-white dark:text-gray-900" strokeWidth={2} />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[0.95rem] font-black text-white dark:text-gray-900">{foundingData.buttons[0].title}</span>
+                    <span className="text-[0.65rem] font-bold text-white/90 dark:text-gray-900/80">{foundingData.buttons[0].subtitle}</span>
+                  </div>
+                  <ArrowUpRight size={18} className="ml-auto text-white dark:text-gray-900" />
+                </div>
+              </motion.button>
+              
+              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex w-full items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-700/80 dark:bg-[#111827]">
+                <Btn2Icon size={16} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
+                <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">{foundingData.buttons[1].title}</span>
+              </motion.button>
             </div>
-         </motion.div>
 
-      </div>
+            <div className="flex items-center justify-center gap-2">
+              <ShieldCheck size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+              <span className="text-[0.65rem] font-medium text-gray-500 dark:text-gray-400">{foundingData.bottomDisclaimer}</span>
+            </div>
+            
+          </div>
+        </div>
+
+      </Container>
     </div>
-  )
+  );
 }

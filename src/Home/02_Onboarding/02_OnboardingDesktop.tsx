@@ -56,7 +56,6 @@ export default function Desktop() {
   return (
     <div
       ref={sectionRef}
-      // Added pt-28 lg:pt-36 to push content down below fixed navbars
       className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-12 pt-28 font-sans text-[#050C17] dark:bg-[#050C17] dark:text-white lg:pt-36"
     >
       <motion.div

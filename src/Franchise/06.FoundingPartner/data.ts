@@ -31,7 +31,7 @@ export const foundingData = {
     { icon: CalendarDays, text: 'Discovery Call assistance' }
   ],
   buttons: [
-    { icon: Rocket, title: 'Join CREMP Now', subtitle: 'Secure your founding partner spot' },
+    { icon: Rocket, title: 'Join CREMP Now', subtitle: 'Secure your founding partner spot .Schedule Discovery Call' },
     { icon: CalendarDays, title: 'Schedule\nDiscovery Call' }
   ],
   bottomDisclaimer: 'Limited spots available for founding partners across India.'

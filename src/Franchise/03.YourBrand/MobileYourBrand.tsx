@@ -1,200 +1,188 @@
-import { motion } from 'framer-motion'
-import { brandData } from './data'
-import { Store, MapPin, Users, Star, PlayCircle, Search } from 'lucide-react'
-import { YourBrandLogo } from '../../components/YourBrandLogo'
+import { motion, type Variants } from 'framer-motion';
+import { Container } from '../../components/layout';
+import { YourBrandLogo } from '../../components/YourBrandLogo';
+import { Sparkles, ArrowRight, LayoutDashboard, Users, BarChart3, Settings, Bell, Search, TrendingUp, Activity } from 'lucide-react';
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200, damping: 20 } },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+};
+
+const floatAnimation: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+  animate: {
+    y: [-4, 4, -4],
+    transition: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
+  },
+};
+
+const floatSubtle: Variants = {
+  animate: {
+    y: [-3, 3, -3],
+    transition: { duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 },
+  },
+};
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.4, 0.7, 0.4],
+    transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
+  }
+};
 
 export default function MobileYourBrand() {
   return (
-    <div className="w-full bg-gray-50 dark:bg-[#050C17] pt-12 pb-12 px-5 overflow-hidden relative">
-      
-      {/* Background radial gradient */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C] dark:from-[#F6B23B]/5 via-transparent to-transparent pointer-events-none" />
+    <section className="relative w-full overflow-hidden bg-gray-50 py-10 transition-colors duration-700 dark:bg-[#030712]">
+      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[80px] dark:bg-[#F6B23B]/15" />
 
-      {/* Header Area */}
-      <motion.div 
-         initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-      >
-         <span className="text-[0.65rem] font-bold text-[#C79A17] tracking-widest uppercase mb-3 block">
-           {brandData.tag}
-         </span>
-      </motion.div>
-      
-      <motion.h2 
-        initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-        className="text-[2.5rem] font-black leading-[1.1] tracking-tight mb-5"
-      >
-        <span className="text-[#0f172a] dark:text-white block">{brandData.titleBase}</span>
-        <span className="text-[#d97706] dark:text-[#F6B23B] block">{brandData.titleHighlight}</span>
-      </motion.h2>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-        className="mb-10 flex flex-col gap-3"
-      >
-        <p className="text-[0.9rem] text-gray-600 dark:text-gray-400 font-medium">{brandData.desc[0]}</p>
-        
-        <div className="flex flex-col gap-1.5 my-2">
-          <p className="text-[1rem] text-[#0f172a] dark:text-white font-black">{brandData.desc[1]}</p>
-          <p className="text-[1rem] text-[#0f172a] dark:text-white font-black">{brandData.desc[2]}</p>
-          <p className="text-[1rem] text-[#0f172a] dark:text-white font-black">{brandData.desc[3]}</p>
-        </div>
-
-        <p className="text-[0.9rem] text-gray-600 dark:text-gray-400 font-medium leading-relaxed">{brandData.desc[4]}</p>
-      </motion.div>
-
-      {/* Vertical Showcase Menu */}
-      <motion.div 
-         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
-         className="bg-white dark:bg-[#0C1525] rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-100 dark:border-gray-800 p-6 mb-10"
-      >
-         <span className="text-[0.65rem] font-bold text-[#d97706] dark:text-[#F6B23B] tracking-widest uppercase mb-5 block border-b border-[#d97706]/20 pb-2 w-fit">
-           SHOWCASE
-         </span>
-         
-         <div className="flex flex-col gap-4">
-            {brandData.showcaseMenu.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-3">
-                 <div className="w-8 h-8 rounded-full bg-[#FDF8EE] dark:bg-gray-800 flex items-center justify-center shrink-0 border border-[#d97706]/10 text-[#0f172a] dark:text-gray-300 shadow-[0_2px_10px_rgba(217,119,6,0.05)]">
-                   <item.icon size={14} strokeWidth={1.5} />
-                 </div>
-                 <span className="text-[0.8rem] font-bold text-[#0f172a] dark:text-gray-200">
-                   {item.text}
-                 </span>
+      <Container className="relative z-10 mx-auto px-4">
+        <div className="flex flex-col items-center gap-10">
+          
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center text-center">
+            <motion.div variants={fadeInUp}>
+              <div className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
+                <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">Unify Your Workspace</span>
               </div>
-            ))}
-         </div>
-      </motion.div>
+            </motion.div>
+            
+            <motion.h2 variants={fadeInUp} className="mb-6 text-[2.5rem] font-black leading-[1.1] tracking-tight sm:text-[3rem]">
+              <span className="block text-gray-900 dark:text-white">Your Brand.</span>
+              <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">Your Story.</span>
+            </motion.h2>
 
-      {/* Tablet Mockup */}
-      <motion.div 
-         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.4 }}
-         className="w-full relative mb-12"
-      >
-         <div className="w-full bg-[#0f172a] dark:bg-[#000000] rounded-3xl p-3 shadow-xl relative border-[6px] border-[#0f172a] dark:border-[#1a1a1a]">
-            <div className="w-full bg-white dark:bg-[#0C1525] rounded-xl overflow-hidden flex flex-col">
-               
-               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
-                  <YourBrandLogo size="sm" />
-                  <div className="flex items-center gap-3 text-[0.5rem] font-bold text-gray-500 dark:text-gray-400">
-                     <span className="text-[#0f172a] dark:text-white border-b-2 border-[#0f172a] dark:border-white pb-0.5">Overview</span>
-                     <span>Videos</span>
-                  </div>
-               </div>
+            <motion.p variants={fadeInUp} className="mb-8 px-2 text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+              Take full control of your narrative. Manage your digital presence, track audience engagement, and scale your growth intuitively—all from one powerful dashboard designed for modern creators.
+            </motion.p>
 
-               <div className="w-full h-[160px] relative">
-                  <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=800&auto=format&fit=crop" className="w-full h-full object-cover" alt="Store" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-4">
-                     <h3 className="text-white text-[0.9rem] font-medium leading-tight mb-3">
-                       Building a brand.<br/>
-                       Creating opportunities.<br/>
-                       Expanding together.
-                     </h3>
-                     <button className="flex items-center gap-1.5 text-white bg-transparent w-fit px-3 py-1.5 rounded-full border border-white/40">
-                       <div className="w-5 h-5 rounded-full bg-white text-black flex items-center justify-center">
-                         <PlayCircle size={10} className="fill-black" />
-                       </div>
-                       <span className="text-[0.6rem] font-bold">Watch Story</span>
-                     </button>
-                  </div>
-               </div>
+            <motion.div variants={fadeInUp} className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-7 py-3.5 text-sm font-bold text-white shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b] dark:text-gray-900">
+                Explore Dashboard
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-white">
+                View Live Demo
+              </motion.button>
+            </motion.div>
 
-               <div className="grid grid-cols-2 gap-y-3 px-4 py-4 border-b border-gray-100 dark:border-gray-800 bg-[#fefcf8] dark:bg-transparent">
-                  <div className="flex flex-col gap-0.5">
-                     <div className="flex items-center gap-2">
-                        <Store className="text-[#0f172a] dark:text-gray-400" size={12} />
-                        <div className="font-black text-[#0f172a] dark:text-white text-sm leading-tight">150+</div>
-                     </div>
-                     <div className="text-[0.55rem] font-bold text-gray-500 uppercase">Outlets</div>
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                     <div className="flex items-center gap-2">
-                        <MapPin className="text-[#0f172a] dark:text-gray-400" size={12} />
-                        <div className="font-black text-[#0f172a] dark:text-white text-sm leading-tight">45+</div>
-                     </div>
-                     <div className="text-[0.55rem] font-bold text-gray-500 uppercase">Cities</div>
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                     <div className="flex items-center gap-2">
-                        <Users className="text-[#0f172a] dark:text-gray-400" size={12} />
-                        <div className="font-black text-[#0f172a] dark:text-white text-sm leading-tight">10K+</div>
-                     </div>
-                     <div className="text-[0.55rem] font-bold text-gray-500 uppercase">Investors Engaged</div>
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                     <div className="flex items-center gap-2">
-                        <Star className="text-[#d97706] dark:text-[#F6B23B] fill-[#d97706]" size={12} />
-                        <div className="font-black text-[#0f172a] dark:text-white text-sm leading-tight">4.8/5</div>
-                     </div>
-                     <div className="text-[0.55rem] font-bold text-gray-500 uppercase">Rating</div>
-                  </div>
-               </div>
+            <motion.div variants={fadeInUp} className="mt-8 flex items-center justify-center gap-8 border-t border-gray-200/60 pt-8 dark:border-gray-800/60">
+              <div className="flex flex-col items-center">
+                <h4 className="text-2xl font-black text-gray-900 dark:text-white">98%</h4>
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Client Retention</p>
+              </div>
+              <div className="h-10 w-px bg-gray-200 dark:bg-gray-800" />
+              <div className="flex flex-col items-center">
+                <h4 className="text-2xl font-black text-gray-900 dark:text-white">2.4x</h4>
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Growth Rate</p>
+              </div>
+            </motion.div>
+          </motion.div>
 
-               <div className="p-4 bg-white dark:bg-[#050C17]">
-                  <div className="flex items-center justify-between mb-3">
-                     <span className="font-black text-[#0f172a] dark:text-white text-[0.7rem]">Featured Videos</span>
+          <div className="relative mt-8 flex w-full justify-center">
+            <motion.div variants={floatAnimation} initial="hidden" whileInView={["show", "animate"]} viewport={{ once: true }} className="relative w-full max-w-[350px] scale-[0.9] origin-top">
+              
+              <motion.div variants={floatSubtle} initial="animate" className="absolute -left-2 top-8 z-30 flex scale-90 items-center gap-3 rounded-[8px] border border-gray-200/50 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-800/95">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#10B981]/10 text-[#10B981]">
+                  <TrendingUp size={18} strokeWidth={2.5} />
+                </div>
+                <div>
+                  <p className="text-[0.6rem] font-bold uppercase text-gray-500 dark:text-gray-400">Conversion</p>
+                  <p className="text-base font-black text-gray-900 dark:text-white">+24.8%</p>
+                </div>
+              </motion.div>
+
+              <motion.div variants={floatSubtle} initial="animate" className="absolute -bottom-6 -right-2 z-30 flex scale-90 items-center gap-3 rounded-[8px] border border-gray-200/50 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-800/95">
+                <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
+                  <Activity size={16} strokeWidth={2.5} />
+                  <span className="absolute right-0 top-0 h-2 w-2 animate-ping rounded-full bg-blue-500 opacity-75" />
+                  <span className="absolute right-0 top-0 h-2 w-2 rounded-full border-2 border-white bg-blue-500 dark:border-gray-800" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-900 dark:text-white">System Active</p>
+                  <p className="text-[0.55rem] font-medium text-gray-500 dark:text-gray-400">All services operational</p>
+                </div>
+              </motion.div>
+
+              <div className="relative flex h-[460px] w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0a101d]">
+                <div className="relative flex items-center border-b border-gray-100 bg-white/80 px-4 py-2.5 backdrop-blur-md dark:border-gray-800/60 dark:bg-[#0a101d]/80">
+                  <div className="flex gap-1.5">
+                    <div className="h-2.5 w-2.5 rounded-full bg-red-400/90" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-amber-400/90" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-emerald-400/90" />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
-                     <div className="flex flex-col gap-1.5">
-                        <div className="w-full h-16 bg-gray-200 rounded relative overflow-hidden shadow-sm">
-                           <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover" />
-                           <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-6 h-6 rounded-full bg-white/90 flex items-center justify-center shadow-md">
-                                <PlayCircle size={12} className="text-[#0f172a] fill-[#0f172a]" />
-                              </div>
-                           </div>
-                           <span className="absolute bottom-1 right-1 text-[0.5rem] font-bold text-white bg-black/70 px-1 rounded">2:45</span>
+                  <div className="absolute left-1/2 flex w-[60%] -translate-x-1/2 items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-gray-50/50 py-1 text-[0.6rem] font-medium text-gray-500 dark:border-gray-700/80 dark:bg-gray-900/50">
+                    <span className="text-gray-400">🔒</span> yourbrand.com
+                  </div>
+                </div>
+
+                <div className="flex flex-1 overflow-hidden">
+                  <div className="flex w-14 flex-col items-center border-r border-gray-100 bg-gray-50/50 py-4 dark:border-gray-800/60 dark:bg-gray-900/20">
+                    <div className="mb-6 scale-75 origin-top"><YourBrandLogo size="sm" showText={false} /></div>
+                    <div className="flex flex-col gap-6 text-gray-400 dark:text-gray-500">
+                      <div className="rounded-[4px] bg-white p-2 text-[#B27F1C] shadow-sm dark:bg-gray-800 dark:text-[#F6B23B]"><LayoutDashboard size={18} /></div>
+                      <div className="p-2"><BarChart3 size={18} /></div>
+                      <div className="p-2"><Users size={18} /></div>
+                      <div className="p-2"><Settings size={18} /></div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col bg-white p-4 dark:bg-[#030712]">
+                    <div className="mb-5 flex items-center justify-between">
+                      <div>
+                        <h3 className="text-base font-bold text-gray-900 dark:text-white">Overview</h3>
+                        <p className="text-[0.6rem] text-gray-500">Welcome back</p>
+                      </div>
+                      <div className="flex items-center gap-3 text-gray-400">
+                        <Search size={16} />
+                        <div className="relative">
+                          <Bell size={16} />
+                          <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-red-500 ring-2 ring-white dark:ring-[#030712]" />
                         </div>
-                        <span className="text-[0.6rem] font-bold text-[#0f172a] dark:text-white">Founder Story</span>
-                     </div>
-                     <div className="flex flex-col gap-1.5">
-                        <div className="w-full h-16 bg-[#0f172a] dark:bg-[#0C1525] rounded flex flex-col items-center justify-center text-white shadow-sm">
-                           <div className="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center mb-0.5 bg-white/10">
-                             <Search size={10} className="text-white fill-transparent" />
-                           </div>
-                           <span className="text-[0.5rem] font-bold">Video Search</span>
+                        <div className="h-6 w-6 overflow-hidden rounded-full bg-gray-200"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" className="h-full w-full object-cover" alt="User" /></div>
+                      </div>
+                    </div>
+
+                    <div className="mb-5 flex flex-col gap-3">
+                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30">
+                        <p className="mb-1 text-[0.65rem] font-medium text-gray-500">Total Revenue</p>
+                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">$84,590</h4>
+                        <p className="mt-1 flex items-center text-[0.6rem] font-bold text-emerald-500"><TrendingUp size={10} className="mr-1" /> +12.5%</p>
+                      </div>
+                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30">
+                        <p className="mb-1 text-[0.65rem] font-medium text-gray-500">Active Users</p>
+                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">12,405</h4>
+                        <p className="mt-1 flex items-center text-[0.6rem] font-bold text-emerald-500"><TrendingUp size={10} className="mr-1" /> +8.2%</p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-3 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]">
+                      <div className="mb-3 flex items-center justify-between">
+                        <h4 className="text-[0.75rem] font-bold text-gray-900 dark:text-white">Performance</h4>
+                      </div>
+                      <div className="relative flex-1">
+                        <div className="absolute inset-0 flex items-end justify-between gap-1.5 pt-2 opacity-80">
+                          {[40, 70, 45, 90, 65, 85, 100].map((height, i) => (
+                            <div key={i} className="flex w-full flex-col justify-end h-full">
+                              <motion.div initial={{ height: 0 }} whileInView={{ height: `${height}%` }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }} className="w-full rounded-t-[2px] bg-[#B27F1C]/20 dark:bg-[#F6B23B]/20" />
+                            </div>
+                          ))}
                         </div>
-                        <span className="text-[0.6rem] font-bold text-[#0f172a] dark:text-white flex items-center gap-1">Video Search <span className="text-xs leading-none">›</span></span>
-                     </div>
+                      </div>
+                    </div>
                   </div>
-               </div>
-
-            </div>
-         </div>
-      </motion.div>
-
-      {/* Bottom Outcome Banner */}
-      <motion.div 
-         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }}
-         className="w-full bg-[#fdfaf5] dark:bg-gray-800 rounded-2xl p-5 flex flex-col items-center text-center gap-4 shadow-sm relative overflow-hidden"
-      >
-         <div className="absolute right-0 bottom-0 opacity-[0.15] dark:opacity-20 pointer-events-none w-2/3">
-           <svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M0 80 L 150 50 L 250 60 L 380 10" stroke="#d97706" strokeWidth="3" fill="none"/>
-             <path d="M370 10 L 380 10 L 380 20" stroke="#d97706" strokeWidth="3" fill="none"/>
-             <rect x="250" y="70" width="10" height="30" stroke="#d97706" strokeWidth="2"/>
-             <rect x="270" y="60" width="10" height="40" stroke="#d97706" strokeWidth="2"/>
-             <rect x="290" y="45" width="10" height="55" stroke="#d97706" strokeWidth="2"/>
-             <circle cx="340" cy="45" r="10" stroke="#d97706" strokeWidth="2"/>
-             <path d="M320 80 Q 340 60 360 80" stroke="#d97706" strokeWidth="2" fill="none"/>
-             <circle cx="370" cy="55" r="8" stroke="#d97706" strokeWidth="2"/>
-             <path d="M355 90 Q 370 75 385 90" stroke="#d97706" strokeWidth="2" fill="none"/>
-           </svg>
-         </div>
-         
-         <div className="w-[60px] h-[60px] rounded-full bg-[#0f172a] dark:bg-gray-900 flex items-center justify-center z-10 shadow-lg border border-[#0f172a]">
-            <brandData.outcome.icon size={24} stroke="#d97706" fill="transparent" strokeWidth={1.5} />
-         </div>
-         
-         <div className="flex flex-col z-10">
-            <span className="text-[0.65rem] font-bold text-[#d97706] tracking-widest uppercase mb-1.5">
-              {brandData.outcome.tag}
-            </span>
-            <h3 className="text-xl font-black text-[#0f172a] dark:text-white leading-tight">
-              {brandData.outcome.text}
-            </h3>
-         </div>
-      </motion.div>
-      
-    </div>
-  )
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
 }

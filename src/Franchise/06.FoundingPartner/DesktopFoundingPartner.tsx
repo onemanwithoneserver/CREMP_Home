@@ -37,7 +37,6 @@ const pulseGlow: Variants = {
 
 export default function DesktopFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
-  const Btn2Icon = foundingData.buttons[1].icon;
 
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#030712]">
@@ -250,14 +249,14 @@ export default function DesktopFoundingPartner() {
                 <ArrowUpRight size={20} className="relative z-10 text-white opacity-50 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100 dark:text-gray-900" />
               </motion.button>
               
-              <motion.button 
+              {/* <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="group flex items-center justify-center gap-3 rounded-[4px] border border-gray-200 bg-white px-6 py-4 shadow-sm transition-all hover:border-[#B27F1C]/50 hover:bg-gray-50 hover:shadow-md dark:border-gray-700/80 dark:bg-[#111827] dark:hover:border-[#F6B23B]/50 dark:hover:bg-gray-800 sm:w-[35%]"
               >
                 <Btn2Icon size={20} className="text-[#B27F1C] transition-transform group-hover:scale-110 dark:text-[#F6B23B]" strokeWidth={1.5} />
                 <span className="whitespace-pre-line text-left text-sm font-bold leading-tight text-gray-900 dark:text-white">{foundingData.buttons[1].title}</span>
-              </motion.button>
+              </motion.button> */}
             </div>
 
             <div className="flex items-center justify-center gap-2">

@@ -164,16 +164,22 @@ export default function DesktopYourMarkets() {
                     <motion.div 
                       variants={isGold ? pulseNode : {}} 
                       initial="animate"
-                      className={`group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-transform duration-300 hover:rotate-12 hover:scale-125 ${
+                      className={`group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-transform duration-300 hover:scale-125 ${
                         isGold ? 'border-[#F6B23B]/50 bg-[#F6B23B]/20 text-[#F6B23B]' : 
                         isBlue ? 'border-blue-400/50 bg-blue-500/20 text-blue-400' : 
                         'border-white/20 bg-white/10 text-white'
                       }`}
                     >
                       <hex.icon size={16} />
-                      <div className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-[#0A0F1C] ${
-                        isGold ? 'bg-[#F6B23B]' : isBlue ? 'bg-blue-400' : 'bg-white'
-                      }`} />
+                      <motion.div 
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                        className={`absolute -right-1 -top-1 h-3.5 w-3.5 rotate-45 rounded-[2px] border-2 border-[#0A0F1C] ${
+                          isGold ? 'bg-[#F6B23B] shadow-[0_0_8px_rgba(246,178,59,0.8)]' : 
+                          isBlue ? 'bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]' : 
+                          'bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]'
+                        }`} 
+                      />
                     </motion.div>
                   </motion.div>
                 );
