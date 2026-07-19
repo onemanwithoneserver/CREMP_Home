@@ -7,23 +7,34 @@ import FoundingPartner from './06.FoundingPartner'
 import Categories from './07.Categories'
 import FAQ from './08.FAQ'
 
+// Reusing Header, Footer, and ThemeContext from the Home section
+import Header from '../Home/01_header'
+import Footer from '../Home/04_footer'
+import { ThemeProvider } from '../Home/ThemeContext'
+
 interface FranchiseProps {
   isMobile: boolean
 }
 
 export default function Franchise({ isMobile }: FranchiseProps) {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-[#ffffff]">
-      <div className="flex-1 flex flex-col">
-        <Hero isMobile={isMobile} />
-        <Ecosystem isMobile={isMobile} />
-        <YourBrand isMobile={isMobile} />
-        <YourInvestors isMobile={isMobile} />
-        <YourMarkets isMobile={isMobile} />
-        <FoundingPartner isMobile={isMobile} />
-        <Categories isMobile={isMobile} />
-        <FAQ isMobile={isMobile} />
+    <ThemeProvider>
+      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#050C17] text-gray-900 dark:text-white transition-colors duration-300">
+        <Header isMobile={isMobile} />
+        
+        <div className="flex-1 flex flex-col">
+          <Hero isMobile={isMobile} />
+          <Ecosystem isMobile={isMobile} />
+          <YourBrand isMobile={isMobile} />
+          <YourInvestors isMobile={isMobile} />
+          <YourMarkets isMobile={isMobile} />
+          <FoundingPartner isMobile={isMobile} />
+          <Categories isMobile={isMobile} />
+          <FAQ isMobile={isMobile} />
+        </div>
+
+        <Footer isMobile={isMobile} />
       </div>
-    </div>
+    </ThemeProvider>
   )
 }

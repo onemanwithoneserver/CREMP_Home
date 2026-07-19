@@ -1,98 +1,143 @@
-import { motion } from 'framer-motion'
-import { heroData } from './data'
-import { UserPlus, PlaySquare } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { heroData } from './data';
+import heroImageLight from './Hero_Section_light.png';
+import heroImageDark from './Hero_Section_dark.png';
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 15 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: 'spring', stiffness: 300, damping: 24 } 
+  },
+};
+
+const floatAnimation = {
+  hidden: { opacity: 0, scale: 0.95 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, ease: 'easeOut' },
+  },
+  animate: {
+    y: [-6, 6, -6],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
 
 export default function MobileHero() {
   const Btn1Icon = heroData.buttons[0].icon;
   const Btn2Icon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative w-full bg-[#ffffff] overflow-hidden pt-8 pb-12 px-5">
-      
-      {/* Header Area */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <span className="inline-block px-2.5 py-1 rounded bg-[rgba(199, 154, 23, 0.05)] text-[#C79A17] text-[0.55rem] font-bold tracking-widest uppercase mb-4 border border-[rgba(199, 154, 23, 0.15)]">
-          {heroData.tag}
-        </span>
-      </motion.div>
-      
-      <motion.h1 
-        initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-[2.2rem] font-black text-[#2A3A69] leading-[1.1] tracking-tight mb-4"
-      >
-        Take Control of <br/>
-        Your Franchise <br/>
-        <span className="text-[#d97706]">{heroData.titleHighlight}</span>
-      </motion.h1>
-      
-      <motion.p 
-        initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-[0.8rem] text-[#3A4566] font-medium leading-relaxed mb-8"
-      >
-        Powered by India&apos;s <span className="font-bold text-[#2A3A69]">Integrated Commercial Real Estate, Franchise & Retail Business Opportunities Platform</span>, CREMP helps you build your brand, reach investors in your preferred micro markets, define your ideal franchise partner and discover expansion-ready locations.
-      </motion.p>
+    <div className="relative w-full overflow-hidden bg-gray-50 px-5 pb-16 pt-24 transition-colors duration-700 dark:bg-[#030712] sm:px-8 sm:pt-28">
+      <div className="pointer-events-none absolute -left-[20%] top-[-10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[90px] dark:bg-[#F6B23B]/15" />
+      <div className="pointer-events-none absolute right-[-20%] top-[40%] h-[350px] w-[350px] rounded-full bg-[#B27F1C]/5 blur-[100px] dark:bg-[#F6B23B]/10" />
 
-      {/* Action Buttons */}
       <motion.div 
-         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
-         className="flex flex-col gap-3 mb-10"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 mx-auto flex max-w-md flex-col"
       >
-         <button className="w-full bg-[#d97706] text-white font-bold text-[0.8rem] py-3.5 rounded-lg shadow-sm flex items-center justify-center gap-2">
-           <Btn1Icon size={16} strokeWidth={2.5} />
-           {heroData.buttons[0].text}
-         </button>
-         <button className="w-full bg-white text-[#2A3A69] font-bold text-[0.8rem] py-3.5 rounded-lg shadow-sm border border-[#2A3A69] flex items-center justify-center gap-2">
-           <Btn2Icon size={16} strokeWidth={2} />
-           {heroData.buttons[1].text}
-         </button>
-      </motion.div>
+        <motion.div variants={fadeInUp}>
+          <span className="mb-6 flex w-fit items-center gap-2 rounded-full border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+            {heroData.tag}
+          </span>
+        </motion.div>
+        
+        <motion.h1 
+          variants={fadeInUp}
+          className="mb-5 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white"
+        >
+          Take Control of <br />
+          Your Franchise <br />
+          <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+            {heroData.titleHighlight}
+          </span>
+        </motion.h1>
+        
+        <motion.p 
+          variants={fadeInUp}
+          className="mb-8 text-[0.95rem] leading-relaxed text-gray-600 dark:text-gray-400"
+        >
+          Powered by India&apos;s <span className="font-bold text-gray-900 dark:text-white">Integrated Commercial Real Estate, Franchise & Retail Business Opportunities Platform</span>, CREMP helps you build your brand, reach investors in your preferred micro markets, define your ideal franchise partner and discover expansion-ready locations.
+        </motion.p>
 
-      {/* Map Graphic */}
-      <div className="w-full relative h-[300px] flex items-center justify-center mb-10">
-         <motion.div 
-           initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
-           className="w-full h-full relative rounded-2xl overflow-hidden shadow-lg border border-[#E2E6EE] bg-gray-50"
-         >
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-48 h-32 bg-white rounded-lg shadow-2xl border-2 border-[#2A3A69] overflow-hidden relative rotate-[-5deg] scale-110">
-              <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=800&auto=format&fit=crop" className="w-full h-full object-cover" alt="Storefront" />
-              <div className="absolute inset-x-0 top-0 h-6 bg-[#2A3A69] flex items-center justify-center">
-                 <span className="text-white font-black tracking-widest text-[0.55rem]">YOUR BRAND</span>
-              </div>
-           </div>
+        <motion.div variants={fadeInUp} className="mb-12 flex w-full flex-row items-stretch gap-3">
+          <button className="group flex flex-1 flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#B27F1C] to-[#d49924] p-4 text-center shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all active:scale-[0.96] dark:from-[#F6B23B] dark:to-[#d49924] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)]">
+            <Btn1Icon size={20} strokeWidth={2.5} className="text-white transition-transform group-active:scale-110 dark:text-[#030712]" />
+            <span className="text-[0.8rem] font-bold leading-snug text-white dark:text-[#030712]">
+              {heroData.buttons[0].text}
+            </span>
+          </button>
+          
+          <button className="group flex flex-1 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white/80 p-4 text-center shadow-sm backdrop-blur-md transition-all active:scale-[0.96] dark:border-gray-800 dark:bg-[#0a101d]/80">
+            <Btn2Icon size={20} strokeWidth={2.5} className="text-[#B27F1C] transition-transform group-active:scale-110 dark:text-[#F6B23B]" />
+            <span className="text-[0.8rem] font-bold leading-snug text-gray-900 dark:text-white">
+              {heroData.buttons[1].text}
+            </span>
+          </button>
+        </motion.div>
 
-           <div className="absolute top-[10%] right-[5%] bg-white/95 backdrop-blur-sm p-2 rounded shadow-md border border-[#E2E6EE] flex items-center gap-2 z-20">
-              <div className="w-5 h-5 rounded bg-[rgba(199, 154, 23, 0.05)] text-[#d97706] flex items-center justify-center">
-                <UserPlus size={10} />
-              </div>
-              <div className="text-[0.5rem] font-bold text-[#2A3A69] leading-tight">New Market</div>
-           </div>
+        <div className="relative mb-12 flex h-[340px] w-full items-center justify-center overflow-visible">
+          <motion.div 
+            variants={floatAnimation}
+            initial="hidden"
+            animate={["show", "animate"]}
+            className="relative flex h-full w-[115%] items-center justify-center"
+            style={{ 
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 45%, transparent 80%)', 
+              maskImage: 'radial-gradient(ellipse at center, black 45%, transparent 80%)' 
+            }}
+          >
+            <img 
+              src={heroImageLight} 
+              alt="Franchise Ecosystem Map" 
+              className="block h-auto w-full max-w-none object-contain drop-shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:hidden" 
+            />
+            <img 
+              src={heroImageDark} 
+              alt="Franchise Ecosystem Map" 
+              className="hidden h-auto w-full max-w-none object-contain drop-shadow-[0_15px_30px_rgba(246,178,59,0.2)] dark:block" 
+            />
+          </motion.div>
+        </div>
 
-           <div className="absolute bottom-[10%] left-[5%] bg-white/95 backdrop-blur-sm p-2 rounded shadow-md border border-[#E2E6EE] flex items-center gap-2 z-20">
-              <div className="w-5 h-5 rounded bg-[#2A3A69] text-white flex items-center justify-center">
-                <PlaySquare size={10} />
+        <motion.div 
+          variants={fadeInUp}
+          className="flex flex-col gap-3.5"
+        >
+          {heroData.features.map((feature, idx) => (
+            <div 
+              key={idx} 
+              className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-white/60 p-4 shadow-sm backdrop-blur-md dark:border-gray-800/80 dark:bg-[#0a101d]/60"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#B27F1C] shadow-sm dark:border-gray-800 dark:bg-[#030712] dark:text-[#F6B23B]">
+                <feature.icon size={20} strokeWidth={2} />
               </div>
-              <div className="text-[0.5rem] font-bold text-[#2A3A69] leading-tight">Video Tour</div>
-           </div>
-         </motion.div>
-      </div>
-
-      {/* Features Grid */}
-      <motion.div 
-         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
-         className="grid grid-cols-3 gap-3"
-      >
-         {heroData.features.map((feature, idx) => (
-           <div key={idx} className="flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full border border-[#E2E6EE] flex items-center justify-center text-[#d97706] bg-[#fdfcf8]">
-                <feature.icon size={16} strokeWidth={1.5} />
-              </div>
-              <span className="text-[0.6rem] font-bold text-[#2A3A69] leading-tight whitespace-pre-line">
+              <span className="text-[0.95rem] font-bold leading-snug text-gray-800 dark:text-gray-100">
                 {feature.text}
               </span>
-           </div>
-         ))}
+            </div>
+          ))}
+        </motion.div>
       </motion.div>
-      
     </div>
-  )
+  );
 }

@@ -1,242 +1,242 @@
-import { motion } from 'framer-motion'
-import { Container } from '../../components/layout'
-import { brandData } from './data'
-import { Store, MapPin, Users, Star, PlayCircle, Search } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { Container } from '../../components/layout';
+import { brandData } from './data';
+import { Store, MapPin, Users, Star, Play, Pause, CheckCircle2 } from 'lucide-react';
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 15 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: 'spring', stiffness: 300, damping: 24 } 
+  },
+};
+
+const floatAnimation = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'easeOut' },
+  },
+  animate: {
+    y: [-4, 4, -4],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
 
 export default function DesktopYourBrand() {
   return (
-    <div className="w-full bg-[#ffffff] pt-20 pb-20 overflow-hidden relative">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#030712]">
       
-      {/* Background radial gradient */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d97706]/5 via-transparent to-transparent pointer-events-none" />
+      <div className="pointer-events-none absolute right-0 top-0 h-[800px] w-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
+      <div className="pointer-events-none absolute bottom-0 left-[-10%] h-[600px] w-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/5 via-transparent to-transparent dark:from-[#F6B23B]/5" />
 
-      <Container className="relative z-10">
-        <div className="flex items-start justify-between gap-12 mb-16">
+      <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
+        <div className="mb-20 flex flex-col items-center gap-16 lg:flex-row lg:items-stretch">
           
-          {/* Left Column (Text & Vertical Menu) */}
-          <div className="w-[38%] flex flex-col pt-4">
-            <motion.div 
-               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            >
-               <span className="text-[0.7rem] font-bold text-[#C79A17] tracking-widest uppercase mb-4 block">
-                 {brandData.tag}
-               </span>
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex w-full flex-col justify-center lg:w-[45%]"
+          >
+            <motion.div variants={fadeInUp}>
+              <span className="mb-6 flex w-fit items-center gap-2 rounded-full border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+                {brandData.tag}
+              </span>
             </motion.div>
             
             <motion.h2 
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="text-[3.8rem] font-black leading-[1.1] tracking-tight mb-8"
+              variants={fadeInUp}
+              className="mb-6 text-[3rem] font-black leading-[1.05] tracking-tight xl:text-[3.5rem]"
             >
-              <span className="text-[#2A3A69] block">{brandData.titleBase}</span>
-              <span className="text-[#d97706] block">{brandData.titleHighlight}</span>
+              <span className="block text-gray-900 dark:text-white">{brandData.titleBase}</span>
+              <span className="block bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                {brandData.titleHighlight}
+              </span>
             </motion.h2>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="mb-12 flex flex-col gap-4"
-            >
-              <p className="text-[1.05rem] text-[#3A4566] font-medium">{brandData.desc[0]}</p>
+            <motion.div variants={fadeInUp} className="mb-10 flex flex-col gap-4">
+              <p className="text-[1.05rem] font-medium text-gray-600 dark:text-gray-400">
+                {brandData.desc[0]}
+              </p>
               
-              <div className="flex flex-col gap-2 my-2">
-                <p className="text-[1.1rem] text-[#2A3A69] font-bold">{brandData.desc[1]}</p>
-                <p className="text-[1.1rem] text-[#2A3A69] font-bold">{brandData.desc[2]}</p>
-                <p className="text-[1.1rem] text-[#2A3A69] font-bold">{brandData.desc[3]}</p>
+              <div className="my-2 flex flex-col gap-2.5 border-l-2 border-[#B27F1C]/30 pl-4 dark:border-[#F6B23B]/30">
+                <p className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{brandData.desc[1]}</p>
+                <p className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{brandData.desc[2]}</p>
+                <p className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{brandData.desc[3]}</p>
               </div>
 
-              <p className="text-[1.05rem] text-[#3A4566] font-medium leading-relaxed mt-2">{brandData.desc[4]}</p>
+              <p className="text-[1.05rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                {brandData.desc[4]}
+              </p>
             </motion.div>
-          </div>
 
-          {/* Middle Column (Vertical Showcase Menu) */}
-          <div className="w-[20%] pt-16">
-             <motion.div 
-                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-white rounded-2xl shadow-xl border border-[#E2E6EE] p-6 pr-8"
-             >
-                <span className="text-[0.75rem] font-bold text-[#d97706] tracking-widest uppercase mb-6 block">
-                  SHOWCASE
-                </span>
+            <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-4 pt-4">
+              {brandData.showcaseMenu.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className="group flex cursor-pointer items-center gap-4 rounded-lg border border-gray-200/60 bg-white/60 p-4 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[#B27F1C]/30 hover:bg-white hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/40 dark:hover:border-[#F6B23B]/30 dark:hover:bg-gray-900/80"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#B27F1C] shadow-sm transition-transform group-hover:scale-110 dark:border-gray-800 dark:from-[#030712] dark:to-[#0a101d] dark:text-[#F6B23B]">
+                    <item.icon size={18} strokeWidth={2} />
+                  </div>
+                  <span className="text-[0.9rem] font-bold text-gray-800 transition-colors group-hover:text-[#B27F1C] dark:text-gray-200 dark:group-hover:text-[#F6B23B]">
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          <div className="flex w-full items-center justify-center lg:w-[55%]">
+            <motion.div 
+              variants={floatAnimation}
+              initial="hidden"
+              whileInView={["show", "animate"]}
+              viewport={{ once: true, margin: "-50px" }}
+              className="relative mt-8 w-[115%] max-w-[800px] -mr-[60px]"
+            >
+              <div className="flex h-[500px] w-full flex-col overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:border-gray-800/80 dark:bg-[#0a101d]">
                 
-                <div className="flex flex-col gap-5">
-                   {brandData.showcaseMenu.map((item, idx) => (
-                     <div key={idx} className="flex items-center gap-4 group cursor-pointer">
-                        <div className="w-10 h-10 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] group-hover:bg-[#d97706] group-hover:text-white transition-colors text-[#6B7491]">
-                          <item.icon size={18} strokeWidth={1.5} />
+                {/* Browser Mac Header */}
+                <div className="relative flex items-center border-b border-gray-100 bg-white px-4 py-3 dark:border-gray-800/60 dark:bg-[#0a101d]">
+                  <div className="flex gap-1.5">
+                    <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+                    <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+                    <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+                  </div>
+                  <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-[0.65rem] font-medium text-gray-500 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                    <Star size={10} className="text-purple-400" /> n4re.com/app/red-expert
+                  </div>
+                </div>
+
+                {/* Video Carousel Body */}
+                <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-[#fafafa] dark:bg-[#030712]">
+                  
+                  {/* Carousel Container */}
+                  <div className="relative flex h-full w-full items-center justify-center">
+                    
+                    {/* Far Left Card */}
+                    <div className="absolute z-10 h-[160px] w-[240px] -translate-x-[280px] scale-[0.75] overflow-hidden rounded-lg bg-gray-200 opacity-40 shadow-sm dark:bg-gray-800">
+                      <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=400&auto=format&fit=crop" className="h-full w-full object-cover mix-blend-luminosity" alt="Video thumbnail" />
+                    </div>
+
+                    {/* Far Right Card */}
+                    <div className="absolute z-10 h-[160px] w-[240px] translate-x-[280px] scale-[0.75] overflow-hidden rounded-lg bg-gray-200 opacity-40 shadow-sm dark:bg-gray-800"></div>
+
+                    {/* Left Card */}
+                    <div className="absolute z-20 flex h-[180px] w-[280px] -translate-x-[170px] scale-[0.85] flex-col justify-end overflow-hidden rounded-lg bg-gray-700 opacity-90 shadow-lg dark:bg-gray-800">
+                      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-overlay" alt="Meeting" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                          <Play className="ml-1 fill-white/70 text-white/70" size={20} />
                         </div>
-                        <span className="text-[0.85rem] font-bold text-[#3A4566] group-hover:text-[#2A3A69] transition-colors whitespace-nowrap">
-                          {item.text}
+                      </div>
+                      <div className="relative z-10 p-4">
+                        <h4 className="mb-0.5 text-sm font-bold leading-tight text-white">Building Trust with Clients</h4>
+                        <span className="flex items-center gap-1 text-[0.65rem] text-gray-300">
+                          Siddharth Rao <CheckCircle2 size={10} className="text-gray-400" />
                         </span>
-                     </div>
-                   ))}
+                      </div>
+                    </div>
+
+                    {/* Right Card */}
+                    <div className="absolute z-20 flex h-[180px] w-[280px] translate-x-[170px] scale-[0.85] flex-col justify-end overflow-hidden rounded-lg bg-gray-500 opacity-80 shadow-lg dark:bg-gray-800">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                          <Play className="ml-1 fill-white/70 text-white/70" size={20} />
+                        </div>
+                      </div>
+                      <div className="relative z-10 flex justify-end p-4">
+                        <div className="rounded bg-black/50 px-1.5 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">14:30</div>
+                      </div>
+                    </div>
+
+                    {/* Center (Active) Card */}
+                    <div className="absolute z-30 flex h-[220px] w-[340px] flex-col justify-between overflow-hidden rounded-xl bg-[#0f1423] p-5 shadow-[0_0_60px_rgba(244,114,182,0.15)] ring-1 ring-white/10 dark:bg-[#0B1221]">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-white/20 shadow-sm backdrop-blur-md ring-1 ring-white/10 transition-transform hover:scale-110">
+                          <Play className="ml-1 fill-white text-white" size={24} />
+                        </div>
+                      </div>
+                      <div className="relative z-10 mt-auto flex items-end justify-between">
+                        <div>
+                          <h4 className="mb-1 text-lg font-bold leading-tight text-white drop-shadow-sm">Effective Digital Marketing</h4>
+                          <span className="flex items-center gap-1 text-[0.7rem] text-gray-300">
+                            Priya Sharma <CheckCircle2 size={12} className="text-blue-400" />
+                          </span>
+                        </div>
+                        <div className="rounded bg-black/80 px-2 py-1 text-[0.65rem] font-bold tracking-wider text-white shadow-sm">10:05</div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Bottom Right Pause Button */}
+                  <div className="absolute bottom-6 right-6 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-gray-600/90 text-white shadow-lg backdrop-blur-md transition-colors hover:bg-gray-700 dark:bg-gray-700/90 dark:hover:bg-gray-600">
+                    <Pause size={18} className="fill-white" />
+                  </div>
+
                 </div>
-             </motion.div>
-          </div>
-
-          {/* Right Column (Tablet Mockup) */}
-          <div className="w-[50%] flex justify-end">
-             <motion.div 
-               initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
-               className="w-[120%] max-w-[700px] mr-[-100px] relative mt-10"
-             >
-                {/* Tablet Frame */}
-                <div className="w-full bg-[#2A3A69] rounded-[2.5rem] p-4 shadow-2xl relative border-b-[8px] border-r-[4px] border-[#000000]">
-                   {/* Tablet Screen */}
-                   <div className="w-full bg-white rounded-2xl overflow-hidden flex flex-col h-[520px]">
-                      
-                      {/* Tablet Header */}
-                      <div className="flex items-center justify-between px-6 py-4 border-b border-[#E2E6EE]">
-                         <div className="flex items-center gap-2">
-                            <Store className="text-[#d97706]" size={18} />
-                            <span className="font-black text-[#2A3A69] text-sm tracking-wide">YOUR BRAND</span>
-                         </div>
-                         <div className="flex items-center gap-6 text-[0.65rem] font-bold text-[#6B7491]">
-                            <span className="text-[#2A3A69] border-b-2 border-[#d97706] pb-1">Overview</span>
-                            <span>About Us</span>
-                            <span>Investor Info</span>
-                            <span>FAQs</span>
-                            <span>Videos</span>
-                         </div>
-                      </div>
-
-                      {/* Tablet Hero Image */}
-                      <div className="w-full h-[220px] relative">
-                         <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=1200&auto=format&fit=crop" className="w-full h-full object-cover" alt="Store" />
-                         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-8">
-                            <h3 className="text-white text-xl font-medium mb-1">Building a brand.</h3>
-                            <h3 className="text-white text-xl font-medium mb-1">Creating opportunities.</h3>
-                            <h3 className="text-white text-xl font-medium mb-4">Expanding together.</h3>
-                            
-                            <button className="flex items-center gap-2 text-white bg-black/40 hover:bg-black/60 w-fit px-4 py-2 rounded-full backdrop-blur-md transition-colors border border-white/20">
-                              <PlayCircle size={18} className="text-white" />
-                              <span className="text-[0.7rem] font-medium">Watch Our Story</span>
-                            </button>
-                         </div>
-                         <div className="absolute top-6 right-8 bg-[#2A3A69] px-6 py-2 rounded">
-                            <span className="text-white font-black tracking-widest text-sm">YOUR BRAND</span>
-                         </div>
-                      </div>
-
-                      {/* Tablet Stats */}
-                      <div className="flex items-center justify-between px-8 py-5 border-b border-[#E2E6EE]">
-                         <div className="flex items-center gap-3">
-                            <Store className="text-[#6B7491]" size={20} />
-                            <div>
-                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">150+</div>
-                               <div className="text-[0.6rem] text-[#6B7491]">Outlets</div>
-                            </div>
-                         </div>
-                         <div className="flex items-center gap-3">
-                            <MapPin className="text-[#6B7491]" size={20} />
-                            <div>
-                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">45+</div>
-                               <div className="text-[0.6rem] text-[#6B7491]">Cities</div>
-                            </div>
-                         </div>
-                         <div className="flex items-center gap-3">
-                            <Users className="text-[#6B7491]" size={20} />
-                            <div>
-                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">10K+</div>
-                               <div className="text-[0.6rem] text-[#6B7491]">Investors Engaged</div>
-                            </div>
-                         </div>
-                         <div className="flex items-center gap-3">
-                            <Star className="text-[#d97706]" size={20} />
-                            <div>
-                               <div className="font-bold text-[#2A3A69] text-lg leading-tight">4.8/5</div>
-                               <div className="text-[0.6rem] text-[#6B7491]">Investor Rating</div>
-                            </div>
-                         </div>
-                      </div>
-
-                      {/* Tablet Videos */}
-                      <div className="p-6 flex-1 bg-[#ffffff]">
-                         <div className="flex items-center justify-between mb-4">
-                            <span className="font-bold text-[#2A3A69] text-sm">Featured Videos</span>
-                            <span className="text-[0.65rem] text-[#d97706] font-bold">View all videos {'>'}</span>
-                         </div>
-                         <div className="grid grid-cols-4 gap-3">
-                            <div className="flex flex-col gap-2">
-                               <div className="w-full h-20 bg-gray-200 rounded-lg relative overflow-hidden group cursor-pointer">
-                                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover" />
-                                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                                     <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
-                                       <PlayCircle size={14} className="text-white" />
-                                     </div>
-                                  </div>
-                                  <span className="absolute bottom-1 right-1 text-[0.55rem] text-white bg-black/60 px-1 rounded">2:45</span>
-                               </div>
-                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Founder Story</span>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                               <div className="w-full h-20 bg-gray-200 rounded-lg relative overflow-hidden group cursor-pointer">
-                                  <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover" />
-                                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                                     <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
-                                       <PlayCircle size={14} className="text-white" />
-                                     </div>
-                                  </div>
-                                  <span className="absolute bottom-1 right-1 text-[0.55rem] text-white bg-black/60 px-1 rounded">3:12</span>
-                               </div>
-                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Store Walkthrough</span>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                               <div className="w-full h-20 bg-gray-200 rounded-lg relative overflow-hidden group cursor-pointer">
-                                  <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover" />
-                                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                                     <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
-                                       <PlayCircle size={14} className="text-white" />
-                                     </div>
-                                  </div>
-                                  <span className="absolute bottom-1 right-1 text-[0.55rem] text-white bg-black/60 px-1 rounded">2:28</span>
-                               </div>
-                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Success Story</span>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                               <div className="w-full h-20 bg-[#2A3A69] rounded-lg flex flex-col items-center justify-center text-white cursor-pointer hover:bg-[#2A3A69] transition-colors">
-                                  <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center mb-1">
-                                    <Search size={14} />
-                                  </div>
-                                  <span className="text-[0.55rem] font-medium">Video Search</span>
-                               </div>
-                               <span className="text-[0.65rem] font-bold text-[#2A3A69]">Video Search {'>'}</span>
-                            </div>
-                         </div>
-                      </div>
-
-                   </div>
-                </div>
-             </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Bottom Outcome Banner */}
         <motion.div 
-           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }}
-           className="w-full bg-[rgba(199, 154, 23, 0.05)] rounded-3xl border border-[rgba(199, 154, 23, 0.15)] p-6 px-10 flex items-center gap-8 shadow-sm relative overflow-hidden"
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="relative flex w-full flex-col items-center gap-6 overflow-hidden rounded-lg border border-gray-200/50 bg-white p-6 shadow-xl ring-1 ring-gray-100 dark:border-gray-800 dark:bg-[#0a101d] dark:ring-gray-800 sm:flex-row sm:gap-8 sm:p-8 sm:px-10"
         >
-           {/* Chart Graphic Background */}
-           <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none w-1/3">
-             <svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M0 100 V 80 Q 50 80, 100 50 T 200 40 T 300 10 T 400 0 V 100 Z" fill="#d97706"/>
-               <path d="M0 80 Q 50 80, 100 50 T 200 40 T 300 10 T 400 0" stroke="#d97706" strokeWidth="4" fill="none"/>
-             </svg>
-           </div>
-           
-           <div className="w-20 h-20 rounded-full bg-[#2A3A69] flex items-center justify-center shrink-0 z-10 shadow-lg">
-              <brandData.outcome.icon size={36} className="text-[#d97706]" strokeWidth={1.5} />
-           </div>
-           
-           <div className="flex flex-col z-10">
-              <span className="text-[0.7rem] font-bold text-[#d97706] tracking-widest uppercase mb-2">
-                {brandData.outcome.tag}
-              </span>
-              <h3 className="text-2xl font-black text-[#2A3A69]">
-                {brandData.outcome.text}
-              </h3>
-           </div>
+          <div className="pointer-events-none absolute bottom-0 right-0 w-1/2 opacity-10 dark:opacity-20 sm:w-1/3">
+            <svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
+              <path d="M0 80 L 150 50 L 250 60 L 380 10" stroke="#d49924" strokeWidth="3" fill="none"/>
+              <path d="M370 10 L 380 10 L 380 20" stroke="#d49924" strokeWidth="3" fill="none"/>
+              <rect x="250" y="70" width="10" height="30" stroke="#d49924" strokeWidth="2"/>
+              <rect x="270" y="60" width="10" height="40" stroke="#d49924" strokeWidth="2"/>
+              <rect x="290" y="45" width="10" height="55" stroke="#d49924" strokeWidth="2"/>
+              <circle cx="340" cy="45" r="10" stroke="#d49924" strokeWidth="2"/>
+              <path d="M320 80 Q 340 60 360 80" stroke="#d49924" strokeWidth="2" fill="none"/>
+              <circle cx="370" cy="55" r="8" stroke="#d49924" strokeWidth="2"/>
+              <path d="M355 90 Q 370 75 385 90" stroke="#d49924" strokeWidth="2" fill="none"/>
+            </svg>
+          </div>
+          
+          <div className="z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0f172a] to-[#030712] shadow-lg ring-4 ring-[#B27F1C]/10 dark:from-[#1e293b] dark:to-[#0a101d] dark:ring-[#F6B23B]/10">
+            <brandData.outcome.icon size={36} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
+          </div>
+          
+          <div className="z-10 flex flex-col text-center sm:text-left">
+            <span className="mb-2 text-[0.8rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+              {brandData.outcome.tag}
+            </span>
+            <h3 className="text-2xl font-black text-gray-900 dark:text-white sm:text-3xl">
+              {brandData.outcome.text}
+            </h3>
+          </div>
         </motion.div>
 
       </Container>
     </div>
-  )
+  );
 }

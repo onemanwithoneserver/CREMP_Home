@@ -4,7 +4,7 @@ import { Rocket, ChevronRight } from 'lucide-react';
 import { networkCategories, vendorBenefits } from './data';
 import { stakeholdersData } from '../03_StakeHolders/data';
 import bgImage from './bg.png';
-import telanganaMap from './telangana.png';
+import crempLogo from '../../Logo/CREMP_Light.png';
 
 export default function Desktop() {
   const [activeTab, setActiveTab] = useState(stakeholdersData[0].id);
@@ -192,9 +192,9 @@ export default function Desktop() {
             >
               <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
               <img
-                src={telanganaMap}
-                alt="Telangana Map"
-                className="z-10 h-[50%] w-[50%] object-contain drop-shadow-md dark:drop-shadow-[0_0_10px_rgba(246,178,59,0.3)] invert dark:invert-0 opacity-70 dark:opacity-100"
+                src={crempLogo}
+                alt="CREMP Logo"
+                className="z-10 h-[50%] w-[50%] object-contain drop-shadow-md dark:drop-shadow-[0_0_10px_rgba(246,178,59,0.3)] opacity-70 dark:opacity-100"
               />
               <span className="mt-2 text-center text-[8px] font-bold leading-tight tracking-wider text-[#B27F1C] dark:text-[#F6B23B] lg:text-[10px] xl:text-[12px]">
                 PHASE 1
@@ -272,7 +272,7 @@ export default function Desktop() {
             transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
           />
 
-          <div className="relative z-10 grid grid-cols-1 items-center gap-6 p-6 lg:grid-cols-[1.1fr_2fr_1fr] lg:gap-0 lg:p-8">
+{/*           <div className="relative z-10 grid grid-cols-1 items-center gap-6 p-6 lg:grid-cols-[1.1fr_2fr_1fr] lg:gap-0 lg:p-8">
             <div className="flex flex-col border-b border-gray-200 pb-6 dark:border-gray-800 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
               <div className="mb-4 flex items-center gap-3">
                 <div className="rounded-full bg-[#B27F1C]/10 p-2 dark:bg-[#F6B23B]/10">
@@ -337,7 +337,7 @@ export default function Desktop() {
                 <ChevronRight className="relative h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
               </motion.button>
             </div>
-          </div>
+          </div> */}
 
           <div className="border-t border-gray-100 bg-gray-50/50 py-3 text-center dark:border-gray-800 dark:bg-white/[0.02]">
             <p className="text-xs font-medium text-gray-700 dark:text-gray-300">

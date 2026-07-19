@@ -5,7 +5,7 @@ import { Star, Goal, ArrowUpRight } from 'lucide-react'
 
 export default function DesktopYourMarkets() {
   return (
-    <div className="w-full bg-[#ffffff] pt-20 pb-20 overflow-hidden relative">
+    <div className="w-full bg-gray-50 dark:bg-[#050C17] pt-20 pb-20 overflow-hidden relative">
       <Container className="relative z-10">
         
         {/* Top Section */}
@@ -17,7 +17,7 @@ export default function DesktopYourMarkets() {
                initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                className="flex items-center gap-2 mb-6"
             >
-               <div className="w-6 h-[2px] bg-[#d97706]" />
+               <div className="w-6 h-[2px] bg-[#B27F1C] dark:bg-[#F6B23B]" />
                <span className="text-[0.65rem] font-bold text-[#C79A17] tracking-widest uppercase">
                  {marketData.tag}
                </span>
@@ -27,16 +27,16 @@ export default function DesktopYourMarkets() {
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="text-[3.2rem] font-black leading-[1.1] tracking-tight mb-8"
             >
-              <span className="text-[#2A3A69] block">{marketData.titleBase}</span>
-              <span className="text-[#d97706] block">{marketData.titleHighlight}</span>
+              <span className="text-gray-900 dark:text-white block">{marketData.titleBase}</span>
+              <span className="text-[#B27F1C] dark:text-[#F6B23B] block">{marketData.titleHighlight}</span>
             </motion.h2>
 
             <motion.div 
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
               className="flex flex-col gap-6"
             >
-              <p className="text-[1.1rem] text-[#2A3A69] font-bold leading-relaxed">{marketData.desc[0]}</p>
-              <p className="text-[1.1rem] text-[#3A4566] font-medium leading-relaxed max-w-sm">{marketData.desc[1]}</p>
+              <p className="text-[1.1rem] text-gray-900 dark:text-white font-bold leading-relaxed">{marketData.desc[0]}</p>
+              <p className="text-[1.1rem] text-gray-600 dark:text-gray-400 font-medium leading-relaxed max-w-sm">{marketData.desc[1]}</p>
             </motion.div>
           </div>
 
@@ -72,21 +72,21 @@ export default function DesktopYourMarkets() {
                if (hex.color === 'blue') {
                  bgColor = 'bg-[#eff6ff]';
                  borderColor = 'border-[#bfdbfe]';
-                 iconBg = 'bg-[#2A3A69] text-white';
-                 badgeBg = 'bg-[#2A3A69]';
-                 badgeText = 'text-white';
+                 iconBg = 'bg-white dark:bg-[#0C1525] text-gray-900 dark:text-white';
+                 badgeBg = 'bg-white dark:bg-[#0C1525]';
+                 badgeText = 'text-gray-900 dark:text-white';
                } else if (hex.color === 'gold') {
                  bgColor = 'bg-[#fffbeb]';
                  borderColor = 'border-[#fde68a]';
-                 iconBg = 'bg-[#d97706] text-white';
-                 badgeBg = 'bg-[#d97706]';
-                 badgeText = 'text-white';
+                 iconBg = 'bg-[#B27F1C] dark:bg-[#F6B23B] text-gray-900 dark:text-white';
+                 badgeBg = 'bg-[#B27F1C] dark:bg-[#F6B23B]';
+                 badgeText = 'text-gray-900 dark:text-white';
                } else {
                  bgColor = 'bg-[#F5F7FA]';
                  borderColor = 'border-[#d1d5db]';
-                 iconBg = 'bg-[#6B7491] text-white';
+                 iconBg = 'bg-[#6B7491] text-gray-900 dark:text-white';
                  badgeBg = 'bg-[#E2E6EE]';
-                 badgeText = 'text-[#3A4566]';
+                 badgeText = 'text-gray-600 dark:text-gray-400';
                }
 
                return (
@@ -105,7 +105,7 @@ export default function DesktopYourMarkets() {
                           <hex.icon size={16} />
                        </div>
 
-                       <span className="font-bold text-[#2A3A69] text-[0.8rem] mt-2 whitespace-nowrap">{hex.title}</span>
+                       <span className="font-bold text-gray-900 dark:text-white text-[0.8rem] mt-2 whitespace-nowrap">{hex.title}</span>
                        <div className={`mt-1 px-2 py-0.5 rounded-[0.25rem] ${badgeBg} ${badgeText} text-[0.55rem] font-bold shadow-sm`}>
                          {hex.status}
                        </div>
@@ -117,22 +117,22 @@ export default function DesktopYourMarkets() {
         </div>
 
         {/* Bottom Split Section */}
-        <div className="w-full bg-[#ffffff] rounded-[2rem] border border-[#E2E6EE] flex overflow-hidden shadow-sm relative">
+        <div className="w-full bg-gray-50 dark:bg-[#050C17] rounded-3xl border border-[#E2E6EE] flex overflow-hidden shadow-sm relative">
            
            {/* Left Half (Benefits List) */}
            <div className="w-[45%] p-10 pr-12 bg-white">
-              <div className="inline-flex items-center gap-2 bg-[#2A3A69] text-white px-4 py-2 rounded-full mb-8 shadow-sm">
-                 <Star size={16} className="text-[#d97706] fill-[#d97706]" />
+              <div className="inline-flex items-center gap-2 bg-white dark:bg-[#0C1525] text-gray-900 dark:text-white px-4 py-2 rounded-full mb-8 shadow-sm">
+                 <Star size={16} className="text-[#B27F1C] dark:text-[#F6B23B] fill-[#B27F1C] dark:fill-[#F6B23B]" />
                  <span className="text-[0.75rem] font-bold tracking-widest">{marketData.benefitsTitle}</span>
               </div>
 
               <div className="flex flex-col gap-5">
                  {marketData.benefits.map((benefit, idx) => (
                    <div key={idx} className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center text-[#d97706] shrink-0 border border-[rgba(199, 154, 23, 0.15)]">
+                      <div className="w-10 h-10 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center text-[#B27F1C] dark:text-[#F6B23B] shrink-0 border border-[rgba(199, 154, 23, 0.15)]">
                          <benefit.icon size={18} strokeWidth={2} />
                       </div>
-                      <span className="text-[0.95rem] font-bold text-[#3A4566] leading-snug">
+                      <span className="text-[0.95rem] font-bold text-gray-600 dark:text-gray-400 leading-snug">
                          {benefit.text}
                       </span>
                    </div>
@@ -147,15 +147,15 @@ export default function DesktopYourMarkets() {
            <div className="w-[55%] p-10 bg-[rgba(199, 154, 23, 0.05)] relative flex items-center justify-between pl-16">
               
               <div className="flex flex-col">
-                 <div className="inline-flex items-center gap-2 bg-[#d97706] text-white px-4 py-1.5 rounded-full mb-6 shadow-sm w-fit">
+                 <div className="inline-flex items-center gap-2 bg-[#B27F1C] dark:bg-[#F6B23B] text-gray-900 dark:text-white px-4 py-1.5 rounded-full mb-6 shadow-sm w-fit">
                     <Goal size={16} />
                     <span className="text-[0.7rem] font-bold tracking-widest">{marketData.outcome.tag}</span>
                  </div>
 
                  <h3 className="text-[2.2rem] font-black leading-[1.2]">
-                   <span className="text-[#2A3A69] block">{marketData.outcome.lines[0]}</span>
-                   <span className="text-[#2A3A69] block">{marketData.outcome.lines[1]}</span>
-                   <span className="text-[#d97706] block">{marketData.outcome.lines[2]}</span>
+                   <span className="text-gray-900 dark:text-white block">{marketData.outcome.lines[0]}</span>
+                   <span className="text-gray-900 dark:text-white block">{marketData.outcome.lines[1]}</span>
+                   <span className="text-[#B27F1C] dark:text-[#F6B23B] block">{marketData.outcome.lines[2]}</span>
                  </h3>
               </div>
 
@@ -172,21 +172,21 @@ export default function DesktopYourMarkets() {
                     <div className="w-8 h-12 bg-blue-500 rounded-t-sm shadow-md" />
                     <div className="w-8 h-20 bg-blue-600 rounded-t-sm shadow-md" />
                     <div className="w-8 h-28 bg-blue-700 rounded-t-sm shadow-md" />
-                    <div className="w-8 h-36 bg-[#2A3A69] rounded-t-sm shadow-md" />
+                    <div className="w-8 h-36 bg-white dark:bg-[#0C1525] rounded-t-sm shadow-md" />
                  </div>
                  
                  {/* Upward Arrow */}
                  <div className="absolute top-10 right-4 z-20">
-                    <ArrowUpRight size={80} className="text-[#d97706]" strokeWidth={2} />
+                    <ArrowUpRight size={80} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
                  </div>
 
                  {/* Giant Map Pin */}
                  <div className="absolute top-16 left-8 z-20 flex flex-col items-center drop-shadow-2xl">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#d97706] to-[#fcd34d] shadow-lg flex items-center justify-center border-4 border-white">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#FFD17A] shadow-lg flex items-center justify-center border-4 border-white">
                        <div className="w-8 h-8 rounded-full bg-white shadow-inner" />
                     </div>
                     {/* Pin tail */}
-                    <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[25px] border-t-[#d97706] -mt-2 drop-shadow-md" />
+                    <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[25px] border-t-[#B27F1C] dark:border-t-[#F6B23B] -mt-2 drop-shadow-md" />
                  </div>
 
                  {/* 3 User Icons */}
@@ -194,7 +194,7 @@ export default function DesktopYourMarkets() {
                     <div className="w-12 h-16 rounded-t-3xl bg-blue-600 shadow-xl flex items-end justify-center pb-2">
                        <div className="w-6 h-6 rounded-full bg-blue-200" />
                     </div>
-                    <div className="w-14 h-20 rounded-t-3xl bg-[#d97706] shadow-xl flex items-end justify-center pb-3 z-10">
+                    <div className="w-14 h-20 rounded-t-3xl bg-[#B27F1C] dark:bg-[#F6B23B] shadow-xl flex items-end justify-center pb-3 z-10">
                        <div className="w-7 h-7 rounded-full bg-amber-200" />
                     </div>
                     <div className="w-12 h-16 rounded-t-3xl bg-blue-800 shadow-xl flex items-end justify-center pb-2">

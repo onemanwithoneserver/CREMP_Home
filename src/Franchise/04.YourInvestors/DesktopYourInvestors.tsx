@@ -5,7 +5,7 @@ import { Filter, Target, CheckCircle2 } from 'lucide-react'
 
 export default function DesktopYourInvestors() {
   return (
-    <div className="w-full bg-[#ffffff] pt-20 pb-20 overflow-hidden relative">
+    <div className="w-full bg-gray-50 dark:bg-[#050C17] pt-20 pb-20 overflow-hidden relative">
       <Container className="relative z-10">
         
         {/* Top Section */}
@@ -17,7 +17,7 @@ export default function DesktopYourInvestors() {
                initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                className="flex items-center gap-2 mb-6"
             >
-               <div className="w-6 h-[2px] bg-[#d97706]" />
+               <div className="w-6 h-[2px] bg-[#B27F1C] dark:bg-[#F6B23B]" />
                <span className="text-[0.65rem] font-bold text-[#C79A17] tracking-widest uppercase">
                  {investorData.tag}
                </span>
@@ -27,16 +27,16 @@ export default function DesktopYourInvestors() {
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="text-[3.2rem] font-black leading-[1.1] tracking-tight mb-8"
             >
-              <span className="text-[#2A3A69] block">{investorData.titleBase}</span>
-              <span className="text-[#d97706] block">{investorData.titleHighlight}</span>
+              <span className="text-gray-900 dark:text-white block">{investorData.titleBase}</span>
+              <span className="text-[#B27F1C] dark:text-[#F6B23B] block">{investorData.titleHighlight}</span>
             </motion.h2>
 
             <motion.div 
               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
               className="flex flex-col gap-6"
             >
-              <p className="text-[1.1rem] text-[#3A4566] font-medium leading-relaxed">{investorData.desc[0]}</p>
-              <p className="text-[1.1rem] text-[#2A3A69] font-bold leading-relaxed max-w-sm">{investorData.desc[1]}</p>
+              <p className="text-[1.1rem] text-gray-600 dark:text-gray-400 font-medium leading-relaxed">{investorData.desc[0]}</p>
+              <p className="text-[1.1rem] text-gray-900 dark:text-white font-bold leading-relaxed max-w-sm">{investorData.desc[1]}</p>
             </motion.div>
           </div>
 
@@ -54,13 +54,13 @@ export default function DesktopYourInvestors() {
                {/* Floating UI on Image */}
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 bg-white rounded-xl shadow-2xl p-5 border border-[#E2E6EE] scale-110">
                   <div className="flex items-center justify-between mb-4 border-b border-[#E2E6EE] pb-3">
-                     <span className="font-bold text-[#2A3A69] text-sm">Qualified Investor Enquiry</span>
-                     <span className="bg-[#166534] text-white text-[0.6rem] font-bold px-2 py-1 rounded shadow-sm">★ High Match</span>
+                     <span className="font-bold text-gray-900 dark:text-white text-sm">Qualified Investor Enquiry</span>
+                     <span className="bg-[#166534] text-gray-900 dark:text-white text-[0.6rem] font-bold px-2 py-1 rounded shadow-sm">★ High Match</span>
                   </div>
                   
                   <div className="flex gap-6">
                      <div className="flex flex-col items-center">
-                        <span className="text-[0.6rem] font-bold text-[#6B7491] mb-2">Match Score</span>
+                        <span className="text-[0.6rem] font-bold text-gray-500 dark:text-gray-400 mb-2">Match Score</span>
                         {/* Circular Progress */}
                         <div className="w-16 h-16 rounded-full border-4 border-[#E2E6EE] border-t-[#166534] border-r-[#166534] border-b-[#166534] flex items-center justify-center rotate-45 relative">
                            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center -rotate-45">
@@ -69,18 +69,18 @@ export default function DesktopYourInvestors() {
                         </div>
                      </div>
                      <div className="flex flex-col flex-1">
-                        <span className="text-[0.6rem] font-bold text-[#6B7491] mb-2">Key Highlights</span>
+                        <span className="text-[0.6rem] font-bold text-gray-500 dark:text-gray-400 mb-2">Key Highlights</span>
                         <div className="flex flex-col gap-1.5">
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-[#2A3A69]">
+                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
                               <CheckCircle2 size={12} className="text-[#166534]" /> Budget Match
                            </div>
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-[#2A3A69]">
+                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
                               <CheckCircle2 size={12} className="text-[#166534]" /> Experience Match
                            </div>
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-[#2A3A69]">
+                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
                               <CheckCircle2 size={12} className="text-[#166534]" /> Involvement Match
                            </div>
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-[#2A3A69]">
+                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
                               <CheckCircle2 size={12} className="text-[#166534]" /> Goals Alignment
                            </div>
                         </div>
@@ -96,10 +96,10 @@ export default function DesktopYourInvestors() {
              >
                 {investorData.pills.map((pill, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                     <div className="w-8 h-8 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] text-[#d97706]">
+                     <div className="w-8 h-8 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] text-[#B27F1C] dark:text-[#F6B23B]">
                        <pill.icon size={14} strokeWidth={2} />
                      </div>
-                     <span className="text-[0.75rem] font-bold text-[#3A4566] whitespace-nowrap pr-2">
+                     <span className="text-[0.75rem] font-bold text-gray-600 dark:text-gray-400 whitespace-nowrap pr-2">
                        {pill.label}
                      </span>
                   </div>
@@ -110,15 +110,15 @@ export default function DesktopYourInvestors() {
         </div>
 
         {/* Bottom Split Section */}
-        <div className="w-full bg-[rgba(199, 154, 23, 0.05)] rounded-[2rem] border border-[rgba(199, 154, 23, 0.15)] flex overflow-hidden shadow-sm relative">
+        <div className="w-full bg-[rgba(199, 154, 23, 0.05)] rounded-3xl border border-[rgba(199, 154, 23, 0.15)] flex overflow-hidden shadow-sm relative">
            
            {/* Left Half (Grid) */}
            <div className="w-[65%] p-10 pr-16 bg-[#fcf9f2]">
               <div className="flex items-center gap-4 mb-8">
-                 <div className="w-12 h-12 rounded-full bg-[#2A3A69] flex items-center justify-center text-white shrink-0 shadow-md">
+                 <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0C1525] flex items-center justify-center text-gray-900 dark:text-white shrink-0 shadow-md">
                     <Filter size={20} strokeWidth={2} />
                  </div>
-                 <h3 className="text-2xl font-black text-[#2A3A69]">
+                 <h3 className="text-2xl font-black text-gray-900 dark:text-white">
                    {investorData.expectationsTitle}
                  </h3>
               </div>
@@ -127,17 +127,17 @@ export default function DesktopYourInvestors() {
                  {investorData.expectations.map((item, idx) => (
                    <div key={idx} className="flex gap-4">
                       <div className="flex flex-col items-center shrink-0">
-                         <div className="w-6 h-6 rounded-full bg-[#d97706] text-white flex items-center justify-center text-[0.6rem] font-bold mb-2">
+                         <div className="w-6 h-6 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] text-gray-900 dark:text-white flex items-center justify-center text-[0.6rem] font-bold mb-2">
                             {idx + 1}
                          </div>
                          <div className="w-[2px] h-10 bg-[#E2E6EE]" />
                       </div>
                       <div className="flex flex-col pt-0.5">
                          <div className="flex items-center gap-2 mb-2">
-                            <item.icon size={20} className="text-[#2A3A69]" strokeWidth={1.5} />
-                            <span className="font-bold text-[#2A3A69] text-[0.95rem]">{item.title}</span>
+                            <item.icon size={20} className="text-gray-900 dark:text-white" strokeWidth={1.5} />
+                            <span className="font-bold text-gray-900 dark:text-white text-[0.95rem]">{item.title}</span>
                          </div>
-                         <p className="text-[0.75rem] text-[#6B7491] font-medium leading-relaxed">
+                         <p className="text-[0.75rem] text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
                             {item.desc}
                          </p>
                       </div>
@@ -147,47 +147,47 @@ export default function DesktopYourInvestors() {
            </div>
 
            {/* Divider Line */}
-           <div className="absolute left-[65%] top-10 bottom-10 w-[1px] bg-gradient-to-b from-transparent via-[#d97706]/30 to-transparent flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-white border border-[#d97706]" />
+           <div className="absolute left-[65%] top-10 bottom-10 w-[1px] bg-gradient-to-b from-transparent via-[#B27F1C] dark:via-[#F6B23B]/30 to-transparent flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-white border border-[#B27F1C] dark:border-[#F6B23B]" />
            </div>
 
            {/* Right Half (Outcome) */}
-           <div className="w-[35%] p-10 bg-[#ffffff] relative flex flex-col justify-center">
+           <div className="w-[35%] p-10 bg-gray-50 dark:bg-[#050C17] relative flex flex-col justify-center">
               {/* Dots background pattern */}
               <div className="absolute top-4 right-4 grid grid-cols-4 gap-2 opacity-20">
-                 {[...Array(16)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />)}
+                 {[...Array(16)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B]" />)}
               </div>
 
               <motion.div 
                  initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
               >
                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-[#2A3A69] flex items-center justify-center text-white shrink-0 shadow-md">
+                    <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0C1525] flex items-center justify-center text-gray-900 dark:text-white shrink-0 shadow-md">
                        <Target size={20} strokeWidth={2} />
                     </div>
                     <div className="flex items-center gap-2">
-                       <span className="text-[0.7rem] font-bold text-[#d97706] tracking-widest uppercase">
+                       <span className="text-[0.7rem] font-bold text-[#B27F1C] dark:text-[#F6B23B] tracking-widest uppercase">
                          {investorData.outcome.tag}
                        </span>
-                       <div className="w-8 h-[2px] bg-[#d97706]" />
+                       <div className="w-8 h-[2px] bg-[#B27F1C] dark:bg-[#F6B23B]" />
                     </div>
                  </div>
 
-                 <h3 className="text-[1.8rem] font-black text-[#2A3A69] leading-[1.1] mb-10">
+                 <h3 className="text-[1.8rem] font-black text-gray-900 dark:text-white leading-[1.1] mb-10">
                    {investorData.outcome.title}
                  </h3>
 
                  {/* 3D Graphic representation */}
                  <div className="relative h-48 w-full flex items-center justify-center">
                     {/* Golden rings */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-16 rounded-[100%] border-[8px] border-[#d97706] shadow-xl bg-[#b45309]/10" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-10 rounded-[100%] border-[6px] border-[#f59e0b] shadow-xl bg-[#d97706]/20" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-5 rounded-[100%] border-[4px] border-[#fbbf24] shadow-xl bg-[#f59e0b]/30" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-16 rounded-[100%] border-[8px] border-[#B27F1C] dark:border-[#F6B23B] shadow-xl bg-[#b45309]/10" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-10 rounded-[100%] border-[6px] border-[#f59e0b] shadow-xl bg-[#B27F1C] dark:bg-[#F6B23B]/20" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-5 rounded-[100%] border-[4px] border-yellow-500 dark:border-yellow-400 shadow-xl bg-[#f59e0b]/30" />
                     
                     {/* Central Gold Figure */}
                     <div className="absolute bottom-[40%] left-1/2 -translate-x-1/2 z-20">
-                       <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#d97706] to-[#fbbf24] shadow-lg mx-auto mb-1" />
-                       <div className="w-12 h-16 rounded-t-xl bg-gradient-to-tr from-[#d97706] to-[#fbbf24] shadow-lg" />
+                       <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#FFD17A] shadow-lg mx-auto mb-1" />
+                       <div className="w-12 h-16 rounded-t-xl bg-gradient-to-tr from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#FFD17A] shadow-lg" />
                     </div>
 
                     {/* Surrounding Gray Figures */}

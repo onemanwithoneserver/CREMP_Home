@@ -1,135 +1,205 @@
-import { motion } from 'framer-motion'
-import { Container } from '../../components/layout'
-import { ecosystemData } from './data'
-import { Target, Plus, Equal, Globe2 } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { Container } from '../../components/layout';
+import { ecosystemData } from './data';
+import { Target, Plus, Equal, Globe2 } from 'lucide-react';
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 15 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: 'spring', stiffness: 300, damping: 24 } 
+  },
+};
+
+const drawLine = {
+  hidden: { pathLength: 0, opacity: 0 },
+  show: { 
+    pathLength: 1, 
+    opacity: 0.6,
+    transition: { duration: 1.2, ease: "easeInOut", delay: 0.4 }
+  }
+};
 
 export default function DesktopEcosystem() {
   return (
-    <div className="w-full bg-[#ffffff] pt-16 pb-20">
-      <Container>
-        <div className="flex justify-between items-start mb-16">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#030712]">
+      <div className="pointer-events-none absolute right-[-5%] top-[10%] h-[500px] w-[500px] rounded-full bg-[#B27F1C]/5 blur-[120px] dark:bg-[#F6B23B]/5" />
+      <div className="pointer-events-none absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-[#B27F1C]/5 blur-[120px] dark:bg-[#F6B23B]/10" />
+
+      <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
+        <div className="mb-12 flex items-start justify-between">
           
-          {/* Left Column (Text & List) */}
-          <div className="w-[42%] flex flex-col pt-8">
-            <motion.div 
-               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-               className="flex items-center gap-2 mb-6"
-            >
-               <div className="w-6 h-[2px] bg-[#d97706]" />
-               <span className="text-[0.65rem] font-bold text-[#6B7491] tracking-widest uppercase">
-                 {ecosystemData.tag}
-               </span>
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex w-[46%] flex-col pt-2"
+          >
+            <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-3">
+              <span className="flex w-fit items-center gap-2 rounded border border-[#B27F1C]/20 bg-white/60 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+                {ecosystemData.tag}
+              </span>
             </motion.div>
             
             <motion.h2 
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="text-[3.2rem] font-black text-[#2A3A69] leading-[1.05] tracking-tight mb-6"
+              variants={fadeInUp}
+              className="mb-3 text-[2.75rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.2rem]"
             >
-              Why Expansion <br/>
-              Needs More Than a <br/>
-              <span className="text-[#d97706]">{ecosystemData.titleHighlight}</span>
+              Why Expansion <br />
+              Needs More Than a <br />
+              <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                {ecosystemData.titleHighlight}
+              </span>
             </motion.h2>
 
             <motion.p 
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="text-[1.1rem] text-[#3A4566] font-medium leading-relaxed mb-8"
+              variants={fadeInUp}
+              className="mb-6 text-[0.9rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
             >
               {ecosystemData.subtitle}
             </motion.p>
 
-            <motion.div 
-               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-               className="flex flex-col gap-5 mb-10"
-            >
-               {ecosystemData.issues.map((issue, idx) => (
-                 <div key={idx} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] text-[#2A3A69]">
-                      <issue.icon size={20} strokeWidth={1.5} />
-                    </div>
-                    <span className="text-[0.95rem] font-bold text-[#3A4566]">
-                      {issue.text}
-                    </span>
-                 </div>
-               ))}
+            <motion.div variants={fadeInUp} className="mb-8 flex flex-col gap-2.5">
+              {ecosystemData.issues.map((issue, idx) => (
+                <div key={idx} className="group flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#B27F1C]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#B27F1C] shadow-sm transition-transform group-hover:scale-110 dark:border-gray-800 dark:from-[#0a101d] dark:to-[#0a101d] dark:text-[#F6B23B]">
+                    <issue.icon size={16} strokeWidth={2} />
+                  </div>
+                  <span className="text-[0.85rem] font-bold text-gray-800 transition-colors group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-white">
+                    {issue.text}
+                  </span>
+                </div>
+              ))}
             </motion.div>
 
             <motion.p 
-               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
-               className="text-[1.1rem] font-black text-[#2A3A69]"
+              variants={fadeInUp}
+              className="text-[1rem] font-bold tracking-wide text-gray-900 dark:text-white"
             >
-               CREMP brings <span className="text-[#d97706]">{ecosystemData.conclusion}</span>
+              CREMP brings <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">{ecosystemData.conclusion}</span>
             </motion.p>
-          </div>
+          </motion.div>
 
-          {/* Right Column (Flow Diagram) */}
-          <div className="w-[55%] pt-16 relative">
-             <motion.div 
-               initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
-               className="relative flex flex-col items-center"
-             >
-                {/* Top Row: 5 Boxes */}
-                <div className="flex items-center justify-between w-full relative z-10">
-                   {ecosystemData.flowItems.map((item, idx) => (
-                     <div key={idx} className="flex items-center">
-                        <div className="w-[100px] h-32 bg-white rounded-xl shadow-lg border border-[#E2E6EE] flex flex-col items-center justify-center text-center p-3">
-                           <item.icon size={32} className="text-[#2A3A69] mb-3" strokeWidth={1.2} />
-                           <span className="text-[0.6rem] font-bold text-[#2A3A69] leading-tight whitespace-pre-line">
-                             {item.text}
-                           </span>
-                        </div>
-                        {idx < ecosystemData.flowItems.length - 1 && (
-                          <div className="w-6 h-6 rounded-full bg-[#d97706] flex items-center justify-center text-white mx-1 shrink-0 z-20">
-                             <Plus size={14} strokeWidth={3} />
-                          </div>
-                        )}
-                     </div>
-                   ))}
+          <div className="relative w-[50%] pl-2 pt-4">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} 
+              whileInView={{ opacity: 1, scale: 1 }} 
+              viewport={{ once: true, margin: "-50px" }} 
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="relative flex flex-col items-center"
+            >
+              <div className="relative z-10 flex w-full justify-between">
+                {ecosystemData.flowItems.map((item, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 + idx * 0.1, type: 'spring', stiffness: 200 }}
+                    className="relative z-20 flex items-center"
+                  >
+                    <div className="group flex h-32 w-[105px] flex-col items-center justify-center rounded-lg border border-gray-100/80 bg-white/90 p-3 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-md transition-all hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(178,127,28,0.12)] dark:border-gray-800/80 dark:bg-[#0a101d]/90 dark:hover:shadow-[0_15px_40px_rgba(246,178,59,0.12)]">
+                      <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-inner ring-1 ring-[#B27F1C]/10 transition-transform duration-500 group-hover:rotate-[8deg] group-hover:scale-110 dark:from-[#0C1525] dark:to-[#030712] dark:ring-[#F6B23B]/10 dark:shadow-none">
+                        <item.icon size={26} className="text-[#B27F1C] drop-shadow-sm dark:text-[#F6B23B]" strokeWidth={1.5} />
+                      </div>
+                      <span className="whitespace-pre-line text-[0.65rem] font-bold leading-tight text-gray-800 dark:text-gray-200">
+                        {item.text}
+                      </span>
+                    </div>
+                    {idx < ecosystemData.flowItems.length - 1 && (
+                      <div className="absolute right-[-14px] top-1/2 z-30 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#B27F1C] to-[#d49924] text-white shadow-md ring-2 ring-gray-50 dark:from-[#F6B23B] dark:to-[#d49924] dark:ring-[#030712]">
+                        <Plus size={14} strokeWidth={3} />
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="relative z-0 -mt-[12px] h-[90px] w-[90%]">
+                <svg className="absolute inset-0 h-full w-full drop-shadow-sm" viewBox="0 0 600 90" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="gold-line-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#d49924" />
+                      <stop offset="100%" stopColor="#B27F1C" />
+                    </linearGradient>
+                    <linearGradient id="globe-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#F6B23B" />
+                      <stop offset="50%" stopColor="#d49924" />
+                      <stop offset="100%" stopColor="#B27F1C" />
+                    </linearGradient>
+                  </defs>
+                  <motion.path variants={drawLine} initial="hidden" whileInView="show" viewport={{ once: true }} d="M 50,0 C 50,45 300,55 300,90" fill="none" stroke="url(#gold-line-grad)" strokeWidth="2.5" strokeDasharray="6 6" />
+                  <motion.path variants={drawLine} initial="hidden" whileInView="show" viewport={{ once: true }} d="M 217,0 C 217,45 300,55 300,90" fill="none" stroke="url(#gold-line-grad)" strokeWidth="2.5" strokeDasharray="6 6" />
+                  <motion.path variants={drawLine} initial="hidden" whileInView="show" viewport={{ once: true }} d="M 383,0 C 383,45 300,55 300,90" fill="none" stroke="url(#gold-line-grad)" strokeWidth="2.5" strokeDasharray="6 6" />
+                  <motion.path variants={drawLine} initial="hidden" whileInView="show" viewport={{ once: true }} d="M 550,0 C 550,45 300,55 300,90" fill="none" stroke="url(#gold-line-grad)" strokeWidth="2.5" strokeDasharray="6 6" />
+                </svg>
+              </div>
+
+              <div className="z-20 -mt-[14px] flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#B27F1C] to-[#d49924] text-white shadow-lg shadow-[#B27F1C]/30 ring-4 ring-gray-50 dark:from-[#F6B23B] dark:to-[#d49924] dark:shadow-[#F6B23B]/30 dark:ring-[#030712]">
+                <Equal size={20} strokeWidth={3} />
+              </div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, type: 'spring' }}
+                className="relative z-10 -mt-[14px] flex w-[380px] items-center justify-center gap-5 rounded-lg bg-gradient-to-br from-[#0f172a] to-[#020617] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)] ring-1 ring-white/10 dark:from-[#0C1525] dark:to-[#030712]"
+              >
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-[#B27F1C]/15 to-transparent opacity-60 dark:from-[#F6B23B]/15" />
+                
+                <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white/5 shadow-inner backdrop-blur-sm ring-1 ring-white/10">
+                  <Globe2 size={36} stroke="url(#globe-grad)" className="drop-shadow-lg" strokeWidth={1.5} />
                 </div>
-
-                {/* Connecting Lines */}
-                <div className="w-[85%] h-24 border-b-2 border-l-2 border-r-2 border-dashed border-[#d97706]/40 rounded-b-3xl relative top-[-10px] z-0">
-                   {/* Middle line down */}
-                   <div className="absolute left-1/2 top-full w-[2px] h-12 bg-dashed border-l-2 border-dashed border-[#d97706]/40" />
-                   {/* Vertical lines connecting from boxes to the horizontal bar */}
-                   <div className="absolute left-[20%] top-0 w-[2px] h-full border-l-2 border-dashed border-[#d97706]/40" />
-                   <div className="absolute left-[40%] top-0 w-[2px] h-full border-l-2 border-dashed border-[#d97706]/40" />
-                   <div className="absolute right-[40%] top-0 w-[2px] h-full border-l-2 border-dashed border-[#d97706]/40" />
-                   <div className="absolute right-[20%] top-0 w-[2px] h-full border-l-2 border-dashed border-[#d97706]/40" />
+                
+                <div className="relative z-10 flex flex-col">
+                  <span className="text-[1rem] font-bold text-gray-300">One Connected</span>
+                  <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-[1.35rem] font-black tracking-wide text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                    Expansion Ecosystem
+                  </span>
                 </div>
+              </motion.div>
 
-                {/* Equals Sign */}
-                <div className="w-10 h-10 rounded-full bg-[#d97706] flex items-center justify-center text-white z-20 mt-[10px]">
-                   <Equal size={20} strokeWidth={3} />
-                </div>
-
-                {/* Bottom Main Box */}
-                <div className="w-[320px] bg-[#2A3A69] rounded-xl shadow-2xl p-5 flex items-center gap-4 mt-[-10px] z-10 relative">
-                   <Globe2 size={48} className="text-[#d97706]" strokeWidth={1} />
-                   <div className="flex flex-col">
-                     <span className="text-white text-[0.8rem] font-bold">One Connected</span>
-                     <span className="text-[#d97706] text-[1.1rem] font-black">Expansion Ecosystem</span>
-                   </div>
-                </div>
-
-             </motion.div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Bottom Banner */}
         <motion.div 
-           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }}
-           className="w-full bg-[#F5F7FA] rounded-2xl border border-[#E2E6EE] p-6 flex items-center gap-6 shadow-sm"
+          initial={{ opacity: 0, y: 15 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="relative flex w-full items-center gap-4 overflow-hidden rounded-lg border border-gray-200 bg-white/60 p-5 shadow-sm backdrop-blur-xl dark:border-gray-800 dark:bg-[#0a101d]/60"
         >
-           <div className="w-14 h-14 rounded-full bg-white shadow flex items-center justify-center shrink-0">
-              <Target size={28} className="text-[#2A3A69]" strokeWidth={1.5} />
-           </div>
-           <p className="text-[1.1rem] font-medium text-[#3A4566] leading-relaxed max-w-3xl">
-             Instead of switching between multiple platforms, <br/>
-             <span className="font-bold text-[#2A3A69]">manage your expansion journey from <span className="text-[#d97706]">{ecosystemData.bannerTextHighlight}</span></span>
-           </p>
+          <div className="absolute left-0 top-0 h-full w-[4px] bg-gradient-to-b from-[#B27F1C] to-[#d49924] dark:from-[#F6B23B] dark:to-[#d49924]" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-white shadow-sm dark:border-gray-800 dark:bg-[#030712]">
+            <Target size={22} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
+          </div>
+          <p className="max-w-4xl text-[0.95rem] font-medium leading-relaxed text-gray-700 dark:text-gray-300">
+            Instead of switching between multiple platforms,{' '}
+            <span className="font-bold text-gray-900 dark:text-white">
+              manage your expansion journey from{' '}
+              <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                {ecosystemData.bannerTextHighlight}
+              </span>
+            </span>
+          </p>
         </motion.div>
 
       </Container>
     </div>
-  )
+  );
 }
