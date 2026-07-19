@@ -41,7 +41,7 @@ export default function MobileEcosystem() {
           {ecosystemData.issues.map((issue, idx) => (
             <div key={idx} className="flex items-center gap-3">
                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#fdf6ea] to-[#fef2dc] dark:from-gray-800 dark:to-gray-800 flex items-center justify-center shrink-0 shadow-[0_2px_10px_rgba(217,119,6,0.1)] text-[#0f172a] dark:text-gray-300">
-                 <issue.icon size={18} strokeWidth={2} />
+                 <issue.icon size={18} />
                </div>
                <span className="text-[0.85rem] font-bold text-[#0f172a] dark:text-gray-200 leading-snug">
                  {issue.text}
@@ -65,7 +65,7 @@ export default function MobileEcosystem() {
          {ecosystemData.flowItems.map((item, idx) => (
            <div key={idx} className="flex flex-col items-center w-full">
               <div className="w-[80%] max-w-[200px] bg-white rounded-xl shadow-md border border-[#E2E6EE] flex items-center gap-4 p-4 z-10">
-                 <item.icon size={24} className="text-gray-900 dark:text-white" strokeWidth={1.5} />
+                 <item.icon size={24} className="text-gray-900 dark:text-white" />
                  <span className="text-[0.7rem] font-bold text-gray-900 dark:text-white leading-tight whitespace-pre-line text-left">
                    {item.text}
                  </span>

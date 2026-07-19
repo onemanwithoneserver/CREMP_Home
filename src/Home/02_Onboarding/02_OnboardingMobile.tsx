@@ -208,12 +208,7 @@ export default function Mobile() {
             </div>
           </div>
 
-          {/* Bottom text */}
-          <div className="border-t border-gray-100 bg-gray-50/50 px-4 py-3 text-center dark:border-gray-800 dark:bg-white/[0.02]">
-            <p className="text-[11px] font-medium text-gray-700 dark:text-gray-300">
-              Join early to establish your presence <span className="font-bold text-orange-600 dark:text-orange-400">before public discovery begins.</span>
-            </p>
-          </div>
+
         </motion.div>
 
         {/* FOUNDING VENDOR BENEFITS */}

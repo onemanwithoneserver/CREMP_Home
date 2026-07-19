@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Container } from '../../components/layout';
 import { ecosystemData } from './data';
 import { Target, Plus, Equal, Globe2 } from 'lucide-react';
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -14,7 +14,7 @@ const staggerContainer = {
   },
 };
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 15 },
   show: { 
     opacity: 1, 
@@ -23,7 +23,7 @@ const fadeInUp = {
   },
 };
 
-const drawLine = {
+const drawLine: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
   show: { 
     pathLength: 1, 
@@ -76,7 +76,7 @@ export default function DesktopEcosystem() {
               {ecosystemData.issues.map((issue, idx) => (
                 <div key={idx} className="group flex items-center gap-3">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#B27F1C]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#B27F1C] shadow-sm transition-transform group-hover:scale-110 dark:border-gray-800 dark:from-[#0a101d] dark:to-[#0a101d] dark:text-[#F6B23B]">
-                    <issue.icon size={16} strokeWidth={2} />
+                    <issue.icon size={16} />
                   </div>
                   <span className="text-[0.85rem] font-bold text-gray-800 transition-colors group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-white">
                     {issue.text}
@@ -113,7 +113,7 @@ export default function DesktopEcosystem() {
                   >
                     <div className="group flex h-32 w-[105px] flex-col items-center justify-center rounded-lg border border-gray-100/80 bg-white/90 p-3 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-md transition-all hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(178,127,28,0.12)] dark:border-gray-800/80 dark:bg-[#0a101d]/90 dark:hover:shadow-[0_15px_40px_rgba(246,178,59,0.12)]">
                       <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-inner ring-1 ring-[#B27F1C]/10 transition-transform duration-500 group-hover:rotate-[8deg] group-hover:scale-110 dark:from-[#0C1525] dark:to-[#030712] dark:ring-[#F6B23B]/10 dark:shadow-none">
-                        <item.icon size={26} className="text-[#B27F1C] drop-shadow-sm dark:text-[#F6B23B]" strokeWidth={1.5} />
+                        <item.icon size={26} className="text-[#B27F1C] drop-shadow-sm dark:text-[#F6B23B]" />
                       </div>
                       <span className="whitespace-pre-line text-[0.65rem] font-bold leading-tight text-gray-800 dark:text-gray-200">
                         {item.text}

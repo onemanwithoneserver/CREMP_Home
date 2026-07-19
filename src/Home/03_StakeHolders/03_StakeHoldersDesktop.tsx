@@ -74,7 +74,7 @@ export default function Desktop() {
           <div className="absolute -left-[45vh] top-1/2 h-[90vh] w-[90vh] -translate-y-1/2 rounded-full border border-dashed border-gray-300 shadow-[0_0_60px_rgba(178,127,28,0.05)] dark:border-gray-800/60 dark:shadow-[0_0_60px_rgba(246,178,59,0.02)]">
             
             <motion.div
-              animate={{ rotate: activeIndex * 30 - 45 }}
+              animate={{ rotate: activeIndex * 30 - 60 }}
               transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
               className="absolute left-1/2 top-1/2 h-[100vh] w-[100vh] origin-center -translate-x-1/2 -translate-y-1/2"
             >
@@ -102,7 +102,7 @@ export default function Desktop() {
             </div>
 
             {stakeholdersData.map((stakeholder, idx) => {
-              const angle = -45 + idx * 30;
+              const angle = -60 + idx * 30;
               const isActive = activeIndex === idx;
 
               return (

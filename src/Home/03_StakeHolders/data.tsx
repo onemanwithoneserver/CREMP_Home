@@ -9,7 +9,8 @@ import {
   Globe,
   Zap,
   Briefcase,
-  BarChart3
+  BarChart3,
+  TrendingUp
 } from 'lucide-react';
 
 export const stakeholdersData = [
@@ -34,7 +35,26 @@ export const stakeholdersData = [
   },
   {
     id: 'investors',
-    label: 'Buyers,\nInvestors & Tenants',
+    label: 'Investors',
+    icon: TrendingUp,
+    title: 'Fund the Future of Commercial Real Estate.',
+    features: [
+      { icon: Building2, title: 'High-Yield Assets', colorFamily: 'emerald' },
+      { icon: Target, title: 'Verified Opportunities', colorFamily: 'purple' },
+      { icon: BarChart3, title: 'Market Analysis', colorFamily: 'blue' },
+      { icon: ShieldCheck, title: 'Secure Transactions', colorFamily: 'cyan' }
+    ],
+    buttonText: 'Explore Investor Solutions',
+    stats: [
+      { icon: Building2, value: '₹500 Cr+', label: 'Total Investment' },
+      { icon: Target, value: '12%', label: 'Avg. Return' },
+      { icon: Users, value: '5,000+', label: 'Active Investors' },
+      { icon: ShieldCheck, value: '100%', label: 'Verified Deals' }
+    ]
+  },
+  {
+    id: 'buyers',
+    label: 'Buyers\n& Sellers',
     icon: Users,
     title: 'Explore. Learn. Invest with Confidence.',
     features: [
@@ -49,7 +69,7 @@ export const stakeholdersData = [
     stats: [
       { icon: ShieldCheck, value: '15,000+', label: 'Verified Listings' },
       { icon: Store, value: '500+', label: 'Exclusive Brands' },
-      { icon: Users, value: '10K+', label: 'Active Investors' },
+      { icon: Users, value: '10K+', label: 'Active Buyers' },
       { icon: Zap, value: '24/7', label: 'Platform Access' }
     ]
   },
@@ -66,7 +86,7 @@ export const stakeholdersData = [
     ],
     buttonText: 'Explore Developer Solutions',
     stats: [
-      { icon: Zap, value: '$2B+', label: 'Asset Value' },
+      { icon: Zap, value: '₹200 Cr+', label: 'Asset Value' },
       { icon: Building2, value: '1,200+', label: 'Premium Projects' },
       { icon: Users, value: '8,500+', label: 'Qualified Leads' },
       { icon: BarChart3, value: '95%', label: 'Occupancy Rate' }

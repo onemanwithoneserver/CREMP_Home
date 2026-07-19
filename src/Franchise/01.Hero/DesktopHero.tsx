@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Container } from '../../components/layout';
 import { heroData } from './data';
 import heroImageLight from './Hero_Section_light.png';
 import heroImageDark from './Hero_Section_dark.png';
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -15,7 +15,7 @@ const staggerContainer = {
   },
 };
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 15 },
   show: { 
     opacity: 1, 
@@ -24,7 +24,7 @@ const fadeInUp = {
   },
 };
 
-const floatAnimation = {
+const floatAnimation: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   show: {
     opacity: 1,

@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Container } from '../../components/layout';
 import { brandData } from './data';
-import { Store, MapPin, Users, Star, Play, Pause, CheckCircle2 } from 'lucide-react';
+import { Star, Play, Pause, CheckCircle2 } from 'lucide-react';
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -14,7 +14,7 @@ const staggerContainer = {
   },
 };
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 15 },
   show: { 
     opacity: 1, 
@@ -23,7 +23,7 @@ const fadeInUp = {
   },
 };
 
-const floatAnimation = {
+const floatAnimation: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
