@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { Container } from '../../components/layout';
 import { faqData } from './data';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { Plus, Minus, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
 const fadeInUp: Variants = {
@@ -46,38 +46,34 @@ export default function DesktopFAQ() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         whileHover={{ y: -2 }}
-        className={`group relative overflow-hidden rounded-[4px] border bg-white/60 p-6 shadow-sm backdrop-blur-md transition-all hover:shadow-lg dark:bg-gray-900/40 ${
+        className={`group relative overflow-hidden rounded-[4px] border bg-white/60 px-5 py-4 shadow-sm backdrop-blur-md transition-all hover:shadow-lg dark:bg-gray-900/40 ${
           isOpen 
             ? 'border-[#B27F1C]/40 bg-white dark:border-[#F6B23B]/40 dark:bg-gray-800/80' 
             : 'border-gray-200/60 dark:border-gray-800/60 hover:border-[#B27F1C]/30 dark:hover:border-[#F6B23B]/30'
         }`}
       >
         <div 
-          className="flex cursor-pointer items-start gap-5"
+          className="flex cursor-pointer items-start gap-4"
           onClick={() => setOpenIdx(isOpen ? null : faq.originalIdx)}
         >
-          <div className={`mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ${
+          <div className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
             isOpen 
               ? 'border-transparent bg-[#B27F1C] text-white shadow-md dark:bg-[#F6B23B] dark:text-gray-900' 
               : 'border-[#B27F1C]/20 bg-[#B27F1C]/5 text-[#B27F1C] dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B] group-hover:bg-[#B27F1C]/10 dark:group-hover:bg-[#F6B23B]/10'
           }`}>
-            <faq.icon size={20} strokeWidth={isOpen ? 2.5 : 1.5} className="transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
+            <faq.icon size={18} strokeWidth={isOpen ? 2.5 : 1.5} className="transition-all duration-200 group-hover:-translate-y-0.5 group-hover:scale-110" />
           </div>
           
           <div className="flex flex-1 flex-col pt-1">
             <div className="flex items-center justify-between gap-4">
-              <h4 className={`text-lg font-bold leading-tight transition-colors duration-300 ${
+              <h4 className={`text-[1.05rem] font-bold leading-tight transition-colors duration-300 ${
                 isOpen ? 'text-[#B27F1C] dark:text-[#F6B23B]' : 'text-gray-900 dark:text-white'
               }`}>
                 {faq.q}
               </h4>
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${isOpen ? 'bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10' : 'bg-gray-50 dark:bg-gray-800/50 group-hover:bg-gray-100 dark:group-hover:bg-gray-800'}`}>
-                <ChevronDown 
-                  size={18} 
-                  className={`transition-transform duration-500 ${
-                    isOpen ? 'rotate-180 text-[#B27F1C] dark:text-[#F6B23B]' : 'text-gray-400 dark:text-gray-500'
-                  }`} 
-                />
+              <div className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 text-[#B27F1C] dark:text-[#F6B23B] shadow-inner' : 'bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 group-hover:bg-gray-100 dark:group-hover:bg-gray-800'}`}>
+                <Plus size={16} strokeWidth={2.5} className={`absolute transition-all duration-200 ${isOpen ? 'rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
+                <Minus size={16} strokeWidth={2.5} className={`absolute transition-all duration-200 ${isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-50 opacity-0'}`} />
               </div>
             </div>
             
@@ -87,7 +83,7 @@ export default function DesktopFAQ() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <p className="mt-4 text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
                     {faq.a}
@@ -122,7 +118,7 @@ export default function DesktopFAQ() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          className="mb-20 flex max-w-3xl flex-col items-center text-center"
+          className="mb-12 flex max-w-3xl flex-col items-center text-center"
         >
           <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
             <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
@@ -140,7 +136,7 @@ export default function DesktopFAQ() {
           </motion.p>
         </motion.div>
 
-        <div className="mb-24 grid w-full grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8 xl:px-8">
+        <div className="mb-16 grid w-full grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8 xl:px-8">
           <div className="flex w-full flex-col gap-6">
             {leftColFaQS.map(renderFaqCard)}
           </div>
