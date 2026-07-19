@@ -102,7 +102,7 @@ export default function DesktopFAQ() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-32 py-4 transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-4 py-4 transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <motion.div 
         variants={pulseGlow}

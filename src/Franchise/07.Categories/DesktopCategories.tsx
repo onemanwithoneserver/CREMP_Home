@@ -48,9 +48,9 @@ const pulseGlow: Variants = {
 
 export default function DesktopCategories() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-32 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-8 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#B27F1C 2px, transparent 2px)', backgroundSize: '32px 32px' }} />
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#B27F1C 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       <motion.div 
         variants={pulseGlow}
         animate="animate"
