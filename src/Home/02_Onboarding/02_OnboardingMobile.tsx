@@ -217,9 +217,9 @@ export default function Mobile() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.5 }}
           viewport={{ once: true }}
-          className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-200/60 bg-white/60 p-5 backdrop-blur-md dark:border-gray-800/60 dark:bg-[#0C1525]/60"
+          className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-800 bg-[#0C1525] p-5 shadow-lg"
         >
-          <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-800 dark:text-gray-200">
+          <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-200">
             Founding Vendor Benefits
           </div>
           
@@ -233,10 +233,10 @@ export default function Mobile() {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="flex-shrink-0 rounded-full border border-gray-200 bg-white p-1.5 text-orange-500 shadow-sm dark:border-gray-700 dark:bg-[#111A2C] dark:text-orange-400">
+                <div className="flex-shrink-0 rounded-full border border-gray-700 bg-[#111A2C] p-1.5 text-orange-400 shadow-sm">
                   <benefit.icon className="h-3.5 w-3.5" />
                 </div>
-                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                <span className="text-xs font-medium text-gray-300">
                   {benefit.title}
                 </span>
               </motion.div>

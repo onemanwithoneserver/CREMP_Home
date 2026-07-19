@@ -177,7 +177,7 @@ export default function Desktop() {
                   rotate: { repeat: Infinity, duration: 60, ease: "linear" }
                 }}
                 viewport={{ once: true }}
-                className="absolute inset-0 rounded-full border border-dashed border-gray-300/80 dark:border-gray-800/80" 
+                className="absolute inset-0 rounded-full border border-dashed border-gray-800/80" 
               />
               
               <motion.div 
@@ -185,7 +185,7 @@ export default function Desktop() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="absolute inset-[9%] rounded-full border border-gray-200/50 dark:border-gray-700/30"
+                className="absolute inset-[9%] rounded-full border border-gray-700/30"
               />
 
               <motion.div 
@@ -197,12 +197,12 @@ export default function Desktop() {
                   rotate: { repeat: Infinity, duration: 30, ease: "linear" }
                 }}
                 viewport={{ once: true }}
-                className="absolute inset-[18%] rounded-full border border-gray-200 dark:border-[#111A2C]"
+                className="absolute inset-[18%] rounded-full border border-[#111A2C]"
               >
-                <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] shadow-[0_0_15px_#B27F1C] dark:shadow-[0_0_15px_#F6B23B]" />
-                <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] shadow-[0_0_15px_#B27F1C] dark:shadow-[0_0_15px_#F6B23B]" />
-                <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] shadow-[0_0_15px_#B27F1C] dark:shadow-[0_0_15px_#F6B23B]" />
-                <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] shadow-[0_0_15px_#B27F1C] dark:shadow-[0_0_15px_#F6B23B]" />
+                <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
+                <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
+                <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
+                <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
               </motion.div>
 
               <motion.div 
@@ -210,13 +210,13 @@ export default function Desktop() {
                 whileInView={{ scale: 1 }}
                 transition={{ type: "spring", duration: 1, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-gray-200 bg-white dark:border-gray-800 dark:bg-[#050C17] shadow-[0_0_20px_rgba(178,127,28,0.08)] dark:shadow-[0_0_20px_rgba(246,178,59,0.1)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-gray-100 dark:before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_30px_rgba(178,127,28,0.15)] dark:group-hover/orbit:shadow-[0_0_30px_rgba(246,178,59,0.15)]"
+                className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-gray-800 bg-[#050C17] shadow-[0_0_20px_rgba(246,178,59,0.1)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_30px_rgba(246,178,59,0.15)]"
               >
-                <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
+                <div className="absolute inset-0 animate-ping rounded-full bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
                 <img
                   src={crempLogo}
                   alt="CREMP Logo"
-                  className="z-10 h-[55%] w-[55%] object-contain drop-shadow-sm opacity-80 dark:opacity-100 dark:drop-shadow-[0_0_5px_rgba(246,178,59,0.2)]"
+                  className="z-10 h-[55%] w-[55%] object-contain opacity-100 drop-shadow-[0_0_5px_rgba(246,178,59,0.2)]"
                 />
               </motion.div>
 
@@ -283,19 +283,19 @@ export default function Desktop() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.6 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-200/60 bg-white/60 px-6 py-4 backdrop-blur-md dark:border-gray-800/60 dark:bg-[#0C1525]/60 lg:flex-row"
+            className="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-800 bg-[#0C1525] px-6 py-4 shadow-lg lg:flex-row"
           >
-            <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-gray-800 dark:text-gray-200">
+            <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-gray-200">
               Founding Vendor Benefits
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               {vendorBenefits.map((benefit) => (
                 <motion.div key={benefit.title} whileHover={{ y: -2 }} className="flex items-center gap-2.5">
-                  <div className="rounded-full border border-gray-200 bg-white p-1.5 text-[#B27F1C] shadow-sm dark:border-gray-700 dark:bg-[#111A2C] dark:text-[#F6B23B]">
+                  <div className="rounded-full border border-gray-700 bg-[#111A2C] p-1.5 text-[#F6B23B] shadow-sm">
                     <benefit.icon className="h-4 w-4" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{benefit.title}</span>
+                  <span className="text-sm font-medium text-gray-300">{benefit.title}</span>
                 </motion.div>
               ))}
             </div>
