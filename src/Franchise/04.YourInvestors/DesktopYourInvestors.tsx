@@ -1,219 +1,412 @@
-import { motion } from 'framer-motion'
-import { Container } from '../../components/layout'
-import { investorData } from './data'
-import { Filter, Target, CheckCircle2 } from 'lucide-react'
+import { motion, type Variants } from 'framer-motion';
+import { Container } from '../../components/layout';
+import { investorData } from './data';
+import { Target, CheckCircle2, Star, Activity, User } from 'lucide-react';
+import { YourBrandLogo } from '../../components/YourBrandLogo';
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: 'spring', stiffness: 300, damping: 25 } 
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+  },
+};
+
+const pulseRing: Variants = {
+  animate: {
+    scale: [1, 1.15, 1],
+    opacity: [0.4, 0.1, 0.4],
+    transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+  },
+};
+
+const floatGlow: Variants = {
+  animate: {
+    y: [-8, 8, -8],
+    boxShadow: [
+      '0 10px 30px rgba(178,127,28,0.1)',
+      '0 20px 40px rgba(178,127,28,0.2)',
+      '0 10px 30px rgba(178,127,28,0.1)'
+    ],
+    transition: { duration: 5, repeat: Infinity, ease: 'easeInOut' }
+  }
+};
+
+const drawLine: Variants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  show: { 
+    pathLength: 1, 
+    opacity: 1,
+    transition: { duration: 2, ease: "easeInOut", delay: 0.5 }
+  }
+};
 
 export default function DesktopYourInvestors() {
   return (
-    <div className="w-full bg-gray-50 dark:bg-[#050C17] pt-20 pb-20 overflow-hidden relative">
-      <Container className="relative z-10">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-12 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+      
+      <motion.div 
+        animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.05, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="pointer-events-none absolute right-0 top-0 h-[800px] w-[800px] -translate-y-1/4 translate-x-1/4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent dark:from-[#F6B23B]/15" 
+      />
+      <motion.div 
+        animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.1, 1] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "linear", delay: 1 }}
+        className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] -translate-x-1/3 translate-y-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" 
+      />
+
+      <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
         
-        {/* Top Section */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="mb-24 flex flex-col items-center gap-16 lg:flex-row lg:items-center lg:justify-between">
           
-          {/* Left Column (Text) */}
-          <div className="w-[35%] flex flex-col pt-4">
-            <motion.div 
-               initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-               className="flex items-center gap-2 mb-6"
-            >
-               <div className="w-6 h-[2px] bg-[#B27F1C] dark:bg-[#F6B23B]" />
-               <span className="text-[0.65rem] font-bold text-[#C79A17] tracking-widest uppercase">
-                 {investorData.tag}
-               </span>
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex w-full flex-col justify-center lg:w-[45%]"
+          >
+            <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-3">
+              <div className="flex h-8 items-center justify-center rounded-[4px] bg-[#B27F1C]/10 px-4 transition-colors hover:bg-[#B27F1C]/20 dark:bg-[#F6B23B]/10 dark:hover:bg-[#F6B23B]/20">
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                  {investorData.tag}
+                </span>
+              </div>
+              <div className="h-px w-12 bg-gradient-to-r from-[#B27F1C]/40 to-transparent dark:from-[#F6B23B]/40" />
             </motion.div>
             
             <motion.h2 
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="text-[3.2rem] font-black leading-[1.1] tracking-tight mb-8"
+              variants={fadeInUp}
+              className="mb-8 text-[3.5rem] font-black leading-[1.05] tracking-tight xl:text-[4rem]"
             >
-              <span className="text-gray-900 dark:text-white block">{investorData.titleBase}</span>
-              <span className="text-[#B27F1C] dark:text-[#F6B23B] block">{investorData.titleHighlight}</span>
+              <span className="block text-gray-900 transition-transform hover:translate-x-2 dark:text-white">{investorData.titleBase}</span>
+              <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                {investorData.titleHighlight}
+              </span>
             </motion.h2>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="flex flex-col gap-6"
-            >
-              <p className="text-[1.1rem] text-gray-600 dark:text-gray-400 font-medium leading-relaxed">{investorData.desc[0]}</p>
-              <p className="text-[1.1rem] text-gray-900 dark:text-white font-bold leading-relaxed max-w-sm">{investorData.desc[1]}</p>
+            <motion.div variants={fadeInUp} className="flex flex-col gap-6">
+              <p className="text-lg font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                {investorData.desc[0]}
+              </p>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="border-l-2 border-[#B27F1C] pl-5 transition-colors hover:border-[#d49924] dark:border-[#F6B23B] dark:hover:border-[#f9d08b]"
+              >
+                <p className="text-lg font-bold leading-relaxed text-gray-900 dark:text-white">
+                  {investorData.desc[1]}
+                </p>
+              </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Right Column (Image + Pills) */}
-          <div className="w-[60%] relative h-[450px]">
-             
-             {/* Large Main Image */}
-             <motion.div 
-               initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
-               className="absolute inset-0 right-32 rounded-3xl overflow-hidden shadow-2xl"
-             >
-               <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover object-[center_20%]" alt="Professional at laptop" />
-               <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/30" />
-               
-               {/* Floating UI on Image */}
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 bg-white rounded-xl shadow-2xl p-5 border border-[#E2E6EE] scale-110">
-                  <div className="flex items-center justify-between mb-4 border-b border-[#E2E6EE] pb-3">
-                     <span className="font-bold text-gray-900 dark:text-white text-sm">Qualified Investor Enquiry</span>
-                     <span className="bg-[#166534] text-gray-900 dark:text-white text-[0.6rem] font-bold px-2 py-1 rounded shadow-sm">★ High Match</span>
-                  </div>
-                  
-                  <div className="flex gap-6">
-                     <div className="flex flex-col items-center">
-                        <span className="text-[0.6rem] font-bold text-gray-500 dark:text-gray-400 mb-2">Match Score</span>
-                        {/* Circular Progress */}
-                        <div className="w-16 h-16 rounded-full border-4 border-[#E2E6EE] border-t-[#166534] border-r-[#166534] border-b-[#166534] flex items-center justify-center rotate-45 relative">
-                           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center -rotate-45">
-                              <span className="text-[#166534] font-black text-lg">92%</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="flex flex-col flex-1">
-                        <span className="text-[0.6rem] font-bold text-gray-500 dark:text-gray-400 mb-2">Key Highlights</span>
-                        <div className="flex flex-col gap-1.5">
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
-                              <CheckCircle2 size={12} className="text-[#166534]" /> Budget Match
-                           </div>
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
-                              <CheckCircle2 size={12} className="text-[#166534]" /> Experience Match
-                           </div>
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
-                              <CheckCircle2 size={12} className="text-[#166534]" /> Involvement Match
-                           </div>
-                           <div className="flex items-center gap-1.5 text-[0.65rem] font-bold text-gray-900 dark:text-white">
-                              <CheckCircle2 size={12} className="text-[#166534]" /> Goals Alignment
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-             </motion.div>
+          <div className="relative flex h-[500px] w-full scale-[0.8] items-center justify-center sm:scale-90 lg:w-[50%] lg:scale-100">
+            
+            <div className="pointer-events-none absolute inset-0 z-10">
+              {investorData.pills.map((pill, idx) => {
+                const positions = [
+                  { top: '5%', left: '10%' },
+                  { top: '30%', right: '5%' },
+                  { bottom: '10%', left: '30%' },
+                  { top: '45%', left: '5%' },
+                  { bottom: '25%', right: '5%' },
+                  { top: '15%', left: '50%' },
+                ];
+                return (
+                  <motion.div
+                    key={idx}
+                    animate={{ y: [-12, 12, -12], x: [-6, 6, -6], rotate: [-2, 2, -2] }}
+                    transition={{ duration: 5 + idx, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.3 }}
+                    className="absolute flex items-center gap-2 rounded-full border border-gray-200/60 bg-white/60 px-3 py-1.5 shadow-sm backdrop-blur-md dark:border-gray-800/60 dark:bg-gray-900/60"
+                    style={positions[idx]}
+                  >
+                    <div className="flex items-center justify-center rounded-full bg-[#B27F1C]/10 p-1 dark:bg-[#F6B23B]/10">
+                      <pill.icon size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+                    </div>
+                    <span className="text-[0.55rem] font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">{pill.label}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
 
-             {/* Right Floating Pills List */}
-             <motion.div 
-               initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }}
-               className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-[#E2E6EE] p-4 flex flex-col gap-4 z-20"
-             >
-                {investorData.pills.map((pill, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                     <div className="w-8 h-8 rounded-full bg-[rgba(199, 154, 23, 0.05)] flex items-center justify-center shrink-0 border border-[rgba(199, 154, 23, 0.15)] text-[#B27F1C] dark:text-[#F6B23B]">
-                       <pill.icon size={14} strokeWidth={2} />
-                     </div>
-                     <span className="text-[0.75rem] font-bold text-gray-600 dark:text-gray-400 whitespace-nowrap pr-2">
-                       {pill.label}
-                     </span>
+            <svg className="pointer-events-none absolute inset-0 z-20 h-full w-full">
+               <motion.line 
+                 x1="50%" y1="50%" x2="77%" y2="20%" 
+                 stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" 
+                 className="text-[#B27F1C]/40 drop-shadow-md dark:text-[#F6B23B]/40"
+                 variants={drawLine}
+                 initial="hidden"
+                 whileInView="show"
+                 viewport={{ once: true }}
+               />
+               <motion.circle 
+                 initial={{ scale: 0 }}
+                 whileInView={{ scale: 1 }}
+                 transition={{ delay: 2.2 }}
+                 cx="77%" cy="20%" r="4" 
+                 className="fill-[#B27F1C] shadow-[0_0_15px_rgba(178,127,28,1)] dark:fill-[#F6B23B] dark:shadow-[0_0_15px_rgba(246,178,59,1)]" 
+               />
+
+               <motion.line 
+                 x1="50%" y1="50%" x2="74%" y2="75%" 
+                 stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" 
+                 className="text-[#B27F1C]/40 drop-shadow-md dark:text-[#F6B23B]/40"
+                 variants={drawLine}
+                 initial="hidden"
+                 whileInView="show"
+                 viewport={{ once: true }}
+               />
+               <motion.circle 
+                 initial={{ scale: 0 }}
+                 whileInView={{ scale: 1 }}
+                 transition={{ delay: 2.2 }}
+                 cx="74%" cy="75%" r="4" 
+                 className="fill-[#B27F1C] shadow-[0_0_15px_rgba(178,127,28,1)] dark:fill-[#F6B23B]" 
+               />
+
+               <motion.line 
+                 x1="50%" y1="50%" x2="20%" y2="65%" 
+                 stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" 
+                 className="text-[#B27F1C]/40 drop-shadow-md dark:text-[#F6B23B]/40"
+                 variants={drawLine}
+                 initial="hidden"
+                 whileInView="show"
+                 viewport={{ once: true }}
+               />
+               <motion.circle 
+                 initial={{ scale: 0 }}
+                 whileInView={{ scale: 1 }}
+                 transition={{ delay: 2.2 }}
+                 cx="20%" cy="65%" r="4" 
+                 className="fill-[#B27F1C] shadow-[0_0_15px_rgba(178,127,28,1)] dark:fill-[#F6B23B]" 
+               />
+            </svg>
+            {/* Central Node */}
+            <motion.div 
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', bounce: 0.5, delay: 0.2 }}
+              className="relative z-30 flex h-28 w-28 flex-col items-center justify-center rounded-[2rem] border border-[#B27F1C]/30 bg-white/90 shadow-[0_0_50px_rgba(178,127,28,0.2)] backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#0a101d]/90 dark:shadow-[0_0_50px_rgba(246,178,59,0.15)]"
+            >
+              <YourBrandLogo size="lg" stacked={true} />
+              <motion.div variants={pulseRing} initial="animate" className="absolute -inset-4 -z-10 rounded-[2.5rem] border border-[#B27F1C]/30 dark:border-[#F6B23B]/30" />
+              <motion.div variants={pulseRing} initial="animate" transition={{ delay: 1 }} className="absolute -inset-8 -z-10 rounded-[3rem] border border-[#B27F1C]/15 dark:border-[#F6B23B]/15" />
+            </motion.div>
+
+            <motion.div
+              variants={floatGlow}
+              initial="hidden"
+              whileInView="animate"
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, zIndex: 40 }}
+              className="absolute right-[5%] top-[10%] z-30 flex w-[220px] cursor-pointer flex-col rounded-[8px] border border-gray-200/80 bg-white/95 p-3.5 backdrop-blur-md transition-colors hover:border-[#B27F1C]/50 dark:border-gray-700/80 dark:bg-[#111827]/95 dark:hover:border-[#F6B23B]/50"
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400">
+                    <User size={14} />
                   </div>
+                  <div>
+                    <div className="text-[0.6rem] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Verified Profile</div>
+                    <div className="text-xs font-black text-gray-900 dark:text-white">Inv-8842</div>
+                  </div>
+                </div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-[0.65rem] font-black text-emerald-600 ring-2 ring-emerald-500/20 dark:bg-emerald-900/40 dark:text-emerald-400">
+                  98%
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['₹5Cr+ Budget', 'Tier 1 Cities', 'F&B Exp.'].map(l => (
+                  <span key={l} className="rounded-[2px] border border-gray-100 bg-gray-50 px-2 py-0.5 text-[0.6rem] font-bold text-gray-600 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800">
+                    {l}
+                  </span>
                 ))}
-             </motion.div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={floatGlow}
+              initial="hidden"
+              whileInView="animate"
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, zIndex: 40 }}
+              className="absolute bottom-[15%] right-[10%] z-30 flex w-[200px] cursor-pointer flex-col rounded-[8px] border border-gray-200/80 bg-white/95 p-3.5 backdrop-blur-md transition-colors hover:border-[#B27F1C]/50 dark:border-gray-700/80 dark:bg-[#111827]/95 dark:hover:border-[#F6B23B]/50"
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400">
+                    <User size={14} />
+                  </div>
+                  <div>
+                    <div className="text-[0.6rem] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Verified Profile</div>
+                    <div className="text-xs font-black text-gray-900 dark:text-white">Inv-4091</div>
+                  </div>
+                </div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-[0.65rem] font-black text-emerald-600 ring-2 ring-emerald-500/20 dark:bg-emerald-900/40 dark:text-emerald-400">
+                  94%
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['₹2Cr - ₹5Cr', 'Commercial', 'Ready'].map(l => (
+                  <span key={l} className="rounded-[2px] border border-gray-100 bg-gray-50 px-2 py-0.5 text-[0.6rem] font-bold text-gray-600 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800">
+                    {l}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={floatGlow}
+              initial="hidden"
+              whileInView="animate"
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, zIndex: 40 }}
+              className="absolute bottom-[25%] left-[5%] z-30 flex w-[200px] cursor-pointer flex-col rounded-[8px] border border-[#B27F1C]/40 bg-gradient-to-b from-white to-[#B27F1C]/10 p-3.5 backdrop-blur-md transition-all hover:shadow-[0_20px_40px_rgba(178,127,28,0.25)] dark:border-[#F6B23B]/40 dark:from-gray-800 dark:to-[#F6B23B]/15 dark:hover:shadow-[0_20px_40px_rgba(246,178,59,0.2)]"
+            >
+              <div className="absolute -top-3 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-[4px] bg-[#B27F1C] px-3 py-0.5 text-[0.55rem] font-black tracking-widest text-white shadow-md dark:bg-[#F6B23B] dark:text-gray-900">
+                NEW MATCH
+              </div>
+              <div className="mb-3 mt-1 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-100 text-orange-600 dark:bg-orange-900/40 dark:text-orange-400">
+                    <User size={14} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-gray-900 dark:text-white">Inv-7723</div>
+                  </div>
+                </div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#B27F1C]/20 text-[0.65rem] font-black text-[#B27F1C] ring-2 ring-[#B27F1C]/40 dark:bg-[#F6B23B]/20 dark:text-[#F6B23B] dark:ring-[#F6B23B]/40">
+                  88%
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['Multi-Unit', 'Master Fran.', 'Active'].map(l => (
+                  <span key={l} className="rounded-[2px] border border-[#B27F1C]/20 bg-white/50 px-2 py-0.5 text-[0.6rem] font-bold text-gray-700 transition-colors hover:bg-[#B27F1C]/10 dark:border-[#F6B23B]/20 dark:bg-gray-900/50 dark:text-gray-300 dark:hover:bg-[#F6B23B]/10">
+                    {l}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
 
           </div>
         </div>
 
-        {/* Bottom Split Section */}
-        <div className="w-full bg-[rgba(199, 154, 23, 0.05)] rounded-3xl border border-[rgba(199, 154, 23, 0.15)] flex overflow-hidden shadow-sm relative">
-           
-           {/* Left Half (Grid) */}
-           <div className="w-[65%] p-10 pr-16 bg-[#fcf9f2]">
-              <div className="flex items-center gap-4 mb-8">
-                 <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0C1525] flex items-center justify-center text-gray-900 dark:text-white shrink-0 shadow-md">
-                    <Filter size={20} strokeWidth={2} />
-                 </div>
-                 <h3 className="text-2xl font-black text-gray-900 dark:text-white">
-                   {investorData.expectationsTitle}
-                 </h3>
-              </div>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }}
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 250, damping: 25 }}
+            className="col-span-1 flex flex-col overflow-hidden rounded-[8px] border border-gray-200/50 bg-gray-50 p-10 shadow-lg transition-shadow hover:shadow-xl dark:border-gray-800/50 dark:bg-[#0a101d] lg:col-span-2"
+          >
+            <div className="mb-10 flex items-center gap-4">
+              <motion.div 
+                whileHover={{ rotate: 180, scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+                className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-200/80 dark:bg-gray-900 dark:ring-gray-800"
+              >
+                <Activity size={20} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+              </motion.div>
+              <h3 className="text-2xl font-black text-gray-900 dark:text-white">
+                {investorData.expectationsTitle}
+              </h3>
+            </div>
 
-              <div className="grid grid-cols-2 gap-x-12 gap-y-8">
-                 {investorData.expectations.map((item, idx) => (
-                   <div key={idx} className="flex gap-4">
-                      <div className="flex flex-col items-center shrink-0">
-                         <div className="w-6 h-6 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] text-gray-900 dark:text-white flex items-center justify-center text-[0.6rem] font-bold mb-2">
-                            {idx + 1}
-                         </div>
-                         <div className="w-[2px] h-10 bg-[#E2E6EE]" />
+            <div className="grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2">
+              {investorData.expectations.map((item, idx) => (
+                <motion.div 
+                  key={idx} 
+                  whileHover={{ x: 5 }}
+                  className="group flex cursor-pointer gap-5"
+                >
+                  <div className="flex flex-col items-center">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-black text-gray-900 shadow-sm ring-1 ring-gray-200 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#B27F1C] group-hover:text-white group-hover:ring-[#B27F1C] dark:bg-gray-900 dark:text-white dark:ring-gray-800 dark:group-hover:bg-[#F6B23B] dark:group-hover:text-gray-900 dark:group-hover:ring-[#F6B23B]">
+                      {idx + 1}
+                    </div>
+                    {idx < investorData.expectations.length - 2 && (
+                      <div className="mt-2 h-full w-[2px] bg-gray-200 transition-colors group-hover:bg-[#B27F1C]/30 dark:bg-gray-800 dark:group-hover:bg-[#F6B23B]/30 sm:hidden" />
+                    )}
+                  </div>
+                  <div className="flex flex-col pt-1">
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="flex items-center justify-center rounded-full bg-[#B27F1C]/10 p-1.5 transition-colors group-hover:bg-[#B27F1C]/20 dark:bg-[#F6B23B]/10 dark:group-hover:bg-[#F6B23B]/20">
+                        <item.icon size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2.5} />
                       </div>
-                      <div className="flex flex-col pt-0.5">
-                         <div className="flex items-center gap-2 mb-2">
-                            <item.icon size={20} className="text-gray-900 dark:text-white" strokeWidth={1.5} />
-                            <span className="font-bold text-gray-900 dark:text-white text-[0.95rem]">{item.title}</span>
-                         </div>
-                         <p className="text-[0.75rem] text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
-                            {item.desc}
-                         </p>
-                      </div>
-                   </div>
-                 ))}
-              </div>
-           </div>
+                      <span className="text-lg font-bold text-gray-900 transition-colors group-hover:text-[#B27F1C] dark:text-white dark:group-hover:text-[#F6B23B]">{item.title}</span>
+                    </div>
+                    <p className="text-sm font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-           {/* Divider Line */}
-           <div className="absolute left-[65%] top-10 bottom-10 w-[1px] bg-gradient-to-b from-transparent via-[#B27F1C] dark:via-[#F6B23B]/30 to-transparent flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-white border border-[#B27F1C] dark:border-[#F6B23B]" />
-           </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 250, damping: 25, delay: 0.2 }}
+            className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0f172a] to-[#030712] p-10 text-center shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:from-[#1e293b] dark:to-[#0a101d] dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/30 via-transparent to-transparent opacity-60 dark:from-[#F6B23B]/30" />
+            
+            <div className="relative z-10 mb-12 flex flex-col items-center">
+              <span className="mb-4 rounded-[4px] border border-[#B27F1C]/40 bg-[#B27F1C]/20 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-[#F6B23B] backdrop-blur-md">
+                {investorData.outcome.tag}
+              </span>
+              <h3 className="text-2xl font-black leading-tight text-white">
+                {investorData.outcome.title}
+              </h3>
+            </div>
 
-           {/* Right Half (Outcome) */}
-           <div className="w-[35%] p-10 bg-gray-50 dark:bg-[#050C17] relative flex flex-col justify-center">
-              {/* Dots background pattern */}
-              <div className="absolute top-4 right-4 grid grid-cols-4 gap-2 opacity-20">
-                 {[...Array(16)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#B27F1C] dark:bg-[#F6B23B]" />)}
-              </div>
+            <div className="relative flex h-48 w-48 items-center justify-center">
+              <motion.div variants={pulseRing} initial="animate" className="absolute h-full w-full rounded-full border-2 border-[#B27F1C]/50 dark:border-[#F6B23B]/50" />
+              <motion.div variants={pulseRing} initial="animate" transition={{ delay: 1 }} className="absolute h-[75%] w-[75%] rounded-full border border-[#B27F1C]/70 dark:border-[#F6B23B]/70" />
+              <motion.div variants={pulseRing} initial="animate" transition={{ delay: 2 }} className="absolute h-[50%] w-[50%] rounded-full border border-[#B27F1C]/90 dark:border-[#F6B23B]/90" />
+              
+              <motion.div 
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="relative z-20 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-gradient-to-tr from-[#B27F1C] to-[#d49924] shadow-[0_0_40px_rgba(178,127,28,0.6)] dark:from-[#F6B23B] dark:to-[#f9d08b] dark:shadow-[0_0_40px_rgba(246,178,59,0.6)]"
+              >
+                <Target size={28} className="text-white dark:text-gray-900" strokeWidth={2.5} />
+              </motion.div>
 
               <motion.div 
-                 initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
+                animate={{ y: [-4, 4, -4], rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -right-2 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/30"
               >
-                 <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0C1525] flex items-center justify-center text-gray-900 dark:text-white shrink-0 shadow-md">
-                       <Target size={20} strokeWidth={2} />
-                    </div>
-                    <div className="flex items-center gap-2">
-                       <span className="text-[0.7rem] font-bold text-[#B27F1C] dark:text-[#F6B23B] tracking-widest uppercase">
-                         {investorData.outcome.tag}
-                       </span>
-                       <div className="w-8 h-[2px] bg-[#B27F1C] dark:bg-[#F6B23B]" />
-                    </div>
-                 </div>
-
-                 <h3 className="text-[1.8rem] font-black text-gray-900 dark:text-white leading-[1.1] mb-10">
-                   {investorData.outcome.title}
-                 </h3>
-
-                 {/* 3D Graphic representation */}
-                 <div className="relative h-48 w-full flex items-center justify-center">
-                    {/* Golden rings */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-16 rounded-[100%] border-[8px] border-[#B27F1C] dark:border-[#F6B23B] shadow-xl bg-[#b45309]/10" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-10 rounded-[100%] border-[6px] border-[#f59e0b] shadow-xl bg-[#B27F1C] dark:bg-[#F6B23B]/20" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-5 rounded-[100%] border-[4px] border-yellow-500 dark:border-yellow-400 shadow-xl bg-[#f59e0b]/30" />
-                    
-                    {/* Central Gold Figure */}
-                    <div className="absolute bottom-[40%] left-1/2 -translate-x-1/2 z-20">
-                       <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#FFD17A] shadow-lg mx-auto mb-1" />
-                       <div className="w-12 h-16 rounded-t-xl bg-gradient-to-tr from-[#B27F1C] dark:from-[#F6B23B] to-[#B27F1C] dark:to-[#FFD17A] shadow-lg" />
-                    </div>
-
-                    {/* Surrounding Gray Figures */}
-                    <div className="absolute bottom-[30%] left-[10%] opacity-60 scale-75">
-                       <div className="w-6 h-6 rounded-full bg-slate-500 shadow mx-auto mb-1" />
-                       <div className="w-10 h-14 rounded-t-xl bg-slate-500 shadow" />
-                    </div>
-                    <div className="absolute bottom-[25%] left-[25%] opacity-70 scale-75">
-                       <div className="w-6 h-6 rounded-full bg-slate-600 shadow mx-auto mb-1" />
-                       <div className="w-10 h-14 rounded-t-xl bg-slate-600 shadow" />
-                    </div>
-                    <div className="absolute bottom-[25%] right-[25%] opacity-70 scale-75">
-                       <div className="w-6 h-6 rounded-full bg-slate-600 shadow mx-auto mb-1" />
-                       <div className="w-10 h-14 rounded-t-xl bg-slate-600 shadow" />
-                    </div>
-                    <div className="absolute bottom-[30%] right-[10%] opacity-60 scale-75">
-                       <div className="w-6 h-6 rounded-full bg-slate-500 shadow mx-auto mb-1" />
-                       <div className="w-10 h-14 rounded-t-xl bg-slate-500 shadow" />
-                    </div>
-                 </div>
-
+                <Star size={12} className="text-[#F6B23B]" fill="currentColor" />
               </motion.div>
-           </div>
-        </div>
+              <motion.div 
+                animate={{ y: [4, -4, 4], scale: [1, 1.1, 1] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute bottom-4 left-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/30"
+              >
+                <CheckCircle2 size={16} className="text-emerald-400" />
+              </motion.div>
+            </div>
+          </motion.div>
 
+        </div>
       </Container>
     </div>
-  )
+  );
 }

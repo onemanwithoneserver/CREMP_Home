@@ -5,14 +5,15 @@ import logo from '../../Logo/CREMP.png';
 import logoLight from '../../Logo/CREMP_Light.png';
 import CrempTextLogo from '../../components/CrempTextLogo';
 
-export default function Mobile() {
+export default function Mobile({ hideCTA = false }: { hideCTA?: boolean }) {
   const currentYear = new Date().getFullYear();
 
   return (
     <div className="w-full font-sans flex flex-col">
       
       {/* CTA Section */}
-      <div className="w-full bg-gradient-to-b from-gray-50 to-gray-200 dark:from-[#050C17] dark:to-[#08101E] py-16 px-6 flex flex-col items-center justify-center relative overflow-hidden border-t border-gray-200 dark:border-gray-800/50">
+      {!hideCTA && (
+        <div className="w-full bg-gradient-to-b from-gray-50 to-gray-200 dark:from-[#050C17] dark:to-[#08101E] py-16 px-6 flex flex-col items-center justify-center relative overflow-hidden border-t border-gray-200 dark:border-gray-800/50">
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-[#B27F1C]/10 dark:bg-[#F6B23B]/5 blur-[80px] rounded-full pointer-events-none" />
         
@@ -53,6 +54,7 @@ export default function Mobile() {
           </motion.div>
         </div>
       </div>
+      )}
 
       {/* Footer Base */}
       <div className="w-full bg-white dark:bg-[#050C17] border-t border-gray-200 dark:border-gray-800 py-8 px-6 flex flex-col items-center text-center gap-7">

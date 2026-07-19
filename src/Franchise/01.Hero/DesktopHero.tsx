@@ -9,36 +9,45 @@ const staggerContainer: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 };
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 20 },
   show: { 
     opacity: 1, 
     y: 0, 
-    transition: { type: 'spring', stiffness: 300, damping: 24 } 
+    transition: { type: 'spring', stiffness: 400, damping: 30 } 
   },
 };
 
 const floatAnimation: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, scale: 0.9 },
   show: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.8, ease: 'easeOut' },
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
   },
   animate: {
-    y: [-8, 8, -8],
+    y: [-12, 12, -12],
+    rotate: [-1, 1, -1],
     transition: {
-      duration: 6,
+      duration: 7,
       repeat: Infinity,
       ease: 'easeInOut',
     },
   },
+};
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.4, 0.7, 0.4],
+    transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
+  }
 };
 
 export default function DesktopHero() {
@@ -46,9 +55,17 @@ export default function DesktopHero() {
   const Btn2Icon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#030712]">
-      <div className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#B27F1C]/5 blur-[120px] dark:bg-[#F6B23B]/10" />
-      <div className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#B27F1C]/5 blur-[150px] dark:bg-[#F6B23B]/5" />
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-8 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+      <motion.div 
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#B27F1C]/10 blur-[120px] dark:bg-[#F6B23B]/15" 
+      />
+      <motion.div 
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#B27F1C]/10 blur-[150px] dark:bg-[#F6B23B]/10" 
+      />
 
       <Container className="relative z-10">
         <div className="flex items-center justify-between gap-6">
@@ -59,7 +76,7 @@ export default function DesktopHero() {
             className="flex w-[50%] flex-col"
           >
             <motion.div variants={fadeInUp}>
-              <span className="mb-4 flex w-fit items-center gap-2 rounded-full border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+              <span className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
                 {heroData.tag}
               </span>
             </motion.div>
@@ -70,7 +87,7 @@ export default function DesktopHero() {
             >
               Take Control of <br />
               Your Franchise <br />
-              <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+              <span className="animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
                 {heroData.titleHighlight}
               </span>
             </motion.h1>
@@ -83,27 +100,39 @@ export default function DesktopHero() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="mb-10 flex items-center gap-4">
-              <button className="group flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:scale-[1.02] hover:shadow-[0_10px_25px_rgba(178,127,28,0.3)] active:scale-95 dark:from-[#F6B23B] dark:to-[#d49924] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_10px_25px_rgba(246,178,59,0.3)]">
-                <Btn1Icon size={18} strokeWidth={2.5} className="transition-transform group-hover:scale-110" />
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#F6B23B] dark:to-[#d49924] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+              >
+                <Btn1Icon size={18} strokeWidth={2.5} className="transition-transform group-hover:rotate-12 group-hover:scale-110" />
                 {heroData.buttons[0].text}
-              </button>
+              </motion.button>
               
-              <button className="group flex items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white/80 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all hover:border-gray-300 hover:bg-gray-50 active:scale-95 dark:border-gray-800 dark:bg-gray-900/50 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-800/80">
-                <Btn2Icon size={18} strokeWidth={2.5} className="text-gray-500 transition-transform group-hover:scale-110 dark:text-gray-400" />
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex items-center justify-center gap-3 rounded-[4px] border border-gray-200 bg-white/80 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all hover:border-[#B27F1C]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 dark:text-white dark:hover:border-[#F6B23B]/50 dark:hover:bg-gray-800/80"
+              >
+                <Btn2Icon size={18} strokeWidth={2.5} className="text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#F6B23B]" />
                 {heroData.buttons[1].text}
-              </button>
+              </motion.button>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-4">
               {heroData.features.map((feature, idx) => (
-                <div key={idx} className="group flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#B27F1C] shadow-sm transition-transform group-hover:scale-110 dark:border-gray-800 dark:bg-[#0a101d] dark:text-[#F6B23B]">
+                <motion.div 
+                  key={idx} 
+                  whileHover={{ y: -5 }}
+                  className="group flex cursor-pointer items-center gap-3 rounded-[4px] p-2 transition-colors hover:bg-white/50 dark:hover:bg-gray-800/50"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#B27F1C] shadow-sm transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 group-hover:shadow-md dark:border-gray-800 dark:bg-[#0a101d] dark:text-[#F6B23B]">
                     <feature.icon size={18} strokeWidth={2} />
                   </div>
-                  <span className="text-[0.8rem] font-bold leading-snug text-gray-700 dark:text-gray-200">
+                  <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#B27F1C] dark:text-gray-200 dark:group-hover:text-[#F6B23B]">
                     {feature.text}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
@@ -119,15 +148,19 @@ export default function DesktopHero() {
                 maskImage: 'radial-gradient(ellipse at center, black 45%, transparent 80%)' 
               }}
             >
-              <img 
+              <motion.img 
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 src={heroImageLight} 
                 alt="Franchise Ecosystem Map" 
-                className="block h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(178,127,28,0.1)] dark:hidden" 
+                className="block h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(178,127,28,0.15)] dark:hidden" 
               />
-              <img 
+              <motion.img 
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 src={heroImageDark} 
                 alt="Franchise Ecosystem Map" 
-                className="hidden h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(246,178,59,0.15)] dark:block" 
+                className="hidden h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(246,178,59,0.2)] dark:block" 
               />
             </motion.div>
           </div>

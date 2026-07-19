@@ -33,7 +33,7 @@ export default function Franchise({ isMobile }: FranchiseProps) {
           <FAQ isMobile={isMobile} />
         </div>
 
-        <Footer isMobile={isMobile} />
+        <Footer isMobile={isMobile} hideCTA={true} />
       </div>
     </ThemeProvider>
   )

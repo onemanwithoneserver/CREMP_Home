@@ -46,8 +46,10 @@ export default function MobileFoundingPartner() {
          >
             {/* Pedestal */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[220px] h-[60px]">
-               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-10 rounded-[100%] border border-[#B27F1C]/30 dark:border-[#F6B23B]/30 bg-white dark:bg-[#0C1525] shadow-[0_0_20px_rgba(178,127,28,0.15)] dark:shadow-[0_0_20px_rgba(246,178,59,0.15)] flex items-end justify-center pb-1">
-                  <span className="text-[0.55rem] font-black tracking-[0.2em] text-[#B27F1C] dark:text-[#F6B23B]">FOUNDING PARTNER</span>
+               <div className="absolute bottom-0 w-full h-12 bg-white dark:bg-[#0a101d] rounded-[100%] border border-[#B27F1C]/30 dark:border-[#F6B23B]/30 z-30 shadow-[0_10px_20px_rgba(178,127,28,0.15)] flex items-end justify-center pb-1.5">
+                  <span className="-translate-x-[0.4em] text-[0.6rem] font-black tracking-[0.25em] text-[#B27F1C] dark:text-[#F6B23B] pl-[0.25em]">
+                     FOUNDING PARTNER
+                  </span>
                </div>
                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[190px] h-8 rounded-[100%] border-t border-[#B27F1C]/50 dark:border-[#F6B23B]/50 bg-white dark:bg-[#0C1525]" />
                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[160px] h-6 rounded-[100%] bg-gradient-to-t from-white dark:from-[#0C1525] to-gray-100 dark:to-gray-800 border border-gray-200 dark:border-gray-800" />
@@ -70,13 +72,57 @@ export default function MobileFoundingPartner() {
               const isLeft = node.pos.includes('left');
               const isTop = node.pos.includes('top');
               return (
-                <div key={idx} className={`absolute z-30 flex flex-col items-center gap-1 ${
-                  isLeft ? 'left-[-10px]' : 'right-[-10px]'
+                <div key={idx} className={`absolute z-30 flex flex-col items-center gap-1 left-[50%] -translate-x-1/2 ${
+                  isLeft ? '-ml-[110px]' : 'ml-[110px]'
                 } ${
-                  isTop ? 'top-[40px]' : 'top-[150px]'
+                  isTop ? 'top-[96px]' : 'top-[208px]'
                 }`}>
-                   <div className="w-8 h-8 rounded-full border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 bg-white dark:bg-[#0C1525]/80 backdrop-blur-md flex items-center justify-center text-[#B27F1C] dark:text-[#F6B23B]">
+                   <div className="relative w-8 h-8 rounded-full border border-[#B27F1C]/40 dark:border-[#F6B23B]/40 bg-white dark:bg-[#0C1525]/80 backdrop-blur-md flex items-center justify-center text-[#B27F1C] dark:text-[#F6B23B]">
                       <node.icon size={14} strokeWidth={1.5} />
+                      
+                      {/* Straight Connection Line with dots */}
+                      <svg 
+                        className={`pointer-events-none absolute ${isLeft ? 'left-full' : 'right-full'} ${isTop ? 'top-1/2' : 'bottom-1/2'}`}
+                        style={{ width: '69px', height: '56px' }}
+                        viewBox="0 0 69 56"
+                        preserveAspectRatio="none"
+                      >
+                        {(() => {
+                          const iconX = isLeft ? 0 : 69;
+                          const iconY = isTop ? 0 : 56;
+                          const rocketX = isLeft ? 69 : 0;
+                          const rocketY = isTop ? 56 : 0;
+                          
+                          const getPoint = (t: number) => ({
+                            cx: iconX + (rocketX - iconX) * t,
+                            cy: iconY + (rocketY - iconY) * t
+                          });
+                          
+                          const dots = [0.15, 0.5, 1.0].map(getPoint);
+                          
+                          return (
+                            <>
+                              <line 
+                                x1={iconX} y1={iconY} 
+                                x2={rocketX} y2={rocketY} 
+                                stroke="currentColor" 
+                                className="text-[#B27F1C]/40 dark:text-[#F6B23B]/40" 
+                                strokeWidth="1" 
+                                strokeDasharray="2 3" 
+                              />
+                              {dots.map((pt, i) => (
+                                <circle 
+                                  key={i}
+                                  cx={pt.cx} 
+                                  cy={pt.cy} 
+                                  r={i === 2 ? "1.5" : "1"} 
+                                  className="fill-[#B27F1C] dark:fill-[#F6B23B]"
+                                />
+                              ))}
+                            </>
+                          );
+                        })()}
+                      </svg>
                    </div>
                    <span className="text-[0.5rem] text-gray-500 dark:text-gray-400 font-bold text-center whitespace-pre-line leading-tight">
                      {node.label}

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { brandData } from './data'
 import { Store, MapPin, Users, Star, PlayCircle, Search } from 'lucide-react'
+import { YourBrandLogo } from '../../components/YourBrandLogo'
 
 export default function MobileYourBrand() {
   return (
@@ -73,12 +74,7 @@ export default function MobileYourBrand() {
             <div className="w-full bg-white dark:bg-[#0C1525] rounded-xl overflow-hidden flex flex-col">
                
                <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
-                  <div className="flex items-center gap-1.5">
-                     <div className="w-5 h-5 rounded bg-[#FDF8EE] flex items-center justify-center border border-[#d97706]/20 text-[#d97706]">
-                        <Store size={12} />
-                     </div>
-                     <span className="font-black text-[#0f172a] dark:text-white text-[0.65rem] tracking-wide">YOUR BRAND</span>
-                  </div>
+                  <YourBrandLogo size="sm" />
                   <div className="flex items-center gap-3 text-[0.5rem] font-bold text-gray-500 dark:text-gray-400">
                      <span className="text-[#0f172a] dark:text-white border-b-2 border-[#0f172a] dark:border-white pb-0.5">Overview</span>
                      <span>Videos</span>

@@ -107,10 +107,7 @@ export default function MobileFAQ() {
                  <faqData.banner.btn1.icon size={16} strokeWidth={2.5} />
                  {faqData.banner.btn1.text}
               </button>
-              <button className="w-full bg-white text-gray-900 dark:text-white py-3.5 rounded-xl font-bold text-[0.85rem] shadow-sm border border-gray-200 dark:border-gray-800 flex items-center justify-center gap-2">
-                 <faqData.banner.btn2.icon size={16} strokeWidth={2.5} className="text-gray-500 dark:text-gray-400" />
-                 {faqData.banner.btn2.text}
-              </button>
+
            </div>
         </motion.div>
 

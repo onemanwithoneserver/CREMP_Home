@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { marketData } from './data'
 import { Star, Goal, ArrowUpRight } from 'lucide-react'
+import mapBg from '../../assets/map_bg.png'
 
 export default function MobileYourMarkets() {
   return (
@@ -34,12 +35,13 @@ export default function MobileYourMarkets() {
       </motion.div>
 
       {/* Hexagon Map (Mobile friendly stack) */}
-      <div className="w-full relative py-6 mb-10 flex flex-col items-center justify-center bg-gray-50 rounded-2xl border border-[#E2E6EE] overflow-hidden">
+      <div className="w-full relative py-6 mb-10 flex flex-col items-center justify-center bg-[#0A0F1C] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
          {/* Map Background */}
-         <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-[0.08] grayscale" alt="Map" />
+         <img src={mapBg} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" alt="Local Market Network" />
+         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1C] via-transparent to-[#0A0F1C]/80" />
          
          {/* Connecting Line */}
-         <div className="absolute top-10 bottom-10 w-[2px] border-l-[2px] border-dashed border-[#6B7491]" />
+         <div className="absolute top-10 bottom-10 w-[2px] border-l-[2px] border-dashed border-white/20" />
 
          <div className="flex flex-col gap-6 z-10 w-full px-8">
             {marketData.hexagons.map((hex, idx) => {
@@ -51,23 +53,23 @@ export default function MobileYourMarkets() {
               let badgeText = '';
 
               if (hex.color === 'blue') {
-                bgColor = 'bg-[#eff6ff]';
-                borderColor = 'border-[#bfdbfe]';
-                iconBg = 'bg-white dark:bg-[#0C1525] text-gray-900 dark:text-white';
-                badgeBg = 'bg-white dark:bg-[#0C1525]';
-                badgeText = 'text-gray-900 dark:text-white';
+                bgColor = 'bg-blue-500/10 backdrop-blur-md';
+                borderColor = 'border-blue-500/30';
+                iconBg = 'bg-blue-500 text-white';
+                badgeBg = 'bg-blue-500/20';
+                badgeText = 'text-blue-300';
               } else if (hex.color === 'gold') {
-                bgColor = 'bg-[#fffbeb]';
-                borderColor = 'border-[#fde68a]';
-                iconBg = 'bg-[#B27F1C] dark:bg-[#F6B23B] text-gray-900 dark:text-white';
-                badgeBg = 'bg-[#B27F1C] dark:bg-[#F6B23B]';
-                badgeText = 'text-gray-900 dark:text-white';
+                bgColor = 'bg-[#B27F1C]/10 backdrop-blur-md dark:bg-[#F6B23B]/10';
+                borderColor = 'border-[#B27F1C]/30 dark:border-[#F6B23B]/30';
+                iconBg = 'bg-[#B27F1C] dark:bg-[#F6B23B] text-white dark:text-gray-900';
+                badgeBg = 'bg-[#B27F1C]/20 dark:bg-[#F6B23B]/20';
+                badgeText = 'text-[#B27F1C] dark:text-[#F6B23B]';
               } else {
-                bgColor = 'bg-[#F5F7FA]';
-                borderColor = 'border-[#d1d5db]';
-                iconBg = 'bg-[#6B7491] text-gray-900 dark:text-white';
-                badgeBg = 'bg-[#E2E6EE]';
-                badgeText = 'text-gray-600 dark:text-gray-400';
+                bgColor = 'bg-white/5 backdrop-blur-md';
+                borderColor = 'border-white/10';
+                iconBg = 'bg-white/10 text-gray-300';
+                badgeBg = 'bg-white/10';
+                badgeText = 'text-gray-300';
               }
 
               return (
@@ -77,10 +79,10 @@ export default function MobileYourMarkets() {
                   className={`w-full ${bgColor} border ${borderColor} rounded-xl p-3 flex items-center justify-between shadow-sm`}
                 >
                    <div className="flex items-center gap-3">
-                      <div className={`w-8 h-8 rounded-lg ${iconBg} flex items-center justify-center shadow-sm shrink-0`}>
+                       <div className={`w-8 h-8 rounded-lg ${iconBg} flex items-center justify-center shadow-sm shrink-0`}>
                          <hex.icon size={14} />
                       </div>
-                      <span className="font-bold text-gray-900 dark:text-white text-[0.8rem]">{hex.title}</span>
+                      <span className="font-bold text-white text-[0.8rem]">{hex.title}</span>
                    </div>
                    <div className={`px-2 py-1 rounded-[0.25rem] ${badgeBg} ${badgeText} text-[0.55rem] font-bold shadow-sm whitespace-nowrap`}>
                      {hex.status}

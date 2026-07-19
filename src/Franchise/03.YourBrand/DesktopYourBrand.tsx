@@ -1,54 +1,81 @@
 import { motion, type Variants } from 'framer-motion';
 import { Container } from '../../components/layout';
-import { brandData } from './data';
-import { Star, Play, Pause, CheckCircle2 } from 'lucide-react';
+import { YourBrandLogo } from '../../components/YourBrandLogo';
+import { 
+  Sparkles, 
+  ArrowRight, 
+  LayoutDashboard, 
+  Users, 
+  BarChart3, 
+  Settings, 
+  Bell, 
+  Search,
+  TrendingUp,
+  Activity
+} from 'lucide-react';
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: 'spring', stiffness: 200, damping: 20 } 
+  },
+};
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 15 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { type: 'spring', stiffness: 300, damping: 24 } 
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
 
 const floatAnimation: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, x: 20 },
   show: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: 'easeOut' },
+    x: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
   },
   animate: {
-    y: [-4, 4, -4],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
+    y: [-8, 8, -8],
+    transition: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
   },
 };
 
-export default function DesktopYourBrand() {
+const floatSubtle: Variants = {
+  animate: {
+    y: [-4, 4, -4],
+    transition: { duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 },
+  },
+};
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.4, 0.7, 0.4],
+    transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
+  }
+};
+
+export default function DashboardShowcase() {
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#030712]">
+    <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#030712]">
       
-      <div className="pointer-events-none absolute right-0 top-0 h-[800px] w-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
-      <div className="pointer-events-none absolute bottom-0 left-[-10%] h-[600px] w-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/5 via-transparent to-transparent dark:from-[#F6B23B]/5" />
+      <motion.div 
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute left-0 top-0 h-[800px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent dark:from-[#F6B23B]/15" 
+      />
+      <motion.div 
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" 
+      />
 
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
-        <div className="mb-20 flex flex-col items-center gap-16 lg:flex-row lg:items-stretch">
+        <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-center lg:justify-between">
           
           <motion.div 
             variants={staggerContainer}
@@ -58,185 +85,211 @@ export default function DesktopYourBrand() {
             className="flex w-full flex-col justify-center lg:w-[45%]"
           >
             <motion.div variants={fadeInUp}>
-              <span className="mb-6 flex w-fit items-center gap-2 rounded-full border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
-                {brandData.tag}
-              </span>
+              <div className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
+                <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+                <span className="text-[0.7rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                  Unify Your Workspace
+                </span>
+              </div>
             </motion.div>
             
             <motion.h2 
               variants={fadeInUp}
-              className="mb-6 text-[3rem] font-black leading-[1.05] tracking-tight xl:text-[3.5rem]"
+              className="mb-6 text-[3.5rem] font-black leading-[1.1] tracking-tight xl:text-[4.5rem]"
             >
-              <span className="block text-gray-900 dark:text-white">{brandData.titleBase}</span>
-              <span className="block bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
-                {brandData.titleHighlight}
+              <span className="block text-gray-900 dark:text-white">Your Brand.</span>
+              <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+                Your Story.
               </span>
             </motion.h2>
 
-            <motion.div variants={fadeInUp} className="mb-10 flex flex-col gap-4">
-              <p className="text-[1.05rem] font-medium text-gray-600 dark:text-gray-400">
-                {brandData.desc[0]}
-              </p>
-              
-              <div className="my-2 flex flex-col gap-2.5 border-l-2 border-[#B27F1C]/30 pl-4 dark:border-[#F6B23B]/30">
-                <p className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{brandData.desc[1]}</p>
-                <p className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{brandData.desc[2]}</p>
-                <p className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{brandData.desc[3]}</p>
-              </div>
+            <motion.p 
+              variants={fadeInUp}
+              className="mb-8 text-lg font-medium leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Take full control of your narrative. Manage your digital presence, track audience engagement, and scale your growth intuitively—all from one powerful dashboard designed for modern creators.
+            </motion.p>
 
-              <p className="text-[1.05rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
-                {brandData.desc[4]}
-              </p>
+            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex items-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-7 py-3.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#F6B23B] dark:to-[#f9d08b] dark:text-gray-900 dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+              >
+                Explore Dashboard
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-900 shadow-sm transition-all hover:border-[#B27F1C]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:hover:border-[#F6B23B]/50 dark:hover:bg-gray-800"
+              >
+                View Live Demo
+              </motion.button>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-4 pt-4">
-              {brandData.showcaseMenu.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="group flex cursor-pointer items-center gap-4 rounded-lg border border-gray-200/60 bg-white/60 p-4 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[#B27F1C]/30 hover:bg-white hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/40 dark:hover:border-[#F6B23B]/30 dark:hover:bg-gray-900/80"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#B27F1C] shadow-sm transition-transform group-hover:scale-110 dark:border-gray-800 dark:from-[#030712] dark:to-[#0a101d] dark:text-[#F6B23B]">
-                    <item.icon size={18} strokeWidth={2} />
-                  </div>
-                  <span className="text-[0.9rem] font-bold text-gray-800 transition-colors group-hover:text-[#B27F1C] dark:text-gray-200 dark:group-hover:text-[#F6B23B]">
-                    {item.text}
-                  </span>
-                </div>
-              ))}
+            <motion.div variants={fadeInUp} className="mt-12 flex items-center gap-8 border-t border-gray-200/60 pt-8 dark:border-gray-800/60">
+              <motion.div whileHover={{ y: -2 }} className="cursor-default">
+                <h4 className="text-2xl font-black text-gray-900 dark:text-white">98%</h4>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Client Retention</p>
+              </motion.div>
+              <div className="h-10 w-px bg-gray-200 dark:bg-gray-800" />
+              <motion.div whileHover={{ y: -2 }} className="cursor-default">
+                <h4 className="text-2xl font-black text-gray-900 dark:text-white">2.4x</h4>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Growth Rate</p>
+              </motion.div>
             </motion.div>
           </motion.div>
 
-          <div className="flex w-full items-center justify-center lg:w-[55%]">
+          <div className="relative flex w-full items-center justify-center lg:w-[55%]">
             <motion.div 
               variants={floatAnimation}
               initial="hidden"
               whileInView={["show", "animate"]}
               viewport={{ once: true, margin: "-50px" }}
-              className="relative mt-8 w-[115%] max-w-[800px] -mr-[60px]"
+              className="relative w-full max-w-[700px] lg:translate-x-8 xl:translate-x-12"
             >
-              <div className="flex h-[500px] w-full flex-col overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:border-gray-800/80 dark:bg-[#0a101d]">
+              <motion.div 
+                variants={floatSubtle}
+                initial="animate"
+                whileHover={{ scale: 1.05, zIndex: 40 }}
+                className="absolute -left-12 top-20 z-30 flex cursor-pointer items-center gap-4 rounded-[8px] border border-gray-200/50 bg-white/90 p-4 shadow-xl backdrop-blur-md transition-shadow hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/90 sm:-left-16"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#10B981]/10 text-[#10B981]">
+                  <TrendingUp size={20} strokeWidth={2.5} />
+                </div>
+                <div>
+                  <p className="text-[0.65rem] font-bold uppercase text-gray-500 dark:text-gray-400">Conversion</p>
+                  <p className="text-lg font-black text-gray-900 dark:text-white">+24.8%</p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                variants={floatSubtle}
+                initial="animate"
+                whileHover={{ scale: 1.05, zIndex: 40 }}
+                className="absolute -bottom-8 -right-4 z-30 flex cursor-pointer items-center gap-3 rounded-[8px] border border-gray-200/50 bg-white/90 p-4 shadow-xl backdrop-blur-md transition-shadow hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/90 sm:-right-8"
+              >
+                <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
+                  <Activity size={18} strokeWidth={2.5} />
+                  <span className="absolute right-0 top-0 h-2.5 w-2.5 animate-ping rounded-full bg-blue-500 opacity-75" />
+                  <span className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-blue-500 dark:border-gray-800" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">System Active</p>
+                  <p className="text-[0.65rem] font-medium text-gray-500 dark:text-gray-400">All services operational</p>
+                </div>
+              </motion.div>
+
+              <div className="relative flex h-[520px] w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0a101d]">
                 
-                {/* Browser Mac Header */}
-                <div className="relative flex items-center border-b border-gray-100 bg-white px-4 py-3 dark:border-gray-800/60 dark:bg-[#0a101d]">
-                  <div className="flex gap-1.5">
-                    <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-                    <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-                    <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+                <div className="relative flex items-center border-b border-gray-100 bg-white/80 px-4 py-3 backdrop-blur-md dark:border-gray-800/60 dark:bg-[#0a101d]/80">
+                  <div className="flex gap-2">
+                    <div className="h-3 w-3 rounded-full bg-red-400/90 shadow-inner hover:bg-red-500" />
+                    <div className="h-3 w-3 rounded-full bg-amber-400/90 shadow-inner hover:bg-amber-500" />
+                    <div className="h-3 w-3 rounded-full bg-emerald-400/90 shadow-inner hover:bg-emerald-500" />
                   </div>
-                  <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-[0.65rem] font-medium text-gray-500 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                    <Star size={10} className="text-purple-400" /> n4re.com/app/red-expert
+                  <div className="absolute left-1/2 flex w-1/2 -translate-x-1/2 items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-gray-50/50 py-1.5 text-[0.7rem] font-medium text-gray-500 shadow-sm backdrop-blur-sm dark:border-gray-700/80 dark:bg-gray-900/50 dark:text-gray-400">
+                    <span className="text-gray-400">🔒</span> yourbrand.com/dashboard
                   </div>
                 </div>
 
-                {/* Video Carousel Body */}
-                <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-[#fafafa] dark:bg-[#030712]">
+                <div className="flex flex-1 overflow-hidden">
                   
-                  {/* Carousel Container */}
-                  <div className="relative flex h-full w-full items-center justify-center">
+                  <div className="flex w-16 flex-col items-center border-r border-gray-100 bg-gray-50/50 py-6 dark:border-gray-800/60 dark:bg-gray-900/20 sm:w-20">
+                    <motion.div 
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                      className="mb-8 cursor-pointer" 
+                    >
+                      <YourBrandLogo size="md" showText={false} />
+                    </motion.div>
+                    <div className="flex flex-col gap-6 text-gray-400 dark:text-gray-500">
+                      <div className="cursor-pointer rounded-[4px] bg-white p-2.5 text-[#B27F1C] shadow-sm transition-transform hover:scale-110 dark:bg-gray-800 dark:text-[#F6B23B]">
+                        <LayoutDashboard size={20} />
+                      </div>
+                      <div className="cursor-pointer p-2.5 transition-all hover:scale-110 hover:text-gray-600 dark:hover:text-gray-300"><BarChart3 size={20} /></div>
+                      <div className="cursor-pointer p-2.5 transition-all hover:scale-110 hover:text-gray-600 dark:hover:text-gray-300"><Users size={20} /></div>
+                      <div className="cursor-pointer p-2.5 transition-all hover:scale-110 hover:text-gray-600 dark:hover:text-gray-300"><Settings size={20} /></div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col bg-white p-6 dark:bg-[#030712]">
                     
-                    {/* Far Left Card */}
-                    <div className="absolute z-10 h-[160px] w-[240px] -translate-x-[280px] scale-[0.75] overflow-hidden rounded-lg bg-gray-200 opacity-40 shadow-sm dark:bg-gray-800">
-                      <img src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=400&auto=format&fit=crop" className="h-full w-full object-cover mix-blend-luminosity" alt="Video thumbnail" />
-                    </div>
-
-                    {/* Far Right Card */}
-                    <div className="absolute z-10 h-[160px] w-[240px] translate-x-[280px] scale-[0.75] overflow-hidden rounded-lg bg-gray-200 opacity-40 shadow-sm dark:bg-gray-800"></div>
-
-                    {/* Left Card */}
-                    <div className="absolute z-20 flex h-[180px] w-[280px] -translate-x-[170px] scale-[0.85] flex-col justify-end overflow-hidden rounded-lg bg-gray-700 opacity-90 shadow-lg dark:bg-gray-800">
-                      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-overlay" alt="Meeting" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-                          <Play className="ml-1 fill-white/70 text-white/70" size={20} />
-                        </div>
+                    <div className="mb-6 flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">Overview</h3>
+                        <p className="text-xs text-gray-500">Welcome back to your dashboard</p>
                       </div>
-                      <div className="relative z-10 p-4">
-                        <h4 className="mb-0.5 text-sm font-bold leading-tight text-white">Building Trust with Clients</h4>
-                        <span className="flex items-center gap-1 text-[0.65rem] text-gray-300">
-                          Siddharth Rao <CheckCircle2 size={10} className="text-gray-400" />
-                        </span>
+                      <div className="flex items-center gap-4 text-gray-400">
+                        <Search size={18} className="cursor-pointer transition-colors hover:text-gray-600 dark:hover:text-gray-300" />
+                        <div className="relative cursor-pointer transition-colors hover:text-gray-600 dark:hover:text-gray-300">
+                          <Bell size={18} />
+                          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-[#030712]" />
+                        </div>
+                        <div className="ml-2 h-8 w-8 cursor-pointer overflow-hidden rounded-full bg-gray-200 ring-2 ring-transparent transition-all hover:ring-[#B27F1C] dark:bg-gray-800 dark:hover:ring-[#F6B23B]">
+                          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" className="h-full w-full object-cover" alt="User" />
+                        </div>
                       </div>
                     </div>
 
-                    {/* Right Card */}
-                    <div className="absolute z-20 flex h-[180px] w-[280px] translate-x-[170px] scale-[0.85] flex-col justify-end overflow-hidden rounded-lg bg-gray-500 opacity-80 shadow-lg dark:bg-gray-800">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-                          <Play className="ml-1 fill-white/70 text-white/70" size={20} />
-                        </div>
-                      </div>
-                      <div className="relative z-10 flex justify-end p-4">
-                        <div className="rounded bg-black/50 px-1.5 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">14:30</div>
-                      </div>
+                    <div className="mb-6 grid grid-cols-2 gap-4">
+                      <motion.div 
+                        whileHover={{ y: -4 }}
+                        className="cursor-pointer rounded-[8px] border border-gray-100 bg-gray-50/50 p-4 transition-shadow hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/30"
+                      >
+                        <p className="mb-1 text-xs font-medium text-gray-500">Total Revenue</p>
+                        <h4 className="text-xl font-bold text-gray-900 dark:text-white">$84,590</h4>
+                        <p className="mt-1 flex items-center text-[0.65rem] font-bold text-emerald-500">
+                          <TrendingUp size={10} className="mr-1" /> +12.5%
+                        </p>
+                      </motion.div>
+                      <motion.div 
+                        whileHover={{ y: -4 }}
+                        className="cursor-pointer rounded-[8px] border border-gray-100 bg-gray-50/50 p-4 transition-shadow hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/30"
+                      >
+                        <p className="mb-1 text-xs font-medium text-gray-500">Active Users</p>
+                        <h4 className="text-xl font-bold text-gray-900 dark:text-white">12,405</h4>
+                        <p className="mt-1 flex items-center text-[0.65rem] font-bold text-emerald-500">
+                          <TrendingUp size={10} className="mr-1" /> +8.2%
+                        </p>
+                      </motion.div>
                     </div>
 
-                    {/* Center (Active) Card */}
-                    <div className="absolute z-30 flex h-[220px] w-[340px] flex-col justify-between overflow-hidden rounded-xl bg-[#0f1423] p-5 shadow-[0_0_60px_rgba(244,114,182,0.15)] ring-1 ring-white/10 dark:bg-[#0B1221]">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-white/20 shadow-sm backdrop-blur-md ring-1 ring-white/10 transition-transform hover:scale-110">
-                          <Play className="ml-1 fill-white text-white" size={24} />
-                        </div>
+                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]">
+                      <div className="mb-4 flex items-center justify-between">
+                        <h4 className="text-sm font-bold text-gray-900 dark:text-white">Performance</h4>
+                        <select className="cursor-pointer rounded-[2px] border border-gray-200 bg-transparent px-2 py-1 text-xs text-gray-500 outline-none transition-colors hover:border-gray-300 focus:border-[#B27F1C] dark:border-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:focus:border-[#F6B23B]">
+                          <option>This Week</option>
+                          <option>Last Week</option>
+                          <option>This Month</option>
+                        </select>
                       </div>
-                      <div className="relative z-10 mt-auto flex items-end justify-between">
-                        <div>
-                          <h4 className="mb-1 text-lg font-bold leading-tight text-white drop-shadow-sm">Effective Digital Marketing</h4>
-                          <span className="flex items-center gap-1 text-[0.7rem] text-gray-300">
-                            Priya Sharma <CheckCircle2 size={12} className="text-blue-400" />
-                          </span>
+                      <div className="relative flex-1">
+                        <div className="absolute inset-0 flex items-end justify-between gap-2 pt-4 opacity-80">
+                          {[40, 70, 45, 90, 65, 85, 100].map((height, i) => (
+                            <div key={i} className="group relative flex w-full flex-col justify-end">
+                              <motion.div 
+                                initial={{ height: 0 }}
+                                whileInView={{ height: `${height}%` }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.3 + i * 0.1, type: "spring", bounce: 0.3 }}
+                                className="w-full cursor-pointer rounded-t-[2px] bg-[#B27F1C]/20 transition-colors group-hover:bg-[#B27F1C] dark:bg-[#F6B23B]/20 dark:group-hover:bg-[#F6B23B]" 
+                              />
+                            </div>
+                          ))}
                         </div>
-                        <div className="rounded bg-black/80 px-2 py-1 text-[0.65rem] font-bold tracking-wider text-white shadow-sm">10:05</div>
                       </div>
                     </div>
 
                   </div>
-
-                  {/* Bottom Right Pause Button */}
-                  <div className="absolute bottom-6 right-6 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-gray-600/90 text-white shadow-lg backdrop-blur-md transition-colors hover:bg-gray-700 dark:bg-gray-700/90 dark:hover:bg-gray-600">
-                    <Pause size={18} className="fill-white" />
-                  </div>
-
                 </div>
               </div>
             </motion.div>
           </div>
+          
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative flex w-full flex-col items-center gap-6 overflow-hidden rounded-lg border border-gray-200/50 bg-white p-6 shadow-xl ring-1 ring-gray-100 dark:border-gray-800 dark:bg-[#0a101d] dark:ring-gray-800 sm:flex-row sm:gap-8 sm:p-8 sm:px-10"
-        >
-          <div className="pointer-events-none absolute bottom-0 right-0 w-1/2 opacity-10 dark:opacity-20 sm:w-1/3">
-            <svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-              <path d="M0 80 L 150 50 L 250 60 L 380 10" stroke="#d49924" strokeWidth="3" fill="none"/>
-              <path d="M370 10 L 380 10 L 380 20" stroke="#d49924" strokeWidth="3" fill="none"/>
-              <rect x="250" y="70" width="10" height="30" stroke="#d49924" strokeWidth="2"/>
-              <rect x="270" y="60" width="10" height="40" stroke="#d49924" strokeWidth="2"/>
-              <rect x="290" y="45" width="10" height="55" stroke="#d49924" strokeWidth="2"/>
-              <circle cx="340" cy="45" r="10" stroke="#d49924" strokeWidth="2"/>
-              <path d="M320 80 Q 340 60 360 80" stroke="#d49924" strokeWidth="2" fill="none"/>
-              <circle cx="370" cy="55" r="8" stroke="#d49924" strokeWidth="2"/>
-              <path d="M355 90 Q 370 75 385 90" stroke="#d49924" strokeWidth="2" fill="none"/>
-            </svg>
-          </div>
-          
-          <div className="z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0f172a] to-[#030712] shadow-lg ring-4 ring-[#B27F1C]/10 dark:from-[#1e293b] dark:to-[#0a101d] dark:ring-[#F6B23B]/10">
-            <brandData.outcome.icon size={36} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
-          </div>
-          
-          <div className="z-10 flex flex-col text-center sm:text-left">
-            <span className="mb-2 text-[0.8rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
-              {brandData.outcome.tag}
-            </span>
-            <h3 className="text-2xl font-black text-gray-900 dark:text-white sm:text-3xl">
-              {brandData.outcome.text}
-            </h3>
-          </div>
-        </motion.div>
-
       </Container>
-    </div>
+    </section>
   );
 }
