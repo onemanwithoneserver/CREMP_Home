@@ -116,6 +116,21 @@ export default function Mobile() {
               <span>Retail Business Opportunities</span>
             </div>
           </motion.div>
+
+          {/* Description Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...springAnim, delay: 0.3 }}
+            className="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+          >
+            CREMP redefines how commercial opportunities are discovered and connected.
+            From commercial properties and retail spaces to franchise expansion and
+            business opportunities, CREMP brings together multiple commercial
+            ecosystems into one integrated marketplace—helping property owners,
+            brokers, franchisors, business owners, investors and tenants connect,
+            collaborate and grow.
+          </motion.p>
         </div>
 
         {/* ONBOARDING CARD SECTION */}

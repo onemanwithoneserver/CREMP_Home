@@ -141,6 +141,20 @@ export default function Desktop() {
               <span className="text-[#F6B23B]">•</span>
               <span>Retail Business Opportunities</span>
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...springAnim, delay: 0.3 }}
+              className="mt-6 text-base leading-relaxed text-gray-600 dark:text-gray-400 max-w-[90%]"
+            >
+              CREMP redefines how commercial opportunities are discovered and connected.
+              From commercial properties and retail spaces to franchise expansion and
+              business opportunities, CREMP brings together multiple commercial
+              ecosystems into one integrated marketplace—helping property owners,
+              brokers, franchisors, business owners, investors and tenants connect,
+              collaborate and grow.
+            </motion.p>
           </div>
 
           <div className="group/orbit relative mx-auto hidden h-[300px] w-[300px] shrink-0 items-center justify-center lg:flex lg:h-[400px] lg:w-[400px] xl:h-[460px] xl:w-[460px]">
@@ -271,73 +285,6 @@ export default function Desktop() {
             animate={{ backgroundPosition: ['200% 0', '-200% 0'] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
           />
-
-{/*           <div className="relative z-10 grid grid-cols-1 items-center gap-6 p-6 lg:grid-cols-[1.1fr_2fr_1fr] lg:gap-0 lg:p-8">
-            <div className="flex flex-col border-b border-gray-200 pb-6 dark:border-gray-800 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="rounded-full bg-[#B27F1C]/10 p-2 dark:bg-[#F6B23B]/10">
-                  <Rocket className="h-6 w-6 text-[#B27F1C] dark:text-[#F6B23B]" />
-                </div>
-                <div>
-                  <h3 className="leading-tight text-lg font-bold text-[#050C17] dark:text-white">
-                    Launching First in
-                  </h3>
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-[#B27F1C] dark:text-[#F6B23B]">Telangana</span>
-                    <span className="text-sm font-bold text-gray-500 dark:text-gray-400">— Phase 1</span>
-                  </div>
-                </div>
-              </div>
-              <p className="leading-snug text-sm font-medium text-gray-600 dark:text-gray-400">
-                We're currently onboarding our founding network of:
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 px-0 sm:grid-cols-3 lg:px-8">
-              {networkCategories.map((cat, idx) => (
-                <motion.div
-                  key={cat.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ ...springAnim, delay: 0.5 + idx * 0.05 }}
-                  viewport={{ once: true }}
-                  className="group flex flex-col items-center gap-2 text-center"
-                >
-                  <motion.div whileHover={{ y: -4, scale: 1.05 }} className="flex h-10 w-10 items-center justify-center transition-transform">
-                    <cat.icon
-                      className={`h-7 w-7 ${iconColorMap[cat.colorFamily] || 'text-gray-700 dark:text-gray-300'} transition-all duration-300 group-hover:drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)] dark:group-hover:drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]`}
-                      strokeWidth={1.5}
-                    />
-                  </motion.div>
-                  <span className="leading-tight text-[11px] font-bold text-gray-800 transition-colors group-hover:text-[#F6B23B] dark:text-gray-200">
-                    {cat.title}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-3 border-t border-gray-200 pt-6 dark:border-gray-800 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <motion.button
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="group/btn relative flex w-full items-center justify-between overflow-hidden rounded-lg bg-[#050C17] px-4 py-3 text-sm font-bold text-white transition-all hover:shadow-lg dark:bg-white dark:text-[#050C17] dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
-              >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-out group-hover/btn:translate-x-full dark:via-black/10" />
-                <span className="relative">Request Early Access</span>
-                <ChevronRight className="relative h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="group/btn relative flex w-full items-center justify-between overflow-hidden rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-bold text-[#050C17] transition-all hover:border-[#F6B23B]/50 hover:shadow-md dark:border-gray-700 dark:bg-[#111A2C] dark:text-white"
-              >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gray-100 to-transparent transition-transform duration-700 ease-out group-hover/btn:translate-x-full dark:via-white/5" />
-                <span className="relative">Explore Marketplace</span>
-                <ChevronRight className="relative h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-              </motion.button>
-            </div>
-          </div> */}
 
           <div className="border-t border-gray-100 bg-gray-50/50 py-3 text-center dark:border-gray-800 dark:bg-white/[0.02]">
             <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
