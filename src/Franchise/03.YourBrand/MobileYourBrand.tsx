@@ -10,7 +10,7 @@ const fadeInUp: Variants = {
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
-  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
 const floatAnimation: Variants = {
@@ -39,7 +39,7 @@ const pulseGlow: Variants = {
 
 export default function MobileYourBrand() {
   return (
-    <section className="relative w-full overflow-hidden bg-gray-50 py-6 transition-colors duration-700 dark:bg-[#030712]">
+    <section className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712]">
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[80px] dark:bg-[#F6B23B]/15" />
 
       <Container className="relative z-10 mx-auto px-4">
@@ -85,7 +85,7 @@ export default function MobileYourBrand() {
             </motion.div>
           </motion.div>
 
-          <div className="relative mt-8 flex w-full justify-center">
+          <div className="relative mt-4 flex w-full justify-center -mb-8">
             <motion.div variants={floatAnimation} initial="hidden" whileInView={["show", "animate"]} viewport={{ once: true }} className="relative w-full max-w-[350px] scale-[0.9] origin-top">
               
               <motion.div variants={floatSubtle} initial="animate" className="absolute -left-2 top-8 z-30 flex scale-90 items-center gap-3 rounded-[8px] border border-gray-200/50 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-800/95">

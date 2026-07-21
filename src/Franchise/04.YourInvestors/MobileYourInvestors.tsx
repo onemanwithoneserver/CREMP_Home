@@ -11,7 +11,7 @@ const fadeInUp: Variants = {
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
-  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
 const pulseRing: Variants = {
@@ -37,7 +37,7 @@ const drawLine: Variants = {
 
 export default function MobileYourInvestors() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-6 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <motion.div animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }} transition={{ duration: 8, repeat: Infinity }} className="pointer-events-none absolute right-[-10%] top-0 h-[400px] w-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
 
@@ -72,7 +72,7 @@ export default function MobileYourInvestors() {
             </motion.div>
           </motion.div>
 
-          <div className="relative mt-4 flex h-[400px] w-full items-center justify-center scale-90 sm:scale-100">
+          <div className="relative mt-4 -my-5 flex h-[400px] w-full items-center justify-center scale-90 sm:scale-100">
             <div className="pointer-events-none absolute inset-0 z-10">
               {investorData.pills.map((pill, idx) => {
                 const positions = [

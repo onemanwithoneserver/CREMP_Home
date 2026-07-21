@@ -50,7 +50,7 @@ const pulseBackground: Variants = {
 
 export default function MobileYourMarkets() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-6 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <motion.div 
         variants={pulseBackground}

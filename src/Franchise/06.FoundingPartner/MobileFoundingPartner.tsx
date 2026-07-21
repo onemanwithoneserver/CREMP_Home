@@ -31,12 +31,16 @@ const pulseGlow: Variants = {
   }
 };
 
+const staggerContainer: Variants = {
+  show: { transition: { staggerChildren: 0.15 } }
+};
+
 export default function MobileFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
   const Btn2Icon = foundingData.buttons[1].icon;
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-6 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712]">
       
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#F6B23B]/15" />
 
@@ -46,7 +50,7 @@ export default function MobileFoundingPartner() {
           
           <div className="relative flex w-full flex-col items-center p-6 pt-6 text-center">
             
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ show: { transition: { staggerChildren: 0.15 } } }} className="flex flex-col items-center">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-center">
               <motion.div variants={fadeInUp} className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10">
                 <Star size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
@@ -63,7 +67,7 @@ export default function MobileFoundingPartner() {
               </motion.p>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }} className="relative mt-8 mb-6 flex h-[320px] w-full items-center justify-center scale-75 origin-center">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }} className="relative mt-8 mb-6 -my-10 flex h-[320px] w-full items-center justify-center scale-75 origin-center">
               
               <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2">
                 <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#B27F1C]/20 blur-xl dark:bg-[#F6B23B]/15" />

@@ -10,7 +10,7 @@ const fadeInUp: Variants = {
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
-  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
 const staggerGrid: Variants = {
@@ -33,7 +33,7 @@ const pulseGlow: Variants = {
 
 export default function MobileCategories() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-6 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#B27F1C 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent dark:from-[#F6B23B]/15" />

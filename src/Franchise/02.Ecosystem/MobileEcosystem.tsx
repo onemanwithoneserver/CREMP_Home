@@ -5,7 +5,7 @@ import { Target, Plus, Equal, Globe2 } from 'lucide-react';
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
-  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
 const fadeInUp: Variants = {
