@@ -40,7 +40,7 @@ export default function MobileHero() {
   const Btn2Icon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-6 pb-2 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none sm:pb-12 sm:pt-20">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none sm:py-10">
       <motion.div 
         variants={pulseGlow} animate="animate"
         className="pointer-events-none absolute -left-[10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[100px] dark:bg-[#F6B23B]/15" 
@@ -52,14 +52,14 @@ export default function MobileHero() {
           <motion.div variants={staggerContainer} initial="hidden" animate="show" className="flex w-full flex-col items-center">
             
             <motion.div variants={fadeInUp}>
-              <span className="mb-3 flex items-center justify-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+              <span className="mb-3 flex items-center justify-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold font-sans uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
                 {heroData.tag}
               </span>
             </motion.div>
             
             <motion.h1 
               variants={fadeInUp}
-              className="mb-4 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
+              className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
             >
               Take Control of <br /> Your Franchise <br />
               <span className="animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
@@ -67,7 +67,7 @@ export default function MobileHero() {
               </span>
             </motion.h1>
             
-            <motion.p variants={fadeInUp} className="mx-auto mb-5 w-full max-w-[90%] px-2 text-[0.95rem] leading-relaxed text-gray-600 dark:text-gray-400">
+            <motion.p variants={fadeInUp} className="mx-auto mb-5 w-full max-w-[90%] px-2 text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
               Powered by India&apos;s <span className="font-bold text-gray-900 dark:text-white">Integrated Commercial Real Estate, Franchise & Retail Business Opportunities Platform</span>, CREMP helps you build your brand, reach investors in your preferred micro markets, define your ideal franchise partner and discover expansion-ready locations.
             </motion.p>
 

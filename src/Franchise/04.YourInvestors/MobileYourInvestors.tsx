@@ -47,13 +47,13 @@ export default function MobileYourInvestors() {
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center">
             <motion.div variants={fadeInUp} className="mb-4 flex items-center justify-center gap-3">
               <div className="flex h-8 items-center justify-center rounded-[4px] bg-[#B27F1C]/10 px-4 dark:bg-[#F6B23B]/10">
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
                   {investorData.tag}
                 </span>
               </div>
             </motion.div>
             
-            <motion.h2 variants={fadeInUp} className="mb-6 text-[2.5rem] font-black leading-[1.1] tracking-tight sm:text-[3rem]">
+            <motion.h2 variants={fadeInUp} className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight sm:text-[3rem]">
               <span className="block text-gray-900 dark:text-white">{investorData.titleBase}</span>
               <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
                 {investorData.titleHighlight}
@@ -61,11 +61,11 @@ export default function MobileYourInvestors() {
             </motion.h2>
 
             <motion.div variants={fadeInUp} className="flex flex-col items-center gap-4 px-2">
-              <p className="text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+              <p className="text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
                 {investorData.desc[0]}
               </p>
               <div className="mt-2 border-t-2 border-[#B27F1C] pt-4 dark:border-[#F6B23B]">
-                <p className="text-[0.95rem] font-bold leading-relaxed text-gray-900 dark:text-white">
+                <p className="text-[0.95rem] font-bold font-sans leading-relaxed text-gray-900 dark:text-white">
                   {investorData.desc[1]}
                 </p>
               </div>
@@ -153,7 +153,7 @@ export default function MobileYourInvestors() {
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-200/80 dark:bg-gray-900 dark:ring-gray-800">
                 <Activity size={20} className="text-[#B27F1C] dark:text-[#F6B23B]" />
               </div>
-              <h3 className="text-xl font-black text-gray-900 dark:text-white">{investorData.expectationsTitle}</h3>
+              <h3 className="text-xl font-black font-sans text-gray-900 dark:text-white">{investorData.expectationsTitle}</h3>
             </div>
 
             <div className="flex flex-col gap-6">
@@ -183,7 +183,7 @@ export default function MobileYourInvestors() {
               <span className="mb-4 rounded-[4px] border border-[#B27F1C]/40 bg-[#B27F1C]/20 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-widest text-[#F6B23B] backdrop-blur-md">
                 {investorData.outcome.tag}
               </span>
-              <h3 className="text-xl font-black leading-tight text-white">{investorData.outcome.title}</h3>
+              <h3 className="text-xl font-black font-sans leading-tight text-white">{investorData.outcome.title}</h3>
             </div>
 
             <div className="relative flex h-36 w-36 items-center justify-center">

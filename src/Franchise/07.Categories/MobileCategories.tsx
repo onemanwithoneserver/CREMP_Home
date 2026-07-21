@@ -43,16 +43,16 @@ export default function MobileCategories() {
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 flex flex-col items-center text-center">
           <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
             <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-            <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+            <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
               {categoriesData.tag}
             </span>
           </motion.div>
           
-          <motion.h2 variants={fadeInUp} className="mb-6 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]">
+          <motion.h2 variants={fadeInUp} className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]">
             {categoriesData.title}
           </motion.h2>
 
-          <motion.p variants={fadeInUp} className="text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+          <motion.p variants={fadeInUp} className="text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
             {categoriesData.desc}
           </motion.p>
         </motion.div>
@@ -66,7 +66,7 @@ export default function MobileCategories() {
                 <category.icon size={20} strokeWidth={1.5} />
               </div>
               
-              <span className="relative z-10 text-[0.75rem] font-bold leading-tight text-gray-900 dark:text-gray-200">
+              <span className="relative z-10 text-[0.75rem] font-bold font-sans leading-tight text-gray-900 dark:text-gray-200">
                 {category.label}
               </span>
             </motion.div>
@@ -82,7 +82,7 @@ export default function MobileCategories() {
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-200 dark:to-gray-800" />
           </div>
 
-          <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group flex w-full items-center justify-center gap-3 rounded-[4px] bg-gray-900 px-6 py-3.5 text-[0.95rem] font-bold text-white shadow-md dark:bg-white dark:text-gray-900">
+          <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group flex w-full items-center justify-center gap-3 rounded-[4px] bg-gray-900 px-6 py-3.5 text-[0.95rem] font-bold font-sans text-white shadow-md dark:bg-white dark:text-gray-900">
             <Users size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" />
             {categoriesData.button.text}
             <ChevronRight size={18} className="opacity-70 transition-transform group-hover:translate-x-1" />

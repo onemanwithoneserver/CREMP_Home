@@ -54,7 +54,7 @@ export default function MobileFAQ() {
           
           <div className="flex flex-1 flex-col pt-1">
             <div className="flex items-center justify-between gap-3">
-              <h4 className={`text-[0.95rem] font-bold leading-tight transition-colors duration-300 ${
+              <h4 className={`text-[0.95rem] font-bold font-sans leading-tight transition-colors duration-300 ${
                 isOpen ? 'text-[#B27F1C] dark:text-[#F6B23B]' : 'text-gray-900 dark:text-white'
               }`}>
                 {faq.q}
@@ -73,7 +73,7 @@ export default function MobileFAQ() {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <p className="mt-3 text-[0.9rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="mt-3 text-[0.9rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
                     {faq.a}
                   </p>
                 </motion.div>
@@ -95,16 +95,16 @@ export default function MobileFAQ() {
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 flex flex-col items-center text-center">
           <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
             <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
-            <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+            <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
               {faqData.tag}
             </span>
           </motion.div>
           
-          <motion.h2 variants={fadeInUp} className="mb-6 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]">
+          <motion.h2 variants={fadeInUp} className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]">
             {faqData.title}
           </motion.h2>
 
-          <motion.p variants={fadeInUp} className="text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+          <motion.p variants={fadeInUp} className="text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
             {faqData.desc}
           </motion.p>
         </motion.div>
@@ -132,17 +132,17 @@ export default function MobileFAQ() {
               <faqData.banner.icon size={28} strokeWidth={1.5} className="text-[#B27F1C] dark:text-[#F6B23B]" />
             </div>
             <div className="flex flex-col">
-              <h3 className="mb-3 whitespace-pre-line text-2xl font-black leading-tight text-white">
+              <h3 className="mb-3 whitespace-pre-line text-2xl font-black font-sans leading-tight text-white">
                 {faqData.banner.title}
               </h3>
-              <p className="text-[0.95rem] font-medium text-gray-400">
+              <p className="text-[0.95rem] font-medium font-sans text-gray-400">
                 {faqData.banner.desc}
               </p>
             </div>
           </div>
 
           <div className="relative z-10 flex w-full flex-col">
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-6 py-4 text-[1rem] font-bold text-gray-900 shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b]">
+            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-6 py-4 text-[1rem] font-bold font-sans text-gray-900 shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b]">
               <faqData.banner.btn1.icon size={18} strokeWidth={2} className="relative z-10" />
               <span className="relative z-10">{faqData.banner.btn1.text}</span>
             </motion.button>

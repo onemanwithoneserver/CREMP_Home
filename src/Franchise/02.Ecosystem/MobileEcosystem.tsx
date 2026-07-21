@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Container } from '../../components/layout';
 import { ecosystemData } from './data';
@@ -45,7 +44,7 @@ const floatAnimation: Variants = {
 
 export default function MobileEcosystem() {
   return (
-    <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 pt-8 pb-10 shadow-lg transition-colors duration-700 dark:bg-[#030712] dark:shadow-none border border-gray-200/50 dark:border-white/5">
+    <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#030712] dark:shadow-none border border-gray-200/50 dark:border-white/5">
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[250px] w-[250px] rounded-full bg-[#B27F1C]/10 blur-[80px] dark:bg-[#F6B23B]/10" />
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] bottom-[-10%] h-[200px] w-[200px] rounded-full bg-[#B27F1C]/10 blur-[80px] dark:bg-[#F6B23B]/10" />
 
@@ -55,19 +54,19 @@ export default function MobileEcosystem() {
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center">
             
             <motion.div variants={fadeInUp} className="mb-3">
-              <span className="flex items-center justify-center gap-1 rounded-full border border-[#B27F1C]/30 bg-white/80 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10 dark:text-[#F6B23B]">
+              <span className="flex items-center justify-center gap-1 rounded-full border border-[#B27F1C]/30 bg-white/80 px-3 py-1 text-[9px] font-bold font-sans uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10 dark:text-[#F6B23B]">
                 {ecosystemData.tag}
               </span>
             </motion.div>
             
-            <motion.h2 variants={fadeInUp} className="mb-3 text-[1.75rem] font-black leading-[1.15] tracking-tight text-gray-900 dark:text-white sm:text-[2.25rem]">
+            <motion.h2 variants={fadeInUp} className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]">
               Why Expansion <br /> Needs More Than a <br />
               <span className="bg-gradient-to-r from-[#B27F1C] via-[#e5b344] to-[#B27F1C] bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent dark:from-[#F6B23B] dark:via-[#f9d08b] dark:to-[#F6B23B]">
                 {ecosystemData.titleHighlight}
               </span>
             </motion.h2>
 
-            <motion.p variants={fadeInUp} className="mb-6 max-w-md px-2 text-[0.85rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+            <motion.p variants={fadeInUp} className="mb-6 px-2 text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
               {ecosystemData.subtitle}
             </motion.p>
 
@@ -78,7 +77,7 @@ export default function MobileEcosystem() {
                   className="flex w-full max-w-[320px] items-center gap-3 rounded-lg border border-gray-200/50 bg-white/70 p-2.5 text-left shadow-sm backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-800/40"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/20 bg-gradient-to-br from-[#fdf6ea] to-white text-[#B27F1C] shadow-inner dark:border-gray-600 dark:from-[#0a101d] dark:to-[#131b2c] dark:text-[#F6B23B]">
-                    <issue.icon size={14} strokeWidth={2} />
+                    <issue.icon size={14} />
                   </div>
                   <span className="text-[0.8rem] font-semibold text-gray-800 dark:text-gray-200">
                     {issue.text}
@@ -118,7 +117,7 @@ export default function MobileEcosystem() {
                     className="relative z-20 flex min-h-[90px] w-full flex-col items-center justify-center rounded-xl border border-gray-200/80 bg-white/95 p-3 text-center shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#0a101d]/95"
                   >
                     <div className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-sm ring-1 ring-[#B27F1C]/20 dark:from-[#0C1525] dark:to-[#030712] dark:ring-[#F6B23B]/20">
-                      <item.icon size={16} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
+                      <item.icon size={16} className="text-[#B27F1C] dark:text-[#F6B23B]" />
                     </div>
                     <span className="text-[0.7rem] font-bold leading-tight text-gray-800 sm:text-[0.75rem] dark:text-gray-200">
                       {item.text}
@@ -180,7 +179,7 @@ export default function MobileEcosystem() {
             <Target size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
           </div>
           
-          <p className="relative z-10 text-[0.85rem] sm:text-[0.9rem] font-medium leading-relaxed text-gray-700 dark:text-gray-300">
+          <p className="relative z-10 text-[0.95rem] font-medium font-sans leading-relaxed text-gray-700 dark:text-gray-300">
             Instead of switching between multiple platforms,{' '}
             <span className="font-bold text-gray-900 dark:text-white">
               manage your expansion journey from{' '}

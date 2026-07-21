@@ -49,25 +49,25 @@ export default function MobileYourBrand() {
             <motion.div variants={fadeInUp}>
               <div className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
                 <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">Unify Your Workspace</span>
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">Unify Your Workspace</span>
               </div>
             </motion.div>
             
-            <motion.h2 variants={fadeInUp} className="mb-6 text-[2.5rem] font-black leading-[1.1] tracking-tight sm:text-[3rem]">
+            <motion.h2 variants={fadeInUp} className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight sm:text-[3rem]">
               <span className="block text-gray-900 dark:text-white">Your Brand.</span>
               <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">Your Story.</span>
             </motion.h2>
 
-            <motion.p variants={fadeInUp} className="mb-8 px-2 text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+            <motion.p variants={fadeInUp} className="mb-6 px-2 text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
               Take full control of your narrative. Manage your digital presence, track audience engagement, and scale your growth intuitively—all from one powerful dashboard designed for modern creators.
             </motion.p>
 
-            <motion.div variants={fadeInUp} className="flex w-full flex-col items-center justify-center gap-4">
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-7 py-3.5 text-sm font-bold text-white shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b] dark:text-gray-900">
+            <motion.div variants={fadeInUp} className="flex w-full flex-col items-center justify-center gap-3">
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-7 py-3.5 text-sm font-bold font-sans text-white shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b] dark:text-gray-900">
                 Explore Dashboard
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </motion.button>
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-white">
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold font-sans text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-white">
                 View Live Demo
               </motion.button>
             </motion.div>

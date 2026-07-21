@@ -77,7 +77,7 @@ export default function MobileYourMarkets() {
             <motion.div variants={fadeInUp} className="mb-4 flex items-center justify-center gap-3">
               <div className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#B27F1C]/10 px-4 transition-colors hover:bg-[#B27F1C]/20 dark:bg-[#F6B23B]/10 dark:hover:bg-[#F6B23B]/20">
                 <Globe size={14} className="mr-2 text-[#B27F1C] dark:text-[#F6B23B]" />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
                   {marketData.tag}
                 </span>
               </div>
@@ -85,7 +85,7 @@ export default function MobileYourMarkets() {
             
             <motion.h2 
               variants={fadeInUp}
-              className="mb-6 text-[2.5rem] font-black leading-[1.1] tracking-tight sm:text-[3rem]"
+              className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight sm:text-[3rem]"
             >
               <span className="block text-gray-900 dark:text-white">{marketData.titleBase}</span>
               <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
@@ -94,10 +94,10 @@ export default function MobileYourMarkets() {
             </motion.h2>
 
             <motion.div variants={fadeInUp} className="flex flex-col gap-4 px-2 text-center">
-              <p className="text-lg font-bold leading-relaxed text-gray-900 dark:text-white">
+              <p className="text-[0.95rem] font-bold font-sans leading-relaxed text-gray-900 dark:text-white">
                 {marketData.desc[0]}
               </p>
-              <p className="text-base font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+              <p className="text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
                 {marketData.desc[1]}
               </p>
             </motion.div>
@@ -135,7 +135,17 @@ export default function MobileYourMarkets() {
               {marketData.hexagons.map((hex, idx) => {
                 const isGold = hex.color === 'gold';
                 const isBlue = hex.color === 'blue';
-                const isTopNode = parseInt(hex.position?.top as string || '0') < 30;
+                
+                // Override positions for mobile to prevent overlap
+                const mobilePositions = [
+                  { top: '25%', left: '25%' },   // Financial District
+                  { top: '12%', left: '55%' },   // Hi-Tech City
+                  { top: '35%', left: '65%' },   // Kukatpally
+                  { top: '60%', left: '60%' },   // Uppal Corridor
+                  { top: '75%', left: '35%' }    // Existing Outlet
+                ];
+                const position = mobilePositions[idx] || hex.position;
+                const isTopNode = parseInt(position?.top as string || '0') < 30;
                 
                 return (
                   <motion.div 
@@ -144,33 +154,37 @@ export default function MobileYourMarkets() {
                     whileInView={{ opacity: 1, y: 0 }} 
                     viewport={{ once: true }} 
                     transition={{ duration: 0.8, delay: 0.5 + (idx * 0.15), type: "spring", bounce: 0.4 }}
-                    className={`group absolute z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 ${isTopNode ? 'flex-col-reverse' : 'flex-col'}`}
-                    style={hex.position}
+                    className="group absolute z-10"
+                    style={position}
                   >
-                    <div className={`flex items-center transition-transform duration-300 group-hover:${isTopNode ? 'translate-y-1' : '-translate-y-1'} ${isTopNode ? 'flex-col-reverse' : 'flex-col'}`}>
-                      <div className={`flex flex-col items-center rounded-[4px] px-3 py-1.5 text-xs font-bold shadow-xl backdrop-blur-md ${
+                    {/* The Label */}
+                    <div className={`absolute flex flex-col items-center transition-transform duration-300 -translate-x-1/2 w-max ${
+                      isTopNode ? 'bottom-[calc(50%+1rem)] group-hover:-translate-y-1' : 'top-[calc(50%+1rem)] group-hover:translate-y-1 flex-col-reverse'
+                    }`}>
+                      <div className={`flex flex-col items-center rounded-[4px] px-2.5 py-1.5 text-[0.65rem] font-bold shadow-xl backdrop-blur-md ${
                         isGold ? 'bg-[#F6B23B]/90 text-gray-900' : 
                         isBlue ? 'bg-blue-500/90 text-white' : 
                         'bg-white/90 text-gray-900 dark:bg-gray-800/90 dark:text-white'
                       }`}>
-                        <span className="whitespace-nowrap">{hex.title}</span>
-                        <span className="whitespace-nowrap text-[0.65rem] opacity-70">{hex.status}</span>
+                        <span className="whitespace-nowrap font-sans">{hex.title}</span>
+                        <span className="whitespace-nowrap text-[0.55rem] opacity-70 font-sans">{hex.status}</span>
                       </div>
-                      <div className={`${isTopNode ? 'mb-0.5' : 'mt-0.5'} h-1.5 w-1.5 rotate-45 ${
+                      <div className={`h-1.5 w-1.5 rotate-45 ${isTopNode ? '-mt-1' : '-mb-1'} ${
                         isGold ? 'bg-[#F6B23B]/90' : isBlue ? 'bg-blue-500/90' : 'bg-white/90 dark:bg-gray-800/90'
                       }`} />
                     </div>
 
+                    {/* The Circle */}
                     <motion.div 
                       variants={isGold ? pulseNode : {}} 
                       initial="animate"
-                      className={`group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-transform duration-300 hover:scale-125 ${
+                      className={`absolute -translate-x-1/2 -translate-y-1/2 group relative flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-transform duration-300 hover:scale-110 ${
                         isGold ? 'border-[#F6B23B]/50 bg-[#F6B23B]/20 text-[#F6B23B]' : 
                         isBlue ? 'border-blue-400/50 bg-blue-500/20 text-blue-400' : 
                         'border-white/20 bg-white/10 text-white'
                       }`}
                     >
-                      <hex.icon size={16} />
+                      <hex.icon size={14} />
                       <motion.div 
                         animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -212,13 +226,13 @@ export default function MobileYourMarkets() {
             whileInView={{ opacity: 1, y: 0 }} 
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white p-6 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#0a101d]"
+            className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-2 py-5 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#0a101d]"
           >
             <div className="mb-6 flex flex-col items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#B27F1C]/10 text-[#B27F1C] dark:bg-[#F6B23B]/10 dark:text-[#F6B23B]">
                 <Star size={18} className="fill-current" />
               </div>
-              <h3 className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white">
+              <h3 className="text-lg font-black font-sans uppercase tracking-wide text-gray-900 dark:text-white">
                 {marketData.benefitsTitle}
               </h3>
             </div>
@@ -232,7 +246,7 @@ export default function MobileYourMarkets() {
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[#B27F1C] dark:bg-gray-800 dark:text-[#F6B23B]">
                     <benefit.icon size={14} strokeWidth={2.5} />
                   </div>
-                  <p className="text-xs font-bold leading-relaxed text-gray-700 dark:text-gray-300">
+                  <p className="text-[0.95rem] font-bold font-sans leading-relaxed text-gray-700 dark:text-gray-300">
                     {benefit.text}
                   </p>
                 </div>
@@ -251,12 +265,12 @@ export default function MobileYourMarkets() {
             
             <div className="relative z-10 mx-auto mb-6 flex items-center justify-center gap-2 rounded-[2px] border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-500/20">
                 <Goal size={14} className="text-emerald-400" />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-emerald-400">
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-emerald-400">
                   {marketData.outcome.tag}
                 </span>
               </div>
 
-              <h3 className="mb-8 text-[2rem] font-black leading-tight text-white">
+              <h3 className="mb-6 text-[2rem] font-black font-sans leading-tight text-white">
                 <span className="block opacity-90">{marketData.outcome.lines[0]}</span>
                 <span className="block opacity-90">{marketData.outcome.lines[1]}</span>
                 <span className="block bg-gradient-to-r from-[#F6B23B] to-[#f9d08b] bg-clip-text text-transparent">

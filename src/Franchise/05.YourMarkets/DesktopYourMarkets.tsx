@@ -144,10 +144,13 @@ export default function DesktopYourMarkets() {
                     whileInView={{ opacity: 1, y: 0 }} 
                     viewport={{ once: true }} 
                     transition={{ duration: 0.8, delay: 0.5 + (idx * 0.15), type: "spring", bounce: 0.4 }}
-                    className={`group absolute z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 ${isTopNode ? 'flex-col-reverse' : 'flex-col'}`}
+                    className="group absolute z-10"
                     style={hex.position}
                   >
-                    <div className={`flex items-center transition-transform duration-300 group-hover:${isTopNode ? 'translate-y-1' : '-translate-y-1'} ${isTopNode ? 'flex-col-reverse' : 'flex-col'}`}>
+                    {/* The Label */}
+                    <div className={`absolute flex flex-col items-center transition-transform duration-300 -translate-x-1/2 w-max ${
+                      isTopNode ? 'bottom-[calc(50%+1rem)] group-hover:-translate-y-1' : 'top-[calc(50%+1rem)] group-hover:translate-y-1 flex-col-reverse'
+                    }`}>
                       <div className={`flex flex-col items-center rounded-[4px] px-3 py-1.5 text-xs font-bold shadow-xl backdrop-blur-md ${
                         isGold ? 'bg-[#F6B23B]/90 text-gray-900' : 
                         isBlue ? 'bg-blue-500/90 text-white' : 
@@ -156,15 +159,16 @@ export default function DesktopYourMarkets() {
                         <span className="whitespace-nowrap">{hex.title}</span>
                         <span className="whitespace-nowrap text-[0.65rem] opacity-70">{hex.status}</span>
                       </div>
-                      <div className={`${isTopNode ? 'mb-0.5' : 'mt-0.5'} h-1.5 w-1.5 rotate-45 ${
+                      <div className={`h-1.5 w-1.5 rotate-45 ${isTopNode ? '-mt-1' : '-mb-1'} ${
                         isGold ? 'bg-[#F6B23B]/90' : isBlue ? 'bg-blue-500/90' : 'bg-white/90 dark:bg-gray-800/90'
                       }`} />
                     </div>
 
+                    {/* The Circle */}
                     <motion.div 
                       variants={isGold ? pulseNode : {}} 
                       initial="animate"
-                      className={`group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-transform duration-300 hover:scale-125 ${
+                      className={`absolute -translate-x-1/2 -translate-y-1/2 group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-transform duration-300 hover:scale-125 ${
                         isGold ? 'border-[#F6B23B]/50 bg-[#F6B23B]/20 text-[#F6B23B]' : 
                         isBlue ? 'border-blue-400/50 bg-blue-500/20 text-blue-400' : 
                         'border-white/20 bg-white/10 text-white'

@@ -1,7 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
-import { Container } from '../../components/layout';
 import { foundingData } from './data';
-import { Star, Check, Gem, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Star, Check, Gem, ArrowUpRight } from 'lucide-react';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -37,7 +36,6 @@ const staggerContainer: Variants = {
 
 export default function MobileFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
-  const Btn2Icon = foundingData.buttons[1].icon;
 
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712]">
@@ -53,16 +51,16 @@ export default function MobileFoundingPartner() {
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-center">
               <motion.div variants={fadeInUp} className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10">
                 <Star size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
                   {foundingData.tag}
                 </span>
               </motion.div>
               
-              <motion.h2 variants={fadeInUp} className="mb-6 whitespace-pre-line text-[2rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[2.5rem]">
+              <motion.h2 variants={fadeInUp} className="mb-4 whitespace-pre-line text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]">
                 {foundingData.title}
               </motion.h2>
 
-              <motion.p variants={fadeInUp} className="max-w-[320px] text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+              <motion.p variants={fadeInUp} className="max-w-[320px] text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
                 {foundingData.desc}
               </motion.p>
             </motion.div>
@@ -150,7 +148,7 @@ export default function MobileFoundingPartner() {
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/20 bg-[#B27F1C]/10 shadow-sm dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
                 <Gem size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-xl font-bold font-sans text-gray-900 dark:text-white">
                 {foundingData.benefitsTitle}
               </h3>
             </div>
@@ -178,8 +176,8 @@ export default function MobileFoundingPartner() {
                     <Btn1Icon size={20} className="text-white dark:text-gray-900" strokeWidth={2} />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[0.95rem] font-black text-white dark:text-gray-900">{foundingData.buttons[0].title}</span>
-                    <span className="text-[0.65rem] font-bold text-white/90 dark:text-gray-900/80">{foundingData.buttons[0].subtitle}</span>
+                    <span className="text-[0.95rem] font-black font-sans text-white dark:text-gray-900">{foundingData.buttons[0].title}</span>
+                    <span className="text-[0.65rem] font-bold font-sans text-white/90 dark:text-gray-900/80">{foundingData.buttons[0].subtitle}</span>
                   </div>
                   <ArrowUpRight size={18} className="ml-auto text-white dark:text-gray-900" />
                 </div>
