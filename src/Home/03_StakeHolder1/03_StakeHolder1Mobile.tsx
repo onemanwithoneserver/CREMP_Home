@@ -4,7 +4,7 @@ import { stakeholdersData } from "../03_StakeHolders/data";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
 };
 
 const staggerContainer = {
@@ -34,7 +34,7 @@ export default function MobileStakeHolder1() {
     return (
       <>
         {words.join(" ")}{" "}
-        <span className="bg-gradient-to-r from-[#b38728] via-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:via-[#FBBF24] dark:to-[#D4AF37]">
+        <span className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent">
           {lastWord}
         </span>
       </>
@@ -48,7 +48,7 @@ export default function MobileStakeHolder1() {
       exit={{ opacity: 0, y: -30 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative w-full overflow-hidden bg-[#FAFAFA] px-3 py-10 font-sans transition-colors duration-500 dark:bg-[#030811] sm:px-4"
+      className="relative w-full bg-gray-50 px-3 py-12 font-sans transition-colors duration-500 dark:bg-[#0a1128] sm:px-4"
     >
       <div className="absolute top-0 left-1/2 h-[300px] w-full max-w-lg -translate-x-1/2 pointer-events-none bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08)_0%,transparent_70%)] blur-2xl" />
 
@@ -61,14 +61,14 @@ export default function MobileStakeHolder1() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
-            <div className="mb-3 inline-flex items-center justify-center gap-1.5 rounded-[8px] border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-[#FBBF24]/5 px-3 py-1 text-[9px] font-bold tracking-widest text-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.15)] backdrop-blur-sm sm:text-[10px]">
+            <div className="mb-3 inline-flex items-center justify-center gap-1.5 rounded-md border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-[#FBBF24]/5 px-3 py-1 text-[9px] font-bold tracking-widest text-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.15)] backdrop-blur-sm sm:text-[10px]">
               <Sparkles className="h-2.5 w-2.5 text-[#FBBF24]" />
               <span>CREMP PLATFORM</span>
               <Sparkles className="h-2.5 w-2.5 text-[#FBBF24]" />
             </div>
-            <h2 className="mb-3 text-2xl font-black leading-tight tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+            <h2 className="mb-4 text-3xl font-black leading-tight tracking-tight text-[#0a1128] dark:text-white sm:text-4xl">
               Built for Every <br />
-              <span className="bg-gradient-to-r from-[#b38728] via-[#D4AF37] to-[#FBBF24] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent">
                 Commercial Stakeholder
               </span>
             </h2>
@@ -102,11 +102,11 @@ export default function MobileStakeHolder1() {
                 <div className="relative w-full max-w-sm mx-auto flex-col">
                   <motion.div
                     whileHover={{ y: -2 }}
-                    className="relative w-full overflow-hidden rounded-[8px] border border-[#D4AF37]/20 bg-gradient-to-br from-white to-[#FAFAFA] shadow-lg shadow-[#D4AF37]/5 dark:border-[#D4AF37]/10 dark:from-[#0a0f1d] dark:to-[#030811] dark:shadow-black/60"
+                    className="relative w-full overflow-hidden rounded-md border border-[#D4AF37]/20 bg-gradient-to-br from-white to-[#FAFAFA] shadow-lg shadow-[#D4AF37]/5 dark:border-[#D4AF37]/10 dark:from-[#0a0f1d] dark:to-[#030811] dark:shadow-black/60"
                   >
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent dark:from-[#030811]/90 dark:via-[#030811]/40" />
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent dark:from-[#030811]/80 dark:via-[#030811]/30" />
                     <div
-                      className={`relative ${aspectClass} w-full overflow-hidden rounded-[8px]`}
+                      className={`relative ${aspectClass} w-full overflow-hidden rounded-md`}
                     >
                       <div
                         className={`absolute inset-0 h-full w-full ${
@@ -116,7 +116,7 @@ export default function MobileStakeHolder1() {
                       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay" />
                       
                       <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-3">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] bg-white/10 text-white backdrop-blur-md border border-white/30 shadow-md">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md border border-white/30 shadow-md">
                           <stakeholder.icon
                             className="h-4 w-4"
                             strokeWidth={2.5}
@@ -140,13 +140,13 @@ export default function MobileStakeHolder1() {
                       <motion.div
                         key={sIdx}
                         variants={fadeInUp}
-                        className="flex flex-col justify-center rounded-[4px] border border-[#D4AF37]/10 bg-gradient-to-br from-white via-[#FAFAFA] to-[#FFFDF5] p-2.5 shadow-sm dark:from-[#0a0f1d] dark:via-[#111624] dark:to-[#17150b]/80"
+                        className="flex flex-col justify-center rounded border border-[#D4AF37]/10 bg-gradient-to-br from-white via-[#FAFAFA] to-[#FFFDF5] p-2.5 shadow-sm dark:from-[#0a0f1d] dark:via-[#111624] dark:to-[#17150b]/80"
                       >
                         <stat.icon
                           className="mb-1.5 h-3.5 w-3.5 text-[#F59E0B]"
                           strokeWidth={2}
                         />
-                        <span className="text-base font-black leading-none tracking-tight text-gray-900 dark:text-white">
+                        <span className="text-lg font-black leading-none text-[#0a1128] dark:text-white">
                           {stat.value}
                         </span>
                         <span className="mt-1 text-[8px] font-bold tracking-wider text-gray-500 uppercase dark:text-gray-400">
@@ -164,11 +164,11 @@ export default function MobileStakeHolder1() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4 }}
                   >
-                    <div className="mb-3 w-fit rounded-[2px] border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-2 py-0.5 text-[9px] font-black tracking-widest text-[#b38728] dark:text-[#FBBF24]">
+                    <div className="mb-3 w-fit rounded-sm border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-2 py-0.5 text-[9px] font-black tracking-widest text-[#b38728] dark:text-[#FBBF24]">
                       FOR {stakeholder.id.toUpperCase()}
                     </div>
 
-                    <h3 className="mb-4 text-xl font-extrabold leading-[1.2] tracking-tight text-gray-900 dark:text-white sm:text-2xl">
+                    <h3 className="mb-5 text-2xl font-extrabold leading-[1.2] tracking-tight text-[#0a1128] dark:text-white">
                       {renderHighlightedTitle(stakeholder.title)}
                     </h3>
                   </motion.div>
@@ -184,13 +184,13 @@ export default function MobileStakeHolder1() {
                       <motion.div
                         key={fIdx}
                         variants={fadeInUp}
-                        className="flex items-start gap-2.5 rounded-[4px] border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-2.5 shadow-[0_1px_4px_rgba(0,0,0,0.03)] dark:from-[#0a0f1d]/80 dark:via-[#0c1222]/80 dark:to-[#0a0f1d]/80"
+                        className="flex items-start gap-2.5 rounded border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-2.5 shadow-[0_1px_4px_rgba(0,0,0,0.03)] dark:from-[#0a0f1d]/80 dark:via-[#0c1222]/80 dark:to-[#0a0f1d]/80"
                       >
-                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[2px] border border-[#D4AF37]/20 bg-gradient-to-br from-[#FAFAFA] to-[#FFFDF5] text-[#F59E0B] shadow-sm dark:border-[#D4AF37]/20 dark:from-[#121826] dark:to-[#1a1c29]">
+                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-gradient-to-br from-[#FAFAFA] to-[#FFFDF5] text-[#F59E0B] shadow-sm dark:border-[#D4AF37]/20 dark:from-[#121826] dark:to-[#1a1c29]">
                           <feature.icon className="h-3 w-3" strokeWidth={1.5} />
                         </div>
                         <div className="flex flex-col justify-center pt-0.5">
-                          <span className="text-[11px] font-bold leading-snug text-gray-800 dark:text-gray-200">
+                          <span className="text-[12px] font-bold leading-tight text-[#0a1128] dark:text-gray-100">
                             {feature.title}
                           </span>
                         </div>
@@ -205,10 +205,10 @@ export default function MobileStakeHolder1() {
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="mt-auto"
                   >
-                    <button className="group relative flex w-full items-center justify-between overflow-hidden rounded-[4px] bg-gradient-to-r from-gray-900 to-gray-800 px-3 py-2 text-white shadow-md shadow-[#b38728]/10 active:scale-[0.98] dark:from-[#FAFAFA] dark:to-gray-200 dark:text-[#030811]">
+                    <button className="group relative flex w-full items-center justify-between overflow-hidden rounded bg-[#0a1128] px-3 py-2 text-white shadow-md active:scale-[0.98] dark:bg-white dark:text-[#0a1128]">
                       <div className="absolute inset-0 w-0 bg-gradient-to-r from-[#b38728] via-[#D4AF37] to-[#FBBF24] transition-all duration-500 ease-out group-hover:w-full opacity-0 group-hover:opacity-100" />
                       <div className="relative z-10 flex items-center gap-2.5">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-[2px] bg-white/10 text-[#FEF08A] backdrop-blur-sm dark:bg-black/5 dark:text-[#F59E0B] group-hover:text-white dark:group-hover:text-[#030811]">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-[#FEF08A] backdrop-blur-sm dark:bg-black/5 dark:text-[#F59E0B] group-hover:text-white dark:group-hover:text-[#030811]">
                           <Sparkles className="h-3 w-3" />
                         </div>
                         <span className="text-[12px] font-bold tracking-wide transition-colors duration-300 group-hover:text-white dark:group-hover:text-[#030811]">
