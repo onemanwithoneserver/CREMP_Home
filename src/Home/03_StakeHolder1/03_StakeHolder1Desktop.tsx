@@ -21,11 +21,11 @@ const staggerContainer: Variants = {
 
 export default function DesktopStakeHolder1() {
   const gradients = [
-    "bg-gradient-to-br from-[#D4AF37]/90 to-[#8C6B1B]/90 dark:from-[#D4AF37]/90 dark:to-[#FFD17A]/90",
-    "bg-gradient-to-tr from-rose-700/90 via-indigo-900/90 to-cyan-400/90",
-    "bg-gradient-to-br from-emerald-500/90 to-teal-800/90",
-    "bg-gradient-to-tr from-orange-500/90 to-red-700/90",
-    "bg-gradient-to-bl from-blue-600/90 to-indigo-900/90",
+    "bg-gradient-to-br from-[#D4AF37] to-[#8C6B1B] dark:from-[#D4AF37] dark:to-[#FFD17A]",
+    "bg-gradient-to-tr from-rose-700 via-indigo-900 to-cyan-400 dark:from-rose-700 dark:via-indigo-900 dark:to-cyan-400",
+    "bg-gradient-to-br from-emerald-500 to-teal-800 dark:from-emerald-500 dark:to-teal-800",
+    "bg-gradient-to-tr from-orange-500 to-red-700 dark:from-orange-500 dark:to-red-700",
+    "bg-gradient-to-bl from-blue-600 to-indigo-900 dark:from-blue-600 dark:to-indigo-900",
   ];
 
   const renderHighlightedTitle = (title: string) => {
@@ -81,7 +81,7 @@ export default function DesktopStakeHolder1() {
           </motion.div>
         </div>
 
-        <div className="relative flex flex-col gap-16 pb-32 xl:gap-24">
+        <div className="relative flex flex-col gap-12 lg:gap-16">
           {stakeholdersData.map((stakeholder, idx) => {
             const isEven = idx % 2 === 0;
 
@@ -93,10 +93,10 @@ export default function DesktopStakeHolder1() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  top: `calc(7rem + ${idx * 1.5}rem)`,
+                  top: `calc(3rem + ${idx * 1.5}rem)`,
                   zIndex: idx * 10,
                 }}
-                className={`sticky flex flex-col items-center gap-8 bg-gray-50 py-4 dark:bg-[#0a1128] lg:gap-12 xl:gap-16 xl:py-8 ${
+                className={`sticky flex flex-col items-center gap-8 bg-gray-50 p-2 lg:p-6 rounded-2xl dark:bg-[#121c33] lg:gap-12 xl:gap-16 ${
                   isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
               >
@@ -111,7 +111,7 @@ export default function DesktopStakeHolder1() {
                       <div
                         className={`absolute inset-0 h-full w-full ${
                           gradients[idx % gradients.length]
-                        } mix-blend-multiply dark:mix-blend-overlay transition-transform duration-1000 group-hover:scale-105`}
+                        } transition-transform duration-1000 group-hover:scale-105`}
                       />
                       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay" />
 
@@ -140,7 +140,7 @@ export default function DesktopStakeHolder1() {
                       <motion.div
                         key={sIdx}
                         variants={fadeInUp}
-                        className="group flex flex-col justify-center rounded border border-[#D4AF37]/10 bg-gradient-to-br from-white via-[#FAFAFA] to-[#FFFDF5] p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/40 hover:shadow-md hover:shadow-[#D4AF37]/10 dark:from-[#0a0f1d] dark:via-[#111624] dark:to-[#17150b]/80 dark:hover:border-[#FBBF24]/30"
+                        className="group flex flex-col justify-center rounded border border-[#D4AF37]/10 bg-gradient-to-br from-white via-[#FAFAFA] to-[#FFFDF5] p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/40 hover:shadow-md hover:shadow-[#D4AF37]/10 dark:from-[#1a2642] dark:via-[#1e2a4a] dark:to-[#1a2642]/80 dark:hover:border-[#FBBF24]/30"
                       >
                         <stat.icon
                           className="mb-2 h-4 w-4 text-[#F59E0B] transition-transform duration-300 group-hover:scale-110"
@@ -184,7 +184,7 @@ export default function DesktopStakeHolder1() {
                       <motion.div
                         key={fIdx}
                         variants={fadeInUp}
-                        className="group flex items-start gap-3 rounded border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-3 shadow-[0_1px_5px_rgba(0,0,0,0.03)] transition-all duration-300 hover:border-[#D4AF37]/20 hover:from-[#FAFAFA] hover:to-[#FFFDF5] hover:shadow-md dark:from-[#0a0f1d]/80 dark:via-[#0c1222]/80 dark:to-[#0a0f1d]/80 dark:hover:border-[#D4AF37]/30 dark:hover:from-[#0a0f1d] dark:hover:to-[#17150b]/40"
+                        className="group flex items-start gap-3 rounded border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-3 shadow-[0_1px_5px_rgba(0,0,0,0.03)] transition-all duration-300 hover:border-[#D4AF37]/20 hover:from-[#FAFAFA] hover:to-[#FFFDF5] hover:shadow-md dark:from-[#1a2642]/80 dark:via-[#1e2a4a]/80 dark:to-[#1a2642]/80 dark:hover:border-[#D4AF37]/30 dark:hover:from-[#1e2a4a] dark:hover:to-[#253255]/80"
                       >
                         <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-gradient-to-br from-[#FAFAFA] to-[#FFFDF5] text-[#F59E0B] shadow-sm transition-colors duration-300 group-hover:border-[#D4AF37]/40 dark:border-[#D4AF37]/20 dark:from-[#121826] dark:to-[#1a1c29] xl:h-9 xl:w-9">
                           <feature.icon

@@ -4,7 +4,11 @@ import { stakeholdersData } from "../03_StakeHolders/data";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
 };
 
 const staggerContainer = {
@@ -20,11 +24,11 @@ const staggerContainer = {
 
 export default function MobileStakeHolder1() {
   const gradients = [
-    "bg-gradient-to-br from-[#D4AF37]/90 to-[#8C6B1B]/90 dark:from-[#D4AF37]/90 dark:to-[#FFD17A]/90",
-    "bg-gradient-to-tr from-rose-700/90 via-indigo-900/90 to-cyan-400/90",
-    "bg-gradient-to-br from-emerald-500/90 to-teal-800/90",
-    "bg-gradient-to-tr from-orange-500/90 to-red-700/90",
-    "bg-gradient-to-bl from-blue-600/90 to-indigo-900/90",
+    "bg-gradient-to-br from-[#D4AF37] to-[#8C6B1B] dark:from-[#D4AF37] dark:to-[#FFD17A]",
+    "bg-gradient-to-tr from-rose-700 via-indigo-900 to-cyan-400 dark:from-rose-700 dark:via-indigo-900 dark:to-cyan-400",
+    "bg-gradient-to-br from-emerald-500 to-teal-800 dark:from-emerald-500 dark:to-teal-800",
+    "bg-gradient-to-tr from-orange-500 to-red-700 dark:from-orange-500 dark:to-red-700",
+    "bg-gradient-to-bl from-blue-600 to-indigo-900 dark:from-blue-600 dark:to-indigo-900",
   ];
 
   const renderHighlightedTitle = (title: string) => {
@@ -48,7 +52,7 @@ export default function MobileStakeHolder1() {
       exit={{ opacity: 0, y: -30 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative w-full bg-gray-50 px-3 py-12 font-sans transition-colors duration-500 dark:bg-[#0a1128] sm:px-4"
+      className="relative w-full bg-gray-50 px-3 transition-colors duration-500 dark:bg-[#0a1128] sm:px-4"
     >
       <div className="absolute top-0 left-1/2 h-[300px] w-full max-w-lg -translate-x-1/2 pointer-events-none bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08)_0%,transparent_70%)] blur-2xl" />
 
@@ -80,24 +84,28 @@ export default function MobileStakeHolder1() {
           </motion.div>
         </div>
 
-        <div className="flex flex-col gap-12">
+        <div className="relative flex flex-col gap-2">
           {stakeholdersData.map((stakeholder, idx) => {
             const aspectClasses = [
-              "aspect-[4/3]",
-              "aspect-square",
+              "aspect-[21/9]",
               "aspect-[16/9]",
-              "aspect-[4/3]",
-              "aspect-square",
+              "aspect-[21/9]",
+              "aspect-[16/9]",
+              "aspect-[21/9]",
             ];
             const aspectClass = aspectClasses[idx % aspectClasses.length];
             return (
               <motion.div
                 key={stakeholder.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col gap-6"
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  top: `4.5rem`,
+                  zIndex: idx * 10,
+                }}
+                className="sticky flex flex-col gap-1 bg-white p-2 pb-3 rounded-t-2xl shadow-[0_-5px_20px_rgba(0,0,0,0.06)] overflow-x-hidden overflow-y-auto dark:bg-[#121c33] max-h-[calc(100vh-4.5rem)] scrollbar-hide"
               >
                 <div className="relative w-full max-w-sm mx-auto flex-col">
                   <motion.div
@@ -106,15 +114,19 @@ export default function MobileStakeHolder1() {
                   >
                     <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent dark:from-[#030811]/80 dark:via-[#030811]/30" />
                     <div
-                      className={`relative ${aspectClass} w-full overflow-hidden rounded-md`}
+                      className={`relative ${
+                        stakeholder.id === "buyers"
+                          ? "h-24 sm:aspect-[21/9]"
+                          : aspectClass
+                      } w-full overflow-hidden rounded-md`}
                     >
                       <div
                         className={`absolute inset-0 h-full w-full ${
                           gradients[idx % gradients.length]
-                        } mix-blend-multiply dark:mix-blend-overlay transition-transform duration-1000 hover:scale-105`}
+                        } transition-transform duration-1000 hover:scale-105`}
                       />
                       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay" />
-                      
+
                       <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-3">
                         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md border border-white/30 shadow-md">
                           <stakeholder.icon
@@ -168,7 +180,7 @@ export default function MobileStakeHolder1() {
                       FOR {stakeholder.id.toUpperCase()}
                     </div>
 
-                    <h3 className="mb-5 text-2xl font-extrabold leading-[1.2] tracking-tight text-[#0a1128] dark:text-white">
+                    <h3 className="mb-2 text-xl font-extrabold leading-[1.2] tracking-tight text-[#0a1128] dark:text-white">
                       {renderHighlightedTitle(stakeholder.title)}
                     </h3>
                   </motion.div>
@@ -178,15 +190,15 @@ export default function MobileStakeHolder1() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="mb-6 flex flex-col gap-2 sm:grid sm:grid-cols-2"
+                    className="mb-2 grid grid-cols-2 gap-1.5 sm:gap-2"
                   >
                     {stakeholder.features.map((feature, fIdx) => (
                       <motion.div
                         key={fIdx}
                         variants={fadeInUp}
-                        className="flex items-start gap-2.5 rounded border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-2.5 shadow-[0_1px_4px_rgba(0,0,0,0.03)] dark:from-[#0a0f1d]/80 dark:via-[#0c1222]/80 dark:to-[#0a0f1d]/80"
+                        className="group flex items-start gap-3 rounded border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-3 shadow-[0_1px_5px_rgba(0,0,0,0.03)] transition-all duration-300 hover:border-[#D4AF37]/20 hover:from-[#FAFAFA] hover:to-[#FFFDF5] hover:shadow-md dark:from-[#2a3652]/80 dark:via-[#2e3a5a]/80 dark:to-[#2a3652]/80 dark:hover:border-[#D4AF37]/30 dark:hover:from-[#2e3a5a] dark:hover:to-[#354265]/80"
                       >
-                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-gradient-to-br from-[#FAFAFA] to-[#FFFDF5] text-[#F59E0B] shadow-sm dark:border-[#D4AF37]/20 dark:from-[#121826] dark:to-[#1a1c29]">
+                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-gradient-to-br from-[#FAFAFA] to-[#FFFDF5] text-[#F59E0B] shadow-sm dark:border-[#D4AF37]/20 dark:from-[#1e263c] dark:to-[#262c3f]">
                           <feature.icon className="h-3 w-3" strokeWidth={1.5} />
                         </div>
                         <div className="flex flex-col justify-center pt-0.5">
