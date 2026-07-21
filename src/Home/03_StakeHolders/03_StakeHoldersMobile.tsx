@@ -1,19 +1,45 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Sparkles, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { stakeholdersData } from './data';
 import stakeholderGraphic from './stakeholder_graphic.png';
 
 export default function Mobile() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeStakeholder = stakeholdersData[activeIndex];
+  const accordionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % stakeholdersData.length);
+    setActiveIndex((prev) => {
+      const next = (prev + 1) % stakeholdersData.length;
+      scrollToAccordion(next);
+      return next;
+    });
   };
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + stakeholdersData.length) % stakeholdersData.length);
+    setActiveIndex((prev) => {
+      const next = (prev - 1 + stakeholdersData.length) % stakeholdersData.length;
+      scrollToAccordion(next);
+      return next;
+    });
+  };
+
+  const toggleAccordion = (index: number) => {
+    setActiveIndex(index);
+    scrollToAccordion(index);
+  };
+
+  const scrollToAccordion = (index: number) => {
+    // Add a slight delay to allow the accordion to start opening before scrolling
+    setTimeout(() => {
+      if (accordionRefs.current[index]) {
+        accordionRefs.current[index]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    }, 100);
   };
 
   const renderHighlightedTitle = (title: string) => {
@@ -29,171 +55,245 @@ export default function Mobile() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-gray-50 font-sans text-gray-900 transition-colors duration-500 selection:bg-[#F6B23B]/30 dark:bg-[#050C17] dark:text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.1),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.05),transparent_70%)]" />
+    <div className="relative min-h-screen w-full overflow-hidden bg-gray-50 font-sans text-gray-900 transition-colors duration-500 selection:bg-[#F6B23B]/30 dark:bg-[#050C17] dark:text-white">
+      {/* Background Gradients */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.15),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.1),transparent_70%)]" />
+      <div className="pointer-events-none absolute top-1/4 -left-20 h-64 w-64 rounded-full bg-[#B27F1C]/5 blur-3xl dark:bg-[#F6B23B]/5" />
+      <div className="pointer-events-none absolute top-3/4 -right-20 h-64 w-64 rounded-full bg-[#B27F1C]/5 blur-3xl dark:bg-[#F6B23B]/5" />
 
-      <div className="relative z-20 mx-auto flex w-full max-w-md flex-col px-4 pb-12 pt-8">
+      <div className="relative z-20 mx-auto flex w-full max-w-md flex-col px-4 pb-16 pt-8">
+        
+        {/* Header Pill */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 flex w-fit items-center justify-center gap-2 self-center rounded-full border border-[#B27F1C]/30 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#B27F1C] shadow-sm backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10 dark:text-[#F6B23B] dark:shadow-[0_0_15px_rgba(246,178,59,0.15)]"
+          className="mb-8 flex w-fit items-center justify-center gap-2 self-center rounded-full border border-[#B27F1C]/30 bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10 dark:text-[#F6B23B] dark:shadow-[0_0_15px_rgba(246,178,59,0.15)]"
         >
           <span>For Every Stakeholder</span>
         </motion.div>
 
-        <div className="relative mb-8 flex w-full flex-col items-center">
-          <div className="relative flex h-[100px] w-full max-w-[320px] flex-col items-center">
+        {/* Polished Semi-Circular Navigation Arc */}
+        <div className="relative mb-8 flex w-full flex-col items-center pt-2">
+          <div className="relative flex h-[120px] w-full max-w-[340px] flex-col items-center">
+            
             <svg
               width="100%"
               height="100%"
-              viewBox="0 0 320 120"
+              viewBox="0 0 340 120"
               className="pointer-events-none absolute left-0 top-0 overflow-visible"
             >
               <path
-                d="M -20,0 A 180,180 0 0,0 340,0"
+                d="M 10,20 A 160,160 0 0,0 330,20"
                 fill="none"
-                className="stroke-gray-300 dark:stroke-gray-800/80"
-                strokeWidth="1.5"
-                strokeDasharray="6 6"
+                className="stroke-[#B27F1C]/20 dark:stroke-[#F6B23B]/20"
+                strokeWidth="6"
+                strokeLinecap="round"
+                style={{ filter: 'blur(4px)' }}
+              />
+              <path
+                d="M 10,20 A 160,160 0 0,0 330,20"
+                fill="none"
+                className="stroke-gray-300 dark:stroke-gray-700/60"
+                strokeWidth="2"
+                strokeDasharray="6 8"
+                strokeLinecap="round"
               />
             </svg>
 
+            {/* Left Nav Button */}
             <button
               onClick={handlePrev}
-              className="absolute left-0 top-[50px] z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#B27F1C] shadow-md transition-transform active:scale-95 dark:bg-[#0C1525] dark:text-[#F6B23B]"
+              className="absolute left-0 top-[50px] z-30 flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-500 shadow-lg backdrop-blur-md transition-all hover:text-[#B27F1C] active:scale-95 dark:border-gray-800 dark:bg-[#0A101A]/90 dark:text-gray-400 dark:shadow-[0_0_20px_rgba(0,0,0,0.5)] dark:hover:text-[#F6B23B]"
+              aria-label="Previous"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-6 w-6" strokeWidth={1.5} />
             </button>
 
-            <div className="absolute left-1/2 top-[45px] -translate-x-1/2">
+            {/* Center Active Icon */}
+            <div className="absolute left-1/2 top-[40px] z-20 -translate-x-1/2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStakeholder.id}
                   initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   exit={{ opacity: 0, scale: 0.5, rotate: 45 }}
-                  transition={{ duration: 0.4, type: 'spring', bounce: 0.4 }}
-                  className="z-10 flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-gray-50 bg-white shadow-[0_8px_30px_rgba(178,127,28,0.2)] dark:border-[#050C17] dark:bg-[#0C1525] dark:shadow-[0_8px_30px_rgba(246,178,59,0.3)]"
+                  transition={{ duration: 0.4, type: 'spring', bounce: 0.5 }}
+                  className="relative flex h-[72px] w-[72px] items-center justify-center rounded-full"
                 >
-                  <div className="flex h-full w-full items-center justify-center rounded-full border border-gray-100 dark:border-gray-800">
-                    <activeStakeholder.icon
-                      className="h-6 w-6 text-[#B27F1C] dark:text-[#F6B23B]"
-                      strokeWidth={1.5}
-                    />
+                  <motion.div 
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 rounded-full border-2 border-[#B27F1C]/40 dark:border-[#F6B23B]/40"
+                  />
+                  <motion.div 
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                    className="absolute inset-0 rounded-full border-2 border-[#B27F1C]/20 dark:border-[#F6B23B]/20"
+                  />
+                  
+                  <div className="relative flex h-full w-full items-center justify-center rounded-full border-4 border-gray-50 bg-white shadow-[0_10px_40px_rgba(178,127,28,0.3)] dark:border-[#050C17] dark:bg-[#0C1525] dark:shadow-[0_10px_40px_rgba(246,178,59,0.4)]">
+                    <div className="flex h-full w-full items-center justify-center rounded-full border border-gray-100 dark:border-gray-800">
+                      <activeStakeholder.icon className="h-7 w-7 text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
+            {/* Right Nav Button */}
             <button
               onClick={handleNext}
-              className="absolute right-0 top-[50px] z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#B27F1C] shadow-md transition-transform active:scale-95 dark:bg-[#0C1525] dark:text-[#F6B23B]"
+              className="absolute right-0 top-[50px] z-30 flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-500 shadow-lg backdrop-blur-md transition-all hover:text-[#B27F1C] active:scale-95 dark:border-gray-800 dark:bg-[#0A101A]/90 dark:text-gray-400 dark:shadow-[0_0_20px_rgba(0,0,0,0.5)] dark:hover:text-[#F6B23B]"
+              aria-label="Next"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-6 w-6" strokeWidth={1.5} />
             </button>
-          </div>
-
-          <div className="relative mt-8 flex h-10 w-full items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStakeholder.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="absolute text-center"
-              >
-                <h3 className="text-xl font-bold tracking-wide text-gray-900 dark:text-white">
-                  {activeStakeholder.label.replace('\n', ' ')}
-                </h3>
-              </motion.div>
-            </AnimatePresence>
           </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeStakeholder.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="flex w-full flex-col rounded-3xl border border-gray-200 bg-white/90 p-6 shadow-xl backdrop-blur-xl dark:border-gray-800/80 dark:bg-[#0A101A]/80 dark:shadow-2xl sm:p-8"
-          >
-            <div className="mb-4 w-fit rounded-full border border-[#B27F1C]/30 px-3 py-1.5 text-[10px] font-bold tracking-widest text-[#B27F1C] dark:border-[#F6B23B]/30 dark:text-[#F6B23B]">
-              FOR {activeStakeholder.id.toUpperCase()}
-            </div>
+        {/* Vertical Accordion Stack */}
+        <div className="flex w-full flex-col gap-4">
+          {stakeholdersData.map((stakeholder, idx) => {
+            const isOpen = activeIndex === idx;
 
-            <h3 className="mb-8 text-3xl font-bold leading-tight text-gray-900 dark:text-white sm:text-4xl">
-              {renderHighlightedTitle(activeStakeholder.title)}
-            </h3>
-
-            <div className="mb-8 grid grid-cols-2 gap-4">
-              {activeStakeholder.features.map((feature, fIdx) => (
-                <motion.div
-                  key={fIdx}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: fIdx * 0.05 }}
-                  className="flex flex-col items-center rounded-2xl border border-gray-100 bg-gray-50/50 p-4 text-center shadow-sm transition-all active:border-[#B27F1C]/30 dark:border-gray-800 dark:bg-[#050C17]/50 dark:shadow-[inset_0_0_15px_rgba(255,255,255,0.01)] dark:active:border-[#F6B23B]/30"
+            return (
+              <motion.div
+                key={stakeholder.id}
+                ref={(el) => { accordionRefs.current[idx] = el; }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: idx * 0.1 }}
+                className={`overflow-hidden rounded-3xl border transition-all duration-300 ${
+                  isOpen
+                    ? 'border-[#B27F1C]/40 bg-white/90 shadow-[0_15px_40px_rgba(178,127,28,0.1)] backdrop-blur-xl dark:border-[#F6B23B]/40 dark:bg-[#0A101A]/90 dark:shadow-[0_15px_40px_rgba(246,178,59,0.15)]'
+                    : 'border-gray-200 bg-white/60 shadow-sm hover:border-[#B27F1C]/20 dark:border-gray-800/60 dark:bg-[#0A101A]/40 dark:hover:border-[#F6B23B]/20'
+                }`}
+              >
+                {/* Accordion Header */}
+                <button
+                  onClick={() => toggleAccordion(idx)}
+                  className="flex w-full items-center justify-between p-5 text-left"
                 >
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-[1rem] border border-gray-200 bg-white text-[#B27F1C] shadow-sm dark:border-gray-800 dark:bg-[#050C17] dark:text-[#F6B23B] dark:shadow-[inset_0_0_20px_rgba(246,178,59,0.05)]">
-                    <feature.icon className="h-5 w-5" strokeWidth={1.5} />
+                  <div className="flex items-center gap-4">
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-2xl transition-colors duration-300 ${
+                      isOpen
+                        ? 'bg-[#B27F1C] text-white shadow-lg dark:bg-[#F6B23B] dark:text-[#050C17]'
+                        : 'bg-gray-100 text-[#B27F1C] dark:bg-gray-800/80 dark:text-[#F6B23B]'
+                    }`}>
+                      <stakeholder.icon className="h-6 w-6" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+                        {stakeholder.id}
+                      </div>
+                      <h4 className={`text-lg font-bold transition-colors duration-300 ${
+                        isOpen ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-300'
+                      }`}>
+                        {stakeholder.label.replace('\n', ' ')}
+                      </h4>
+                    </div>
                   </div>
-                  <span className="text-[11px] font-medium text-gray-600 dark:text-gray-400">
-                    {feature.title}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border transition-colors ${
+                      isOpen 
+                        ? 'border-[#B27F1C]/30 text-[#B27F1C] dark:border-[#F6B23B]/30 dark:text-[#F6B23B]'
+                        : 'border-gray-200 text-gray-400 dark:border-gray-700 dark:text-gray-500'
+                    }`}
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </motion.div>
+                </button>
 
-            <div className="mb-8 flex w-full justify-center">
-              <div className="relative flex h-36 w-36 items-center justify-center rounded-full bg-[#F6B23B]/5 shadow-[0_0_40px_rgba(246,178,59,0.1)]">
-                <motion.img
-                  src={stakeholderGraphic}
-                  alt="Stakeholder Illustration"
-                  className="h-full w-full object-contain opacity-80 mix-blend-multiply drop-shadow-[0_0_20px_rgba(246,178,59,0.3)] dark:opacity-90 dark:mix-blend-screen"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                />
-              </div>
-            </div>
+                {/* Polished Bento-Box Accordion Content */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    >
+                      <div className="px-5 pb-6 pt-2">
+                        <h3 className="mb-6 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
+                          {renderHighlightedTitle(stakeholder.title)}
+                        </h3>
 
-            <button className="group relative mb-8 flex w-full items-center justify-between overflow-hidden rounded-2xl bg-gradient-to-r from-[#F6B23B] to-[#d49924] p-3 text-[#050C17] shadow-[0_0_30px_rgba(246,178,59,0.15)] active:scale-[0.98]">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-transparent text-[#050C17]">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <span className="text-base font-bold sm:text-lg">
-                {activeStakeholder.buttonText}
-              </span>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-[#050C17]">
-                <ArrowRight className="h-4 w-4" />
-              </div>
-            </button>
+                        {/* Features Grid */}
+                        <div className="mb-6 grid grid-cols-2 gap-3">
+                          {stakeholder.features.map((feature, fIdx) => (
+                            <div
+                              key={fIdx}
+                              className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-gray-50/80 p-4 text-center shadow-sm transition-colors hover:border-[#B27F1C]/20 dark:border-gray-800/60 dark:bg-[#050C17]/60 dark:hover:border-[#F6B23B]/20"
+                            >
+                              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white transition-colors group-hover:bg-[#B27F1C]/10 dark:bg-gray-800/80 dark:group-hover:bg-[#F6B23B]/10">
+                                <feature.icon className="h-5 w-5 text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
+                              </div>
+                              <span className="text-[11px] font-semibold text-gray-700 dark:text-gray-300">
+                                {feature.title}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
 
-            <div className="grid w-full grid-cols-2 gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-4 dark:border-gray-800 dark:bg-[#050C17]/60">
-              {activeStakeholder.stats?.map((stat, sIdx) => (
-                <motion.div
-                  key={sIdx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: sIdx * 0.06 }}
-                  className="flex flex-col items-center gap-1.5 rounded-xl bg-white py-3 text-center shadow-sm dark:bg-gray-800/30 dark:shadow-none"
-                >
-                  <stat.icon
-                    className="h-5 w-5 text-[#B27F1C] dark:text-[#F6B23B]"
-                    strokeWidth={1.5}
-                  />
-                  <span className="mt-1 text-lg font-bold leading-none text-gray-900 dark:text-white">
-                    {stat.value}
-                  </span>
-                  <span className="text-[10px] text-gray-500">{stat.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+                        {/* Floating Illustration */}
+                        <div className="mb-6 flex w-full justify-center">
+                          <motion.div 
+                            animate={{ y: [-4, 4, -4] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="relative flex h-36 w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#B27F1C]/5 to-transparent dark:from-[#F6B23B]/5"
+                          >
+                            <img
+                              src={stakeholderGraphic}
+                              alt="Stakeholder Illustration"
+                              className="h-full object-contain opacity-80 mix-blend-multiply drop-shadow-[0_10px_20px_rgba(246,178,59,0.2)] dark:opacity-90 dark:mix-blend-screen"
+                            />
+                          </motion.div>
+                        </div>
+
+                        {/* Stats Row */}
+                        <div className="mb-6 flex w-full gap-3">
+                          {stakeholder.stats?.map((stat, sIdx) => (
+                            <div
+                              key={sIdx}
+                              className="flex flex-1 flex-col items-center justify-center rounded-xl border border-gray-100 bg-white py-3 shadow-sm dark:border-gray-800 dark:bg-[#0C1525]"
+                            >
+                              <stat.icon
+                                className="mb-1 h-4 w-4 text-[#B27F1C] dark:text-[#F6B23B]"
+                                strokeWidth={1.5}
+                              />
+                              <span className="text-base font-bold leading-none text-gray-900 dark:text-white">
+                                {stat.value}
+                              </span>
+                              <span className="mt-1 text-[9px] font-medium text-gray-500 uppercase tracking-wider">
+                                {stat.label}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Floating Action Button */}
+                        <button className="group relative flex w-full items-center justify-between overflow-hidden rounded-xl bg-gradient-to-r from-[#F6B23B] to-[#d49924] p-3 text-[#050C17] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
+                            <Sparkles className="h-5 w-5" />
+                          </div>
+                          <span className="text-[15px] font-bold">
+                            {stakeholder.buttonText}
+                          </span>
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform group-hover:translate-x-1">
+                            <ArrowRight className="h-5 w-5" />
+                          </div>
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
       </div>
     </div>
   );
