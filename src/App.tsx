@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import MobileViewport from './components/commonfiles/MobileViewport'
 import Header, { type ViewMode } from './components/Header'
 import { PageTransition } from './components/layout'
@@ -7,11 +7,18 @@ import Home from './Home'
 import Franchise from './Franchise'
 
 function App() {
-  const [viewMode, setViewMode] = useState<ViewMode>('desktop')
-  const [showHeader, setShowHeader] = useState(true)
   const location = useLocation()
+  const navigate = useNavigate()
+  const [showHeader, setShowHeader] = useState(true)
 
+  const pathParts = location.pathname.split('/').filter(Boolean)
+  const viewMode: ViewMode = pathParts[0] === 'mobile' ? 'mobile' : 'desktop'
   const isMobile = viewMode === 'mobile'
+
+  const handleViewModeChange = (newMode: ViewMode) => {
+    const page = pathParts[1] || 'home'
+    navigate(`/${newMode}/${page}`)
+  }
 
   const handleClose = () => {
     setShowHeader(false)
@@ -33,7 +40,7 @@ function App() {
       {showHeader && (
         <Header
           viewMode={viewMode}
-          onViewModeChange={setViewMode}
+          onViewModeChange={handleViewModeChange}
           onClose={handleClose}
         />
       )}
@@ -42,9 +49,9 @@ function App() {
         <MobileViewport isMobile={isMobile}>
           <PageTransition motionKey={location.pathname}>
             <Routes location={location}>
-              <Route path="/" element={<Home isMobile={isMobile} />} />
-              <Route path="/franchise" element={<Franchise isMobile={isMobile} />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/:viewMode/home" element={<Home isMobile={isMobile} />} />
+              <Route path="/:viewMode/franchise" element={<Franchise isMobile={isMobile} />} />
+              <Route path="*" element={<Navigate to="/desktop/home" replace />} />
             </Routes>
           </PageTransition>
         </MobileViewport>

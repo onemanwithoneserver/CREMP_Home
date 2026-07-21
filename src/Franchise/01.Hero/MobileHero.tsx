@@ -49,7 +49,7 @@ export default function MobileHero() {
       <Container className="relative z-10">
         <div className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center">
           
-          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="flex w-full flex-col items-center">
+          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="flex w-full flex-col items-center pt-10">
             
             <motion.div variants={fadeInUp}>
               <span className="mb-3 flex items-center justify-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold font-sans uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">

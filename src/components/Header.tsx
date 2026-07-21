@@ -38,8 +38,8 @@ export default function Header({
   const activePage: Page = location.pathname.includes('franchise') ? 'franchise' : 'home'
 
   const handleNavigate = useCallback((page: string) => {
-    navigate(page === 'home' ? '/' : `/${page}`)
-  }, [navigate])
+    navigate(`/${viewMode}/${page}`)
+  }, [navigate, viewMode])
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), [])
 
