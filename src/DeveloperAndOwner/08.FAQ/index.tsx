@@ -1,6 +1,10 @@
-import DesktopFAQ from './DesktopFAQ'
-import MobileFAQ from './MobileFAQ'
+import DesktopFAQ from "./DesktopFAQ";
+import MobileFAQ from "./MobileFAQ";
 
-export default function DeveloperAndOwnerFAQ({ isMobile }: { isMobile: boolean }) {
-  return isMobile ? <MobileFAQ /> : <DesktopFAQ />
+export default function DeveloperAndOwnerFAQ({
+  isMobile,
+}: {
+  isMobile: boolean;
+}) {
+  return isMobile ? <MobileFAQ /> : <DesktopFAQ />;
 }

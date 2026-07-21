@@ -1,30 +1,35 @@
-import { useEffect, useRef, useState, useId, useCallback } from 'react'
-import { Monitor, Smartphone, ChevronDown, X } from 'lucide-react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import Dropdown from './commonfiles/Dropdown'
+import { useEffect, useRef, useState, useId, useCallback } from "react";
+import { Monitor, Smartphone, ChevronDown, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import Dropdown from "./commonfiles/Dropdown";
 
-export type Page = 'home' | 'franchise' | 'investors' | 'buyers-and-sellers' | 'developer-and-owner'
-export type ViewMode = 'desktop' | 'mobile'
+export type Page =
+  | "home"
+  | "franchise"
+  | "investors"
+  | "buyers-and-sellers"
+  | "developer-and-owner";
+export type ViewMode = "desktop" | "mobile";
 
 export interface HeaderProps {
-  viewMode: ViewMode
-  onViewModeChange: (v: ViewMode) => void
-  showViewControls?: boolean
-  onClose?: () => void
+  viewMode: ViewMode;
+  onViewModeChange: (v: ViewMode) => void;
+  showViewControls?: boolean;
+  onClose?: () => void;
 }
 
 const PAGE_LABELS: Record<Page, string> = {
-  home: 'Home',
-  franchise: 'Franchise Page',
-  investors: 'Investors Page',
-  'buyers-and-sellers': 'Buyers & Sellers',
-  'developer-and-owner': 'Developer & Owner',
-}
+  home: "Home",
+  franchise: "Franchise Page",
+  investors: "Investors Page",
+  "buyers-and-sellers": "Buyers & Sellers",
+  "developer-and-owner": "Developer & Owner",
+};
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[]).map((p) => ({
   value: p,
   label: PAGE_LABELS[p],
-}))
+}));
 
 export default function Header({
   viewMode,
@@ -32,60 +37,81 @@ export default function Header({
   showViewControls = true,
   onClose,
 }: HeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const mobileMenuRef = useRef<HTMLDivElement>(null)
-  const menuId = useId()
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuId = useId();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const activePage: Page = location.pathname.includes('franchise') 
-    ? 'franchise' 
-    : location.pathname.includes('investors') 
-      ? 'investors' 
-      : location.pathname.includes('buyers-and-sellers')
-        ? 'buyers-and-sellers'
-        : location.pathname.includes('developer-and-owner')
-          ? 'developer-and-owner'
-          : 'home'
+  const activePage: Page = location.pathname.includes("franchise")
+    ? "franchise"
+    : location.pathname.includes("investors")
+      ? "investors"
+      : location.pathname.includes("buyers-and-sellers")
+        ? "buyers-and-sellers"
+        : location.pathname.includes("developer-and-owner")
+          ? "developer-and-owner"
+          : "home";
 
-  const handleNavigate = useCallback((page: string) => {
-    navigate(`/${viewMode}/${page}`)
-  }, [navigate, viewMode])
+  const handleNavigate = useCallback(
+    (page: string) => {
+      navigate(`/${viewMode}/${page}`);
+    },
+    [navigate, viewMode],
+  );
 
-  const closeMenu = useCallback(() => setMobileMenuOpen(false), [])
+  const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
 
   useEffect(() => {
-    if (!mobileMenuOpen) return
+    if (!mobileMenuOpen) return;
 
     const handleMouseDown = (e: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) {
-        closeMenu()
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(e.target as Node)
+      ) {
+        closeMenu();
       }
-    }
+    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeMenu()
-    }
+      if (e.key === "Escape") closeMenu();
+    };
 
-    document.addEventListener('mousedown', handleMouseDown, { capture: true, passive: true })
-    document.addEventListener('keydown', handleKeyDown, { capture: true })
+    document.addEventListener("mousedown", handleMouseDown, {
+      capture: true,
+      passive: true,
+    });
+    document.addEventListener("keydown", handleKeyDown, { capture: true });
 
     return () => {
-      document.removeEventListener('mousedown', handleMouseDown, { capture: true })
-      document.removeEventListener('keydown', handleKeyDown, { capture: true })
-    }
-  }, [mobileMenuOpen, closeMenu])
+      document.removeEventListener("mousedown", handleMouseDown, {
+        capture: true,
+      });
+      document.removeEventListener("keydown", handleKeyDown, { capture: true });
+    };
+  }, [mobileMenuOpen, closeMenu]);
 
   return (
     <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-lg border-b border-cremp-primary/15 shadow-sm">
       <div className="max-w-[1200px] mx-auto px-2">
         <div className="flex items-center justify-between h-14 gap-3">
-          <div className="flex items-center gap-2 shrink-0" aria-label="CREMP Logo">
-            <span className="text-xl font-extrabold tracking-tight text-cremp-primary select-none">CREMP</span>
-            <span className="text-[0.45rem] font-bold text-cremp-accent bg-cremp-accent/10 px-1.5 py-0.5 rounded-full">BETA</span>
+          <div
+            className="flex items-center gap-2 shrink-0"
+            aria-label="CREMP Logo"
+          >
+            <span className="text-xl font-extrabold tracking-tight text-cremp-primary select-none">
+              CREMP
+            </span>
+            <span className="text-[0.45rem] font-bold text-cremp-accent bg-cremp-accent/10 px-1.5 py-0.5 rounded-full">
+              BETA
+            </span>
           </div>
 
-          <nav aria-label="View Controls" className="hidden md:flex flex-1 justify-center">
+          <nav
+            aria-label="View Controls"
+            className="hidden md:flex flex-1 justify-center"
+          >
             {showViewControls && (
               <div
                 role="group"
@@ -94,28 +120,36 @@ export default function Header({
               >
                 <button
                   type="button"
-                  aria-pressed={viewMode === 'desktop'}
-                  onClick={() => onViewModeChange('desktop')}
+                  aria-pressed={viewMode === "desktop"}
+                  onClick={() => onViewModeChange("desktop")}
                   className={`flex items-center gap-2 px-4 py-1.5 rounded text-xs font-bold transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
-                    viewMode === 'desktop'
-                      ? 'gradient-primary text-white shadow-elevation-1'
-                      : 'text-cremp-primary bg-transparent hover:bg-white/60'
+                    viewMode === "desktop"
+                      ? "gradient-primary text-white shadow-elevation-1"
+                      : "text-cremp-primary bg-transparent hover:bg-white/60"
                   }`}
                 >
-                  <Monitor size={14} strokeWidth={viewMode === 'desktop' ? 2.5 : 2} aria-hidden="true" />
+                  <Monitor
+                    size={14}
+                    strokeWidth={viewMode === "desktop" ? 2.5 : 2}
+                    aria-hidden="true"
+                  />
                   Desktop
                 </button>
                 <button
                   type="button"
-                  aria-pressed={viewMode === 'mobile'}
-                  onClick={() => onViewModeChange('mobile')}
+                  aria-pressed={viewMode === "mobile"}
+                  onClick={() => onViewModeChange("mobile")}
                   className={`flex items-center gap-2 px-4 py-1.5 rounded text-xs font-bold transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
-                    viewMode === 'mobile'
-                      ? 'gradient-primary text-white shadow-elevation-1'
-                      : 'text-cremp-primary bg-transparent hover:bg-white/60'
+                    viewMode === "mobile"
+                      ? "gradient-primary text-white shadow-elevation-1"
+                      : "text-cremp-primary bg-transparent hover:bg-white/60"
                   }`}
                 >
-                  <Smartphone size={14} strokeWidth={viewMode === 'mobile' ? 2.5 : 2} aria-hidden="true" />
+                  <Smartphone
+                    size={14}
+                    strokeWidth={viewMode === "mobile" ? 2.5 : 2}
+                    aria-hidden="true"
+                  />
                   Mobile
                 </button>
               </div>
@@ -129,23 +163,33 @@ export default function Header({
                 aria-label="Select view mode"
                 className="flex md:hidden items-center gap-1"
               >
-                {(['desktop', 'mobile'] as const).map((v) => (
+                {(["desktop", "mobile"] as const).map((v) => (
                   <button
                     key={v}
                     type="button"
-                    aria-label={v === 'desktop' ? 'Desktop view' : 'Mobile view'}
+                    aria-label={
+                      v === "desktop" ? "Desktop view" : "Mobile view"
+                    }
                     aria-pressed={viewMode === v}
                     onClick={() => onViewModeChange(v)}
                     className={`w-8 h-8 flex items-center justify-center rounded border transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                       viewMode === v
-                        ? 'border-cremp-primary bg-cremp-primary/10 text-cremp-primary'
-                        : 'border-cremp-border bg-white text-cremp-text-muted hover:bg-cremp-surface-alt hover:text-cremp-text-secondary'
+                        ? "border-cremp-primary bg-cremp-primary/10 text-cremp-primary"
+                        : "border-cremp-border bg-white text-cremp-text-muted hover:bg-cremp-surface-alt hover:text-cremp-text-secondary"
                     }`}
                   >
-                    {v === 'desktop' ? (
-                      <Monitor size={14} strokeWidth={viewMode === v ? 2.5 : 2} aria-hidden="true" />
+                    {v === "desktop" ? (
+                      <Monitor
+                        size={14}
+                        strokeWidth={viewMode === v ? 2.5 : 2}
+                        aria-hidden="true"
+                      />
                     ) : (
-                      <Smartphone size={14} strokeWidth={viewMode === v ? 2.5 : 2} aria-hidden="true" />
+                      <Smartphone
+                        size={14}
+                        strokeWidth={viewMode === v ? 2.5 : 2}
+                        aria-hidden="true"
+                      />
                     )}
                   </button>
                 ))}
@@ -183,7 +227,7 @@ export default function Header({
                   size={12}
                   aria-hidden="true"
                   className={`text-cremp-text-muted transition-transform duration-200 motion-reduce:transition-none ${
-                    mobileMenuOpen ? 'rotate-180' : ''
+                    mobileMenuOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
@@ -196,26 +240,26 @@ export default function Header({
                   className="absolute right-0 mt-2 w-36 bg-white rounded border border-cremp-border shadow-elevation-3 overflow-hidden z-50 animate-fade-in-down"
                 >
                   {(Object.keys(PAGE_LABELS) as Page[]).map((p) => {
-                    const isActive = activePage === p
+                    const isActive = activePage === p;
                     return (
                       <button
                         key={p}
                         type="button"
                         role="menuitem"
-                        aria-current={isActive ? 'page' : undefined}
+                        aria-current={isActive ? "page" : undefined}
                         onClick={() => {
-                          handleNavigate(p)
-                          closeMenu()
+                          handleNavigate(p);
+                          closeMenu();
                         }}
                         className={`w-full text-left px-4 py-2.5 text-xs font-semibold transition-base focus-visible:outline-none focus-visible:bg-cremp-primary/10 motion-reduce:transition-none ${
                           isActive
-                            ? 'bg-cremp-primary/10 text-cremp-primary'
-                            : 'text-cremp-text-primary hover:bg-cremp-primary/5'
+                            ? "bg-cremp-primary/10 text-cremp-primary"
+                            : "text-cremp-text-primary hover:bg-cremp-primary/5"
                         }`}
                       >
                         {PAGE_LABELS[p]}
                       </button>
-                    )
+                    );
                   })}
                 </div>
               )}
@@ -235,5 +279,5 @@ export default function Header({
         </div>
       </div>
     </header>
-  )
+  );
 }

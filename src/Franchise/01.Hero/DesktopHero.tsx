@@ -1,8 +1,8 @@
-import { motion, type Variants } from 'framer-motion';
-import { Container } from '../../components/layout';
-import { heroData } from './data';
-import heroImageLight from './Hero_Section_light.png';
-import heroImageDark from './Hero_Section_dark.png';
+import { motion, type Variants } from "framer-motion";
+import { Container } from "../../components/layout";
+import { heroData } from "./data";
+import heroImageLight from "./Hero_Section_light.png";
+import heroImageDark from "./Hero_Section_dark.png";
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -17,10 +17,10 @@ const staggerContainer: Variants = {
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { type: 'spring', stiffness: 400, damping: 30 } 
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
 
@@ -37,7 +37,7 @@ const floatAnimation: Variants = {
     transition: {
       duration: 7,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
@@ -46,8 +46,8 @@ const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
     opacity: [0.4, 0.7, 0.4],
-    transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
-  }
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
 };
 
 export default function DesktopHero() {
@@ -56,20 +56,20 @@ export default function DesktopHero() {
 
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-8 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
-      <motion.div 
+      <motion.div
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15" 
+        className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
       />
-      <motion.div 
+      <motion.div
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[150px] dark:bg-[#D4AF37]/10" 
+        className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[150px] dark:bg-[#D4AF37]/10"
       />
 
       <Container className="relative z-10">
         <div className="flex items-center justify-between gap-6">
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="show"
@@ -80,8 +80,8 @@ export default function DesktopHero() {
                 {heroData.tag}
               </span>
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               variants={fadeInUp}
               className="mb-4 text-[3.25rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.75rem]"
             >
@@ -91,38 +91,57 @@ export default function DesktopHero() {
                 {heroData.titleHighlight}
               </span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               variants={fadeInUp}
               className="mb-8 max-w-lg text-[1rem] leading-relaxed text-gray-600 dark:text-gray-400"
             >
-              Powered by India&apos;s <span className="font-bold text-gray-900 dark:text-white">Integrated Commercial Real Estate, Franchise & Retail Business Opportunities Platform</span>, CREMP helps you build your brand, reach investors in your preferred micro markets, define your ideal franchise partner and discover expansion-ready locations—all through one connected ecosystem.
+              Powered by India&apos;s{" "}
+              <span className="font-bold text-gray-900 dark:text-white">
+                Integrated Commercial Real Estate, Franchise & Retail Business
+                Opportunities Platform
+              </span>
+              , CREMP helps you build your brand, reach investors in your
+              preferred micro markets, define your ideal franchise partner and
+              discover expansion-ready locations—all through one connected
+              ecosystem.
             </motion.p>
 
-            <motion.div variants={fadeInUp} className="mb-10 flex items-center gap-4">
-              <motion.button 
+            <motion.div
+              variants={fadeInUp}
+              className="mb-10 flex items-center gap-4"
+            >
+              <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
               >
-                <Btn1Icon size={18} strokeWidth={2.5} className="transition-transform group-hover:rotate-12 group-hover:scale-110" />
+                <Btn1Icon
+                  size={18}
+                  strokeWidth={2.5}
+                  className="transition-transform group-hover:rotate-12 group-hover:scale-110"
+                />
                 {heroData.buttons[0].text}
               </motion.button>
-              
-              <motion.button 
+
+              <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group flex items-center justify-center gap-3 rounded-[4px] border border-gray-200 bg-white/80 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all hover:border-[#D4AF37]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-gray-800/80"
               >
-                <Btn2Icon size={18} strokeWidth={2.5} className="text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#D4AF37]" />
+                <Btn2Icon
+                  size={18}
+                  strokeWidth={2.5}
+                  className="text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#D4AF37]"
+                />
                 {heroData.buttons[1].text}
               </motion.button>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-4">
               {heroData.features.map((feature, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   whileHover={{ y: -5 }}
                   className="group flex cursor-pointer items-center gap-3 rounded-[4px] p-2 transition-colors hover:bg-white/50 dark:hover:bg-gray-800/50"
                 >
@@ -138,29 +157,31 @@ export default function DesktopHero() {
           </motion.div>
 
           <div className="relative flex h-[550px] w-[50%] items-center justify-center">
-            <motion.div 
+            <motion.div
               variants={floatAnimation}
               initial="hidden"
               animate={["show", "animate"]}
               className="relative z-10 flex h-full w-full items-center justify-center"
-              style={{ 
-                WebkitMaskImage: 'radial-gradient(ellipse at center, black 45%, transparent 80%)', 
-                maskImage: 'radial-gradient(ellipse at center, black 45%, transparent 80%)' 
+              style={{
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, black 45%, transparent 80%)",
+                maskImage:
+                  "radial-gradient(ellipse at center, black 45%, transparent 80%)",
               }}
             >
-              <motion.img 
+              <motion.img
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                src={heroImageLight} 
-                alt="Franchise Ecosystem Map" 
-                className="block h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(178,127,28,0.15)] dark:hidden" 
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                src={heroImageLight}
+                alt="Franchise Ecosystem Map"
+                className="block h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(178,127,28,0.15)] dark:hidden"
               />
-              <motion.img 
+              <motion.img
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                src={heroImageDark} 
-                alt="Franchise Ecosystem Map" 
-                className="hidden h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(246,178,59,0.2)] dark:block" 
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                src={heroImageDark}
+                alt="Franchise Ecosystem Map"
+                className="hidden h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(246,178,59,0.2)] dark:block"
               />
             </motion.div>
           </div>

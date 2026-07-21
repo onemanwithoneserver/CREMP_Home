@@ -8,40 +8,40 @@ import {
   Clock,
   CheckCircle2,
   Award,
-  Headset
-} from 'lucide-react';
+  Headset,
+} from "lucide-react";
 
 export const networkCategories = [
   {
     icon: Building2,
     title: "Commercial Property Owners",
-    colorFamily: "blue"
+    colorFamily: "blue",
   },
   {
     icon: Construction,
     title: "Builders & Developers",
-    colorFamily: "emerald"
+    colorFamily: "emerald",
   },
   {
     icon: Handshake,
     title: "Commercial Brokers",
-    colorFamily: "amber"
+    colorFamily: "amber",
   },
   {
     icon: Store,
     title: "Franchisors",
-    colorFamily: "purple"
+    colorFamily: "purple",
   },
   {
     icon: Briefcase,
     title: "Business Owners",
-    colorFamily: "rose"
+    colorFamily: "rose",
   },
   {
     icon: ShoppingBag,
     title: "Retail Brands",
-    colorFamily: "cyan"
-  }
+    colorFamily: "cyan",
+  },
 ];
 
 export const vendorBenefits = [
@@ -60,5 +60,5 @@ export const vendorBenefits = [
   {
     icon: Headset,
     title: "Product Walkthrough & Support",
-  }
+  },
 ];

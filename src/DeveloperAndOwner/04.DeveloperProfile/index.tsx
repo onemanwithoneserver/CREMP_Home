@@ -1,6 +1,10 @@
-import DesktopDeveloperProfile from './DesktopDeveloperProfile'
-import MobileDeveloperProfile from './MobileDeveloperProfile'
+import DesktopDeveloperProfile from "./DesktopDeveloperProfile";
+import MobileDeveloperProfile from "./MobileDeveloperProfile";
 
-export default function DeveloperAndOwnerProfile({ isMobile }: { isMobile: boolean }) {
-  return isMobile ? <MobileDeveloperProfile /> : <DesktopDeveloperProfile />
+export default function DeveloperAndOwnerProfile({
+  isMobile,
+}: {
+  isMobile: boolean;
+}) {
+  return isMobile ? <MobileDeveloperProfile /> : <DesktopDeveloperProfile />;
 }

@@ -1,22 +1,23 @@
-import { useRef, useState, useEffect, useMemo } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Rocket, TrendingUp } from 'lucide-react';
-import { vendorBenefits } from './data';
-import { stakeholdersData } from '../03_StakeHolders/data';
-import bgImage from './bg.png';
-import crempLogo from '../../Logo/CREMP_Light.png';
+import { useRef, useState, useEffect, useMemo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Rocket, TrendingUp } from "lucide-react";
+import { vendorBenefits } from "./data";
+import { stakeholdersData } from "../03_StakeHolders/data";
+import bgImage from "./bg.png";
+import crempLogo from "../../Logo/CREMP_Light.png";
 
 export default function Desktop() {
-  // Safely inject "Investors" into the stakeholders list if it doesn't already exist
   const allStakeholders = useMemo(() => {
-    const hasInvestors = stakeholdersData.some((s) =>
-      s.id.toLowerCase().includes('investor') || s.label.toLowerCase().includes('investor')
+    const hasInvestors = stakeholdersData.some(
+      (s) =>
+        s.id.toLowerCase().includes("investor") ||
+        s.label.toLowerCase().includes("investor"),
     );
     if (hasInvestors) return stakeholdersData;
-    
+
     return [
       ...stakeholdersData,
-      { id: 'investors', label: 'Investors\n& VC', icon: TrendingUp }
+      { id: "investors", label: "Investors\n& VC", icon: TrendingUp },
     ];
   }, []);
 
@@ -36,13 +37,13 @@ export default function Desktop() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const bgScale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1]);
 
-  const springAnim = { type: 'spring' as const, stiffness: 100, damping: 20 };
+  const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
 
   const floatingParticles = Array.from({ length: 5 }, (_, i) => ({
     id: i,
@@ -61,7 +62,7 @@ export default function Desktop() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.8 }}
-        transition={{ duration: 2, ease: 'easeOut' }}
+        transition={{ duration: 2, ease: "easeOut" }}
         style={{ y: bgY, scale: bgScale }}
         className="pointer-events-none absolute right-0 top-0 z-0 h-full w-full opacity-20 mix-blend-multiply dark:opacity-40 dark:mix-blend-screen lg:w-3/5"
         aria-hidden="true"
@@ -71,11 +72,11 @@ export default function Desktop() {
           style={{
             backgroundImage: `url(${bgImage})`,
             maskImage:
-              'linear-gradient(to right, transparent 0%, black 40%, black 100%), linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
+              "linear-gradient(to right, transparent 0%, black 40%, black 100%), linear-gradient(to bottom, black 0%, black 80%, transparent 100%)",
             WebkitMaskImage:
-              'linear-gradient(to right, transparent 0%, black 40%, black 100%), linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
-            WebkitMaskComposite: 'source-in',
-            maskComposite: 'intersect',
+              "linear-gradient(to right, transparent 0%, black 40%, black 100%), linear-gradient(to bottom, black 0%, black 80%, transparent 100%)",
+            WebkitMaskComposite: "source-in",
+            maskComposite: "intersect",
           }}
         />
       </motion.div>
@@ -86,16 +87,24 @@ export default function Desktop() {
         <motion.div
           key={p.id}
           className="pointer-events-none absolute z-0 hidden rounded-full bg-[#D4AF37]/30 dark:block"
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+          }}
           animate={{ y: [-10, 10, -10], opacity: [0, 0.6, 0] }}
-          transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            delay: p.delay,
+            ease: "easeInOut",
+          }}
         />
       ))}
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 lg:gap-14">
-        {/* Added grid structure to explicitly split 50/50 and avoid overlaps */}
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
-          
           <div className="z-10 flex w-full flex-col lg:w-[50%] xl:w-[55%]">
             <motion.div
               initial={{ opacity: 0, y: 15, scale: 0.95 }}
@@ -105,14 +114,18 @@ export default function Desktop() {
             >
               <div className="flex items-center gap-1.5 font-bold text-[#0a1128] sm:gap-2 dark:text-white">
                 <Rocket className="h-3.5 w-3.5 text-[#D4AF37] sm:h-4 sm:w-4 dark:text-[#D4AF37]" />
-                <span className="uppercase tracking-wide">Vendor Onboarding Open</span>
+                <span className="uppercase tracking-wide">
+                  Vendor Onboarding Open
+                </span>
               </div>
               <div className="hidden h-3.5 w-[1px] bg-gray-300 sm:block dark:bg-gray-700"></div>
               <div className="flex items-center gap-1.5 font-semibold text-[#D4AF37] sm:gap-2 dark:text-[#D4AF37]">
                 <span className="rounded bg-[#D4AF37]/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#D4AF37] sm:px-2 sm:text-xs dark:bg-[#D4AF37]/20 dark:text-[#D4AF37]">
                   Phase 1
                 </span>
-                <span className="uppercase tracking-wide">Launching in Telangana</span>
+                <span className="uppercase tracking-wide">
+                  Launching in Telangana
+                </span>
               </div>
             </motion.div>
 
@@ -125,12 +138,14 @@ export default function Desktop() {
               India's 1st Integrated <br />
               <motion.span
                 className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent"
-                style={{ backgroundSize: '200% auto' }}
-                animate={{ backgroundPosition: ['0% center', '100% center', '0% center'] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                style={{ backgroundSize: "200% auto" }}
+                animate={{
+                  backgroundPosition: ["0% center", "100% center", "0% center"],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
               >
                 Commercial Real Estate
-              </motion.span>{' '}
+              </motion.span>{" "}
               <br />
               Marketplace
             </motion.h1>
@@ -154,32 +169,33 @@ export default function Desktop() {
               transition={{ ...springAnim, delay: 0.3 }}
               className="mt-6 max-w-[95%] text-base leading-relaxed text-gray-600 dark:text-gray-400 xl:text-lg"
             >
-              CREMP redefines how commercial opportunities are discovered and connected.
-              From commercial properties and retail spaces to franchise expansion and
-              business opportunities, CREMP brings together multiple commercial
-              ecosystems into one integrated marketplace—helping property owners,
-              brokers, franchisors, business owners, investors and tenants connect,
-              collaborate and grow.
+              CREMP redefines how commercial opportunities are discovered and
+              connected. From commercial properties and retail spaces to
+              franchise expansion and business opportunities, CREMP brings
+              together multiple commercial ecosystems into one integrated
+              marketplace—helping property owners, brokers, franchisors,
+              business owners, investors and tenants connect, collaborate and
+              grow.
             </motion.p>
           </div>
 
           <div className="flex w-full items-center justify-center lg:w-[45%] xl:w-[40%]">
             <div className="group/orbit relative mx-auto hidden h-[320px] w-[320px] shrink-0 items-center justify-center lg:flex lg:h-[400px] lg:w-[400px] xl:h-[480px] xl:w-[480px]">
               <div className="pointer-events-none absolute inset-0 rounded-full bg-[#D4AF37]/5 blur-[60px] transition-opacity duration-700 group-hover/orbit:opacity-100" />
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1, rotate: 360 }}
                 transition={{
                   scale: { duration: 1 },
                   opacity: { duration: 1 },
-                  rotate: { repeat: Infinity, duration: 60, ease: "linear" }
+                  rotate: { repeat: Infinity, duration: 60, ease: "linear" },
                 }}
                 viewport={{ once: true }}
-                className="absolute inset-0 rounded-full border border-dashed border-gray-800/80" 
+                className="absolute inset-0 rounded-full border border-dashed border-gray-800/80"
               />
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
@@ -187,13 +203,13 @@ export default function Desktop() {
                 className="absolute inset-[9%] rounded-full border border-gray-700/30"
               />
 
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1, rotate: -360 }}
                 transition={{
                   scale: { duration: 1, delay: 0.4 },
                   opacity: { duration: 1, delay: 0.4 },
-                  rotate: { repeat: Infinity, duration: 30, ease: "linear" }
+                  rotate: { repeat: Infinity, duration: 30, ease: "linear" },
                 }}
                 viewport={{ once: true }}
                 className="absolute inset-[18%] rounded-full border border-[#121c33]"
@@ -204,7 +220,7 @@ export default function Desktop() {
                 <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 transition={{ type: "spring", duration: 1, delay: 0.6 }}
@@ -219,51 +235,71 @@ export default function Desktop() {
                 />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
                 className="absolute inset-0 z-20"
               >
                 {allStakeholders.map((stakeholder, index) => {
                   const isActive = activeTab === stakeholder.id;
-                  
-                  // Radius pushed slightly out (45 instead of 42) to prevent text overlapping center logo
-                  const angle = (index / allStakeholders.length) * 2 * Math.PI - Math.PI / 2;
-                  const radius = 45; 
+
+                  const angle =
+                    (index / allStakeholders.length) * 2 * Math.PI -
+                    Math.PI / 2;
+                  const radius = 45;
                   const x = 50 + radius * Math.cos(angle);
                   const y = 50 + radius * Math.sin(angle);
 
                   return (
-                    <motion.div 
+                    <motion.div
                       key={stakeholder.id}
                       initial={{ opacity: 0, scale: 0, x: "-50%", y: "-50%" }}
-                      whileInView={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
-                      transition={{ type: "spring", duration: 0.6, delay: 0.8 + (index * 0.1) }}
+                      whileInView={{
+                        opacity: 1,
+                        scale: 1,
+                        x: "-50%",
+                        y: "-50%",
+                      }}
+                      transition={{
+                        type: "spring",
+                        duration: 0.6,
+                        delay: 0.8 + index * 0.1,
+                      }}
                       viewport={{ once: true }}
                       className="absolute flex flex-col items-center justify-center"
                       style={{ left: `${x}%`, top: `${y}%` }}
                     >
                       <motion.div
                         animate={{ rotate: -360 }}
-                        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 60,
+                          ease: "linear",
+                        }}
                         className="flex flex-col items-center justify-center"
                       >
                         <div className="relative">
                           {isActive && (
                             <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] opacity-30 duration-1000 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
                           )}
-                          <motion.div 
+                          <motion.div
                             className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-all duration-500 dark:bg-[#121c33] lg:h-14 lg:w-14 xl:h-16 xl:w-16 ${
-                              isActive 
-                                ? 'scale-110 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:text-[#D4AF37] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]' 
-                                : 'border-gray-200 text-gray-400 hover:border-[#D4AF37]/50 hover:text-[#0a1128] dark:border-gray-700 dark:hover:border-[#D4AF37]/50 dark:hover:text-white'
+                              isActive
+                                ? "scale-110 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:text-[#D4AF37] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]"
+                                : "border-gray-200 text-gray-400 hover:border-[#D4AF37]/50 hover:text-[#0a1128] dark:border-gray-700 dark:hover:border-[#D4AF37]/50 dark:hover:text-white"
                             }`}
                             whileHover={{ scale: 1.05 }}
                           >
-                            <stakeholder.icon className="h-5 w-5 lg:h-6 lg:w-6 xl:h-7 xl:w-7" strokeWidth={1.8} />
+                            <stakeholder.icon
+                              className="h-5 w-5 lg:h-6 lg:w-6 xl:h-7 xl:w-7"
+                              strokeWidth={1.8}
+                            />
                           </motion.div>
                         </div>
-                        <span className={`mt-2 text-center text-[10px] font-bold transition-all duration-500 lg:text-[11px] xl:mt-3 xl:text-sm ${isActive ? 'text-[#0a1128] drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:text-white dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-gray-500'}`} style={{ whiteSpace: 'pre-line' }}>
+                        <span
+                          className={`mt-2 text-center text-[10px] font-bold transition-all duration-500 lg:text-[11px] xl:mt-3 xl:text-sm ${isActive ? "text-[#0a1128] drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:text-white dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" : "text-gray-500"}`}
+                          style={{ whiteSpace: "pre-line" }}
+                        >
                           {stakeholder.label}
                         </span>
                       </motion.div>
@@ -276,7 +312,6 @@ export default function Desktop() {
         </div>
 
         <div className="mt-8 flex w-full flex-col gap-6 lg:mt-12">
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -290,11 +325,17 @@ export default function Desktop() {
 
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               {vendorBenefits.map((benefit) => (
-                <motion.div key={benefit.title} whileHover={{ y: -2 }} className="flex items-center gap-2.5">
+                <motion.div
+                  key={benefit.title}
+                  whileHover={{ y: -2 }}
+                  className="flex items-center gap-2.5"
+                >
                   <div className="rounded-full border border-gray-700 bg-[#121c33] p-1.5 text-[#D4AF37] shadow-sm">
                     <benefit.icon className="h-4 w-4" />
                   </div>
-                  <span className="text-sm font-medium text-gray-300">{benefit.title}</span>
+                  <span className="text-sm font-medium text-gray-300">
+                    {benefit.title}
+                  </span>
                 </motion.div>
               ))}
             </div>

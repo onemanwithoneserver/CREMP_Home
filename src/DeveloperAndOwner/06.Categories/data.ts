@@ -1,6 +1,6 @@
-import { 
-  Building2, 
-  Warehouse, 
+import {
+  Building2,
+  Warehouse,
   Store,
   Hotel,
   Factory,
@@ -10,29 +10,29 @@ import {
   Briefcase,
   Plus,
   Car,
-  ShoppingCart
-} from 'lucide-react';
+  ShoppingCart,
+} from "lucide-react";
 
 export const categoriesData = {
-  tag: 'PROJECT CATEGORIES',
-  title: 'Explore Every Development Category',
+  tag: "PROJECT CATEGORIES",
+  title: "Explore Every Development Category",
   desc: "Whether you're developing a retail mall, an IT park, or an industrial warehousing facility—CREMP covers every category so you can find the right anchor tenants and investors.",
   categories: [
-    { icon: Store, label: 'Retail\nMalls' },
-    { icon: Building2, label: 'IT Parks &\nOffices' },
-    { icon: Warehouse, label: 'Logistics &\nWarehousing' },
-    { icon: ShoppingCart, label: 'High Street\nRetail' },
-    { icon: Briefcase, label: 'Co-Working\nSpaces' },
-    { icon: Factory, label: 'Industrial\nEstates' },
-    { icon: Landmark, label: 'Special\nEconomic Zones' },
-    { icon: Car, label: 'Drive-Thru\nLocations' },
-    { icon: Hotel, label: 'Hospitality\n&\nResorts' },
-    { icon: Building, label: 'Mixed-Use\nDevelopments' },
-    { icon: MapPin, label: 'Greenfield\nLand' },
-    { icon: Plus, label: 'And Many\nMore' }
+    { icon: Store, label: "Retail\nMalls" },
+    { icon: Building2, label: "IT Parks &\nOffices" },
+    { icon: Warehouse, label: "Logistics &\nWarehousing" },
+    { icon: ShoppingCart, label: "High Street\nRetail" },
+    { icon: Briefcase, label: "Co-Working\nSpaces" },
+    { icon: Factory, label: "Industrial\nEstates" },
+    { icon: Landmark, label: "Special\nEconomic Zones" },
+    { icon: Car, label: "Drive-Thru\nLocations" },
+    { icon: Hotel, label: "Hospitality\n&\nResorts" },
+    { icon: Building, label: "Mixed-Use\nDevelopments" },
+    { icon: MapPin, label: "Greenfield\nLand" },
+    { icon: Plus, label: "And Many\nMore" },
   ],
   button: {
-    text: 'List Your Asset'
+    text: "List Your Asset",
   },
-  bottomDisclaimer: 'Monetize your property assets faster with CREMP.'
+  bottomDisclaimer: "Monetize your property assets faster with CREMP.",
 };

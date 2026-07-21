@@ -1,32 +1,35 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Phone, Video, X } from 'lucide-react';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MessageCircle, Phone, Video, X } from "lucide-react";
 
 export default function Desktop() {
   const [isOpen, setIsOpen] = useState(false);
 
   const connectOptions = [
     {
-      id: 'whatsapp',
-      label: 'WhatsApp',
+      id: "whatsapp",
+      label: "WhatsApp",
       icon: MessageCircle,
-      color: 'bg-green-500 hover:bg-green-400 text-white shadow-[0_4px_15px_rgba(34,197,94,0.4)]',
-      action: () => window.open('https://wa.me/1234567890', '_blank')
+      color:
+        "bg-green-500 hover:bg-green-400 text-white shadow-[0_4px_15px_rgba(34,197,94,0.4)]",
+      action: () => window.open("https://wa.me/1234567890", "_blank"),
     },
     {
-      id: 'phone',
-      label: 'Call Us',
+      id: "phone",
+      label: "Call Us",
       icon: Phone,
-      color: 'bg-blue-500 hover:bg-blue-400 text-white shadow-[0_4px_15px_rgba(59,130,246,0.4)]',
-      action: () => window.open('tel:+1234567890', '_self')
+      color:
+        "bg-blue-500 hover:bg-blue-400 text-white shadow-[0_4px_15px_rgba(59,130,246,0.4)]",
+      action: () => window.open("tel:+1234567890", "_self"),
     },
     {
-      id: 'meet',
-      label: 'Book a Meet',
+      id: "meet",
+      label: "Book a Meet",
       icon: Video,
-      color: 'bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] hover:bg-[#b38728] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:hover:bg-[#FCD34D] text-white dark:text-black shadow-[0_4px_15px_rgba(178,127,28,0.4)] dark:shadow-[0_4px_15px_rgba(246,178,59,0.4)]',
-      action: () => window.open('https://meet.google.com', '_blank')
-    }
+      color:
+        "bg-purple-600 hover:bg-purple-500 dark:bg-purple-600 dark:hover:bg-purple-500 text-white dark:text-white shadow-[0_4px_15px_rgba(147,51,234,0.4)] dark:shadow-[0_4px_15px_rgba(168,85,247,0.4)]",
+      action: () => window.open("https://meet.google.com", "_blank"),
+    },
   ];
 
   return (
@@ -53,7 +56,9 @@ export default function Desktop() {
                 <span className="rounded-[4px] bg-white/90 dark:bg-[#121c33]/90 px-3 py-1.5 text-sm font-semibold text-[#0a1128] dark:text-white shadow-lg backdrop-blur-sm transition-opacity group-hover:opacity-100 opacity-0 md:opacity-100 border border-gray-200 dark:border-transparent">
                   {option.label}
                 </span>
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-110 active:scale-95 ${option.color}`}>
+                <div
+                  className={`flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-110 active:scale-95 ${option.color}`}
+                >
                   <option.icon className="h-5 w-5" strokeWidth={2} />
                 </div>
               </motion.button>

@@ -1,9 +1,8 @@
-import Header from './01_header';
-import Onboarding from './02_Onboarding';
-import StakeHolders from './03_StakeHolders';
-import Footer from './04_footer';
-import Connect from './05_connect';
-import { ThemeProvider } from './ThemeContext';
+import Header from "./01_header";
+import Onboarding from "./02_Onboarding";
+import StakeHolders from "./03_StakeHolders";
+import Footer from "./04_footer";
+import { ThemeProvider } from "./ThemeContext";
 
 interface HomeProps {
   isMobile: boolean;
@@ -17,7 +16,6 @@ export default function Home({ isMobile }: HomeProps) {
         <Onboarding isMobile={isMobile} />
         <StakeHolders isMobile={isMobile} />
         <Footer isMobile={isMobile} />
-        <Connect isMobile={isMobile} />
       </div>
     </ThemeProvider>
   );

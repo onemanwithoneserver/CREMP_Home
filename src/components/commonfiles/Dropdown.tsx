@@ -1,57 +1,82 @@
-import { useState, useRef, useEffect, forwardRef, type HTMLAttributes } from 'react'
-import { ChevronDown, Check } from 'lucide-react'
+import {
+  useState,
+  useRef,
+  useEffect,
+  forwardRef,
+  type HTMLAttributes,
+} from "react";
+import { ChevronDown, Check } from "lucide-react";
 
 export interface DropdownOption {
-  value: string
-  label: string
-  disabled?: boolean
+  value: string;
+  label: string;
+  disabled?: boolean;
 }
 
-export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  id?: string
-  options: DropdownOption[]
-  value: string
-  onChange: (value: string) => void
-  size?: 'sm' | 'md' | 'lg'
-  className?: string
-  disabled?: boolean
+export interface DropdownProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
+  id?: string;
+  options: DropdownOption[];
+  value: string;
+  onChange: (value: string) => void;
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  disabled?: boolean;
 }
 
 const sizeClasses = {
-  sm: 'px-2.5 py-1 text-xs',
-  md: 'px-3 py-1.5 text-xs',
-  lg: 'px-3.5 py-2 text-sm',
-}
+  sm: "px-2.5 py-1 text-xs",
+  md: "px-3 py-1.5 text-xs",
+  lg: "px-3.5 py-2 text-sm",
+};
 
 const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
-  ({ id, options, value, onChange, size = 'md', className = '', disabled = false, ...props }, ref) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const containerRef = useRef<HTMLDivElement>(null)
+  (
+    {
+      id,
+      options,
+      value,
+      onChange,
+      size = "md",
+      className = "",
+      disabled = false,
+      ...props
+    },
+    ref,
+  ) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    const selectedOption = options.find((o) => o.value === value)
+    const selectedOption = options.find((o) => o.value === value);
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-          setIsOpen(false)
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(event.target as Node)
+        ) {
+          setIsOpen(false);
         }
-      }
+      };
 
       if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside)
+        document.addEventListener("mousedown", handleClickOutside);
       }
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [isOpen])
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isOpen]);
 
     return (
-      <div 
-        className={`relative inline-block ${className}`} 
+      <div
+        className={`relative inline-block ${className}`}
         ref={(node) => {
-          // Sync with local ref and forwarded ref
-          (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-          if (typeof ref === 'function') ref(node);
+          (
+            containerRef as React.MutableRefObject<HTMLDivElement | null>
+          ).current = node;
+          if (typeof ref === "function") ref(node);
           else if (ref) ref.current = node;
         }}
         {...props}
@@ -73,8 +98,13 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           aria-haspopup="listbox"
           aria-expanded={isOpen}
         >
-          <span className="truncate">{selectedOption?.label || 'Select...'}</span>
-          <ChevronDown size={14} className={`transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 text-cremp-primary' : 'text-cremp-text-muted'}`} />
+          <span className="truncate">
+            {selectedOption?.label || "Select..."}
+          </span>
+          <ChevronDown
+            size={14}
+            className={`transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180 text-cremp-primary" : "text-cremp-text-muted"}`}
+          />
         </button>
 
         {isOpen && (
@@ -83,7 +113,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             role="listbox"
           >
             {options.map((opt) => {
-              const isSelected = opt.value === value
+              const isSelected = opt.value === value;
               return (
                 <li
                   key={opt.value}
@@ -91,28 +121,28 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                   aria-selected={isSelected}
                   onClick={() => {
                     if (!opt.disabled) {
-                      onChange(opt.value)
-                      setIsOpen(false)
+                      onChange(opt.value);
+                      setIsOpen(false);
                     }
                   }}
                   className={`
                     flex items-center justify-between px-3 py-2 text-xs font-semibold cursor-pointer transition-colors
-                    ${opt.disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cremp-primary/5'}
-                    ${isSelected ? 'text-cremp-primary bg-cremp-primary/5' : 'text-cremp-text-primary'}
+                    ${opt.disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-cremp-primary/5"}
+                    ${isSelected ? "text-cremp-primary bg-cremp-primary/5" : "text-cremp-text-primary"}
                   `}
                 >
                   <span className="truncate pr-4">{opt.label}</span>
                   {isSelected && <Check size={12} className="shrink-0" />}
                 </li>
-              )
+              );
             })}
           </ul>
         )}
       </div>
-    )
-  }
-)
+    );
+  },
+);
 
-Dropdown.displayName = 'Dropdown'
+Dropdown.displayName = "Dropdown";
 
-export default Dropdown
+export default Dropdown;

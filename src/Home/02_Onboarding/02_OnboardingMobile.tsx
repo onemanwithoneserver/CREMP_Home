@@ -1,35 +1,54 @@
-import { motion } from 'framer-motion';
-import { Rocket, ArrowRight } from 'lucide-react';
-import { networkCategories, vendorBenefits } from './data';
-import bgImage from './bg.png';
+import { motion } from "framer-motion";
+import { Rocket, ArrowRight, TrendingUp } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { stakeholdersData } from "../03_StakeHolders/data";
+import crempLogo from "../../Logo/CREMP_Light.png";
+import { vendorBenefits } from "./data";
+import bgImage from "./bg.png";
+import telangana from "./telangana.png";
 
 export default function Mobile() {
-  const springAnim = { type: 'spring' as const, stiffness: 100, damping: 20 };
+  const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
 
-  const iconColorMap: Record<string, string> = {
-    emerald: 'text-emerald-700 dark:text-emerald-400',
-    blue: 'text-blue-700 dark:text-blue-400',
-    purple: 'text-purple-700 dark:text-purple-400',
-    rose: 'text-rose-700 dark:text-rose-400',
-    amber: 'text-amber-700 dark:text-amber-400',
-    cyan: 'text-cyan-700 dark:text-cyan-400',
-  };
+  const allStakeholders = useMemo(() => {
+    const hasInvestors = stakeholdersData.some(
+      (s) =>
+        s.id.toLowerCase().includes("investor") ||
+        s.label.toLowerCase().includes("investor"),
+    );
+    if (hasInvestors) return stakeholdersData;
+
+    return [
+      ...stakeholdersData,
+      { id: "investors", label: "Investors\n& VC", icon: TrendingUp },
+    ];
+  }, []);
+
+  const [activeTab, setActiveTab] = useState(allStakeholders[0].id);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((current) => {
+        const currentIndex = allStakeholders.findIndex((s) => s.id === current);
+        const nextIndex = (currentIndex + 1) % allStakeholders.length;
+        return allStakeholders[nextIndex].id;
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [allStakeholders]);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#0a1128] px-5 pb-10 pt-28 font-sans text-[#0a1128] dark:text-white">
-      {/* Background Image */}
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#0a1128] px-5 pb-10 pt-20 font-sans text-[#0a1128] dark:text-white">
       <div className="absolute inset-0 bg-gray-50 dark:bg-[#0a1128] z-0" />
       <motion.div
         className="absolute inset-0 z-0 opacity-15 dark:opacity-30 bg-cover bg-center bg-no-repeat mix-blend-multiply dark:mix-blend-screen"
         style={{ backgroundImage: `url(${bgImage})` }}
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.15 }}
-        transition={{ duration: 2, ease: 'easeOut' }}
+        transition={{ duration: 2, ease: "easeOut" }}
       />
-      {/* Dark gradient overlay */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#0a1128]/90 dark:via-[#0a1128]/95 dark:to-[#0a1128] pointer-events-none" />
 
-      {/* Floating particles */}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}
@@ -48,35 +67,30 @@ export default function Mobile() {
             duration: 4 + i,
             repeat: Infinity,
             delay: i * 0.8,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
       ))}
 
       <div className="relative z-10 flex w-full flex-col gap-8">
-        
-        {/* HERO SECTION */}
         <div className="flex flex-col z-10">
-          {/* Top Banner */}
           <motion.div
             initial={{ opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={springAnim}
-            className="mb-6 flex flex-col items-start gap-2 rounded-xl border border-[#D4AF37]/20 dark:border-[#D4AF37]/20 bg-gradient-to-br from-[#D4AF37]/10 to-transparent dark:from-[#D4AF37]/10 p-3 shadow-sm backdrop-blur-sm"
+            className="mb-3 flex flex-col items-start gap-2 rounded-[4px] border border-[#D4AF37]/20 dark:border-[#D4AF37]/20 bg-gradient-to-br from-[#D4AF37]/10 to-transparent dark:from-[#D4AF37]/10 p-3 shadow-sm backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 text-xs font-bold text-[#0a1128] dark:text-white">
               <Rocket className="h-3.5 w-3.5 text-[#D4AF37] dark:text-[#D4AF37]" />
-              <span className="uppercase tracking-wide">Vendor Onboarding Open</span>
+              <span className="uppercase tracking-wide">
+                Vendor Onboarding Open
+              </span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold text-[#D4AF37] dark:text-[#D4AF37]">
               <span className="uppercase">Early Access</span>
-              <span className="rounded bg-[#D4AF37]/20 dark:bg-[#D4AF37]/20 px-1.5 py-0.5 font-bold uppercase">
-                Launching First in Telangana
-              </span>
             </div>
           </motion.div>
 
-          {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,17 +100,18 @@ export default function Mobile() {
             India's 1st Integrated <br />
             <motion.span
               className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent"
-              style={{ backgroundSize: '200% auto' }}
-              animate={{ backgroundPosition: ['0% center', '100% center', '0% center'] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+              style={{ backgroundSize: "200% auto" }}
+              animate={{
+                backgroundPosition: ["0% center", "100% center", "0% center"],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
             >
               Commercial Real Estate
-            </motion.span>{' '}
+            </motion.span>{" "}
             <br />
             Marketplace
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,78 +132,166 @@ export default function Mobile() {
             </div>
           </motion.div>
 
-          {/* Description Paragraph */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.3 }}
             className="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
           >
-            CREMP redefines how commercial opportunities are discovered and connected.
-            From commercial properties and retail spaces to franchise expansion and
-            business opportunities, CREMP brings together multiple commercial
-            ecosystems into one integrated marketplace—helping property owners,
-            brokers, franchisors, business owners, investors and tenants connect,
-            collaborate and grow.
+            CREMP redefines how commercial opportunities are discovered and
+            connected. From commercial properties and retail spaces to franchise
+            expansion and business opportunities, CREMP brings together multiple
+            commercial ecosystems into one integrated marketplace—helping
+            property owners, brokers, franchisors, business owners, investors
+            and tenants connect, collaborate and grow.
           </motion.p>
         </div>
 
-        {/* ONBOARDING CARD SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.4 }}
-          viewport={{ once: true, margin: '-20px' }}
+          viewport={{ once: true, margin: "-20px" }}
           className="relative mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#121c33]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
         >
-          <div className="p-5 sm:p-6">
-            
-            {/* Launch Info */}
-            <div className="mb-6 flex flex-col border-b border-gray-100 pb-5 dark:border-gray-800/50">
-              <div className="mb-3 flex items-center gap-3">
-                <div className="rounded-full bg-orange-100 p-2 dark:bg-orange-500/10">
-                  <Rocket className="h-5 w-5 text-orange-500 dark:text-orange-400" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-[#0a1128] dark:text-white leading-tight">
-                    Launching First in
-                  </h3>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-base font-bold text-orange-500 dark:text-orange-400">Telangana</span>
-                    <span className="text-xs font-bold text-gray-500 dark:text-gray-400">— Phase 1</span>
-                  </div>
-                </div>
-              </div>
-              <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                We're currently onboarding our founding network of:
-              </p>
+          <div
+            className="absolute inset-0 z-0 opacity-30 dark:opacity-20"
+            style={{
+              backgroundImage: `url(${telangana})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <div className="absolute inset-0 z-0 bg-gradient-to-t from-gray-50/95 via-gray-50/80 to-gray-50/60 dark:from-[#121c33]/95 dark:via-[#121c33]/80 dark:to-[#121c33]/60" />
+
+          <div className="relative z-10 p-5 sm:p-6">
+            <div className="group/orbit relative mx-auto flex h-[280px] w-[280px] sm:h-[320px] sm:w-[320px] shrink-0 items-center justify-center mb-8 mt-2">
+              <div className="pointer-events-none absolute inset-0 rounded-full bg-[#D4AF37]/5 blur-[40px] opacity-100" />
+
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1, rotate: 360 }}
+                transition={{
+                  scale: { duration: 1 },
+                  opacity: { duration: 1 },
+                  rotate: { repeat: Infinity, duration: 60, ease: "linear" },
+                }}
+                viewport={{ once: true }}
+                className="absolute inset-0 rounded-full border border-dashed border-gray-800/80 dark:border-gray-500/50"
+              />
+
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="absolute inset-[12%] rounded-full border border-gray-700/30 dark:border-gray-400/30"
+              />
+
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1, rotate: -360 }}
+                transition={{
+                  scale: { duration: 1, delay: 0.4 },
+                  opacity: { duration: 1, delay: 0.4 },
+                  rotate: { repeat: Infinity, duration: 30, ease: "linear" },
+                }}
+                viewport={{ once: true }}
+                className="absolute inset-[24%] rounded-full border border-[#121c33] dark:border-gray-600/50"
+              >
+                <div className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute right-0 top-1/2 h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
+              </motion.div>
+
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ type: "spring", duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="relative z-10 flex h-[35%] w-[35%] flex-col items-center justify-center rounded-full border border-gray-800 bg-[#0a1128] shadow-[0_0_15px_rgba(246,178,59,0.15)] before:absolute before:inset-[-6px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#0a0f25] before:to-transparent"
+              >
+                <div className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37]/10 opacity-20 duration-[3000ms]" />
+                <img
+                  src={crempLogo}
+                  alt="CREMP Logo"
+                  className="z-10 h-[50%] w-[50%] object-contain drop-shadow-[0_0_5px_rgba(246,178,59,0.2)]"
+                />
+              </motion.div>
+
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+                className="absolute inset-0 z-20"
+              >
+                {allStakeholders.map((stakeholder, index) => {
+                  const isActive = activeTab === stakeholder.id;
+                  const angle =
+                    (index / allStakeholders.length) * 2 * Math.PI -
+                    Math.PI / 2;
+                  const radius = 45;
+                  const x = 50 + radius * Math.cos(angle);
+                  const y = 50 + radius * Math.sin(angle);
+
+                  return (
+                    <motion.div
+                      key={stakeholder.id}
+                      initial={{ opacity: 0, scale: 0, x: "-50%", y: "-50%" }}
+                      whileInView={{
+                        opacity: 1,
+                        scale: 1,
+                        x: "-50%",
+                        y: "-50%",
+                      }}
+                      transition={{
+                        type: "spring",
+                        duration: 0.6,
+                        delay: 0.8 + index * 0.1,
+                      }}
+                      viewport={{ once: true }}
+                      className="absolute flex flex-col items-center justify-center"
+                      style={{ left: `${x}%`, top: `${y}%` }}
+                    >
+                      <motion.div
+                        animate={{ rotate: -360 }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 60,
+                          ease: "linear",
+                        }}
+                        className="flex flex-col items-center justify-center"
+                      >
+                        <div className="relative">
+                          {isActive && (
+                            <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] opacity-40 duration-1000" />
+                          )}
+                          <motion.div
+                            className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-all duration-500 dark:bg-[#121c33] ${
+                              isActive
+                                ? "scale-110 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_15px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:shadow-[0_0_15px_rgba(246,178,59,0.5)]"
+                                : "border-gray-200 text-gray-400 dark:border-gray-700"
+                            }`}
+                          >
+                            <stakeholder.icon
+                              className="h-4 w-4"
+                              strokeWidth={1.8}
+                            />
+                          </motion.div>
+                        </div>
+                        <span
+                          className={`mt-1.5 text-center text-[8.5px] sm:text-[9.5px] font-bold transition-all duration-500 ${isActive ? "text-[#0a1128] dark:text-white" : "text-gray-500"}`}
+                          style={{ whiteSpace: "pre-line", lineHeight: "1.2" }}
+                        >
+                          {stakeholder.label}
+                        </span>
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
 
-            {/* Network Categories Grid */}
-            <div className="mb-6 grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3">
-              {networkCategories.map((cat, idx) => (
-                <motion.div
-                  key={cat.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ ...springAnim, delay: 0.2 + idx * 0.05 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center text-center gap-1.5"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center">
-                    <cat.icon 
-                      className={`h-6 w-6 ${iconColorMap[cat.colorFamily] || 'text-gray-700 dark:text-gray-300'}`} 
-                      strokeWidth={1.5} 
-                    />
-                  </div>
-                  <span className="text-[10px] font-bold leading-tight text-gray-800 dark:text-gray-200">
-                    {cat.title}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTAs */}
             <div className="flex flex-col gap-3">
               <motion.button
                 whileTap={{ scale: 0.96 }}
@@ -207,11 +310,8 @@ export default function Mobile() {
               </motion.button>
             </div>
           </div>
-
-
         </motion.div>
 
-        {/* FOUNDING VENDOR BENEFITS */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -222,7 +322,7 @@ export default function Mobile() {
           <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-200">
             Founding Vendor Benefits
           </div>
-          
+
           <div className="flex flex-col gap-3">
             {vendorBenefits.map((benefit, idx) => (
               <motion.div
@@ -243,7 +343,6 @@ export default function Mobile() {
             ))}
           </div>
         </motion.div>
-
       </div>
     </div>
   );

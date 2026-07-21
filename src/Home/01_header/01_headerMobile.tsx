@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { ArrowRight, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../ThemeContext';
-import CrempTextLogo from '../../components/CrempTextLogo';
-import logo from '../../Logo/CREMP.png';
-import logoLight from '../../Logo/CREMP_Light.png';
+import { useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { ArrowRight, Sun, Moon } from "lucide-react";
+import { useTheme } from "../ThemeContext";
+import CrempTextLogo from "../../components/CrempTextLogo";
+import logo from "../../Logo/CREMP.png";
+import logoLight from "../../Logo/CREMP_Light.png";
 
 export default function Mobile() {
   const { theme, toggleTheme } = useTheme();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
+  useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 30);
   });
 
@@ -22,8 +22,8 @@ export default function Mobile() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 z-50 flex w-full items-center justify-between px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${
         scrolled
-          ? 'bg-white/85 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#0a1128]/90 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]'
-          : 'bg-transparent'
+          ? "bg-white/85 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#0a1128]/90 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]"
+          : "bg-transparent"
       }`}
     >
       <motion.a
@@ -38,12 +38,12 @@ export default function Mobile() {
           className="hidden h-10 w-auto object-contain dark:block"
           animate={{
             filter: [
-              'drop-shadow(0 0 4px rgba(246,178,59,0.2))',
-              'drop-shadow(0 0 10px rgba(246,178,59,0.35))',
-              'drop-shadow(0 0 4px rgba(246,178,59,0.2))',
+              "drop-shadow(0 0 4px rgba(246,178,59,0.2))",
+              "drop-shadow(0 0 10px rgba(246,178,59,0.35))",
+              "drop-shadow(0 0 4px rgba(246,178,59,0.2))",
             ],
           }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
         <img
           src={logoLight}
@@ -68,9 +68,9 @@ export default function Mobile() {
           onClick={toggleTheme}
           whileTap={{ scale: 0.88, rotate: 20 }}
           className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${
-            theme === 'dark'
-              ? 'border-amber-500/20 bg-amber-500/10 text-amber-400 active:bg-amber-500/25'
-              : 'border-gray-200 bg-white text-[#0a1128] active:bg-gray-100'
+            theme === "dark"
+              ? "border-amber-500/20 bg-amber-500/10 text-amber-400 active:bg-amber-500/25"
+              : "border-gray-200 bg-white text-[#0a1128] active:bg-gray-100"
           }`}
           aria-label="Toggle Theme"
         >
@@ -78,9 +78,9 @@ export default function Mobile() {
             key={theme}
             initial={{ rotate: -90, scale: 0 }}
             animate={{ rotate: 0, scale: 1 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {theme === 'dark' ? (
+            {theme === "dark" ? (
               <Sun className="h-4 w-4" strokeWidth={2} />
             ) : (
               <Moon className="h-4 w-4" strokeWidth={2} />

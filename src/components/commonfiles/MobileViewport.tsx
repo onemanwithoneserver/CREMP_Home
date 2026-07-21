@@ -1,12 +1,12 @@
-import React, { forwardRef, type ReactNode } from 'react'
+import React, { forwardRef, type ReactNode } from "react";
 
 export interface MobileViewportProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
-  isMobile?: boolean
+  children: ReactNode;
+  isMobile?: boolean;
 }
 
 const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
-  ({ children, isMobile = false, className = '', ...props }, ref) => {
+  ({ children, isMobile = false, className = "", ...props }, ref) => {
     if (!isMobile) {
       return (
         <div
@@ -18,7 +18,7 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
         >
           {children}
         </div>
-      )
+      );
     }
 
     return (
@@ -45,10 +45,10 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
           </div>
         </div>
       </div>
-    )
-  }
-)
+    );
+  },
+);
 
-MobileViewport.displayName = 'MobileViewport'
+MobileViewport.displayName = "MobileViewport";
 
-export default MobileViewport
+export default MobileViewport;

@@ -1,6 +1,10 @@
-import DesktopTestimonials from './DesktopTestimonials'
-import MobileTestimonials from './MobileTestimonials'
+import DesktopTestimonials from "./DesktopTestimonials";
+import MobileTestimonials from "./MobileTestimonials";
 
-export default function BuyersAndSellersTestimonials({ isMobile }: { isMobile: boolean }) {
-  return isMobile ? <MobileTestimonials /> : <DesktopTestimonials />
+export default function BuyersAndSellersTestimonials({
+  isMobile,
+}: {
+  isMobile: boolean;
+}) {
+  return isMobile ? <MobileTestimonials /> : <DesktopTestimonials />;
 }
