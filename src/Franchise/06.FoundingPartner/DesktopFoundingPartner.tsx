@@ -83,7 +83,7 @@ export default function DesktopFoundingPartner() {
               className="relative mt-20 flex h-[360px] w-full items-center justify-center lg:mt-auto"
             >
               
-              <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2 lg:left-[35%]">
+              <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2">
                 <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#D4AF37]/20 blur-xl dark:bg-[#D4AF37]/15" />
                 
                 <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#D4AF37]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#D4AF37]/30 dark:bg-[#0a101d] dark:shadow-[0_15px_30px_rgba(246,178,59,0.15)]">
@@ -99,7 +99,7 @@ export default function DesktopFoundingPartner() {
                 </div>
               </div>
 
-              <motion.div variants={rocketFloat} initial="animate" className="absolute bottom-[80px] left-1/2 z-40 flex -translate-x-1/2 flex-col items-center lg:left-[35%]">
+              <motion.div variants={rocketFloat} initial="animate" className="absolute bottom-[80px] left-[45%] z-40 flex -translate-x-1/2 flex-col items-center">
                 
                 <div className="relative h-44 w-16 overflow-hidden rounded-b-[4px] rounded-t-[100%] bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] shadow-[0_20px_40px_rgba(178,127,28,0.4)] dark:shadow-[0_20px_40px_rgba(246,178,59,0.2)]">
                   <div className="absolute right-0 top-0 h-full w-1/2 bg-white/25" />
@@ -129,7 +129,7 @@ export default function DesktopFoundingPartner() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.6 + (idx * 0.1), type: "spring" }}
-                    className={`absolute z-50 flex flex-col items-center gap-2 left-[50%] -translate-x-1/2 lg:left-[35%] ${
+                    className={`absolute z-50 flex flex-col items-center gap-2 left-[45%] -translate-x-1/2 ${
                       isLeft ? '-ml-[170px]' : 'ml-[170px]'
                     } ${
                       isTop ? 'top-[120px]' : 'top-[216px]'
