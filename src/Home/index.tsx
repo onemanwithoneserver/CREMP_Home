@@ -1,6 +1,6 @@
 import Header from "./01_header";
 import Onboarding from "./02_Onboarding";
-import StakeHolders from "./03_StakeHolders";
+import StakeHolders from "./03_StakeHolder1";
 import Footer from "./04_footer";
 import { ThemeProvider } from "./ThemeContext";
 
