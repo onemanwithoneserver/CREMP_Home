@@ -86,13 +86,13 @@ export default function MobileFAQ() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-10 transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-6 transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
 
       <Container className="relative z-10 flex flex-col items-center px-4">
         
-        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-12 flex flex-col items-center text-center">
+        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 flex flex-col items-center text-center">
           <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
             <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
             <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
@@ -109,7 +109,7 @@ export default function MobileFAQ() {
           </motion.p>
         </motion.div>
 
-        <div className="mb-16 flex w-full flex-col gap-4">
+        <div className="mb-10 flex w-full flex-col gap-4">
           {faqData.faqs.map((faq, index) => renderFaqCard(faq, index))}
         </div>
 

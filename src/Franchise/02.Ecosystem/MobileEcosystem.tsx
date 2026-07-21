@@ -35,11 +35,11 @@ const floatAnimation: Variants = {
 
 export default function MobileEcosystem() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-10 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-4 pb-6 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[100px] dark:bg-[#F6B23B]/10" />
 
       <Container className="relative z-10 max-w-7xl px-4">
-        <div className="mb-12 flex flex-col items-center gap-10 text-center">
+        <div className="mb-8 flex flex-col items-center gap-6 text-center">
           
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center">
             
@@ -120,8 +120,8 @@ export default function MobileEcosystem() {
               </div>
 
               <motion.div variants={floatAnimation} animate="animate" className="relative z-10 -mt-[10px] flex w-full items-center justify-center gap-4 rounded-[8px] bg-gradient-to-br from-[#0f172a] to-[#020617] p-5 shadow-2xl ring-1 ring-white/10 dark:from-[#0C1525] dark:to-[#030712]">
-                <div className="absolute inset-0 rounded-[8px] bg-gradient-to-br from-[#B27F1C]/20 to-transparent opacity-60 dark:from-[#F6B23B]/20 flex justify-end" />
-                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 shadow-inner backdrop-blur-sm ring-1 ring-white/10">
+                <div className="absolute inset-0 flex justify-end rounded-[8px] bg-gradient-to-br from-[#B27F1C]/20 to-transparent opacity-60 dark:from-[#F6B23B]/20" />
+                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 shadow-inner ring-1 ring-white/10 backdrop-blur-sm">
                   <Globe2 size={28} className="text-[#F6B23B] drop-shadow-lg" strokeWidth={1.5} />
                 </div>
                 <div className="relative z-10 flex flex-col text-left">

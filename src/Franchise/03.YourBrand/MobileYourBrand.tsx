@@ -39,11 +39,11 @@ const pulseGlow: Variants = {
 
 export default function MobileYourBrand() {
   return (
-    <section className="relative w-full overflow-hidden bg-gray-50 py-10 transition-colors duration-700 dark:bg-[#030712]">
+    <section className="relative w-full overflow-hidden bg-gray-50 py-6 transition-colors duration-700 dark:bg-[#030712]">
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[80px] dark:bg-[#F6B23B]/15" />
 
       <Container className="relative z-10 mx-auto px-4">
-        <div className="flex flex-col items-center gap-10">
+        <div className="flex flex-col items-center gap-6">
           
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center text-center">
             <motion.div variants={fadeInUp}>

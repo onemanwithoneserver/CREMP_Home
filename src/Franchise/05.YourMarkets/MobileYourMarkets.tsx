@@ -50,7 +50,7 @@ const pulseBackground: Variants = {
 
 export default function MobileYourMarkets() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-8 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-6 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <motion.div 
         variants={pulseBackground}
@@ -65,7 +65,7 @@ export default function MobileYourMarkets() {
 
       <Container className="relative z-10 mx-auto w-full px-4">
         
-        <div className="mb-12 flex flex-col items-center gap-8 text-center">
+        <div className="mb-8 flex flex-col items-center gap-6 text-center">
           
           <motion.div 
             variants={staggerContainer}

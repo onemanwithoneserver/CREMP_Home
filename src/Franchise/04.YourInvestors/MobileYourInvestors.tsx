@@ -37,12 +37,12 @@ const drawLine: Variants = {
 
 export default function MobileYourInvestors() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-10 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-6 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <motion.div animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }} transition={{ duration: 8, repeat: Infinity }} className="pointer-events-none absolute right-[-10%] top-0 h-[400px] w-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
 
       <Container className="relative z-10 mx-auto px-4">
-        <div className="mb-12 flex flex-col items-center gap-10 text-center">
+        <div className="mb-8 flex flex-col items-center gap-6 text-center">
           
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center">
             <motion.div variants={fadeInUp} className="mb-4 flex items-center justify-center gap-3">

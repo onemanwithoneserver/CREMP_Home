@@ -33,14 +33,14 @@ const pulseGlow: Variants = {
 
 export default function MobileCategories() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-10 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-6 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
       <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#B27F1C 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent dark:from-[#F6B23B]/15" />
 
       <Container className="relative z-10 flex flex-col items-center px-4">
         
-        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-12 flex flex-col items-center text-center">
+        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 flex flex-col items-center text-center">
           <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
             <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
             <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
@@ -57,7 +57,7 @@ export default function MobileCategories() {
           </motion.p>
         </motion.div>
 
-        <motion.div variants={staggerGrid} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-12 grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
+        <motion.div variants={staggerGrid} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
           {categoriesData.categories.map((category, idx) => (
             <motion.div key={idx} variants={cardVariant} whileHover={{ y: -4, scale: 1.02 }} className="group relative flex h-36 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border border-gray-200/60 bg-gray-50/50 p-4 text-center shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]/50">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#B27F1C]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#F6B23B]/10" />
