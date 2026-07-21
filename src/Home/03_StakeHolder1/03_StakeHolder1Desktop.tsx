@@ -53,7 +53,7 @@ export default function DesktopStakeHolder1() {
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)] blur-3xl" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-14 px-3 sm:px-5 lg:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-14 px-3 sm:px-4">
         <div className="flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ export default function DesktopStakeHolder1() {
                   top: `calc(7rem + ${idx * 1.5}rem)`,
                   zIndex: idx * 10,
                 }}
-                className={`sticky flex flex-col items-center gap-8 rounded-3xl border border-gray-200/60 bg-white p-6 shadow-2xl shadow-gray-200/50 dark:border-gray-800/60 dark:bg-[#0c1326] dark:shadow-black/80 lg:gap-12 xl:gap-16 xl:p-12 ${
+                className={`sticky flex flex-col items-center gap-8 bg-gray-50 py-4 dark:bg-[#0a1128] lg:gap-12 xl:gap-16 xl:py-8 ${
                   isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
               >
