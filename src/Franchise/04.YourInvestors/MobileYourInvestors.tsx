@@ -41,7 +41,7 @@ export default function MobileYourInvestors() {
       
       <motion.div animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }} transition={{ duration: 8, repeat: Infinity }} className="pointer-events-none absolute right-[-10%] top-0 h-[400px] w-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
 
-      <Container className="relative z-10 mx-auto px-4">
+      <Container className="relative z-10">
         <div className="mb-8 flex flex-col items-center gap-6 text-center">
           
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center">

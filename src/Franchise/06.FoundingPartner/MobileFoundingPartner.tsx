@@ -44,7 +44,7 @@ export default function MobileFoundingPartner() {
       
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#F6B23B]/15" />
 
-      <Container className="relative z-10 mx-auto px-4">
+      <Container className="relative z-10">
         
         <div className="relative flex w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0C1525]">
           
@@ -103,14 +103,14 @@ export default function MobileFoundingPartner() {
                 const isTop = node.pos.includes('top');
                 
                 return (
-                  <motion.div key={idx} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.6 + (idx * 0.1), type: "spring" }} className={`absolute z-50 flex flex-col items-center gap-2 left-[50%] -translate-x-1/2 ${isLeft ? '-ml-[150px]' : 'ml-[150px]'} ${isTop ? 'top-[100px]' : 'top-[190px]'}`}>
+                  <motion.div key={idx} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.6 + (idx * 0.1), type: "spring" }} className={`absolute z-50 flex flex-col items-center gap-2 left-[50%] -translate-x-1/2 ${isLeft ? '-ml-[115px]' : 'ml-[115px]'} ${isTop ? 'top-[100px]' : 'top-[190px]'}`}>
                     <div className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#B27F1C]/30 bg-white/90 text-[#B27F1C] shadow-md backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#111827]/90 dark:text-[#F6B23B]">
                       <node.icon size={18} strokeWidth={2} />
-                      <svg className={`pointer-events-none absolute ${isLeft ? 'left-full' : 'right-full'} ${isTop ? 'top-1/2' : 'bottom-1/2'}`} style={{ width: '90px', height: '40px' }} viewBox="0 0 90 40" preserveAspectRatio="none">
+                      <svg className={`pointer-events-none absolute ${isLeft ? 'left-full' : 'right-full'} ${isTop ? 'top-1/2' : 'bottom-1/2'}`} style={{ width: '50px', height: '40px' }} viewBox="0 0 50 40" preserveAspectRatio="none">
                         {(() => {
-                          const iconX = isLeft ? 0 : 90;
+                          const iconX = isLeft ? 0 : 50;
                           const iconY = isTop ? 0 : 40;
-                          const rocketX = isLeft ? 90 : 0;
+                          const rocketX = isLeft ? 50 : 0;
                           const rocketY = isTop ? 40 : 0;
                           const getPoint = (t: number) => ({ cx: iconX + (rocketX - iconX) * t, cy: iconY + (rocketY - iconY) * t });
                           const dots = [0.15, 0.5, 1.0].map(getPoint);
@@ -125,7 +125,7 @@ export default function MobileFoundingPartner() {
                         })()}
                       </svg>
                     </div>
-                    <span className="text-center text-[0.65rem] font-bold leading-tight text-gray-500 dark:text-gray-400">
+                    <span className="text-center text-[0.65rem] font-bold leading-tight text-gray-500 dark:text-gray-400 w-24">
                       {node.label}
                     </span>
                   </motion.div>

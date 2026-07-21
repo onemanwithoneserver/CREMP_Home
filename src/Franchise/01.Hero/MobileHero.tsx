@@ -46,7 +46,7 @@ export default function MobileHero() {
         className="pointer-events-none absolute -left-[10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[100px] dark:bg-[#F6B23B]/15" 
       />
       
-      <Container className="relative z-10 mx-auto px-4">
+      <Container className="relative z-10">
         <div className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center">
           
           <motion.div variants={staggerContainer} initial="hidden" animate="show" className="flex w-full flex-col items-center">
