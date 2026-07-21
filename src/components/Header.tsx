@@ -3,7 +3,7 @@ import { Monitor, Smartphone, ChevronDown, X } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Dropdown from './commonfiles/Dropdown'
 
-export type Page = 'home' | 'franchise'
+export type Page = 'home' | 'franchise' | 'investors'
 export type ViewMode = 'desktop' | 'mobile'
 
 export interface HeaderProps {
@@ -16,6 +16,7 @@ export interface HeaderProps {
 const PAGE_LABELS: Record<Page, string> = {
   home: 'Home',
   franchise: 'Franchise Page',
+  investors: 'Investors Page',
 }
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[]).map((p) => ({
@@ -35,7 +36,11 @@ export default function Header({
   const navigate = useNavigate()
   const location = useLocation()
 
-  const activePage: Page = location.pathname.includes('franchise') ? 'franchise' : 'home'
+  const activePage: Page = location.pathname.includes('franchise') 
+    ? 'franchise' 
+    : location.pathname.includes('investors') 
+      ? 'investors' 
+      : 'home'
 
   const handleNavigate = useCallback((page: string) => {
     navigate(`/${viewMode}/${page}`)
