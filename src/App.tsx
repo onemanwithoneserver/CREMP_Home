@@ -6,6 +6,7 @@ import { PageTransition } from './components/layout'
 import Home from './Home'
 import Franchise from './Franchise'
 import Investors from './Investors'
+import BuyersAndSellers from './BuyersAndSellers'
 
 function App() {
   const location = useLocation()
@@ -53,6 +54,7 @@ function App() {
               <Route path="/:viewMode/home" element={<Home isMobile={isMobile} />} />
               <Route path="/:viewMode/franchise" element={<Franchise isMobile={isMobile} />} />
               <Route path="/:viewMode/investors" element={<Investors isMobile={isMobile} />} />
+              <Route path="/:viewMode/buyers-and-sellers" element={<BuyersAndSellers isMobile={isMobile} />} />
               <Route path="*" element={<Navigate to="/desktop/home" replace />} />
             </Routes>
           </PageTransition>
