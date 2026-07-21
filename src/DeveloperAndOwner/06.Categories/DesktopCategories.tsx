@@ -14,12 +14,12 @@ export default function DesktopCategories() {
         <div className="mb-10 flex items-end justify-between">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-col">
             <motion.div variants={fadeInUp} className="mb-4">
-              <span className="inline-flex items-center justify-center rounded-[8px] bg-[#B27F1C]/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:bg-[#F6B23B]/10 dark:text-[#F6B23B]">
+              <span className="inline-flex items-center justify-center rounded-[8px] bg-[#D4AF37]/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
                 {categoriesData.tag}
               </span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="mb-4 text-[3rem] font-black leading-tight text-gray-900 dark:text-white">
-              <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">{categoriesData.title}</span>
+              <span className="bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">{categoriesData.title}</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="max-w-xl text-[1.05rem] leading-relaxed text-gray-600 dark:text-gray-400">
               {categoriesData.desc}
@@ -27,7 +27,7 @@ export default function DesktopCategories() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <motion.button whileHover={{ scale: 1.05, paddingRight: '2.5rem' }} whileTap={{ scale: 0.95 }} className="group relative flex items-center gap-2 rounded-[8px] bg-gray-900 px-8 py-4 text-[0.95rem] font-bold text-white transition-all hover:bg-[#B27F1C] dark:bg-white dark:text-gray-900 dark:hover:bg-[#F6B23B]">
+            <motion.button whileHover={{ scale: 1.05, paddingRight: '2.5rem' }} whileTap={{ scale: 0.95 }} className="group relative flex items-center gap-2 rounded-[8px] bg-gray-900 px-8 py-4 text-[0.95rem] font-bold text-white transition-all hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:bg-white dark:text-gray-900 dark:hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
               {categoriesData.button.text}
               <ArrowUpRight size={18} className="absolute right-6 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1" />
             </motion.button>
@@ -40,17 +40,17 @@ export default function DesktopCategories() {
               key={idx} 
               variants={fadeInUp}
               whileHover={{ y: -10 }}
-              className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[8px] bg-white p-8 shadow-sm transition-all hover:shadow-2xl hover:shadow-[#B27F1C]/10 dark:bg-[#0a101d] dark:hover:shadow-[#F6B23B]/10"
+              className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[8px] bg-white p-8 shadow-sm transition-all hover:shadow-2xl hover:shadow-[#D4AF37]/10 dark:bg-[#0a101d] dark:hover:shadow-[#D4AF37]/10"
             >
               
-              <div className="absolute inset-0 bg-gradient-to-br from-[#B27F1C] to-[#d49924] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#2d2008] dark:to-[#0a101d]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] to-[#b38728] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#2d2008] dark:to-[#0a101d]" />
               
               <div className="relative z-10 flex justify-between items-start mb-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gray-50 text-[#B27F1C] transition-all group-hover:bg-white/10 group-hover:text-white dark:bg-[#050C17] dark:text-[#F6B23B]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gray-50 text-[#D4AF37] transition-all group-hover:bg-white/10 group-hover:text-white dark:bg-[#0a1128] dark:text-[#D4AF37]">
                   <cat.icon size={24} />
                 </div>
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1 dark:border-gray-700 dark:bg-gray-800">
-                  <ArrowUpRight size={16} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+                  <ArrowUpRight size={16} className="text-[#D4AF37] dark:text-[#D4AF37]" />
                 </div>
               </div>
               

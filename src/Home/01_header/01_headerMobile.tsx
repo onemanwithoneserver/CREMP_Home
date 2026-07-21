@@ -20,9 +20,9 @@ export default function Mobile() {
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 z-50 flex w-full items-center justify-between px-5 py-3.5 text-[#050C17] transition-all duration-500 dark:text-white ${
+      className={`fixed top-0 z-50 flex w-full items-center justify-between px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${
         scrolled
-          ? 'bg-white/85 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#050C17]/90 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]'
+          ? 'bg-white/85 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#0a1128]/90 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]'
           : 'bg-transparent'
       }`}
     >
@@ -51,9 +51,9 @@ export default function Mobile() {
           className="block h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:hidden"
         />
         <div className="flex flex-col justify-center">
-          <CrempTextLogo className="mb-[1px] h-[18px] w-auto text-[#050C17] dark:text-white" />
+          <CrempTextLogo className="mb-[1px] h-[18px] w-auto text-[#0a1128] dark:text-white" />
           <motion.span
-            className="mt-0.5 text-[5px] font-medium leading-none tracking-tight text-[#B27F1C] dark:text-[#F6B23B]"
+            className="mt-0.5 text-[5px] font-medium leading-none tracking-tight text-[#D4AF37] dark:text-[#D4AF37]"
             initial={{ opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.4 }}
@@ -70,7 +70,7 @@ export default function Mobile() {
           className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${
             theme === 'dark'
               ? 'border-amber-500/20 bg-amber-500/10 text-amber-400 active:bg-amber-500/25'
-              : 'border-gray-200 bg-white text-[#050C17] active:bg-gray-100'
+              : 'border-gray-200 bg-white text-[#0a1128] active:bg-gray-100'
           }`}
           aria-label="Toggle Theme"
         >
@@ -93,7 +93,7 @@ export default function Mobile() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.35 }}
           whileTap={{ scale: 0.95 }}
-          className="group relative flex items-center justify-center gap-1.5 overflow-hidden rounded-lg bg-[#F6B23B] px-3.5 py-1.5 text-xs font-semibold text-black transition-all active:shadow-lg"
+          className="group relative flex items-center justify-center gap-1.5 overflow-hidden rounded-lg bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-3.5 py-1.5 text-xs font-semibold text-black transition-all active:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
         >
           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 ease-out group-active:translate-x-full" />
           <span className="relative">Get Started</span>

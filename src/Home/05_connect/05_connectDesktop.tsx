@@ -24,7 +24,7 @@ export default function Desktop() {
       id: 'meet',
       label: 'Book a Meet',
       icon: Video,
-      color: 'bg-[#B27F1C] hover:bg-[#d49924] dark:bg-[#F6B23B] dark:hover:bg-[#ffc15e] text-white dark:text-black shadow-[0_4px_15px_rgba(178,127,28,0.4)] dark:shadow-[0_4px_15px_rgba(246,178,59,0.4)]',
+      color: 'bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] hover:bg-[#b38728] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:hover:bg-[#FCD34D] text-white dark:text-black shadow-[0_4px_15px_rgba(178,127,28,0.4)] dark:shadow-[0_4px_15px_rgba(246,178,59,0.4)]',
       action: () => window.open('https://meet.google.com', '_blank')
     }
   ];
@@ -50,7 +50,7 @@ export default function Desktop() {
                 onClick={option.action}
                 className="group flex items-center justify-end gap-3"
               >
-                <span className="rounded-[4px] bg-white/90 dark:bg-[#0C1525]/90 px-3 py-1.5 text-sm font-semibold text-[#050C17] dark:text-white shadow-lg backdrop-blur-sm transition-opacity group-hover:opacity-100 opacity-0 md:opacity-100 border border-gray-200 dark:border-transparent">
+                <span className="rounded-[4px] bg-white/90 dark:bg-[#121c33]/90 px-3 py-1.5 text-sm font-semibold text-[#0a1128] dark:text-white shadow-lg backdrop-blur-sm transition-opacity group-hover:opacity-100 opacity-0 md:opacity-100 border border-gray-200 dark:border-transparent">
                   {option.label}
                 </span>
                 <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-110 active:scale-95 ${option.color}`}>
@@ -66,7 +66,7 @@ export default function Desktop() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#B27F1C] dark:bg-[#F6B23B] text-white dark:text-black shadow-[0_0_25px_rgba(178,127,28,0.2)] dark:shadow-[0_0_25px_rgba(246,178,59,0.4)] transition-all hover:bg-[#d49924] dark:hover:bg-[#ffc15e]"
+        className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white dark:text-black shadow-[0_0_25px_rgba(178,127,28,0.2)] dark:shadow-[0_0_25px_rgba(246,178,59,0.4)] transition-all hover:bg-[#b38728] dark:hover:bg-[#FCD34D] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
       >
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}

@@ -43,7 +43,7 @@ export default function MobileHero() {
     <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none sm:py-10">
       <motion.div 
         variants={pulseGlow} animate="animate"
-        className="pointer-events-none absolute -left-[10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[100px] dark:bg-[#F6B23B]/15" 
+        className="pointer-events-none absolute -left-[10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15" 
       />
       
       <Container className="relative z-10">
@@ -52,7 +52,7 @@ export default function MobileHero() {
           <motion.div variants={staggerContainer} initial="hidden" animate="show" className="flex w-full flex-col items-center pt-10">
             
             <motion.div variants={fadeInUp}>
-              <span className="mb-3 flex items-center justify-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold font-sans uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+              <span className="mb-3 flex items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold font-sans uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37]">
                 {heroData.tag}
               </span>
             </motion.div>
@@ -62,7 +62,7 @@ export default function MobileHero() {
               className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
             >
               Take Control of <br /> Your Franchise <br />
-              <span className="animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+              <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
                 {heroData.titleHighlight}
               </span>
             </motion.h1>
@@ -75,7 +75,7 @@ export default function MobileHero() {
             <motion.div variants={fadeInUp} className="mb-6 flex w-full max-w-[280px] flex-col items-center gap-3">
               <motion.button 
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                className="group flex w-full items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-5 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all dark:from-[#F6B23B] dark:to-[#d49924] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)]"
+                className="group flex w-full items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-5 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)]"
               >
                 <Btn1Icon size={18} strokeWidth={2.5} className="shrink-0 transition-transform group-hover:rotate-12 group-hover:scale-110" />
                 <span className="whitespace-nowrap">{heroData.buttons[0].text}</span>
@@ -85,7 +85,7 @@ export default function MobileHero() {
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                 className="group flex w-full items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white/80 px-5 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all dark:border-gray-800 dark:bg-gray-900/50 dark:text-white"
               >
-                <Btn2Icon size={18} strokeWidth={2.5} className="shrink-0 text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#F6B23B]" />
+                <Btn2Icon size={18} strokeWidth={2.5} className="shrink-0 text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#D4AF37]" />
                 <span className="whitespace-nowrap">{heroData.buttons[1].text}</span>
               </motion.button>
             </motion.div>
@@ -93,7 +93,7 @@ export default function MobileHero() {
             <motion.div variants={fadeInUp} className="mx-auto flex w-full max-w-[340px] flex-col gap-2.5 px-4">
               {heroData.features.map((feature, idx) => (
                 <div key={idx} className="flex items-center gap-3 rounded-[4px] bg-white/50 p-2 dark:bg-gray-800/30">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#B27F1C] shadow-sm dark:border-gray-700 dark:bg-[#0a101d] dark:text-[#F6B23B]">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm dark:border-gray-700 dark:bg-[#0a101d] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                     <feature.icon size={16} strokeWidth={2} />
                   </div>
                   <span className="text-left text-[0.8rem] font-bold leading-snug text-gray-700 dark:text-gray-300">

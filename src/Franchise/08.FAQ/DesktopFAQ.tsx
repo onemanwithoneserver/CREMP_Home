@@ -48,8 +48,8 @@ export default function DesktopFAQ() {
         whileHover={{ y: -2 }}
         className={`group relative overflow-hidden rounded-[4px] border bg-white/60 px-5 py-4 shadow-sm backdrop-blur-md transition-all hover:shadow-lg dark:bg-gray-900/40 ${
           isOpen 
-            ? 'border-[#B27F1C]/40 bg-white dark:border-[#F6B23B]/40 dark:bg-gray-800/80' 
-            : 'border-gray-200/60 dark:border-gray-800/60 hover:border-[#B27F1C]/30 dark:hover:border-[#F6B23B]/30'
+            ? 'border-[#D4AF37]/40 bg-white dark:border-[#D4AF37]/40 dark:bg-gray-800/80' 
+            : 'border-gray-200/60 dark:border-gray-800/60 hover:border-[#D4AF37]/30 dark:hover:border-[#D4AF37]/30'
         }`}
       >
         <div 
@@ -58,8 +58,8 @@ export default function DesktopFAQ() {
         >
           <div className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
             isOpen 
-              ? 'border-transparent bg-[#B27F1C] text-white shadow-md dark:bg-[#F6B23B] dark:text-gray-900' 
-              : 'border-[#B27F1C]/20 bg-[#B27F1C]/5 text-[#B27F1C] dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B] group-hover:bg-[#B27F1C]/10 dark:group-hover:bg-[#F6B23B]/10'
+              ? 'border-transparent bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-md dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-gray-900' 
+              : 'border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[#D4AF37] dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37] group-hover:bg-[#D4AF37]/10 dark:group-hover:bg-[#D4AF37]/10'
           }`}>
             <faq.icon size={18} strokeWidth={isOpen ? 2.5 : 1.5} className="transition-all duration-200 group-hover:-translate-y-0.5 group-hover:scale-110" />
           </div>
@@ -67,11 +67,11 @@ export default function DesktopFAQ() {
           <div className="flex flex-1 flex-col pt-1">
             <div className="flex items-center justify-between gap-4">
               <h4 className={`text-[1.05rem] font-bold leading-tight transition-colors duration-300 ${
-                isOpen ? 'text-[#B27F1C] dark:text-[#F6B23B]' : 'text-gray-900 dark:text-white'
+                isOpen ? 'text-[#D4AF37] dark:text-[#D4AF37]' : 'text-gray-900 dark:text-white'
               }`}>
                 {faq.q}
               </h4>
-              <div className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 text-[#B27F1C] dark:text-[#F6B23B] shadow-inner' : 'bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 group-hover:bg-gray-100 dark:group-hover:bg-gray-800'}`}>
+              <div className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10 text-[#D4AF37] dark:text-[#D4AF37] shadow-inner' : 'bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 group-hover:bg-gray-100 dark:group-hover:bg-gray-800'}`}>
                 <Plus size={16} strokeWidth={2.5} className={`absolute transition-all duration-200 ${isOpen ? 'rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
                 <Minus size={16} strokeWidth={2.5} className={`absolute transition-all duration-200 ${isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-50 opacity-0'}`} />
               </div>
@@ -103,7 +103,7 @@ export default function DesktopFAQ() {
       <motion.div 
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute left-0 top-0 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" 
+        className="pointer-events-none absolute left-0 top-0 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10" 
       />
       <motion.div 
         variants={pulseGlow}
@@ -120,9 +120,9 @@ export default function DesktopFAQ() {
           viewport={{ once: true, margin: "-50px" }}
           className="mb-12 flex max-w-3xl flex-col items-center text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
-            <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
-            <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+          <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
+            <Sparkles size={14} className="text-[#D4AF37] dark:text-[#D4AF37]" fill="currentColor" />
+            <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
               {faqData.tag}
             </span>
           </motion.div>
@@ -156,7 +156,7 @@ export default function DesktopFAQ() {
           <motion.div 
             animate={{ rotate: 360 }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute -left-32 -top-32 h-[400px] w-[400px] rounded-full bg-[#B27F1C]/20 blur-[100px] dark:bg-[#F6B23B]/20" 
+            className="absolute -left-32 -top-32 h-[400px] w-[400px] rounded-full bg-[#D4AF37]/20 blur-[100px] dark:bg-[#D4AF37]/20" 
           />
           <motion.div 
             animate={{ rotate: -360 }}
@@ -182,8 +182,8 @@ export default function DesktopFAQ() {
               transition={{ duration: 0.8, type: "spring" }}
               className="relative flex h-20 w-20 shrink-0 cursor-pointer flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl lg:h-24 lg:w-24"
             >
-              <div className="absolute -top-3 right-2 h-4 w-4 rotate-45 rounded-[2px] bg-[#B27F1C] shadow-[0_0_15px_rgba(178,127,28,0.6)] dark:bg-[#F6B23B] dark:shadow-[0_0_15px_rgba(246,178,59,0.6)]" />
-              <faqData.banner.icon size={36} strokeWidth={1.5} className="text-[#B27F1C] dark:text-[#F6B23B] lg:h-[40px] lg:w-[40px]" />
+              <div className="absolute -top-3 right-2 h-4 w-4 rotate-45 rounded-[2px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_rgba(178,127,28,0.6)] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:shadow-[0_0_15px_rgba(246,178,59,0.6)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+              <faqData.banner.icon size={36} strokeWidth={1.5} className="text-[#D4AF37] dark:text-[#D4AF37] lg:h-[40px] lg:w-[40px]" />
             </motion.div>
             <div className="flex flex-col">
               <h3 className="mb-2 whitespace-pre-line text-2xl font-black leading-tight text-white lg:mb-3 lg:text-3xl">
@@ -199,7 +199,7 @@ export default function DesktopFAQ() {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative flex items-center justify-center gap-3 whitespace-nowrap overflow-hidden rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-8 py-4 text-[1.05rem] font-bold text-gray-900 shadow-xl transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#F6B23B] dark:to-[#f9d08b] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+              className="group relative flex items-center justify-center gap-3 whitespace-nowrap overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-8 py-4 text-[1.05rem] font-bold text-gray-900 shadow-xl transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#f9d08b] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
             >
               <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] bg-[position:200%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:-200%_0,0_0] hover:duration-[1500ms]" />
               <faqData.banner.btn1.icon size={20} strokeWidth={2} className="relative z-10 transition-transform group-hover:rotate-12 group-hover:scale-110" />

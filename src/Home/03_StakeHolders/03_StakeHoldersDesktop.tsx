@@ -23,7 +23,7 @@ export default function Desktop() {
     return (
       <>
         {words.join(' ')}{' '}
-        <span className="bg-gradient-to-r from-[#B27F1C] to-[#B27F1C] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#FFD17A]">
+        <span className="bg-gradient-to-r from-[#D4AF37] to-[#D4AF37] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#FFD17A]">
           {lastWord}
         </span>
       </>
@@ -61,7 +61,7 @@ export default function Desktop() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full bg-[#FAFAFA] font-sans transition-colors duration-500 selection:bg-[#F6B23B]/30 dark:bg-[#030811]"
+      className="relative w-full bg-[#FAFAFA] font-sans transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#030811]"
     >
       <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
         <motion.div
@@ -79,7 +79,7 @@ export default function Desktop() {
               className="absolute left-1/2 top-1/2 h-[100vh] w-[100vh] origin-center -translate-x-1/2 -translate-y-1/2"
             >
               <div
-                className="absolute left-1/2 top-1/2 h-full w-[50%] origin-left -translate-y-1/2 bg-gradient-to-r from-transparent to-[#B27F1C]/15 blur-lg dark:to-[#F6B23B]/10"
+                className="absolute left-1/2 top-1/2 h-full w-[50%] origin-left -translate-y-1/2 bg-gradient-to-r from-transparent to-[#D4AF37]/15 blur-lg dark:to-[#D4AF37]/10"
                 style={{ clipPath: 'polygon(0 45%, 100% 40%, 100% 60%, 0 55%)' }}
               />
             </motion.div>
@@ -118,15 +118,15 @@ export default function Desktop() {
                     {isActive && (
                       <motion.div
                         layoutId="active-line"
-                        className="absolute right-[calc(100%+6px)] h-[1px] w-6 bg-gradient-to-r from-transparent to-[#B27F1C] opacity-60 dark:to-[#F6B23B]"
+                        className="absolute right-[calc(100%+6px)] h-[1px] w-6 bg-gradient-to-r from-transparent to-[#D4AF37] opacity-60 dark:to-[#D4AF37]"
                       />
                     )}
 
                     <div
                       className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-[4px] border transition-all duration-400 xl:h-12 xl:w-12 ${
                         isActive
-                          ? 'scale-105 border-[#B27F1C] bg-white text-[#B27F1C] shadow-[0_0_20px_rgba(178,127,28,0.2)] dark:border-[#F6B23B] dark:bg-[#0A101A] dark:text-[#F6B23B] dark:shadow-[0_0_20px_rgba(246,178,59,0.15)]'
-                          : 'scale-95 border-gray-300 bg-gray-50 text-gray-500 opacity-80 transition-transform hover:scale-100 hover:border-gray-400 hover:text-gray-800 hover:opacity-100 dark:border-gray-800 dark:bg-[#050C17] dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-200'
+                          ? 'scale-105 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_20px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:bg-[#0a0f25] dark:text-[#D4AF37] dark:shadow-[0_0_20px_rgba(246,178,59,0.15)]'
+                          : 'scale-95 border-gray-300 bg-gray-50 text-gray-500 opacity-80 transition-transform hover:scale-100 hover:border-gray-400 hover:text-gray-800 hover:opacity-100 dark:border-gray-800 dark:bg-[#0a1128] dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-200'
                       }`}
                     >
                       <stakeholder.icon className="h-4 w-4 xl:h-5 xl:w-5" strokeWidth={isActive ? 2 : 1.5} />
@@ -161,12 +161,12 @@ export default function Desktop() {
               
               <motion.div 
                 variants={bentoItemVariants} 
-                className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-[8px] border border-gray-200 bg-white p-6 shadow-xl shadow-gray-200/50 dark:border-gray-800/80 dark:bg-[#0C1525] dark:shadow-2xl dark:shadow-black/60 md:col-span-7 xl:p-8"
+                className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-[8px] border border-gray-200 bg-white p-6 shadow-xl shadow-gray-200/50 dark:border-gray-800/80 dark:bg-[#121c33] dark:shadow-2xl dark:shadow-black/60 md:col-span-7 xl:p-8"
               >
-                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-[#B27F1C]/15 to-transparent blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-50 dark:from-[#F6B23B]/10" />
+                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-[#D4AF37]/15 to-transparent blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-50 dark:from-[#D4AF37]/10" />
                 
                 <div className="relative z-10 flex flex-col">
-                  <div className="mb-5 w-fit rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-2.5 py-1 text-[10px] font-black tracking-widest text-[#B27F1C] dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10 dark:text-[#F6B23B] xl:text-[11px]">
+                  <div className="mb-5 w-fit rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-2.5 py-1 text-[10px] font-black tracking-widest text-[#D4AF37] dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] xl:text-[11px]">
                     FOR {activeStakeholder.id.toUpperCase()}
                   </div>
 
@@ -177,7 +177,7 @@ export default function Desktop() {
                   <div className="mb-10 grid grid-cols-2 gap-x-6 gap-y-6">
                     {activeStakeholder.features.map((feature, fIdx) => (
                       <div key={fIdx} className="flex items-start gap-3">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] border border-gray-200 bg-gray-50 text-[#B27F1C] dark:border-gray-800 dark:bg-[#111A2C] dark:text-[#F6B23B] xl:h-10 xl:w-10">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] border border-gray-200 bg-gray-50 text-[#D4AF37] dark:border-gray-800 dark:bg-[#121c33] dark:text-[#D4AF37] xl:h-10 xl:w-10">
                           <feature.icon className="h-4 w-4 xl:h-5 xl:w-5" strokeWidth={1.5} />
                         </div>
                         <span className="mt-1 text-xs font-bold leading-relaxed text-gray-700 dark:text-gray-300 xl:text-sm">
@@ -189,8 +189,8 @@ export default function Desktop() {
                 </div>
 
                 <div className="relative z-10 mt-auto">
-                  <button className="group relative flex w-fit items-center gap-4 overflow-hidden rounded-[4px] bg-gray-900 px-2 py-1.5 pr-5 text-white shadow-lg transition-all hover:bg-gray-800 hover:shadow-gray-900/20 active:scale-[0.98] dark:bg-white dark:text-[#050C17] dark:hover:bg-gray-100 dark:hover:shadow-white/10 xl:px-2.5 xl:py-2 xl:pr-6">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-[2px] bg-transparent text-[#FFD17A] dark:text-[#B27F1C] xl:h-8 xl:w-8">
+                  <button className="group relative flex w-fit items-center gap-4 overflow-hidden rounded-[4px] bg-gray-900 px-2 py-1.5 pr-5 text-white shadow-lg transition-all hover:bg-gray-800 hover:shadow-gray-900/20 active:scale-[0.98] dark:bg-white dark:text-[#0a1128] dark:hover:bg-gray-100 dark:hover:shadow-white/10 xl:px-2.5 xl:py-2 xl:pr-6">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-[2px] bg-transparent text-[#FFD17A] dark:text-[#D4AF37] xl:h-8 xl:w-8">
                       <Sparkles className="h-3 w-3 xl:h-4 xl:w-4" />
                     </div>
                     <span className="text-xs font-bold tracking-wide xl:text-sm">
@@ -203,9 +203,9 @@ export default function Desktop() {
 
               <motion.div 
                 variants={bentoItemVariants} 
-                className="group relative col-span-1 hidden overflow-hidden rounded-[8px] border border-gray-200 bg-gray-100 dark:border-gray-800/80 dark:bg-[#0C1525] md:col-span-5 md:block"
+                className="group relative col-span-1 hidden overflow-hidden rounded-[8px] border border-gray-200 bg-gray-100 dark:border-gray-800/80 dark:bg-[#121c33] md:col-span-5 md:block"
               >
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-[#050C17]/80" />
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-[#0a1128]/80" />
                 <motion.img
                   initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
@@ -220,7 +220,7 @@ export default function Desktop() {
                 <motion.div 
                   key={sIdx}
                   variants={bentoItemVariants}
-                  className="group col-span-1 flex items-center justify-between rounded-[8px] border border-gray-200 bg-white px-5 py-4 shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800/80 dark:bg-[#0C1525] dark:hover:border-gray-700 dark:hover:bg-[#0C1525] md:col-span-3 xl:px-6 xl:py-5"
+                  className="group col-span-1 flex items-center justify-between rounded-[8px] border border-gray-200 bg-white px-5 py-4 shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800/80 dark:bg-[#121c33] dark:hover:border-gray-700 dark:hover:bg-[#121c33] md:col-span-3 xl:px-6 xl:py-5"
                 >
                   <div className="flex flex-col gap-1">
                     <span className="text-xl font-black text-gray-900 dark:text-white xl:text-2xl">
@@ -230,7 +230,7 @@ export default function Desktop() {
                       {stat.label}
                     </span>
                   </div>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-[4px] bg-[#B27F1C]/10 text-[#B27F1C] transition-transform group-hover:-rotate-12 dark:bg-[#F6B23B]/10 dark:text-[#F6B23B] xl:h-10 xl:w-10">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-[4px] bg-[#D4AF37]/10 text-[#D4AF37] transition-transform group-hover:-rotate-12 dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] xl:h-10 xl:w-10">
                     <stat.icon className="h-4 w-4 xl:h-5 xl:w-5" strokeWidth={2} />
                   </div>
                 </motion.div>

@@ -66,12 +66,12 @@ export default function DashboardShowcase() {
       <motion.div 
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute left-0 top-0 h-[800px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent dark:from-[#F6B23B]/15" 
+        className="pointer-events-none absolute left-0 top-0 h-[800px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/15 via-transparent to-transparent dark:from-[#D4AF37]/15" 
       />
       <motion.div 
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" 
+        className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10" 
       />
 
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
@@ -85,9 +85,9 @@ export default function DashboardShowcase() {
             className="flex w-full flex-col justify-center lg:w-[45%]"
           >
             <motion.div variants={fadeInUp}>
-              <div className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
-                <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-                <span className="text-[0.7rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+              <div className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+                <Sparkles size={14} className="text-[#D4AF37] dark:text-[#D4AF37]" />
+                <span className="text-[0.7rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                   Unify Your Workspace
                 </span>
               </div>
@@ -98,7 +98,7 @@ export default function DashboardShowcase() {
               className="mb-6 text-[3.5rem] font-black leading-[1.1] tracking-tight xl:text-[4.5rem]"
             >
               <span className="block text-gray-900 dark:text-white">Your Brand.</span>
-              <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+              <span className="block animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
                 Your Story.
               </span>
             </motion.h2>
@@ -114,7 +114,7 @@ export default function DashboardShowcase() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex items-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-7 py-3.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#F6B23B] dark:to-[#f9d08b] dark:text-gray-900 dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+                className="group flex items-center gap-2 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-7 py-3.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#f9d08b] dark:text-gray-900 dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
               >
                 Explore Dashboard
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -122,7 +122,7 @@ export default function DashboardShowcase() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-900 shadow-sm transition-all hover:border-[#B27F1C]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:hover:border-[#F6B23B]/50 dark:hover:bg-gray-800"
+                className="flex items-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-900 shadow-sm transition-all hover:border-[#D4AF37]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-gray-800"
               >
                 View Live Demo
               </motion.button>
@@ -205,7 +205,7 @@ export default function DashboardShowcase() {
                       <YourBrandLogo size="md" showText={false} />
                     </motion.div>
                     <div className="flex flex-col gap-6 text-gray-400 dark:text-gray-500">
-                      <div className="cursor-pointer rounded-[4px] bg-white p-2.5 text-[#B27F1C] shadow-sm transition-transform hover:scale-110 dark:bg-gray-800 dark:text-[#F6B23B]">
+                      <div className="cursor-pointer rounded-[4px] bg-white p-2.5 text-[#D4AF37] shadow-sm transition-transform hover:scale-110 dark:bg-gray-800 dark:text-[#D4AF37]">
                         <LayoutDashboard size={20} />
                       </div>
                       <div className="cursor-pointer p-2.5 transition-all hover:scale-110 hover:text-gray-600 dark:hover:text-gray-300"><BarChart3 size={20} /></div>
@@ -227,7 +227,7 @@ export default function DashboardShowcase() {
                           <Bell size={18} />
                           <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-[#030712]" />
                         </div>
-                        <div className="ml-2 h-8 w-8 cursor-pointer overflow-hidden rounded-full bg-gray-200 ring-2 ring-transparent transition-all hover:ring-[#B27F1C] dark:bg-gray-800 dark:hover:ring-[#F6B23B]">
+                        <div className="ml-2 h-8 w-8 cursor-pointer overflow-hidden rounded-full bg-gray-200 ring-2 ring-transparent transition-all hover:ring-[#D4AF37] dark:bg-gray-800 dark:hover:ring-[#D4AF37]">
                           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" className="h-full w-full object-cover" alt="User" />
                         </div>
                       </div>
@@ -236,7 +236,7 @@ export default function DashboardShowcase() {
                     <div className="mb-6 grid grid-cols-2 gap-4">
                       <motion.div 
                         whileHover={{ y: -4 }}
-                        className="cursor-pointer rounded-[8px] border border-gray-100 bg-gray-50/50 p-4 transition-shadow hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/30"
+                        className="cursor-pointer rounded-[8px] border border-gray-100 bg-gray-50/50 p-4 transition-shadow hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                       >
                         <p className="mb-1 text-xs font-medium text-gray-500">Total Revenue</p>
                         <h4 className="text-xl font-bold text-gray-900 dark:text-white">$84,590</h4>
@@ -246,7 +246,7 @@ export default function DashboardShowcase() {
                       </motion.div>
                       <motion.div 
                         whileHover={{ y: -4 }}
-                        className="cursor-pointer rounded-[8px] border border-gray-100 bg-gray-50/50 p-4 transition-shadow hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/30"
+                        className="cursor-pointer rounded-[8px] border border-gray-100 bg-gray-50/50 p-4 transition-shadow hover:shadow-md dark:border-gray-800/60 dark:bg-gray-900/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                       >
                         <p className="mb-1 text-xs font-medium text-gray-500">Active Users</p>
                         <h4 className="text-xl font-bold text-gray-900 dark:text-white">12,405</h4>
@@ -256,10 +256,10 @@ export default function DashboardShowcase() {
                       </motion.div>
                     </div>
 
-                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]">
+                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                       <div className="mb-4 flex items-center justify-between">
                         <h4 className="text-sm font-bold text-gray-900 dark:text-white">Performance</h4>
-                        <select className="cursor-pointer rounded-[2px] border border-gray-200 bg-transparent px-2 py-1 text-xs text-gray-500 outline-none transition-colors hover:border-gray-300 focus:border-[#B27F1C] dark:border-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:focus:border-[#F6B23B]">
+                        <select className="cursor-pointer rounded-[2px] border border-gray-200 bg-transparent px-2 py-1 text-xs text-gray-500 outline-none transition-colors hover:border-gray-300 focus:border-[#D4AF37] dark:border-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:focus:border-[#D4AF37]">
                           <option>This Week</option>
                           <option>Last Week</option>
                           <option>This Month</option>
@@ -274,7 +274,7 @@ export default function DashboardShowcase() {
                                 whileInView={{ height: `${height}%` }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.3 + i * 0.1, type: "spring", bounce: 0.3 }}
-                                className="w-full cursor-pointer rounded-t-[2px] bg-[#B27F1C]/20 transition-colors group-hover:bg-[#B27F1C] dark:bg-[#F6B23B]/20 dark:group-hover:bg-[#F6B23B]" 
+                                className="w-full cursor-pointer rounded-t-[2px] bg-[#D4AF37]/20 transition-colors group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:bg-[#D4AF37]/20 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" 
                               />
                             </div>
                           ))}

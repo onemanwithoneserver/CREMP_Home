@@ -15,13 +15,13 @@ export default function DesktopBuyersAndSellersProfile() {
         
         <div className="mb-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-4 inline-flex items-center justify-center">
-            <span className="rounded-[8px] bg-[#B27F1C]/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-widest text-[#B27F1C] dark:bg-[#F6B23B]/10 dark:text-[#F6B23B]">
+            <span className="rounded-[8px] bg-[#D4AF37]/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
               {BuyersAndSellersProfileData.tag}
             </span>
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="mb-6 text-[3rem] font-black leading-tight text-gray-900 dark:text-white">
             {BuyersAndSellersProfileData.titleBase} <br />
-            <span className="bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+            <span className="bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
               {BuyersAndSellersProfileData.titleHighlight}
             </span>
           </motion.h2>
@@ -40,12 +40,12 @@ export default function DesktopBuyersAndSellersProfile() {
                 onClick={() => setActiveTab(idx)}
                 className={`group flex items-center justify-between rounded-[8px] px-5 py-4 text-left transition-all ${
                   activeTab === idx 
-                    ? 'bg-[#B27F1C] shadow-lg shadow-[#B27F1C]/20 dark:bg-[#F6B23B] dark:shadow-[#F6B23B]/10' 
+                    ? 'bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-lg shadow-[#D4AF37]/20 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:shadow-[#D4AF37]/10' 
                     : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <pill.icon size={22} className={activeTab === idx ? 'text-white dark:text-gray-900' : 'text-gray-400 transition-colors group-hover:text-[#B27F1C] dark:group-hover:text-[#F6B23B]'} />
+                  <pill.icon size={22} className={activeTab === idx ? 'text-white dark:text-gray-900' : 'text-gray-400 transition-colors group-hover:text-[#D4AF37] dark:group-hover:text-[#D4AF37]'} />
                   <span className={`font-bold ${activeTab === idx ? 'text-white dark:text-gray-900' : 'text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white'}`}>
                     {pill.label}
                   </span>
@@ -58,7 +58,7 @@ export default function DesktopBuyersAndSellersProfile() {
           
           <div className="flex w-2/3 flex-col py-2 pl-4">
             <div className="mb-8 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#B27F1C]/10 text-[#B27F1C] dark:bg-[#F6B23B]/10 dark:text-[#F6B23B]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
                 {(() => {
                   const FirstIcon = BuyersAndSellersProfileData.expectations[0].icon;
                   return <FirstIcon size={20} />;
@@ -77,8 +77,8 @@ export default function DesktopBuyersAndSellersProfile() {
                 className="grid grid-cols-2 gap-6"
               >
                 {BuyersAndSellersProfileData.expectations.map((exp, idx) => (
-                  <div key={idx} className="flex flex-col gap-3 rounded-[8px] border border-gray-100 bg-gray-50 p-6 dark:border-gray-800 dark:bg-[#050C17]">
-                    <exp.icon size={24} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+                  <div key={idx} className="flex flex-col gap-3 rounded-[8px] border border-gray-100 bg-gray-50 p-6 dark:border-gray-800 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                    <exp.icon size={24} className="text-[#D4AF37] dark:text-[#D4AF37]" />
                     <h4 className="text-[1.05rem] font-bold text-gray-900 dark:text-white">{exp.title}</h4>
                     <p className="text-[0.9rem] leading-relaxed text-gray-500 dark:text-gray-400">{exp.desc}</p>
                   </div>

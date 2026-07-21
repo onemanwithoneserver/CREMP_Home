@@ -35,15 +35,15 @@ export default function MobileCategories() {
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#B27F1C 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
-      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent dark:from-[#F6B23B]/15" />
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#D4AF37 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
+      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/15 via-transparent to-transparent dark:from-[#D4AF37]/15" />
 
       <Container className="relative z-10 flex flex-col items-center px-4">
         
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 flex flex-col items-center text-center">
-          <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
-            <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-            <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+          <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+            <Sparkles size={12} className="text-[#D4AF37] dark:text-[#D4AF37]" />
+            <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
               {categoriesData.tag}
             </span>
           </motion.div>
@@ -60,7 +60,7 @@ export default function MobileCategories() {
         <motion.div variants={staggerGrid} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
           {categoriesData.categories.map((category, idx) => (
             <motion.div key={idx} variants={cardVariant} whileHover={{ y: -4, scale: 1.02 }} className="group relative flex h-36 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border border-gray-200/60 bg-gray-50/50 p-4 text-center shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]/50">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#B27F1C]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#F6B23B]/10" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#D4AF37]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#D4AF37]/10" />
               
               <div className="relative z-10 mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200/50 dark:bg-gray-900 dark:text-gray-400 dark:ring-gray-800">
                 <category.icon size={20} strokeWidth={1.5} />
@@ -77,19 +77,19 @@ export default function MobileCategories() {
           <div className="flex w-full items-center gap-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-200 dark:to-gray-800" />
             <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-50 ring-1 ring-gray-200 dark:bg-[#0a101d] dark:ring-gray-800">
-              <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+              <Sparkles size={12} className="text-[#D4AF37] dark:text-[#D4AF37]" />
             </div>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-200 dark:to-gray-800" />
           </div>
 
           <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group flex w-full items-center justify-center gap-3 rounded-[4px] bg-gray-900 px-6 py-3.5 text-[0.95rem] font-bold font-sans text-white shadow-md dark:bg-white dark:text-gray-900">
-            <Users size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+            <Users size={18} className="text-[#D4AF37] dark:text-[#D4AF37]" />
             {categoriesData.button.text}
             <ChevronRight size={18} className="opacity-70 transition-transform group-hover:translate-x-1" />
           </motion.button>
           
-          <div className="flex w-full items-center justify-center gap-2 rounded-[2px] border border-gray-100 bg-gray-50 px-3 py-2 dark:border-gray-800/60 dark:bg-gray-900/50">
-            <ShieldCheck size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+          <div className="flex w-full items-center justify-center gap-2 rounded-[2px] border border-gray-100 bg-gray-50 px-3 py-2 dark:border-gray-800/60 dark:bg-gray-900/50 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+            <ShieldCheck size={14} className="text-[#D4AF37] dark:text-[#D4AF37]" />
             <span className="text-[0.65rem] font-bold text-gray-500 dark:text-gray-400">
               {categoriesData.bottomDisclaimer}
             </span>

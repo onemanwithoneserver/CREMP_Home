@@ -56,7 +56,7 @@ export default function Desktop() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-12 pt-28 font-sans text-[#050C17] dark:bg-[#050C17] dark:text-white lg:pt-36"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-12 pt-28 font-sans text-[#0a1128] dark:bg-[#0a1128] dark:text-white lg:pt-36"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -80,12 +80,12 @@ export default function Desktop() {
         />
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#050C17] dark:via-[#050C17]/95 lg:via-gray-50/80 dark:lg:via-[#050C17]/80" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#0a1128] dark:via-[#0a1128]/95 lg:via-gray-50/80 dark:lg:via-[#0a1128]/80" />
 
       {floatingParticles.map((p) => (
         <motion.div
           key={p.id}
-          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#F6B23B]/30 dark:block"
+          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#D4AF37]/30 dark:block"
           style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
           animate={{ y: [-10, 10, -10], opacity: [0, 0.6, 0] }}
           transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
@@ -101,15 +101,15 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 15, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={springAnim}
-              className="mb-6 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#B27F1C]/20 bg-gradient-to-r from-[#B27F1C]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#F6B23B]/20 dark:from-[#F6B23B]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
+              className="mb-6 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#D4AF37]/20 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#D4AF37]/20 dark:from-[#D4AF37]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
             >
-              <div className="flex items-center gap-1.5 font-bold text-[#050C17] sm:gap-2 dark:text-white">
-                <Rocket className="h-3.5 w-3.5 text-[#B27F1C] sm:h-4 sm:w-4 dark:text-[#F6B23B]" />
+              <div className="flex items-center gap-1.5 font-bold text-[#0a1128] sm:gap-2 dark:text-white">
+                <Rocket className="h-3.5 w-3.5 text-[#D4AF37] sm:h-4 sm:w-4 dark:text-[#D4AF37]" />
                 <span className="uppercase tracking-wide">Vendor Onboarding Open</span>
               </div>
               <div className="hidden h-3.5 w-[1px] bg-gray-300 sm:block dark:bg-gray-700"></div>
-              <div className="flex items-center gap-1.5 font-semibold text-[#B27F1C] sm:gap-2 dark:text-[#F6B23B]">
-                <span className="rounded bg-[#B27F1C]/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#B27F1C] sm:px-2 sm:text-xs dark:bg-[#F6B23B]/20 dark:text-[#F6B23B]">
+              <div className="flex items-center gap-1.5 font-semibold text-[#D4AF37] sm:gap-2 dark:text-[#D4AF37]">
+                <span className="rounded bg-[#D4AF37]/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#D4AF37] sm:px-2 sm:text-xs dark:bg-[#D4AF37]/20 dark:text-[#D4AF37]">
                   Phase 1
                 </span>
                 <span className="uppercase tracking-wide">Launching in Telangana</span>
@@ -120,11 +120,11 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.1 }}
-              className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#050C17] dark:text-white lg:text-6xl xl:text-7xl"
+              className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#0a1128] dark:text-white lg:text-6xl xl:text-7xl"
             >
               India's 1st Integrated <br />
               <motion.span
-                className="bg-gradient-to-r from-[#d97b29] to-[#F6B23B] bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent"
                 style={{ backgroundSize: '200% auto' }}
                 animate={{ backgroundPosition: ['0% center', '100% center', '0% center'] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
@@ -139,12 +139,12 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2 text-base font-bold text-[#050C17]/80 dark:text-white/80"
+              className="flex flex-wrap items-center gap-2 text-base font-bold text-[#0a1128]/80 dark:text-white/80"
             >
               <span>Commercial Properties</span>
-              <span className="text-[#F6B23B]">•</span>
+              <span className="text-[#D4AF37]">•</span>
               <span>Franchise Expansion</span>
-              <span className="text-[#F6B23B]">•</span>
+              <span className="text-[#D4AF37]">•</span>
               <span>Retail Business</span>
             </motion.div>
 
@@ -165,7 +165,7 @@ export default function Desktop() {
 
           <div className="flex w-full items-center justify-center lg:w-[45%] xl:w-[40%]">
             <div className="group/orbit relative mx-auto hidden h-[320px] w-[320px] shrink-0 items-center justify-center lg:flex lg:h-[400px] lg:w-[400px] xl:h-[480px] xl:w-[480px]">
-              <div className="pointer-events-none absolute inset-0 rounded-full bg-[#F6B23B]/5 blur-[60px] transition-opacity duration-700 group-hover/orbit:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 rounded-full bg-[#D4AF37]/5 blur-[60px] transition-opacity duration-700 group-hover/orbit:opacity-100" />
               
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -196,12 +196,12 @@ export default function Desktop() {
                   rotate: { repeat: Infinity, duration: 30, ease: "linear" }
                 }}
                 viewport={{ once: true }}
-                className="absolute inset-[18%] rounded-full border border-[#111A2C]"
+                className="absolute inset-[18%] rounded-full border border-[#121c33]"
               >
-                <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
-                <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
-                <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
-                <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6B23B] shadow-[0_0_15px_#F6B23B]" />
+                <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
               </motion.div>
 
               <motion.div 
@@ -209,9 +209,9 @@ export default function Desktop() {
                 whileInView={{ scale: 1 }}
                 transition={{ type: "spring", duration: 1, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-gray-800 bg-[#050C17] shadow-[0_0_20px_rgba(246,178,59,0.1)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#08101E] before:to-transparent group-hover/orbit:shadow-[0_0_30px_rgba(246,178,59,0.15)]"
+                className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-gray-800 bg-[#0a1128] shadow-[0_0_20px_rgba(246,178,59,0.1)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#0a0f25] before:to-transparent group-hover/orbit:shadow-[0_0_30px_rgba(246,178,59,0.15)]"
               >
-                <div className="absolute inset-0 animate-ping rounded-full bg-[#F6B23B]/10 opacity-20 duration-[3000ms]" />
+                <div className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37]/10 opacity-20 duration-[3000ms]" />
                 <img
                   src={crempLogo}
                   alt="CREMP Logo"
@@ -250,20 +250,20 @@ export default function Desktop() {
                       >
                         <div className="relative">
                           {isActive && (
-                            <div className="absolute inset-0 animate-ping rounded-full bg-[#B27F1C] opacity-30 duration-1000 dark:bg-[#F6B23B]" />
+                            <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] opacity-30 duration-1000 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
                           )}
                           <motion.div 
-                            className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-all duration-500 dark:bg-[#0C1525] lg:h-14 lg:w-14 xl:h-16 xl:w-16 ${
+                            className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-all duration-500 dark:bg-[#121c33] lg:h-14 lg:w-14 xl:h-16 xl:w-16 ${
                               isActive 
-                                ? 'scale-110 border-[#B27F1C] text-[#B27F1C] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:border-[#F6B23B] dark:text-[#F6B23B] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]' 
-                                : 'border-gray-200 text-gray-400 hover:border-[#B27F1C]/50 hover:text-[#050C17] dark:border-gray-700 dark:hover:border-[#F6B23B]/50 dark:hover:text-white'
+                                ? 'scale-110 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:text-[#D4AF37] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]' 
+                                : 'border-gray-200 text-gray-400 hover:border-[#D4AF37]/50 hover:text-[#0a1128] dark:border-gray-700 dark:hover:border-[#D4AF37]/50 dark:hover:text-white'
                             }`}
                             whileHover={{ scale: 1.05 }}
                           >
                             <stakeholder.icon className="h-5 w-5 lg:h-6 lg:w-6 xl:h-7 xl:w-7" strokeWidth={1.8} />
                           </motion.div>
                         </div>
-                        <span className={`mt-2 text-center text-[10px] font-bold transition-all duration-500 lg:text-[11px] xl:mt-3 xl:text-sm ${isActive ? 'text-[#050C17] drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:text-white dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-gray-500'}`} style={{ whiteSpace: 'pre-line' }}>
+                        <span className={`mt-2 text-center text-[10px] font-bold transition-all duration-500 lg:text-[11px] xl:mt-3 xl:text-sm ${isActive ? 'text-[#0a1128] drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:text-white dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-gray-500'}`} style={{ whiteSpace: 'pre-line' }}>
                           {stakeholder.label}
                         </span>
                       </motion.div>
@@ -282,7 +282,7 @@ export default function Desktop() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.6 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-800 bg-[#0C1525] px-6 py-4 shadow-lg lg:flex-row"
+            className="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-800 bg-[#121c33] px-6 py-4 shadow-lg lg:flex-row"
           >
             <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-gray-200">
               Founding Vendor Benefits
@@ -291,7 +291,7 @@ export default function Desktop() {
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               {vendorBenefits.map((benefit) => (
                 <motion.div key={benefit.title} whileHover={{ y: -2 }} className="flex items-center gap-2.5">
-                  <div className="rounded-full border border-gray-700 bg-[#111A2C] p-1.5 text-[#F6B23B] shadow-sm">
+                  <div className="rounded-full border border-gray-700 bg-[#121c33] p-1.5 text-[#D4AF37] shadow-sm">
                     <benefit.icon className="h-4 w-4" />
                   </div>
                   <span className="text-sm font-medium text-gray-300">{benefit.title}</span>

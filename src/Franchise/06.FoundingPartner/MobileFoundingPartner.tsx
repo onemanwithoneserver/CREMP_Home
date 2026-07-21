@@ -40,18 +40,18 @@ export default function MobileFoundingPartner() {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712]">
       
-      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#F6B23B]/15" />
+      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#D4AF37]/15" />
 
       <div className="relative z-10 w-full">
         
-        <div className="relative flex w-full flex-col overflow-hidden border-y border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0C1525]">
+        <div className="relative flex w-full flex-col overflow-hidden border-y border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#121c33]">
           
           <div className="relative flex w-full flex-col items-center p-6 pt-6 text-center">
             
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-center">
-              <motion.div variants={fadeInUp} className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#F6B23B]/10">
-                <Star size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
-                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+              <motion.div variants={fadeInUp} className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10">
+                <Star size={14} className="text-[#D4AF37] dark:text-[#D4AF37]" fill="currentColor" />
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                   {foundingData.tag}
                 </span>
               </motion.div>
@@ -68,13 +68,13 @@ export default function MobileFoundingPartner() {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }} className="relative mt-8 mb-6 -my-10 flex h-[320px] w-full items-center justify-center scale-75 origin-center">
               
               <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2">
-                <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#B27F1C]/20 blur-xl dark:bg-[#F6B23B]/15" />
-                <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#B27F1C]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#F6B23B]/30 dark:bg-[#0a101d]">
-                  <span className="-translate-x-[0.5em] pl-[0.3em] text-[0.7rem] font-black tracking-[0.3em] text-[#B27F1C] dark:text-[#F6B23B]">
+                <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#D4AF37]/20 blur-xl dark:bg-[#D4AF37]/15" />
+                <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#D4AF37]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#D4AF37]/30 dark:bg-[#0a101d]">
+                  <span className="-translate-x-[0.5em] pl-[0.3em] text-[0.7rem] font-black tracking-[0.3em] text-[#D4AF37] dark:text-[#D4AF37]">
                     FOUNDING PARTNER
                   </span>
                 </div>
-                <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#B27F1C]/40 bg-gray-50 dark:border-[#F6B23B]/40 dark:bg-[#111827]" />
+                <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#D4AF37]/40 bg-gray-50 dark:border-[#D4AF37]/40 dark:bg-[#111827]" />
                 <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-gray-700/80 dark:from-[#1e293b] dark:to-[#0a101d]">
                   <div className="h-[60%] w-[60%] rounded-[100%] border border-gray-300/50 dark:border-gray-600/30" />
                 </div>
@@ -106,7 +106,7 @@ export default function MobileFoundingPartner() {
                       className="absolute z-50 flex flex-col items-center gap-2 -translate-x-1/2"
                       style={{ left: `calc(50% ${isLeft ? '-' : '+'} 115px)`, top: isTop ? '100px' : '190px' }}
                     >
-                      <div className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#B27F1C]/30 bg-white/90 text-[#B27F1C] shadow-md backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#111827]/90 dark:text-[#F6B23B]">
+                      <div className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-white/90 text-[#D4AF37] shadow-md backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#111827]/90 dark:text-[#D4AF37]">
                         <node.icon size={18} strokeWidth={2} />
                         <svg className="pointer-events-none absolute" 
                              style={{ 
@@ -124,9 +124,9 @@ export default function MobileFoundingPartner() {
                             const dots = [0.15, 0.5, 1.0].map(getPoint);
                             return (
                               <>
-                                <line x1={iconX} y1={iconY} x2={rocketX} y2={rocketY} stroke="currentColor" className="text-[#B27F1C]/40 dark:text-[#F6B23B]/40" strokeWidth="1.5" strokeDasharray="3 4" />
+                                <line x1={iconX} y1={iconY} x2={rocketX} y2={rocketY} stroke="currentColor" className="text-[#D4AF37]/40 dark:text-[#D4AF37]/40" strokeWidth="1.5" strokeDasharray="3 4" />
                                 {dots.map((pt, i) => (
-                                  <circle key={i} cx={pt.cx} cy={pt.cy} r={i === 2 ? "2.5" : "1.5"} className="fill-[#B27F1C] dark:fill-[#F6B23B]" />
+                                  <circle key={i} cx={pt.cx} cy={pt.cy} r={i === 2 ? "2.5" : "1.5"} className="fill-[#D4AF37] dark:fill-[#D4AF37]" />
                                 ))}
                               </>
                             );
@@ -143,10 +143,10 @@ export default function MobileFoundingPartner() {
             </motion.div>
           </div>
 
-          <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#050C17]/50">
+          <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#0a1128]/50">
             <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/20 bg-[#B27F1C]/10 shadow-sm dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
-                <Gem size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 shadow-sm dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
+                <Gem size={18} className="text-[#D4AF37] dark:text-[#D4AF37]" strokeWidth={2} />
               </div>
               <h3 className="text-xl font-bold font-sans text-gray-900 dark:text-white">
                 {foundingData.benefitsTitle}
@@ -155,11 +155,11 @@ export default function MobileFoundingPartner() {
 
             <div className="mb-8 flex flex-col gap-3">
               {foundingData.benefits.map((benefit, idx) => (
-                <div key={idx} className="flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-sm dark:border-gray-800/50 dark:bg-[#0C1525]/60">
-                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10">
-                    <Check size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={3} />
+                <div key={idx} className="flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-sm dark:border-gray-800/50 dark:bg-[#121c33]/60">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10">
+                    <Check size={12} className="text-[#D4AF37] dark:text-[#D4AF37]" strokeWidth={3} />
                   </div>
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827]">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                     <benefit.icon size={14} strokeWidth={1.5} />
                   </div>
                   <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">
@@ -170,7 +170,7 @@ export default function MobileFoundingPartner() {
             </div>
 
             <div className="mb-6 flex flex-col gap-3">
-              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative w-full overflow-hidden rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] p-3 text-left shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b]">
+              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative w-full overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] p-3 text-left shadow-md dark:from-[#D4AF37] dark:to-[#f9d08b]">
                 <div className="relative z-10 flex items-center gap-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
                     <Btn1Icon size={20} className="text-white dark:text-gray-900" strokeWidth={2} />

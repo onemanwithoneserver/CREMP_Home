@@ -36,7 +36,7 @@ export default function MobileFAQ() {
         viewport={{ once: true }}
         className={`group relative overflow-hidden rounded-[4px] border bg-white/60 p-3.5 shadow-sm backdrop-blur-md transition-all dark:bg-gray-900/40 ${
           isOpen 
-            ? 'border-[#B27F1C]/40 bg-white dark:border-[#F6B23B]/40 dark:bg-gray-800/80' 
+            ? 'border-[#D4AF37]/40 bg-white dark:border-[#D4AF37]/40 dark:bg-gray-800/80' 
             : 'border-gray-200/60 dark:border-gray-800/60'
         }`}
       >
@@ -46,8 +46,8 @@ export default function MobileFAQ() {
         >
           <div className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
             isOpen 
-              ? 'border-transparent bg-[#B27F1C] text-white shadow-md dark:bg-[#F6B23B] dark:text-gray-900' 
-              : 'border-[#B27F1C]/20 bg-[#B27F1C]/5 text-[#B27F1C] dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]'
+              ? 'border-transparent bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-md dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-gray-900' 
+              : 'border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[#D4AF37] dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37]'
           }`}>
             <faq.icon size={16} strokeWidth={isOpen ? 2.5 : 1.5} className="transition-all duration-200 group-hover:-translate-y-0.5 group-hover:scale-110" />
           </div>
@@ -55,11 +55,11 @@ export default function MobileFAQ() {
           <div className="flex flex-1 flex-col pt-1">
             <div className="flex items-center justify-between gap-3">
               <h4 className={`text-[0.95rem] font-bold font-sans leading-tight transition-colors duration-300 ${
-                isOpen ? 'text-[#B27F1C] dark:text-[#F6B23B]' : 'text-gray-900 dark:text-white'
+                isOpen ? 'text-[#D4AF37] dark:text-[#D4AF37]' : 'text-gray-900 dark:text-white'
               }`}>
                 {faq.q}
               </h4>
-              <div className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#B27F1C]/10 dark:bg-[#F6B23B]/10 text-[#B27F1C] dark:text-[#F6B23B] shadow-inner' : 'bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500'}`}>
+              <div className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10 text-[#D4AF37] dark:text-[#D4AF37] shadow-inner' : 'bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500'}`}>
                 <Plus size={14} strokeWidth={2.5} className={`absolute transition-all duration-200 ${isOpen ? 'rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
                 <Minus size={14} strokeWidth={2.5} className={`absolute transition-all duration-200 ${isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-50 opacity-0'}`} />
               </div>
@@ -88,14 +88,14 @@ export default function MobileFAQ() {
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       
-      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/10 via-transparent to-transparent dark:from-[#F6B23B]/10" />
+      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10" />
 
       <Container className="relative z-10 flex flex-col items-center px-4">
         
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mb-8 flex flex-col items-center text-center">
-          <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-[#B27F1C]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
-            <Sparkles size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" fill="currentColor" />
-            <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">
+          <motion.div variants={fadeInUp} className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
+            <Sparkles size={12} className="text-[#D4AF37] dark:text-[#D4AF37]" fill="currentColor" />
+            <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
               {faqData.tag}
             </span>
           </motion.div>
@@ -128,8 +128,8 @@ export default function MobileFAQ() {
 
           <div className="relative z-10 mb-8 flex flex-col items-center gap-6">
             <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-xl backdrop-blur-xl">
-              <div className="absolute -top-2 right-1 h-3 w-3 rotate-45 rounded-[2px] bg-[#B27F1C] shadow-[0_0_10px_rgba(178,127,28,0.6)] dark:bg-[#F6B23B] dark:shadow-[0_0_10px_rgba(246,178,59,0.6)]" />
-              <faqData.banner.icon size={28} strokeWidth={1.5} className="text-[#B27F1C] dark:text-[#F6B23B]" />
+              <div className="absolute -top-2 right-1 h-3 w-3 rotate-45 rounded-[2px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_rgba(178,127,28,0.6)] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:shadow-[0_0_10px_rgba(246,178,59,0.6)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+              <faqData.banner.icon size={28} strokeWidth={1.5} className="text-[#D4AF37] dark:text-[#D4AF37]" />
             </div>
             <div className="flex flex-col">
               <h3 className="mb-3 whitespace-pre-line text-2xl font-black font-sans leading-tight text-white">
@@ -142,7 +142,7 @@ export default function MobileFAQ() {
           </div>
 
           <div className="relative z-10 flex w-full flex-col">
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-6 py-4 text-[1rem] font-bold font-sans text-gray-900 shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b]">
+            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-4 text-[1rem] font-bold font-sans text-gray-900 shadow-md dark:from-[#D4AF37] dark:to-[#f9d08b]">
               <faqData.banner.btn1.icon size={18} strokeWidth={2} className="relative z-10" />
               <span className="relative z-10">{faqData.banner.btn1.text}</span>
             </motion.button>

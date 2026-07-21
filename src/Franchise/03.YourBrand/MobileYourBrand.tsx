@@ -40,22 +40,22 @@ const pulseGlow: Variants = {
 export default function MobileYourBrand() {
   return (
     <section className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712]">
-      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#B27F1C]/10 blur-[80px] dark:bg-[#F6B23B]/15" />
+      <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[80px] dark:bg-[#D4AF37]/15" />
 
       <Container className="relative z-10">
         <div className="flex flex-col items-center gap-6">
           
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex w-full flex-col items-center text-center">
             <motion.div variants={fadeInUp}>
-              <div className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5">
-                <Sparkles size={14} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#B27F1C] dark:text-[#F6B23B]">Unify Your Workspace</span>
+              <div className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+                <Sparkles size={14} className="text-[#D4AF37] dark:text-[#D4AF37]" />
+                <span className="text-[0.65rem] font-bold font-sans uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">Unify Your Workspace</span>
               </div>
             </motion.div>
             
             <motion.h2 variants={fadeInUp} className="mb-4 text-[2.5rem] font-black font-sans leading-[1.1] tracking-tight sm:text-[3rem]">
               <span className="block text-gray-900 dark:text-white">Your Brand.</span>
-              <span className="block animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">Your Story.</span>
+              <span className="block animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">Your Story.</span>
             </motion.h2>
 
             <motion.p variants={fadeInUp} className="mb-6 px-2 text-[0.95rem] font-medium font-sans leading-relaxed text-gray-600 dark:text-gray-400">
@@ -63,7 +63,7 @@ export default function MobileYourBrand() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex w-full flex-col items-center justify-center gap-3">
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-7 py-3.5 text-sm font-bold font-sans text-white shadow-md dark:from-[#F6B23B] dark:to-[#f9d08b] dark:text-gray-900">
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="group flex w-full max-w-[280px] items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-7 py-3.5 text-sm font-bold font-sans text-white shadow-md dark:from-[#D4AF37] dark:to-[#f9d08b] dark:text-gray-900">
                 Explore Dashboard
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </motion.button>
@@ -126,7 +126,7 @@ export default function MobileYourBrand() {
                   <div className="flex w-14 flex-col items-center border-r border-gray-100 bg-gray-50/50 py-4 dark:border-gray-800/60 dark:bg-gray-900/20">
                     <div className="mb-6 scale-75 origin-top"><YourBrandLogo size="sm" showText={false} /></div>
                     <div className="flex flex-col gap-6 text-gray-400 dark:text-gray-500">
-                      <div className="rounded-[4px] bg-white p-2 text-[#B27F1C] shadow-sm dark:bg-gray-800 dark:text-[#F6B23B]"><LayoutDashboard size={18} /></div>
+                      <div className="rounded-[4px] bg-white p-2 text-[#D4AF37] shadow-sm dark:bg-gray-800 dark:text-[#D4AF37]"><LayoutDashboard size={18} /></div>
                       <div className="p-2"><BarChart3 size={18} /></div>
                       <div className="p-2"><Users size={18} /></div>
                       <div className="p-2"><Settings size={18} /></div>
@@ -150,19 +150,19 @@ export default function MobileYourBrand() {
                     </div>
 
                     <div className="mb-5 flex flex-col gap-3">
-                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30">
+                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                         <p className="mb-1 text-[0.65rem] font-medium text-gray-500">Total Revenue</p>
                         <h4 className="text-lg font-bold text-gray-900 dark:text-white">$84,590</h4>
                         <p className="mt-1 flex items-center text-[0.6rem] font-bold text-emerald-500"><TrendingUp size={10} className="mr-1" /> +12.5%</p>
                       </div>
-                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30">
+                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                         <p className="mb-1 text-[0.65rem] font-medium text-gray-500">Active Users</p>
                         <h4 className="text-lg font-bold text-gray-900 dark:text-white">12,405</h4>
                         <p className="mt-1 flex items-center text-[0.6rem] font-bold text-emerald-500"><TrendingUp size={10} className="mr-1" /> +8.2%</p>
                       </div>
                     </div>
 
-                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-3 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]">
+                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-3 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                       <div className="mb-3 flex items-center justify-between">
                         <h4 className="text-[0.75rem] font-bold text-gray-900 dark:text-white">Performance</h4>
                       </div>
@@ -170,7 +170,7 @@ export default function MobileYourBrand() {
                         <div className="absolute inset-0 flex items-end justify-between gap-1.5 pt-2 opacity-80">
                           {[40, 70, 45, 90, 65, 85, 100].map((height, i) => (
                             <div key={i} className="flex w-full flex-col justify-end h-full">
-                              <motion.div initial={{ height: 0 }} whileInView={{ height: `${height}%` }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }} className="w-full rounded-t-[2px] bg-[#B27F1C]/20 dark:bg-[#F6B23B]/20" />
+                              <motion.div initial={{ height: 0 }} whileInView={{ height: `${height}%` }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }} className="w-full rounded-t-[2px] bg-[#D4AF37]/20 dark:bg-[#D4AF37]/20" />
                             </div>
                           ))}
                         </div>

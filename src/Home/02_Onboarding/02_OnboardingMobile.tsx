@@ -16,9 +16,9 @@ export default function Mobile() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#050C17] px-5 pb-10 pt-28 font-sans text-[#050C17] dark:text-white">
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#0a1128] px-5 pb-10 pt-28 font-sans text-[#0a1128] dark:text-white">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-gray-50 dark:bg-[#050C17] z-0" />
+      <div className="absolute inset-0 bg-gray-50 dark:bg-[#0a1128] z-0" />
       <motion.div
         className="absolute inset-0 z-0 opacity-15 dark:opacity-30 bg-cover bg-center bg-no-repeat mix-blend-multiply dark:mix-blend-screen"
         style={{ backgroundImage: `url(${bgImage})` }}
@@ -27,13 +27,13 @@ export default function Mobile() {
         transition={{ duration: 2, ease: 'easeOut' }}
       />
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#050C17]/90 dark:via-[#050C17]/95 dark:to-[#050C17] pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#0a1128]/90 dark:via-[#0a1128]/95 dark:to-[#0a1128] pointer-events-none" />
 
       {/* Floating particles */}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}
-          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#F6B23B]/30 dark:block"
+          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#D4AF37]/30 dark:block"
           style={{
             left: `${15 + i * 30}%`,
             top: `${20 + i * 20}%`,
@@ -62,15 +62,15 @@ export default function Mobile() {
             initial={{ opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={springAnim}
-            className="mb-6 flex flex-col items-start gap-2 rounded-xl border border-[#B27F1C]/20 dark:border-[#F6B23B]/20 bg-gradient-to-br from-[#B27F1C]/10 to-transparent dark:from-[#F6B23B]/10 p-3 shadow-sm backdrop-blur-sm"
+            className="mb-6 flex flex-col items-start gap-2 rounded-xl border border-[#D4AF37]/20 dark:border-[#D4AF37]/20 bg-gradient-to-br from-[#D4AF37]/10 to-transparent dark:from-[#D4AF37]/10 p-3 shadow-sm backdrop-blur-sm"
           >
-            <div className="flex items-center gap-2 text-xs font-bold text-[#050C17] dark:text-white">
-              <Rocket className="h-3.5 w-3.5 text-[#B27F1C] dark:text-[#F6B23B]" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#0a1128] dark:text-white">
+              <Rocket className="h-3.5 w-3.5 text-[#D4AF37] dark:text-[#D4AF37]" />
               <span className="uppercase tracking-wide">Vendor Onboarding Open</span>
             </div>
-            <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold text-[#B27F1C] dark:text-[#F6B23B]">
+            <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold text-[#D4AF37] dark:text-[#D4AF37]">
               <span className="uppercase">Early Access</span>
-              <span className="rounded bg-[#B27F1C]/20 dark:bg-[#F6B23B]/20 px-1.5 py-0.5 font-bold uppercase">
+              <span className="rounded bg-[#D4AF37]/20 dark:bg-[#D4AF37]/20 px-1.5 py-0.5 font-bold uppercase">
                 Launching First in Telangana
               </span>
             </div>
@@ -81,11 +81,11 @@ export default function Mobile() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.1 }}
-            className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#050C17] dark:text-white"
+            className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#0a1128] dark:text-white"
           >
             India's 1st Integrated <br />
             <motion.span
-              className="bg-gradient-to-r from-[#d97b29] to-[#F6B23B] bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent"
               style={{ backgroundSize: '200% auto' }}
               animate={{ backgroundPosition: ['0% center', '100% center', '0% center'] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
@@ -101,18 +101,18 @@ export default function Mobile() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.2 }}
-            className="mb-2 flex flex-col gap-1 text-sm font-bold text-[#050C17]/80 dark:text-white/80"
+            className="mb-2 flex flex-col gap-1 text-sm font-bold text-[#0a1128]/80 dark:text-white/80"
           >
             <div className="flex items-center gap-2">
-              <span className="text-[#F6B23B]">•</span>
+              <span className="text-[#D4AF37]">•</span>
               <span>Commercial Properties</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[#F6B23B]">•</span>
+              <span className="text-[#D4AF37]">•</span>
               <span>Franchise Expansion</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[#F6B23B]">•</span>
+              <span className="text-[#D4AF37]">•</span>
               <span>Retail Business Opportunities</span>
             </div>
           </motion.div>
@@ -139,7 +139,7 @@ export default function Mobile() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.4 }}
           viewport={{ once: true, margin: '-20px' }}
-          className="relative mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#0C1525]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+          className="relative mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#121c33]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
         >
           <div className="p-5 sm:p-6">
             
@@ -150,7 +150,7 @@ export default function Mobile() {
                   <Rocket className="h-5 w-5 text-orange-500 dark:text-orange-400" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#050C17] dark:text-white leading-tight">
+                  <h3 className="text-base font-bold text-[#0a1128] dark:text-white leading-tight">
                     Launching First in
                   </h3>
                   <div className="flex items-center gap-1.5">
@@ -192,7 +192,7 @@ export default function Mobile() {
             <div className="flex flex-col gap-3">
               <motion.button
                 whileTap={{ scale: 0.96 }}
-                className="group relative flex w-full items-center justify-between overflow-hidden rounded-lg bg-[#050C17] dark:bg-white px-4 py-3 text-sm font-bold text-white dark:text-[#050C17] active:bg-gray-900 dark:active:bg-gray-100"
+                className="group relative flex w-full items-center justify-between overflow-hidden rounded-lg bg-[#0a1128] dark:bg-white px-4 py-3 text-sm font-bold text-white dark:text-[#0a1128] active:bg-gray-900 dark:active:bg-gray-100"
               >
                 <span className="relative">Request Early Access</span>
                 <ArrowRight className="relative h-4 w-4" />
@@ -200,7 +200,7 @@ export default function Mobile() {
 
               <motion.button
                 whileTap={{ scale: 0.96 }}
-                className="group relative flex w-full items-center justify-between rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111A2C] px-4 py-3 text-sm font-bold text-[#050C17] dark:text-white active:bg-gray-50 dark:active:bg-gray-800"
+                className="group relative flex w-full items-center justify-between rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#121c33] px-4 py-3 text-sm font-bold text-[#0a1128] dark:text-white active:bg-gray-50 dark:active:bg-gray-800"
               >
                 <span className="relative">Explore the Marketplace</span>
                 <ArrowRight className="relative h-4 w-4" />
@@ -217,7 +217,7 @@ export default function Mobile() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.5 }}
           viewport={{ once: true }}
-          className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-800 bg-[#0C1525] p-5 shadow-lg"
+          className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-800 bg-[#121c33] p-5 shadow-lg"
         >
           <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-200">
             Founding Vendor Benefits
@@ -233,7 +233,7 @@ export default function Mobile() {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="flex-shrink-0 rounded-full border border-gray-700 bg-[#111A2C] p-1.5 text-orange-400 shadow-sm">
+                <div className="flex-shrink-0 rounded-full border border-gray-700 bg-[#121c33] p-1.5 text-orange-400 shadow-sm">
                   <benefit.icon className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-xs font-medium text-gray-300">

@@ -20,9 +20,9 @@ export default function Desktop() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 z-50 flex w-full items-center justify-center px-6 py-3.5 text-[#050C17] transition-all duration-500 dark:text-white lg:px-12 ${
+      className={`fixed top-0 z-50 flex w-full items-center justify-center px-6 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white lg:px-12 ${
         scrolled
-          ? 'bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#050C17]/85 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]'
+          ? 'bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#0a1128]/85 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]'
           : 'bg-gradient-to-b from-gray-200/60 to-transparent dark:from-black/60'
       }`}
     >
@@ -54,9 +54,9 @@ export default function Desktop() {
             className="block h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:hidden"
           />
           <div className="flex flex-col justify-center">
-            <CrempTextLogo className="mb-1 h-5 w-auto text-[#050C17] dark:text-white sm:h-6" />
+            <CrempTextLogo className="mb-1 h-5 w-auto text-[#0a1128] dark:text-white sm:h-6" />
             <motion.span
-              className="mt-0.5 text-[8px] font-medium leading-none tracking-[0.05em] text-[#B27F1C] dark:text-[#F6B23B]"
+              className="mt-0.5 text-[8px] font-medium leading-none tracking-[0.05em] text-[#D4AF37] dark:text-[#D4AF37]"
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
@@ -75,7 +75,7 @@ export default function Desktop() {
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
               theme === 'dark'
                 ? 'border-amber-500/20 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 hover:shadow-[0_0_18px_rgba(245,158,11,0.3)]'
-                : 'border-gray-200 bg-white text-[#050C17] hover:bg-gray-50 hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)]'
+                : 'border-gray-200 bg-white text-[#0a1128] hover:bg-gray-50 hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)]'
             }`}
             aria-label="Toggle Theme"
           >
@@ -100,7 +100,7 @@ export default function Desktop() {
             transition={{ delay: 0.6, duration: 0.4, ease: 'easeOut' }}
             whileHover={{ scale: 1.03, y: -1 }}
             whileTap={{ scale: 0.97 }}
-            className="group relative flex items-center gap-2 overflow-hidden rounded-lg bg-[#F6B23B] px-6 py-2.5 text-sm font-semibold text-black transition-all hover:shadow-[0_6px_20px_rgba(246,178,59,0.4)]"
+            className="group relative flex items-center gap-2 overflow-hidden rounded-lg bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-6 py-2.5 text-sm font-semibold text-black transition-all hover:shadow-[0_6px_20px_rgba(246,178,59,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
             <span className="relative">Get Started</span>

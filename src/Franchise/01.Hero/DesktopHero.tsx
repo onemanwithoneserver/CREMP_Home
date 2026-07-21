@@ -59,12 +59,12 @@ export default function DesktopHero() {
       <motion.div 
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#B27F1C]/10 blur-[120px] dark:bg-[#F6B23B]/15" 
+        className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15" 
       />
       <motion.div 
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#B27F1C]/10 blur-[150px] dark:bg-[#F6B23B]/10" 
+        className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[150px] dark:bg-[#D4AF37]/10" 
       />
 
       <Container className="relative z-10">
@@ -76,7 +76,7 @@ export default function DesktopHero() {
             className="flex w-[50%] flex-col"
           >
             <motion.div variants={fadeInUp}>
-              <span className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#B27F1C]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#B27F1C] shadow-sm backdrop-blur-xl dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/5 dark:text-[#F6B23B]">
+              <span className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37]">
                 {heroData.tag}
               </span>
             </motion.div>
@@ -87,7 +87,7 @@ export default function DesktopHero() {
             >
               Take Control of <br />
               Your Franchise <br />
-              <span className="animate-pulse bg-gradient-to-r from-[#B27F1C] to-[#d49924] bg-clip-text text-transparent dark:from-[#F6B23B] dark:to-[#f9d08b]">
+              <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
                 {heroData.titleHighlight}
               </span>
             </motion.h1>
@@ -103,7 +103,7 @@ export default function DesktopHero() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#B27F1C] to-[#d49924] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#F6B23B] dark:to-[#d49924] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
               >
                 <Btn1Icon size={18} strokeWidth={2.5} className="transition-transform group-hover:rotate-12 group-hover:scale-110" />
                 {heroData.buttons[0].text}
@@ -112,9 +112,9 @@ export default function DesktopHero() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex items-center justify-center gap-3 rounded-[4px] border border-gray-200 bg-white/80 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all hover:border-[#B27F1C]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 dark:text-white dark:hover:border-[#F6B23B]/50 dark:hover:bg-gray-800/80"
+                className="group flex items-center justify-center gap-3 rounded-[4px] border border-gray-200 bg-white/80 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all hover:border-[#D4AF37]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-gray-800/80"
               >
-                <Btn2Icon size={18} strokeWidth={2.5} className="text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#F6B23B]" />
+                <Btn2Icon size={18} strokeWidth={2.5} className="text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#D4AF37]" />
                 {heroData.buttons[1].text}
               </motion.button>
             </motion.div>
@@ -126,10 +126,10 @@ export default function DesktopHero() {
                   whileHover={{ y: -5 }}
                   className="group flex cursor-pointer items-center gap-3 rounded-[4px] p-2 transition-colors hover:bg-white/50 dark:hover:bg-gray-800/50"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#B27F1C] shadow-sm transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 group-hover:shadow-md dark:border-gray-800 dark:bg-[#0a101d] dark:text-[#F6B23B]">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 group-hover:shadow-md dark:border-gray-800 dark:bg-[#0a101d] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                     <feature.icon size={18} strokeWidth={2} />
                   </div>
-                  <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#B27F1C] dark:text-gray-200 dark:group-hover:text-[#F6B23B]">
+                  <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
                     {feature.text}
                   </span>
                 </motion.div>

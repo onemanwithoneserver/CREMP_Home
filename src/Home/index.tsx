@@ -12,7 +12,7 @@ interface HomeProps {
 export default function Home({ isMobile }: HomeProps) {
   return (
     <ThemeProvider>
-      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#050C17] text-[#050C17] dark:text-white transition-colors duration-300">
+      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#0a1128] text-[#0a1128] dark:text-white transition-colors duration-300">
         <Header isMobile={isMobile} />
         <Onboarding isMobile={isMobile} />
         <StakeHolders isMobile={isMobile} />

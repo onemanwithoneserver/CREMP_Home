@@ -15,17 +15,17 @@ export default function DesktopHero() {
     <div className="relative min-h-[90vh] w-full overflow-hidden bg-[#030712] flex flex-col items-center justify-center py-24">
       
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 0.4, scale: 1 }} transition={{ duration: 3, ease: 'easeOut' }} className="absolute -top-[20%] left-[20%] h-[600px] w-[600px] rounded-full bg-[#B27F1C] blur-[140px] pointer-events-none" />
-      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 0.3, scale: 1 }} transition={{ duration: 3, ease: 'easeOut', delay: 0.5 }} className="absolute -bottom-[20%] right-[10%] h-[500px] w-[500px] rounded-full bg-[#F6B23B] blur-[120px] pointer-events-none" />
+      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 0.4, scale: 1 }} transition={{ duration: 3, ease: 'easeOut' }} className="absolute -top-[20%] left-[20%] h-[600px] w-[600px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[140px] pointer-events-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 0.3, scale: 1 }} transition={{ duration: 3, ease: 'easeOut', delay: 0.5 }} className="absolute -bottom-[20%] right-[10%] h-[500px] w-[500px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[120px] pointer-events-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
 
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
         <motion.div variants={staggerContainer} initial="hidden" animate="show" className="flex flex-col items-center text-center mt-8">
           
           <motion.div variants={fadeInUp} className="mb-8">
-            <span className="inline-flex items-center gap-2 rounded-[8px] border border-white/10 bg-white/5 px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#F6B23B] backdrop-blur-md shadow-[0_0_20px_rgba(52,211,153,0.1)]">
+            <span className="inline-flex items-center gap-2 rounded-[8px] border border-white/10 bg-white/5 px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37] backdrop-blur-md shadow-[0_0_20px_rgba(52,211,153,0.1)]">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F6B23B] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F6B23B]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] opacity-75 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></span>
               </span>
               {heroData.tag}
             </span>
@@ -34,7 +34,7 @@ export default function DesktopHero() {
           <motion.h1 variants={fadeInUp} className="max-w-5xl text-[4rem] font-black leading-[1.05] tracking-tight text-white xl:text-[5.5rem] mb-6">
             Make Informed Decisions. <br />
             Secure Your{' '}
-            <span className="bg-gradient-to-r from-[#F6B23B] to-[#d49924] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(52,211,153,0.4)]">
+            <span className="bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(52,211,153,0.4)]">
               {heroData.titleHighlight}
             </span>
           </motion.h1>
@@ -44,7 +44,7 @@ export default function DesktopHero() {
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex items-center gap-5">
-            <motion.button whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(52,211,153,0.3)" }} whileTap={{ scale: 0.95 }} className="group flex items-center gap-3 rounded-[8px] bg-gradient-to-r from-[#B27F1C] to-[#F6B23B] px-8 py-4 text-[0.95rem] font-bold text-white shadow-xl transition-all">
+            <motion.button whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(52,211,153,0.3)" }} whileTap={{ scale: 0.95 }} className="group flex items-center gap-3 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#D4AF37] px-8 py-4 text-[0.95rem] font-bold text-white shadow-xl transition-all">
               <PrimaryIcon size={20} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               {heroData.buttons[0].text}
             </motion.button>
@@ -62,7 +62,7 @@ export default function DesktopHero() {
           <div className="grid grid-cols-3 divide-x divide-white/10">
             {heroData.features.map((feature, idx) => (
               <div key={idx} className="flex flex-col items-center justify-center gap-3 px-6 text-center group cursor-default">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F6B23B]/10 text-[#F6B23B] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#F6B23B]/20">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37]/20">
                   <feature.icon size={24} />
                 </div>
                 <span className="whitespace-pre-line text-[0.85rem] font-bold tracking-wide text-gray-300 transition-colors group-hover:text-white">
