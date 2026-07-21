@@ -44,9 +44,9 @@ export default function MobileFoundingPartner() {
       
       <motion.div variants={pulseGlow} animate="animate" className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B27F1C]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#F6B23B]/15" />
 
-      <Container className="relative z-10">
+      <div className="relative z-10 w-full">
         
-        <div className="relative flex w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0C1525]">
+        <div className="relative flex w-full flex-col overflow-hidden border-y border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0C1525]">
           
           <div className="relative flex w-full flex-col items-center p-6 pt-6 text-center">
             
@@ -82,59 +82,70 @@ export default function MobileFoundingPartner() {
                 </div>
               </div>
 
-              <motion.div variants={rocketFloat} initial="animate" className="absolute bottom-[80px] left-1/2 z-40 flex -translate-x-1/2 flex-col items-center">
-                <div className="relative h-44 w-16 overflow-hidden rounded-b-[4px] rounded-t-[100%] bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] shadow-[0_20px_40px_rgba(178,127,28,0.4)] dark:shadow-[0_20px_40px_rgba(246,178,59,0.2)]">
-                  <div className="absolute right-0 top-0 h-full w-1/2 bg-white/25" />
-                  <div className="absolute left-1/2 top-12 h-8 w-8 -translate-x-1/2 rounded-full border-[3px] border-yellow-100 bg-sky-100 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] dark:border-yellow-400 dark:bg-[#0a101d]">
-                    <div className="absolute right-1 top-1 h-2 w-3 -rotate-45 rounded-full bg-white/60" />
-                  </div>
-                </div>
-                
-                <div className="absolute -left-7 bottom-2 h-16 w-8 -skew-y-12 rounded-br-[4px] rounded-tl-[100%] bg-gradient-to-tr from-[#92400e] to-[#d97706] shadow-lg" />
-                <div className="absolute -right-7 bottom-2 h-16 w-8 skew-y-12 rounded-bl-[4px] rounded-tr-[100%] bg-gradient-to-tl from-[#92400e] to-[#d97706] shadow-lg" />
-                <div className="absolute bottom-0 z-50 h-12 w-4 rounded-t-full bg-gradient-to-t from-[#78350f] to-[#b45309]" />
-                
-                <motion.div variants={flameFlicker} initial="animate" className="absolute -bottom-6 z-30 h-14 w-6 origin-top rounded-full bg-gradient-to-t from-transparent via-[#f59e0b] to-white opacity-90 blur-[2px]" />
-                <motion.div variants={flameFlicker} initial="animate" transition={{ delay: 0.1 }} className="absolute -bottom-8 z-20 h-16 w-10 origin-top rounded-full bg-gradient-to-t from-transparent via-red-500 to-yellow-300 opacity-60 blur-[4px]" />
-              </motion.div>
-
-              {foundingData.rocketNodes.map((node, idx) => {
-                const isLeft = node.pos.includes('left');
-                const isTop = node.pos.includes('top');
-                
-                return (
-                  <motion.div key={idx} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.6 + (idx * 0.1), type: "spring" }} className={`absolute z-50 flex flex-col items-center gap-2 left-[50%] -translate-x-1/2 ${isLeft ? '-ml-[115px]' : 'ml-[115px]'} ${isTop ? 'top-[100px]' : 'top-[190px]'}`}>
-                    <div className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#B27F1C]/30 bg-white/90 text-[#B27F1C] shadow-md backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#111827]/90 dark:text-[#F6B23B]">
-                      <node.icon size={18} strokeWidth={2} />
-                      <svg className={`pointer-events-none absolute ${isLeft ? 'left-full' : 'right-full'} ${isTop ? 'top-1/2' : 'bottom-1/2'}`} style={{ width: '50px', height: '40px' }} viewBox="0 0 50 40" preserveAspectRatio="none">
-                        {(() => {
-                          const iconX = isLeft ? 0 : 50;
-                          const iconY = isTop ? 0 : 40;
-                          const rocketX = isLeft ? 50 : 0;
-                          const rocketY = isTop ? 40 : 0;
-                          const getPoint = (t: number) => ({ cx: iconX + (rocketX - iconX) * t, cy: iconY + (rocketY - iconY) * t });
-                          const dots = [0.15, 0.5, 1.0].map(getPoint);
-                          return (
-                            <>
-                              <line x1={iconX} y1={iconY} x2={rocketX} y2={rocketY} stroke="currentColor" className="text-[#B27F1C]/40 dark:text-[#F6B23B]/40" strokeWidth="1.5" strokeDasharray="3 4" />
-                              {dots.map((pt, i) => (
-                                <circle key={i} cx={pt.cx} cy={pt.cy} r={i === 2 ? "2.5" : "1.5"} className="fill-[#B27F1C] dark:fill-[#F6B23B]" />
-                              ))}
-                            </>
-                          );
-                        })()}
-                      </svg>
+              <div className="absolute inset-0 -translate-x-8 -translate-y-1">
+                <motion.div variants={rocketFloat} initial="animate" className="absolute bottom-[80px] left-1/2 z-40 flex -translate-x-1/2 flex-col items-center">
+                  <div className="relative h-44 w-16 overflow-hidden rounded-b-[4px] rounded-t-[100%] bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] shadow-[0_20px_40px_rgba(178,127,28,0.4)] dark:shadow-[0_20px_40px_rgba(246,178,59,0.2)]">
+                    <div className="absolute right-0 top-0 h-full w-1/2 bg-white/25" />
+                    <div className="absolute left-1/2 top-12 h-8 w-8 -translate-x-1/2 rounded-full border-[3px] border-yellow-100 bg-sky-100 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] dark:border-yellow-400 dark:bg-[#0a101d]">
+                      <div className="absolute right-1 top-1 h-2 w-3 -rotate-45 rounded-full bg-white/60" />
                     </div>
-                    <span className="text-center text-[0.65rem] font-bold leading-tight text-gray-500 dark:text-gray-400 w-24">
-                      {node.label}
-                    </span>
-                  </motion.div>
-                );
-              })}
+                  </div>
+                  
+                  <div className="absolute -left-7 bottom-2 h-16 w-8 -skew-y-12 rounded-br-[4px] rounded-tl-[100%] bg-gradient-to-tr from-[#92400e] to-[#d97706] shadow-lg" />
+                  <div className="absolute -right-7 bottom-2 h-16 w-8 skew-y-12 rounded-bl-[4px] rounded-tr-[100%] bg-gradient-to-tl from-[#92400e] to-[#d97706] shadow-lg" />
+                  <div className="absolute bottom-0 z-50 h-12 w-4 rounded-t-full bg-gradient-to-t from-[#78350f] to-[#b45309]" />
+                  
+                  <motion.div variants={flameFlicker} initial="animate" className="absolute -bottom-6 z-30 h-14 w-6 origin-top rounded-full bg-gradient-to-t from-transparent via-[#f59e0b] to-white opacity-90 blur-[2px]" />
+                  <motion.div variants={flameFlicker} initial="animate" transition={{ delay: 0.1 }} className="absolute -bottom-8 z-20 h-16 w-10 origin-top rounded-full bg-gradient-to-t from-transparent via-red-500 to-yellow-300 opacity-60 blur-[4px]" />
+                </motion.div>
+
+                {foundingData.rocketNodes.map((node, idx) => {
+                  const isLeft = node.pos.includes('left');
+                  const isTop = node.pos.includes('top');
+                  
+                  return (
+                    <motion.div key={idx} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.6 + (idx * 0.1), type: "spring" }} 
+                      className="absolute z-50 flex flex-col items-center gap-2 -translate-x-1/2"
+                      style={{ left: `calc(50% ${isLeft ? '-' : '+'} 115px)`, top: isTop ? '100px' : '190px' }}
+                    >
+                      <div className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#B27F1C]/30 bg-white/90 text-[#B27F1C] shadow-md backdrop-blur-md dark:border-[#F6B23B]/30 dark:bg-[#111827]/90 dark:text-[#F6B23B]">
+                        <node.icon size={18} strokeWidth={2} />
+                        <svg className="pointer-events-none absolute" 
+                             style={{ 
+                               width: '55px', height: '40px', 
+                               ...(isLeft ? { left: '100%' } : { right: '100%' }),
+                               ...(isTop ? { top: '50%' } : { bottom: '50%' })
+                             }} 
+                             viewBox="0 0 55 40" preserveAspectRatio="none">
+                          {(() => {
+                            const iconX = isLeft ? 0 : 55;
+                            const iconY = isTop ? 0 : 40;
+                            const rocketX = isLeft ? 55 : 0;
+                            const rocketY = isTop ? 40 : 0;
+                            const getPoint = (t: number) => ({ cx: iconX + (rocketX - iconX) * t, cy: iconY + (rocketY - iconY) * t });
+                            const dots = [0.15, 0.5, 1.0].map(getPoint);
+                            return (
+                              <>
+                                <line x1={iconX} y1={iconY} x2={rocketX} y2={rocketY} stroke="currentColor" className="text-[#B27F1C]/40 dark:text-[#F6B23B]/40" strokeWidth="1.5" strokeDasharray="3 4" />
+                                {dots.map((pt, i) => (
+                                  <circle key={i} cx={pt.cx} cy={pt.cy} r={i === 2 ? "2.5" : "1.5"} className="fill-[#B27F1C] dark:fill-[#F6B23B]" />
+                                ))}
+                              </>
+                            );
+                          })()}
+                        </svg>
+                      </div>
+                      <span className="text-center text-[0.65rem] font-bold leading-tight text-gray-500 dark:text-gray-400 w-24">
+                        {node.label}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </motion.div>
           </div>
 
-          <div className="relative z-10 flex w-full flex-col rounded-[8px] bg-gray-50/50 p-6 shadow-inner dark:bg-[#050C17]/50">
+          <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#050C17]/50">
             <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B27F1C]/20 bg-[#B27F1C]/10 shadow-sm dark:border-[#F6B23B]/20 dark:bg-[#F6B23B]/10">
                 <Gem size={18} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={2} />
@@ -173,22 +184,11 @@ export default function MobileFoundingPartner() {
                   <ArrowUpRight size={18} className="ml-auto text-white dark:text-gray-900" />
                 </div>
               </motion.button>
-              
-              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex w-full items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-700/80 dark:bg-[#111827]">
-                <Btn2Icon size={16} className="text-[#B27F1C] dark:text-[#F6B23B]" strokeWidth={1.5} />
-                <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">{foundingData.buttons[1].title}</span>
-              </motion.button>
             </div>
-
-            <div className="flex items-center justify-center gap-2">
-              <ShieldCheck size={12} className="text-[#B27F1C] dark:text-[#F6B23B]" />
-              <span className="text-[0.65rem] font-medium text-gray-500 dark:text-gray-400">{foundingData.bottomDisclaimer}</span>
-            </div>
-            
           </div>
         </div>
 
-      </Container>
+      </div>
     </div>
   );
 }
