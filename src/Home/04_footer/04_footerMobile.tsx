@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { footerLinks, socialLinks } from "./data";
-import logo from "../../Logo/CREMP.png";
-import logoLight from "../../Logo/CREMP_Light.png";
 import CrempTextLogo from "../../components/CrempTextLogo";
 
 export default function Mobile({ hideCTA = false }: { hideCTA?: boolean }) {
@@ -56,23 +54,8 @@ export default function Mobile({ hideCTA = false }: { hideCTA?: boolean }) {
 
       <div className="w-full bg-white dark:bg-[#0a1128] border-t border-gray-200 dark:border-gray-800 py-8 px-6 flex flex-col items-center text-center gap-7">
         <div className="flex flex-col items-center gap-3">
-          <div className="flex items-center gap-2">
-            <img
-              src={logo}
-              alt="CREMP Logo"
-              className="hidden dark:block h-7 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(246,178,59,0.3)]"
-            />
-            <img
-              src={logoLight}
-              alt="CREMP Logo"
-              className="block dark:hidden h-7 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)]"
-            />
-            <div className="flex flex-col justify-center text-left">
-              <CrempTextLogo className="h-[14px] w-auto text-[#0a1128] dark:text-white mb-[2px]" />
-              <span className="text-[#D4AF37] dark:text-[#D4AF37] text-[8.5px] font-medium mt-0.5 leading-none">
-                An Integrated CRE Marketplace
-              </span>
-            </div>
+          <div className="flex items-center">
+            <CrempTextLogo className="h-[16px] w-auto text-[#0a1128] dark:text-white" />
           </div>
           <span className="text-gray-500 text-xs mt-1">
             © {currentYear} CREMP. All rights reserved.

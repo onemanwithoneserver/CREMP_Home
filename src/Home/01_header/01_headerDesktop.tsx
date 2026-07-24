@@ -22,8 +22,8 @@ export default function Desktop() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 z-50 flex w-full items-center justify-center px-6 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white lg:px-12 ${
         scrolled
-          ? "bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#0a1128]/85 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]"
-          : "bg-gradient-to-b from-gray-200/60 to-transparent dark:from-black/60"
+          ? "bg-white/70 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0a1128]/80 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          : "bg-white dark:bg-[#0a1128] border-b border-transparent"
       }`}
     >
       <div className="flex w-full max-w-7xl items-center justify-between">
@@ -53,15 +53,7 @@ export default function Desktop() {
             className="block h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:hidden"
           />
           <div className="flex flex-col justify-center">
-            <CrempTextLogo className="mb-1 h-5 w-auto text-[#0a1128] dark:text-white sm:h-6" />
-            <motion.span
-              className="mt-0.5 text-[8px] font-medium leading-none tracking-[0.05em] text-[#D4AF37] dark:text-[#D4AF37]"
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-            >
-              An Integrated CRE Marketplace
-            </motion.span>
+            <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white sm:h-6" />
           </div>
         </motion.a>
 

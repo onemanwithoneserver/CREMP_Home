@@ -22,8 +22,8 @@ export default function Mobile() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 z-50 flex w-full items-center justify-between px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${
         scrolled
-          ? "bg-white/85 shadow-[0_1px_0_rgba(0,0,0,0.06)] backdrop-blur-xl dark:bg-[#0a1128]/90 dark:shadow-[0_1px_0_rgba(255,255,255,0.04)]"
-          : "bg-transparent"
+          ? "bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0a1128]/85 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          : "bg-white dark:bg-[#0a1128] border-b border-transparent"
       }`}
     >
       <motion.a
@@ -51,15 +51,7 @@ export default function Mobile() {
           className="block h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:hidden"
         />
         <div className="flex flex-col justify-center">
-          <CrempTextLogo className="mb-[1px] h-[18px] w-auto text-[#0a1128] dark:text-white" />
-          <motion.span
-            className="mt-0.5 text-[5px] font-medium leading-none tracking-tight text-[#D4AF37] dark:text-[#D4AF37]"
-            initial={{ opacity: 0, x: -6 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.4 }}
-          >
-            An Integrated CRE Marketplace
-          </motion.span>
+          <CrempTextLogo className="h-[18px] w-auto text-[#0a1128] dark:text-white" />
         </div>
       </motion.a>
 

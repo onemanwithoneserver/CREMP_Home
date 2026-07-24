@@ -3,6 +3,7 @@ import Ecosystem from "./02.Ecosystem";
 import YourBrand from "./03.YourBrand";
 import YourInvestors from "./04.YourInvestors";
 import YourMarkets from "./05.YourMarkets";
+import GrowthStages from "./09.GrowthStages";
 import FoundingPartner from "./06.FoundingPartner";
 import Categories from "./07.Categories";
 import FAQ from "./08.FAQ";
@@ -27,6 +28,7 @@ export default function Franchise({ isMobile }: FranchiseProps) {
           <YourBrand isMobile={isMobile} />
           <YourInvestors isMobile={isMobile} />
           <YourMarkets isMobile={isMobile} />
+          <GrowthStages isMobile={isMobile} />
           <FoundingPartner isMobile={isMobile} />
           <Categories isMobile={isMobile} />
           <FAQ isMobile={isMobile} />

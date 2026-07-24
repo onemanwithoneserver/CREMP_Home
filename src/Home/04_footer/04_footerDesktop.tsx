@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { footerLinks, socialLinks } from "./data";
-import logo from "../../Logo/CREMP.png";
-import logoLight from "../../Logo/CREMP_Light.png";
 import CrempTextLogo from "../../components/CrempTextLogo";
 
 export default function Desktop({ hideCTA = false }: { hideCTA?: boolean }) {
@@ -59,23 +57,8 @@ export default function Desktop({ hideCTA = false }: { hideCTA?: boolean }) {
       <div className="w-full bg-white dark:bg-[#0a1128]  dark:border-gray-800 py-4 px-4 flex flex-col items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <img
-                src={logo}
-                alt="CREMP Logo"
-                className="hidden dark:block h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(246,178,59,0.3)]"
-              />
-              <img
-                src={logoLight}
-                alt="CREMP Logo"
-                className="block dark:hidden h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(178,127,28,0.1)]"
-              />
-              <div className="flex flex-col justify-center">
-                <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white mb-[2px]" />
-                <span className="text-[#D4AF37] dark:text-[#D4AF37] text-[11px] font-medium mt-0.5 leading-none">
-                  An Integrated CRE Marketplace
-                </span>
-              </div>
+            <div className="flex items-center">
+              <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white" />
             </div>
             <div className="h-8 w-px bg-gray-300 dark:bg-gray-800 hidden md:block" />
             <span className="text-gray-500 dark:text-gray-500 text-sm">
