@@ -1,6 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
-import { categoriesData } from "./data";
+import { categoriesData, iconColors } from "./data";
 import { Users, ChevronRight, ShieldCheck, Sparkles } from "lucide-react";
 
 const fadeInUp: Variants = {
@@ -45,6 +45,8 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
+
+
 
 export default function DesktopCategories() {
   return (
@@ -114,13 +116,17 @@ export default function DesktopCategories() {
             >
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#D4AF37]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#D4AF37]/10" />
 
-              <div className="relative z-10 mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200/50 transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md group-hover:ring-[#D4AF37] dark:bg-gray-900 dark:text-gray-400 dark:ring-gray-800 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 dark:group-hover:ring-[#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: [0, -5, 5, -5, 0] }}
+                transition={{ duration: 0.4 }}
+                className={`relative z-10 mb-5 flex h-16 w-16 items-center justify-center rounded-full shadow-sm ring-1 transition-all duration-500 ${iconColors[idx % iconColors.length]}`}
+              >
                 <category.icon
                   size={26}
                   strokeWidth={1.5}
                   className="transition-transform duration-300"
                 />
-              </div>
+              </motion.div>
 
               <span className="relative z-10 text-[0.85rem] font-bold leading-tight text-gray-900 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
                 {category.label}

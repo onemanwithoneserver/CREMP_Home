@@ -1,6 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
-import { categoriesData } from "./data";
+import { categoriesData, iconColors } from "./data";
 import { Users, ChevronRight, ShieldCheck, Sparkles } from "lucide-react";
 
 const fadeInUp: Variants = {
@@ -22,7 +22,7 @@ const staggerContainer: Variants = {
 
 const staggerGrid: Variants = {
   hidden: { opacity: 0 },
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
 };
 
 const cardVariant: Variants = {
@@ -42,6 +42,8 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
+
+
 
 export default function MobileCategories() {
   return (
@@ -64,7 +66,7 @@ export default function MobileCategories() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true }}
           className="mb-8 flex flex-col items-center text-center"
         >
           <motion.div
@@ -99,7 +101,7 @@ export default function MobileCategories() {
           variants={staggerGrid}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true }}
           className="mb-8 grid w-full grid-cols-2 gap-3 sm:grid-cols-3"
         >
           {categoriesData.categories.map((category, idx) => (
@@ -111,9 +113,13 @@ export default function MobileCategories() {
             >
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#D4AF37]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#D4AF37]/10" />
 
-              <div className="relative z-10 mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200/50 dark:bg-gray-900 dark:text-gray-400 dark:ring-gray-800">
+              <motion.div
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.15 }}
+                className={`relative z-10 mb-3 flex h-12 w-12 items-center justify-center rounded-full shadow-sm ring-1 ${iconColors[idx % iconColors.length]}`}
+              >
                 <category.icon size={20} strokeWidth={1.5} />
-              </div>
+              </motion.div>
 
               <span className="relative z-10 text-[0.75rem] font-bold font-sans leading-tight text-gray-900 dark:text-gray-200">
                 {category.label}
