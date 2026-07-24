@@ -1,241 +1,173 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { stakeholdersData } from "../03_StakeHolders/data";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 15 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" as const },
-  },
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
 
-export default function MobileStakeHolder1() {
-  const gradients = [
-    "bg-gradient-to-br from-[#D4AF37] to-[#8C6B1B] dark:from-[#D4AF37] dark:to-[#FFD17A]",
-    "bg-gradient-to-tr from-rose-700 via-indigo-900 to-cyan-400 dark:from-rose-700 dark:via-indigo-900 dark:to-cyan-400",
-    "bg-gradient-to-br from-emerald-500 to-teal-800 dark:from-emerald-500 dark:to-teal-800",
-    "bg-gradient-to-tr from-orange-500 to-red-700 dark:from-orange-500 dark:to-red-700",
-    "bg-gradient-to-bl from-blue-600 to-indigo-900 dark:from-blue-600 dark:to-indigo-900",
-  ];
+const iconColors = [
+  "bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400",
+  "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400",
+  "bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400",
+  "bg-purple-500/10 text-purple-600 dark:bg-purple-500/20 dark:text-purple-400",
+  "bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400",
+];
 
-  const renderHighlightedTitle = (title: string) => {
-    const words = title.split(" ");
-    if (words.length <= 1) return title;
-    const lastWord = words.pop();
-    return (
-      <>
-        {words.join(" ")}{" "}
-        <span className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent">
-          {lastWord}
-        </span>
-      </>
-    );
-  };
-
+const renderHighlightedTitle = (title: string) => {
+  if (!title) return null;
+  const words = title.trim().split(" ");
+  if (words.length <= 1) return title;
+  
+  const lastWord = words.pop();
+  
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative w-full bg-gray-50 px-3 transition-colors duration-500 dark:bg-[#0a1128] sm:px-4"
-    >
-      <div className="absolute top-0 left-1/2 h-[300px] w-full max-w-lg -translate-x-1/2 pointer-events-none bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08)_0%,transparent_70%)] blur-2xl" />
+    <>
+      {words.join(" ")}{" "}
+      <span className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent">
+        {lastWord}
+      </span>
+    </>
+  );
+};
 
-      <div className="relative z-10 mx-auto flex w-full flex-col gap-12">
+export default function MobileStakeHolder1() {
+  return (
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#030712]"
+    >
+      <div 
+        aria-hidden="true"
+        className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[80px] dark:bg-[#D4AF37]/15" 
+      />
+
+      <div className="relative z-10 mx-auto w-full px-5 flex flex-col gap-10">
         <div className="flex flex-col items-center text-center">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
-            <div className="mb-3 inline-flex items-center justify-center gap-1.5 rounded-md border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-[#FBBF24]/5 px-3 py-1 text-[9px] font-bold tracking-widest text-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.15)] backdrop-blur-sm sm:text-[10px]">
-              <Sparkles className="h-2.5 w-2.5 text-[#FBBF24]" />
-              <span>CREMP PLATFORM</span>
-              <Sparkles className="h-2.5 w-2.5 text-[#FBBF24]" />
-            </div>
-            <h2 className="mb-4 text-3xl font-black leading-tight tracking-tight text-[#0a1128] dark:text-white sm:text-4xl">
+            <motion.div variants={fadeInUp} className="mb-4 flex items-center justify-center gap-2">
+              <div className="flex w-fit items-center gap-2 rounded-sm border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+                <Sparkles size={14} className="text-[#D4AF37]" aria-hidden="true" />
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37]">
+                  CREMP PLATFORM
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.h2
+              variants={fadeInUp}
+              className="mb-4 text-3xl font-black leading-tight tracking-tight text-gray-900 dark:text-white"
+            >
               Built for Every <br />
-              <span className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent">
+              <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
                 Commercial Stakeholder
               </span>
-            </h2>
-            <p className="mx-auto max-w-sm text-xs font-medium leading-relaxed text-gray-600 dark:text-gray-400 sm:text-sm">
-              Our marketplace adapts to your specific needs, providing tailored
-              tools and connections to accelerate your commercial real estate
-              journey.
-            </p>
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUp}
+              className="text-sm font-medium leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Tailored tools and connections that accelerate your commercial real estate journey.
+            </motion.p>
           </motion.div>
         </div>
 
-        <div className="relative flex flex-col gap-2">
+        <div className="flex w-full flex-col gap-8">
           {stakeholdersData.map((stakeholder, idx) => {
-            const aspectClasses = [
-              "aspect-[21/9]",
-              "aspect-[16/9]",
-              "aspect-[21/9]",
-              "aspect-[16/9]",
-              "aspect-[21/9]",
-            ];
-            const aspectClass = aspectClasses[idx % aspectClasses.length];
+            const themeColor = iconColors[idx % iconColors.length];
+
             return (
               <motion.div
                 key={stakeholder.id}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  top: `4.5rem`,
-                  zIndex: idx * 10,
-                }}
-                className="sticky flex flex-col gap-1 bg-white p-2 pb-3 rounded-t-2xl shadow-[0_-5px_20px_rgba(0,0,0,0.06)] overflow-x-hidden overflow-y-auto dark:bg-[#121c33] max-h-[calc(100vh-4.5rem)] scrollbar-hide"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-50px" }}
+                className="relative w-full rounded-xl border border-gray-200/50 bg-white shadow-xl dark:border-gray-800/50 dark:bg-[#0a101d] overflow-hidden"
               >
-                <div className="relative w-full max-w-sm mx-auto flex-col">
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    className="relative w-full overflow-hidden rounded-md border border-[#D4AF37]/20 bg-gradient-to-br from-white to-[#FAFAFA] shadow-lg shadow-[#D4AF37]/5 dark:border-[#D4AF37]/10 dark:from-[#0a0f1d] dark:to-[#030811] dark:shadow-black/60"
-                  >
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent dark:from-[#030811]/80 dark:via-[#030811]/30" />
-                    <div
-                      className={`relative ${
-                        stakeholder.id === "buyers"
-                          ? "h-24 sm:aspect-[21/9]"
-                          : aspectClass
-                      } w-full overflow-hidden rounded-md`}
-                    >
-                      <div
-                        className={`absolute inset-0 h-full w-full ${
-                          gradients[idx % gradients.length]
-                        } transition-transform duration-1000 hover:scale-105`}
-                      />
-                      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay" />
-
-                      <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-3">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md border border-white/30 shadow-md">
-                          <stakeholder.icon
-                            className="h-4 w-4"
-                            strokeWidth={2.5}
-                          />
-                        </div>
-                        <h4 className="text-lg font-bold text-white drop-shadow-md tracking-tight sm:text-xl">
-                          {stakeholder.label.replace("\n", " ")}
-                        </h4>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4"
-                  >
-                    {stakeholder.stats?.slice(0, 4).map((stat, sIdx) => (
-                      <motion.div
-                        key={sIdx}
-                        variants={fadeInUp}
-                        className="flex flex-col justify-center rounded border border-[#D4AF37]/10 bg-gradient-to-br from-white via-[#FAFAFA] to-[#FFFDF5] p-2.5 shadow-sm dark:from-[#0a0f1d] dark:via-[#111624] dark:to-[#17150b]/80"
-                      >
-                        <stat.icon
-                          className="mb-1.5 h-3.5 w-3.5 text-[#F59E0B]"
-                          strokeWidth={2}
-                        />
-                        <span className="text-lg font-black leading-none text-[#0a1128] dark:text-white">
-                          {stat.value}
-                        </span>
-                        <span className="mt-1 text-[8px] font-bold tracking-wider text-gray-500 uppercase dark:text-gray-400">
-                          {stat.label}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
-
-                <div className="flex w-full flex-col justify-center px-1">
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <div className="mb-3 w-fit rounded-sm border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-2 py-0.5 text-[9px] font-black tracking-widest text-[#b38728] dark:text-[#FBBF24]">
-                      FOR {stakeholder.id.toUpperCase()}
+                <div className="flex flex-col">
+                  
+                  <div className="flex flex-col p-6 pb-8">
+                    <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full shadow-sm ${themeColor}`}>
+                      <stakeholder.icon size={24} strokeWidth={2.5} aria-hidden="true" />
                     </div>
 
-                    <h3 className="mb-2 text-xl font-extrabold leading-[1.2] tracking-tight text-[#0a1128] dark:text-white">
+                    <div className="mb-3 w-fit rounded-sm border border-[#D4AF37]/30 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-2.5 py-1 text-[9px] font-black uppercase tracking-widest text-[#b38728] dark:text-[#FBBF24]">
+                      FOR {stakeholder.id}
+                    </div>
+
+                    <h3 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
                       {renderHighlightedTitle(stakeholder.title)}
                     </h3>
-                  </motion.div>
 
-                  <motion.div
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="mb-2 grid grid-cols-2 gap-1.5 sm:gap-2"
-                  >
-                    {stakeholder.features.map((feature, fIdx) => (
-                      <motion.div
-                        key={fIdx}
-                        variants={fadeInUp}
-                        className="group flex items-start gap-3 rounded border border-transparent bg-gradient-to-tr from-white via-[#FAFAFA] to-white p-3 shadow-[0_1px_5px_rgba(0,0,0,0.03)] transition-all duration-300 hover:border-[#D4AF37]/20 hover:from-[#FAFAFA] hover:to-[#FFFDF5] hover:shadow-md dark:from-[#2a3652]/80 dark:via-[#2e3a5a]/80 dark:to-[#2a3652]/80 dark:hover:border-[#D4AF37]/30 dark:hover:from-[#2e3a5a] dark:hover:to-[#354265]/80"
-                      >
-                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-gradient-to-br from-[#FAFAFA] to-[#FFFDF5] text-[#F59E0B] shadow-sm dark:border-[#D4AF37]/20 dark:from-[#1e263c] dark:to-[#262c3f]">
-                          <feature.icon className="h-3 w-3" strokeWidth={1.5} />
+                    <button className="group relative mt-4 flex w-full items-center justify-center gap-3 overflow-hidden rounded bg-[#0a1128] px-4 py-3.5 text-white shadow-lg active:scale-[0.98] dark:bg-white dark:text-[#0a1128]">
+                      <div className="absolute inset-0 w-0 bg-gradient-to-r from-[#b38728] via-[#D4AF37] to-[#FBBF24] opacity-0 transition-all duration-500 ease-out group-hover:w-full group-hover:opacity-100" />
+                      <span className="relative z-10 text-sm font-bold tracking-wide transition-colors duration-300 group-hover:text-white dark:group-hover:text-[#030811]">
+                        {stakeholder.buttonText}
+                      </span>
+                      <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white dark:group-hover:text-[#030811]" aria-hidden="true" />
+                    </button>
+                  </div>
+
+                  <div className="flex flex-col gap-6 border-t border-gray-100 bg-gray-50/50 p-6 dark:border-gray-800 dark:bg-black/20">
+                    <div className="grid grid-cols-2 gap-3">
+                      {stakeholder.stats?.slice(0, 4).map((stat, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="flex flex-col justify-center rounded-md border border-gray-200/80 bg-white p-3 shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
+                        >
+                          <stat.icon className="mb-2 h-4 w-4 text-[#F59E0B]" strokeWidth={2} aria-hidden="true" />
+                          <span className="text-xl font-black text-[#0a1128] dark:text-white">
+                            {stat.value}
+                          </span>
+                          <span className="mt-0.5 text-[9px] font-bold tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                            {stat.label}
+                          </span>
                         </div>
-                        <div className="flex flex-col justify-center pt-0.5">
-                          <span className="text-[12px] font-bold leading-tight text-[#0a1128] dark:text-gray-100">
+                      ))}
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3">
+                      {stakeholder.features.map((feature, fIdx) => (
+                        <div
+                          key={fIdx}
+                          className="flex items-center gap-3 rounded border border-gray-100 bg-white p-2.5 shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
+                        >
+                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FAFAFA] text-[#F59E0B] dark:bg-[#0a1128]">
+                            <feature.icon className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
+                          </div>
+                          <span className="text-[13px] font-bold text-[#0a1128] dark:text-gray-100">
                             {feature.title}
                           </span>
                         </div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                      ))}
+                    </div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                    className="mt-auto"
-                  >
-                    <button className="group relative flex w-full items-center justify-between overflow-hidden rounded bg-[#0a1128] px-3 py-2 text-white shadow-md active:scale-[0.98] dark:bg-white dark:text-[#0a1128]">
-                      <div className="absolute inset-0 w-0 bg-gradient-to-r from-[#b38728] via-[#D4AF37] to-[#FBBF24] transition-all duration-500 ease-out group-hover:w-full opacity-0 group-hover:opacity-100" />
-                      <div className="relative z-10 flex items-center gap-2.5">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-[#FEF08A] backdrop-blur-sm dark:bg-black/5 dark:text-[#F59E0B] group-hover:text-white dark:group-hover:text-[#030811]">
-                          <Sparkles className="h-3 w-3" />
-                        </div>
-                        <span className="text-[12px] font-bold tracking-wide transition-colors duration-300 group-hover:text-white dark:group-hover:text-[#030811]">
-                          {stakeholder.buttonText}
-                        </span>
-                      </div>
-                      <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white dark:group-hover:text-[#030811]" />
-                    </button>
-                  </motion.div>
                 </div>
               </motion.div>
             );
           })}
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 }
