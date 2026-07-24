@@ -1,9 +1,9 @@
-import React from "react";
+
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart, PlaySquare, Users, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart, Users, Sparkles } from "lucide-react";
 import { stakeholderData } from "./data";
 
-const smoothEasing = [0.16, 1, 0.3, 1];
+const smoothEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -35,7 +35,7 @@ const cardVariants = {
   },
 };
 
-const floatAnim1 = {
+const floatAnim1: any = {
   animate: {
     y: [0, -10, 0],
     rotate: [0, 2, -2, 0],
@@ -43,7 +43,7 @@ const floatAnim1 = {
   },
 };
 
-const floatAnim2 = {
+const floatAnim2: any = {
   animate: {
     y: [0, 12, 0],
     rotate: [0, -3, 3, 0],
@@ -51,7 +51,7 @@ const floatAnim2 = {
   },
 };
 
-const backgroundPan = {
+const backgroundPan: any = {
   animate: {
     scale: [1.05, 1.1, 1.05],
     x: [0, -10, 0],
@@ -118,7 +118,7 @@ export default function DesktopStakeHolder1() {
             {block1.cards.map((card) => (
               <motion.div
                 variants={cardVariants}
-                whileHover={{ y: -6, shadow: "0 20px 40px -15px rgba(249,115,22,0.2)" }}
+                whileHover={{ y: -6, boxShadow: "0 20px 40px -15px rgba(249,115,22,0.2)" }}
                 key={card.id}
                 className="group bg-white rounded-[8px] p-6 lg:p-8 shadow-sm border border-orange-100 hover:border-orange-300 transition-all duration-500 flex flex-col h-full relative overflow-hidden"
               >
@@ -258,7 +258,7 @@ export default function DesktopStakeHolder1() {
           {block2.cards.map((card) => (
             <motion.div
               variants={cardVariants}
-              whileHover={{ y: -6, shadow: "0 20px 40px -15px rgba(59,130,246,0.2)" }}
+              whileHover={{ y: -6, boxShadow: "0 20px 40px -15px rgba(59,130,246,0.2)" }}
               key={card.id}
               className="group bg-slate-800/40 backdrop-blur-md rounded-[8px] p-6 lg:p-8 shadow-lg border border-slate-700/50 hover:border-blue-500/50 hover:bg-slate-800/80 transition-all duration-500 flex flex-col h-full relative overflow-hidden"
             >

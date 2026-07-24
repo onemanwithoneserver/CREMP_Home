@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+
 import { footerLinks, socialLinks } from "./data";
 import CrempTextLogo from "../../components/CrempTextLogo";
 
-export default function Mobile({ hideCTA = false }: { hideCTA?: boolean }) {
+export default function Mobile(_props: { hideCTA?: boolean }) {
   const currentYear = new Date().getFullYear();
 
   return (

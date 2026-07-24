@@ -1,9 +1,9 @@
-import React from "react";
+
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart, Users, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart, Users, Sparkles } from "lucide-react";
 import { stakeholderData } from "./data";
 
-const smoothEasing = [0.16, 1, 0.3, 1];
+const smoothEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -31,7 +31,7 @@ const cardVariants = {
   },
 };
 
-const floatAnim = {
+const floatAnim: any = {
   animate: {
     y: [0, -6, 0],
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
