@@ -8,6 +8,7 @@ export default function Desktop({ hideCTA = false }: { hideCTA?: boolean }) {
 
   return (
     <div className="w-full font-sans flex flex-col">
+      {/* 
       {!hideCTA && (
         <div className="w-full bg-gradient-to-b from-gray-50 to-gray-200 dark:from-[#0a1128] dark:to-[#0a0f25] py-24 px-8 lg:px-16 flex flex-col items-center justify-center relative overflow-hidden border-t border-gray-200 dark:border-gray-800/50">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#D4AF37]/10 dark:bg-[#D4AF37]/5 blur-[120px] rounded-full pointer-events-none" />
@@ -53,6 +54,7 @@ export default function Desktop({ hideCTA = false }: { hideCTA?: boolean }) {
           </div>
         </div>
       )}
+      */}
 
       <div className="w-full bg-white dark:bg-[#0a1128]  dark:border-gray-800 py-4 px-4 flex flex-col items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8">
