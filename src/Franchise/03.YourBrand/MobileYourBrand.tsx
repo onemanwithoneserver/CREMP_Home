@@ -1,18 +1,8 @@
+import { useState, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
-import { YourBrandLogo } from "../../components/YourBrandLogo";
-import {
-  Sparkles,
-  ArrowRight,
-  LayoutDashboard,
-  Users,
-  BarChart3,
-  Settings,
-  Bell,
-  Search,
-  TrendingUp,
-  Activity,
-} from "lucide-react";
+import { Sparkles, ArrowRight, Play, Pause, X } from "lucide-react";
+import { carouselItems } from "./data";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -38,17 +28,6 @@ const floatAnimation: Variants = {
     scale: 1,
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
   },
-  animate: {
-    y: [-4, 4, -4],
-    transition: { duration: 7, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
-const floatSubtle: Variants = {
-  animate: {
-    y: [-3, 3, -3],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 },
-  },
 };
 
 const pulseGlow: Variants = {
@@ -59,7 +38,45 @@ const pulseGlow: Variants = {
   },
 };
 
+const getYouTubeEmbedUrl = (url: string) => {
+  if (!url) return "";
+  let videoId = "";
+  if (url.includes("youtube.com/shorts/")) {
+    videoId = url.split("shorts/")[1].split("?")[0];
+  } else if (url.includes("youtube.com/watch?v=")) {
+    videoId = url.split("v=")[1].split("&")[0];
+  } else if (url.includes("youtu.be/")) {
+    videoId = url.split("youtu.be/")[1].split("?")[0];
+  } else if (url.includes("youtube.com/embed/")) {
+    return url;
+  }
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+};
+
 export default function MobileYourBrand() {
+  const [items, setItems] = useState(carouselItems);
+  const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
+  const [isCarouselPlaying, setIsCarouselPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!isCarouselPlaying || playingVideoId !== null) return;
+
+    const interval = setInterval(() => {
+      setItems((prevItems) => {
+        const newItems = [...prevItems];
+        const first = newItems.shift();
+        if (first) newItems.push(first);
+        
+        return newItems.map((item, index) => ({
+          ...item,
+          position: index - 2,
+          active: index === 2
+        }));
+      });
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isCarouselPlaying, playingVideoId]);
+
   return (
     <section className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#030712]">
       <motion.div
@@ -158,168 +175,129 @@ export default function MobileYourBrand() {
             </motion.div>
           </motion.div>
 
-          <div className="relative mt-8 flex w-full justify-center pb-4">
+          <div className="relative flex w-full items-center justify-center mt-8 pb-8">
             <motion.div
               variants={floatAnimation}
               initial="hidden"
               whileInView={["show", "animate"]}
-              viewport={{ once: true }}
-              className="relative w-full max-w-[320px]"
+              viewport={{ once: true, margin: "-50px" }}
+              className="relative flex h-[450px] w-full max-w-[320px] items-center justify-center"
             >
-              <motion.div
-                variants={floatSubtle}
-                initial="animate"
-                className="absolute -left-2 top-8 z-30 flex scale-90 items-center gap-3 rounded-[8px] border border-gray-200/50 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-800/95"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#10B981]/10 text-[#10B981]">
-                  <TrendingUp size={18} strokeWidth={2.5} />
-                </div>
-                <div>
-                  <p className="text-[0.6rem] font-bold uppercase text-gray-500 dark:text-gray-400">
-                    Conversion
-                  </p>
-                  <p className="text-base font-black text-gray-900 dark:text-white">
-                    +24.8%
-                  </p>
-                </div>
-              </motion.div>
+              {items.map((item) => {
+                let transformClasses = "";
+                let zIndexClass = "";
+                let opacityClass = "";
 
-              <motion.div
-                variants={floatSubtle}
-                initial="animate"
-                className="absolute -bottom-6 -right-2 z-30 flex scale-90 items-center gap-3 rounded-[8px] border border-gray-200/50 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-800/95"
-              >
-                <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
-                  <Activity size={16} strokeWidth={2.5} />
-                  <span className="absolute right-0 top-0 h-2 w-2 animate-ping rounded-full bg-blue-500 opacity-75" />
-                  <span className="absolute right-0 top-0 h-2 w-2 rounded-full border-2 border-white bg-blue-500 dark:border-gray-800" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-gray-900 dark:text-white">
-                    System Active
-                  </p>
-                  <p className="text-[0.55rem] font-medium text-gray-500 dark:text-gray-400">
-                    All services operational
-                  </p>
-                </div>
-              </motion.div>
+                if (item.position === 0) {
+                  transformClasses = "translate-x-0 scale-[1.0]";
+                  zIndexClass = "z-30";
+                  opacityClass = "opacity-100";
+                } else if (item.position === -1) {
+                  transformClasses = "-translate-x-[40%] scale-[0.8]";
+                  zIndexClass = "z-20";
+                  opacityClass = "opacity-60";
+                } else if (item.position === 1) {
+                  transformClasses = "translate-x-[40%] scale-[0.8]";
+                  zIndexClass = "z-20";
+                  opacityClass = "opacity-60";
+                } else if (item.position === -2) {
+                  transformClasses = "-translate-x-[75%] scale-[0.6]";
+                  zIndexClass = "z-10";
+                  opacityClass = "opacity-30";
+                } else if (item.position === 2) {
+                  transformClasses = "translate-x-[75%] scale-[0.6]";
+                  zIndexClass = "z-10";
+                  opacityClass = "opacity-30";
+                }
 
-              <div className="relative flex h-[460px] w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#0a101d]">
-                <div className="relative flex items-center border-b border-gray-100 bg-white/80 px-4 py-2.5 backdrop-blur-md dark:border-gray-800/60 dark:bg-[#0a101d]/80">
-                  <div className="flex gap-1.5">
-                    <div className="h-2.5 w-2.5 rounded-full bg-red-400/90" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-amber-400/90" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-emerald-400/90" />
-                  </div>
-                  <div className="absolute left-1/2 flex w-[60%] -translate-x-1/2 items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-gray-50/50 py-1 text-[0.6rem] font-medium text-gray-500 dark:border-gray-700/80 dark:bg-gray-900/50">
-                    <span className="text-gray-400">🔒</span> yourbrand.com
-                  </div>
-                </div>
+                return (
+                  <div
+                    key={item.id}
+                    className={`absolute aspect-[9/16] w-[220px] overflow-hidden rounded-[4px] border border-gray-200/20 bg-gray-900 shadow-2xl transition-all duration-500 dark:border-gray-800/80 ${transformClasses} ${zIndexClass} ${opacityClass}`}
+                  >
+                    {playingVideoId === item.id ? (
+                      <div className="relative h-full w-full bg-black">
+                        <iframe
+                          src={`${getYouTubeEmbedUrl(item.videoUrl)}?autoplay=1&mute=0`}
+                          allow="autoplay; fullscreen"
+                          className="h-full w-full border-none"
+                          title={item.title}
+                        />
+                        <button
+                          onClick={() => {
+                            setPlayingVideoId(null);
+                            setIsCarouselPlaying(true);
+                          }}
+                          className="absolute right-2 top-2 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-colors hover:bg-red-500"
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="h-full w-full object-cover opacity-90"
+                        />
+                        
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80 pointer-events-none" />
 
-                <div className="flex flex-1 overflow-hidden">
-                  <div className="flex w-14 flex-col items-center border-r border-gray-100 bg-gray-50/50 py-4 dark:border-gray-800/60 dark:bg-gray-900/20">
-                    <div className="mb-6 scale-75 origin-top">
-                      <YourBrandLogo size="sm" showText={false} />
-                    </div>
-                    <div className="flex flex-col gap-6 text-gray-400 dark:text-gray-500">
-                      <div className="rounded-[4px] bg-white p-2 text-[#D4AF37] shadow-sm dark:bg-gray-800 dark:text-[#D4AF37]">
-                        <LayoutDashboard size={18} />
-                      </div>
-                      <div className="p-2">
-                        <BarChart3 size={18} />
-                      </div>
-                      <div className="p-2">
-                        <Users size={18} />
-                      </div>
-                      <div className="p-2">
-                        <Settings size={18} />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-1 flex-col bg-white p-4 dark:bg-[#030712]">
-                    <div className="mb-5 flex items-center justify-between">
-                      <div>
-                        <h3 className="text-base font-bold text-gray-900 dark:text-white">
-                          Overview
-                        </h3>
-                        <p className="text-[0.6rem] text-gray-500">
-                          Welcome back
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-3 text-gray-400">
-                        <Search size={16} />
-                        <div className="relative">
-                          <Bell size={16} />
-                          <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-red-500 ring-2 ring-white dark:ring-[#030712]" />
+                        <div className="absolute inset-x-0 top-0 flex flex-col items-start p-4 pointer-events-none">
+                          <h3 className={`font-bold text-white leading-tight ${item.active ? "text-lg" : "text-sm"}`}>
+                            {item.title}
+                          </h3>
+                          <p className={`mt-1 text-gray-200 ${item.active ? "text-xs font-medium" : "text-[10px]"}`}>
+                            {item.subtitle}
+                          </p>
                         </div>
-                        <div className="h-6 w-6 overflow-hidden rounded-full bg-gray-200">
-                          <img
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop"
-                            className="h-full w-full object-cover"
-                            alt="User"
-                          />
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className="mb-5 flex flex-col gap-3">
-                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                        <p className="mb-1 text-[0.65rem] font-medium text-gray-500">
-                          Total Revenue
-                        </p>
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">
-                          $84,590
-                        </h4>
-                        <p className="mt-1 flex items-center text-[0.6rem] font-bold text-emerald-500">
-                          <TrendingUp size={10} className="mr-1" /> +12.5%
-                        </p>
-                      </div>
-                      <div className="rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/60 dark:bg-gray-900/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                        <p className="mb-1 text-[0.65rem] font-medium text-gray-500">
-                          Active Users
-                        </p>
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">
-                          12,405
-                        </h4>
-                        <p className="mt-1 flex items-center text-[0.6rem] font-bold text-emerald-500">
-                          <TrendingUp size={10} className="mr-1" /> +8.2%
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-1 flex-col rounded-[8px] border border-gray-100 bg-white p-3 shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                      <div className="mb-3 flex items-center justify-between">
-                        <h4 className="text-[0.75rem] font-bold text-gray-900 dark:text-white">
-                          Performance
-                        </h4>
-                      </div>
-                      <div className="relative flex-1">
-                        <div className="absolute inset-0 flex items-end justify-between gap-1.5 pt-2 opacity-80">
-                          {[40, 70, 45, 90, 65, 85, 100].map((height, i) => (
-                            <div
-                              key={i}
-                              className="flex w-full flex-col justify-end h-full"
-                            >
-                              <motion.div
-                                initial={{ height: 0 }}
-                                whileInView={{ height: `${height}%` }}
-                                viewport={{ once: true }}
-                                transition={{
-                                  duration: 0.8,
-                                  delay: 0.3 + i * 0.1,
-                                }}
-                                className="w-full rounded-t-[2px] bg-[#D4AF37]/20 dark:bg-[#D4AF37]/20"
-                              />
-                            </div>
-                          ))}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <button
+                            onClick={() => {
+                              if (item.active) {
+                                setPlayingVideoId(item.id);
+                                setIsCarouselPlaying(false);
+                              }
+                            }}
+                            className={`flex items-center justify-center rounded-full bg-black/40 backdrop-blur-sm transition-transform hover:scale-110 ${
+                              item.active ? "h-14 w-14 cursor-pointer" : "h-10 w-10 cursor-default"
+                            }`}
+                          >
+                            <Play
+                              className="ml-1 fill-white text-white"
+                              size={item.active ? 24 : 16}
+                            />
+                          </button>
                         </div>
-                      </div>
-                    </div>
+
+                        <div className="absolute bottom-0 left-0 flex items-center gap-2 p-4 pointer-events-none">
+                          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
+                            <Play size={10} className="ml-0.5 fill-white text-white" />
+                          </div>
+                          <span className="text-xs font-bold text-white drop-shadow-md">
+                            {item.views}
+                          </span>
+                        </div>
+                      </>
+                    )}
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </motion.div>
+
+            <div className="absolute bottom-0 right-4 z-40 flex items-center justify-center">
+              <button
+                onClick={() => setIsCarouselPlaying(!isCarouselPlaying)}
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg backdrop-blur-md transition-all hover:bg-gray-50 hover:shadow-xl dark:border-gray-800/50 dark:bg-black/60 dark:hover:bg-black"
+              >
+                {isCarouselPlaying ? (
+                  <Pause size={16} className="text-gray-900 transition-transform group-hover:scale-110 dark:text-white" />
+                ) : (
+                  <Play size={16} className="ml-0.5 text-gray-900 transition-transform group-hover:scale-110 dark:text-white" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </Container>

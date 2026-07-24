@@ -40,12 +40,7 @@ const floatAnimation: Variants = {
   },
 };
 
-const floatSubtle: Variants = {
-  animate: {
-    y: [-4, 4, -4],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 },
-  },
-};
+
 
 const pulseGlow: Variants = {
   animate: {

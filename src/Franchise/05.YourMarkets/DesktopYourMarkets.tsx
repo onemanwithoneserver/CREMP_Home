@@ -1,7 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
 import { marketData } from "./data";
-import { Star, Goal, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { Star, Globe } from "lucide-react";
 import mapBg from "../../assets/map_bg.png";
 
 const fadeInUp: Variants = {
@@ -31,19 +31,6 @@ const pulseNode: Variants = {
   },
 };
 
-const floatChart: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1, delay: 0.4, type: "spring" },
-  },
-  animate: {
-    y: [-6, 6, -6],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
 const pulseBackground: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -67,17 +54,17 @@ export default function DesktopYourMarkets() {
       />
 
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
-        <div className="mb-24 flex flex-col items-center gap-16 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mb-24 flex flex-col items-center justify-center">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
-            className="flex w-full flex-col justify-center lg:w-[40%]"
+            className="flex w-full max-w-4xl flex-col items-center justify-center text-center"
           >
             <motion.div
               variants={fadeInUp}
-              className="mb-6 flex items-center gap-3"
+              className="mb-6 flex items-center justify-center gap-3"
             >
               <div className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                 <Globe
@@ -102,46 +89,57 @@ export default function DesktopYourMarkets() {
               </span>
             </motion.h2>
 
-            <motion.div variants={fadeInUp} className="flex flex-col gap-6">
+            <motion.div variants={fadeInUp} className="flex flex-col items-center gap-6">
               <p className="text-xl font-bold leading-relaxed text-gray-900 dark:text-white">
                 {marketData.desc[0]}
               </p>
-              <p className="text-lg font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+              <p className="max-w-2xl text-lg font-medium leading-relaxed text-gray-600 dark:text-gray-400">
                 {marketData.desc[1]}
               </p>
             </motion.div>
+          </motion.div>
+        </div>
 
-            <motion.div
-              variants={fadeInUp}
-              className="mt-10 flex items-center gap-6"
-            >
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            className="flex h-full w-full flex-col justify-center rounded-[8px] border border-gray-200/50 bg-white p-10 shadow-xl transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#0a101d]"
+          >
+            <div className="mb-10 flex items-center gap-3">
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex cursor-default flex-col"
+                whileHover={{ rotate: 180, scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]"
               >
-                <span className="text-3xl font-black text-gray-900 dark:text-white">
-                  24+
-                </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                  Global Regions
-                </span>
+                <Star size={18} className="fill-current" />
               </motion.div>
-              <div className="h-10 w-px bg-gray-200 dark:bg-gray-800" />
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex cursor-default flex-col"
-              >
-                <span className="text-3xl font-black text-gray-900 dark:text-white">
-                  150M
-                </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                  Target Reach
-                </span>
-              </motion.div>
-            </motion.div>
+              <h3 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+                {marketData.benefitsTitle}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {marketData.benefits.map((benefit, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ x: 5, scale: 1.02 }}
+                  className="group flex cursor-pointer items-start gap-4 rounded-[4px] border border-transparent p-4 transition-all hover:border-gray-100 hover:bg-gray-50 hover:shadow-sm dark:hover:border-gray-800/60 dark:hover:bg-gray-900/50"
+                >
+                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+                    <benefit.icon size={14} strokeWidth={2.5} />
+                  </div>
+                  <p className="text-sm font-bold leading-relaxed text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-300 dark:group-hover:text-[#D4AF37]">
+                    {benefit.text}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
-          <div className="relative flex h-[550px] w-full items-center justify-center lg:w-[55%]">
+          <div className="relative flex h-[550px] w-full items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -300,150 +298,6 @@ export default function DesktopYourMarkets() {
               </svg>
             </motion.div>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            className="col-span-1 flex flex-col justify-center rounded-[8px] border border-gray-200/50 bg-white p-10 shadow-xl transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#0a101d] lg:col-span-3"
-          >
-            <div className="mb-10 flex items-center gap-3">
-              <motion.div
-                whileHover={{ rotate: 180, scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]"
-              >
-                <Star size={18} className="fill-current" />
-              </motion.div>
-              <h3 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
-                {marketData.benefitsTitle}
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {marketData.benefits.map((benefit, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ x: 5, scale: 1.02 }}
-                  className="group flex cursor-pointer items-start gap-4 rounded-[4px] border border-transparent p-4 transition-all hover:border-gray-100 hover:bg-gray-50 hover:shadow-sm dark:hover:border-gray-800/60 dark:hover:bg-gray-900/50"
-                >
-                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
-                    <benefit.icon size={14} strokeWidth={2.5} />
-                  </div>
-                  <p className="text-sm font-bold leading-relaxed text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-300 dark:group-hover:text-[#D4AF37]">
-                    {benefit.text}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 25,
-              delay: 0.2,
-            }}
-            whileHover={{ y: -5 }}
-            className="relative col-span-1 flex flex-col overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0B1221] to-[#030712] p-10 text-center shadow-2xl ring-1 ring-white/10 transition-all hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)] lg:col-span-2"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30" />
-
-            <div className="relative z-10 flex flex-col items-start text-left">
-              <div className="mb-6 flex cursor-pointer items-center gap-2 rounded-[2px] border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-500/20">
-                <Goal size={14} className="text-emerald-400" />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-emerald-400">
-                  {marketData.outcome.tag}
-                </span>
-              </div>
-
-              <h3 className="mb-8 text-[2rem] font-black leading-tight text-white">
-                <span className="block opacity-90">
-                  {marketData.outcome.lines[0]}
-                </span>
-                <span className="block opacity-90">
-                  {marketData.outcome.lines[1]}
-                </span>
-                <span className="block bg-gradient-to-r from-[#D4AF37] to-[#f9d08b] bg-clip-text text-transparent">
-                  {marketData.outcome.lines[2]}
-                </span>
-              </h3>
-            </div>
-
-            <motion.div
-              variants={floatChart}
-              initial="hidden"
-              whileInView={["show", "animate"]}
-              viewport={{ once: true }}
-              className="relative mt-auto h-40 w-full"
-            >
-              <div className="absolute inset-0 flex flex-col justify-between opacity-10">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="h-px w-full bg-white" />
-                ))}
-              </div>
-
-              <svg
-                className="absolute inset-0 h-full w-full overflow-visible"
-                preserveAspectRatio="none"
-                viewBox="0 0 100 100"
-              >
-                <defs>
-                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,100 C20,80 30,90 50,50 C70,10 85,20 100,5"
-                  fill="url(#chartGrad)"
-                />
-                <motion.path
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 2, ease: "easeInOut", delay: 0.6 }}
-                  d="M0,100 C20,80 30,90 50,50 C70,10 85,20 100,5"
-                  fill="none"
-                  stroke="#D4AF37"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  className="drop-shadow-[0_0_8px_rgba(246,178,59,0.8)]"
-                />
-              </svg>
-
-              <div className="absolute right-0 top-1 -translate-y-1/2 translate-x-1/4">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#D4AF37]/20 backdrop-blur-md"
-                >
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_20px_rgba(246,178,59,0.8)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
-                    <ArrowRight
-                      size={12}
-                      className="rotate-[-45deg] text-gray-900"
-                      strokeWidth={3}
-                    />
-                  </div>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="absolute -left-20 top-14 cursor-pointer whitespace-nowrap rounded-[4px] border border-white/10 bg-white/5 px-3 py-1.5 shadow-xl backdrop-blur-xl transition-colors hover:bg-white/10"
-                >
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-                    <TrendingUp size={12} className="text-emerald-400" />
-                    +342% ROI
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
       </Container>
     </div>

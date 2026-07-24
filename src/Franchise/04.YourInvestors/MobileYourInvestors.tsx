@@ -1,8 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
 import { investorData } from "./data";
-import { Target, CheckCircle2, Star, Activity, User } from "lucide-react";
-import { YourBrandLogo } from "../../components/YourBrandLogo";
+import { Target, CheckCircle2, Star, Activity } from "lucide-react";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -26,27 +25,6 @@ const pulseRing: Variants = {
     scale: [1, 1.15, 1],
     opacity: [0.4, 0.1, 0.4],
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
-const floatGlow: Variants = {
-  animate: {
-    y: [-6, 6, -6],
-    boxShadow: [
-      "0 5px 15px rgba(178,127,28,0.1)",
-      "0 10px 20px rgba(178,127,28,0.2)",
-      "0 5px 15px rgba(178,127,28,0.1)",
-    ],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
-const drawLine: Variants = {
-  hidden: { pathLength: 0, opacity: 0 },
-  show: {
-    pathLength: 1,
-    opacity: 1,
-    transition: { duration: 2, ease: "easeInOut", delay: 0.5 },
   },
 };
 
