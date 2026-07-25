@@ -1,7 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
 import { growthStagesData } from "./data";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles} from "lucide-react";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -133,12 +133,6 @@ export default function DesktopGrowthStages() {
                   </p>
                 </div>
 
-                <div className="relative z-10 mt-10">
-                  <button className="flex items-center text-sm font-bold text-gray-900 transition-colors hover:text-[#D4AF37] dark:text-white dark:hover:text-[#D4AF37]">
-                    Learn more
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-2" />
-                  </button>
-                </div>
               </motion.div>
             );
           })}

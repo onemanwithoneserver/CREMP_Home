@@ -1,7 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Container } from "../../components/layout";
 import { growthStagesData } from "./data";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles} from "lucide-react";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -112,14 +112,9 @@ export default function MobileGrowthStages() {
                     {stage.subtitle}
                   </h4>
                   
-                  <p className="mb-6 text-sm font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="text-sm font-medium leading-relaxed text-gray-600 dark:text-gray-400">
                     {stage.description}
                   </p>
-
-                  <button className="flex items-center text-[0.8rem] font-bold text-gray-900 transition-colors active:text-[#D4AF37] dark:text-white dark:active:text-[#D4AF37]">
-                    Learn more
-                    <ArrowRight size={14} className="ml-2" />
-                  </button>
                 </motion.div>
               );
             })}
