@@ -57,7 +57,7 @@ export default function Desktop() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-12 pt-28 font-sans text-[#0a1128] dark:bg-[#0a1128] dark:text-white lg:pt-36"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-8 pt-28 font-sans text-[#0a1128] dark:bg-[#0a1128] dark:text-white lg:pt-28 xl:pt-32"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -103,14 +103,14 @@ export default function Desktop() {
         />
       ))}
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 lg:gap-14">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
           <div className="z-10 flex w-full flex-col lg:w-[50%] xl:w-[55%]">
             <motion.div
               initial={{ opacity: 0, y: 15, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={springAnim}
-              className="mb-6 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#D4AF37]/20 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#D4AF37]/20 dark:from-[#D4AF37]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
+              className="mb-4 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#D4AF37]/20 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#D4AF37]/20 dark:from-[#D4AF37]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
             >
               <div className="flex items-center gap-1.5 font-bold text-[#0a1128] sm:gap-2 dark:text-white">
                 <Rocket className="h-3.5 w-3.5 text-[#D4AF37] sm:h-4 sm:w-4 dark:text-[#D4AF37]" />
@@ -133,7 +133,7 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.1 }}
-              className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#0a1128] dark:text-white lg:text-6xl xl:text-7xl"
+              className="mb-4 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#0a1128] dark:text-white lg:text-5xl xl:text-6xl"
             >
               India's 1st Integrated <br />
               <motion.span
@@ -167,7 +167,7 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.3 }}
-              className="mt-6 max-w-[95%] text-base leading-relaxed text-gray-600 dark:text-gray-400 xl:text-lg"
+              className="mt-4 max-w-[95%] text-base leading-relaxed text-gray-600 dark:text-gray-400 xl:text-lg"
             >
               CREMP redefines how commercial opportunities are discovered and
               connected. From commercial properties and retail spaces to
@@ -180,7 +180,7 @@ export default function Desktop() {
           </div>
 
           <div className="flex w-full items-center justify-center lg:w-[45%] xl:w-[40%]">
-            <div className="group/orbit relative mx-auto hidden h-[320px] w-[320px] shrink-0 items-center justify-center lg:flex lg:h-[400px] lg:w-[400px] xl:h-[480px] xl:w-[480px]">
+            <div className="group/orbit relative mx-auto hidden h-[320px] w-[320px] shrink-0 items-center justify-center lg:flex lg:h-[360px] lg:w-[360px] xl:h-[420px] xl:w-[420px]">
               <div className="pointer-events-none absolute inset-0 rounded-full bg-[#D4AF37]/5 blur-[60px] transition-opacity duration-700 group-hover/orbit:opacity-100" />
 
               <motion.div
