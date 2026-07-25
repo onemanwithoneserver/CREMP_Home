@@ -25,7 +25,7 @@ export default function MobileFAQ() {
   const Btn2Icon = faqData.banner.btn2.icon;
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -123,7 +123,7 @@ export default function MobileFAQ() {
           </div>
 
           <div className="relative z-10 flex w-full flex-col gap-3">
-            <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] py-3.5 text-[0.9rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712]">
+            <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] py-3.5 text-[0.9rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128]">
               <Btn1Icon size={16} />
               {faqData.banner.btn1.text}
             </button>

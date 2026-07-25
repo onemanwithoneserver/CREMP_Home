@@ -47,7 +47,7 @@ const pulseGlow: Variants = {
 
 export default function MobileCategories() {
  return (
- <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+ <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
  <div
  className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]"
  style={{
@@ -109,7 +109,7 @@ export default function MobileCategories() {
  key={idx}
  variants={cardVariant}
  whileHover={{ y: -4, scale: 1.02}}
- className="group relative flex h-36 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border border-gray-200/60 bg-gray-50/50 p-4 text-center shadow-sm dark:border-gray-800/60 dark:bg-[#0a101d]/50"
+ className="group relative flex h-36 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border border-gray-200/60 bg-gray-50/50 p-4 text-center shadow-sm dark:border-gray-800/60 dark:bg-[#121c33]/50"
  >
  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#D4AF37]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#D4AF37]/10"/>
 
@@ -137,7 +137,7 @@ export default function MobileCategories() {
  >
  <div className="flex w-full items-center gap-4">
  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-200 dark:to-gray-800"/>
- <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-50 ring-1 ring-gray-200 dark:bg-[#0a101d] dark:ring-gray-800">
+ <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-50 ring-1 ring-gray-200 dark:bg-[#121c33] dark:ring-gray-800">
  <Sparkles
  size={12}
  className="text-[#D4AF37] dark:text-[#D4AF37]"

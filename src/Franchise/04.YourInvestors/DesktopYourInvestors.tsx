@@ -32,7 +32,7 @@ const pulseRing: Variants = {
 
 export default function DesktopYourInvestors() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-12 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-12 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
       <motion.div
         animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.05, 1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -98,7 +98,7 @@ export default function DesktopYourInvestors() {
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
             transition={{ type: "spring", stiffness: 250, damping: 25 }}
-            className="col-span-1 flex flex-col overflow-hidden rounded-[8px] border border-gray-200/50 bg-gray-50 p-10 shadow-lg transition-shadow hover:shadow-xl dark:border-gray-800/50 dark:bg-[#0a101d] lg:col-span-2"
+            className="col-span-1 flex flex-col overflow-hidden rounded-[8px] border border-gray-200/50 bg-gray-50 p-10 shadow-lg transition-shadow hover:shadow-xl dark:border-gray-800/50 dark:bg-[#121c33] lg:col-span-2"
           >
             <div className="mb-10 flex items-center gap-4">
               <motion.div
@@ -164,7 +164,7 @@ export default function DesktopYourInvestors() {
               damping: 25,
               delay: 0.2,
             }}
-            className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0f172a] to-[#030712] p-10 text-center shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:from-[#1e293b] dark:to-[#0a101d] dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
+            className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0f172a] to-[#0a1128] p-10 text-center shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:from-[#121c33] dark:to-[#121c33] dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30" />
 

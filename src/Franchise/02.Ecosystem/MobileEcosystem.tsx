@@ -56,7 +56,7 @@ const floatAnimation: Variants = {
 
 export default function MobileEcosystem() {
  return (
- <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#030712] dark:shadow-none border border-gray-200/50 dark:border-white/5">
+ <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none border border-gray-200/50 dark:border-white/5">
  <motion.div
  variants={pulseGlow}
  animate="animate"
@@ -106,7 +106,7 @@ export default function MobileEcosystem() {
  >
  {ecosystemData.issues.map((issue, idx) => (
  <div key={idx} className="flex items-center gap-3">
- <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-inner dark:border-gray-800 dark:from-[#0a101d] dark:to-[#0a101d] dark:text-[#D4AF37]">
+ <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-inner dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37]">
  <issue.icon size={14} />
  </div>
  <span className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-300">
@@ -205,9 +205,9 @@ export default function MobileEcosystem() {
  {ecosystemData.flowItems.map((item, idx) => (
  <div
  key={idx}
- className="relative z-20 flex min-h-[90px] w-full flex-col items-center justify-center rounded-xl border border-gray-200/80 bg-white/95 p-3 text-center shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#0a101d]/95"
+ className="relative z-20 flex min-h-[90px] w-full flex-col items-center justify-center rounded-xl border border-gray-200/80 bg-white/95 p-3 text-center shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#121c33]/95"
  >
- <div className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-sm ring-1 ring-[#D4AF37]/20 dark:from-[#121c33] dark:to-[#030712] dark:ring-[#D4AF37]/20">
+ <div className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-sm ring-1 ring-[#D4AF37]/20 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/20">
  <item.icon
  size={16}
  className="text-[#D4AF37] dark:text-[#D4AF37]"
@@ -219,7 +219,7 @@ export default function MobileEcosystem() {
  </div>
  ))}
 
- <div className="absolute left-1/2 top-1/2 z-30 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#030712]">
+ <div className="absolute left-1/2 top-1/2 z-30 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128]">
  <Plus size={14} strokeWidth={3} />
  </div>
  </div>
@@ -267,14 +267,14 @@ export default function MobileEcosystem() {
  </svg>
  </div>
 
- <div className="z-20 -mt-[12px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#030712]">
+ <div className="z-20 -mt-[12px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128]">
  <Equal size={16} strokeWidth={3} />
  </div>
 
  <motion.div
  variants={floatAnimation}
  animate="animate"
- className="relative z-10 -mt-[12px] flex w-[90%] max-w-[280px] items-center justify-center gap-3 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#020617] p-3 shadow-lg ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#030712]"
+ className="relative z-10 -mt-[12px] flex w-[90%] max-w-[280px] items-center justify-center gap-3 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#020617] p-3 shadow-lg ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#0a1128]"
  >
  <div className="absolute inset-0 flex justify-end rounded-xl bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-50 dark:from-[#D4AF37]/20"/>
 
@@ -304,11 +304,11 @@ export default function MobileEcosystem() {
  whileInView={{ opacity: 1, y: 0}}
  viewport={{ once: true}}
  transition={{ duration: 0.5}}
- className="relative mx-auto mt-10 flex w-full max-w-2xl flex-row items-center justify-start gap-4 overflow-hidden rounded-xl border border-gray-200/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#0a101d]/80"
+ className="relative mx-auto mt-10 flex w-full max-w-2xl flex-row items-center justify-start gap-4 overflow-hidden rounded-xl border border-gray-200/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#121c33]/80"
  >
  <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#D4AF37] to-[#b38728] dark:from-[#D4AF37] dark:to-[#b38728]"/>
 
- <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-[#030712] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+ <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
  <Target
  size={18}
  className="text-[#D4AF37] dark:text-[#D4AF37]"

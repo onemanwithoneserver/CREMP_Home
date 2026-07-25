@@ -41,7 +41,7 @@ const pulseBackground: Variants = {
 
 export default function MobileYourMarkets() {
  return (
- <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+ <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
  <motion.div
  variants={pulseBackground}
  animate="animate"
@@ -282,7 +282,7 @@ export default function MobileYourMarkets() {
  whileInView={{ opacity: 1, y: 0}}
  viewport={{ once: true}}
  transition={{ type: "spring", stiffness: 200, damping: 25}}
- className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-2 py-5 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#0a101d]"
+ className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-2 py-5 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#121c33]"
  >
  <div className="mb-6 flex flex-col items-center gap-3">
  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">

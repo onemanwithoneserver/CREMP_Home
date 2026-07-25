@@ -53,7 +53,7 @@ const floatAnimation: Variants = {
 
 export default function DesktopEcosystem() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-16 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-16 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -111,7 +111,7 @@ export default function DesktopEcosystem() {
                   whileHover={{ x: 5 }}
                   className="group flex cursor-pointer items-center gap-3"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-sm transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 dark:border-gray-800 dark:from-[#0a101d] dark:to-[#0a101d] dark:text-[#D4AF37]">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-sm transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37]">
                     <issue.icon size={16} />
                   </div>
                   <span className="text-[0.85rem] font-bold text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-300 dark:group-hover:text-[#D4AF37]">
@@ -156,8 +156,8 @@ export default function DesktopEcosystem() {
                     }}
                     className="relative z-20 flex cursor-pointer items-center"
                   >
-                    <div className="group flex h-32 w-[105px] flex-col items-center justify-center rounded-[4px] border border-gray-100/80 bg-white/90 p-3 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-md transition-all hover:shadow-[0_15px_40px_rgba(178,127,28,0.2)] dark:border-gray-800/80 dark:bg-[#0a101d]/90 dark:hover:shadow-[0_15px_40px_rgba(246,178,59,0.2)] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                      <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-inner ring-1 ring-[#D4AF37]/10 transition-transform duration-500 group-hover:rotate-[360deg] group-hover:scale-110 dark:from-[#121c33] dark:to-[#030712] dark:ring-[#D4AF37]/10 dark:shadow-none">
+                    <div className="group flex h-32 w-[105px] flex-col items-center justify-center rounded-[4px] border border-gray-100/80 bg-white/90 p-3 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-md transition-all hover:shadow-[0_15px_40px_rgba(178,127,28,0.2)] dark:border-gray-800/80 dark:bg-[#121c33]/90 dark:hover:shadow-[0_15px_40px_rgba(246,178,59,0.2)] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                      <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-inner ring-1 ring-[#D4AF37]/10 transition-transform duration-500 group-hover:rotate-[360deg] group-hover:scale-110 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/10 dark:shadow-none">
                         <item.icon
                           size={26}
                           className="text-[#D4AF37] drop-shadow-sm transition-colors group-hover:text-[#b38728] dark:text-[#D4AF37]"
@@ -168,7 +168,7 @@ export default function DesktopEcosystem() {
                       </span>
                     </div>
                     {idx < ecosystemData.flowItems.length - 1 && (
-                      <div className="absolute right-[-14px] top-1/2 z-30 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#030712]">
+                      <div className="absolute right-[-14px] top-1/2 z-30 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128]">
                         <Plus
                           size={14}
                           strokeWidth={3}
@@ -259,7 +259,7 @@ export default function DesktopEcosystem() {
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="z-20 -mt-[14px] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-lg shadow-[#D4AF37]/40 ring-4 ring-gray-50 dark:from-[#D4AF37] dark:to-[#b38728] dark:shadow-[#D4AF37]/40 dark:ring-[#030712]"
+                className="z-20 -mt-[14px] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-lg shadow-[#D4AF37]/40 ring-4 ring-gray-50 dark:from-[#D4AF37] dark:to-[#b38728] dark:shadow-[#D4AF37]/40 dark:ring-[#0a1128]"
               >
                 <Equal size={20} strokeWidth={3} />
               </motion.div>
@@ -270,7 +270,7 @@ export default function DesktopEcosystem() {
                 viewport={{ once: true }}
                 variants={floatAnimation}
                 animate="animate"
-                className="relative z-10 -mt-[14px] flex w-[240px] items-center justify-center gap-5 rounded-[8px] bg-gradient-to-br from-[#0f172a] to-[#020617] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#030712]"
+                className="relative z-10 -mt-[14px] flex w-[240px] items-center justify-center gap-5 rounded-[8px] bg-gradient-to-br from-[#0f172a] to-[#020617] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#0a1128]"
               >
                 <div className="absolute inset-0 rounded-[8px] bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-60 dark:from-[#D4AF37]/20 flex justify-end" />
 
@@ -306,10 +306,10 @@ export default function DesktopEcosystem() {
           viewport={{ once: true }}
           whileHover={{ y: -4, boxShadow: "0 25px 50px rgba(0,0,0,0.3)" }}
           transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
-          className="relative flex w-full cursor-pointer items-center gap-4 overflow-hidden rounded-[8px] border border-gray-200 bg-white/60 p-5 shadow-sm backdrop-blur-xl transition-all dark:border-gray-800 dark:bg-[#0a101d]/60"
+          className="relative flex w-full cursor-pointer items-center gap-4 overflow-hidden rounded-[8px] border border-gray-200 bg-white/60 p-5 shadow-sm backdrop-blur-xl transition-all dark:border-gray-800 dark:bg-[#121c33]/60"
         >
           <div className="absolute left-0 top-0 h-full w-[4px] bg-gradient-to-b from-[#D4AF37] to-[#b38728] dark:from-[#D4AF37] dark:to-[#b38728]" />
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm transition-transform duration-500 hover:rotate-180 hover:scale-110 dark:border-gray-800 dark:bg-[#030712] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm transition-transform duration-500 hover:rotate-180 hover:scale-110 dark:border-gray-800 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
             <Target
               size={22}
               className="text-[#D4AF37] dark:text-[#D4AF37]"

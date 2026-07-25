@@ -29,7 +29,7 @@ const scaleIn: Variants = {
 
 export default function DesktopWhyInvest() {
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0a1128]">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
@@ -65,7 +65,7 @@ export default function DesktopWhyInvest() {
         >
           <motion.div
             variants={scaleIn}
-            className="col-span-5 row-span-2 rounded-[8px] border border-gray-200 bg-white p-10 shadow-sm dark:border-gray-800 dark:bg-[#0a101d] flex flex-col justify-between overflow-hidden relative group"
+            className="col-span-5 row-span-2 rounded-[8px] border border-gray-200 bg-white p-10 shadow-sm dark:border-gray-800 dark:bg-[#121c33] flex flex-col justify-between overflow-hidden relative group"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#D4AF37]/5" />
             <div className="relative z-10">
@@ -97,12 +97,12 @@ export default function DesktopWhyInvest() {
 
           <motion.div
             variants={scaleIn}
-            className="col-span-7 row-span-1 rounded-[8px] border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-[#0a101d] flex items-center justify-between relative overflow-hidden group"
+            className="col-span-7 row-span-1 rounded-[8px] border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-[#121c33] flex items-center justify-between relative overflow-hidden group"
           >
             <div className="absolute inset-0 bg-gradient-to-l from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#D4AF37]/5" />
 
             <div className="relative z-10 flex flex-col max-w-[40%]">
-              <div className="flex h-14 w-14 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 mb-6 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#030712] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+              <div className="flex h-14 w-14 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 mb-6 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
                 <Globe size={24} />
               </div>
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">
@@ -139,14 +139,14 @@ export default function DesktopWhyInvest() {
 
           <motion.div
             variants={scaleIn}
-            className="col-span-7 row-span-1 rounded-[8px] bg-gradient-to-br from-[#D4AF37] to-[#b38728] p-10 shadow-xl dark:from-[#0a101d] dark:to-[#0a1128] dark:border dark:border-gray-800 flex items-center justify-between group overflow-hidden relative"
+            className="col-span-7 row-span-1 rounded-[8px] bg-gradient-to-br from-[#D4AF37] to-[#b38728] p-10 shadow-xl dark:from-[#121c33] dark:to-[#0a1128] dark:border dark:border-gray-800 flex items-center justify-between group overflow-hidden relative"
           >
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
             <div className="relative z-10 max-w-md">
               <h3 className="text-2xl font-black text-white mb-4">
                 Discover verified franchise and retail opportunities instantly.
               </h3>
-              <button className="flex items-center gap-2 rounded-[8px] bg-white px-6 py-2.5 text-[0.85rem] font-bold text-[#D4AF37] transition-transform hover:scale-105 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#030712] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+              <button className="flex items-center gap-2 rounded-[8px] bg-white px-6 py-2.5 text-[0.85rem] font-bold text-[#D4AF37] transition-transform hover:scale-105 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
                 Explore Now <ArrowRight size={16} />
               </button>
             </div>

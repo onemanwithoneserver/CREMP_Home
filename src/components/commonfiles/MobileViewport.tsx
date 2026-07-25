@@ -1,4 +1,5 @@
-import React, { forwardRef, type ReactNode } from "react";
+import React, { forwardRef, type ReactNode, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 export interface MobileViewportProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -6,11 +7,36 @@ export interface MobileViewportProps extends React.HTMLAttributes<HTMLDivElement
 }
 
 const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
-  ({ children, isMobile = false, className = "", ...props }, ref) => {
+  ({ children, isMobile = false, className = "", ...props }, forwardedRef) => {
+    const location = useLocation();
+    
+    // Create an internal ref if one wasn't provided
+    const internalRef = useRef<HTMLDivElement>(null);
+    const setRef = (node: HTMLDivElement) => {
+      internalRef.current = node;
+      if (typeof forwardedRef === 'function') {
+        forwardedRef(node);
+      } else if (forwardedRef) {
+        forwardedRef.current = node;
+      }
+    };
+    
+    // Also create a ref for the mobile inner scroll container
+    const mobileInnerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (internalRef.current) {
+        internalRef.current.scrollTo(0, 0);
+      }
+      if (mobileInnerRef.current) {
+        mobileInnerRef.current.scrollTo(0, 0);
+      }
+    }, [location.pathname]);
+
     if (!isMobile) {
       return (
         <div
-          ref={ref}
+          ref={setRef}
           role="main"
           aria-label="Desktop Viewport"
           className={`h-full w-full overflow-y-auto scrollbar-hide bg-cremp-background @container transition-base ${className}`}
@@ -28,7 +54,7 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
         className="flex items-center justify-center h-full w-full overflow-y-auto scrollbar-hide box-border bg-cremp-surface-alt md:p-[clamp(16px,4vh,40px)] p-0 transition-base"
       >
         <div
-          ref={ref}
+          ref={setRef}
           role="region"
           aria-label="Mobile Device Simulator"
           className={`
@@ -40,7 +66,7 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
           `}
           {...props}
         >
-          <div className="h-full w-full overflow-y-auto scrollbar-hide @container bg-cremp-background md:pt-2">
+          <div ref={mobileInnerRef} className="h-full w-full overflow-y-auto scrollbar-hide @container bg-cremp-background md:pt-2">
             {children}
           </div>
         </div>

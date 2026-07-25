@@ -30,7 +30,7 @@ const pulseRing: Variants = {
 
 export default function MobileYourInvestors() {
  return (
- <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+ <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
  <motion.div
  animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1]}}
  transition={{ duration: 8, repeat: Infinity}}
@@ -91,7 +91,7 @@ export default function MobileYourInvestors() {
  whileInView={{ opacity: 1, y: 0}}
  viewport={{ once: true}}
  transition={{ type: "spring", stiffness: 250, damping: 25}}
- className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-gray-50 p-6 text-center shadow-md dark:border-gray-800/50 dark:bg-[#0a101d]"
+ className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-gray-50 p-6 text-center shadow-md dark:border-gray-800/50 dark:bg-[#121c33]"
  >
  <div className="mb-8 flex flex-col items-center gap-4">
  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-200/80 dark:bg-gray-900 dark:ring-gray-800">
@@ -109,7 +109,7 @@ export default function MobileYourInvestors() {
  {investorData.expectations.map((item, idx) => (
  <div
  key={idx}
- className="flex flex-col items-center gap-3 rounded-[4px] bg-white p-4 shadow-sm dark:bg-[#030712]/50 text-center border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+ className="flex flex-col items-center gap-3 rounded-[4px] bg-white p-4 shadow-sm dark:bg-[#0a1128]/50 text-center border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
  >
  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 text-sm font-black text-gray-900 ring-1 ring-gray-200 dark:bg-gray-900 dark:text-white dark:ring-gray-800">
  {idx + 1}
@@ -144,7 +144,7 @@ export default function MobileYourInvestors() {
  damping: 25,
  delay: 0.2,
 }}
- className="relative flex flex-col items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0f172a] to-[#030712] p-8 text-center shadow-xl ring-1 ring-white/10 dark:from-[#1e293b] dark:to-[#0a101d]"
+ className="relative flex flex-col items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0f172a] to-[#0a1128] p-8 text-center shadow-xl ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#121c33]"
  >
  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30"/>
 

@@ -66,10 +66,10 @@ export default function MobileTestimonials() {
 
         <motion.div
           variants={fadeInUp}
-          className="w-full rounded-[8px] bg-gray-50 p-6 shadow-inner dark:bg-[#0a101d] border border-gray-100 dark:border-gray-800 mb-8 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+          className="w-full rounded-[8px] bg-gray-50 p-6 shadow-inner dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 mb-8 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
         >
           <div className="mb-6 flex items-center justify-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#030712] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
               <ShieldCheck size={20} />
             </div>
             <h3 className="text-xl font-black text-gray-900 dark:text-white">
@@ -106,7 +106,7 @@ export default function MobileTestimonials() {
         </motion.div>
 
         <motion.div variants={fadeInUp} className="flex w-full flex-col gap-3">
-          <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] py-4 text-[0.9rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712]">
+          <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] py-4 text-[0.9rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128]">
             <Btn1Icon size={18} />
             {testimonialsData.buttons[0].title}
           </button>

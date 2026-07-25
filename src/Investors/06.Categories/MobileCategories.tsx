@@ -29,7 +29,7 @@ const fadeInUp: Variants = {
 
 export default function MobileCategories() {
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -63,7 +63,7 @@ export default function MobileCategories() {
           {categoriesData.categories.map((cat, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-between overflow-hidden rounded-[8px] bg-white p-5 shadow-sm border border-gray-100 dark:border-gray-800 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+              className="flex flex-col justify-between overflow-hidden rounded-[8px] bg-white p-5 shadow-sm border border-gray-100 dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
             >
               <div
                 className="mb-6 flex h-12 w-12 items-center justify-center rounded-[8px] transition-colors"

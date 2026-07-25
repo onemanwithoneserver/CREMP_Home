@@ -59,7 +59,7 @@ export default function DesktopHowItWorks() {
                     className={`w-[45%] ${isEven ? "text-right" : "text-left"}`}
                   >
                     <div
-                      className={`inline-block rounded-[8px] border border-gray-100 bg-gray-50 p-8 shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl dark:border-gray-800 dark:bg-[#0a101d] ${isEven ? "hover:shadow-[-20px_20px_40px_rgba(30,107,79,0.05)]" : "hover:shadow-[20px_20px_40px_rgba(30,107,79,0.05)]"}`}
+                      className={`inline-block rounded-[8px] border border-gray-100 bg-gray-50 p-8 shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl dark:border-gray-800 dark:bg-[#121c33] ${isEven ? "hover:shadow-[-20px_20px_40px_rgba(30,107,79,0.05)]" : "hover:shadow-[20px_20px_40px_rgba(30,107,79,0.05)]"}`}
                     >
                       <span className="mb-2 block text-[0.7rem] font-black uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                         {step.step}

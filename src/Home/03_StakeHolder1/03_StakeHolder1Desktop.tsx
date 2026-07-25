@@ -2,6 +2,7 @@ import { motion} from "framer-motion";
 import { ArrowRight, Users, Sparkles, ArrowUpRight, ShieldCheck} from "lucide-react";
 import { stakeholderData} from "./data";
 import { useRef} from "react";
+import { useNavigate } from "react-router-dom";
 
 const smoothEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -107,6 +108,8 @@ const b2Themes = [
 export default function DesktopStakeHolder1() {
  const { block1, block2, block3} = stakeholderData;
  const containerRef = useRef(null);
+ const navigate = useNavigate();
+ const viewMode = window.location.pathname.startsWith("/mobile") ? "mobile" : "desktop";
 
  return (
  <div ref={containerRef} className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-slate-950">
@@ -197,6 +200,7 @@ export default function DesktopStakeHolder1() {
  initial="rest"
  whileHover="hover"
  whileTap="tap"
+ onClick={() => navigate(`/${viewMode}${card.route}`)}
  className={`w-full sm:w-fit font-bold py-3 px-6 rounded-[4px] flex items-center justify-center gap-2 transition-colors duration-300 relative group/btn ${theme.buttonBg}`}
  >
  <span className="relative z-10 text-[14px]">{card.buttonText}</span>
@@ -302,6 +306,7 @@ export default function DesktopStakeHolder1() {
  initial="rest"
  whileHover="hover"
  whileTap="tap"
+ onClick={() => navigate(`/${viewMode}${card.route}`)}
  className={`w-full sm:w-fit font-bold py-3 px-6 rounded-[4px] flex items-center justify-center gap-2 transition-colors duration-300 relative group/btn ${theme.buttonBg}`}
  >
  <span className="relative z-10 text-[14px]">{card.buttonText}</span>
@@ -369,6 +374,7 @@ export default function DesktopStakeHolder1() {
  initial="rest"
  whileHover="hover"
  whileTap="tap"
+ onClick={() => navigate(`/${viewMode}${block3.route}`)}
  className="w-full sm:w-fit bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-[14px] transition-colors relative group/btn3"
  >
  <span className="relative z-10 tracking-wide">{block3.buttonText}</span>

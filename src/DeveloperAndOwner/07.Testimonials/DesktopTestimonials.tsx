@@ -68,7 +68,7 @@ export default function DesktopTestimonials() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-8 py-4 text-[0.95rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712]"
+                className="flex items-center gap-3 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-8 py-4 text-[0.95rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128]"
               >
                 <Btn1Icon size={20} />
                 {testimonialsData.buttons[0].title}
@@ -76,7 +76,7 @@ export default function DesktopTestimonials() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 rounded-[8px] border border-gray-200 bg-white px-8 py-4 text-[0.95rem] font-bold text-gray-900 shadow-sm transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-[#0a101d] dark:text-white dark:hover:bg-gray-900/50"
+                className="flex items-center gap-3 rounded-[8px] border border-gray-200 bg-white px-8 py-4 text-[0.95rem] font-bold text-gray-900 shadow-sm transition-all hover:bg-gray-50 dark:border-gray-800 dark:bg-[#121c33] dark:text-white dark:hover:bg-gray-900/50"
               >
                 <Btn2Icon
                   size={20}
@@ -94,9 +94,9 @@ export default function DesktopTestimonials() {
             transition={{ duration: 0.6 }}
             className="w-1/2"
           >
-            <div className="relative rounded-[8px] bg-gray-50 p-10 shadow-inner dark:bg-[#0a101d] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+            <div className="relative rounded-[8px] bg-gray-50 p-10 shadow-inner dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
               <div className="mb-8 flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#030712] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
                   <ShieldCheck size={24} />
                 </div>
                 <h3 className="text-2xl font-black text-gray-900 dark:text-white">

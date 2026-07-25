@@ -136,16 +136,9 @@ export default function Desktop() {
  className="mb-4 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#0a1128] dark:text-white lg:text-5xl xl:text-6xl"
  >
  India's 1st Integrated <br />
- <motion.span
- className="bg-gradient-to-r from-[#d97b29] to-[#D4AF37] bg-clip-text text-transparent"
- style={{ backgroundSize: "200% auto"}}
- animate={{
- backgroundPosition: ["0% center", "100% center", "0% center"],
-}}
- transition={{ duration: 6, repeat: Infinity, ease: "linear"}}
- >
+ <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
  Commercial Real Estate
- </motion.span>{""}
+ </span>{""}
  <br />
  Marketplace
  </motion.h1>

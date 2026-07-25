@@ -69,7 +69,7 @@ export default function MobileHowItWorks() {
                 )}
               </div>
               <div className="flex flex-col pb-8 pt-1 text-left w-full">
-                <div className="rounded-[8px] border border-gray-100 bg-gray-50 p-5 shadow-sm dark:border-gray-800 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                <div className="rounded-[8px] border border-gray-100 bg-gray-50 p-5 shadow-sm dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                   <span className="mb-1 block text-[0.6rem] font-black uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                     {step.step}
                   </span>

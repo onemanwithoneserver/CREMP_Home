@@ -20,7 +20,7 @@ const fadeInUp: Variants = {
 
 export default function MobileWhyInvest() {
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
 
       <motion.div
@@ -49,7 +49,7 @@ export default function MobileWhyInvest() {
 
         <motion.div
           variants={fadeInUp}
-          className="rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#0a101d]"
+          className="rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
         >
           <h3 className="mb-6 text-xl font-black text-gray-900 dark:text-white">
             {whyInvestData.subtitle}
@@ -81,10 +81,10 @@ export default function MobileWhyInvest() {
 
         <motion.div
           variants={fadeInUp}
-          className="rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#0a101d]"
+          className="rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
         >
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#030712] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
               <Globe size={20} />
             </div>
             <div className="flex flex-col">
@@ -114,7 +114,7 @@ export default function MobileWhyInvest() {
 
         <motion.div
           variants={fadeInUp}
-          className="rounded-[8px] bg-gradient-to-br from-[#D4AF37] to-[#b38728] p-8 shadow-xl dark:from-[#0a101d] dark:to-[#0a1128] dark:border dark:border-gray-800 text-center relative overflow-hidden"
+          className="rounded-[8px] bg-gradient-to-br from-[#D4AF37] to-[#b38728] p-8 shadow-xl dark:from-[#121c33] dark:to-[#0a1128] dark:border dark:border-gray-800 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
           <div className="relative z-10 flex flex-col items-center gap-6">
@@ -124,7 +124,7 @@ export default function MobileWhyInvest() {
             <h3 className="text-lg font-black text-white">
               Discover verified franchise and retail opportunities instantly.
             </h3>
-            <button className="flex items-center justify-center gap-2 w-full rounded-[8px] bg-white py-3.5 text-[0.85rem] font-bold text-[#D4AF37] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#030712] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
+            <button className="flex items-center justify-center gap-2 w-full rounded-[8px] bg-white py-3.5 text-[0.85rem] font-bold text-[#D4AF37] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
               Explore Now <ArrowRight size={16} />
             </button>
           </div>

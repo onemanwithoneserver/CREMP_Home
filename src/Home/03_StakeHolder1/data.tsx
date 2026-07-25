@@ -19,7 +19,7 @@ export const stakeholderData = {
     tag: "FOR BUILDERS, OWNERS & FRANCHISORS",
     title: (
       <>
-        Create <span className="text-orange-500">Opportunities.</span>
+        Create <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">Opportunities.</span>
       </>
     ),
     subtitle: "Build your brand. Showcase with impact.\nGenerate quality leads and expand your reach.",
@@ -44,7 +44,8 @@ export const stakeholderData = {
           { icon: Search, labelDesktop: <>Commercial<br/>Discovery</>, labelMobile: "Commercial Discovery" },
           { icon: Users, labelDesktop: <>Qualified<br/>Leads</>, labelMobile: "Qualified Leads" }
         ],
-        buttonText: "Explore Developer Solutions"
+        buttonText: "Explore Developer Solutions",
+        route: "/developer-and-owner"
       },
       {
         id: "franchisors",
@@ -60,7 +61,8 @@ export const stakeholderData = {
           { icon: Users, labelDesktop: <>Investor<br/>Enquiries</>, labelMobile: "Investor Enquiries" },
           { icon: Globe, labelDesktop: <>Market<br/>Expansion</>, labelMobile: "Market Expansion" }
         ],
-        buttonText: "Explore Franchisor Solutions"
+        buttonText: "Explore Franchisor Solutions",
+        route: "/franchise"
       }
     ]
   },
@@ -88,7 +90,8 @@ export const stakeholderData = {
           { icon: Users, labelDesktop: <>Buyer<br/>Connections</>, labelMobile: "Buyer Connections" },
           { icon: BarChart, labelDesktop: <>Lead<br/>Management</>, labelMobile: "Lead Management" }
         ],
-        buttonText: "Explore Broker Solutions"
+        buttonText: "Explore Broker Solutions",
+        route: "/buyers-and-sellers"
       },
       {
         id: "consultants",
@@ -104,7 +107,8 @@ export const stakeholderData = {
           { icon: Users, labelDesktop: <>Brand & Investor<br/>Connections</>, labelMobile: "Brand Connections" },
           { icon: Briefcase, labelDesktop: <>Consulting<br/>Opportunities</>, labelMobile: "Consulting" }
         ],
-        buttonText: "Explore Consultant Solutions"
+        buttonText: "Explore Consultant Solutions",
+        route: "/franchise"
       }
     ]
   },
@@ -130,6 +134,7 @@ export const stakeholderData = {
       { icon: Scale, labelDesktop: <>Compare &<br/>Shortlist</>, labelMobile: "Compare & Shortlist" },
       { icon: Users, labelDesktop: <>Connect with<br/>Right Partners</>, labelMobile: "Connect with Right Partners" }
     ],
-    buttonText: "Explore Marketplace"
+    buttonText: "Explore Marketplace",
+    route: "/buyers-and-sellers"
   }
 };

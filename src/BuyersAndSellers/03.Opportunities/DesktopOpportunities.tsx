@@ -86,7 +86,7 @@ export default function DesktopOpportunities() {
               {opportunitiesData.tabletStats.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="group flex flex-col items-start justify-center rounded-[8px] border border-gray-100 bg-white p-8 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:border-[#D4AF37]/30 dark:border-gray-800 dark:bg-[#0a101d] dark:hover:border-[#D4AF37]/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                  className="group flex flex-col items-start justify-center rounded-[8px] border border-gray-100 bg-white p-8 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:border-[#D4AF37]/30 dark:border-gray-800 dark:bg-[#121c33] dark:hover:border-[#D4AF37]/30 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                 >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] transition-colors group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
                     <TrendingUp size={22} />
@@ -115,7 +115,7 @@ export default function DesktopOpportunities() {
               key={idx}
               variants={popCard}
               whileHover={{ y: -10 }}
-              className="group cursor-pointer rounded-[8px] bg-gray-50 p-6 transition-all hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:bg-[#0a101d] dark:hover:bg-gradient-to-br dark:hover:from-[#0a101d] dark:hover:to-[#D4AF37]/20 dark:border dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
+              className="group cursor-pointer rounded-[8px] bg-gray-50 p-6 transition-all hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:bg-[#121c33] dark:hover:bg-gradient-to-br dark:hover:from-[#121c33] dark:hover:to-[#D4AF37]/20 dark:border dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
             >
               <div className="flex justify-between items-start mb-12">
                 <div className="flex h-14 w-14 items-center justify-center rounded-[8px] bg-white text-[#D4AF37] shadow-sm transition-all group-hover:scale-110 dark:bg-[#0a1128] dark:text-[#D4AF37]">

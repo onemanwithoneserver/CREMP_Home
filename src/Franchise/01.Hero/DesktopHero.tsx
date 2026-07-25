@@ -55,7 +55,7 @@ export default function DesktopHero() {
   const Btn2Icon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-4 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -114,7 +114,7 @@ export default function DesktopHero() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
               >
                 <Btn1Icon
                   size={18}
@@ -145,7 +145,7 @@ export default function DesktopHero() {
                   whileHover={{ y: -5 }}
                   className="group flex cursor-pointer items-center gap-3 rounded-[4px] p-2 transition-colors hover:bg-white/50 dark:hover:bg-gray-800/50"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 group-hover:shadow-md dark:border-gray-800 dark:bg-[#0a101d] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 group-hover:shadow-md dark:border-gray-800 dark:bg-[#121c33] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                     <feature.icon size={18} strokeWidth={2} />
                   </div>
                   <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">

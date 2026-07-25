@@ -122,7 +122,7 @@ export default function DesktopFAQ() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-4 py-4 transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-4 py-4 transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -186,7 +186,7 @@ export default function DesktopFAQ() {
           viewport={{ once: true }}
           whileHover={{ y: -4, boxShadow: "0 25px 50px rgba(0,0,0,0.3)" }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-          className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-[8px] bg-gradient-to-br from-[#0B1221] to-[#030712] p-8 shadow-2xl ring-1 ring-white/10 transition-shadow lg:flex-row lg:px-12 lg:py-10"
+          className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-[8px] bg-gradient-to-br from-[#121c33] to-[#0a1128] p-8 shadow-2xl ring-1 ring-white/10 transition-shadow lg:flex-row lg:px-12 lg:py-10"
         >
           <motion.div
             animate={{ rotate: 360 }}

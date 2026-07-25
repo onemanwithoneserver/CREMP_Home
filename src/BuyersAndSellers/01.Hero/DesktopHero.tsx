@@ -32,7 +32,7 @@ export default function DesktopHero() {
   const SecondaryIcon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative min-h-[85vh] w-full overflow-hidden bg-[#030712] flex flex-col items-center justify-center pt-24 pb-12">
+    <div className="relative min-h-[85vh] w-full overflow-hidden bg-[#0a1128] flex flex-col items-center justify-center pt-24 pb-12">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

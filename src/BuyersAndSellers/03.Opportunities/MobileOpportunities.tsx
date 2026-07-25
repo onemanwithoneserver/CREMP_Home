@@ -58,7 +58,7 @@ export default function MobileOpportunities() {
           {opportunitiesData.tabletStats.map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-center rounded-[8px] border border-gray-100 bg-gray-50 p-5 shadow-sm dark:border-gray-800 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+              className="flex flex-col justify-center rounded-[8px] border border-gray-100 bg-gray-50 p-5 shadow-sm dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
                 <TrendingUp size={18} />
@@ -77,7 +77,7 @@ export default function MobileOpportunities() {
           {opportunitiesData.showcaseMenu.map((item, idx) => (
             <div
               key={idx}
-              className="group flex flex-col justify-between rounded-[8px] bg-gray-50 p-4 border border-gray-100 dark:border-gray-800 dark:bg-[#0a101d] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+              className="group flex flex-col justify-between rounded-[8px] bg-gray-50 p-4 border border-gray-100 dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-white text-[#D4AF37] shadow-sm dark:bg-[#0a1128] dark:text-[#D4AF37]">

@@ -48,7 +48,7 @@ export default function MobileHero() {
  const Btn2Icon = heroData.buttons[1].icon;
 
  return (
- <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none sm:py-10">
+ <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none sm:py-10">
  <motion.div
  variants={pulseGlow}
  animate="animate"
@@ -100,7 +100,7 @@ export default function MobileHero() {
  <motion.button
  whileHover={{ scale: 1.05}}
  whileTap={{ scale: 0.95}}
- className="group flex w-full items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-5 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#030712] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)]"
+ className="group flex w-full items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-5 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)]"
  >
  <Btn1Icon
  size={18}
@@ -137,7 +137,7 @@ export default function MobileHero() {
  key={idx}
  className="flex items-center gap-3 rounded-[4px] bg-white/50 p-2 dark:bg-gray-800/30"
  >
- <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm dark:border-gray-700 dark:bg-[#0a101d] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+ <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm dark:border-gray-700 dark:bg-[#121c33] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
  <feature.icon size={16} strokeWidth={2} />
  </div>
  <span className="text-left text-[0.8rem] font-bold leading-snug text-gray-700 dark:text-gray-300">

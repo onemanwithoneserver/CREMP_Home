@@ -30,7 +30,7 @@ const pulseGlow: Variants = {
 
 export default function MobileGrowthStages() {
  return (
- <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#030712]">
+ <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0a1128]">
  <motion.div
  variants={pulseGlow}
  animate="animate"
@@ -90,7 +90,7 @@ export default function MobileGrowthStages() {
  <motion.div
  key={stage.id}
  variants={fadeInUp}
- className="flex flex-col items-start overflow-hidden rounded-[8px] border border-gray-200/50 bg-white p-6 shadow-xl text-left dark:border-gray-800/50 dark:bg-[#0a101d]"
+ className="flex flex-col items-start overflow-hidden rounded-[8px] border border-gray-200/50 bg-white p-6 shadow-xl text-left dark:border-gray-800/50 dark:bg-[#121c33]"
  >
  <div
  className={`mb-6 flex h-12 w-12 items-center justify-center rounded-full shadow-sm ${

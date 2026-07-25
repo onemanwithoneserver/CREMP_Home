@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, BarChart, Users, Sparkles, ShieldCheck } from "lucide-react";
 import { stakeholderData } from "./data";
+import { useNavigate } from "react-router-dom";
 
 const smoothEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -39,6 +40,8 @@ const floatAnim: any = {
 
 export default function MobileStakeHolder1() {
   const { block1, block2, block3 } = stakeholderData;
+  const navigate = useNavigate();
+  const viewMode = window.location.pathname.startsWith("/mobile") ? "mobile" : "desktop";
 
   return (
     <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-slate-950 ">
@@ -114,7 +117,10 @@ export default function MobileStakeHolder1() {
                   ))}
                 </div>
 
-                <button className="w-full bg-indigo-600 active:bg-indigo-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors">
+                <button 
+                  onClick={() => navigate(`/${viewMode}${card.route}`)}
+                  className="w-full bg-indigo-600 active:bg-indigo-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors"
+                >
                   {card.buttonText}
                   <ArrowRight size={16} />
                 </button>
@@ -209,7 +215,10 @@ export default function MobileStakeHolder1() {
                 ))}
               </div>
 
-              <button className="w-full bg-cyan-600 active:bg-cyan-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors">
+              <button 
+                onClick={() => navigate(`/${viewMode}${card.route}`)}
+                className="w-full bg-cyan-600 active:bg-cyan-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors"
+              >
                 {card.buttonText}
                 <ArrowRight size={16} />
               </button>
@@ -260,6 +269,7 @@ export default function MobileStakeHolder1() {
 
           <motion.button
             variants={fadeUpText}
+            onClick={() => navigate(`/${viewMode}${block3.route}`)}
             className="w-full bg-emerald-600 active:bg-emerald-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm mt-2 transition-colors"
           >
             {block3.buttonText}

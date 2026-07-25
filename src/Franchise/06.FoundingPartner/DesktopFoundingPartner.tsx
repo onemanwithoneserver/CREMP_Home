@@ -39,7 +39,7 @@ export default function DesktopFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0a1128]">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -104,7 +104,7 @@ export default function DesktopFoundingPartner() {
               <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2">
                 <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#D4AF37]/20 blur-xl dark:bg-[#D4AF37]/15" />
 
-                <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#D4AF37]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#D4AF37]/30 dark:bg-[#0a101d] dark:shadow-[0_15px_30px_rgba(246,178,59,0.15)]">
+                <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#D4AF37]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#D4AF37]/30 dark:bg-[#121c33] dark:shadow-[0_15px_30px_rgba(246,178,59,0.15)]">
                   <span className="-translate-x-[0.5em] pl-[0.3em] text-[0.7rem] font-black tracking-[0.3em] text-[#D4AF37] dark:text-[#D4AF37]">
                     FOUNDING PARTNER
                   </span>
@@ -112,7 +112,7 @@ export default function DesktopFoundingPartner() {
 
                 <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#D4AF37]/40 bg-gray-50 dark:border-[#D4AF37]/40 dark:bg-[#111827]" />
 
-                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-gray-700/80 dark:from-[#1e293b] dark:to-[#0a101d]">
+                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-gray-700/80 dark:from-[#121c33] dark:to-[#121c33]">
                   <div className="h-[60%] w-[60%] rounded-[100%] border border-gray-300/50 dark:border-gray-600/30" />
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function DesktopFoundingPartner() {
                 <div className="relative h-44 w-16 overflow-hidden rounded-b-[4px] rounded-t-[100%] bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] shadow-[0_20px_40px_rgba(178,127,28,0.4)] dark:shadow-[0_20px_40px_rgba(246,178,59,0.2)]">
                   <div className="absolute right-0 top-0 h-full w-1/2 bg-white/25" />
 
-                  <div className="absolute left-1/2 top-12 h-8 w-8 -translate-x-1/2 rounded-full border-[3px] border-yellow-100 bg-sky-100 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] dark:border-yellow-400 dark:bg-[#0a101d]">
+                  <div className="absolute left-1/2 top-12 h-8 w-8 -translate-x-1/2 rounded-full border-[3px] border-yellow-100 bg-sky-100 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] dark:border-yellow-400 dark:bg-[#121c33]">
                     <div className="absolute right-1 top-1 h-2 w-3 -rotate-45 rounded-full bg-white/60" />
                   </div>
                 </div>
@@ -166,7 +166,7 @@ export default function DesktopFoundingPartner() {
                       isLeft ? "-ml-[170px]" : "ml-[170px]"
                     } ${isTop ? "top-[120px]" : "top-[216px]"}`}
                   >
-                    <div className="group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#D4AF37]/30 bg-white/90 text-[#D4AF37] shadow-[0_10px_20px_rgba(178,127,28,0.15)] backdrop-blur-md transition-all hover:scale-110 hover:bg-white hover:shadow-[0_10px_25px_rgba(178,127,28,0.25)] dark:border-[#D4AF37]/30 dark:bg-[#111827]/90 dark:text-[#D4AF37] dark:hover:bg-[#1e293b] dark:hover:shadow-[0_10px_25px_rgba(246,178,59,0.25)]">
+                    <div className="group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#D4AF37]/30 bg-white/90 text-[#D4AF37] shadow-[0_10px_20px_rgba(178,127,28,0.15)] backdrop-blur-md transition-all hover:scale-110 hover:bg-white hover:shadow-[0_10px_25px_rgba(178,127,28,0.25)] dark:border-[#D4AF37]/30 dark:bg-[#111827]/90 dark:text-[#D4AF37] dark:hover:bg-[#121c33] dark:hover:shadow-[0_10px_25px_rgba(246,178,59,0.25)]">
                       <node.icon
                         size={18}
                         strokeWidth={2}

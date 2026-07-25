@@ -8,7 +8,7 @@ export default function DesktopBuyersAndSellersProfile() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0a1128]">
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
         <div className="mb-16 text-center">
           <motion.div
@@ -44,7 +44,7 @@ export default function DesktopBuyersAndSellersProfile() {
           </motion.p>
         </div>
 
-        <div className="flex gap-12 rounded-[8px] bg-white p-8 shadow-xl dark:bg-[#0a101d] dark:border dark:border-gray-800">
+        <div className="flex gap-12 rounded-[8px] bg-white p-8 shadow-xl dark:bg-[#121c33] dark:border dark:border-gray-800">
           <div className="flex w-1/3 flex-col gap-3 border-r border-gray-100 pr-8 dark:border-gray-800">
             <h3 className="mb-4 text-[0.8rem] font-bold uppercase tracking-widest text-gray-400">
               Select Profile

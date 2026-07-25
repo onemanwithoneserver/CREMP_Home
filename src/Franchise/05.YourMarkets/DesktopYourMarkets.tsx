@@ -41,7 +41,7 @@ const pulseBackground: Variants = {
 
 export default function DesktopYourMarkets() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-12 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-12 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
       <motion.div
         variants={pulseBackground}
         animate="animate"
@@ -106,7 +106,7 @@ export default function DesktopYourMarkets() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            className="flex h-full w-full flex-col justify-center rounded-[8px] border border-gray-200/50 bg-white p-10 shadow-xl transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#0a101d]"
+            className="flex h-full w-full flex-col justify-center rounded-[8px] border border-gray-200/50 bg-white p-10 shadow-xl transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#121c33]"
           >
             <div className="mb-10 flex items-center gap-3">
               <motion.div

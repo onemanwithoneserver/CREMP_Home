@@ -21,7 +21,7 @@ const fadeInUp: Variants = {
 
 export default function DesktopCategories() {
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
         <div className="mb-10 flex items-end justify-between">
           <motion.div
@@ -83,9 +83,9 @@ export default function DesktopCategories() {
               key={idx}
               variants={fadeInUp}
               whileHover={{ y: -10 }}
-              className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[8px] bg-white p-8 shadow-sm transition-all hover:shadow-2xl hover:shadow-[#D4AF37]/10 dark:bg-[#0a101d] dark:hover:shadow-[#D4AF37]/10"
+              className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[8px] bg-white p-8 shadow-sm transition-all hover:shadow-2xl hover:shadow-[#D4AF37]/10 dark:bg-[#121c33] dark:hover:shadow-[#D4AF37]/10"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] to-[#b38728] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#2d2008] dark:to-[#0a101d]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] to-[#b38728] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#2d2008] dark:to-[#121c33]" />
 
               <div className="relative z-10 flex justify-between items-start mb-8">
                 <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gray-50 text-[#D4AF37] transition-all group-hover:bg-white/10 group-hover:text-white dark:bg-[#0a1128] dark:text-[#D4AF37]">

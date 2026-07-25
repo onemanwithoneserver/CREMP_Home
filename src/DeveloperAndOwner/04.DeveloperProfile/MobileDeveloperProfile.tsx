@@ -23,7 +23,7 @@ export default function MobileDeveloperProfile() {
   const [activeIdx, setActiveIdx] = useState<number | null>(0);
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#030712]">
+    <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -64,7 +64,7 @@ export default function MobileDeveloperProfile() {
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                className="overflow-hidden rounded-[8px] border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-[#0a101d]"
+                className="overflow-hidden rounded-[8px] border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
               >
                 <button
                   onClick={() => setActiveIdx(isActive ? null : idx)}
