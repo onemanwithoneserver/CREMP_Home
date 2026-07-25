@@ -51,7 +51,7 @@ export default function Mobile() {
           className="block h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:hidden"
         />
         <div className="flex flex-col justify-center">
-          <CrempTextLogo className="h-[18px] w-auto text-[#0a1128] dark:text-white" />
+          <CrempTextLogo className="h-7 w-auto text-[#0a1128] dark:text-white" />
         </div>
       </motion.a>
 

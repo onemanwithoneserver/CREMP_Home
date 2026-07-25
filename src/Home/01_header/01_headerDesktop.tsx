@@ -53,7 +53,7 @@ export default function Desktop() {
             className="block h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(178,127,28,0.1)] dark:hidden"
           />
           <div className="flex flex-col justify-center">
-            <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white sm:h-6" />
+            <CrempTextLogo className="h-6 w-auto text-[#0a1128] dark:text-white sm:h-9" />
           </div>
         </motion.a>
 
