@@ -32,7 +32,7 @@ export default function DesktopHero() {
   const SecondaryIcon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative min-h-[90vh] w-full overflow-hidden bg-[#030712] flex flex-col items-center justify-center py-24">
+    <div className="relative min-h-[85vh] w-full overflow-hidden bg-[#030712] flex flex-col items-center justify-center pt-24 pb-12">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -52,9 +52,9 @@ export default function DesktopHero() {
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-center text-center mt-8"
+          className="flex flex-col items-center text-center mt-4"
         >
-          <motion.div variants={fadeInUp} className="mb-8">
+          <motion.div variants={fadeInUp} className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-[8px] border border-white/10 bg-white/5 px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37] backdrop-blur-md shadow-[0_0_20px_rgba(52,211,153,0.1)]">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] opacity-75 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></span>
@@ -66,7 +66,7 @@ export default function DesktopHero() {
 
           <motion.h1
             variants={fadeInUp}
-            className="max-w-5xl text-[4rem] font-black leading-[1.05] tracking-tight text-white xl:text-[5.5rem] mb-6"
+            className="max-w-5xl text-[4rem] font-black leading-[1.05] tracking-tight text-white xl:text-[4.5rem] mb-4"
           >
             Make Informed Decisions. <br />
             Secure Your{" "}
@@ -77,7 +77,7 @@ export default function DesktopHero() {
 
           <motion.p
             variants={fadeInUp}
-            className="max-w-2xl text-[1.1rem] font-medium leading-relaxed text-gray-400 mb-10"
+            className="max-w-2xl text-[1.1rem] font-medium leading-relaxed text-gray-400 mb-8"
           >
             {heroData.desc}
           </motion.p>

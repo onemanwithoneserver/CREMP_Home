@@ -55,7 +55,7 @@ export default function DesktopHero() {
   const Btn2Icon = heroData.buttons[1].icon;
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-8 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-4 shadow-2xl transition-colors duration-700 dark:bg-[#030712] dark:shadow-none">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -83,7 +83,7 @@ export default function DesktopHero() {
 
             <motion.h1
               variants={fadeInUp}
-              className="mb-4 text-[3.25rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.75rem]"
+              className="mb-3 text-[3.25rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.5rem]"
             >
               Take Control of <br />
               Your Franchise <br />
@@ -94,7 +94,7 @@ export default function DesktopHero() {
 
             <motion.p
               variants={fadeInUp}
-              className="mb-8 max-w-lg text-[1rem] leading-relaxed text-gray-600 dark:text-gray-400"
+              className="mb-6 max-w-lg text-[1rem] leading-relaxed text-gray-600 dark:text-gray-400"
             >
               Powered by India&apos;s{" "}
               <span className="font-bold text-gray-900 dark:text-white">
