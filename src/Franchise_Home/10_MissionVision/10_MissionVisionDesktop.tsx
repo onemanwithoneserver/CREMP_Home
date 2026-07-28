@@ -38,7 +38,7 @@ export default function MissionVisionDesktop() {
                 key={card.label}
                 variants={fadeInUp}
                 whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-6 hover:border-[#D4AF37]/30 transition-all group cursor-pointer"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-6 hover:border-[#D4AF37]/30 transition-all group cursor-pointer"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center group-hover:bg-[#D4AF37]/25 transition-colors">
@@ -48,7 +48,7 @@ export default function MissionVisionDesktop() {
                     {card.label}
                   </span>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-gray-300 text-[15px] leading-relaxed">
                   {card.description}
                 </p>
               </motion.div>

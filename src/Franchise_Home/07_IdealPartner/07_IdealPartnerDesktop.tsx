@@ -19,15 +19,15 @@ export default function IdealPartnerDesktop() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-6 mb-8"
+          className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded p-6 mb-8"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-2">
+          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-2">
             {idealPartnerData.sectionLabel}
           </p>
           <h2 className="text-xl font-bold text-white mb-2">
             {idealPartnerData.title}
           </h2>
-          <p className="text-gray-400 text-sm">{idealPartnerData.subtitle}</p>
+          <p className="text-gray-400 text-[15px]">{idealPartnerData.subtitle}</p>
         </motion.div>
         <motion.div
           initial="hidden"
@@ -43,7 +43,7 @@ export default function IdealPartnerDesktop() {
                 key={item.title}
                 variants={fadeInUp}
                 whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center mb-3">
                   <Icon size={18} className="text-accent" />
@@ -62,7 +62,7 @@ export default function IdealPartnerDesktop() {
                     </div>
                   ))}
                 </div>
-                <p className="text-gray-500 text-xs">{item.description}</p>
+                <p className="text-gray-500 text-sm">{item.description}</p>
               </motion.div>
             );
           })}
@@ -81,7 +81,7 @@ export default function IdealPartnerDesktop() {
                 key={item.title}
                 variants={fadeInUp}
                 whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition-all cursor-pointer"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-5 hover:border-gray-700 transition-all cursor-pointer"
               >
                 <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center mb-3">
                   <Icon size={14} className="text-gray-400" />
@@ -94,7 +94,7 @@ export default function IdealPartnerDesktop() {
                     </span>
                   ))}
                 </div>
-                <p className="text-gray-500 text-xs">{item.description}</p>
+                <p className="text-gray-500 text-sm">{item.description}</p>
               </motion.div>
             );
           })}

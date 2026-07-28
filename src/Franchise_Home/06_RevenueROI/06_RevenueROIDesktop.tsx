@@ -37,7 +37,7 @@ export default function RevenueROIDesktop() {
                 key={card.year}
                 variants={fadeInUp}
                 whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-6 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-6 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-xs font-bold text-gray-500 uppercase">{card.year}</span>
@@ -57,8 +57,8 @@ export default function RevenueROIDesktop() {
                   </div>
                   <p className="text-3xl font-black text-white">{card.range}</p>
                 </div>
-                <p className="text-gray-400 text-sm">{card.description}</p>
-                <p className="text-gray-600 text-xs mt-1">{card.sublabel}</p>
+                <p className="text-gray-400 text-[15px]">{card.description}</p>
+                <p className="text-gray-600 text-sm mt-1">{card.sublabel}</p>
               </motion.div>
             );
           })}
@@ -67,9 +67,9 @@ export default function RevenueROIDesktop() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-6"
+          className="bg-[#0d1a3a] border border-gray-800 rounded p-6"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-2">
+          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-2">
             {revenueROIData.paybackPeriod.sectionLabel}
           </p>
           <h3 className="text-2xl font-black text-white mb-6">

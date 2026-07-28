@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useId, useCallback } from "react";
-import { Monitor, Smartphone, ChevronDown, X } from "lucide-react";
+import { Monitor, Smartphone, ChevronDown, X, Sun, Moon } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Dropdown from "./commonfiles/Dropdown";
+import { useTheme } from "../Home/ThemeContext";
 
 export type Page =
   | "home"
@@ -44,6 +45,7 @@ export default function Header({
   const menuId = useId();
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const activePage: Page = location.pathname.includes("franchise-home")
     ? "franchise-home"
@@ -215,6 +217,15 @@ export default function Header({
                 size="sm"
                 className="w-32"
               />
+              <div className="w-px h-4 bg-cremp-border mx-1" />
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="p-1.5 text-cremp-text-muted hover:text-cremp-text-primary hover:bg-cremp-surface-alt rounded transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+              </button>
             </div>
 
             <div className="relative sm:hidden" ref={mobileMenuRef}>

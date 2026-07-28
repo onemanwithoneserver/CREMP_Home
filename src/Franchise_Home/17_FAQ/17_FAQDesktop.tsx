@@ -32,7 +32,7 @@ export default function FAQDesktop() {
         >
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">{faqData.title}</h2>
-            <p className="text-gray-400 text-sm max-w-lg">{faqData.subtitle}</p>
+            <p className="text-gray-400 text-[15px] max-w-lg">{faqData.subtitle}</p>
           </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -64,7 +64,7 @@ export default function FAQDesktop() {
               key={q.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-all"
+              className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden hover:border-gray-700 transition-all"
             >
               <button
                 onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
@@ -90,7 +90,7 @@ export default function FAQDesktop() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 pb-4 pl-10">
-                      <p className="text-gray-400 text-sm leading-relaxed bg-background p-4 rounded-lg border border-gray-800/50">
+                      <p className="text-gray-400 text-[15px] leading-relaxed bg-background p-4 rounded-lg border border-gray-800/50">
                         {q.answer}
                       </p>
                     </div>

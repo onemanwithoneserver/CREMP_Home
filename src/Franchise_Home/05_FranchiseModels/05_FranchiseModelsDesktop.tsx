@@ -64,7 +64,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-3 py-2.5 rounded-xl shadow-xl z-50 flex flex-col gap-1.5 whitespace-nowrap border border-gray-800"
+            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-3 py-2.5 rounded shadow-xl z-50 flex flex-col gap-1.5 whitespace-nowrap border border-gray-800"
             style={{ left: hoveredItem.x + 15, top: hoveredItem.y - 15 }}
           >
             <span className="flex items-center gap-2 text-gray-300">
@@ -104,7 +104,7 @@ export default function FranchiseModelsDesktop() {
              <div className="w-1.5 h-1.5 rounded-full bg-accent-light" />
            </div>
         </div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
           {franchiseModelsData.subtitle}
         </p>
       </div>
@@ -115,7 +115,7 @@ export default function FranchiseModelsDesktop() {
            SELECT OUTLET TYPE
          </span>
          
-         <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-2xl overflow-x-auto scrollbar-hide py-2">
+         <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">
             {franchiseModelsData.models.map((model) => {
               const isActive = model.id === activeModel;
               const Icon = model.icon;
@@ -123,7 +123,7 @@ export default function FranchiseModelsDesktop() {
                 <button
                   key={model.id}
                   onClick={() => setActiveModel(model.id)}
-                  className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded-xl border transition-all duration-300 ${
+                  className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded border transition-all duration-300 ${
                     isActive
                       ? "bg-primary border-accent-light shadow-md transform -translate-y-1"
                       : "bg-surface border-border hover:border-accent/30 dark:hover:border-gray-600 shadow-sm"
@@ -163,7 +163,7 @@ export default function FranchiseModelsDesktop() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 10 }}
                 transition={{ duration: 0.3 }}
-                className="bg-surface-alt rounded-3xl border border-border p-6 flex flex-col h-full shadow-sm"
+                className="bg-surface-alt rounded-lg border border-border p-6 flex flex-col h-full shadow-sm"
              >
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-14 h-14 rounded-full bg-primary text-accent-light flex items-center justify-center shadow-md border-2 border-white dark:border-[#1a2342]">
@@ -230,7 +230,7 @@ export default function FranchiseModelsDesktop() {
                   </div>
                 </div>
 
-                <div className="w-full border border-accent/30 dark:border-accent/20 bg-surface-alt rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-sm">
+                <div className="w-full border border-accent/30 dark:border-accent/20 bg-surface-alt rounded p-4 flex flex-col items-center justify-center text-center mt-auto shadow-sm">
                    <span className="text-[9px] uppercase font-bold tracking-widest text-primary text-opacity-80 mb-1">
                      AVG. TOTAL INVESTMENT
                    </span>
@@ -267,7 +267,7 @@ export default function FranchiseModelsDesktop() {
 
         {/* Right: Cost Breakdown List */}
         <div className="col-span-12 lg:col-span-4 h-full">
-          <div className="bg-surface rounded-3xl border border-border p-6 shadow-sm h-full flex flex-col">
+          <div className="bg-surface rounded-lg border border-border p-6 shadow-sm h-full flex flex-col">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
                <span className="text-[10px] uppercase font-bold tracking-widest text-primary text-opacity-90">
                  COST COMPONENT

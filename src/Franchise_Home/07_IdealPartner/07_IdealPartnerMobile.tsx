@@ -4,12 +4,12 @@ import { idealPartnerData } from "./data";
 export default function IdealPartnerMobile() {
   return (
     <section className="w-full bg-background px-4 py-6">
-      <div className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-4 mb-4">
+      <div className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded p-4 mb-4">
         <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-1">
           {idealPartnerData.sectionLabel}
         </p>
         <h2 className="text-base font-bold text-white mb-1">{idealPartnerData.title}</h2>
-        <p className="text-gray-400 text-[10px]">{idealPartnerData.subtitle}</p>
+        <p className="text-gray-400 text-sm">{idealPartnerData.subtitle}</p>
       </div>
 
       <div className="space-y-3 mb-4">
@@ -21,7 +21,7 @@ export default function IdealPartnerMobile() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4"
+              className="bg-[#0d1a3a] border border-gray-800 rounded p-4"
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center">
@@ -52,7 +52,7 @@ export default function IdealPartnerMobile() {
         {idealPartnerData.additionalCriteria.map((item) => {
           const Icon = item.icon;
           return (
-            <div key={item.title} className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-3 text-center">
+            <div key={item.title} className="bg-[#0d1a3a] border border-gray-800 rounded p-3 text-center">
               <div className="w-7 h-7 rounded-lg bg-gray-800 flex items-center justify-center mx-auto mb-2">
                 <Icon size={12} className="text-gray-400" />
               </div>

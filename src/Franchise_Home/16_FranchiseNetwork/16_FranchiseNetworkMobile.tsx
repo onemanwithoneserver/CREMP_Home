@@ -12,7 +12,7 @@ export default function FranchiseNetworkMobile() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden"
+        className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden"
       >
         <div className="w-full h-[200px] bg-background flex items-center justify-center relative">
           <div className="absolute inset-0 opacity-20">
@@ -31,7 +31,7 @@ export default function FranchiseNetworkMobile() {
           </div>
           <div className="z-10">
             <h3 className="text-white font-bold text-sm text-center">{franchiseNetworkData.title}</h3>
-            <p className="text-gray-500 text-[10px] text-center">{franchiseNetworkData.outletCount}</p>
+            <p className="text-gray-500 text-sm text-center">{franchiseNetworkData.outletCount}</p>
           </div>
         </div>
 

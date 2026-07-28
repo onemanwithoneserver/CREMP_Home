@@ -7,7 +7,7 @@ export default function LeadershipMobile() {
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-1 text-center">
         {leadershipData.sectionLabel}
       </p>
-      <p className="text-gray-400 text-[10px] text-center mb-4 px-4">
+      <p className="text-gray-400 text-sm text-center mb-4 px-4">
         {leadershipData.intro}
       </p>
 
@@ -18,7 +18,7 @@ export default function LeadershipMobile() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden"
+            className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden"
           >
             <div className="flex gap-3 p-3">
               <img
@@ -28,7 +28,7 @@ export default function LeadershipMobile() {
               />
               <div className="flex-1 min-w-0">
                 <h4 className="text-white font-bold text-xs">{member.name}</h4>
-                <p className="text-accent text-[10px] font-semibold">{member.role}</p>
+                <p className="text-accent text-sm font-semibold">{member.role}</p>
                 <p className="text-gray-500 text-[8px] mb-1">
                   {member.company} · {member.experience}
                 </p>

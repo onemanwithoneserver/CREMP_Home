@@ -38,16 +38,16 @@ export default function ProvenPlaybookDesktop() {
                 key={card.title}
                 variants={fadeInUp}
                 whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-6 hover:border-[#D4AF37]/30 transition-all cursor-pointer group"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-6 hover:border-[#D4AF37]/30 transition-all cursor-pointer group"
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  className="w-12 h-12 rounded flex items-center justify-center mb-4"
                   style={{ backgroundColor: `${card.color}15` }}
                 >
                   <Icon size={22} style={{ color: card.color }} />
                 </div>
                 <h4 className="text-white font-bold text-base mb-2">{card.title}</h4>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-400 text-[15px] leading-relaxed">
                   {card.description}
                 </p>
               </motion.div>

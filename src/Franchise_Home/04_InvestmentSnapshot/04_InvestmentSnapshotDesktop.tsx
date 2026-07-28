@@ -38,7 +38,7 @@ export default function InvestmentSnapshotDesktop() {
                 key={stat.label}
                 variants={fadeInUp}
                 whileHover={{ y: -4, scale: 1.02 }}
-                className={`relative overflow-hidden rounded-xl border p-5 transition-all cursor-pointer ${
+                className={`relative overflow-hidden rounded border p-5 transition-all cursor-pointer ${
                   stat.highlight
                     ? "border-[#D4AF37]/30 bg-[#D4AF37]/5"
                     : "border-gray-800 bg-[#0d1a3a]"
@@ -55,7 +55,7 @@ export default function InvestmentSnapshotDesktop() {
                     <Icon size={18} />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-1">
+                    <p className="text-sm uppercase tracking-wider text-gray-500 mb-1">
                       {stat.label}
                     </p>
                     <p
@@ -65,7 +65,7 @@ export default function InvestmentSnapshotDesktop() {
                     >
                       {stat.value}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-sm text-gray-500 mt-1">
                       {stat.sublabel}
                     </p>
                   </div>

@@ -18,7 +18,7 @@ export default function FranchiseNetworkDesktop() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden"
+          className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden"
         >
           <div className="flex">
             <div className="flex-1 relative min-h-[400px] bg-gradient-to-br from-[#0a1128] to-[#0d1a3a] p-6">
@@ -27,7 +27,7 @@ export default function FranchiseNetworkDesktop() {
                   {franchiseNetworkData.title}
                 </h3>
               </div>
-              <p className="text-gray-500 text-xs mb-6">
+              <p className="text-gray-500 text-sm mb-6">
                 {franchiseNetworkData.outletCount}
               </p>
               <div className="w-full h-[300px] rounded-lg bg-background border border-gray-800/50 flex items-center justify-center relative overflow-hidden">
@@ -52,7 +52,7 @@ export default function FranchiseNetworkDesktop() {
               </div>
             </div>
             <div className="w-[300px] border-l border-gray-800 p-6">
-              <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-4">
+              <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-4">
                 MAP LEGEND
               </p>
               <div className="space-y-3 mb-6">
@@ -71,7 +71,7 @@ export default function FranchiseNetworkDesktop() {
                 })}
               </div>
 
-              <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-3">
+              <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-3">
                 {franchiseNetworkData.networkStats.label}
               </p>
               <div className="space-y-2 mb-6">

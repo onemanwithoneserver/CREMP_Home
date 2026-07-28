@@ -13,7 +13,7 @@ export default function HeroGalleryDesktop() {
     <section className="w-full bg-background transition-colors duration-300 p-6 flex flex-col gap-6 font-sans">
       
       <div className="grid grid-cols-12 gap-6 min-h-[520px]">
-        <div className="col-span-12 lg:col-span-5 bg-surface border border-border rounded-3xl p-8 shadow-sm flex flex-col justify-center">
+        <div className="col-span-12 lg:col-span-5 bg-surface border border-border rounded-lg p-8 shadow-sm flex flex-col justify-center">
           <div className="flex items-center gap-4 mb-6">
             <div className="flex items-center gap-3">
               <Coffee className="text-accent" size={36} strokeWidth={2.5} />
@@ -33,7 +33,7 @@ export default function HeroGalleryDesktop() {
             </span>
           </div>
 
-          <p className="text-sm font-semibold text-primary text-opacity-80 tracking-wide mb-5">
+          <p className="text-[15px] font-semibold text-primary text-opacity-80 tracking-wide mb-5">
             {heroGalleryData.category}
           </p>
 
@@ -42,13 +42,13 @@ export default function HeroGalleryDesktop() {
             <span className="text-accent-dark italic font-medium">{heroGalleryData.titleHighlight}</span> at a time.
           </h2>
 
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-md">
+          <p className="text-[15px] text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-md">
             {heroGalleryData.description}
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10">
             {heroGalleryData.tags.map((tag, i) => (
-              <div key={i} className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-accent/30 dark:border-gray-700 bg-surface-alt shadow-sm">
+              <div key={i} className="flex items-center gap-2 px-4 py-2.5 rounded border border-accent/30 dark:border-gray-700 bg-surface-alt shadow-sm">
                 <tag.icon size={16} className="text-accent-dark" />
                 <span className="text-xs font-bold text-primary">{tag.label}</span>
               </div>
@@ -56,18 +56,18 @@ export default function HeroGalleryDesktop() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <button className="flex items-center gap-2 bg-primary hover:bg-[#152756] dark:bg-[#1e3a8a] dark:hover:bg-[#2546a5] text-white px-6 py-3.5 rounded-xl text-sm font-bold transition-all shadow-md">
+            <button className="flex items-center gap-2 bg-primary hover:bg-[#152756] dark:bg-[#1e3a8a] dark:hover:bg-[#2546a5] text-white px-6 py-3.5 rounded text-sm font-bold transition-all shadow-md">
               <heroGalleryData.buttons.primary.icon size={18} />
               {heroGalleryData.buttons.primary.label}
             </button>
-            <button className="flex items-center gap-2 bg-surface hover:bg-surface-alt text-primary border border-border-light px-6 py-3.5 rounded-xl text-sm font-bold transition-all shadow-sm">
+            <button className="flex items-center gap-2 bg-surface hover:bg-surface-alt text-primary border border-border-light px-6 py-3.5 rounded text-sm font-bold transition-all shadow-sm">
               <heroGalleryData.buttons.secondary.icon size={18} className="text-accent dark:text-accent-light" />
               {heroGalleryData.buttons.secondary.label}
             </button>
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-4 relative rounded-3xl overflow-hidden shadow-sm group bg-white">
+        <div className="col-span-12 lg:col-span-4 relative rounded-lg overflow-hidden shadow-sm group bg-white">
           <img src={mainCupImg} alt="Urban Brew Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-300 flex flex-col items-center justify-end pb-8">
              <div className="w-16 h-16 rounded-full bg-[#0b1b42] flex items-center justify-center shadow-2xl mb-4 border-2 border-white/20 cursor-pointer hover:scale-110 transition-transform">
@@ -80,16 +80,16 @@ export default function HeroGalleryDesktop() {
         </div>
 
         <div className="col-span-12 lg:col-span-3 grid grid-cols-2 grid-rows-2 gap-3">
-          <div className="rounded-2xl overflow-hidden relative shadow-sm group">
+          <div className="rounded-lg overflow-hidden relative shadow-sm group">
             <img src={interiorImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Interior" />
           </div>
-          <div className="rounded-2xl overflow-hidden relative shadow-sm group">
+          <div className="rounded-lg overflow-hidden relative shadow-sm group">
             <img src={equipmentImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Equipment" />
           </div>
-          <div className="rounded-2xl overflow-hidden relative shadow-sm group">
+          <div className="rounded-lg overflow-hidden relative shadow-sm group">
             <img src={beansImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Beans" />
           </div>
-          <div className="rounded-2xl overflow-hidden relative shadow-sm group">
+          <div className="rounded-lg overflow-hidden relative shadow-sm group">
             <img src={topDownImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Top Down" />
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function HeroGalleryDesktop() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 flex flex-col gap-6">
-          <div className="bg-surface rounded-3xl border border-border p-8 flex flex-col items-center flex-1 shadow-sm">
+          <div className="bg-surface rounded-lg border border-border p-8 flex flex-col items-center flex-1 shadow-sm">
             <div className="flex items-center gap-4 w-full justify-center mb-8">
               <div className="h-px bg-gradient-to-r from-transparent to-amber-300 w-16" />
               <h3 className="text-[15px] font-serif font-black text-primary tracking-widest">{heroGalleryData.whyPartnerTitle}</h3>
@@ -114,13 +114,13 @@ export default function HeroGalleryDesktop() {
                     <feature.icon size={26} strokeWidth={1.5} className="text-primary dark:text-accent" />
                   </div>
                   <h4 className="text-[13px] font-bold text-primary mb-2 leading-tight">{feature.title}</h4>
-                  <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed max-w-[140px]">{feature.description}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-[140px]">{feature.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-surface rounded-3xl border border-border p-6 flex items-center justify-between shadow-sm relative overflow-hidden">
+          <div className="bg-surface rounded-lg border border-border p-6 flex items-center justify-between shadow-sm relative overflow-hidden">
              <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_center,_#000_1px,_transparent_1px)] bg-[length:4px_4px]" />
             
             <div className="flex items-center gap-3 shrink-0 relative z-10">
@@ -140,7 +140,7 @@ export default function HeroGalleryDesktop() {
           </div>
         </div>
 
-        <div className="bg-surface rounded-3xl border border-border p-8 shadow-sm flex flex-col justify-between">
+        <div className="bg-surface rounded-lg border border-border p-8 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="h-px bg-accent/40 w-12" />
             <h3 className="text-xs font-bold text-primary dark:text-accent uppercase tracking-widest">{heroGalleryData.keyDetailsTitle}</h3>
@@ -161,13 +161,13 @@ export default function HeroGalleryDesktop() {
             ))}
           </div>
 
-          <button className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-primary rounded-xl text-[13px] font-black shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 transition-all mt-auto">
+          <button className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-primary rounded text-[13px] font-black shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 transition-all mt-auto">
             Visit Website <ExternalLink size={16} />
           </button>
         </div>
       </div>
 
-      <div className="w-full bg-primary rounded-3xl p-6 shadow-md flex items-center justify-between text-white relative overflow-hidden">
+      <div className="w-full bg-primary rounded-lg p-6 shadow-md flex items-center justify-between text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.02)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.02)_50%,rgba(255,255,255,0.02)_75%,transparent_75%,transparent)] bg-[length:24px_24px] pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-32 h-32 bg-accent/10 blur-3xl pointer-events-none" />
 

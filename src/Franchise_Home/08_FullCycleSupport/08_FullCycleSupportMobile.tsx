@@ -9,7 +9,7 @@ export default function FullCycleSupportMobile() {
           {fullCycleSupportData.sectionLabel}
         </p>
         <h2 className="text-base font-bold text-white mb-1">{fullCycleSupportData.title}</h2>
-        <p className="text-gray-400 text-[10px]">{fullCycleSupportData.subtitle}</p>
+        <p className="text-gray-400 text-sm">{fullCycleSupportData.subtitle}</p>
       </div>
 
       <div className="grid grid-cols-2 gap-2.5">
@@ -21,7 +21,7 @@ export default function FullCycleSupportMobile() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.04 }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-3 text-center"
+              className="bg-[#0d1a3a] border border-gray-800 rounded p-3 text-center"
             >
               <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-2">
                 <Icon size={14} className="text-accent" />

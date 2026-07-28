@@ -31,13 +31,13 @@ export default function JourneyTimelineDesktop() {
               >
                 <div className={`flex-1 ${idx % 2 === 0 ? "text-right" : "text-left"}`}>
                   <div
-                    className={`inline-block bg-[#0d1a3a] border rounded-xl p-4 max-w-sm ${
+                    className={`inline-block bg-[#0d1a3a] border rounded p-4 max-w-sm ${
                       milestone.isActive
                         ? "border-[#D4AF37]/30 shadow-lg shadow-[#D4AF37]/10"
                         : "border-gray-800"
                     }`}
                   >
-                    <p className="text-gray-400 text-sm">{milestone.description}</p>
+                    <p className="text-gray-400 text-[15px]">{milestone.description}</p>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center justify-center">

@@ -17,7 +17,7 @@ export default function InvestmentSnapshotMobile() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
-              className={`rounded-xl border p-4 ${
+              className={`rounded border p-4 ${
                 stat.highlight
                   ? "border-[#D4AF37]/30 bg-[#D4AF37]/5"
                   : "border-gray-800 bg-[#0d1a3a]"

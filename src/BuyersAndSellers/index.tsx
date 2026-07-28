@@ -9,7 +9,6 @@ import FAQ from "./08.FAQ";
 
 import Header from "../Home/01_header";
 import Footer from "../Home/04_footer";
-import { ThemeProvider } from "../Home/ThemeContext";
 
 interface BuyersAndSellersProps {
   isMobile: boolean;
@@ -17,8 +16,7 @@ interface BuyersAndSellersProps {
 
 export default function BuyersAndSellers({ isMobile }: BuyersAndSellersProps) {
   return (
-    <ThemeProvider>
-      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#0a1128] text-gray-900 dark:text-white transition-colors duration-300">
+          <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#0a1128] text-gray-900 dark:text-white transition-colors duration-300">
         <Header isMobile={isMobile} />
 
         <div className="flex-1 flex flex-col">
@@ -34,6 +32,5 @@ export default function BuyersAndSellers({ isMobile }: BuyersAndSellersProps) {
 
         <Footer isMobile={isMobile} hideCTA={true} />
       </div>
-    </ThemeProvider>
-  );
+      );
 }

@@ -64,14 +64,14 @@ export default function NumbersSpeakDesktop() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-6 mb-6"
+          className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded p-6 mb-6"
         >
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-white mb-1">
                 {numbersSpeakData.title}
               </h2>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-[15px]">
                 {numbersSpeakData.subtitle}
               </p>
             </div>
@@ -95,7 +95,7 @@ export default function NumbersSpeakDesktop() {
                 key={stat.label}
                 variants={fadeInUp}
                 whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span
@@ -107,7 +107,7 @@ export default function NumbersSpeakDesktop() {
                   <Icon size={16} style={{ color: stat.color }} />
                 </div>
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                <p className="text-gray-500 text-xs mt-1">{stat.label}</p>
+                <p className="text-gray-500 text-sm mt-1">{stat.label}</p>
               </motion.div>
             );
           })}

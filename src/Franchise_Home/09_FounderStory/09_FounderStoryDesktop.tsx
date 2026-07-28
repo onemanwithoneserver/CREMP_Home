@@ -19,7 +19,7 @@ export default function FounderStoryDesktop() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-8 flex gap-8"
+          className="bg-[#0d1a3a] border border-gray-800 rounded p-8 flex gap-8"
         >
           <div className="flex-1">
             <Quote size={32} className="text-accent mb-4" />
@@ -33,10 +33,10 @@ export default function FounderStoryDesktop() {
                 className="w-12 h-12 rounded-full object-cover border-2 border-[#D4AF37]/30"
               />
               <div>
-                <p className="text-white font-bold text-sm">
+                <p className="text-white font-bold text-[15px]">
                   {founderStoryData.founder.name}
                 </p>
-                <p className="text-gray-400 text-xs">
+                <p className="text-gray-400 text-sm">
                   {founderStoryData.founder.title}
                 </p>
               </div>
@@ -52,7 +52,7 @@ export default function FounderStoryDesktop() {
                 <p className="text-2xl font-black" style={{ color: stat.color }}>
                   {stat.value}
                 </p>
-                <p className="text-gray-500 text-[10px] uppercase tracking-wider">
+                <p className="text-gray-500 text-sm uppercase tracking-wider">
                   {stat.label}
                 </p>
               </motion.div>

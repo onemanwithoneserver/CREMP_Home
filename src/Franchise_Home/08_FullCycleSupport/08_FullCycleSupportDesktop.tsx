@@ -21,13 +21,13 @@ export default function FullCycleSupportDesktop() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-2">
+          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-2">
             {fullCycleSupportData.sectionLabel}
           </p>
           <h2 className="text-xl font-bold text-white mb-2">
             {fullCycleSupportData.title}
           </h2>
-          <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+          <p className="text-gray-400 text-[15px] max-w-2xl mx-auto">
             {fullCycleSupportData.subtitle}
           </p>
           <motion.button
@@ -53,13 +53,13 @@ export default function FullCycleSupportDesktop() {
                 key={item.title}
                 variants={fadeInUp}
                 whileHover={{ y: -4, borderColor: "rgba(212, 175, 55, 0.3)" }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4 text-center hover:shadow-lg hover:shadow-[#D4AF37]/5 transition-all cursor-pointer group"
+                className="bg-[#0d1a3a] border border-gray-800 rounded p-4 text-center hover:shadow-lg hover:shadow-[#D4AF37]/5 transition-all cursor-pointer group"
               >
                 <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-[#D4AF37]/20 transition-colors">
                   <Icon size={18} className="text-accent" />
                 </div>
                 <h4 className="text-white font-semibold text-xs mb-1">{item.title}</h4>
-                <p className="text-gray-500 text-[10px]">{item.description}</p>
+                <p className="text-gray-500 text-sm">{item.description}</p>
               </motion.div>
             );
           })}

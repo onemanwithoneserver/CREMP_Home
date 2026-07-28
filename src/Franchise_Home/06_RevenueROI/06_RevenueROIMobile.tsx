@@ -16,7 +16,7 @@ export default function RevenueROIMobile() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="shrink-0 w-[200px] bg-[#0d1a3a] border border-gray-800 rounded-xl p-4"
+              className="shrink-0 w-[200px] bg-[#0d1a3a] border border-gray-800 rounded p-4"
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-[10px] font-bold text-gray-500 uppercase">{card.year}</span>
@@ -36,12 +36,12 @@ export default function RevenueROIMobile() {
                 </div>
                 <p className="text-2xl font-black text-white">{card.range}</p>
               </div>
-              <p className="text-gray-400 text-[10px]">{card.description}</p>
+              <p className="text-gray-400 text-sm">{card.description}</p>
             </motion.div>
           );
         })}
       </div>
-      <div className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4">
+      <div className="bg-[#0d1a3a] border border-gray-800 rounded p-4">
         <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-1">
           {revenueROIData.paybackPeriod.sectionLabel}
         </p>

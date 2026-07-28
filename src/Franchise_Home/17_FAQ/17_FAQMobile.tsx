@@ -20,7 +20,7 @@ export default function FAQMobile() {
       </p>
 
       <h2 className="text-base font-bold text-white mb-1 text-center">{faqData.title}</h2>
-      <p className="text-gray-400 text-[10px] text-center mb-4 px-4">{faqData.subtitle}</p>
+      <p className="text-gray-400 text-sm text-center mb-4 px-4">{faqData.subtitle}</p>
       <div className="flex gap-1.5 overflow-x-auto pb-3 scrollbar-hide mb-4">
         {faqData.tabs.map((tab) => (
           <button
@@ -40,7 +40,7 @@ export default function FAQMobile() {
         {filteredQuestions.map((q) => (
           <div
             key={q.id}
-            className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden"
+            className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden"
           >
             <button
               onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
@@ -62,7 +62,7 @@ export default function FAQMobile() {
                   className="overflow-hidden"
                 >
                   <div className="px-3 pb-3 pl-7">
-                    <p className="text-gray-400 text-[10px] leading-relaxed bg-background p-3 rounded-lg border border-gray-800/50">
+                    <p className="text-gray-400 text-sm leading-relaxed bg-background p-3 rounded-lg border border-gray-800/50">
                       {q.answer}
                     </p>
                   </div>

@@ -17,7 +17,7 @@ export default function MissionVisionMobile() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4"
+              className="bg-[#0d1a3a] border border-gray-800 rounded p-4"
             >
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center">
@@ -27,7 +27,7 @@ export default function MissionVisionMobile() {
                   {card.label}
                 </span>
               </div>
-              <p className="text-gray-300 text-xs leading-relaxed">{card.description}</p>
+              <p className="text-gray-300 text-sm leading-relaxed">{card.description}</p>
             </motion.div>
           );
         })}

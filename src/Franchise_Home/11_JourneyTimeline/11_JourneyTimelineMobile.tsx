@@ -36,8 +36,8 @@ export default function JourneyTimelineMobile() {
                   milestone.isActive ? "border-[#D4AF37]/30" : "border-gray-800"
                 }`}
               >
-                <p className="text-accent text-[10px] font-bold mb-0.5">{milestone.year}</p>
-                <p className="text-gray-400 text-[10px]">{milestone.description}</p>
+                <p className="text-accent text-sm font-bold mb-0.5">{milestone.year}</p>
+                <p className="text-gray-400 text-sm">{milestone.description}</p>
               </div>
             </motion.div>
           ))}

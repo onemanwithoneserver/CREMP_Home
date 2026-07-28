@@ -13,10 +13,10 @@ export default function FounderStoryMobile() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4"
+        className="bg-[#0d1a3a] border border-gray-800 rounded p-4"
       >
         <Quote size={24} className="text-accent mb-3" />
-        <p className="text-gray-300 text-xs leading-relaxed mb-4 italic">
+        <p className="text-gray-300 text-sm leading-relaxed mb-4 italic">
           {founderStoryData.quote}
         </p>
         <div className="flex items-center gap-3 mb-4">
@@ -26,8 +26,8 @@ export default function FounderStoryMobile() {
             className="w-10 h-10 rounded-full object-cover border-2 border-[#D4AF37]/30"
           />
           <div>
-            <p className="text-white font-bold text-xs">{founderStoryData.founder.name}</p>
-            <p className="text-gray-400 text-[10px]">{founderStoryData.founder.title}</p>
+            <p className="text-white font-bold text-sm">{founderStoryData.founder.name}</p>
+            <p className="text-gray-400 text-sm">{founderStoryData.founder.title}</p>
           </div>
         </div>
 

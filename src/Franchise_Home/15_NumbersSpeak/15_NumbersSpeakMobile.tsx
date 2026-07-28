@@ -4,9 +4,9 @@ import { numbersSpeakData } from "./data";
 export default function NumbersSpeakMobile() {
   return (
     <section className="w-full bg-background px-4 py-6">
-      <div className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-4 mb-4">
+      <div className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded p-4 mb-4">
         <h2 className="text-base font-bold text-white mb-1">{numbersSpeakData.title}</h2>
-        <p className="text-gray-400 text-[10px]">{numbersSpeakData.subtitle}</p>
+        <p className="text-gray-400 text-sm">{numbersSpeakData.subtitle}</p>
       </div>
 
       <div className="grid grid-cols-2 gap-2.5">
@@ -18,7 +18,7 @@ export default function NumbersSpeakMobile() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-3"
+              className="bg-[#0d1a3a] border border-gray-800 rounded p-3"
             >
               <div className="flex items-center justify-between mb-2">
                 <span

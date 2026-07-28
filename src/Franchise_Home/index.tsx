@@ -13,7 +13,6 @@ import MediaGallery from "./14_MediaGallery";
 import NumbersSpeak from "./15_NumbersSpeak";
 import FranchiseNetwork from "./16_FranchiseNetwork";
 import FAQ from "./17_FAQ";
-import { ThemeProvider } from "../Home/ThemeContext";
 
 interface FranchiseHomeProps {
   isMobile: boolean;
@@ -21,8 +20,7 @@ interface FranchiseHomeProps {
 
 export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
   return (
-    <ThemeProvider>
-      <div className="w-full min-h-screen flex flex-col bg-background text-gray-900 dark:text-primary transition-colors duration-300">
+          <div className="w-full min-h-screen flex flex-col bg-background text-gray-900 dark:text-primary transition-colors duration-300">
         <div className="flex-1 flex flex-col">
           <HeroGallery isMobile={isMobile} />
           <InvestmentSnapshot isMobile={isMobile} />
@@ -41,6 +39,5 @@ export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
           <FAQ isMobile={isMobile} />
         </div>
       </div>
-    </ThemeProvider>
-  );
+      );
 }

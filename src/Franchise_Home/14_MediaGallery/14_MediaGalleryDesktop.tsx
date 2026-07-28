@@ -21,7 +21,7 @@ export default function MediaGalleryDesktop() {
     <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500">
+          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500">
             {mediaGalleryData.sectionLabel}
           </p>
           <span className="text-accent text-xs font-semibold cursor-pointer hover:underline">
@@ -62,7 +62,7 @@ export default function MediaGalleryDesktop() {
               key={item.id}
               variants={fadeInUp}
               whileHover={{ y: -4 }}
-              className="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer border border-gray-800 hover:border-[#D4AF37]/30 transition-all"
+              className="relative group overflow-hidden rounded aspect-[4/3] cursor-pointer border border-gray-800 hover:border-[#D4AF37]/30 transition-all"
             >
               <img
                 src={item.src}
@@ -77,7 +77,7 @@ export default function MediaGalleryDesktop() {
           ))}
         </motion.div>
 
-        <p className="text-gray-600 text-[10px] mt-3">{mediaGalleryData.sourceLabel}</p>
+        <p className="text-gray-600 text-sm mt-3">{mediaGalleryData.sourceLabel}</p>
       </div>
     </section>
   );

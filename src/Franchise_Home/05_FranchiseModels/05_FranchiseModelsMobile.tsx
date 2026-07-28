@@ -112,7 +112,7 @@ export default function FranchiseModelsMobile() {
              <div className="w-1 h-1 rounded-full bg-accent-light" />
            </div>
         </div>
-        <p className="text-[10px] text-gray-500 dark:text-gray-400 font-medium px-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium px-4">
           {franchiseModelsData.subtitle}
         </p>
       </div>
@@ -127,7 +127,7 @@ export default function FranchiseModelsMobile() {
                 <button
                   key={model.id}
                   onClick={() => setActiveModel(model.id)}
-                  className={`shrink-0 flex flex-col items-center justify-center text-center px-4 py-3 rounded-xl border transition-all duration-300 w-[110px] ${
+                  className={`shrink-0 flex flex-col items-center justify-center text-center px-4 py-3 rounded border transition-all duration-300 w-[110px] ${
                     isActive
                       ? "bg-primary border-accent-light shadow-md transform -translate-y-1"
                       : "bg-surface border-border shadow-sm"
@@ -154,7 +154,7 @@ export default function FranchiseModelsMobile() {
       <div className="flex flex-col gap-4">
         
         {/* Top: Donut Chart */}
-        <div className="bg-surface rounded-3xl border border-border p-6 flex flex-col items-center justify-center shadow-sm">
+        <div className="bg-surface rounded-lg border border-border p-6 flex flex-col items-center justify-center shadow-sm">
            <AnimatePresence mode="wait">
              <motion.div
                key={selected.id}
@@ -184,7 +184,7 @@ export default function FranchiseModelsMobile() {
              animate={{ opacity: 1, x: 0 }}
              exit={{ opacity: 0, x: 10 }}
              transition={{ duration: 0.3 }}
-             className="bg-surface-alt rounded-3xl border border-border p-5 flex flex-col shadow-sm"
+             className="bg-surface-alt rounded-lg border border-border p-5 flex flex-col shadow-sm"
           >
              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
@@ -259,7 +259,7 @@ export default function FranchiseModelsMobile() {
         </AnimatePresence>
 
         {/* Bottom: Cost Breakdown List */}
-        <div className="bg-surface rounded-3xl border border-border p-5 shadow-sm flex flex-col">
+        <div className="bg-surface rounded-lg border border-border p-5 shadow-sm flex flex-col">
           <div className="flex items-center justify-between mb-5 pb-3 border-b border-border">
              <span className="text-[9px] uppercase font-bold tracking-widest text-primary text-opacity-90">
                COST COMPONENT

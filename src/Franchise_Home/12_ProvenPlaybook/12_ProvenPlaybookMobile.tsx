@@ -17,17 +17,17 @@ export default function ProvenPlaybookMobile() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4 flex items-start gap-3"
+              className="bg-[#0d1a3a] border border-gray-800 rounded p-4 flex items-start gap-3"
             >
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                className="w-10 h-10 rounded flex items-center justify-center shrink-0"
                 style={{ backgroundColor: `${card.color}15` }}
               >
                 <Icon size={18} style={{ color: card.color }} />
               </div>
               <div>
                 <h4 className="text-white font-bold text-xs mb-1">{card.title}</h4>
-                <p className="text-gray-400 text-[10px] leading-relaxed">{card.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{card.description}</p>
               </div>
             </motion.div>
           );

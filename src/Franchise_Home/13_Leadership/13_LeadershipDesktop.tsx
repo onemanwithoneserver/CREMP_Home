@@ -45,7 +45,7 @@ export default function LeadershipDesktop() {
               key={member.name}
               variants={fadeInUp}
               whileHover={{ y: -6 }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden hover:border-[#D4AF37]/30 transition-all cursor-pointer group"
+              className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden hover:border-[#D4AF37]/30 transition-all cursor-pointer group"
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -58,11 +58,11 @@ export default function LeadershipDesktop() {
 
               <div className="p-5 -mt-8 relative z-10">
                 <h4 className="text-white font-bold text-base">{member.name}</h4>
-                <p className="text-accent text-xs font-semibold mb-1">{member.role}</p>
-                <p className="text-gray-500 text-[10px] mb-3">
+                <p className="text-accent text-sm font-semibold mb-1">{member.role}</p>
+                <p className="text-gray-500 text-sm mb-3">
                   {member.company} · {member.experience}
                 </p>
-                <p className="text-gray-400 text-xs italic leading-relaxed">
+                <p className="text-gray-400 text-sm italic leading-relaxed">
                   "{member.quote}"
                 </p>
               </div>
