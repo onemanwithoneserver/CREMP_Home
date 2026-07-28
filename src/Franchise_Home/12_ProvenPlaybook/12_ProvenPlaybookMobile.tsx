@@ -1,17 +1,7 @@
 import { motion } from "framer-motion";
 import { provenPlaybookData } from "./data";
 import clsx from "clsx";
-
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { wrapper: 'border-success-light hover:border-success', icon: 'bg-success/10 text-success' };
-    case 'info': return { wrapper: 'border-info-light hover:border-info', icon: 'bg-info/10 text-info' };
-    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', icon: 'bg-warning/10 text-warning' };
-    case 'danger': return { wrapper: 'border-danger-light hover:border-danger', icon: 'bg-danger/10 text-danger' };
-    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40', icon: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent' };
-    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', icon: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400' };
-  }
-};
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
 
 export default function ProvenPlaybookMobile() {
   return (
@@ -23,17 +13,16 @@ export default function ProvenPlaybookMobile() {
       <div className="space-y-3">
         {provenPlaybookData.cards.map((card) => {
           const Icon = card.icon;
-          const styles = getIntentStyles(card.intent);
           return (
             <motion.div
               key={card.title}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={clsx("bg-white dark:bg-surface border rounded-lg p-5 flex items-start gap-4 shadow-sm hover-lift", styles.wrapper)}
+              className={clsx("rounded-[4px] border p-5 flex items-start gap-4 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(card.intent))}
             >
               <div
-                className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0", styles.icon)}
+                className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(card.intent))}
               >
                 <Icon size={20} strokeWidth={1.5} />
               </div>

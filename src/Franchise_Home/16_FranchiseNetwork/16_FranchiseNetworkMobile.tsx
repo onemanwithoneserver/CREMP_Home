@@ -1,17 +1,7 @@
 import { motion } from "framer-motion";
 import { franchiseNetworkData } from "./data";
 import clsx from "clsx";
-
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { bg: 'bg-success' };
-    case 'info': return { bg: 'bg-info' };
-    case 'warning': return { bg: 'bg-warning' };
-    case 'danger': return { bg: 'bg-danger' };
-    case 'primary': return { bg: 'bg-primary dark:bg-accent' };
-    default: return { bg: 'bg-gray-500' };
-  }
-};
+import { getSolidBgStyles, getCardStyles } from "../utils/theme";
 
 export default function FranchiseNetworkMobile() {
   return (
@@ -24,7 +14,7 @@ export default function FranchiseNetworkMobile() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-white dark:bg-surface border border-border rounded-lg overflow-hidden shadow-sm flex flex-col"
+        className={clsx("overflow-hidden rounded-[4px] border shadow-sm flex flex-col transition-all duration-300", getCardStyles())}
       >
         <div className="w-full h-[220px] bg-gray-50 dark:bg-surface-alt flex items-center justify-center relative border-b border-border">
           <div className="absolute inset-0 opacity-20">
@@ -50,10 +40,9 @@ export default function FranchiseNetworkMobile() {
         <div className="p-5">
           <div className="flex flex-wrap gap-4 mb-6">
             {franchiseNetworkData.legend.map((item) => {
-              const styles = getIntentStyles(item.intent);
               return (
                 <div key={item.label} className="flex items-center gap-2">
-                  <div className={clsx("w-2.5 h-2.5 rounded-full", styles.bg)} />
+                  <div className={clsx("w-2.5 h-2.5 rounded-full", getSolidBgStyles(item.intent))} />
                   <span className="text-gray-600 dark:text-gray-400 text-[10px] font-bold">{item.label}</span>
                 </div>
               );

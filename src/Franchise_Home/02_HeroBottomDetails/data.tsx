@@ -1,6 +1,7 @@
 import {
   Briefcase,
   CupSoda,
+  Flag,
   Gem,
   Heart,
   LineChart,
@@ -52,7 +53,7 @@ export const heroDetailsData = {
     { label: "Headquarters", value: "Bengaluru, Karnataka", icon: Building2, intent: "neutral" },
     { label: "Founder", value: "Arjun Malhotra", icon: User, intent: "neutral" },
     { label: "Presence", value: "14+ cities nationwide", icon: MapPin, intent: "info" },
-    { label: "Countries", value: "India", icon: FlagIcon, intent: "neutral" },
+    { label: "Countries", value: "India", icon: Flag, intent: "neutral" },
     { label: "Contact", value: "+91 80 4567 8900", icon: Phone, intent: "primary" },
     { label: "Email", value: "franchise@urbanbrew.co", icon: Mail, intent: "primary" },
   ],
@@ -64,12 +65,3 @@ export const heroDetailsData = {
     { value: "1M+", label: "Cups Served Every Month", icon: CupSoda },
   ],
 };
-
-function FlagIcon({ size = 24, className = "" }: { size?: number, className?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
-      <line x1="4" y1="22" x2="4" y2="15"></line>
-    </svg>
-  );
-}

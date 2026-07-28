@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { revenueROIData } from "./data";
 import clsx from "clsx";
+import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/theme";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,15 +12,6 @@ const stagger = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { wrapper: 'border-success-light hover:border-success', badge: 'bg-success/10 text-success', icon: 'bg-success/10 text-success' };
-    case 'info': return { wrapper: 'border-info-light hover:border-info', badge: 'bg-info/10 text-info', icon: 'bg-info/10 text-info' };
-    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', badge: 'bg-warning/10 text-warning', icon: 'bg-warning/10 text-warning' };
-    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40', badge: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent', icon: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent' };
-    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', badge: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400', icon: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400' };
-  }
-};
 
 export default function RevenueROIDesktop() {
   return (
@@ -29,7 +21,7 @@ export default function RevenueROIDesktop() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-8 text-center"
+          className="text-xs font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-8 text-center"
         >
           {revenueROIData.sectionLabel}
         </motion.p>
@@ -42,30 +34,29 @@ export default function RevenueROIDesktop() {
         >
           {revenueROIData.revenueCards.map((card) => {
             const Icon = card.icon;
-            const styles = getIntentStyles(card.intent);
             return (
               <motion.div
                 key={card.year}
                 variants={fadeInUp}
-                className={clsx("bg-white dark:bg-surface border rounded-lg p-6 shadow-sm hover-lift cursor-pointer transition-colors", styles.wrapper)}
+                className={clsx("rounded-lg border p-6 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(card.intent))}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold text-gray-500 uppercase">{card.year}</span>
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{card.year}</span>
                   <span
-                    className={clsx("text-[10px] font-bold uppercase px-2 py-0.5 rounded-full", styles.badge)}
+                    className={clsx("text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm", getBadgeStyles(card.intent))}
                   >
                     {card.label}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 mb-4">
                   <div
-                    className={clsx("w-10 h-10 rounded-full flex items-center justify-center shrink-0", styles.icon)}
+                    className={clsx("w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(card.intent))}
                   >
                     <Icon size={18} strokeWidth={1.5} />
                   </div>
                   <p className="text-3xl font-black text-gray-900 dark:text-white">{card.range}</p>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 text-[14px] font-medium leading-snug">{card.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm font-medium leading-snug">{card.description}</p>
                 <p className="text-gray-500 dark:text-gray-500 text-xs mt-1">{card.sublabel}</p>
               </motion.div>
             );
@@ -77,7 +68,7 @@ export default function RevenueROIDesktop() {
           viewport={{ once: true }}
           className="bg-white dark:bg-surface border border-border rounded-lg p-6 shadow-sm hover-lift"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
             {revenueROIData.paybackPeriod.sectionLabel}
           </p>
           <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-6">

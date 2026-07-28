@@ -52,7 +52,7 @@ export default function FAQDesktop() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex items-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary/90 text-white rounded-[4px] text-sm font-bold shadow-sm transition-all hover-lift w-fit"
+              className="flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] text-sm font-bold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all hover-lift w-fit"
             >
               {(() => { const Icon = faqData.ctaButton.icon; return <Icon size={18} />; })()}
               {faqData.ctaButton.label}

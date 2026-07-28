@@ -1,17 +1,7 @@
 import { motion } from "framer-motion";
 import { franchiseNetworkData } from "./data";
 import clsx from "clsx";
-
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { text: 'text-success', bg: 'bg-success' };
-    case 'info': return { text: 'text-info', bg: 'bg-info' };
-    case 'warning': return { text: 'text-warning', bg: 'bg-warning' };
-    case 'danger': return { text: 'text-danger', bg: 'bg-danger' };
-    case 'primary': return { text: 'text-primary dark:text-accent', bg: 'bg-primary dark:bg-accent' };
-    default: return { text: 'text-gray-500', bg: 'bg-gray-500' };
-  }
-};
+import { getTextStyles, getSolidBgStyles } from "../utils/theme";
 
 export default function FranchiseNetworkDesktop() {
   return (
@@ -70,13 +60,12 @@ export default function FranchiseNetworkDesktop() {
               <div className="space-y-4 mb-8">
                 {franchiseNetworkData.legend.map((item) => {
                   const Icon = item.icon;
-                  const styles = getIntentStyles(item.intent);
                   return (
                     <div key={item.label} className="flex items-center gap-3">
                       <div
-                        className={clsx("w-3 h-3 rounded-full", styles.bg)}
+                        className={clsx("w-3 h-3 rounded-full", getSolidBgStyles(item.intent))}
                       />
-                      <Icon size={16} strokeWidth={1.5} className={styles.text} />
+                      <Icon size={16} strokeWidth={1.5} className={getTextStyles(item.intent)} />
                       <span className="text-gray-700 dark:text-gray-300 text-xs font-semibold">{item.label}</span>
                     </div>
                   );
@@ -99,14 +88,14 @@ export default function FranchiseNetworkDesktop() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-4 py-2.5 bg-primary text-white text-sm font-bold rounded hover-lift"
+                  className="w-full px-4 py-2.5 bg-primary text-white text-sm font-bold rounded-[4px] hover-lift transition-all"
                 >
                   {franchiseNetworkData.cta.primary}
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-sm font-bold rounded hover-lift hover:border-primary/50 transition-all"
+                  className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-sm font-bold rounded-[4px] hover-lift hover:border-primary/50 transition-all"
                 >
                   {franchiseNetworkData.cta.secondary}
                 </motion.button>

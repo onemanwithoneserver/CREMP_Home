@@ -24,9 +24,6 @@ export default function MediaGalleryDesktop() {
           <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-primary">
             {mediaGalleryData.sectionLabel}
           </p>
-          <span className="text-accent text-xs font-semibold cursor-pointer hover:underline">
-            {mediaGalleryData.allMediaLabel}
-          </span>
         </div>
         <div className="flex items-center gap-2 mb-6 overflow-x-auto">
           {mediaGalleryData.tabs.map((tab) => {
@@ -38,7 +35,7 @@ export default function MediaGalleryDesktop() {
                 onClick={() => setActiveTab(tab.id)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all shadow-sm ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-bold whitespace-nowrap transition-all shadow-sm ${
                   isActive
                     ? "bg-primary text-white"
                     : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-primary dark:hover:text-accent hover:shadow"

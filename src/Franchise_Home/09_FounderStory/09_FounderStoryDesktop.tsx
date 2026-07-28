@@ -2,17 +2,7 @@ import { motion } from "framer-motion";
 import { founderStoryData } from "./data";
 import { Quote } from "lucide-react";
 import clsx from "clsx";
-
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { text: 'text-success' };
-    case 'info': return { text: 'text-info' };
-    case 'warning': return { text: 'text-warning' };
-    case 'danger': return { text: 'text-danger' };
-    case 'primary': return { text: 'text-primary dark:text-accent' };
-    default: return { text: 'text-gray-900 dark:text-white' };
-  }
-};
+import { getTextStyles } from "../utils/theme";
 
 export default function FounderStoryDesktop() {
   return (
@@ -56,13 +46,12 @@ export default function FounderStoryDesktop() {
           </div>
           <div className="w-[240px] grid grid-cols-1 gap-4">
             {founderStoryData.stats.map((stat) => {
-              const styles = getIntentStyles(stat.intent);
               return (
                 <motion.div
                   key={stat.label}
                   className="bg-gray-50 dark:bg-surface-alt border border-border rounded-lg p-4 text-center hover-lift cursor-default transition-colors shadow-sm"
                 >
-                  <p className={clsx("text-3xl font-black mb-1", styles.text)}>
+                  <p className={clsx("text-3xl font-black mb-1", getTextStyles(stat.intent))}>
                     {stat.value}
                   </p>
                   <p className="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-wider">

@@ -52,11 +52,11 @@ export const franchiseModelsData = {
       avgTotal: "₹10L",
       totalAvgLabel: "₹10 Lakhs",
       costBreakdown: [
-        { label: "Setup & Interiors", amount: "₹3L", percentage: 30, color: "#f97316", icon: Armchair },
-        { label: "Equipment", amount: "₹4L", percentage: 40, color: "#8b5cf6", icon: CoffeeMachine },
-        { label: "Franchise Fee", amount: "₹1.5L", percentage: 15, color: "#1e3a8a", icon: Tag },
-        { label: "Working Capital", amount: "₹1L", percentage: 10, color: "#10b981", icon: IndianRupee },
-        { label: "Marketing & Launch", amount: "₹0.5L", percentage: 5, color: "#f59e0b", icon: Megaphone },
+        { label: "Setup & Interiors", amount: "₹3L", percentage: 30, color: "#F27052", icon: Armchair },
+        { label: "Equipment", amount: "₹4L", percentage: 40, color: "#1D4ED8", icon: CoffeeMachine },
+        { label: "Franchise Fee", amount: "₹1.5L", percentage: 15, color: "#0B1B42", icon: Tag },
+        { label: "Working Capital", amount: "₹1L", percentage: 10, color: "#16A34A", icon: IndianRupee },
+        { label: "Marketing & Launch", amount: "₹0.5L", percentage: 5, color: "#D97706", icon: Megaphone },
       ],
     },
     {
@@ -71,12 +71,12 @@ export const franchiseModelsData = {
       avgTotal: "₹27L",
       totalAvgLabel: "₹27 Lakhs",
       costBreakdown: [
-        { label: "Setup & Interiors", amount: "₹9L", percentage: 33.3, color: "#f97316", icon: Armchair },
-        { label: "Equipment", amount: "₹8L", percentage: 29.6, color: "#8b5cf6", icon: CoffeeMachine },
-        { label: "Franchise Fee", amount: "₹4L", percentage: 14.8, color: "#1e3a8a", icon: Tag },
-        { label: "Working Capital", amount: "₹3L", percentage: 11.1, color: "#10b981", icon: IndianRupee },
-        { label: "Marketing & Launch", amount: "₹1.5L", percentage: 5.6, color: "#f59e0b", icon: Megaphone },
-        { label: "Security Deposit", amount: "₹1.5L", percentage: 5.6, color: "#64748b", icon: ShieldCheck },
+        { label: "Setup & Interiors", amount: "₹9L", percentage: 33.3, color: "#F27052", icon: Armchair },
+        { label: "Equipment", amount: "₹8L", percentage: 29.6, color: "#1D4ED8", icon: CoffeeMachine },
+        { label: "Franchise Fee", amount: "₹4L", percentage: 14.8, color: "#0B1B42", icon: Tag },
+        { label: "Working Capital", amount: "₹3L", percentage: 11.1, color: "#16A34A", icon: IndianRupee },
+        { label: "Marketing & Launch", amount: "₹1.5L", percentage: 5.6, color: "#D97706", icon: Megaphone },
+        { label: "Security Deposit", amount: "₹1.5L", percentage: 5.6, color: "#6B7280", icon: ShieldCheck },
       ],
     },
     {
@@ -91,12 +91,12 @@ export const franchiseModelsData = {
       avgTotal: "₹18L",
       totalAvgLabel: "₹18 Lakhs",
       costBreakdown: [
-        { label: "Setup & Interiors", amount: "₹5L", percentage: 27.8, color: "#f97316", icon: Armchair },
-        { label: "Equipment", amount: "₹6L", percentage: 33.3, color: "#8b5cf6", icon: CoffeeMachine },
-        { label: "Franchise Fee", amount: "₹3L", percentage: 16.7, color: "#1e3a8a", icon: Tag },
-        { label: "Working Capital", amount: "₹2L", percentage: 11.1, color: "#10b981", icon: IndianRupee },
-        { label: "Marketing & Launch", amount: "₹1L", percentage: 5.5, color: "#f59e0b", icon: Megaphone },
-        { label: "Security Deposit", amount: "₹1L", percentage: 5.5, color: "#64748b", icon: ShieldCheck },
+        { label: "Setup & Interiors", amount: "₹5L", percentage: 27.8, color: "#F27052", icon: Armchair },
+        { label: "Equipment", amount: "₹6L", percentage: 33.3, color: "#1D4ED8", icon: CoffeeMachine },
+        { label: "Franchise Fee", amount: "₹3L", percentage: 16.7, color: "#0B1B42", icon: Tag },
+        { label: "Working Capital", amount: "₹2L", percentage: 11.1, color: "#16A34A", icon: IndianRupee },
+        { label: "Marketing & Launch", amount: "₹1L", percentage: 5.5, color: "#D97706", icon: Megaphone },
+        { label: "Security Deposit", amount: "₹1L", percentage: 5.5, color: "#6B7280", icon: ShieldCheck },
       ],
     },
     {
@@ -111,12 +111,12 @@ export const franchiseModelsData = {
       avgTotal: "₹55L",
       totalAvgLabel: "₹55 Lakhs",
       costBreakdown: [
-        { label: "Setup & Interiors", amount: "₹18L", percentage: 32.7, color: "#f97316", icon: Armchair },
-        { label: "Equipment", amount: "₹12L", percentage: 21.8, color: "#8b5cf6", icon: CoffeeMachine },
-        { label: "Franchise Fee", amount: "₹8L", percentage: 14.5, color: "#1e3a8a", icon: Tag },
-        { label: "Working Capital", amount: "₹8L", percentage: 14.5, color: "#10b981", icon: IndianRupee },
-        { label: "Marketing & Launch", amount: "₹5L", percentage: 9.1, color: "#f59e0b", icon: Megaphone },
-        { label: "Security Deposit", amount: "₹4L", percentage: 7.3, color: "#64748b", icon: ShieldCheck },
+        { label: "Setup & Interiors", amount: "₹18L", percentage: 32.7, color: "#F27052", icon: Armchair },
+        { label: "Equipment", amount: "₹12L", percentage: 21.8, color: "#1D4ED8", icon: CoffeeMachine },
+        { label: "Franchise Fee", amount: "₹8L", percentage: 14.5, color: "#0B1B42", icon: Tag },
+        { label: "Working Capital", amount: "₹8L", percentage: 14.5, color: "#16A34A", icon: IndianRupee },
+        { label: "Marketing & Launch", amount: "₹5L", percentage: 9.1, color: "#D97706", icon: Megaphone },
+        { label: "Security Deposit", amount: "₹4L", percentage: 7.3, color: "#6B7280", icon: ShieldCheck },
       ],
     },
     {
@@ -131,12 +131,12 @@ export const franchiseModelsData = {
       avgTotal: "₹65L",
       totalAvgLabel: "₹65 Lakhs",
       costBreakdown: [
-        { label: "Setup & Interiors", amount: "₹21L", percentage: 32.7, color: "#eab308", icon: Armchair }, // Adjusted color for donut chart match (yellow-orange)
-        { label: "Equipment", amount: "₹14L", percentage: 21.8, color: "#8b5cf6", icon: CoffeeMachine }, // Purple
-        { label: "Franchise Fee", amount: "₹9L", percentage: 14.5, color: "#1e293b", icon: Tag }, // Dark Navy
-        { label: "Working Capital", amount: "₹9L", percentage: 14.5, color: "#10b981", icon: IndianRupee }, // Green
-        { label: "Marketing & Launch", amount: "₹6L", percentage: 9.1, color: "#f97316", icon: Megaphone }, // Orange
-        { label: "Security Deposit", amount: "₹5L", percentage: 7.3, color: "#64748b", icon: ShieldCheck }, // Grey
+        { label: "Setup & Interiors", amount: "₹21L", percentage: 32.7, color: "#F27052", icon: Armchair },
+        { label: "Equipment", amount: "₹14L", percentage: 21.8, color: "#1D4ED8", icon: CoffeeMachine },
+        { label: "Franchise Fee", amount: "₹9L", percentage: 14.5, color: "#0B1B42", icon: Tag },
+        { label: "Working Capital", amount: "₹9L", percentage: 14.5, color: "#16A34A", icon: IndianRupee },
+        { label: "Marketing & Launch", amount: "₹6L", percentage: 9.1, color: "#D97706", icon: Megaphone },
+        { label: "Security Deposit", amount: "₹5L", percentage: 7.3, color: "#6B7280", icon: ShieldCheck },
       ],
     },
     {
@@ -151,12 +151,12 @@ export const franchiseModelsData = {
       avgTotal: "₹95L",
       totalAvgLabel: "₹95 Lakhs",
       costBreakdown: [
-        { label: "Setup & Interiors", amount: "₹35L", percentage: 36.8, color: "#f97316", icon: Armchair },
-        { label: "Equipment", amount: "₹20L", percentage: 21.0, color: "#8b5cf6", icon: CoffeeMachine },
-        { label: "Franchise Fee", amount: "₹12L", percentage: 12.6, color: "#1e3a8a", icon: Tag },
-        { label: "Working Capital", amount: "₹12L", percentage: 12.6, color: "#10b981", icon: IndianRupee },
-        { label: "Marketing & Launch", amount: "₹9L", percentage: 9.5, color: "#f59e0b", icon: Megaphone },
-        { label: "Security Deposit", amount: "₹7L", percentage: 7.4, color: "#64748b", icon: ShieldCheck },
+        { label: "Setup & Interiors", amount: "₹35L", percentage: 36.8, color: "#F27052", icon: Armchair },
+        { label: "Equipment", amount: "₹20L", percentage: 21.0, color: "#1D4ED8", icon: CoffeeMachine },
+        { label: "Franchise Fee", amount: "₹12L", percentage: 12.6, color: "#0B1B42", icon: Tag },
+        { label: "Working Capital", amount: "₹12L", percentage: 12.6, color: "#16A34A", icon: IndianRupee },
+        { label: "Marketing & Launch", amount: "₹9L", percentage: 9.5, color: "#D97706", icon: Megaphone },
+        { label: "Security Deposit", amount: "₹7L", percentage: 7.4, color: "#6B7280", icon: ShieldCheck },
       ],
     },
   ] as FranchiseModel[],

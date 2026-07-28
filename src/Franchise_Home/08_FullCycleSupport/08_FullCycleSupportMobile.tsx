@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { fullCycleSupportData } from "./data";
+import clsx from "clsx";
 
 export default function FullCycleSupportMobile() {
   return (
@@ -30,8 +31,8 @@ export default function FullCycleSupportMobile() {
               transition={{ delay: idx * 0.04 }}
               className="bg-white dark:bg-surface border border-border rounded-lg p-4 text-center hover-lift shadow-sm flex flex-col items-center justify-center cursor-pointer"
             >
-              <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-accent/10 flex items-center justify-center mx-auto mb-3">
-                <Icon size={16} strokeWidth={1.5} className="text-primary dark:text-accent" />
+              <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3", item.colorClass)}>
+                <Icon size={16} strokeWidth={1.5} />
               </div>
               <h4 className="text-gray-900 dark:text-white font-bold text-[11px] mb-1.5">{item.title}</h4>
               <p className="text-gray-500 dark:text-gray-400 text-[9px] leading-snug">{item.description}</p>

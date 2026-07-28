@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { missionVisionData } from "./data";
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
+import clsx from "clsx";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -37,11 +39,11 @@ export default function MissionVisionDesktop() {
               <motion.div
                 key={card.label}
                 variants={fadeInUp}
-                className="bg-white dark:bg-surface border border-border rounded-lg p-8 hover-lift cursor-pointer shadow-sm transition-colors flex flex-col"
+                className={clsx("rounded-lg border p-8 hover-lift cursor-default shadow-sm transition-all duration-300 flex flex-col", getCardStyles())}
               >
                 <div className="flex items-center gap-4 mb-5">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-accent/10 flex items-center justify-center">
-                    <Icon size={20} strokeWidth={1.5} className="text-primary dark:text-accent" />
+                  <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>
+                    <Icon size={20} strokeWidth={1.5} />
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-widest text-primary dark:text-accent">
                     {card.label}

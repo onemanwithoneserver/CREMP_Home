@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { leadershipData } from "./data";
+import { getCardStyles } from "../utils/theme";
+import clsx from "clsx";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -44,7 +46,7 @@ export default function LeadershipDesktop() {
             <motion.div
               key={member.name}
               variants={fadeInUp}
-              className="bg-white dark:bg-surface border border-border rounded-lg overflow-hidden shadow-sm hover-lift cursor-pointer group flex flex-col"
+              className={clsx("overflow-hidden rounded-lg border shadow-sm hover-lift cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
             >
               <div className="relative h-64 overflow-hidden">
                 <img

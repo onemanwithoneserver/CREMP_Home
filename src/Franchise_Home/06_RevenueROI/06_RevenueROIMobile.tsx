@@ -1,58 +1,48 @@
 import { motion } from "framer-motion";
 import { revenueROIData } from "./data";
 import clsx from "clsx";
-
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { wrapper: 'border-success-light hover:border-success', badge: 'bg-success/10 text-success', icon: 'bg-success/10 text-success' };
-    case 'info': return { wrapper: 'border-info-light hover:border-info', badge: 'bg-info/10 text-info', icon: 'bg-info/10 text-info' };
-    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', badge: 'bg-warning/10 text-warning', icon: 'bg-warning/10 text-warning' };
-    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40', badge: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent', icon: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent' };
-    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', badge: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400', icon: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400' };
-  }
-};
+import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/theme";
 
 export default function RevenueROIMobile() {
   return (
     <section className="w-full bg-background px-4 py-8">
-      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-6 text-center">
+      <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-6 text-center">
         {revenueROIData.sectionLabel}
       </p>
       <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-hide mb-6">
         {revenueROIData.revenueCards.map((card, idx) => {
           const Icon = card.icon;
-          const styles = getIntentStyles(card.intent);
           return (
             <motion.div
               key={card.year}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className={clsx("shrink-0 w-[220px] bg-white dark:bg-surface border rounded-lg p-5 shadow-sm hover-lift cursor-pointer", styles.wrapper)}
+              className={clsx("shrink-0 w-[220px] rounded-[4px] border p-5 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(card.intent))}
             >
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[10px] font-bold text-gray-500 uppercase">{card.year}</span>
+                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{card.year}</span>
                 <span
-                  className={clsx("text-[8px] font-bold uppercase px-1.5 py-0.5 rounded-full", styles.badge)}
+                  className={clsx("text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-[2px]", getBadgeStyles(card.intent))}
                 >
                   {card.label}
                 </span>
               </div>
               <div className="flex items-center gap-3 mb-3">
                 <div
-                  className={clsx("w-8 h-8 rounded-full flex items-center justify-center", styles.icon)}
+                  className={clsx("w-8 h-8 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles(card.intent))}
                 >
                   <Icon size={14} strokeWidth={1.5} />
                 </div>
                 <p className="text-2xl font-black text-gray-900 dark:text-white">{card.range}</p>
               </div>
-              <p className="text-gray-600 dark:text-gray-400 text-[13px] font-medium leading-snug">{card.description}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm font-medium leading-snug">{card.description}</p>
             </motion.div>
           );
         })}
       </div>
-      <div className="bg-white dark:bg-surface border border-border rounded-lg p-5 shadow-sm hover-lift">
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+      <div className="bg-white dark:bg-surface border border-border rounded p-5 shadow-sm hover-lift">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
           {revenueROIData.paybackPeriod.sectionLabel}
         </p>
         <h3 className="text-xl font-black text-gray-900 dark:text-white mb-5">

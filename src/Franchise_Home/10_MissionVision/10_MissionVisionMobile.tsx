@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { missionVisionData } from "./data";
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
+import clsx from "clsx";
 
 export default function MissionVisionMobile() {
   return (
@@ -12,17 +14,17 @@ export default function MissionVisionMobile() {
         {missionVisionData.cards.map((card) => {
           const Icon = card.icon;
           return (
-            <motion.div
-              key={card.label}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-surface border border-border rounded-lg p-6 shadow-sm hover-lift"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-accent/10 flex items-center justify-center">
-                  <Icon size={16} strokeWidth={1.5} className="text-primary dark:text-accent" />
-                </div>
+              <motion.div
+                key={card.label}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={clsx("rounded-[4px] border p-6 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles())}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>
+                    <Icon size={16} strokeWidth={1.5} />
+                  </div>
                 <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-primary dark:text-accent">
                   {card.label}
                 </span>

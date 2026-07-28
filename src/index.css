@@ -20,8 +20,10 @@
     --color-primary-light: 30 58 138; /* blue-900 #1e3a8a */
     
     --color-accent: 212 175 55; /* Gold #D4AF37 */
-    --color-accent-light: 251 191 36; /* amber-400 */
-    --color-accent-dark: 217 119 6; /* amber-600 */
+    --color-accent-light: 254 240 138; /* yellow-200 #FEF08A */
+    --color-accent-dark: 179 135 40; /* dark gold #b38728 */
+    --color-accent-brand: 245 158 11; /* amber-500 #F59E0B */
+    --color-accent-glow: 251 191 36; /* amber-400 #FBBF24 */
 
     --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
@@ -48,18 +50,18 @@
 
   .dark {
     --color-background: 10 17 40; /* #0a1128 */
-    --color-surface: 13 26 58; /* #0d1a3a */
-    --color-surface-alt: 26 35 66; /* #1a2342 */
+    --color-surface: 18 28 51; /* #121c33 */
+    --color-surface-alt: 26 37 66; /* #1a2542 */
     
     --color-text-primary: 255 255 255; /* #ffffff */
-    --color-text-secondary: 156 163 175; /* gray-400 */
-    --color-text-muted: 107 114 128; /* gray-500 */
+    --color-text-secondary: 148 163 184; /* #94A3B8 */
+    --color-text-muted: 100 116 139; /* #64748B */
     
-    --color-border: 31 41 55; /* gray-800 */
-    --color-border-light: 55 65 81; /* gray-700 */
+    --color-border: 42 45 69; /* #2a2d45 */
+    --color-border-light: 255 255 255 0.1; /* white/10 */
 
-    --color-primary: 30 58 138; /* Blue 900 for brand backgrounds in dark mode */
-    --color-primary-light: 59 130 246; /* Blue 500 */
+    --color-primary: 212 175 55; /* Gold #D4AF37 */
+    --color-primary-light: 191 149 63; /* #bf953f */
     
     --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
     --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.5);
@@ -71,15 +73,15 @@
   @media (prefers-color-scheme: dark) {
     .theme-system {
       --color-background: 10 17 40;
-      --color-surface: 13 26 58;
-      --color-surface-alt: 26 35 66;
+      --color-surface: 18 28 51;
+      --color-surface-alt: 26 37 66;
       --color-text-primary: 255 255 255;
-      --color-text-secondary: 156 163 175;
-      --color-text-muted: 107 114 128;
-      --color-border: 31 41 55;
-      --color-border-light: 55 65 81;
-      --color-primary: 30 58 138;
-      --color-primary-light: 59 130 246;
+      --color-text-secondary: 148 163 184;
+      --color-text-muted: 100 116 139;
+      --color-border: 42 45 69;
+      --color-border-light: 255 255 255 0.1;
+      --color-primary: 212 175 55;
+      --color-primary-light: 191 149 63;
     }
   }
 
@@ -127,7 +129,7 @@
   }
 
   .gradient-accent {
-    background: linear-gradient(135deg, rgb(var(--color-accent-light)), rgb(var(--color-accent)), rgb(var(--color-accent-dark)));
+    background: linear-gradient(135deg, rgb(var(--color-accent-dark)), rgb(var(--color-accent)), rgb(var(--color-accent-dark)));
   }
 
   .gradient-primary {
@@ -149,7 +151,7 @@
   }
 
   .gradient-text-accent {
-    background: linear-gradient(135deg, rgb(var(--color-accent-light)), rgb(var(--color-accent)));
+    background: linear-gradient(135deg, rgb(var(--color-accent)), rgb(var(--color-accent-glow)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

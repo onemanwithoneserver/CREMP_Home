@@ -2,17 +2,7 @@ import { motion } from "framer-motion";
 import { founderStoryData } from "./data";
 import { Quote } from "lucide-react";
 import clsx from "clsx";
-
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { text: 'text-success' };
-    case 'info': return { text: 'text-info' };
-    case 'warning': return { text: 'text-warning' };
-    case 'danger': return { text: 'text-danger' };
-    case 'primary': return { text: 'text-primary dark:text-accent' };
-    default: return { text: 'text-gray-900 dark:text-white' };
-  }
-};
+import { getTextStyles } from "../utils/theme";
 
 export default function FounderStoryMobile() {
   return (
@@ -45,10 +35,9 @@ export default function FounderStoryMobile() {
 
         <div className="grid grid-cols-2 gap-3">
           {founderStoryData.stats.map((stat) => {
-            const styles = getIntentStyles(stat.intent);
             return (
-              <div key={stat.label} className="bg-gray-50 dark:bg-surface-alt border border-border rounded-lg p-3 text-center shadow-sm hover-lift">
-                <p className={clsx("text-xl font-black mb-1", styles.text)}>{stat.value}</p>
+              <div key={stat.label} className="bg-gray-50 dark:bg-surface-alt border border-border rounded-[4px] p-3 text-center shadow-sm hover-lift cursor-default transition-all duration-300">
+                <p className={clsx("text-xl font-black mb-1", getTextStyles(stat.intent))}>{stat.value}</p>
                 <p className="text-gray-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-wider">{stat.label}</p>
               </div>
             );

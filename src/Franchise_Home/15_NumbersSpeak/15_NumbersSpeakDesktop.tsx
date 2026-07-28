@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { numbersSpeakData } from "./data";
 import clsx from "clsx";
+import { getCardStyles, getBadgeStyles, getTextStyles } from "../utils/theme";
 
 function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -47,17 +48,6 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
   );
 }
 
-const getIntentStyles = (intent?: string) => {
-  switch(intent) {
-    case 'success': return { wrapper: 'border-success-light hover:border-success', badge: 'bg-success/10 text-success', icon: 'text-success' };
-    case 'info': return { wrapper: 'border-info-light hover:border-info', badge: 'bg-info/10 text-info', icon: 'text-info' };
-    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', badge: 'bg-warning/10 text-warning', icon: 'text-warning' };
-    case 'danger': return { wrapper: 'border-danger-light hover:border-danger', badge: 'bg-danger/10 text-danger', icon: 'text-danger' };
-    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40', badge: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent', icon: 'text-primary dark:text-accent' };
-    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', badge: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400', icon: 'text-gray-500' };
-  }
-};
-
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 400, damping: 30 } },
@@ -100,20 +90,19 @@ export default function NumbersSpeakDesktop() {
         >
           {numbersSpeakData.stats.map((stat) => {
             const Icon = stat.icon;
-            const styles = getIntentStyles(stat.intent);
             return (
               <motion.div
                 key={stat.label}
                 variants={fadeInUp}
-                className={clsx("bg-white dark:bg-surface border rounded-lg p-6 shadow-sm hover-lift cursor-default transition-colors flex flex-col", styles.wrapper)}
+                className={clsx("rounded-lg border p-6 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(stat.intent))}
               >
                 <div className="flex items-center justify-between mb-4">
                   <span
-                    className={clsx("text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full", styles.badge)}
+                    className={clsx("text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[2px]", getBadgeStyles(stat.intent))}
                   >
                     {stat.sublabel}
                   </span>
-                  <Icon size={18} strokeWidth={1.5} className={styles.icon} />
+                  <Icon size={18} strokeWidth={1.5} className={getTextStyles(stat.intent)} />
                 </div>
                 <div className="mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />

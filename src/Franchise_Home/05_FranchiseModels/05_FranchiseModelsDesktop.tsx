@@ -55,7 +55,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-background rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2) - 8, height: size - (strokeWidth * 2) - 8, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
         <span className="text-3xl font-black text-primary">{totalValue}</span>
-        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-1">avg. total</span>
+        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">avg. total</span>
       </div>
 
       <AnimatePresence>
@@ -120,15 +120,15 @@ export default function FranchiseModelsDesktop() {
                 <button
                   key={model.id}
                   onClick={() => setActiveModel(model.id)}
-                  className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded border transition-all duration-300 hover-lift ${
+                  className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded border transition-colors duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${
                     isActive
-                      ? "bg-primary border-accent-light shadow-md"
+                      ? "gradient-primary border-accent-light shadow-md"
                       : "bg-surface border-border hover:border-accent/30 dark:hover:border-gray-600 shadow-sm"
                   }`}
                 >
                    <div className="flex items-center gap-3 mb-2">
                      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                       isActive ? "bg-[#1e3a8a] text-accent-light" : "bg-gray-50 dark:bg-[#1a2342] text-primary text-opacity-80"
+                       isActive ? "bg-primary-light text-accent-light" : "bg-surface-alt text-primary text-opacity-80"
                      }`}>
                        <Icon size={16} />
                      </div>
@@ -136,10 +136,10 @@ export default function FranchiseModelsDesktop() {
                        {model.name}
                      </span>
                    </div>
-                   <span className={`text-[11px] font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
+                   <span className={`text-sm font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
                      {model.priceRange}
                    </span>
-                   <div className={`flex items-center gap-1 mt-1 text-[11px] font-medium ${isActive ? "text-gray-400" : "text-gray-400"}`}>
+                   <div className={`flex items-center gap-1 mt-1 text-sm font-medium ${isActive ? "text-gray-300" : "text-gray-500"}`}>
                      <Users size={12} /> {model.staffCount}
                    </div>
                 </button>
@@ -163,14 +163,14 @@ export default function FranchiseModelsDesktop() {
                 className="bg-surface-alt rounded-lg border border-border p-6 flex flex-col h-full shadow-sm"
              >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-14 h-14 rounded-full bg-primary text-accent-light flex items-center justify-center shadow-md border-2 border-white dark:border-[#1a2342]">
+                  <div className="w-14 h-14 rounded-full bg-primary text-accent-light flex items-center justify-center shadow-md border-2 border-white dark:border-surface-alt">
                     <selected.icon size={24} />
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-lg font-black text-primary leading-tight">
                       {selected.name}
                     </h3>
-                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-0.5">
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-0.5">
                       OUTLET FORMAT
                     </span>
                   </div>
@@ -182,7 +182,7 @@ export default function FranchiseModelsDesktop() {
                        <Wallet size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
+                      <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
                       <span className="text-[15px] font-bold text-primary leading-tight">{selected.investment}</span>
                     </div>
                   </div>
@@ -194,7 +194,7 @@ export default function FranchiseModelsDesktop() {
                        <Maximize2 size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA REQUIRED</span>
+                      <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA REQUIRED</span>
                       <span className="text-[15px] font-bold text-primary leading-tight">{selected.area}</span>
                     </div>
                   </div>
@@ -206,10 +206,10 @@ export default function FranchiseModelsDesktop() {
                        <Users size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF NEEDED</span>
+                      <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF NEEDED</span>
                       <div className="flex items-center gap-1.5">
                          <span className="text-[15px] font-bold text-primary leading-tight">{selected.staffCount} members</span>
-                         <Info size={12} className="text-gray-400" />
+                         <Info size={12} className="text-gray-500" />
                       </div>
                     </div>
                   </div>
@@ -221,14 +221,14 @@ export default function FranchiseModelsDesktop() {
                        <MapPin size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">IDEAL LOCATION</span>
+                      <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">IDEAL LOCATION</span>
                       <span className="text-[15px] font-bold text-primary leading-tight">{selected.location}</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="w-full border border-accent/30 dark:border-accent/20 bg-surface-alt rounded p-4 flex flex-col items-center justify-center text-center mt-auto shadow-sm">
-                   <span className="text-[9px] uppercase font-bold tracking-widest text-primary text-opacity-80 mb-1">
+                   <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-80 mb-1">
                      AVG. TOTAL INVESTMENT
                    </span>
                    <span className="text-2xl font-black text-primary">
@@ -255,7 +255,7 @@ export default function FranchiseModelsDesktop() {
            </AnimatePresence>
            
            <div className="flex items-center justify-center gap-2 mt-8 animate-bounce">
-             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+             <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
                Tap segments for detail
              </span>
              <MousePointerClick size={14} className="text-accent" />
@@ -266,10 +266,10 @@ export default function FranchiseModelsDesktop() {
         <div className="col-span-12 lg:col-span-4 h-full">
           <div className="bg-surface rounded-lg border border-border p-6 shadow-sm h-full flex flex-col">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
-               <span className="text-[10px] uppercase font-bold tracking-widest text-primary text-opacity-90">
+               <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-90">
                  COST COMPONENT
                </span>
-               <span className="text-[10px] uppercase font-bold tracking-widest text-primary text-opacity-90">
+               <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-90">
                  AMOUNT • SHARE
                </span>
             </div>
@@ -295,10 +295,10 @@ export default function FranchiseModelsDesktop() {
                          {/* Color Dot */}
                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
                          {/* Icon Box */}
-                         <div className="w-8 h-8 rounded-lg bg-[#f8f9fc] dark:bg-[#1a2342] border border-border-light flex items-center justify-center shrink-0">
+                         <div className="w-8 h-8 rounded-lg bg-surface-alt border border-border-light flex items-center justify-center shrink-0">
                             <item.icon size={14} style={{ color: item.color }} />
                          </div>
-                         <span className="text-xs font-bold text-primary">
+                         <span className="text-sm font-bold text-primary">
                            {item.label}
                          </span>
                       </div>
@@ -308,10 +308,10 @@ export default function FranchiseModelsDesktop() {
                            {item.amount}
                          </span>
                          {/* Progress bar line */}
-                         <div className="w-16 h-1 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden hidden sm:block">
-                            <div className="h-full rounded-full" style={{ width: `${item.percentage}%`, backgroundColor: item.color }} />
+                         <div className="w-16 h-1.5 rounded-sm bg-gray-100 dark:bg-gray-800 overflow-hidden hidden sm:block">
+                            <div className="h-full rounded-sm transition-all duration-500" style={{ width: `${item.percentage}%`, backgroundColor: item.color }} />
                          </div>
-                         <span className="text-[10px] font-bold text-gray-400 w-8 text-right">
+                         <span className="text-xs font-bold text-gray-500 w-8 text-right">
                            {item.percentage}%
                          </span>
                       </div>

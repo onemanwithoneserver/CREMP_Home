@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { fullCycleSupportData } from "./data";
+import clsx from "clsx";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -54,8 +55,8 @@ export default function FullCycleSupportDesktop() {
                 variants={fadeInUp}
                 className="bg-white dark:bg-surface border border-border rounded-lg p-5 text-center hover-lift cursor-pointer group transition-colors shadow-sm"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 dark:group-hover:bg-accent/20 transition-colors">
-                  <Icon size={20} strokeWidth={1.5} className="text-primary dark:text-accent" />
+                <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors", item.colorClass)}>
+                  <Icon size={20} strokeWidth={1.5} />
                 </div>
                 <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-2">{item.title}</h4>
                 <p className="text-gray-600 dark:text-gray-400 text-xs leading-snug">{item.description}</p>

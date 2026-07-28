@@ -69,14 +69,14 @@ export default function HeroGalleryMobile() {
           className="flex-1 flex flex-row items-center justify-center gap-1.5 bg-[#0b162c] active:bg-[#122244] text-white p-3 rounded-lg text-[10px] font-bold shadow-md transition-colors text-center"
           aria-label={heroGalleryData.buttons.primary.label}
         >
-          <heroGalleryData.buttons.primary.icon size={14} />
-          <span>{heroGalleryData.buttons.primary.label}</span>
+          <heroGalleryData.buttons.primary.icon size={14} className="shrink-0" />
+          <span className="truncate">{heroGalleryData.buttons.primary.label}</span>
         </button>
         <button 
-          className="flex-1 flex flex-row items-center justify-center gap-1.5 bg-white active:bg-gray-50 text-[#0b162c] border border-[#0b162c] p-3 rounded-lg text-[10px] font-bold shadow-sm transition-colors text-center"
+          className="shrink-0 flex flex-row items-center justify-center gap-1.5 bg-white active:bg-gray-50 text-[#0b162c] border border-[#0b162c] px-4 py-3 rounded-lg text-[10px] font-bold shadow-sm transition-colors text-center"
           aria-label={heroGalleryData.buttons.secondary.label}
         >
-          <heroGalleryData.buttons.secondary.icon size={14} className="text-[#0b162c]" />
+          <heroGalleryData.buttons.secondary.icon size={14} className="text-[#0b162c] shrink-0" />
           <span>{heroGalleryData.buttons.secondary.label}</span>
         </button>
       </div>

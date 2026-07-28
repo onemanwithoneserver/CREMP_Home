@@ -32,7 +32,7 @@ export default function JourneyTimelineMobile() {
               </div>
 
               <div
-                className={`ml-4 bg-white dark:bg-surface border rounded-lg p-5 shadow-sm hover-lift cursor-default transition-colors ${
+                className={`ml-4 bg-white dark:bg-surface border rounded-[4px] p-5 shadow-sm hover-lift cursor-default transition-colors ${
                   milestone.isActive ? "border-primary/30 dark:border-accent/40 shadow-primary/5 dark:shadow-accent/5 ring-1 ring-primary/10 dark:ring-accent/10" : "border-border"
                 }`}
               >
