@@ -61,8 +61,8 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
           );
         })}
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-[#0a1128] rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2) - 6, height: size - (strokeWidth * 2) - 6, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-        <span className="text-xl font-black text-[#0b1b42] dark:text-white">{totalValue}</span>
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-background rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2) - 6, height: size - (strokeWidth * 2) - 6, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <span className="text-xl font-black text-primary">{totalValue}</span>
         <span className="text-[8px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">avg. total</span>
       </div>
 
@@ -79,7 +79,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
               <hoveredItem.item.icon size={12} className="text-gray-400" /> 
               {hoveredItem.item.label}
             </span>
-            <span className="text-amber-400 text-[11px]">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-[9px] ml-1">({hoveredItem.item.percentage}%)</span></span>
+            <span className="text-accent-light text-[11px]">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-[9px] ml-1">({hoveredItem.item.percentage}%)</span></span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -95,21 +95,21 @@ export default function FranchiseModelsMobile() {
   const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
   return (
-    <section className="w-full bg-[#fcfdfd] dark:bg-[#0a1128] transition-colors duration-300 p-4 flex flex-col gap-5 font-sans">
+    <section className="w-full bg-background transition-colors duration-300 p-4 flex flex-col gap-5 font-sans">
       
       {/* Header */}
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex items-center gap-3 mb-1.5">
            <div className="flex items-center gap-1">
-             <div className="w-1 h-1 rounded-full bg-amber-400" />
-             <div className="w-4 h-px bg-amber-400" />
+             <div className="w-1 h-1 rounded-full bg-accent-light" />
+             <div className="w-4 h-px bg-accent-light" />
            </div>
-           <h2 className="text-[13px] font-black text-[#0b1b42] dark:text-white uppercase tracking-widest">
+           <h2 className="text-[13px] font-black text-primary uppercase tracking-widest">
              {franchiseModelsData.sectionLabel}
            </h2>
            <div className="flex items-center gap-1">
-             <div className="w-4 h-px bg-amber-400" />
-             <div className="w-1 h-1 rounded-full bg-amber-400" />
+             <div className="w-4 h-px bg-accent-light" />
+             <div className="w-1 h-1 rounded-full bg-accent-light" />
            </div>
         </div>
         <p className="text-[10px] text-gray-500 dark:text-gray-400 font-medium px-4">
@@ -129,16 +129,16 @@ export default function FranchiseModelsMobile() {
                   onClick={() => setActiveModel(model.id)}
                   className={`shrink-0 flex flex-col items-center justify-center text-center px-4 py-3 rounded-xl border transition-all duration-300 w-[110px] ${
                     isActive
-                      ? "bg-[#0b1b42] border-amber-400 shadow-md transform -translate-y-1"
-                      : "bg-white dark:bg-[#0d1a3a] border-gray-100 dark:border-gray-800 shadow-sm"
+                      ? "bg-primary border-accent-light shadow-md transform -translate-y-1"
+                      : "bg-surface border-border shadow-sm"
                   }`}
                 >
                    <div className={`w-7 h-7 rounded-full flex items-center justify-center mb-1.5 ${
-                     isActive ? "bg-[#1e3a8a] text-amber-400" : "bg-gray-50 dark:bg-[#1a2342] text-[#0b1b42] dark:text-gray-400"
+                     isActive ? "bg-[#1e3a8a] text-accent-light" : "bg-gray-50 dark:bg-[#1a2342] text-primary text-opacity-80"
                    }`}>
                      <Icon size={14} />
                    </div>
-                   <span className={`font-bold text-[11px] mb-0.5 ${isActive ? "text-white" : "text-[#0b1b42] dark:text-gray-200"}`}>
+                   <span className={`font-bold text-[11px] mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                      {model.name}
                    </span>
                    <span className={`text-[9px] font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
@@ -154,7 +154,7 @@ export default function FranchiseModelsMobile() {
       <div className="flex flex-col gap-4">
         
         {/* Top: Donut Chart */}
-        <div className="bg-white dark:bg-[#0d1a3a] rounded-3xl border border-gray-100 dark:border-gray-800 p-6 flex flex-col items-center justify-center shadow-sm">
+        <div className="bg-surface rounded-3xl border border-border p-6 flex flex-col items-center justify-center shadow-sm">
            <AnimatePresence mode="wait">
              <motion.div
                key={selected.id}
@@ -172,7 +172,7 @@ export default function FranchiseModelsMobile() {
              <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">
                Tap segments for detail
              </span>
-             <MousePointerClick size={12} className="text-amber-500" />
+             <MousePointerClick size={12} className="text-accent" />
            </div>
         </div>
 
@@ -184,15 +184,15 @@ export default function FranchiseModelsMobile() {
              animate={{ opacity: 1, x: 0 }}
              exit={{ opacity: 0, x: 10 }}
              transition={{ duration: 0.3 }}
-             className="bg-[#f8f9fc] dark:bg-[#0d1a3a] rounded-3xl border border-gray-100 dark:border-gray-800 p-5 flex flex-col shadow-sm"
+             className="bg-surface-alt rounded-3xl border border-border p-5 flex flex-col shadow-sm"
           >
              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#0b1b42] text-amber-400 flex items-center justify-center shadow-md">
+                  <div className="w-10 h-10 rounded-full bg-primary text-accent-light flex items-center justify-center shadow-md">
                     <selected.icon size={18} />
                   </div>
                   <div className="flex flex-col">
-                    <h3 className="text-[15px] font-black text-[#0b1b42] dark:text-white leading-tight">
+                    <h3 className="text-[15px] font-black text-primary leading-tight">
                       {selected.name}
                     </h3>
                     <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mt-0.5">
@@ -201,11 +201,11 @@ export default function FranchiseModelsMobile() {
                   </div>
                 </div>
                 
-                <div className="border border-amber-200 dark:border-amber-900/50 bg-white dark:bg-[#111827] rounded-lg px-3 py-1.5 flex flex-col items-end shadow-sm">
-                   <span className="text-[8px] uppercase font-bold tracking-widest text-[#0b1b42] dark:text-gray-400">
+                <div className="border border-accent/30 dark:border-accent/20 bg-surface-alt rounded-lg px-3 py-1.5 flex flex-col items-end shadow-sm">
+                   <span className="text-[8px] uppercase font-bold tracking-widest text-primary text-opacity-80">
                      AVG. TOTAL
                    </span>
-                   <span className="text-sm font-black text-[#0b1b42] dark:text-white">
+                   <span className="text-sm font-black text-primary">
                      {selected.avgTotal}
                    </span>
                 </div>
@@ -213,45 +213,45 @@ export default function FranchiseModelsMobile() {
 
              <div className="grid grid-cols-2 gap-y-4 gap-x-2">
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700 mt-0.5">
-                    <Wallet size={10} className="text-[#0b1b42] dark:text-amber-400" />
+                 <div className="w-5 h-5 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light mt-0.5">
+                    <Wallet size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
                    <span className="text-[8px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
-                   <span className="text-[11px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.investment}</span>
+                   <span className="text-[11px] font-bold text-primary leading-tight">{selected.investment}</span>
                  </div>
                </div>
                
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700 mt-0.5">
-                    <Maximize2 size={10} className="text-[#0b1b42] dark:text-amber-400" />
+                 <div className="w-5 h-5 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light mt-0.5">
+                    <Maximize2 size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
                    <span className="text-[8px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA</span>
-                   <span className="text-[11px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.area}</span>
+                   <span className="text-[11px] font-bold text-primary leading-tight">{selected.area}</span>
                  </div>
                </div>
 
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700 mt-0.5">
-                    <Users size={10} className="text-[#0b1b42] dark:text-amber-400" />
+                 <div className="w-5 h-5 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light mt-0.5">
+                    <Users size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
                    <span className="text-[8px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF</span>
                    <div className="flex items-center gap-1">
-                      <span className="text-[11px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.staffCount}</span>
+                      <span className="text-[11px] font-bold text-primary leading-tight">{selected.staffCount}</span>
                       <Info size={10} className="text-gray-400" />
                    </div>
                  </div>
                </div>
 
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700 mt-0.5">
-                    <MapPin size={10} className="text-[#0b1b42] dark:text-amber-400" />
+                 <div className="w-5 h-5 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light mt-0.5">
+                    <MapPin size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
                    <span className="text-[8px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">LOCATION</span>
-                   <span className="text-[11px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.location}</span>
+                   <span className="text-[11px] font-bold text-primary leading-tight">{selected.location}</span>
                  </div>
                </div>
              </div>
@@ -259,12 +259,12 @@ export default function FranchiseModelsMobile() {
         </AnimatePresence>
 
         {/* Bottom: Cost Breakdown List */}
-        <div className="bg-white dark:bg-[#0d1a3a] rounded-3xl border border-gray-100 dark:border-gray-800 p-5 shadow-sm flex flex-col">
-          <div className="flex items-center justify-between mb-5 pb-3 border-b border-gray-100 dark:border-gray-800">
-             <span className="text-[9px] uppercase font-bold tracking-widest text-[#0b1b42] dark:text-gray-300">
+        <div className="bg-surface rounded-3xl border border-border p-5 shadow-sm flex flex-col">
+          <div className="flex items-center justify-between mb-5 pb-3 border-b border-border">
+             <span className="text-[9px] uppercase font-bold tracking-widest text-primary text-opacity-90">
                COST COMPONENT
              </span>
-             <span className="text-[9px] uppercase font-bold tracking-widest text-[#0b1b42] dark:text-gray-300">
+             <span className="text-[9px] uppercase font-bold tracking-widest text-primary text-opacity-90">
                AMOUNT
              </span>
           </div>
@@ -288,16 +288,16 @@ export default function FranchiseModelsMobile() {
                   >
                     <div className="flex items-center gap-2.5">
                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.color }} />
-                       <div className="w-7 h-7 rounded-lg bg-[#f8f9fc] dark:bg-[#1a2342] border border-gray-100 dark:border-gray-700 flex items-center justify-center shrink-0">
+                       <div className="w-7 h-7 rounded-lg bg-[#f8f9fc] dark:bg-[#1a2342] border border-border-light flex items-center justify-center shrink-0">
                           <item.icon size={12} style={{ color: item.color }} />
                        </div>
-                       <span className="text-[11px] font-bold text-[#0b1b42] dark:text-gray-200">
+                       <span className="text-[11px] font-bold text-primary">
                          {item.label}
                        </span>
                     </div>
                     
                     <div className="flex items-center gap-2">
-                       <span className="text-[11px] font-black text-[#0b1b42] dark:text-white w-10 text-right">
+                       <span className="text-[11px] font-black text-primary w-10 text-right">
                          {item.amount}
                        </span>
                        <span className="text-[9px] font-bold text-gray-400 w-6 text-right">
@@ -310,8 +310,8 @@ export default function FranchiseModelsMobile() {
             </AnimatePresence>
           </div>
 
-          <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
-            <span className="text-xs font-bold text-[#0b1b42] dark:text-gray-300">
+          <div className="mt-5 pt-4 border-t border-border flex items-center justify-between">
+            <span className="text-xs font-bold text-primary text-opacity-90">
               Total (Average)
             </span>
             <AnimatePresence mode="wait">
@@ -320,7 +320,7 @@ export default function FranchiseModelsMobile() {
                  initial={{ opacity: 0, y: 10 }}
                  animate={{ opacity: 1, y: 0 }}
                  exit={{ opacity: 0, y: -10 }}
-                 className="text-base font-black text-amber-500"
+                 className="text-base font-black text-accent"
               >
                  {selected.totalAvgLabel}
               </motion.span>

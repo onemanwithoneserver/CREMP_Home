@@ -13,7 +13,7 @@ const stagger = {
 
 export default function InvestmentSnapshotDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -48,7 +48,7 @@ export default function InvestmentSnapshotDesktop() {
                   <div
                     className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
                       stat.highlight
-                        ? "bg-[#D4AF37]/15 text-[#D4AF37]"
+                        ? "bg-[#D4AF37]/15 text-accent"
                         : "bg-gray-800 text-gray-400"
                     }`}
                   >
@@ -60,7 +60,7 @@ export default function InvestmentSnapshotDesktop() {
                     </p>
                     <p
                       className={`text-xl font-bold ${
-                        stat.highlight ? "text-[#D4AF37]" : "text-white"
+                        stat.highlight ? "text-accent" : "text-white"
                       }`}
                     >
                       {stat.value}

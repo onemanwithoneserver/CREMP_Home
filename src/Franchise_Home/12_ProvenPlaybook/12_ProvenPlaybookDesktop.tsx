@@ -13,7 +13,7 @@ const stagger = {
 
 export default function ProvenPlaybookDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

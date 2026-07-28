@@ -14,7 +14,7 @@ export default function FAQDesktop() {
   );
 
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -51,7 +51,7 @@ export default function FAQDesktop() {
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 activeTab === tab.id
                   ? "bg-[#D4AF37] text-[#0a1128]"
-                  : "border border-gray-700 text-gray-400 hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
+                  : "border border-gray-700 text-gray-400 hover:border-[#D4AF37]/50 hover:text-accent"
               }`}
             >
               {tab.label}
@@ -70,7 +70,7 @@ export default function FAQDesktop() {
                 onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
                 className="w-full flex items-center gap-3 p-4 text-left"
               >
-                <HelpCircle size={16} className="text-[#D4AF37] shrink-0" />
+                <HelpCircle size={16} className="text-accent shrink-0" />
                 <span className="text-white text-sm font-medium flex-1">{q.question}</span>
                 <motion.div
                   animate={{ rotate: expandedId === q.id ? 180 : 0 }}
@@ -90,7 +90,7 @@ export default function FAQDesktop() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 pb-4 pl-10">
-                      <p className="text-gray-400 text-sm leading-relaxed bg-[#0a1128] p-4 rounded-lg border border-gray-800/50">
+                      <p className="text-gray-400 text-sm leading-relaxed bg-background p-4 rounded-lg border border-gray-800/50">
                         {q.answer}
                       </p>
                     </div>

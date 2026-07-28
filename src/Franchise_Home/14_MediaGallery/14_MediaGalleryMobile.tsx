@@ -8,12 +8,12 @@ export default function MediaGalleryMobile() {
   );
 
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <div className="flex items-center justify-between mb-3">
         <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500">
           {mediaGalleryData.sectionLabel}
         </p>
-        <span className="text-[#D4AF37] text-[10px] font-semibold">{mediaGalleryData.allMediaLabel}</span>
+        <span className="text-accent text-[10px] font-semibold">{mediaGalleryData.allMediaLabel}</span>
       </div>
       <div className="flex gap-1.5 overflow-x-auto pb-3 scrollbar-hide mb-3">
         {mediaGalleryData.tabs.map((tab) => {

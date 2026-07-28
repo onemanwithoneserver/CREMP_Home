@@ -3,7 +3,7 @@ import { fullCycleSupportData } from "./data";
 
 export default function FullCycleSupportMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <div className="text-center mb-4">
         <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-1">
           {fullCycleSupportData.sectionLabel}
@@ -24,7 +24,7 @@ export default function FullCycleSupportMobile() {
               className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-3 text-center"
             >
               <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-2">
-                <Icon size={14} className="text-[#D4AF37]" />
+                <Icon size={14} className="text-accent" />
               </div>
               <h4 className="text-white font-semibold text-[10px] mb-0.5">{item.title}</h4>
               <p className="text-gray-500 text-[8px]">{item.description}</p>

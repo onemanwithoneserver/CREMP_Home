@@ -3,7 +3,7 @@ import { franchiseNetworkData } from "./data";
 
 export default function FranchiseNetworkDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -30,7 +30,7 @@ export default function FranchiseNetworkDesktop() {
               <p className="text-gray-500 text-xs mb-6">
                 {franchiseNetworkData.outletCount}
               </p>
-              <div className="w-full h-[300px] rounded-lg bg-[#0a1128] border border-gray-800/50 flex items-center justify-center relative overflow-hidden">
+              <div className="w-full h-[300px] rounded-lg bg-background border border-gray-800/50 flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20">
                   <svg viewBox="0 0 400 500" className="w-full h-full">
                     <path
@@ -94,7 +94,7 @@ export default function FranchiseNetworkDesktop() {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full px-4 py-2.5 border border-gray-700 text-gray-300 text-xs font-semibold rounded-lg hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all"
+                  className="w-full px-4 py-2.5 border border-gray-700 text-gray-300 text-xs font-semibold rounded-lg hover:border-[#D4AF37]/50 hover:text-accent transition-all"
                 >
                   {franchiseNetworkData.cta.secondary}
                 </motion.button>

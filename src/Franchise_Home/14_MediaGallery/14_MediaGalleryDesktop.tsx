@@ -18,13 +18,13 @@ export default function MediaGalleryDesktop() {
   );
 
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <p className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500">
             {mediaGalleryData.sectionLabel}
           </p>
-          <span className="text-[#D4AF37] text-xs font-semibold cursor-pointer hover:underline">
+          <span className="text-accent text-xs font-semibold cursor-pointer hover:underline">
             {mediaGalleryData.allMediaLabel}
           </span>
         </div>
@@ -41,7 +41,7 @@ export default function MediaGalleryDesktop() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? "bg-[#D4AF37] text-[#0a1128]"
-                    : "border border-gray-700 text-gray-400 hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
+                    : "border border-gray-700 text-gray-400 hover:border-[#D4AF37]/50 hover:text-accent"
                 }`}
               >
                 <Icon size={14} />

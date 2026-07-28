@@ -22,7 +22,7 @@ interface FranchiseHomeProps {
 export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
   return (
     <ThemeProvider>
-      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#0a1128] text-gray-900 dark:text-white transition-colors duration-300">
+      <div className="w-full min-h-screen flex flex-col bg-background text-gray-900 dark:text-primary transition-colors duration-300">
         <div className="flex-1 flex flex-col">
           <HeroGallery isMobile={isMobile} />
           <InvestmentSnapshot isMobile={isMobile} />

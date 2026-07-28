@@ -3,7 +3,7 @@ import { provenPlaybookData } from "./data";
 
 export default function ProvenPlaybookMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
         {provenPlaybookData.sectionLabel}
       </p>

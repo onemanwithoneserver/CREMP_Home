@@ -3,7 +3,7 @@ import { idealPartnerData } from "./data";
 
 export default function IdealPartnerMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <div className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-4 mb-4">
         <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-1">
           {idealPartnerData.sectionLabel}
@@ -25,7 +25,7 @@ export default function IdealPartnerMobile() {
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center">
-                  <Icon size={14} className="text-[#D4AF37]" />
+                  <Icon size={14} className="text-accent" />
                 </div>
                 <h4 className="text-white font-bold text-xs">{item.title}</h4>
               </div>
@@ -36,7 +36,7 @@ export default function IdealPartnerMobile() {
                     {subItem.value && (
                       <>
                         <span className="text-gray-600 text-[10px]">·</span>
-                        <span className="text-[#D4AF37] text-[10px] font-semibold">{subItem.value}</span>
+                        <span className="text-accent text-[10px] font-semibold">{subItem.value}</span>
                       </>
                     )}
                   </div>

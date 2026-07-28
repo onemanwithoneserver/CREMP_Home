@@ -3,7 +3,7 @@ import { missionVisionData } from "./data";
 
 export default function MissionVisionMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
         {missionVisionData.sectionLabel}
       </p>
@@ -21,9 +21,9 @@ export default function MissionVisionMobile() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center">
-                  <Icon size={14} className="text-[#D4AF37]" />
+                  <Icon size={14} className="text-accent" />
                 </div>
-                <span className="text-[9px] font-bold uppercase tracking-[3px] text-[#D4AF37]">
+                <span className="text-[9px] font-bold uppercase tracking-[3px] text-accent">
                   {card.label}
                 </span>
               </div>

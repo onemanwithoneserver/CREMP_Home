@@ -13,7 +13,7 @@ const stagger = {
 
 export default function IdealPartnerDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -46,7 +46,7 @@ export default function IdealPartnerDesktop() {
                 className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center mb-3">
-                  <Icon size={18} className="text-[#D4AF37]" />
+                  <Icon size={18} className="text-accent" />
                 </div>
                 <h4 className="text-white font-bold text-sm mb-2">{item.title}</h4>
                 <div className="space-y-1 mb-3">
@@ -56,7 +56,7 @@ export default function IdealPartnerDesktop() {
                       {subItem.value && (
                         <>
                           <span className="text-gray-600">·</span>
-                          <span className="text-[#D4AF37] text-xs font-semibold">{subItem.value}</span>
+                          <span className="text-accent text-xs font-semibold">{subItem.value}</span>
                         </>
                       )}
                     </div>

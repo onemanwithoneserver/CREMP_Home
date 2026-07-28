@@ -13,7 +13,7 @@ const stagger = {
 
 export default function FullCycleSupportDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -33,7 +33,7 @@ export default function FullCycleSupportDesktop() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-4 px-4 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold rounded-full hover:bg-[#D4AF37]/20 transition-all"
+            className="mt-4 px-4 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-accent text-xs font-semibold rounded-full hover:bg-[#D4AF37]/20 transition-all"
           >
             {fullCycleSupportData.ctaLabel}
           </motion.button>
@@ -56,7 +56,7 @@ export default function FullCycleSupportDesktop() {
                 className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4 text-center hover:shadow-lg hover:shadow-[#D4AF37]/5 transition-all cursor-pointer group"
               >
                 <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-[#D4AF37]/20 transition-colors">
-                  <Icon size={18} className="text-[#D4AF37]" />
+                  <Icon size={18} className="text-accent" />
                 </div>
                 <h4 className="text-white font-semibold text-xs mb-1">{item.title}</h4>
                 <p className="text-gray-500 text-[10px]">{item.description}</p>

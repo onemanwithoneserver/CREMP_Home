@@ -4,7 +4,7 @@ import { Quote } from "lucide-react";
 
 export default function FounderStoryDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -22,7 +22,7 @@ export default function FounderStoryDesktop() {
           className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-8 flex gap-8"
         >
           <div className="flex-1">
-            <Quote size={32} className="text-[#D4AF37] mb-4" />
+            <Quote size={32} className="text-accent mb-4" />
             <p className="text-gray-300 text-base leading-relaxed mb-6 italic">
               {founderStoryData.quote}
             </p>
@@ -47,7 +47,7 @@ export default function FounderStoryDesktop() {
               <motion.div
                 key={stat.label}
                 whileHover={{ scale: 1.05 }}
-                className="bg-[#0a1128] border border-gray-800/50 rounded-lg p-3 text-center cursor-pointer hover:border-[#D4AF37]/30 transition-all"
+                className="bg-background border border-gray-800/50 rounded-lg p-3 text-center cursor-pointer hover:border-[#D4AF37]/30 transition-all"
               >
                 <p className="text-2xl font-black" style={{ color: stat.color }}>
                   {stat.value}

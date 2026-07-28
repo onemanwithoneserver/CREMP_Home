@@ -3,7 +3,7 @@ import { investmentSnapshotData } from "./data";
 
 export default function InvestmentSnapshotMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
         {investmentSnapshotData.sectionLabel}
       </p>
@@ -25,12 +25,12 @@ export default function InvestmentSnapshotMobile() {
             >
               <Icon
                 size={14}
-                className={stat.highlight ? "text-[#D4AF37] mb-2" : "text-gray-500 mb-2"}
+                className={stat.highlight ? "text-accent mb-2" : "text-gray-500 mb-2"}
               />
               <p className="text-[8px] uppercase tracking-wider text-gray-500 mb-0.5">
                 {stat.label}
               </p>
-              <p className={`text-base font-bold ${stat.highlight ? "text-[#D4AF37]" : "text-white"}`}>
+              <p className={`text-base font-bold ${stat.highlight ? "text-accent" : "text-white"}`}>
                 {stat.value}
               </p>
               <p className="text-[9px] text-gray-500 mt-0.5">{stat.sublabel}</p>

@@ -3,7 +3,7 @@ import { leadershipData } from "./data";
 
 export default function LeadershipMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-1 text-center">
         {leadershipData.sectionLabel}
       </p>
@@ -28,7 +28,7 @@ export default function LeadershipMobile() {
               />
               <div className="flex-1 min-w-0">
                 <h4 className="text-white font-bold text-xs">{member.name}</h4>
-                <p className="text-[#D4AF37] text-[10px] font-semibold">{member.role}</p>
+                <p className="text-accent text-[10px] font-semibold">{member.role}</p>
                 <p className="text-gray-500 text-[8px] mb-1">
                   {member.company} · {member.experience}
                 </p>

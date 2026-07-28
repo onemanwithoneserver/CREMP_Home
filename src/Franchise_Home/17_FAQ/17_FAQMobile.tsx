@@ -14,7 +14,7 @@ export default function FAQMobile() {
   );
 
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-3 text-center">
         {faqData.sectionLabel}
       </p>
@@ -46,7 +46,7 @@ export default function FAQMobile() {
               onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
               className="w-full flex items-center gap-2 p-3 text-left"
             >
-              <HelpCircle size={12} className="text-[#D4AF37] shrink-0" />
+              <HelpCircle size={12} className="text-accent shrink-0" />
               <span className="text-white text-[10px] font-medium flex-1">{q.question}</span>
               <motion.div animate={{ rotate: expandedId === q.id ? 180 : 0 }}>
                 <ChevronDown size={12} className="text-gray-500" />
@@ -62,7 +62,7 @@ export default function FAQMobile() {
                   className="overflow-hidden"
                 >
                   <div className="px-3 pb-3 pl-7">
-                    <p className="text-gray-400 text-[10px] leading-relaxed bg-[#0a1128] p-3 rounded-lg border border-gray-800/50">
+                    <p className="text-gray-400 text-[10px] leading-relaxed bg-background p-3 rounded-lg border border-gray-800/50">
                       {q.answer}
                     </p>
                   </div>

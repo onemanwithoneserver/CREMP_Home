@@ -3,7 +3,7 @@ import { revenueROIData } from "./data";
 
 export default function RevenueROIMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
         {revenueROIData.sectionLabel}
       </p>
@@ -58,7 +58,7 @@ export default function RevenueROIMobile() {
                     milestone.status === "complete"
                       ? "bg-green-500/15 text-green-400"
                       : milestone.status === "active"
-                      ? "bg-[#D4AF37]/15 text-[#D4AF37] ring-2 ring-[#D4AF37]/30"
+                      ? "bg-[#D4AF37]/15 text-accent ring-2 ring-[#D4AF37]/30"
                       : "bg-gray-800 text-gray-500"
                   }`}
                 >

@@ -13,7 +13,7 @@ const stagger = {
 
 export default function LeadershipDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export default function LeadershipDesktop() {
 
               <div className="p-5 -mt-8 relative z-10">
                 <h4 className="text-white font-bold text-base">{member.name}</h4>
-                <p className="text-[#D4AF37] text-xs font-semibold mb-1">{member.role}</p>
+                <p className="text-accent text-xs font-semibold mb-1">{member.role}</p>
                 <p className="text-gray-500 text-[10px] mb-3">
                   {member.company} · {member.experience}
                 </p>

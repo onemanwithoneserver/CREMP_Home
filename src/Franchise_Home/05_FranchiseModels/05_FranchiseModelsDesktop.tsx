@@ -53,8 +53,8 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
           );
         })}
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-[#0a1128] rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2) - 8, height: size - (strokeWidth * 2) - 8, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-        <span className="text-3xl font-black text-[#0b1b42] dark:text-white">{totalValue}</span>
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-background rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2) - 8, height: size - (strokeWidth * 2) - 8, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <span className="text-3xl font-black text-primary">{totalValue}</span>
         <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-1">avg. total</span>
       </div>
 
@@ -71,7 +71,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
               <hoveredItem.item.icon size={14} className="text-gray-400" /> 
               {hoveredItem.item.label}
             </span>
-            <span className="text-amber-400 text-sm">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-xs ml-1">({hoveredItem.item.percentage}%)</span></span>
+            <span className="text-accent-light text-sm">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-xs ml-1">({hoveredItem.item.percentage}%)</span></span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -87,21 +87,21 @@ export default function FranchiseModelsDesktop() {
   const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
   return (
-    <section className="w-full bg-[#fcfdfd] dark:bg-[#0a1128] transition-colors duration-300 p-6 flex flex-col gap-6 font-sans">
+    <section className="w-full bg-background transition-colors duration-300 p-6 flex flex-col gap-6 font-sans">
       
       {/* Header */}
       <div className="flex flex-col items-center justify-center text-center mb-6">
         <div className="flex items-center gap-4 mb-2">
            <div className="flex items-center gap-1">
-             <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-             <div className="w-8 h-px bg-amber-400" />
+             <div className="w-1.5 h-1.5 rounded-full bg-accent-light" />
+             <div className="w-8 h-px bg-accent-light" />
            </div>
-           <h2 className="text-lg font-black text-[#0b1b42] dark:text-white uppercase tracking-widest">
+           <h2 className="text-lg font-black text-primary uppercase tracking-widest">
              {franchiseModelsData.sectionLabel}
            </h2>
            <div className="flex items-center gap-1">
-             <div className="w-8 h-px bg-amber-400" />
-             <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+             <div className="w-8 h-px bg-accent-light" />
+             <div className="w-1.5 h-1.5 rounded-full bg-accent-light" />
            </div>
         </div>
         <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
@@ -111,7 +111,7 @@ export default function FranchiseModelsDesktop() {
 
       {/* Tabs Row */}
       <div className="flex items-center gap-4 w-full">
-         <span className="text-xs font-bold text-[#0b1b42] dark:text-gray-300 uppercase tracking-widest shrink-0 ml-2">
+         <span className="text-xs font-bold text-primary text-opacity-90 uppercase tracking-widest shrink-0 ml-2">
            SELECT OUTLET TYPE
          </span>
          
@@ -125,17 +125,17 @@ export default function FranchiseModelsDesktop() {
                   onClick={() => setActiveModel(model.id)}
                   className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded-xl border transition-all duration-300 ${
                     isActive
-                      ? "bg-[#0b1b42] border-amber-400 shadow-md transform -translate-y-1"
-                      : "bg-white dark:bg-[#0d1a3a] border-gray-100 dark:border-gray-800 hover:border-amber-200 dark:hover:border-gray-600 shadow-sm"
+                      ? "bg-primary border-accent-light shadow-md transform -translate-y-1"
+                      : "bg-surface border-border hover:border-accent/30 dark:hover:border-gray-600 shadow-sm"
                   }`}
                 >
                    <div className="flex items-center gap-3 mb-2">
                      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                       isActive ? "bg-[#1e3a8a] text-amber-400" : "bg-gray-50 dark:bg-[#1a2342] text-[#0b1b42] dark:text-gray-400"
+                       isActive ? "bg-[#1e3a8a] text-accent-light" : "bg-gray-50 dark:bg-[#1a2342] text-primary text-opacity-80"
                      }`}>
                        <Icon size={16} />
                      </div>
-                     <span className={`font-bold text-[15px] ${isActive ? "text-white" : "text-[#0b1b42] dark:text-gray-200"}`}>
+                     <span className={`font-bold text-[15px] ${isActive ? "text-white" : "text-primary"}`}>
                        {model.name}
                      </span>
                    </div>
@@ -163,14 +163,14 @@ export default function FranchiseModelsDesktop() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 10 }}
                 transition={{ duration: 0.3 }}
-                className="bg-[#f8f9fc] dark:bg-[#0d1a3a] rounded-3xl border border-gray-100 dark:border-gray-800 p-6 flex flex-col h-full shadow-sm"
+                className="bg-surface-alt rounded-3xl border border-border p-6 flex flex-col h-full shadow-sm"
              >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-14 h-14 rounded-full bg-[#0b1b42] text-amber-400 flex items-center justify-center shadow-md border-2 border-white dark:border-[#1a2342]">
+                  <div className="w-14 h-14 rounded-full bg-primary text-accent-light flex items-center justify-center shadow-md border-2 border-white dark:border-[#1a2342]">
                     <selected.icon size={24} />
                   </div>
                   <div className="flex flex-col">
-                    <h3 className="text-lg font-black text-[#0b1b42] dark:text-white leading-tight">
+                    <h3 className="text-lg font-black text-primary leading-tight">
                       {selected.name}
                     </h3>
                     <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-0.5">
@@ -181,37 +181,37 @@ export default function FranchiseModelsDesktop() {
 
                 <div className="flex flex-col gap-6 mb-8 flex-1">
                   <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700">
-                       <Wallet size={12} className="text-[#0b1b42] dark:text-amber-400" />
+                    <div className="w-6 h-6 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light">
+                       <Wallet size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
-                      <span className="text-[15px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.investment}</span>
+                      <span className="text-[15px] font-bold text-primary leading-tight">{selected.investment}</span>
                     </div>
                   </div>
                   
                   <div className="w-full h-px bg-gray-200 dark:bg-gray-800" />
 
                   <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700">
-                       <Maximize2 size={12} className="text-[#0b1b42] dark:text-amber-400" />
+                    <div className="w-6 h-6 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light">
+                       <Maximize2 size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA REQUIRED</span>
-                      <span className="text-[15px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.area}</span>
+                      <span className="text-[15px] font-bold text-primary leading-tight">{selected.area}</span>
                     </div>
                   </div>
 
                   <div className="w-full h-px bg-gray-200 dark:bg-gray-800" />
 
                   <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700">
-                       <Users size={12} className="text-[#0b1b42] dark:text-amber-400" />
+                    <div className="w-6 h-6 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light">
+                       <Users size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF NEEDED</span>
                       <div className="flex items-center gap-1.5">
-                         <span className="text-[15px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.staffCount} members</span>
+                         <span className="text-[15px] font-bold text-primary leading-tight">{selected.staffCount} members</span>
                          <Info size={12} className="text-gray-400" />
                       </div>
                     </div>
@@ -220,21 +220,21 @@ export default function FranchiseModelsDesktop() {
                   <div className="w-full h-px bg-gray-200 dark:bg-gray-800" />
 
                   <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-white dark:bg-[#1a2342] shadow-sm flex items-center justify-center shrink-0 border border-gray-100 dark:border-gray-700">
-                       <MapPin size={12} className="text-[#0b1b42] dark:text-amber-400" />
+                    <div className="w-6 h-6 rounded-full bg-surface-alt shadow-sm flex items-center justify-center shrink-0 border border-border-light">
+                       <MapPin size={12} className="text-primary dark:text-accent-light" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">IDEAL LOCATION</span>
-                      <span className="text-[15px] font-bold text-[#0b1b42] dark:text-white leading-tight">{selected.location}</span>
+                      <span className="text-[15px] font-bold text-primary leading-tight">{selected.location}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="w-full border border-amber-200 dark:border-amber-900/50 bg-white dark:bg-[#111827] rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-sm">
-                   <span className="text-[9px] uppercase font-bold tracking-widest text-[#0b1b42] dark:text-gray-400 mb-1">
+                <div className="w-full border border-accent/30 dark:border-accent/20 bg-surface-alt rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-sm">
+                   <span className="text-[9px] uppercase font-bold tracking-widest text-primary text-opacity-80 mb-1">
                      AVG. TOTAL INVESTMENT
                    </span>
-                   <span className="text-2xl font-black text-[#0b1b42] dark:text-white">
+                   <span className="text-2xl font-black text-primary">
                      {selected.avgTotal}
                    </span>
                 </div>
@@ -261,18 +261,18 @@ export default function FranchiseModelsDesktop() {
              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                Tap segments for detail
              </span>
-             <MousePointerClick size={14} className="text-amber-500" />
+             <MousePointerClick size={14} className="text-accent" />
            </div>
         </div>
 
         {/* Right: Cost Breakdown List */}
         <div className="col-span-12 lg:col-span-4 h-full">
-          <div className="bg-white dark:bg-[#0d1a3a] rounded-3xl border border-gray-100 dark:border-gray-800 p-6 shadow-sm h-full flex flex-col">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-100 dark:border-gray-800">
-               <span className="text-[10px] uppercase font-bold tracking-widest text-[#0b1b42] dark:text-gray-300">
+          <div className="bg-surface rounded-3xl border border-border p-6 shadow-sm h-full flex flex-col">
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
+               <span className="text-[10px] uppercase font-bold tracking-widest text-primary text-opacity-90">
                  COST COMPONENT
                </span>
-               <span className="text-[10px] uppercase font-bold tracking-widest text-[#0b1b42] dark:text-gray-300">
+               <span className="text-[10px] uppercase font-bold tracking-widest text-primary text-opacity-90">
                  AMOUNT • SHARE
                </span>
             </div>
@@ -298,16 +298,16 @@ export default function FranchiseModelsDesktop() {
                          {/* Color Dot */}
                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
                          {/* Icon Box */}
-                         <div className="w-8 h-8 rounded-lg bg-[#f8f9fc] dark:bg-[#1a2342] border border-gray-100 dark:border-gray-700 flex items-center justify-center shrink-0">
+                         <div className="w-8 h-8 rounded-lg bg-[#f8f9fc] dark:bg-[#1a2342] border border-border-light flex items-center justify-center shrink-0">
                             <item.icon size={14} style={{ color: item.color }} />
                          </div>
-                         <span className="text-xs font-bold text-[#0b1b42] dark:text-gray-200">
+                         <span className="text-xs font-bold text-primary">
                            {item.label}
                          </span>
                       </div>
                       
                       <div className="flex items-center gap-3">
-                         <span className="text-sm font-black text-[#0b1b42] dark:text-white w-10 text-right">
+                         <span className="text-sm font-black text-primary w-10 text-right">
                            {item.amount}
                          </span>
                          {/* Progress bar line */}
@@ -324,8 +324,8 @@ export default function FranchiseModelsDesktop() {
               </AnimatePresence>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
-              <span className="text-sm font-bold text-[#0b1b42] dark:text-gray-300">
+            <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
+              <span className="text-sm font-bold text-primary text-opacity-90">
                 Total (Average)
               </span>
               <AnimatePresence mode="wait">
@@ -334,7 +334,7 @@ export default function FranchiseModelsDesktop() {
                    initial={{ opacity: 0, y: 10 }}
                    animate={{ opacity: 1, y: 0 }}
                    exit={{ opacity: 0, y: -10 }}
-                   className="text-xl font-black text-amber-500"
+                   className="text-xl font-black text-accent"
                 >
                    {selected.totalAvgLabel}
                 </motion.span>

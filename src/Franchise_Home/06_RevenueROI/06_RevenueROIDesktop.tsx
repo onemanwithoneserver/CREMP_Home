@@ -13,7 +13,7 @@ const stagger = {
 
 export default function RevenueROIDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -86,7 +86,7 @@ export default function RevenueROIDesktop() {
                       milestone.status === "complete"
                         ? "bg-green-500/15 text-green-400"
                         : milestone.status === "active"
-                        ? "bg-[#D4AF37]/15 text-[#D4AF37] ring-2 ring-[#D4AF37]/30"
+                        ? "bg-[#D4AF37]/15 text-accent ring-2 ring-[#D4AF37]/30"
                         : "bg-gray-800 text-gray-500"
                     }`}
                   >

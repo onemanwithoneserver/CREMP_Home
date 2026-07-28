@@ -3,7 +3,7 @@ import { journeyTimelineData } from "./data";
 
 export default function JourneyTimelineMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-6 text-center">
         {journeyTimelineData.sectionLabel}
       </p>
@@ -36,7 +36,7 @@ export default function JourneyTimelineMobile() {
                   milestone.isActive ? "border-[#D4AF37]/30" : "border-gray-800"
                 }`}
               >
-                <p className="text-[#D4AF37] text-[10px] font-bold mb-0.5">{milestone.year}</p>
+                <p className="text-accent text-[10px] font-bold mb-0.5">{milestone.year}</p>
                 <p className="text-gray-400 text-[10px]">{milestone.description}</p>
               </div>
             </motion.div>

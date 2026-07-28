@@ -41,7 +41,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
   return (
     <div ref={ref} className="text-3xl font-black text-white">
       {count}
-      <span className="text-[#D4AF37]">{suffix}</span>
+      <span className="text-accent">{suffix}</span>
     </div>
   );
 }
@@ -58,7 +58,7 @@ const stagger = {
 
 export default function NumbersSpeakDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -75,7 +75,7 @@ export default function NumbersSpeakDesktop() {
                 {numbersSpeakData.subtitle}
               </p>
             </div>
-            <span className="text-[#D4AF37] text-xs font-semibold cursor-pointer hover:underline flex items-center gap-1">
+            <span className="text-accent text-xs font-semibold cursor-pointer hover:underline flex items-center gap-1">
               ↗ {numbersSpeakData.verifiedLabel}
             </span>
           </div>

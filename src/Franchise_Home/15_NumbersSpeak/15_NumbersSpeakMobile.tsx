@@ -3,7 +3,7 @@ import { numbersSpeakData } from "./data";
 
 export default function NumbersSpeakMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <div className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-4 mb-4">
         <h2 className="text-base font-bold text-white mb-1">{numbersSpeakData.title}</h2>
         <p className="text-gray-400 text-[10px]">{numbersSpeakData.subtitle}</p>
@@ -31,7 +31,7 @@ export default function NumbersSpeakMobile() {
               </div>
               <p className="text-2xl font-black text-white">
                 {stat.value}
-                <span className="text-[#D4AF37]">{stat.suffix}</span>
+                <span className="text-accent">{stat.suffix}</span>
               </p>
               <p className="text-gray-500 text-[9px] mt-0.5">{stat.label}</p>
             </motion.div>

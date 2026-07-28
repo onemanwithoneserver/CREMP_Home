@@ -13,7 +13,7 @@ const stagger = {
 
 export default function MissionVisionDesktop() {
   return (
-    <section className="w-full bg-[#0a1128] px-6 py-10">
+    <section className="w-full bg-background px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -42,9 +42,9 @@ export default function MissionVisionDesktop() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center group-hover:bg-[#D4AF37]/25 transition-colors">
-                    <Icon size={18} className="text-[#D4AF37]" />
+                    <Icon size={18} className="text-accent" />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-[3px] text-[#D4AF37]">
+                  <span className="text-[10px] font-bold uppercase tracking-[3px] text-accent">
                     {card.label}
                   </span>
                 </div>

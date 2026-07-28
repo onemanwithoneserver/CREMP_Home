@@ -3,7 +3,7 @@ import { franchiseNetworkData } from "./data";
 
 export default function FranchiseNetworkMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
         {franchiseNetworkData.sectionLabel}
       </p>
@@ -14,7 +14,7 @@ export default function FranchiseNetworkMobile() {
         viewport={{ once: true }}
         className="bg-[#0d1a3a] border border-gray-800 rounded-xl overflow-hidden"
       >
-        <div className="w-full h-[200px] bg-[#0a1128] flex items-center justify-center relative">
+        <div className="w-full h-[200px] bg-background flex items-center justify-center relative">
           <div className="absolute inset-0 opacity-20">
             <svg viewBox="0 0 400 500" className="w-full h-full">
               <path

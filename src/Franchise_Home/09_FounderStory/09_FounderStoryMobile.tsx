@@ -4,7 +4,7 @@ import { Quote } from "lucide-react";
 
 export default function FounderStoryMobile() {
   return (
-    <section className="w-full bg-[#0a1128] px-4 py-6">
+    <section className="w-full bg-background px-4 py-6">
       <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
         {founderStoryData.sectionLabel}
       </p>
@@ -15,7 +15,7 @@ export default function FounderStoryMobile() {
         viewport={{ once: true }}
         className="bg-[#0d1a3a] border border-gray-800 rounded-xl p-4"
       >
-        <Quote size={24} className="text-[#D4AF37] mb-3" />
+        <Quote size={24} className="text-accent mb-3" />
         <p className="text-gray-300 text-xs leading-relaxed mb-4 italic">
           {founderStoryData.quote}
         </p>
@@ -33,7 +33,7 @@ export default function FounderStoryMobile() {
 
         <div className="grid grid-cols-4 gap-2">
           {founderStoryData.stats.map((stat) => (
-            <div key={stat.label} className="bg-[#0a1128] border border-gray-800/50 rounded-lg p-2 text-center">
+            <div key={stat.label} className="bg-background border border-gray-800/50 rounded-lg p-2 text-center">
               <p className="text-lg font-black" style={{ color: stat.color }}>{stat.value}</p>
               <p className="text-gray-500 text-[7px] uppercase tracking-wider">{stat.label}</p>
             </div>
