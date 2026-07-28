@@ -1,6 +1,5 @@
 import { heroGalleryData } from "./data";
 import { Coffee, Play } from "lucide-react";
-import { TextEffect } from "../../../components/motion-primitives/text-effect";
 
 import mainCupImg from "../../assets/main_coffee_cup.png";
 
@@ -8,10 +7,10 @@ export default function HeroGalleryMobile() {
   return (
     <section className="w-full bg-background transition-colors duration-300  flex flex-col gap-3 ">
       <div className="bg-[#f9f9f9] rounded-2xl overflow-hidden shadow-sm flex flex-row border border-gray-100 relative min-h-[320px]">
-        {/* Glow Effect */}
+
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0b162c]/80 blur-[40px] rounded-full pointer-events-none" />
         
-        {/* Text Section */}
+
         <div className="w-[55%] p-4 flex flex-col justify-center relative z-10">
           <div className="flex items-center gap-2.5 mb-5">
             <div className="w-10 h-10 rounded-xl bg-[#f4ebd0] flex items-center justify-center text-[#c69a54] shadow-sm shrink-0">
@@ -50,7 +49,7 @@ export default function HeroGalleryMobile() {
 
         </div>
         
-        {/* Cup Image Section */}
+
         <div className="w-[45%] relative">
           <img src={mainCupImg} alt="Urban Brew Main Cup" className="w-full h-full object-cover" />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -64,7 +63,7 @@ export default function HeroGalleryMobile() {
         </div>
       </div>
       
-      {/* Mobile Buttons (Moved to bottom, side-by-side) */}
+
       <div className="flex flex-row gap-2 mt-1">
         <button 
           className="flex-1 flex flex-row items-center justify-center gap-1.5 bg-[#0b162c] active:bg-[#122244] text-white p-3 rounded-lg text-[10px] font-bold shadow-md transition-colors text-center"

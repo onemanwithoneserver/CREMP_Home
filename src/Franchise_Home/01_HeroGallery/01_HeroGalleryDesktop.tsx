@@ -1,6 +1,5 @@
 import { heroGalleryData } from "./data";
-import { Coffee, Play, ExternalLink, ArrowRight, MapPin } from "lucide-react";
-import { TextEffect } from "../../../components/motion-primitives/text-effect";
+import { Coffee, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import mainCupImg from "../../assets/main_coffee_cup.png";
 import equipmentImg from "../../assets/coffee_equipment.png";
@@ -17,7 +16,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
 };
 
 export default function HeroGalleryDesktop() {

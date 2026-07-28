@@ -2,7 +2,6 @@ import {
   Briefcase,
   CupSoda,
   Gem,
-  Globe2,
   Heart,
   LineChart,
   Mail,
@@ -11,7 +10,6 @@ import {
   Store,
   Users,
   Building2,
-  CalendarDays,
   User,
 } from "lucide-react";
 
