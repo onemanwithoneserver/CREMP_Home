@@ -1,0 +1,65 @@
+import { Store, MapPin, Clock, TrendingDown, Calendar, Users } from "lucide-react";
+
+export const numbersSpeakData = {
+  sectionLabel: "NUMBERS SECTION",
+  title: "Numbers that speak for themselves",
+  subtitle:
+    "Verified data from 187 outlet outlets — FY 2023–24 annual report.",
+  verifiedLabel: "Linkedin",
+  stats: [
+    {
+      icon: Store,
+      value: "187",
+      suffix: "+",
+      label: "Active Outlets",
+      sublabel: "Nationwide",
+      color: "#D4AF37",
+      animateType: "counter" as const,
+    },
+    {
+      icon: MapPin,
+      value: "14",
+      suffix: "",
+      label: "Cities Covered",
+      sublabel: "Tier 1, Tier 2 Cities",
+      color: "#22c55e",
+      animateType: "counter" as const,
+    },
+    {
+      icon: Clock,
+      value: "8",
+      suffix: "",
+      label: "Years in Business",
+      sublabel: "Since 2016",
+      color: "#3b82f6",
+      animateType: "counter" as const,
+    },
+    {
+      icon: TrendingDown,
+      value: "31",
+      suffix: "%",
+      label: "Average ROI",
+      sublabel: "Across all models",
+      color: "#D4AF37",
+      animateType: "percentage" as const,
+    },
+    {
+      icon: Calendar,
+      value: "21",
+      suffix: " mo.",
+      label: "Avg. Payback",
+      sublabel: "Average across all FOCO",
+      color: "#22c55e",
+      animateType: "counter" as const,
+    },
+    {
+      icon: Users,
+      value: "94",
+      suffix: "%",
+      label: "Partner Satisfaction",
+      sublabel: "Based on NPS survey",
+      color: "#3b82f6",
+      animateType: "percentage" as const,
+    },
+  ],
+};

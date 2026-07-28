@@ -6,6 +6,7 @@ import Dropdown from "./commonfiles/Dropdown";
 export type Page =
   | "home"
   | "franchise"
+  | "franchise-home"
   | "investors"
   | "buyers-and-sellers"
   | "developer-and-owner";
@@ -21,6 +22,7 @@ export interface HeaderProps {
 const PAGE_LABELS: Record<Page, string> = {
   home: "Home",
   franchise: "Franchise Page",
+  "franchise-home": "Franchise Home",
   investors: "Investors Page",
   "buyers-and-sellers": "Buyers & Sellers",
   "developer-and-owner": "Developer & Owner",
@@ -43,15 +45,17 @@ export default function Header({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const activePage: Page = location.pathname.includes("franchise")
-    ? "franchise"
-    : location.pathname.includes("investors")
-      ? "investors"
-      : location.pathname.includes("buyers-and-sellers")
-        ? "buyers-and-sellers"
-        : location.pathname.includes("developer-and-owner")
-          ? "developer-and-owner"
-          : "home";
+  const activePage: Page = location.pathname.includes("franchise-home")
+    ? "franchise-home"
+    : location.pathname.includes("franchise")
+      ? "franchise"
+      : location.pathname.includes("investors")
+        ? "investors"
+        : location.pathname.includes("buyers-and-sellers")
+          ? "buyers-and-sellers"
+          : location.pathname.includes("developer-and-owner")
+            ? "developer-and-owner"
+            : "home";
 
   const handleNavigate = useCallback(
     (page: string) => {

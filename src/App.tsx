@@ -14,6 +14,7 @@ import Franchise from "./Franchise";
 import Investors from "./Investors";
 import BuyersAndSellers from "./BuyersAndSellers";
 import DeveloperAndOwner from "./DeveloperAndOwner";
+import FranchiseHome from "./Franchise_Home";
 import Connect from "./components/Connect";
 
 function App() {
@@ -78,6 +79,10 @@ function App() {
               <Route
                 path="/:viewMode/developer-and-owner"
                 element={<DeveloperAndOwner isMobile={isMobile} />}
+              />
+              <Route
+                path="/:viewMode/franchise-home"
+                element={<FranchiseHome isMobile={isMobile} />}
               />
               <Route
                 path="*"
