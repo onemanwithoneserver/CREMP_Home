@@ -89,11 +89,10 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           className={`
             w-full flex items-center justify-between gap-2
             ${sizeClasses[size]}
-            bg-white border border-cremp-border rounded font-semibold text-cremp-text-primary 
+            bg-cremp-surface border border-cremp-border rounded font-semibold text-cremp-text-primary 
             shadow-elevation-1 transition-all cursor-pointer
-            hover:bg-cremp-surface-alt 
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:border-cremp-primary/40
-            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white
+            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-cremp-surface
           `}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
@@ -109,7 +108,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
 
         {isOpen && (
           <ul
-            className="absolute z-[100] w-full min-w-max mt-1 py-1 bg-white border border-cremp-border rounded shadow-elevation-3 overflow-hidden animate-fade-in-down"
+            className="absolute z-[100] w-full min-w-max mt-1 py-1 bg-cremp-surface border border-cremp-border rounded shadow-elevation-3 overflow-hidden animate-fade-in-down"
             role="listbox"
           >
             {options.map((opt) => {
@@ -127,8 +126,8 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                   }}
                   className={`
                     flex items-center justify-between px-3 py-2 text-xs font-semibold cursor-pointer transition-colors
-                    ${opt.disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-cremp-primary/5"}
-                    ${isSelected ? "text-cremp-primary bg-cremp-primary/5" : "text-cremp-text-primary"}
+                    ${opt.disabled ? "opacity-50 cursor-not-allowed" : ""}
+                    ${isSelected ? "text-cremp-accent bg-cremp-accent/10" : "text-cremp-text-primary"}
                   `}
                 >
                   <span className="truncate pr-4">{opt.label}</span>
