@@ -7,90 +7,108 @@ import equipmentImg from "../../assets/coffee_equipment.png";
 import beansImg from "../../assets/coffee_beans.png";
 import topDownImg from "../../assets/top_down_cups.png";
 import interiorImg from "../../assets/cafe_interior.png";
+import seatingImg from "../../assets/cafe_seating.png";
 
 export default function HeroGalleryDesktop() {
   return (
     <section className="w-full bg-background transition-colors duration-300 p-6 flex flex-col gap-6 font-sans">
       
-      <div className="grid grid-cols-12 gap-6 min-h-[520px]">
-        <div className="col-span-12 lg:col-span-5 bg-surface border border-border rounded-lg p-8 shadow-sm flex flex-col justify-center">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex items-center gap-3">
-              <Coffee className="text-accent" size={36} strokeWidth={2.5} />
-              <div className="flex flex-col">
-                 <h1 className="text-2xl font-serif font-black tracking-widest text-primary uppercase leading-none">
-                   <TextEffect per="char" preset="fade">THE URBAN</TextEffect>
-                 </h1>
-                 <div className="flex items-center gap-2 mt-1">
-                   <div className="h-px bg-accent-light w-8" />
-                   <span className="text-[10px] tracking-widest text-primary text-opacity-90 font-bold uppercase">BREW CO.</span>
-                   <div className="h-px bg-accent-light w-8" />
-                 </div>
+      <div className="grid grid-cols-12 gap-4 lg:gap-6 min-h-[520px]">
+        <div className="col-span-12 lg:col-span-8 flex flex-col md:flex-row bg-surface border border-border rounded-lg overflow-hidden shadow-sm">
+          <div className="w-full md:w-[55%] p-6 lg:p-8 flex flex-col justify-center">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <Coffee className="text-accent" size={36} strokeWidth={2.5} />
+                <div className="flex flex-col">
+                   <h1 className="text-2xl font-serif font-black tracking-widest text-primary uppercase leading-none">
+                     <TextEffect per="char" preset="fade">THE URBAN</TextEffect>
+                   </h1>
+                   <div className="flex items-center gap-2 mt-1">
+                     <div className="h-px bg-accent-light w-8" />
+                     <span className="text-[10px] tracking-widest text-primary text-opacity-90 font-bold uppercase">BREW CO.</span>
+                     <div className="h-px bg-accent-light w-8" />
+                   </div>
+                </div>
               </div>
             </div>
-            <span className="ml-auto bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
-              <CheckIcon /> {heroGalleryData.badge}
-            </span>
+
+            <p className="text-[15px] font-semibold text-primary text-opacity-80 tracking-wide mb-5">
+              {heroGalleryData.category}
+            </p>
+
+            <h2 className="text-[42px] leading-[1.1] font-serif font-bold text-primary mb-6">
+              <TextEffect per="word" preset="blur">Redefining the café experience, </TextEffect>
+              <span className="text-accent-dark italic font-medium">{heroGalleryData.titleHighlight}</span> at a time.
+            </h2>
+
+            <div className="flex flex-wrap gap-3 mb-10">
+              {heroGalleryData.tags.map((tag, i) => (
+                <div key={i} className="flex items-center gap-2 px-4 py-2.5 rounded border border-accent/30 dark:border-gray-700 bg-surface-alt shadow-sm">
+                  <tag.icon size={16} className="text-accent-dark" />
+                  <span className="text-sm font-bold text-primary">{tag.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <button className="flex items-center gap-2 bg-primary hover:bg-[#152756] dark:bg-[#1e3a8a] dark:hover:bg-[#2546a5] text-white px-6 py-3.5 rounded text-sm font-bold transition-all shadow-md">
+                <heroGalleryData.buttons.primary.icon size={18} />
+                {heroGalleryData.buttons.primary.label}
+              </button>
+              <button className="flex items-center gap-2 bg-surface hover:bg-surface-alt text-primary border border-border-light px-6 py-3.5 rounded text-sm font-bold transition-all shadow-sm">
+                <heroGalleryData.buttons.secondary.icon size={18} className="text-accent dark:text-accent-light" />
+                {heroGalleryData.buttons.secondary.label}
+              </button>
+            </div>
           </div>
 
-          <p className="text-[15px] font-semibold text-primary text-opacity-80 tracking-wide mb-5">
-            {heroGalleryData.category}
-          </p>
+          <div className="w-full md:w-[45%] relative group overflow-hidden">
+            <img src={mainCupImg} alt="Urban Brew Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-300 flex flex-col items-center justify-end pb-8">
+               <div className="w-16 h-16 rounded-full bg-[#0b1b42] flex items-center justify-center shadow-2xl mb-4 border-2 border-white/20 cursor-pointer hover:scale-110 transition-transform">
+                 <Play size={24} className="text-white ml-1" fill="white" />
+               </div>
+              <span className="bg-white/95 backdrop-blur-sm text-[#0b1b42] font-bold text-xs px-6 py-2.5 rounded-full shadow-lg">
+                Watch Brand Story
+              </span>
+            </div>
+          </div>
+        </div>
 
-          <h2 className="text-[42px] leading-[1.1] font-serif font-bold text-primary mb-6">
-            <TextEffect per="word" preset="blur">Redefining the café experience, </TextEffect>
-            <span className="text-accent-dark italic font-medium">{heroGalleryData.titleHighlight}</span> at a time.
-          </h2>
-
-          <p className="text-[15px] text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-md">
-            {heroGalleryData.description}
-          </p>
-
-          <div className="flex flex-wrap gap-3 mb-10">
-            {heroGalleryData.tags.map((tag, i) => (
-              <div key={i} className="flex items-center gap-2 px-4 py-2.5 rounded border border-accent/30 dark:border-gray-700 bg-surface-alt shadow-sm">
-                <tag.icon size={16} className="text-accent-dark" />
-                <span className="text-xs font-bold text-primary">{tag.label}</span>
+        <div className="col-span-12 lg:col-span-4 flex flex-col gap-3 lg:gap-4">
+          <div className="grid grid-cols-2 gap-3 lg:gap-4 h-1/2">
+            <div className="rounded-lg overflow-hidden relative shadow-sm group">
+              <img src={interiorImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Interior" />
+            </div>
+            <div className="rounded-lg overflow-hidden relative shadow-sm group">
+              <img src={equipmentImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Equipment" />
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-3 lg:gap-4 h-1/2">
+            <div className="rounded-lg overflow-hidden relative shadow-sm group cursor-pointer">
+              <img src={beansImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Beans" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Play size={14} className="text-white ml-0.5" fill="white" />
+                </div>
               </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <button className="flex items-center gap-2 bg-primary hover:bg-[#152756] dark:bg-[#1e3a8a] dark:hover:bg-[#2546a5] text-white px-6 py-3.5 rounded text-sm font-bold transition-all shadow-md">
-              <heroGalleryData.buttons.primary.icon size={18} />
-              {heroGalleryData.buttons.primary.label}
-            </button>
-            <button className="flex items-center gap-2 bg-surface hover:bg-surface-alt text-primary border border-border-light px-6 py-3.5 rounded text-sm font-bold transition-all shadow-sm">
-              <heroGalleryData.buttons.secondary.icon size={18} className="text-accent dark:text-accent-light" />
-              {heroGalleryData.buttons.secondary.label}
-            </button>
-          </div>
-        </div>
-
-        <div className="col-span-12 lg:col-span-4 relative rounded-lg overflow-hidden shadow-sm group bg-white">
-          <img src={mainCupImg} alt="Urban Brew Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-300 flex flex-col items-center justify-end pb-8">
-             <div className="w-16 h-16 rounded-full bg-[#0b1b42] flex items-center justify-center shadow-2xl mb-4 border-2 border-white/20 cursor-pointer hover:scale-110 transition-transform">
-               <Play size={24} className="text-white ml-1" fill="white" />
-             </div>
-            <span className="bg-white/95 backdrop-blur-sm text-[#0b1b42] font-bold text-xs px-6 py-2.5 rounded-full shadow-lg">
-              Watch Brand Story
-            </span>
-          </div>
-        </div>
-
-        <div className="col-span-12 lg:col-span-3 grid grid-cols-2 grid-rows-2 gap-3">
-          <div className="rounded-lg overflow-hidden relative shadow-sm group">
-            <img src={interiorImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Interior" />
-          </div>
-          <div className="rounded-lg overflow-hidden relative shadow-sm group">
-            <img src={equipmentImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Equipment" />
-          </div>
-          <div className="rounded-lg overflow-hidden relative shadow-sm group">
-            <img src={beansImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Beans" />
-          </div>
-          <div className="rounded-lg overflow-hidden relative shadow-sm group">
-            <img src={topDownImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Top Down" />
+            </div>
+            <div className="rounded-lg overflow-hidden relative shadow-sm group cursor-pointer">
+              <img src={seatingImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Seating" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Play size={14} className="text-white ml-0.5" fill="white" />
+                </div>
+              </div>
+            </div>
+            <div className="rounded-lg overflow-hidden relative shadow-sm group cursor-pointer">
+              <img src={topDownImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Top Down" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Play size={14} className="text-white ml-0.5" fill="white" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
