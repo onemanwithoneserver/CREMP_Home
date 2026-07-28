@@ -111,9 +111,6 @@ export default function FranchiseModelsDesktop() {
 
       {/* Tabs Row */}
       <div className="flex items-center gap-4 w-full">
-         <span className="text-xs font-bold text-primary text-opacity-90 uppercase tracking-widest shrink-0 ml-2">
-           SELECT OUTLET TYPE
-         </span>
          
          <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">
             {franchiseModelsData.models.map((model) => {

@@ -98,6 +98,4 @@ export const faqData = {
       category: "investment",
     },
   ],
-  disclaimer:
-    "All financial projections are based on existing and historical performance and are not guaranteed returns. Investment ranges may vary by city, property market conditions, and operational variations. Consult the specified franchise advisor before investing.",
 };
