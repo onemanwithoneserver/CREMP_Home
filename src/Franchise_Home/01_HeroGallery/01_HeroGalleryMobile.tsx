@@ -5,7 +5,7 @@ import mainCupImg from "../../assets/main_coffee_cup.png";
 
 export default function HeroGalleryMobile() {
   return (
-    <section className="w-full bg-background transition-colors duration-300  flex flex-col gap-3 ">
+    <section className="w-full bg-background transition-colors duration-300 flex flex-col gap-4 px-2 py-6">
       <div className="bg-[#f9f9f9] rounded-2xl overflow-hidden shadow-sm flex flex-row border border-gray-100 relative min-h-[320px]">
 
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0b162c]/80 blur-[40px] rounded-full pointer-events-none" />
@@ -66,17 +66,17 @@ export default function HeroGalleryMobile() {
 
       <div className="flex flex-row gap-2 mt-1">
         <button 
-          className="flex-1 flex flex-row items-center justify-center gap-1.5 bg-[#0b162c] active:bg-[#122244] text-white p-3 rounded-lg text-[10px] font-bold shadow-md transition-colors text-center"
+          className="flex-1 flex flex-row items-center justify-center gap-2 bg-gradient-to-br from-[#bf953f] to-[#b38728] active:to-[#a0761a] text-white px-5 py-3.5 rounded-lg text-[12px] font-bold shadow-md shadow-[#d4af37]/30 transition-all text-center"
           aria-label={heroGalleryData.buttons.primary.label}
         >
           <heroGalleryData.buttons.primary.icon size={14} className="shrink-0" />
           <span className="truncate">{heroGalleryData.buttons.primary.label}</span>
         </button>
         <button 
-          className="shrink-0 flex flex-row items-center justify-center gap-1.5 bg-white active:bg-gray-50 text-[#0b162c] border border-[#0b162c] px-4 py-3 rounded-lg text-[10px] font-bold shadow-sm transition-colors text-center"
+          className="shrink-0 flex flex-row items-center justify-center gap-2 bg-[#121c33] active:bg-[#1a2542] text-white border border-[#d4af37]/40 px-5 py-3.5 rounded-lg text-[12px] font-bold shadow-sm transition-all text-center"
           aria-label={heroGalleryData.buttons.secondary.label}
         >
-          <heroGalleryData.buttons.secondary.icon size={14} className="text-[#0b162c] shrink-0" />
+          <heroGalleryData.buttons.secondary.icon size={14} className="text-[#d4af37] shrink-0" />
           <span>{heroGalleryData.buttons.secondary.label}</span>
         </button>
       </div>

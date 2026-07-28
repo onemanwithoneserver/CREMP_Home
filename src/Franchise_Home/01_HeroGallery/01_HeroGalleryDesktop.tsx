@@ -65,19 +65,19 @@ export default function HeroGalleryDesktop() {
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap items-center gap-4 relative z-10">
+            <div className="flex flex-wrap items-center gap-5 relative z-10">
               <button 
-                className="flex items-center gap-2 bg-[#0b162c] hover:bg-[#122244] text-white px-6 py-4 rounded-lg text-[15px] font-bold transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#0b162c] focus:ring-offset-2"
+                className="flex items-center gap-2.5 bg-gradient-to-br from-[#bf953f] to-[#b38728] hover:to-[#a0761a] text-white px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-lg shadow-[#d4af37]/30 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2"
                 aria-label={heroGalleryData.buttons.primary.label}
               >
                 <heroGalleryData.buttons.primary.icon size={18} />
                 {heroGalleryData.buttons.primary.label}
               </button>
               <button 
-                className="flex items-center gap-2 bg-white hover:bg-gray-50 text-[#0b162c] border border-[#0b162c] px-6 py-4 rounded-lg text-[15px] font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#0b162c] focus:ring-offset-2"
+                className="flex items-center gap-2.5 bg-[#121c33] hover:bg-[#1a2542] text-white border border-[#d4af37]/40 hover:border-[#d4af37] px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#121c33] focus:ring-offset-2"
                 aria-label={heroGalleryData.buttons.secondary.label}
               >
-                <heroGalleryData.buttons.secondary.icon size={18} className="text-[#0b162c]" />
+                <heroGalleryData.buttons.secondary.icon size={18} className="text-[#d4af37]" />
                 {heroGalleryData.buttons.secondary.label}
               </button>
             </div>

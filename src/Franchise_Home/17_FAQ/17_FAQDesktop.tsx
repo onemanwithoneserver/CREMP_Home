@@ -104,8 +104,8 @@ export default function FAQDesktop() {
                       {q.question}
                     </span>
                     <motion.div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                        expandedId === q.id ? "bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent" : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                        expandedId === q.id ? "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white shadow-sm shadow-[#d4af37]/30" : "bg-gray-100 dark:bg-gray-800 text-gray-500"
                       }`}
                     >
                       {expandedId === q.id ? (

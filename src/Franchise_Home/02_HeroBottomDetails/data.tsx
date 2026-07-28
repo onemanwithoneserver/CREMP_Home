@@ -1,8 +1,6 @@
 import {
   Briefcase,
   CupSoda,
-  Flag,
-  Gem,
   Heart,
   LineChart,
   Mail,
@@ -12,6 +10,10 @@ import {
   Users,
   Building2,
   User,
+  Coffee,
+  Sparkles,
+  Globe2,
+  Award
 } from "lucide-react";
 
 export const heroDetailsData = {
@@ -21,47 +23,107 @@ export const heroDetailsData = {
       title: "Proven Business Model",
       description: "Strong unit economics and scalable operations",
       icon: LineChart,
-      intent: "success",
+      colorClass: "bg-gradient-to-br from-[#10B981] to-[#047857] text-white shadow-md shadow-[#10B981]/30"
     },
     {
       title: "End-to-End Support",
       description: "Training, setup, marketing & ongoing operations",
       icon: Users,
-      intent: "info",
+      colorClass: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] text-white shadow-md shadow-[#0EA5E9]/30"
     },
     {
-      title: "Premium Quality & Consistency",
-      description: "Signature blends and high-quality sourcing",
-      icon: CupSoda,
-      intent: "warning",
+      title: "Premium Quality",
+      description: "Signature blends and high-quality ethical sourcing",
+      icon: Coffee,
+      colorClass: "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white shadow-md shadow-[#d4af37]/30"
     },
     {
-      title: "Powerful Brand Recall",
-      description: "Loved by communities across India",
+      title: "Brand Recall",
+      description: "Loved by communities across the nation",
       icon: Heart,
-      intent: "primary",
+      colorClass: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C] text-white shadow-md shadow-[#F43F5E]/30"
     },
   ],
 
   locationsTitle: "Where We Brew",
-  locations: ["Mumbai", "Delhi NCR", "Hyderabad", "Pune", "Chennai", "Kolkata"],
+  locations: ["Mumbai", "Delhi NCR", "Hyderabad", "Pune", "Bengaluru", "Chennai", "Kolkata", "Ahmedabad"],
 
-  keyDetailsTitle: "KEY DETAILS",
+  keyDetailsTitle: "Key Details",
   keyDetails: [
-    { label: "Sector", value: "Food & Beverage", icon: Briefcase, intent: "neutral" },
-    { label: "Category", value: "Speciality Café", icon: CupSoda, intent: "neutral" },
-    { label: "Headquarters", value: "Bengaluru, Karnataka", icon: Building2, intent: "neutral" },
-    { label: "Founder", value: "Arjun Malhotra", icon: User, intent: "neutral" },
-    { label: "Presence", value: "14+ cities nationwide", icon: MapPin, intent: "info" },
-    { label: "Countries", value: "India", icon: Flag, intent: "neutral" },
-    { label: "Contact", value: "+91 80 4567 8900", icon: Phone, intent: "primary" },
-    { label: "Email", value: "franchise@urbanbrew.co", icon: Mail, intent: "primary" },
+    {
+      label: "Sector", 
+      value: "Food & Beverage", 
+      icon: Briefcase, 
+      colorClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-sm shadow-[#8B5CF6]/30"
+    },
+    {
+      label: "Category", 
+      value: "Speciality Café", 
+      icon: Award, 
+      colorClass: "bg-gradient-to-br from-[#FBBF24] to-[#D97706] text-white shadow-sm shadow-[#FBBF24]/30"
+    },
+    {
+      label: "Headquarters", 
+      value: "Bengaluru, KA", 
+      icon: Building2, 
+      colorClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-white shadow-sm shadow-[#3B82F6]/30"
+    },
+    {
+      label: "Founder", 
+      value: "Arjun Malhotra", 
+      icon: User, 
+      colorClass: "bg-gradient-to-br from-[#D946EF] to-[#A21CAF] text-white shadow-sm shadow-[#D946EF]/30"
+    },
+    {
+      label: "Presence", 
+      value: "14+ Cities", 
+      icon: MapPin, 
+      colorClass: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C] text-white shadow-sm shadow-[#F43F5E]/30"
+    },
+    {
+      label: "Footprint", 
+      value: "Pan-India", 
+      icon: Globe2, 
+      colorClass: "bg-gradient-to-br from-[#10B981] to-[#047857] text-white shadow-sm shadow-[#10B981]/30"
+    },
+    {
+      label: "Contact", 
+      value: "+91 80 4567 8900", 
+      icon: Phone, 
+      colorClass: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E] text-white shadow-sm shadow-[#14B8A6]/30"
+    },
+    {
+      label: "Email", 
+      value: "partner@urbanbrew.co", 
+      icon: Mail, 
+      colorClass: "bg-gradient-to-br from-[#6366F1] to-[#4338CA] text-white shadow-sm shadow-[#6366F1]/30"
+    },
   ],
 
   stats: [
-    { value: "9+", label: "Years of Brewing Excellence", icon: Gem },
-    { value: "187+", label: "Outlets Across India", icon: Store },
-    { value: "14+", label: "Cities Pan India", icon: MapPin },
-    { value: "1M+", label: "Cups Served Every Month", icon: CupSoda },
+    { 
+      value: "9+", 
+      label: "Years of Excellence", 
+      icon: Sparkles,
+      color: "text-amber-300" 
+    },
+    { 
+      value: "187+", 
+      label: "Outlets Across India", 
+      icon: Store,
+      color: "text-rose-300" 
+    },
+    { 
+      value: "14+", 
+      label: "Cities Pan India", 
+      icon: MapPin,
+      color: "text-blue-300" 
+    },
+    { 
+      value: "1M+", 
+      label: "Cups Served Monthly", 
+      icon: CupSoda,
+      color: "text-emerald-300" 
+    },
   ],
 };

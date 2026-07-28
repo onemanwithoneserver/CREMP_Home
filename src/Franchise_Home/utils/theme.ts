@@ -22,12 +22,13 @@ export const getIconStyles = (intent?: string) => {
 
 export const getIconContainerStyles = (intent?: string) => {
   switch (intent) {
-    case 'success': return 'bg-success/10 text-success';
-    case 'info': return 'bg-info/10 text-info';
-    case 'warning': return 'bg-warning/10 text-warning';
-    case 'danger': return 'bg-error/10 text-error';
-    case 'primary': return 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent';
-    default: return 'bg-gray-100 text-gray-500 dark:bg-surface-alt dark:text-gray-400';
+    case 'success': return 'bg-gradient-to-br from-[#10B981] to-[#047857] text-white shadow-md shadow-[#10B981]/30 border-none';
+    case 'info': return 'bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] text-white shadow-md shadow-[#0EA5E9]/30 border-none';
+    case 'warning': return 'bg-gradient-to-br from-[#FBBF24] to-[#D97706] text-white shadow-md shadow-[#FBBF24]/30 border-none';
+    case 'danger': return 'bg-gradient-to-br from-[#F43F5E] to-[#BE123C] text-white shadow-md shadow-[#F43F5E]/30 border-none';
+    case 'primary': return 'bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white shadow-md shadow-[#d4af37]/30 border-none';
+    case 'neutral': return 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-md shadow-[#8B5CF6]/30 border-none';
+    default: return 'bg-gradient-to-br from-gray-600 to-gray-800 text-white shadow-md shadow-gray-700/30 border-none';
   }
 };
 

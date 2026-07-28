@@ -15,30 +15,30 @@ export default function FounderStoryMobile() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-white dark:bg-surface border border-border rounded-lg p-6 shadow-sm"
+        className="bg-[#0a1128] border border-[#2a2d45] rounded-lg p-6 shadow-xl"
       >
-        <Quote size={28} strokeWidth={1.5} className="text-primary/20 dark:text-accent/30 mb-4" />
-        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-6 italic">
+        <Quote size={28} strokeWidth={1.5} className="text-[#d4af37] mb-4" />
+        <p className="text-gray-300 text-sm leading-relaxed mb-6 italic">
           "{founderStoryData.quote}"
         </p>
-        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-border">
+        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-[#2a2d45]">
           <img
             src={founderStoryData.founder.avatar}
             alt={founderStoryData.founder.name}
             className="w-12 h-12 rounded-full object-cover shadow-sm border border-border"
           />
           <div>
-            <p className="text-gray-900 dark:text-white font-bold text-sm">{founderStoryData.founder.name}</p>
-            <p className="text-gray-500 dark:text-gray-400 text-xs font-medium">{founderStoryData.founder.title}</p>
+            <p className="text-white font-bold text-sm">{founderStoryData.founder.name}</p>
+            <p className="text-gray-400 text-xs font-medium">{founderStoryData.founder.title}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           {founderStoryData.stats.map((stat) => {
             return (
-              <div key={stat.label} className="bg-gray-50 dark:bg-surface-alt border border-border rounded-[4px] p-3 text-center shadow-sm hover-lift cursor-default transition-all duration-300">
+              <div key={stat.label} className="bg-[#121c33] border border-white/10 rounded-[4px] p-3 text-center shadow-md hover-lift cursor-default transition-all duration-300">
                 <p className={clsx("text-xl font-black mb-1", getTextStyles(stat.intent))}>{stat.value}</p>
-                <p className="text-gray-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-wider">{stat.label}</p>
+                <p className="text-gray-400 text-[9px] font-bold uppercase tracking-wider">{stat.label}</p>
               </div>
             );
           })}

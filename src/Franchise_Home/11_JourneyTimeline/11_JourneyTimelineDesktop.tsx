@@ -15,7 +15,13 @@ export default function JourneyTimelineDesktop() {
         </motion.p>
 
         <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
+          <motion.div 
+            initial={{ height: 0 }}
+            whileInView={{ height: "100%" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-transparent via-[#d4af37]/40 to-transparent -translate-x-1/2" 
+          />
 
           <div className="space-y-8">
             {journeyTimelineData.milestones.map((milestone, idx) => (
@@ -31,25 +37,39 @@ export default function JourneyTimelineDesktop() {
               >
                 <div className={`flex-1 ${idx % 2 === 0 ? "text-right" : "text-left"}`}>
                   <div
-                    className={`inline-block bg-white dark:bg-surface border rounded-lg p-6 max-w-sm hover-lift cursor-default transition-colors shadow-sm ${
+                    className={`inline-block border rounded-lg p-7 max-w-sm hover-lift cursor-default transition-all duration-500 shadow-sm relative overflow-hidden ${
                       milestone.isActive
-                        ? "border-primary/30 dark:border-accent/40 shadow-primary/5 dark:shadow-accent/5 ring-1 ring-primary/10 dark:ring-accent/10"
-                        : "border-border"
+                        ? "bg-[#0a1128] border-[#d4af37]/40 shadow-lg shadow-[#d4af37]/10 ring-1 ring-[#d4af37]/20"
+                        : "bg-surface-alt border-white/5 hover:border-white/10"
                     }`}
                   >
-                    <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{milestone.description}</p>
+                    {milestone.isActive && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 to-transparent opacity-50 pointer-events-none" />
+                    )}
+                    <p className={`text-base leading-relaxed relative z-10 ${milestone.isActive ? "text-gray-200" : "text-gray-400"}`}>
+                      {milestone.description}
+                    </p>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center justify-center">
-                  <div
-                    className={`w-14 h-14 rounded-full flex items-center justify-center text-[13px] font-black ${
+                  <motion.div
+                    animate={milestone.isActive ? { 
+                      scale: [1, 1.05, 1],
+                      boxShadow: [
+                        "0 0 15px rgba(212,175,55,0.3)", 
+                        "0 0 30px rgba(212,175,55,0.6)", 
+                        "0 0 15px rgba(212,175,55,0.3)"
+                      ] 
+                    } : {}}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center text-[15px] font-black tracking-wider z-10 ${
                       milestone.isActive
-                        ? "bg-primary text-white dark:bg-accent dark:text-gray-900 ring-4 ring-primary/20 dark:ring-accent/30 shadow-md"
-                        : "bg-gray-50 dark:bg-surface-alt border-2 border-border text-gray-500 dark:text-gray-400"
+                        ? "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white border-none"
+                        : "bg-[#121c33] border border-white/20 text-gray-400"
                     }`}
                   >
                     {milestone.year}
-                  </div>
+                  </motion.div>
                 </div>
 
                 <div className="flex-1" />
