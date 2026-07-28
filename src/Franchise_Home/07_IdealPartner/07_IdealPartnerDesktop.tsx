@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { idealPartnerData } from "./data";
+import clsx from "clsx";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,6 +12,16 @@ const stagger = {
   show: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
+const getIntentStyles = (intent?: string) => {
+  switch(intent) {
+    case 'success': return { wrapper: 'border-success-light hover:border-success', icon: 'bg-success/10 text-success dark:bg-success/20', tag: 'bg-success/5 text-success dark:bg-success/10' };
+    case 'info': return { wrapper: 'border-info-light hover:border-info', icon: 'bg-info/10 text-info dark:bg-info/20', tag: 'bg-info/5 text-info dark:bg-info/10' };
+    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', icon: 'bg-warning/10 text-warning dark:bg-warning/20', tag: 'bg-warning/5 text-warning dark:bg-warning/10' };
+    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40 dark:border-accent/30', icon: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent', tag: 'bg-primary/5 text-primary dark:bg-accent/5 dark:text-accent' };
+    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', icon: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400', tag: 'bg-gray-50 text-gray-500 dark:bg-gray-800/50 dark:text-gray-400' };
+  }
+};
+
 export default function IdealPartnerDesktop() {
   return (
     <section className="w-full bg-background px-6 py-10">
@@ -19,15 +30,15 @@ export default function IdealPartnerDesktop() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded p-6 mb-8"
+          className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-8 mb-10 text-center max-w-3xl mx-auto shadow-sm"
         >
-          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-2">
+          <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-primary mb-3">
             {idealPartnerData.sectionLabel}
           </p>
-          <h2 className="text-xl font-bold text-white mb-2">
+          <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-3">
             {idealPartnerData.title}
           </h2>
-          <p className="text-gray-400 text-[15px]">{idealPartnerData.subtitle}</p>
+          <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed">{idealPartnerData.subtitle}</p>
         </motion.div>
         <motion.div
           initial="hidden"
@@ -38,31 +49,28 @@ export default function IdealPartnerDesktop() {
         >
           {idealPartnerData.criteria.map((item) => {
             const Icon = item.icon;
+            const styles = getIntentStyles(item.intent);
             return (
               <motion.div
                 key={item.title}
                 variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
+                className={clsx("bg-white dark:bg-surface border rounded-lg p-6 shadow-sm hover-lift cursor-pointer transition-colors flex flex-col", styles.wrapper)}
               >
-                <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/15 flex items-center justify-center mb-3">
-                  <Icon size={18} className="text-accent" />
+                <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center mb-4", styles.icon)}>
+                  <Icon size={20} strokeWidth={1.5} />
                 </div>
-                <h4 className="text-white font-bold text-sm mb-2">{item.title}</h4>
-                <div className="space-y-1 mb-3">
+                <h4 className="text-gray-900 dark:text-white font-bold text-base mb-4">{item.title}</h4>
+                <div className="space-y-2 mb-4 flex-1">
                   {item.items.map((subItem, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <span className="text-gray-300 text-xs">{subItem.label}</span>
+                    <div key={idx} className="flex flex-col">
+                      <span className="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-wider">{subItem.label}</span>
                       {subItem.value && (
-                        <>
-                          <span className="text-gray-600">·</span>
-                          <span className="text-accent text-xs font-semibold">{subItem.value}</span>
-                        </>
+                        <span className="text-gray-900 dark:text-white text-sm font-semibold">{subItem.value}</span>
                       )}
                     </div>
                   ))}
                 </div>
-                <p className="text-gray-500 text-sm">{item.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-[13px] leading-snug">{item.description}</p>
               </motion.div>
             );
           })}
@@ -76,25 +84,25 @@ export default function IdealPartnerDesktop() {
         >
           {idealPartnerData.additionalCriteria.map((item) => {
             const Icon = item.icon;
+            const styles = getIntentStyles(item.intent);
             return (
               <motion.div
                 key={item.title}
                 variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded p-5 hover:border-gray-700 transition-all cursor-pointer"
+                className={clsx("bg-gray-50 dark:bg-surface-alt border rounded-lg p-6 shadow-sm hover-lift cursor-pointer transition-colors flex flex-col", styles.wrapper)}
               >
-                <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center mb-3">
-                  <Icon size={14} className="text-gray-400" />
+                <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center mb-4", styles.icon)}>
+                  <Icon size={16} strokeWidth={1.5} />
                 </div>
-                <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
-                <div className="flex flex-wrap gap-2 mb-2">
+                <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-3">{item.title}</h4>
+                <div className="flex flex-wrap gap-2 mb-4 flex-1">
                   {item.items.map((tag, idx) => (
-                    <span key={idx} className="text-xs text-gray-400 bg-gray-800/50 px-2 py-0.5 rounded">
+                    <span key={idx} className={clsx("text-xs px-2.5 py-1 rounded font-medium", styles.tag)}>
                       {tag}
                     </span>
                   ))}
                 </div>
-                <p className="text-gray-500 text-sm">{item.description}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs leading-snug">{item.description}</p>
               </motion.div>
             );
           })}

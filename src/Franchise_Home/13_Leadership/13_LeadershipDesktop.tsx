@@ -19,7 +19,7 @@ export default function LeadershipDesktop() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-2 text-center"
+          className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-4 text-center"
         >
           {leadershipData.sectionLabel}
         </motion.p>
@@ -28,7 +28,7 @@ export default function LeadershipDesktop() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-gray-400 text-sm text-center max-w-2xl mx-auto mb-8"
+          className="text-gray-600 dark:text-gray-400 text-base text-center max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           {leadershipData.intro}
         </motion.p>
@@ -44,25 +44,24 @@ export default function LeadershipDesktop() {
             <motion.div
               key={member.name}
               variants={fadeInUp}
-              whileHover={{ y: -6 }}
-              className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden hover:border-[#D4AF37]/30 transition-all cursor-pointer group"
+              className="bg-white dark:bg-surface border border-border rounded-lg overflow-hidden shadow-sm hover-lift cursor-pointer group flex flex-col"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={member.avatar}
                   alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1a3a] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-surface" />
               </div>
 
-              <div className="p-5 -mt-8 relative z-10">
-                <h4 className="text-white font-bold text-base">{member.name}</h4>
-                <p className="text-accent text-sm font-semibold mb-1">{member.role}</p>
-                <p className="text-gray-500 text-sm mb-3">
+              <div className="p-6 -mt-8 relative z-10 flex-1 flex flex-col">
+                <h4 className="text-gray-900 dark:text-white font-bold text-lg">{member.name}</h4>
+                <p className="text-primary dark:text-accent text-sm font-semibold mb-1">{member.role}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs font-medium mb-4">
                   {member.company} · {member.experience}
                 </p>
-                <p className="text-gray-400 text-sm italic leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 text-sm italic leading-relaxed mt-auto">
                   "{member.quote}"
                 </p>
               </div>

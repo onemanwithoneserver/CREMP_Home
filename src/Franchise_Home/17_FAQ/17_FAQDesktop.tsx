@@ -14,7 +14,7 @@ export default function FAQDesktop() {
   );
 
   return (
-    <section className="w-full bg-surface-alt/30 dark:bg-background py-16 px-6 border-t border-border/50">
+    <section className="w-full bg-background py-16 px-6">
       <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 ">
         
         {/* Left Column - Sticky Context */}
@@ -24,7 +24,7 @@ export default function FAQDesktop() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-4"
+              className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-primary mb-4"
             >
               {faqData.sectionLabel}
             </motion.p>
@@ -33,7 +33,7 @@ export default function FAQDesktop() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-serif font-bold text-primary mb-6 leading-[1.1]"
+              className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-[1.1]"
             >
               {faqData.title}
             </motion.h2>
@@ -42,7 +42,7 @@ export default function FAQDesktop() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-primary/70 text-base leading-relaxed mb-8 max-w-sm"
+              className="text-gray-600 dark:text-gray-400 text-base leading-relaxed mb-8 max-w-sm"
             >
               {faqData.subtitle}
             </motion.p>
@@ -52,7 +52,7 @@ export default function FAQDesktop() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex items-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 text-white rounded-lg text-sm font-bold shadow-md transition-all hover:-translate-y-0.5 w-fit"
+              className="flex items-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary/90 text-white rounded-[4px] text-sm font-bold shadow-sm transition-all hover-lift w-fit"
             >
               {(() => { const Icon = faqData.ctaButton.icon; return <Icon size={18} />; })()}
               {faqData.ctaButton.label}
@@ -71,10 +71,10 @@ export default function FAQDesktop() {
                   setActiveTab(tab.id);
                   setExpandedId(null);
                 }}
-                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${
+                className={`px-5 py-2.5 rounded-[4px] text-sm font-bold transition-all duration-300 ${
                   activeTab === tab.id
-                    ? "bg-primary text-white dark:bg-accent dark:text-white shadow-md"
-                    : "bg-surface border border-border text-primary/60 hover:border-accent/50 hover:text-accent shadow-sm"
+                    ? "bg-primary text-white shadow-sm"
+                    : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-primary dark:hover:text-accent shadow-sm"
                 }`}
               >
                 {tab.label}
@@ -92,20 +92,20 @@ export default function FAQDesktop() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className={`bg-surface border rounded-xl overflow-hidden transition-colors duration-300 ${
-                    expandedId === q.id ? "border-accent/50 shadow-md" : "border-border shadow-sm hover:border-border-light"
+                  className={`bg-white dark:bg-surface border rounded-lg overflow-hidden transition-colors duration-300 ${
+                    expandedId === q.id ? "border-primary dark:border-accent shadow-sm" : "border-border shadow-sm hover:border-border-light"
                   }`}
                 >
                   <button
                     onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
                     className="w-full flex items-center justify-between p-6 text-left"
                   >
-                    <span className={`text-base font-bold pr-8 transition-colors ${expandedId === q.id ? "text-accent" : "text-primary"}`}>
+                    <span className={`text-base font-bold pr-8 transition-colors ${expandedId === q.id ? "text-primary dark:text-accent" : "text-gray-900 dark:text-white"}`}>
                       {q.question}
                     </span>
                     <motion.div
                       className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                        expandedId === q.id ? "bg-accent/10 text-accent" : "bg-surface-alt text-primary/40"
+                        expandedId === q.id ? "bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent" : "bg-gray-100 dark:bg-gray-800 text-gray-500"
                       }`}
                     >
                       {expandedId === q.id ? (
@@ -126,7 +126,7 @@ export default function FAQDesktop() {
                         className="overflow-hidden"
                       >
                         <div className="px-6 pb-6 pt-2">
-                          <p className="text-primary/70 text-[15px] leading-relaxed">
+                          <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed">
                             {q.answer}
                           </p>
                         </div>

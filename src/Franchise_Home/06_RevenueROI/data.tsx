@@ -10,7 +10,7 @@ export const revenueROIData = {
       range: "12–18%",
       description: "Built on initial footfall metrics",
       sublabel: "Typical for newly onoff/openstart",
-      color: "#D4AF37",
+      intent: "warning",
     },
     {
       icon: TrendingUp,
@@ -19,7 +19,7 @@ export const revenueROIData = {
       range: "22–28%",
       description: "Marketing optimization significantly",
       sublabel: "Retention marketing increases revenue",
-      color: "#22c55e",
+      intent: "success",
     },
     {
       icon: Target,
@@ -28,7 +28,7 @@ export const revenueROIData = {
       range: "28–34%",
       description: "Year 3 as the first phase green light",
       sublabel: "Right to the revised sales projection",
-      color: "#3b82f6",
+      intent: "info",
     },
   ],
   paybackPeriod: {

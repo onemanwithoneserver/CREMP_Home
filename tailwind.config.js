@@ -10,7 +10,10 @@ export default {
       sm: '2px',
       DEFAULT: '4px',
       md: '4px',
-      lg: '4px',
+      lg: '8px',
+      xl: '8px',
+      '2xl': '8px',
+      '3xl': '8px',
       full: '9999px',
     },
     extend: {

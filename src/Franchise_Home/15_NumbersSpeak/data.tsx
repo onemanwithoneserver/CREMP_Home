@@ -13,7 +13,7 @@ export const numbersSpeakData = {
       suffix: "+",
       label: "Active Outlets",
       sublabel: "Nationwide",
-      color: "#D4AF37",
+      intent: "warning",
       animateType: "counter" as const,
     },
     {
@@ -22,7 +22,7 @@ export const numbersSpeakData = {
       suffix: "",
       label: "Cities Covered",
       sublabel: "Tier 1, Tier 2 Cities",
-      color: "#22c55e",
+      intent: "success",
       animateType: "counter" as const,
     },
     {
@@ -31,7 +31,7 @@ export const numbersSpeakData = {
       suffix: "",
       label: "Years in Business",
       sublabel: "Since 2016",
-      color: "#3b82f6",
+      intent: "info",
       animateType: "counter" as const,
     },
     {
@@ -40,7 +40,7 @@ export const numbersSpeakData = {
       suffix: "%",
       label: "Average ROI",
       sublabel: "Across all models",
-      color: "#D4AF37",
+      intent: "warning",
       animateType: "percentage" as const,
     },
     {
@@ -49,7 +49,7 @@ export const numbersSpeakData = {
       suffix: " mo.",
       label: "Avg. Payback",
       sublabel: "Average across all FOCO",
-      color: "#22c55e",
+      intent: "success",
       animateType: "counter" as const,
     },
     {
@@ -58,7 +58,7 @@ export const numbersSpeakData = {
       suffix: "%",
       label: "Partner Satisfaction",
       sublabel: "Based on NPS survey",
-      color: "#3b82f6",
+      intent: "info",
       animateType: "percentage" as const,
     },
   ],

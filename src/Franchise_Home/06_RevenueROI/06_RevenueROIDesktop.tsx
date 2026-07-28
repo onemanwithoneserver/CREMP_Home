@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { revenueROIData } from "./data";
+import clsx from "clsx";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -10,6 +11,15 @@ const stagger = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
+const getIntentStyles = (intent?: string) => {
+  switch(intent) {
+    case 'success': return { wrapper: 'border-success-light hover:border-success', badge: 'bg-success/10 text-success', icon: 'bg-success/10 text-success' };
+    case 'info': return { wrapper: 'border-info-light hover:border-info', badge: 'bg-info/10 text-info', icon: 'bg-info/10 text-info' };
+    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', badge: 'bg-warning/10 text-warning', icon: 'bg-warning/10 text-warning' };
+    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40', badge: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent', icon: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent' };
+    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', badge: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400', icon: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400' };
+  }
+};
 
 export default function RevenueROIDesktop() {
   return (
@@ -19,7 +29,7 @@ export default function RevenueROIDesktop() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-6 text-center"
+          className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-8 text-center"
         >
           {revenueROIData.sectionLabel}
         </motion.p>
@@ -32,33 +42,31 @@ export default function RevenueROIDesktop() {
         >
           {revenueROIData.revenueCards.map((card) => {
             const Icon = card.icon;
+            const styles = getIntentStyles(card.intent);
             return (
               <motion.div
                 key={card.year}
                 variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded p-6 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
+                className={clsx("bg-white dark:bg-surface border rounded-lg p-6 shadow-sm hover-lift cursor-pointer transition-colors", styles.wrapper)}
               >
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-bold text-gray-500 uppercase">{card.year}</span>
                   <span
-                    className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: `${card.color}15`, color: card.color }}
+                    className={clsx("text-[10px] font-bold uppercase px-2 py-0.5 rounded-full", styles.badge)}
                   >
                     {card.label}
                   </span>
                 </div>
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-4">
                   <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: `${card.color}15` }}
+                    className={clsx("w-10 h-10 rounded-full flex items-center justify-center shrink-0", styles.icon)}
                   >
-                    <Icon size={18} style={{ color: card.color }} />
+                    <Icon size={18} strokeWidth={1.5} />
                   </div>
-                  <p className="text-3xl font-black text-white">{card.range}</p>
+                  <p className="text-3xl font-black text-gray-900 dark:text-white">{card.range}</p>
                 </div>
-                <p className="text-gray-400 text-[15px]">{card.description}</p>
-                <p className="text-gray-600 text-sm mt-1">{card.sublabel}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-[14px] font-medium leading-snug">{card.description}</p>
+                <p className="text-gray-500 dark:text-gray-500 text-xs mt-1">{card.sublabel}</p>
               </motion.div>
             );
           })}
@@ -67,12 +75,12 @@ export default function RevenueROIDesktop() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#0d1a3a] border border-gray-800 rounded p-6"
+          className="bg-white dark:bg-surface border border-border rounded-lg p-6 shadow-sm hover-lift"
         >
-          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-2">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
             {revenueROIData.paybackPeriod.sectionLabel}
           </p>
-          <h3 className="text-2xl font-black text-white mb-6">
+          <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-6">
             {revenueROIData.paybackPeriod.title}
           </h3>
 
@@ -82,19 +90,20 @@ export default function RevenueROIDesktop() {
               return (
                 <div key={idx} className="flex items-center gap-3 flex-1">
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                    className={clsx(
+                      "w-10 h-10 rounded-full flex items-center justify-center shrink-0 border",
                       milestone.status === "complete"
-                        ? "bg-green-500/15 text-green-400"
+                        ? "bg-success-surface border-success-light text-success dark:bg-success/10 dark:border-success/20"
                         : milestone.status === "active"
-                        ? "bg-[#D4AF37]/15 text-accent ring-2 ring-[#D4AF37]/30"
-                        : "bg-gray-800 text-gray-500"
-                    }`}
+                        ? "bg-primary/5 border-primary/20 text-primary dark:bg-accent/10 dark:border-accent/20 dark:text-accent ring-2 ring-primary/20 dark:ring-accent/30"
+                        : "bg-gray-50 border-gray-200 text-gray-400 dark:bg-surface-alt dark:border-border dark:text-gray-500"
+                    )}
                   >
-                    <Icon size={16} />
+                    <Icon size={16} strokeWidth={1.5} />
                   </div>
-                  <span className="text-xs text-gray-400">{milestone.label}</span>
+                  <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{milestone.label}</span>
                   {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
-                    <div className="flex-1 h-px bg-gray-800" />
+                    <div className="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
                   )}
                 </div>
               );

@@ -9,13 +9,13 @@ export default function JourneyTimelineDesktop() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[10px] font-bold uppercase tracking-[3px] text-gray-500 mb-8 text-center"
+          className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-primary mb-12 text-center"
         >
           {journeyTimelineData.sectionLabel}
         </motion.p>
 
         <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-800 -translate-x-1/2" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
 
           <div className="space-y-8">
             {journeyTimelineData.milestones.map((milestone, idx) => (
@@ -31,21 +31,21 @@ export default function JourneyTimelineDesktop() {
               >
                 <div className={`flex-1 ${idx % 2 === 0 ? "text-right" : "text-left"}`}>
                   <div
-                    className={`inline-block bg-[#0d1a3a] border rounded p-4 max-w-sm ${
+                    className={`inline-block bg-white dark:bg-surface border rounded-lg p-6 max-w-sm hover-lift cursor-default transition-colors shadow-sm ${
                       milestone.isActive
-                        ? "border-[#D4AF37]/30 shadow-lg shadow-[#D4AF37]/10"
-                        : "border-gray-800"
+                        ? "border-primary/30 dark:border-accent/40 shadow-primary/5 dark:shadow-accent/5 ring-1 ring-primary/10 dark:ring-accent/10"
+                        : "border-border"
                     }`}
                   >
-                    <p className="text-gray-400 text-[15px]">{milestone.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{milestone.description}</p>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center justify-center">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold ${
+                    className={`w-14 h-14 rounded-full flex items-center justify-center text-[13px] font-black ${
                       milestone.isActive
-                        ? "bg-[#D4AF37] text-[#0a1128] ring-4 ring-[#D4AF37]/20"
-                        : "bg-[#0d1a3a] border-2 border-gray-700 text-gray-400"
+                        ? "bg-primary text-white dark:bg-accent dark:text-gray-900 ring-4 ring-primary/20 dark:ring-accent/30 shadow-md"
+                        : "bg-gray-50 dark:bg-surface-alt border-2 border-border text-gray-500 dark:text-gray-400"
                     }`}
                   >
                     {milestone.year}

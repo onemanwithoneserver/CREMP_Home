@@ -20,21 +20,25 @@ export const heroDetailsData = {
       title: "Proven Business Model",
       description: "Strong unit economics and scalable operations",
       icon: LineChart,
+      intent: "success",
     },
     {
       title: "End-to-End Support",
       description: "Training, setup, marketing & ongoing operations",
       icon: Users,
+      intent: "info",
     },
     {
       title: "Premium Quality & Consistency",
       description: "Signature blends and high-quality sourcing",
       icon: CupSoda,
+      intent: "warning",
     },
     {
       title: "Powerful Brand Recall",
       description: "Loved by communities across India",
       icon: Heart,
+      intent: "primary",
     },
   ],
 
@@ -43,14 +47,14 @@ export const heroDetailsData = {
 
   keyDetailsTitle: "KEY DETAILS",
   keyDetails: [
-    { label: "Sector", value: "Food & Beverage", icon: Briefcase },
-    { label: "Category", value: "Speciality Café", icon: CupSoda },
-    { label: "Headquarters", value: "Bengaluru, Karnataka", icon: Building2 },
-    { label: "Founder", value: "Arjun Malhotra", icon: User },
-    { label: "Presence", value: "14+ cities nationwide", icon: MapPin },
-    { label: "Countries", value: "India", icon: FlagIcon },
-    { label: "Contact", value: "+91 80 4567 8900", icon: Phone },
-    { label: "Email", value: "franchise@urbanbrew.co", icon: Mail },
+    { label: "Sector", value: "Food & Beverage", icon: Briefcase, intent: "neutral" },
+    { label: "Category", value: "Speciality Café", icon: CupSoda, intent: "neutral" },
+    { label: "Headquarters", value: "Bengaluru, Karnataka", icon: Building2, intent: "neutral" },
+    { label: "Founder", value: "Arjun Malhotra", icon: User, intent: "neutral" },
+    { label: "Presence", value: "14+ cities nationwide", icon: MapPin, intent: "info" },
+    { label: "Countries", value: "India", icon: FlagIcon, intent: "neutral" },
+    { label: "Contact", value: "+91 80 4567 8900", icon: Phone, intent: "primary" },
+    { label: "Email", value: "franchise@urbanbrew.co", icon: Mail, intent: "primary" },
   ],
 
   stats: [

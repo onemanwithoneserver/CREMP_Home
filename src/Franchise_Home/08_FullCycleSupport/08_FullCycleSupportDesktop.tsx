@@ -13,27 +13,27 @@ const stagger = {
 
 export default function FullCycleSupportDesktop() {
   return (
-    <section className="w-full bg-background px-6 py-10">
+    <section className="w-full bg-background px-6 py-12">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-10 max-w-3xl mx-auto"
         >
-          <p className="text-sm font-bold uppercase tracking-[3px] text-gray-500 mb-2">
+          <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-primary mb-3">
             {fullCycleSupportData.sectionLabel}
           </p>
-          <h2 className="text-xl font-bold text-white mb-2">
+          <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">
             {fullCycleSupportData.title}
           </h2>
-          <p className="text-gray-400 text-[15px] max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
             {fullCycleSupportData.subtitle}
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-4 px-4 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-accent text-xs font-semibold rounded-full hover:bg-[#D4AF37]/20 transition-all"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="mt-6 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded hover-lift transition-all"
           >
             {fullCycleSupportData.ctaLabel}
           </motion.button>
@@ -52,14 +52,13 @@ export default function FullCycleSupportDesktop() {
               <motion.div
                 key={item.title}
                 variants={fadeInUp}
-                whileHover={{ y: -4, borderColor: "rgba(212, 175, 55, 0.3)" }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded p-4 text-center hover:shadow-lg hover:shadow-[#D4AF37]/5 transition-all cursor-pointer group"
+                className="bg-white dark:bg-surface border border-border rounded-lg p-5 text-center hover-lift cursor-pointer group transition-colors shadow-sm"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-[#D4AF37]/20 transition-colors">
-                  <Icon size={18} className="text-accent" />
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 dark:group-hover:bg-accent/20 transition-colors">
+                  <Icon size={20} strokeWidth={1.5} className="text-primary dark:text-accent" />
                 </div>
-                <h4 className="text-white font-semibold text-xs mb-1">{item.title}</h4>
-                <p className="text-gray-500 text-sm">{item.description}</p>
+                <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-2">{item.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400 text-xs leading-snug">{item.description}</p>
               </motion.div>
             );
           })}

@@ -5,10 +5,10 @@ export const franchiseNetworkData = {
   title: "Franchise Network — India",
   outletCount: "6 active zones • 120 outlets",
   legend: [
-    { color: "#D4AF37", label: "Existing Outlets", icon: Building2 },
-    { color: "#22c55e", label: "Expansion Cities", icon: MapPin },
-    { color: "#3b82f6", label: "Franchise Territories", icon: Target },
-    { color: "#ef4444", label: "Available Territories", icon: Lock },
+    { intent: "warning", label: "Existing Outlets", icon: Building2 },
+    { intent: "success", label: "Expansion Cities", icon: MapPin },
+    { intent: "info", label: "Franchise Territories", icon: Target },
+    { intent: "danger", label: "Available Territories", icon: Lock },
   ],
   networkStats: {
     label: "NATIONAL SUMMARY",

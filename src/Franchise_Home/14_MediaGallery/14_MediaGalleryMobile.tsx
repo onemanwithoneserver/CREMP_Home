@@ -8,12 +8,12 @@ export default function MediaGalleryMobile() {
   );
 
   return (
-    <section className="w-full bg-background px-4 py-6">
-      <div className="flex items-center justify-between mb-3">
-        <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500">
+    <section className="w-full bg-background px-4 py-8">
+      <div className="flex items-center justify-between mb-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary">
           {mediaGalleryData.sectionLabel}
         </p>
-        <span className="text-accent text-[10px] font-semibold">{mediaGalleryData.allMediaLabel}</span>
+        <span className="text-primary dark:text-accent text-[10px] font-semibold cursor-pointer hover:underline">{mediaGalleryData.allMediaLabel}</span>
       </div>
       <div className="flex gap-1.5 overflow-x-auto pb-3 scrollbar-hide mb-3">
         {mediaGalleryData.tabs.map((tab) => {
@@ -23,10 +23,10 @@ export default function MediaGalleryMobile() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[9px] font-semibold whitespace-nowrap shrink-0 ${
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold whitespace-nowrap shrink-0 transition-all shadow-sm ${
                 isActive
-                  ? "bg-[#D4AF37] text-[#0a1128]"
-                  : "border border-gray-700 text-gray-400"
+                  ? "bg-primary text-white"
+                  : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50"
               }`}
             >
               <Icon size={10} />
@@ -42,11 +42,11 @@ export default function MediaGalleryMobile() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: idx * 0.05 }}
-            className="shrink-0 w-[140px] aspect-[4/3] rounded-lg overflow-hidden border border-gray-800 relative"
+            className="shrink-0 w-[160px] aspect-[4/3] rounded-lg overflow-hidden border border-transparent shadow-sm relative hover-lift"
           >
             <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <span className="absolute bottom-1.5 left-2 text-white text-[8px] font-semibold">{item.title}</span>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <span className="absolute bottom-2 left-3 text-white text-[10px] font-bold">{item.title}</span>
           </motion.div>
         ))}
       </div>

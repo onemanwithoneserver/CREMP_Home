@@ -8,9 +8,9 @@ export const founderStoryData = {
     avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200",
   },
   stats: [
-    { value: "187+", label: "Outlets", color: "#D4AF37" },
-    { value: "8", label: "Years in Business", color: "#22c55e" },
-    { value: "14", label: "Cities", color: "#3b82f6" },
-    { value: "₹1000Cr+", label: "Network Revenue", color: "#ef4444" },
+    { value: "187+", label: "Outlets", intent: "warning" },
+    { value: "8", label: "Years in Business", intent: "success" },
+    { value: "14", label: "Cities", intent: "info" },
+    { value: "₹1000Cr+", label: "Network Revenue", intent: "danger" },
   ],
 };

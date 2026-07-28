@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { numbersSpeakData } from "./data";
+import clsx from "clsx";
 
 function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -39,12 +40,23 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
   }, [hasStarted, target]);
 
   return (
-    <div ref={ref} className="text-3xl font-black text-white">
+    <div ref={ref} className="text-4xl font-black text-gray-900 dark:text-white">
       {count}
-      <span className="text-accent">{suffix}</span>
+      <span className="text-primary dark:text-accent">{suffix}</span>
     </div>
   );
 }
+
+const getIntentStyles = (intent?: string) => {
+  switch(intent) {
+    case 'success': return { wrapper: 'border-success-light hover:border-success', badge: 'bg-success/10 text-success', icon: 'text-success' };
+    case 'info': return { wrapper: 'border-info-light hover:border-info', badge: 'bg-info/10 text-info', icon: 'text-info' };
+    case 'warning': return { wrapper: 'border-warning-light hover:border-warning', badge: 'bg-warning/10 text-warning', icon: 'text-warning' };
+    case 'danger': return { wrapper: 'border-danger-light hover:border-danger', badge: 'bg-danger/10 text-danger', icon: 'text-danger' };
+    case 'primary': return { wrapper: 'border-primary/20 hover:border-primary/40', badge: 'bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent', icon: 'text-primary dark:text-accent' };
+    default: return { wrapper: 'border-border hover:border-gray-300 dark:hover:border-gray-600', badge: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400', icon: 'text-gray-500' };
+  }
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -58,27 +70,25 @@ const stagger = {
 
 export default function NumbersSpeakDesktop() {
   return (
-    <section className="w-full bg-background px-6 py-10">
+    <section className="w-full bg-background px-6 py-12">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 border border-[#D4AF37]/20 rounded p-6 mb-6"
+          className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-8 mb-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-xl font-bold text-white mb-1">
-                {numbersSpeakData.title}
-              </h2>
-              <p className="text-gray-400 text-[15px]">
-                {numbersSpeakData.subtitle}
-              </p>
-            </div>
-            <span className="text-accent text-xs font-semibold cursor-pointer hover:underline flex items-center gap-1">
-              ↗ {numbersSpeakData.verifiedLabel}
-            </span>
+          <div>
+            <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">
+              {numbersSpeakData.title}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-base">
+              {numbersSpeakData.subtitle}
+            </p>
           </div>
+          <span className="text-primary dark:text-accent text-sm font-bold cursor-pointer hover:underline flex items-center gap-1 mt-4 md:mt-0">
+            ↗ {numbersSpeakData.verifiedLabel}
+          </span>
         </motion.div>
 
         <motion.div
@@ -90,24 +100,25 @@ export default function NumbersSpeakDesktop() {
         >
           {numbersSpeakData.stats.map((stat) => {
             const Icon = stat.icon;
+            const styles = getIntentStyles(stat.intent);
             return (
               <motion.div
                 key={stat.label}
                 variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                className="bg-[#0d1a3a] border border-gray-800 rounded p-5 hover:border-[#D4AF37]/30 transition-all cursor-pointer"
+                className={clsx("bg-white dark:bg-surface border rounded-lg p-6 shadow-sm hover-lift cursor-default transition-colors flex flex-col", styles.wrapper)}
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-4">
                   <span
-                    className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: `${stat.color}15`, color: stat.color }}
+                    className={clsx("text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full", styles.badge)}
                   >
                     {stat.sublabel}
                   </span>
-                  <Icon size={16} style={{ color: stat.color }} />
+                  <Icon size={18} strokeWidth={1.5} className={styles.icon} />
                 </div>
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                <p className="text-gray-500 text-sm mt-1">{stat.label}</p>
+                <div className="mb-2">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm font-bold">{stat.label}</p>
               </motion.div>
             );
           })}

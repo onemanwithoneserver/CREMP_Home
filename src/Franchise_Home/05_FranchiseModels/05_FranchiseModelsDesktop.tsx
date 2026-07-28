@@ -120,9 +120,9 @@ export default function FranchiseModelsDesktop() {
                 <button
                   key={model.id}
                   onClick={() => setActiveModel(model.id)}
-                  className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded border transition-all duration-300 ${
+                  className={`flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded border transition-all duration-300 hover-lift ${
                     isActive
-                      ? "bg-primary border-accent-light shadow-md transform -translate-y-1"
+                      ? "bg-primary border-accent-light shadow-md"
                       : "bg-surface border-border hover:border-accent/30 dark:hover:border-gray-600 shadow-sm"
                   }`}
                 >

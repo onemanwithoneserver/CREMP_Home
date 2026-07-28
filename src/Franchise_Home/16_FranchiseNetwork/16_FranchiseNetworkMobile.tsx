@@ -1,10 +1,22 @@
 import { motion } from "framer-motion";
 import { franchiseNetworkData } from "./data";
+import clsx from "clsx";
+
+const getIntentStyles = (intent?: string) => {
+  switch(intent) {
+    case 'success': return { bg: 'bg-success' };
+    case 'info': return { bg: 'bg-info' };
+    case 'warning': return { bg: 'bg-warning' };
+    case 'danger': return { bg: 'bg-danger' };
+    case 'primary': return { bg: 'bg-primary dark:bg-accent' };
+    default: return { bg: 'bg-gray-500' };
+  }
+};
 
 export default function FranchiseNetworkMobile() {
   return (
-    <section className="w-full bg-background px-4 py-6">
-      <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
+    <section className="w-full bg-background px-4 py-8">
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-6 text-center">
         {franchiseNetworkData.sectionLabel}
       </p>
 
@@ -12,9 +24,9 @@ export default function FranchiseNetworkMobile() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-[#0d1a3a] border border-gray-800 rounded overflow-hidden"
+        className="bg-white dark:bg-surface border border-border rounded-lg overflow-hidden shadow-sm flex flex-col"
       >
-        <div className="w-full h-[200px] bg-background flex items-center justify-center relative">
+        <div className="w-full h-[220px] bg-gray-50 dark:bg-surface-alt flex items-center justify-center relative border-b border-border">
           <div className="absolute inset-0 opacity-20">
             <svg viewBox="0 0 400 500" className="w-full h-full">
               <path
@@ -29,34 +41,37 @@ export default function FranchiseNetworkMobile() {
               <circle cx="230" cy="200" r="3" fill="#3b82f6" />
             </svg>
           </div>
-          <div className="z-10">
-            <h3 className="text-white font-bold text-sm text-center">{franchiseNetworkData.title}</h3>
-            <p className="text-gray-500 text-sm text-center">{franchiseNetworkData.outletCount}</p>
+          <div className="z-10 p-4 text-center">
+            <h3 className="text-gray-900 dark:text-white font-black text-lg mb-1">{franchiseNetworkData.title}</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">{franchiseNetworkData.outletCount}</p>
           </div>
         </div>
 
-        <div className="p-4">
-          <div className="flex flex-wrap gap-3 mb-4">
-            {franchiseNetworkData.legend.map((item) => (
-              <div key={item.label} className="flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                <span className="text-gray-400 text-[9px]">{item.label}</span>
-              </div>
-            ))}
+        <div className="p-5">
+          <div className="flex flex-wrap gap-4 mb-6">
+            {franchiseNetworkData.legend.map((item) => {
+              const styles = getIntentStyles(item.intent);
+              return (
+                <div key={item.label} className="flex items-center gap-2">
+                  <div className={clsx("w-2.5 h-2.5 rounded-full", styles.bg)} />
+                  <span className="text-gray-600 dark:text-gray-400 text-[10px] font-bold">{item.label}</span>
+                </div>
+              );
+            })}
           </div>
-          <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="grid grid-cols-2 gap-3 mb-6">
             {franchiseNetworkData.networkStats.items.map((item) => (
-              <div key={item.label} className="flex items-center justify-between py-1 border-b border-gray-800/50">
-                <span className="text-gray-400 text-[9px]">{item.label}</span>
-                <span className="text-white text-[9px] font-bold">{item.value}</span>
+              <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-border">
+                <span className="text-gray-500 dark:text-gray-400 text-[10px] font-medium">{item.label}</span>
+                <span className="text-gray-900 dark:text-white text-[10px] font-bold">{item.value}</span>
               </div>
             ))}
           </div>
-          <div className="space-y-2">
-            <button className="w-full px-3 py-2.5 bg-[#D4AF37] text-[#0a1128] text-[10px] font-bold rounded-lg">
+          <div className="space-y-3">
+            <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-sm">
               {franchiseNetworkData.cta.primary}
             </button>
-            <button className="w-full px-3 py-2.5 border border-gray-700 text-gray-300 text-[10px] font-semibold rounded-lg">
+            <button className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-xs font-bold rounded">
               {franchiseNetworkData.cta.secondary}
             </button>
           </div>

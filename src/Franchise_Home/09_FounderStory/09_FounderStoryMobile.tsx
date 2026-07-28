@@ -1,11 +1,23 @@
 import { motion } from "framer-motion";
 import { founderStoryData } from "./data";
 import { Quote } from "lucide-react";
+import clsx from "clsx";
+
+const getIntentStyles = (intent?: string) => {
+  switch(intent) {
+    case 'success': return { text: 'text-success' };
+    case 'info': return { text: 'text-info' };
+    case 'warning': return { text: 'text-warning' };
+    case 'danger': return { text: 'text-danger' };
+    case 'primary': return { text: 'text-primary dark:text-accent' };
+    default: return { text: 'text-gray-900 dark:text-white' };
+  }
+};
 
 export default function FounderStoryMobile() {
   return (
-    <section className="w-full bg-background px-4 py-6">
-      <p className="text-[9px] font-bold uppercase tracking-[3px] text-gray-500 mb-4 text-center">
+    <section className="w-full bg-background px-4 py-8">
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-800 dark:text-primary mb-6 text-center">
         {founderStoryData.sectionLabel}
       </p>
 
@@ -13,31 +25,34 @@ export default function FounderStoryMobile() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="bg-[#0d1a3a] border border-gray-800 rounded p-4"
+        className="bg-white dark:bg-surface border border-border rounded-lg p-6 shadow-sm"
       >
-        <Quote size={24} className="text-accent mb-3" />
-        <p className="text-gray-300 text-sm leading-relaxed mb-4 italic">
-          {founderStoryData.quote}
+        <Quote size={28} strokeWidth={1.5} className="text-primary/20 dark:text-accent/30 mb-4" />
+        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-6 italic">
+          "{founderStoryData.quote}"
         </p>
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-border">
           <img
             src={founderStoryData.founder.avatar}
             alt={founderStoryData.founder.name}
-            className="w-10 h-10 rounded-full object-cover border-2 border-[#D4AF37]/30"
+            className="w-12 h-12 rounded-full object-cover shadow-sm border border-border"
           />
           <div>
-            <p className="text-white font-bold text-sm">{founderStoryData.founder.name}</p>
-            <p className="text-gray-400 text-sm">{founderStoryData.founder.title}</p>
+            <p className="text-gray-900 dark:text-white font-bold text-sm">{founderStoryData.founder.name}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-xs font-medium">{founderStoryData.founder.title}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-2">
-          {founderStoryData.stats.map((stat) => (
-            <div key={stat.label} className="bg-background border border-gray-800/50 rounded-lg p-2 text-center">
-              <p className="text-lg font-black" style={{ color: stat.color }}>{stat.value}</p>
-              <p className="text-gray-500 text-[7px] uppercase tracking-wider">{stat.label}</p>
-            </div>
-          ))}
+        <div className="grid grid-cols-2 gap-3">
+          {founderStoryData.stats.map((stat) => {
+            const styles = getIntentStyles(stat.intent);
+            return (
+              <div key={stat.label} className="bg-gray-50 dark:bg-surface-alt border border-border rounded-lg p-3 text-center shadow-sm hover-lift">
+                <p className={clsx("text-xl font-black mb-1", styles.text)}>{stat.value}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-wider">{stat.label}</p>
+              </div>
+            );
+          })}
         </div>
       </motion.div>
     </section>

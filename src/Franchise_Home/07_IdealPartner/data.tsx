@@ -22,6 +22,7 @@ export const idealPartnerData = {
       ],
       description:
         "A confident person. For 2-3 hours engaged powerfully by the brand love.",
+      intent: "primary",
     },
     {
       icon: Building2,
@@ -32,6 +33,7 @@ export const idealPartnerData = {
       ],
       description:
         "Minimum 2 years in any meaningful & thriving program for all partners.",
+      intent: "info",
     },
     {
       icon: UserCheck,
@@ -42,6 +44,7 @@ export const idealPartnerData = {
       ],
       description:
         "Willing as a general manager going immediately to their FnB lovers.",
+      intent: "warning",
     },
   ],
   additionalCriteria: [
@@ -51,6 +54,7 @@ export const idealPartnerData = {
       items: ["4-6 hrs/day", "6 Days a Week"],
       description:
         "Invest 5 hours. 4-5 AM to PM Manager can handle off hours.",
+      intent: "success",
     },
     {
       icon: HandCoins,
@@ -58,6 +62,7 @@ export const idealPartnerData = {
       items: ["GST Registered", "FSSAI License"],
       description:
         "Must have standard certificates/local municipality. credit rating check.",
+      intent: "neutral",
     },
     {
       icon: Users,
@@ -65,6 +70,7 @@ export const idealPartnerData = {
       items: ["Customer-Centric", "Team Builder"],
       description:
         "Culture-aligned & family-minded thriving partner program.",
+      intent: "primary",
     },
   ],
 };
