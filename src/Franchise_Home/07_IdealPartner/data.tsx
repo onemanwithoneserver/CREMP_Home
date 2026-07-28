@@ -5,9 +5,6 @@ import {
   Clock,
   HandCoins,
   Users,
-  Target,
-  GraduationCap,
-  Handshake,
 } from "lucide-react";
 
 export const idealPartnerData = {

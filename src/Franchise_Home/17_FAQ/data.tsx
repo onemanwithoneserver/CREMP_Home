@@ -1,4 +1,4 @@
-import { Phone, HelpCircle } from "lucide-react";
+import { Phone } from "lucide-react";
 
 export const faqData = {
   sectionLabel: "FREQUENTLY ASKED QUESTIONS",
