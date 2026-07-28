@@ -5,7 +5,8 @@ import { TextEffect } from "../../../components/motion-primitives/text-effect";
 import mainCupImg from "../../assets/main_coffee_cup.png";
 
 export default function HeroGalleryMobile() {
-    <section className="w-full bg-background transition-colors duration-300 p-3 flex flex-col gap-3 font-sans">
+  return (
+    <section className="w-full bg-background transition-colors duration-300  flex flex-col gap-3 ">
       <div className="bg-[#f9f9f9] rounded-2xl overflow-hidden shadow-sm flex flex-row border border-gray-100 relative min-h-[320px]">
         {/* Glow Effect */}
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0b162c]/80 blur-[40px] rounded-full pointer-events-none" />
@@ -46,22 +47,7 @@ export default function HeroGalleryMobile() {
             ))}
           </div>
           
-          <div className="flex flex-col gap-2 relative z-10">
-            <button 
-              className="w-full flex items-center justify-center gap-1.5 bg-[#0b162c] active:bg-[#122244] text-white px-3 py-2.5 rounded-lg text-[11px] font-bold shadow-md transition-colors"
-              aria-label={heroGalleryData.buttons.primary.label}
-            >
-              <heroGalleryData.buttons.primary.icon size={12} />
-              {heroGalleryData.buttons.primary.label}
-            </button>
-            <button 
-              className="w-full flex items-center justify-center gap-1.5 bg-white active:bg-gray-50 text-[#0b162c] border border-[#0b162c] px-3 py-2.5 rounded-lg text-[11px] font-bold shadow-sm transition-colors"
-              aria-label={heroGalleryData.buttons.secondary.label}
-            >
-              <heroGalleryData.buttons.secondary.icon size={12} className="text-[#0b162c]" />
-              {heroGalleryData.buttons.secondary.label}
-            </button>
-          </div>
+
         </div>
         
         {/* Cup Image Section */}
@@ -77,6 +63,24 @@ export default function HeroGalleryMobile() {
           </div>
         </div>
       </div>
+      
+      {/* Mobile Buttons (Moved to bottom, side-by-side) */}
+      <div className="flex flex-row gap-2 mt-1">
+        <button 
+          className="flex-1 flex flex-row items-center justify-center gap-1.5 bg-[#0b162c] active:bg-[#122244] text-white p-3 rounded-lg text-[10px] font-bold shadow-md transition-colors text-center"
+          aria-label={heroGalleryData.buttons.primary.label}
+        >
+          <heroGalleryData.buttons.primary.icon size={14} />
+          <span>{heroGalleryData.buttons.primary.label}</span>
+        </button>
+        <button 
+          className="flex-1 flex flex-row items-center justify-center gap-1.5 bg-white active:bg-gray-50 text-[#0b162c] border border-[#0b162c] p-3 rounded-lg text-[10px] font-bold shadow-sm transition-colors text-center"
+          aria-label={heroGalleryData.buttons.secondary.label}
+        >
+          <heroGalleryData.buttons.secondary.icon size={14} className="text-[#0b162c]" />
+          <span>{heroGalleryData.buttons.secondary.label}</span>
+        </button>
+      </div>
     </section>
-  
+  );
 }
