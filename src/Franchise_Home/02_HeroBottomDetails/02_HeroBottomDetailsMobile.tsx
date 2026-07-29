@@ -184,7 +184,6 @@ export default function HeroBottomDetailsMobile() {
               key={loc} 
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50/80 dark:bg-surface-alt/80 shadow-xs transition-colors active:border-accent/40 active:bg-white dark:active:bg-surface"
             >
-              <MapPin size={10} className="text-accent" />
               <span className="text-[10px] font-bold text-gray-700 dark:text-gray-200">{loc}</span>
             </motion.div>
           ))}

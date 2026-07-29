@@ -149,7 +149,6 @@ export default function HeroBottomDetailsDesktop() {
                   key={loc} 
                   className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-surface-alt shadow-sm shrink-0 transition-all duration-300 hover:bg-white hover:border-accent/40 hover:shadow-[0_0_15px_rgba(var(--accent-rgb),0.15)] dark:hover:bg-surface cursor-default"
                 >
-                  <MapPin size={14} className="text-accent" />
                   <span className="text-[13px] font-semibold text-gray-700 dark:text-gray-200">
                     {loc}
                   </span>
