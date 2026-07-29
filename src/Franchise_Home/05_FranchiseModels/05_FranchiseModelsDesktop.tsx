@@ -26,37 +26,64 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             const offset = currentOffset;
             currentOffset += rawSegmentLength;
 
-            return { ...item, segmentLength, offset };
+            return { ...item, segmentLength, offset, rawSegmentLength };
         });
     }, [data, circumference]);
 
     return (
         <div ref={containerRef} className="relative flex items-center justify-center" style={{ width: size, height: size }}>
             <svg width={size} height={size} className="transform -rotate-90 drop-shadow-xl z-10">
-                {chartData.map((item, i) => (
-                    <motion.circle
-                        key={item.label}
-                        cx={size / 2}
-                        cy={size / 2}
-                        r={radius}
-                        fill="transparent"
-                        stroke={item.color}
-                        strokeWidth={strokeWidth}
-                        strokeDashoffset={-item.offset}
-                        strokeLinecap="butt"
-                        initial={{ strokeDasharray: `0 ${circumference}` }}
-                        animate={{ strokeDasharray: `${item.segmentLength} ${circumference}` }}
-                        transition={{ duration: 1.2, delay: i * 0.1, ease: "easeOut" }}
-                        className="cursor-pointer hover:opacity-80 transition-opacity"
-                        onMouseMove={(e) => {
-                            if (containerRef.current) {
-                                const rect = containerRef.current.getBoundingClientRect();
-                                setHoveredItem({ item, x: e.clientX - rect.left, y: e.clientY - rect.top });
-                            }
-                        }}
-                        onMouseLeave={() => setHoveredItem(null)}
-                    />
-                ))}
+                {chartData.map((item, i) => {
+                    const angle = ((item.offset + item.rawSegmentLength / 2) / circumference) * 2 * Math.PI;
+                    const textX = size / 2 + radius * Math.cos(angle);
+                    const textY = size / 2 + radius * Math.sin(angle);
+                    const shouldShowText = item.percentage > 5;
+                    
+                    return (
+                        <g key={`group-${item.label}`}>
+                            <motion.circle
+                                key={item.label}
+                                cx={size / 2}
+                                cy={size / 2}
+                                r={radius}
+                                fill="transparent"
+                                stroke={item.color}
+                                strokeWidth={strokeWidth}
+                                strokeDashoffset={-item.offset}
+                                strokeLinecap="butt"
+                                initial={{ strokeDasharray: `0 ${circumference}` }}
+                                animate={{ strokeDasharray: `${item.segmentLength} ${circumference}` }}
+                                transition={{ duration: 1.2, delay: i * 0.1, ease: "easeOut" }}
+                                className="cursor-pointer hover:opacity-80 transition-opacity"
+                                onMouseMove={(e) => {
+                                    if (containerRef.current) {
+                                        const rect = containerRef.current.getBoundingClientRect();
+                                        setHoveredItem({ item, x: e.clientX - rect.left, y: e.clientY - rect.top });
+                                    }
+                                }}
+                                onMouseLeave={() => setHoveredItem(null)}
+                            />
+                            {shouldShowText && (
+                                <motion.text
+                                    x={textX}
+                                    y={textY}
+                                    fill="white"
+                                    fontSize="12"
+                                    fontWeight="bold"
+                                    textAnchor="middle"
+                                    dominantBaseline="central"
+                                    transform={`rotate(90, ${textX}, ${textY})`}
+                                    className="pointer-events-none drop-shadow-md font-sans"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5, delay: 1.2 + i * 0.1 }}
+                                >
+                                    {item.amount}
+                                </motion.text>
+                            )}
+                        </g>
+                    );
+                })}
             </svg>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-transparent rounded-full pointer-events-none z-0" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
