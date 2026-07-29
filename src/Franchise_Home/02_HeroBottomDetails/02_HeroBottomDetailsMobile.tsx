@@ -1,5 +1,5 @@
 import { heroDetailsData } from "./data";
-import { ExternalLink, MapPin, ArrowRight } from "lucide-react";
+import { ExternalLink, MapPin } from "lucide-react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -53,7 +53,7 @@ export default function HeroBottomDetailsMobile() {
         <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 opacity-50 pointer-events-none" />
         
         <div className="flex items-center gap-3 mb-5 relative z-10">
-          <h3 className="text-[11px] font-bold text-gray-800 dark:text-white tracking-[0.2em] uppercase">
+          <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
             {heroDetailsData.whyPartnerTitle}
           </h3>
           <motion.div 
@@ -61,7 +61,7 @@ export default function HeroBottomDetailsMobile() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-px bg-gradient-to-r from-border to-transparent dark:from-white/10 flex-1 origin-left" 
+            className="h-px bg-gradient-to-r from-cremp-accent to-transparent dark:from-primary/50 flex-1 origin-left" 
           />
         </div>
         
@@ -96,7 +96,7 @@ export default function HeroBottomDetailsMobile() {
         className="relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col overflow-hidden"
       >
         <div className="flex items-center gap-3 mb-4 relative z-10">
-          <h3 className="text-[11px] font-bold text-gray-800 dark:text-white tracking-[0.2em] uppercase">
+          <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
             {heroDetailsData.keyDetailsTitle}
           </h3>
           <motion.div 
@@ -104,7 +104,7 @@ export default function HeroBottomDetailsMobile() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-px bg-gradient-to-r from-border to-transparent dark:from-white/10 flex-1 origin-left" 
+            className="h-px bg-gradient-to-r from-cremp-accent to-transparent dark:from-primary/50 flex-1 origin-left" 
           />
         </div>
         
@@ -165,7 +165,7 @@ export default function HeroBottomDetailsMobile() {
             >
               <MapPin className="text-accent" size={16} strokeWidth={1.5} />
             </motion.div>
-            <h3 className="text-[11px] font-bold text-gray-800 dark:text-white tracking-[0.2em] uppercase">
+            <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
               {heroDetailsData.locationsTitle}
             </h3>
           </div>

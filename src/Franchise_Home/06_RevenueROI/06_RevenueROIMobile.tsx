@@ -54,7 +54,7 @@ export default function RevenueROIMobile() {
         })}
       </div>
       <div className="bg-white dark:bg-surface border border-border rounded p-5 shadow-sm hover-lift">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
           {revenueROIData.paybackPeriod.sectionLabel}
         </p>
         <h3 className="text-xl font-black text-gray-900 dark:text-white mb-5">
@@ -68,11 +68,11 @@ export default function RevenueROIMobile() {
                 <div
                   className={clsx(
                     "w-8 h-8 rounded-full flex items-center justify-center shrink-0 border",
-                    milestone.status === "complete"
-                      ? "bg-success-surface border-success-light text-success dark:bg-success/10 dark:border-success/20"
-                      : milestone.status === "active"
-                      ? "bg-primary/5 border-primary/20 text-primary dark:bg-accent/10 dark:border-accent/20 dark:text-accent ring-2 ring-primary/20 dark:ring-accent/30"
-                      : "bg-gray-50 border-gray-200 text-gray-400 dark:bg-surface-alt dark:border-border dark:text-gray-500"
+                      milestone.status === "complete"
+                        ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400"
+                        : milestone.status === "active"
+                        ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37] ring-4 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
+                        : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700 dark:text-slate-500"
                   )}
                 >
                   <Icon size={14} strokeWidth={1.5} />

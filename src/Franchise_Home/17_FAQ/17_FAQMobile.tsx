@@ -98,7 +98,7 @@ export default function FAQMobile() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               className={`bg-white dark:bg-surface border-[0.5px] rounded-[4px] overflow-hidden transition-colors duration-300 ${
-                expandedId === q.id ? "border-primary dark:border-accent shadow-sm" : "border-border shadow-sm"
+                expandedId === q.id ? "border-primary-[2px] dark:border-accent shadow-sm" : "border-border shadow-sm"
               }`}
             >
               <button

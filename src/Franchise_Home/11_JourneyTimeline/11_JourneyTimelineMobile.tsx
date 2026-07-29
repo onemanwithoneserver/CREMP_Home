@@ -67,7 +67,7 @@ export default function JourneyTimelineMobile() {
               <div
                 className={`ml-6 border rounded-[4px] p-5 shadow-sm hover-lift cursor-default transition-all duration-500 relative overflow-hidden ${
                   milestone.isActive 
-                    ? "bg-[#0a1128] border-[#d4af37]/40 shadow-md shadow-[#d4af37]/10" 
+                    ? "bg-[#0a1128] border-[#d4af37] shadow-lg shadow-[#d4af37]/10 ring-1 ring-[#d4af37]/20" 
                     : "bg-surface-alt border-white/5"
                 }`}
               >

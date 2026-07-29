@@ -77,7 +77,7 @@ export default function HeroGalleryDesktop() {
                 className="flex items-center gap-2.5 bg-[#121c33] hover:bg-[#1a2542] text-white border border-[#d4af37]/40 hover:border-[#d4af37] px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#121c33] focus:ring-offset-2"
                 aria-label={heroGalleryData.buttons.secondary.label}
               >
-                <heroGalleryData.buttons.secondary.icon size={18} className="text-[#d4af37]" />
+                <heroGalleryData.buttons.secondary.icon size={18} className="text-white" />
                 {heroGalleryData.buttons.secondary.label}
               </button>
             </div>

@@ -5,7 +5,7 @@ import clsx from "clsx";
 export default function FullCycleSupportMobile() {
   return (
     <section className="w-full bg-background px-4 py-8">
-      <div className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-6 mb-6 text-center shadow-sm">
+      <div className="text-center mb-6">
         <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
             <div className="flex items-center gap-1.5">
               <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>

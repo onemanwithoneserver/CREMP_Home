@@ -76,7 +76,7 @@ export default function HeroGalleryMobile() {
           className="shrink-0 flex flex-row items-center justify-center gap-2 bg-[#121c33] active:bg-[#1a2542] text-white border border-[#d4af37]/40 px-5 py-3.5 rounded-lg text-[12px] font-bold shadow-sm transition-all text-center"
           aria-label={heroGalleryData.buttons.secondary.label}
         >
-          <heroGalleryData.buttons.secondary.icon size={14} className="text-[#d4af37] shrink-0" />
+          <heroGalleryData.buttons.secondary.icon size={14} className="text-white shrink-0" />
           <span>{heroGalleryData.buttons.secondary.label}</span>
         </button>
       </div>
