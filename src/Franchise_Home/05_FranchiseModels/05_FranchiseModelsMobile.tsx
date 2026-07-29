@@ -313,23 +313,6 @@ export default function FranchiseModelsMobile() {
               </motion.div>
             </AnimatePresence>
           </div>
-
-          <div className="mt-5 pt-4 border-t border-border flex items-center justify-between">
-            <span className="text-xs font-bold text-primary text-opacity-90">
-              Total (Average)
-            </span>
-            <AnimatePresence mode="wait">
-              <motion.span
-                 key={selected.id}
-                 initial={{ opacity: 0, y: 10 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 exit={{ opacity: 0, y: -10 }}
-                 className="text-base font-black text-accent"
-              >
-                 {selected.totalAvgLabel}
-              </motion.span>
-            </AnimatePresence>
-          </div>
         </div>
 
       </div>
