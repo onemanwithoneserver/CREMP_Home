@@ -251,10 +251,10 @@ export default function FranchiseModelsDesktop() {
 
                 <div className="w-full border border-accent/40 bg-primary rounded-xl p-5 flex flex-col items-center justify-center text-center mt-auto shadow-xl relative overflow-hidden">
                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
-                   <span className="text-[10px] uppercase font-bold tracking-widest text-gray-300 mb-1 z-10">
+                   <span className="text-[10px] uppercase font-bold tracking-widest text-gray-300 dark:text-[#0b162c]/80 mb-1 z-10">
                      AVG. TOTAL INVESTMENT
                    </span>
-                   <span className="text-2xl font-black text-white z-10">
+                   <span className="text-2xl font-black text-white dark:text-[#0b162c] z-10">
                      {selected.avgTotal}
                    </span>
                 </div>

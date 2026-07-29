@@ -105,25 +105,25 @@ export const heroDetailsData = {
       value: "9+", 
       label: "Years of Excellence", 
       icon: Sparkles,
-      color: "text-amber-300" 
+      color: "text-amber-300 dark:text-amber-900" 
     },
     { 
       value: "187+", 
       label: "Outlets Across India", 
       icon: Store,
-      color: "text-rose-300" 
+      color: "text-rose-300 dark:text-rose-900" 
     },
     { 
       value: "14+", 
       label: "Cities Pan India", 
       icon: MapPin,
-      color: "text-blue-300" 
+      color: "text-blue-300 dark:text-blue-900" 
     },
     { 
       value: "1M+", 
       label: "Cups Served Monthly", 
       icon: CupSoda,
-      color: "text-emerald-300" 
+      color: "text-emerald-300 dark:text-emerald-900" 
     },
   ],
 };

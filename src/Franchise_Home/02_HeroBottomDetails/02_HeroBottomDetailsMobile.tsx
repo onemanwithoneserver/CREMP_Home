@@ -141,12 +141,12 @@ export default function HeroBottomDetailsMobile() {
         
         <motion.button 
           whileTap={{ scale: 0.96 }}
-          className="w-full py-3.5 bg-primary text-white rounded-lg text-[13px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 relative overflow-hidden group z-10"
+          className="w-4/5 mx-auto py-3.5 bg-primary text-white dark:text-[#0b162c] rounded-lg text-[13px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 relative overflow-hidden group z-10"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-[shimmer_2s_infinite] skew-x-12" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full animate-[shimmer_2s_infinite] skew-x-12" />
           <span className="relative z-10 flex items-center gap-2">
             Visit Website 
-            <ExternalLink size={14} className="text-accent" />
+            <ExternalLink size={14} className="text-accent dark:text-[#0b162c]" />
           </span>
         </motion.button>
       </motion.div>
@@ -226,11 +226,11 @@ export default function HeroBottomDetailsMobile() {
                    whileInView={{ opacity: 1, scale: 1 }}
                    viewport={{ once: true }}
                    transition={{ duration: 0.5, delay: i * 0.1 + 0.3, type: "spring" }}
-                   className="text-[20px] font-black text-white leading-none mb-1 drop-shadow-sm"
+                   className="text-[20px] font-black text-white dark:text-[#0b162c] leading-none mb-1 drop-shadow-sm"
                  >
                    {stat.value}
                  </motion.span>
-                 <span className="text-[8px] font-bold text-accent-highlight uppercase tracking-[0.15em] leading-tight opacity-90">
+                 <span className="text-[8px] font-bold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
                    {stat.label}
                  </span>
                </div>

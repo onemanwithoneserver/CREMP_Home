@@ -198,9 +198,9 @@ export default function HeroBottomDetailsDesktop() {
           <motion.button 
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-3.5 bg-primary hover:bg-primary-light text-white rounded-lg text-[14px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
+            className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-lg text-[14px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
             <span className="relative z-10 flex items-center gap-2">
               Visit Website 
               <motion.div
@@ -208,7 +208,7 @@ export default function HeroBottomDetailsDesktop() {
                 whileHover={{ x: 3, y: -3 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <ExternalLink size={16} className="text-accent" />
+                <ExternalLink size={16} className="text-accent dark:text-[#0b162c]" />
               </motion.div>
             </span>
           </motion.button>
@@ -249,11 +249,11 @@ export default function HeroBottomDetailsDesktop() {
                    whileInView={{ opacity: 1, scale: 1 }}
                    viewport={{ once: true }}
                    transition={{ duration: 0.5, delay: i * 0.1 + 0.3, type: "spring" }}
-                   className="text-[32px] font-black text-white leading-none mb-1 drop-shadow-sm"
+                   className="text-[32px] font-black text-white dark:text-[#0b162c] leading-none mb-1 drop-shadow-sm"
                  >
                    {stat.value}
                  </motion.span>
-                 <span className="text-[11px] font-bold text-accent-highlight uppercase tracking-[0.15em] leading-tight opacity-90">
+                 <span className="text-[11px] font-bold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
                    {stat.label}
                  </span>
                </div>
