@@ -1,7 +1,5 @@
 export const leadershipData = {
   sectionLabel: "LEADERSHIP",
-  intro:
-    "The team behind Urban Brew Co. brings deep experience across food & beverage, franchise operations, and consumer brands. Every leader is hands-on and reachable by every partner.",
   members: [
     {
       name: "Arjun Malhotra",

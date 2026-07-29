@@ -38,16 +38,6 @@ export default function FullCycleSupportDesktop() {
           <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">
             {fullCycleSupportData.title}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
-            {fullCycleSupportData.subtitle}
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="mt-6 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded hover-lift transition-all"
-          >
-            {fullCycleSupportData.ctaLabel}
-          </motion.button>
         </motion.div>
 
         <motion.div

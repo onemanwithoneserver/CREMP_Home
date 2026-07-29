@@ -20,7 +20,6 @@ export default function FullCycleSupportMobile() {
             </div>
           </div>
         <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2">{fullCycleSupportData.title}</h2>
-        <p className="text-gray-600 dark:text-gray-400 text-[13px] leading-relaxed mb-4">{fullCycleSupportData.subtitle}</p>
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

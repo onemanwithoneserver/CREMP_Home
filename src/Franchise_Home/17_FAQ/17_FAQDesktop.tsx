@@ -47,15 +47,6 @@ export default function FAQDesktop() {
             >
               {faqData.title}
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-gray-600 dark:text-gray-400 text-base leading-relaxed mb-8 max-w-sm"
-            >
-              {faqData.subtitle}
-            </motion.p>
             
             <motion.button
               initial={{ opacity: 0, y: 10 }}
@@ -92,7 +83,6 @@ export default function FAQDesktop() {
             ))}
           </div>
 
-          {/* Accordion List */}
           <div className="flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
               {filteredQuestions.map((q, index) => (
@@ -102,13 +92,13 @@ export default function FAQDesktop() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className={`bg-white dark:bg-surface border rounded-lg overflow-hidden transition-colors duration-300 ${
-                    expandedId === q.id ? "border-primary dark:border-accent shadow-sm" : "border-border shadow-sm hover:border-border-light"
+                  className={`bg-white dark:bg-surface border-[0.5px] rounded-lg overflow-hidden transition-colors duration-300 ${
+                    expandedId === q.id ? "border-primary-[5px] dark:border-accent shadow-sm" : "border-border shadow-sm hover:border-border-light"
                   }`}
                 >
                   <button
                     onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
-                    className="w-full flex items-center justify-between p-6 text-left"
+                    className="w-full flex items-center justify-between p-4 text-left"
                   >
                     <span className={`text-base font-bold pr-8 transition-colors ${expandedId === q.id ? "text-primary dark:text-accent" : "text-gray-900 dark:text-white"}`}>
                       {q.question}

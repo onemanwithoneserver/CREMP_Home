@@ -57,9 +57,6 @@ export default function ProvenPlaybookDesktop() {
                   <Icon size={24} strokeWidth={1.5} />
                 </div>
                 <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-3">{card.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed flex-1">
-                  {card.description}
-                </p>
               </motion.div>
             );
           })}

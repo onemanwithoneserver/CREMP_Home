@@ -6,8 +6,6 @@ export const provenPlaybookData = {
     {
       icon: TrendingUp,
       title: "Proven Playbook",
-      description:
-        "8 years of refined SOPs with 94% outlet profitability over 300+ onboarded partners.",
       intent: "warning",
     },
     {

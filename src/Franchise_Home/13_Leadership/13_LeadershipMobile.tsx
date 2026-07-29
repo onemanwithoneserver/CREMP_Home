@@ -19,9 +19,6 @@ export default function LeadershipMobile() {
               <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
             </div>
           </div>
-      <p className="text-gray-600 dark:text-gray-400 text-[13px] text-center mb-6 px-2 leading-relaxed">
-        {leadershipData.intro}
-      </p>
 
       <div className="space-y-3">
         {leadershipData.members.map((member) => (

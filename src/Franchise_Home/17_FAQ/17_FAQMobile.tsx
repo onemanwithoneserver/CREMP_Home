@@ -97,7 +97,7 @@ export default function FAQMobile() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className={`bg-white dark:bg-surface border rounded-[4px] overflow-hidden transition-colors duration-300 ${
+              className={`bg-white dark:bg-surface border-[0.5px] rounded-[4px] overflow-hidden transition-colors duration-300 ${
                 expandedId === q.id ? "border-primary dark:border-accent shadow-sm" : "border-border shadow-sm"
               }`}
             >
@@ -147,5 +147,6 @@ export default function FAQMobile() {
     </section>
   );
 }
+
 
 

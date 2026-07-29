@@ -36,14 +36,6 @@ export default function LeadershipDesktop() {
             </div>
           </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-gray-600 dark:text-gray-400 text-base text-center max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          {leadershipData.intro}
-        </motion.p>
 
         <motion.div
           initial="hidden"

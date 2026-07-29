@@ -14,8 +14,6 @@ import {
 export const fullCycleSupportData = {
   sectionLabel: "SUPPORT SESSIONS",
   title: "Full-cycle partner support — from Day 0 to Daily Operations",
-  subtitle:
-    "Every franchisor gets a dedicated launch manager, quarterly audits, and access to the full support stack below.",
   ctaLabel: "Request Advisor",
   supportItems: [
     {
