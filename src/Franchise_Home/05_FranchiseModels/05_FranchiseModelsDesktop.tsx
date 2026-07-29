@@ -7,8 +7,8 @@ import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 
 const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
-    const size = 260;
-    const strokeWidth = 45;
+    const size = 280;
+    const strokeWidth = 65;
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
     const gap = 1.5;
@@ -32,9 +32,9 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
 
     return (
         <div ref={containerRef} className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-            <svg width={size} height={size} className="transform -rotate-90 drop-shadow-xl z-10">
+            <svg width={size} height={size} className="transform -rotate-90 drop-shadow-xl z-10 overflow-visible">
                 {chartData.map((item, i) => {
-                    const angle = ((item.offset + item.rawSegmentLength / 2) / circumference) * 2 * Math.PI;
+                    const angle = ((item.offset + item.segmentLength / 2) / circumference) * 2 * Math.PI;
                     const textX = size / 2 + radius * Math.cos(angle);
                     const textY = size / 2 + radius * Math.sin(angle);
                     const shouldShowText = item.percentage > 5;
@@ -55,31 +55,34 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                                 animate={{ strokeDasharray: `${item.segmentLength} ${circumference}` }}
                                 transition={{ duration: 1.2, delay: i * 0.1, ease: "easeOut" }}
                                 className="cursor-pointer hover:opacity-80 transition-opacity"
-                                onMouseMove={(e) => {
+                                onClick={(e) => {
                                     if (containerRef.current) {
                                         const rect = containerRef.current.getBoundingClientRect();
-                                        setHoveredItem({ item, x: e.clientX - rect.left, y: e.clientY - rect.top });
+                                        setHoveredItem(prev => 
+                                            prev?.item.label === item.label 
+                                                ? null 
+                                                : { item, x: e.clientX - rect.left, y: e.clientY - rect.top }
+                                        );
                                     }
                                 }}
-                                onMouseLeave={() => setHoveredItem(null)}
                             />
                             {shouldShowText && (
-                                <motion.text
-                                    x={textX}
-                                    y={textY}
-                                    fill="white"
-                                    fontSize="12"
-                                    fontWeight="bold"
-                                    textAnchor="middle"
-                                    dominantBaseline="central"
+                                <motion.foreignObject
+                                    x={textX - 45}
+                                    y={textY - 45}
+                                    width={90}
+                                    height={90}
                                     transform={`rotate(90, ${textX}, ${textY})`}
-                                    className="pointer-events-none drop-shadow-md font-sans"
+                                    className="pointer-events-none overflow-visible"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5, delay: 1.2 + i * 0.1 }}
                                 >
-                                    {item.amount}
-                                </motion.text>
+                                    <div className="flex flex-col items-center justify-center w-full h-full text-white drop-shadow-md">
+                                        <item.icon size={12} className="mb-0.5 opacity-90" />
+                                        <span className="text-[11px] font-black leading-tight mt-0.5">{item.amount}</span>
+                                    </div>
+                                </motion.foreignObject>
                             )}
                         </g>
                     );
