@@ -106,11 +106,8 @@ export default function Header({
             className="flex items-center gap-2 shrink-0"
             aria-label="CREMP Logo"
           >
-            <span className="text-xl font-extrabold tracking-tight text-cremp-primary dark:text-white select-none">
+            <span className="text-lg font-extrabold tracking-tight text-cremp-primary dark:text-white select-none">
               CREMP
-            </span>
-            <span className="text-[0.45rem] font-bold text-cremp-accent bg-cremp-accent/10 px-1.5 py-0.5 rounded-full">
-              BETA
             </span>
           </div>
 
