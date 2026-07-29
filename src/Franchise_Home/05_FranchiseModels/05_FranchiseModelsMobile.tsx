@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
+import Dropdown from "../../components/commonfiles/Dropdown";
+import { CostBreakdownTable } from "./CostBreakdownTable";
 
 const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
     const size = 220;
@@ -114,6 +116,12 @@ export default function FranchiseModelsMobile() {
     const [activeModel, setActiveModel] = useState(
         franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id || franchiseModelsData.models[0].id
     );
+    const [viewType, setViewType] = useState<"chart" | "table">("chart");
+
+    const viewOptions = [
+        { value: "chart", label: "Pie Chart View" },
+        { value: "table", label: "Tabular View" }
+    ];
 
     const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
@@ -188,7 +196,7 @@ export default function FranchiseModelsMobile() {
                 <div 
                     ref={tabsRef} 
                     onScroll={checkScroll}
-                    className="flex gap-2 w-full overflow-x-auto scrollbar-hide py-2 px-8 scroll-smooth"
+                    className="flex gap-2 w-full overflow-x-auto scrollbar-hide py-2 px-1 scroll-smooth"
                 >
                     {franchiseModelsData.models.map((model) => {
                         const isActive = model.id === activeModel;
@@ -229,26 +237,49 @@ export default function FranchiseModelsMobile() {
 
             <div className="flex flex-col gap-4">
 
-                <div className="bg-surface rounded border-none p-6 flex flex-col items-center justify-center shadow-sm">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={selected.id}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ duration: 0.4 }}
-                            className="relative"
-                        >
-                            <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
-                        </motion.div>
-                    </AnimatePresence>
-
-                    <div className="flex items-center justify-center gap-1.5 mt-5 animate-bounce">
-                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
-                            Tap segments for detail
-                        </span>
-                        <MousePointerClick size={12} className="text-accent" />
+                <div className="bg-surface rounded border-none p-4 flex flex-col items-center justify-center shadow-sm">
+                    <div className="w-full flex justify-end mb-4 z-50">
+                        <div className="w-40">
+                            <Dropdown
+                                options={viewOptions}
+                                value={viewType}
+                                onChange={(val) => setViewType(val as "chart" | "table")}
+                                size="sm"
+                            />
+                        </div>
                     </div>
+
+                    <AnimatePresence mode="wait">
+                        {viewType === "chart" ? (
+                            <motion.div
+                                key={`chart-${selected.id}`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.4 }}
+                                className="relative flex flex-col items-center"
+                            >
+                                <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
+                                <div className="flex items-center justify-center gap-1.5 mt-5 animate-bounce">
+                                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                                        Tap segments for detail
+                                    </span>
+                                    <MousePointerClick size={12} className="text-accent" />
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key={`table-${selected.id}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.3 }}
+                                className="w-full"
+                            >
+                                <CostBreakdownTable data={selected.costBreakdown} totalValue={selected.avgTotal} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
 
                 <AnimatePresence mode="wait">

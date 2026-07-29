@@ -5,6 +5,8 @@ import { useMemo, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
+import Dropdown from "../../components/commonfiles/Dropdown";
+import { CostBreakdownTable } from "./CostBreakdownTable";
 
 const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
     const size = 280;
@@ -123,6 +125,12 @@ export default function FranchiseModelsDesktop() {
     const [activeModel, setActiveModel] = useState(
         franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id || franchiseModelsData.models[0].id
     );
+    const [viewType, setViewType] = useState<"chart" | "table">("chart");
+
+    const viewOptions = [
+        { value: "chart", label: "Pie Chart View" },
+        { value: "table", label: "Tabular View" }
+    ];
 
     const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
@@ -189,7 +197,7 @@ export default function FranchiseModelsDesktop() {
                             <button
                                 key={model.id}
                                 onClick={() => setActiveModel(model.id)}
-                                className={`relative flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded-xl border transition-all duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
+                                className={`relative flex-1 flex flex-col items-center justify-center text-center px-2 py-2 w-1/2 rounded-xl border transition-all duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
                                         ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 scale-[1.02] z-10"
                                         : "bg-surface border-transparent hover:border-accent/50 shadow-sm"
                                     }`}
@@ -288,21 +296,43 @@ export default function FranchiseModelsDesktop() {
                     </AnimatePresence>
                 </div>
 
-                <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-center py-2 relative z-10">
+                <div className="col-span-12 lg:col-span-5 flex flex-col items-center py-2 relative z-10">
+                    <div className="w-full flex justify-end mb-4 z-50">
+                        <div className="w-40">
+                            <Dropdown
+                                options={viewOptions}
+                                value={viewType}
+                                onChange={(val) => setViewType(val as "chart" | "table")}
+                                size="sm"
+                            />
+                        </div>
+                    </div>
                     <AnimatePresence mode="wait">
-                        <motion.div
-                            key={selected.id}
-                            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
-                            transition={{ duration: 0.5, type: "spring" }}
-                            className="relative my-auto"
-                        >
-                            <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
-                        </motion.div>
+                        {viewType === "chart" ? (
+                            <motion.div
+                                key={`chart-${selected.id}`}
+                                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
+                                transition={{ duration: 0.5, type: "spring" }}
+                                className="relative my-auto"
+                            >
+                                <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key={`table-${selected.id}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.3 }}
+                                className="w-full max-w-sm my-auto h-full min-h-[300px]"
+                            >
+                                <CostBreakdownTable data={selected.costBreakdown} totalValue={selected.avgTotal} />
+                            </motion.div>
+                        )}
                     </AnimatePresence>
 
- 
                 </div>
 
                 <div className="col-span-12 lg:col-span-4 lg:row-span-2 h-full relative z-10">
