@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { getIconContainerStyles } from "../utils/theme";
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { investmentSnapshotData } from "./data";
 
 const container = {
@@ -43,7 +43,10 @@ export default function InvestmentSnapshotMobile() {
                         <motion.div
                             key={stat.label}
                             variants={item}
-                            className="flex flex-col relative z-10"
+                            className={clsx(
+                                "flex flex-col relative z-10 p-3.5 rounded-xl border shadow-sm",
+                                getCardStyles(stat.intent)
+                            )}
                         >
                             <div className="flex items-center gap-3 mb-2">
                                 <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm", getIconContainerStyles(stat.intent))}>

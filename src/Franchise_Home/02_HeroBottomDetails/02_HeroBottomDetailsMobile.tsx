@@ -64,7 +64,7 @@ export default function HeroBottomDetailsMobile() {
                     className="grid grid-cols-2 gap-4"
                 >
                     {heroDetailsData.partnerFeatures.map((feature, i) => (
-                        <motion.div variants={innerItem} key={i} className="flex flex-col items-start gap-2.5 group">
+                        <motion.div variants={innerItem} key={i} className="flex flex-col items-center text-center gap-2.5 group bg-white dark:bg-surface-alt p-3.5 rounded-xl border shadow-sm">
                             <motion.div
                                 whileTap={{ scale: 0.9 }}
                                 className={clsx(

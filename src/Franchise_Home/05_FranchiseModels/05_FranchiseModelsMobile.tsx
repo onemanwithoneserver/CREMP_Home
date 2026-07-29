@@ -397,9 +397,9 @@ export default function FranchiseModelsMobile() {
                                                 milestone.status === "complete"
                                                     ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20"
                                                     : milestone.status === "active"
-                                                        ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
+                                                        ? "bg-[#d4af37]/10 border-[#d4af37]/10 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
                                                         : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700",
-                                                isSelected && "scale-110 ring-2 ring-primary dark:ring-accent"
+                                                isSelected && "scale-110 ring-1 ring-primary dark:ring-accent"
                                             )}
                                         >
                                             <Icon size={11} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
