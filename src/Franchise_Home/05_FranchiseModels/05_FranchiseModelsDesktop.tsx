@@ -189,7 +189,7 @@ export default function FranchiseModelsDesktop() {
             </div>
 
             <div className="flex items-center gap-4 w-full">
-                <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">
+                <div className="flex gap-4 w-full px-40 justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">
                     {franchiseModelsData.models.map((model) => {
                         const isActive = model.id === activeModel;
                         const Icon = model.icon;

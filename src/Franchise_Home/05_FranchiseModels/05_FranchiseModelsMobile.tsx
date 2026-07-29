@@ -35,7 +35,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                     const angle = ((offset + segmentLength / 2) / circumference) * 2 * Math.PI;
                     const textX = size / 2 + radius * Math.cos(angle);
                     const textY = size / 2 + radius * Math.sin(angle);
-                    const shouldShowText = item.percentage > 5;
+                    const shouldShowText = item.percentage >= 5;
 
                     return (
                         <g key={`group-${item.label}`}>
