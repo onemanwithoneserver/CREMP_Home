@@ -41,18 +41,10 @@ export default function HeroBottomDetailsMobile() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full bg-background p-4 flex flex-col gap-4 relative overflow-hidden"
+      className="w-full bg-background p-4 flex flex-col gap-6"
     >
-      <div className="absolute top-10 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="absolute bottom-20 right-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl -z-10 pointer-events-none" />
-
-      <motion.div 
-        variants={item} 
-        className="relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 opacity-50 pointer-events-none" />
-        
-        <div className="flex items-center gap-3 mb-5 relative z-10">
+      <motion.div variants={item} className="flex flex-col gap-4">
+        <div className="flex items-center gap-3 mb-1">
           <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
             {heroDetailsData.whyPartnerTitle}
           </h3>
@@ -69,7 +61,7 @@ export default function HeroBottomDetailsMobile() {
           variants={innerContainer}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-2 gap-4 relative z-10"
+          className="grid grid-cols-2 gap-4"
         >
           {heroDetailsData.partnerFeatures.map((feature, i) => (
             <motion.div variants={innerItem} key={i} className="flex flex-col items-start gap-2.5 group">
@@ -91,11 +83,8 @@ export default function HeroBottomDetailsMobile() {
         </motion.div>
       </motion.div>
 
-      <motion.div 
-        variants={item} 
-        className="relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col overflow-hidden"
-      >
-        <div className="flex items-center gap-3 mb-4 relative z-10">
+      <motion.div variants={item} className="flex flex-col gap-4">
+        <div className="flex items-center gap-3 mb-1">
           <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
             {heroDetailsData.keyDetailsTitle}
           </h3>
@@ -112,7 +101,7 @@ export default function HeroBottomDetailsMobile() {
           variants={innerContainer}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 gap-2.5 mb-5 relative z-10"
+          className="grid grid-cols-1 gap-2.5 mb-2"
         >
           {heroDetailsData.keyDetails.map((detail, i) => (
             <motion.div 
@@ -141,7 +130,7 @@ export default function HeroBottomDetailsMobile() {
         
         <motion.button 
           whileTap={{ scale: 0.96 }}
-          className="w-4/5 mx-auto py-3.5 bg-primary text-white dark:text-[#0b162c] rounded-lg text-[13px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 relative overflow-hidden group z-10"
+          className="w-3/5 mx-auto py-3.5 bg-primary text-white dark:text-[#0b162c] rounded-lg text-[13px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full animate-[shimmer_2s_infinite] skew-x-12" />
           <span className="relative z-10 flex items-center gap-2">
@@ -151,31 +140,24 @@ export default function HeroBottomDetailsMobile() {
         </motion.button>
       </motion.div>
 
-      <motion.div 
-        variants={item} 
-        className="relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col overflow-hidden"
-      >
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] bg-[radial-gradient(circle_at_center,_#000_1px,_transparent_1px)] dark:bg-[radial-gradient(circle_at_center,_#fff_1px,_transparent_1px)] bg-[length:4px_4px]" />
-        
-        <div className="flex items-center justify-between mb-4 relative z-10">
-          <div className="flex items-center gap-2">
-            <motion.div
-              animate={{ y: [0, -2, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <MapPin className="text-accent" size={16} strokeWidth={1.5} />
-            </motion.div>
-            <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
-              {heroDetailsData.locationsTitle}
-            </h3>
-          </div>
+      <motion.div variants={item} className="flex flex-col gap-4">
+        <div className="flex items-center gap-2 mb-1">
+          <motion.div
+            animate={{ y: [0, -2, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <MapPin className="text-accent" size={16} strokeWidth={1.5} />
+          </motion.div>
+          <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
+            {heroDetailsData.locationsTitle}
+          </h3>
         </div>
         
         <motion.div 
           variants={innerContainer}
           initial="hidden"
           animate="show"
-          className="flex flex-wrap gap-2 relative z-10"
+          className="flex flex-wrap gap-2"
         >
           {heroDetailsData.locations.map((loc) => (
             <motion.div 
@@ -190,23 +172,13 @@ export default function HeroBottomDetailsMobile() {
         </motion.div>
       </motion.div>
 
-      <motion.div 
-        variants={item} 
-        className="w-full bg-gradient-to-br from-primary via-primary-light to-primary rounded-xl p-6 shadow-xl shadow-primary/10 flex flex-col gap-5 text-white border-none mt-1 relative overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
-        <motion.div 
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 20, ease: "linear", repeat: Infinity }}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent w-[200%]"
-        />
-
+      <motion.div variants={item} className="flex flex-col gap-4 mt-2">
         <motion.div 
           variants={innerContainer}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-2 gap-4 relative z-10"
+          className="grid grid-cols-2 gap-4"
         >
           {heroDetailsData.stats.map((stat, i) => (
              <motion.div 
@@ -216,7 +188,7 @@ export default function HeroBottomDetailsMobile() {
              >
                <motion.div 
                  whileTap={{ scale: 1.1 }}
-                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 shadow-inner backdrop-blur-md shrink-0"
+                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50/80 dark:bg-surface-alt/50 border border-gray-100 dark:border-white/5 shadow-sm shrink-0"
                >
                  <stat.icon size={18} className={stat.color || "text-accent-highlight"} strokeWidth={1.5} />
                </motion.div>
@@ -226,11 +198,11 @@ export default function HeroBottomDetailsMobile() {
                    whileInView={{ opacity: 1, scale: 1 }}
                    viewport={{ once: true }}
                    transition={{ duration: 0.5, delay: i * 0.1 + 0.3, type: "spring" }}
-                   className="text-[20px] font-black text-white dark:text-[#0b162c] leading-none mb-1 drop-shadow-sm"
+                   className="text-[20px] font-black text-gray-900 dark:text-white leading-none mb-1 drop-shadow-sm"
                  >
                    {stat.value}
                  </motion.span>
-                 <span className="text-[8px] font-bold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
+                 <span className="text-[8px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-[0.15em] leading-tight">
                    {stat.label}
                  </span>
                </div>
