@@ -124,7 +124,7 @@ export default function FranchiseModelsDesktop() {
     const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
     return (
-        <section className="w-full bg-background transition-colors duration-300 p-4 flex flex-col gap-8 overflow-hidden">
+        <section className="w-full bg-background transition-colors duration-300 px-4 flex flex-col gap-4 overflow-hidden">
             <svg width="0" height="0" className="absolute">
                 <defs>
                     <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -215,7 +215,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
             </div>
 
-            <div className="relative grid grid-cols-12 gap-6 items-stretch mt-4">
+            <div className="relative grid grid-cols-12 gap-6 items-stretch ">
 
                 <div className="absolute top-1/2 left-0 w-full h-[1px] hidden lg:block -z-10 bg-gray-200 dark:bg-gray-800">
                     <motion.div
@@ -305,7 +305,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
 
                 <div className="col-span-12 lg:col-span-4 lg:row-span-2 h-full relative z-10">
-                    <div className="bg-surface-alt rounded-2xl border-none p-6 shadow-lg h-full flex flex-col relative overflow-hidden backdrop-blur-sm">
+                    <div className="bg-surface-alt rounded-2xl border-none px-4 pb-4 shadow-lg h-auto flex flex-col relative overflow-hidden backdrop-blur-sm">
                         <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
                         <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
@@ -314,7 +314,7 @@ export default function FranchiseModelsDesktop() {
                             </span>
                         </div>
 
-                        <div className="flex flex-col gap-4 flex-1 justify-center">
+                        <div className="flex flex-col gap-4 flex-1">
                             {revenueROIData.revenueCards.map((card) => {
                                 const Icon = card.icon;
                                 return (
@@ -370,17 +370,17 @@ export default function FranchiseModelsDesktop() {
                     </div>
                 </div>
 
-                <div className="col-span-12 lg:col-span-8 relative z-10 mt-auto">
-                    <div className="w-full bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-5 shadow-sm flex flex-col">
-                        <div className="flex items-center justify-between mb-4">
+                <div className="col-span-12 lg:col-span-8 relative z-10 h-full">
+                    <div className="w-full h-full bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-6 pb-6 shadow-sm flex flex-col justify-between">
+                        <div className="flex items-center justify-between">
                             <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d4af37]">
                                 {revenueROIData.paybackPeriod.sectionLabel}
                             </span>
-                            <span className="text-lg font-black text-[#0b162c] dark:text-white">
+                            <span className="text-xl font-black text-[#0b162c] dark:text-white">
                                 {revenueROIData.paybackPeriod.title}
                             </span>
                         </div>
-                        <div className="flex items-center gap-4 px-4 mt-2 mb-3">
+                        <div className="flex items-center gap-4 px-4 mt-auto">
                             {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                                 const Icon = milestone.icon;
                                 return (
