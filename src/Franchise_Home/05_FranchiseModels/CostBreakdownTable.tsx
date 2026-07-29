@@ -1,4 +1,3 @@
-import React from 'react';
 import { type CostBreakdownItem } from './data';
 
 export const CostBreakdownTable = ({ data, totalValue }: { data: CostBreakdownItem[], totalValue: string }) => {

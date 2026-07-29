@@ -39,7 +39,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                     const angle = ((item.offset + item.segmentLength / 2) / circumference) * 2 * Math.PI;
                     const textX = size / 2 + radius * Math.cos(angle);
                     const textY = size / 2 + radius * Math.sin(angle);
-                    const shouldShowText = item.percentage > 5;
+                    const shouldShowText = item.percentage >= 5;
                     
                     return (
                         <g key={`group-${item.label}`}>
@@ -238,7 +238,7 @@ export default function FranchiseModelsDesktop() {
                     </motion.div>
                 </div>
 
-                <div className="col-span-12 lg:col-span-3 h-full relative z-10">
+                <div className="col-span-12 lg:col-span-3 relative z-10 self-start">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={selected.id}
@@ -246,7 +246,7 @@ export default function FranchiseModelsDesktop() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.4, type: "spring" }}
-                            className="bg-surface-alt rounded-2xl border-none p-6 flex flex-col h-full shadow-lg backdrop-blur-sm relative overflow-hidden"
+                            className="bg-surface-alt rounded-2xl border-none p-6 flex flex-col shadow-lg backdrop-blur-sm relative overflow-hidden"
                         >
                             <div className="absolute right-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
@@ -326,7 +326,7 @@ export default function FranchiseModelsDesktop() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.3 }}
-                                className="w-full max-w-sm my-auto h-full min-h-[300px]"
+                                className="w-full max-w-md my-auto h-full min-h-[300px]"
                             >
                                 <CostBreakdownTable data={selected.costBreakdown} totalValue={selected.avgTotal} />
                             </motion.div>
