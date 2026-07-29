@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
-import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick, TrendingUp, BarChart3, Target, Clock, Award, FileCheck } from "lucide-react";
+import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick } from "lucide-react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/theme";
 import clsx from "clsx";
