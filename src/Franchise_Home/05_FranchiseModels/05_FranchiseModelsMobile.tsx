@@ -204,15 +204,6 @@ export default function FranchiseModelsMobile() {
                     </h3>
                   </div>
                 </div>
-                
-                <div className="border border-accent/30 dark:border-accent/20 bg-surface-alt rounded px-3 py-1.5 flex flex-col items-end shadow-sm">
-                   <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-80">
-                     AVG. TOTAL
-                   </span>
-                   <span className="text-sm font-black text-primary">
-                     {selected.avgTotal}
-                   </span>
-                </div>
              </div>
 
              <div className="grid grid-cols-2 gap-y-4 gap-x-2">
