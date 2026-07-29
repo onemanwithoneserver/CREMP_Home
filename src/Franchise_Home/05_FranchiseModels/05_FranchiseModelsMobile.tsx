@@ -143,7 +143,7 @@ export default function FranchiseModelsMobile() {
                    <div className={`w-7 h-7 rounded-full flex items-center justify-center mb-1.5 ${
                      isActive ? "bg-white/10" : "bg-surface-alt"
                    }`}>
-                     <Icon size={14} stroke="url(#goldGradient)" />
+                     <Icon size={14} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                    </div>
                    <span className={`font-bold text-[11px] mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                      {model.name}
@@ -196,7 +196,7 @@ export default function FranchiseModelsMobile() {
              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md border border-accent/50">
-                    <selected.icon size={18} stroke="url(#goldGradient)" />
+                    <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-[15px] font-black text-primary leading-tight">

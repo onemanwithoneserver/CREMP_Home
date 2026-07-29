@@ -164,7 +164,7 @@ export default function FranchiseModelsDesktop() {
                         isActive ? "bg-white/10" : "bg-surface-alt"
                       }`}
                     >
-                      <Icon size={20} stroke={isActive ? "url(#goldGradient)" : "currentColor"} className={isActive ? "" : "text-gray-500"} />
+                      <Icon size={20} className={isActive ? "[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" : "text-gray-500"} />
                     </motion.div>
                     <span className={`font-bold text-[15px] ${isActive ? "text-white" : "text-primary"}`}>
                       {model.name}
@@ -210,7 +210,7 @@ export default function FranchiseModelsDesktop() {
                 
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-md border border-accent/50">
-                    <selected.icon size={24} stroke="url(#goldGradient)" />
+                    <selected.icon size={24} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-lg font-black text-primary leading-tight">
