@@ -9,20 +9,18 @@ export default function MediaGalleryMobile() {
 
   return (
     <section className="w-full bg-background px-4 py-8">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
-            <div className="flex items-center gap-1.5">
-              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
-            </div>
-            <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
-              {mediaGalleryData.sectionLabel}
-            </p>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
-              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
-            </div>
-          </div>
+      <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
+        <div className="flex items-center gap-1.5">
+          <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
+          <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+        </div>
+        <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
+          {mediaGalleryData.sectionLabel}
+        </p>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+          <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
+        </div>
       </div>
       <div className="flex gap-1.5 overflow-x-auto pb-3 scrollbar-hide mb-3">
         {mediaGalleryData.tabs.map((tab) => {
@@ -49,7 +47,8 @@ export default function MediaGalleryMobile() {
           <motion.div
             key={item.id}
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ delay: idx * 0.05 }}
             className="shrink-0 w-[160px] aspect-[4/3] rounded-[4px] overflow-hidden border border-transparent shadow-sm relative hover-lift"
           >

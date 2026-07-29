@@ -216,9 +216,6 @@ export default function FranchiseModelsDesktop() {
                     <h3 className="text-lg font-black text-primary leading-tight">
                       {selected.name}
                     </h3>
-                    <span className="text-xs font-bold text-accent uppercase tracking-widest mt-0.5">
-                      OUTLET FORMAT
-                    </span>
                   </div>
                 </div>
 

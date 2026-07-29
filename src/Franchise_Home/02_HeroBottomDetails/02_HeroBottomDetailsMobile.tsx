@@ -169,18 +169,6 @@ export default function HeroBottomDetailsMobile() {
               {heroDetailsData.locationsTitle}
             </h3>
           </div>
-          <motion.button 
-            whileTap={{ scale: 0.9 }}
-            className="flex items-center gap-1 text-[9px] font-bold text-gray-500 active:text-primary dark:text-gray-400 transition-colors uppercase tracking-widest"
-          >
-            View All 
-            <motion.div
-              animate={{ x: [0, 3, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <ArrowRight size={10} />
-            </motion.div>
-          </motion.button>
         </div>
         
         <motion.div 

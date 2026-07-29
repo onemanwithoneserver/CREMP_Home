@@ -61,22 +61,23 @@ export default function IdealPartnerMobile() {
         })}
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="flex flex-col gap-3">
         {idealPartnerData.additionalCriteria.map((item) => {
           const Icon = item.icon;
           return (
             <div key={item.title} className={clsx("bg-white dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-4 shadow-sm flex flex-col hover-lift transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-600")}>
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-3 mb-3">
                 <div className={clsx("w-8 h-8 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                   <Icon size={14} strokeWidth={1.5} />
                 </div>
                 <h4 className="text-gray-900 dark:text-white font-bold text-sm leading-tight">{item.title}</h4>
               </div>
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="flex flex-wrap gap-2 mb-3 mt-auto">
                 {item.items.map((tag, idx) => (
                   <span key={idx} className={clsx("text-[10px] font-semibold py-1 px-2 rounded bg-gray-50 dark:bg-surface-alt border border-gray-100 dark:border-border shadow-xs", getBadgeStyles(item.intent))}>{tag}</span>
                 ))}
               </div>
+              <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">{item.description}</p>
             </div>
           );
         })}

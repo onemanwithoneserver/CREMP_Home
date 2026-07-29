@@ -136,7 +136,7 @@ export default function FranchiseModelsMobile() {
                   onClick={() => setActiveModel(model.id)}
                   className={`shrink-0 flex flex-col items-center justify-center text-center px-4 py-3 rounded border transition-colors duration-300 w-[110px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${
                     isActive
-                      ? "gradient-primary border-accent-light shadow-md transform -translate-y-1"
+                      ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 -translate-y-1"
                       : "bg-surface border-border shadow-sm"
                   }`}
                 >
@@ -202,9 +202,6 @@ export default function FranchiseModelsMobile() {
                     <h3 className="text-[15px] font-black text-primary leading-tight">
                       {selected.name}
                     </h3>
-                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-0.5">
-                      OUTLET FORMAT
-                    </span>
                   </div>
                 </div>
                 

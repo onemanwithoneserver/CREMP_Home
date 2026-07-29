@@ -20,13 +20,6 @@ export default function FullCycleSupportMobile() {
             </div>
           </div>
         <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2">{fullCycleSupportData.title}</h2>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="px-6 py-2 bg-primary text-white text-xs font-bold rounded hover-lift transition-all inline-block"
-        >
-          {fullCycleSupportData.ctaLabel}
-        </motion.button>
       </div>
 
       <div className="grid grid-cols-2 gap-2.5">
@@ -36,7 +29,8 @@ export default function FullCycleSupportMobile() {
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: idx * 0.04 }}
               className="bg-white dark:bg-surface border border-border rounded-lg p-4 text-center hover-lift shadow-sm flex flex-col items-center justify-center cursor-pointer"
             >

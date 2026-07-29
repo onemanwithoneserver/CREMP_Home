@@ -43,12 +43,12 @@ export default function FounderStoryMobile() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {founderStoryData.stats.map((stat) => {
             return (
               <div key={stat.label} className="bg-[#121c33] border border-white/10 rounded-[4px] p-3 text-center shadow-md hover-lift cursor-default transition-all duration-300">
                 <p className={clsx("text-xl font-black mb-1", getTextStyles(stat.intent))}>{stat.value}</p>
-                <p className="text-gray-400 text-[9px] font-bold uppercase tracking-wider">{stat.label}</p>
+                <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">{stat.label}</p>
               </div>
             );
           })}
@@ -57,5 +57,3 @@ export default function FounderStoryMobile() {
     </section>
   );
 }
-
-

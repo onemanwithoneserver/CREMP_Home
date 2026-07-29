@@ -29,23 +29,24 @@ export default function LeadershipMobile() {
               viewport={{ once: true }}
               className={clsx("overflow-hidden rounded-[4px] border shadow-sm hover-lift transition-all duration-300", getCardStyles())}
             >
-              <div className="flex gap-4 p-4">
+              <div className="relative h-48 overflow-hidden">
                 <img
                   src={member.avatar}
                   alt={member.name}
-                  className="w-24 h-24 rounded-[4px] object-cover shrink-0 shadow-sm border border-border"
+                  className="w-full h-full object-cover"
                 />
-              <div className="flex-1 min-w-0 flex flex-col justify-center">
-                <h4 className="text-gray-900 dark:text-white font-bold text-sm">{member.name}</h4>
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-surface" />
+              </div>
+              <div className="p-5 -mt-6 relative z-10 flex-1 flex flex-col">
+                <h4 className="text-gray-900 dark:text-white font-bold text-base">{member.name}</h4>
                 <p className="text-primary dark:text-accent text-xs font-semibold mb-1">{member.role}</p>
-                <p className="text-gray-500 dark:text-gray-400 text-[10px] mb-2 font-medium">
+                <p className="text-gray-500 dark:text-gray-400 text-[10px] mb-3 font-medium">
                   {member.company} · {member.experience}
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 text-[11px] italic leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 text-[11px] italic leading-relaxed mt-auto">
                   "{member.quote}"
                 </p>
               </div>
-            </div>
           </motion.div>
         ))}
       </div>

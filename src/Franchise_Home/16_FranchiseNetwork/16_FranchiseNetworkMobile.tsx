@@ -50,9 +50,11 @@ export default function FranchiseNetworkMobile() {
         <div className="p-5">
           <div className="flex flex-wrap gap-4 mb-6">
             {franchiseNetworkData.legend.map((item) => {
+              const Icon = item.icon;
               return (
-                <div key={item.label} className="flex items-center gap-2">
-                  <div className={clsx("w-2.5 h-2.5 rounded-full", getSolidBgStyles(item.intent))} />
+                <div key={item.label} className="flex items-center gap-1.5">
+                  <div className={clsx("w-2 h-2 rounded-full", getSolidBgStyles(item.intent))} />
+                  {Icon && <Icon size={12} strokeWidth={1.5} className="text-gray-500" />}
                   <span className="text-gray-600 dark:text-gray-400 text-[10px] font-bold">{item.label}</span>
                 </div>
               );
@@ -79,5 +81,3 @@ export default function FranchiseNetworkMobile() {
     </section>
   );
 }
-
-
