@@ -29,17 +29,19 @@ export default function ProvenPlaybookMobile() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={clsx("rounded-[4px] border p-5 flex items-start gap-4 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(card.intent))}
+              className={clsx("rounded-lg border p-5 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
             >
-              <div
-                className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(card.intent))}
-              >
-                <Icon size={20} strokeWidth={1.5} />
+              <div className="flex items-center gap-3 mb-3">
+                <div
+                  className={clsx("w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(card.intent))}
+                >
+                  <Icon size={18} strokeWidth={1.5} />
+                </div>
+                <h4 className="text-gray-900 dark:text-white font-bold text-sm">{card.title}</h4>
               </div>
-              <div className="flex-1">
-                <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-1.5">{card.title}</h4>
+              {card.description && (
                 <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">{card.description}</p>
-              </div>
+              )}
             </motion.div>
           );
         })}
@@ -47,5 +49,3 @@ export default function ProvenPlaybookMobile() {
     </section>
   );
 }
-
-

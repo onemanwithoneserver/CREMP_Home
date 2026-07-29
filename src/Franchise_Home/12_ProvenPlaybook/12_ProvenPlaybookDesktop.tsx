@@ -49,14 +49,19 @@ export default function ProvenPlaybookDesktop() {
               <motion.div
                 key={card.title}
                 variants={fadeInUp}
-                className={clsx("rounded-lg border p-8 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
+                className={clsx("rounded-lg border p-6 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
               >
-                <div
-                  className={clsx("w-14 h-14 rounded-full flex items-center justify-center mb-5 shadow-xs", getIconContainerStyles(card.intent))}
-                >
-                  <Icon size={24} strokeWidth={1.5} />
+                <div className="flex items-center gap-4 mb-3">
+                  <div
+                    className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(card.intent))}
+                  >
+                    <Icon size={20} strokeWidth={1.5} />
+                  </div>
+                  <h4 className="text-gray-900 dark:text-white font-bold text-lg">{card.title}</h4>
                 </div>
-                <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-3">{card.title}</h4>
+                {card.description && (
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{card.description}</p>
+                )}
               </motion.div>
             );
           })}

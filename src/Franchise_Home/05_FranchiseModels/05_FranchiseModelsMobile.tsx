@@ -109,10 +109,6 @@ export default function FranchiseModelsMobile() {
       {/* Header */}
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex items-center gap-3 mb-1.5">
-           <div className="flex items-center gap-1">
-             <div className="w-1 h-1 rounded-full bg-accent-light" />
-             <div className="w-4 h-px bg-accent-light" />
-           </div>
            <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
             <div className="flex items-center gap-1.5">
               <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
@@ -126,17 +122,9 @@ export default function FranchiseModelsMobile() {
               <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
             </div>
           </div>
-           <div className="flex items-center gap-1">
-             <div className="w-4 h-px bg-accent-light" />
-             <div className="w-1 h-1 rounded-full bg-accent-light" />
-           </div>
         </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium px-4">
-          {franchiseModelsData.subtitle}
-        </p>
       </div>
 
-      {/* Tabs Row (Scrollable) */}
       <div className="w-full overflow-hidden">
          <div className="flex gap-3 w-full overflow-x-auto scrollbar-hide py-2 px-1">
             {franchiseModelsData.models.map((model) => {

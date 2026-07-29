@@ -6,6 +6,8 @@ export const provenPlaybookData = {
     {
       icon: TrendingUp,
       title: "Proven Playbook",
+      description:
+        "Strong unit economics and highly scalable operations designed to maximize your ROI.",
       intent: "warning",
     },
     {
