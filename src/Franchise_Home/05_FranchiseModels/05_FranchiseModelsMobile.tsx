@@ -79,7 +79,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
               <hoveredItem.item.icon size={12} className="text-gray-400" /> 
               {hoveredItem.item.label}
             </span>
-            <span className="text-accent-light text-xs">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-[10px] ml-1">({hoveredItem.item.percentage}%)</span></span>
+            <span className="text-[#d4af37] text-xs">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-[10px] ml-1">({hoveredItem.item.percentage}%)</span></span>
           </motion.div>
         )}
       </AnimatePresence>

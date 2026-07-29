@@ -5,7 +5,7 @@ import mainCupImg from "../../assets/main_coffee_cup.png";
 
 export default function HeroGalleryMobile() {
   return (
-    <section className="w-full bg-background transition-colors duration-300 flex flex-col gap-4 px-2 py-6">
+    <section className="w-full bg-background transition-colors duration-300 flex flex-col gap-4">
       <div className="bg-[#f9f9f9] rounded-2xl overflow-hidden shadow-sm flex flex-row border border-gray-100 relative min-h-[320px]">
 
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0b162c]/80 blur-[40px] rounded-full pointer-events-none" />
@@ -64,7 +64,7 @@ export default function HeroGalleryMobile() {
       </div>
       
 
-      <div className="flex flex-row gap-2 mt-1">
+      <div className="flex flex-row gap-2 mt-1 px-2">
         <button 
           className="flex-1 flex flex-row items-center justify-center gap-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-5 py-3.5 rounded-[4px] text-[12px] font-bold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all text-center hover-lift"
           aria-label={heroGalleryData.buttons.primary.label}

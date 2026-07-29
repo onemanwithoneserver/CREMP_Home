@@ -70,7 +70,7 @@ const DonutChart = ({ data }: { data: CostBreakdownItem[]; totalValue: string })
               <hoveredItem.item.icon size={14} className="text-gray-400" /> 
               {hoveredItem.item.label}
             </span>
-            <span className="text-accent-light text-sm">
+            <span className="text-[#d4af37] text-sm">
               {hoveredItem.item.amount} 
               <span className="text-gray-400 font-medium text-xs ml-1">({hoveredItem.item.percentage}%)</span>
             </span>

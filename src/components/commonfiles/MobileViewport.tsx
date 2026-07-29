@@ -66,7 +66,7 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
           `}
           {...props}
         >
-          <div ref={mobileInnerRef} className="h-full w-full overflow-y-auto overflow-x-hidden scrollbar-hide @container bg-cremp-background md:pt-2">
+          <div ref={mobileInnerRef} className="h-full w-full overflow-y-auto overflow-x-hidden scrollbar-hide @container bg-cremp-background">
             {children}
           </div>
         </div>
