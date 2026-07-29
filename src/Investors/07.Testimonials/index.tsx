@@ -2,9 +2,9 @@ import DesktopTestimonials from "./DesktopTestimonials";
 import MobileTestimonials from "./MobileTestimonials";
 
 export default function InvestorsTestimonials({
-  isMobile,
+    isMobile,
 }: {
-  isMobile: boolean;
+    isMobile: boolean;
 }) {
-  return isMobile ? <MobileTestimonials /> : <DesktopTestimonials />;
+    return isMobile ? <MobileTestimonials /> : <DesktopTestimonials />;
 }

@@ -2,9 +2,9 @@ import DesktopHero from "./DesktopHero";
 import MobileHero from "./MobileHero";
 
 export default function DeveloperAndOwnerHero({
-  isMobile,
+    isMobile,
 }: {
-  isMobile: boolean;
+    isMobile: boolean;
 }) {
-  return isMobile ? <MobileHero /> : <DesktopHero />;
+    return isMobile ? <MobileHero /> : <DesktopHero />;
 }

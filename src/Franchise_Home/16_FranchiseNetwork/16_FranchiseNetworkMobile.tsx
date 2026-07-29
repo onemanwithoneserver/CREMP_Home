@@ -1,83 +1,83 @@
-import { motion } from "framer-motion";
-import { franchiseNetworkData } from "./data";
 import clsx from "clsx";
-import { getSolidBgStyles, getCardStyles, getTextStyles } from "../utils/theme";
+import { motion } from "framer-motion";
+import { getCardStyles, getSolidBgStyles, getTextStyles } from "../utils/theme";
+import { franchiseNetworkData } from "./data";
 
 export default function FranchiseNetworkMobile() {
-  return (
-    <section className="w-full bg-background px-4 py-8">
-      <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
-            <div className="flex items-center gap-1.5">
-              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
-            </div>
-            <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
-              {franchiseNetworkData.sectionLabel}
-            </p>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
-              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
-            </div>
-          </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className={clsx("overflow-hidden rounded-[4px] border shadow-sm flex flex-col transition-all duration-300", getCardStyles())}
-      >
-        <div className="w-full h-[220px] bg-gray-50 dark:bg-surface-alt flex items-center justify-center relative border-b border-border">
-          <div className="absolute inset-0 opacity-20">
-            <svg viewBox="0 0 400 500" className="w-full h-full">
-              <path
-                d="M200,50 C250,80 300,120 310,180 C320,240 280,300 260,340 C240,380 220,420 200,450 C180,420 160,380 140,340 C120,300 80,240 90,180 C100,120 150,80 200,50Z"
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="1"
-                opacity="0.3"
-              />
-              <circle cx="200" cy="180" r="4" fill="#D4AF37" />
-              <circle cx="180" cy="220" r="3" fill="#22c55e" />
-              <circle cx="230" cy="200" r="3" fill="#3b82f6" />
-            </svg>
-          </div>
-          <div className="z-10 p-4 text-center">
-            <h3 className="text-gray-900 dark:text-white font-black text-lg mb-1">{franchiseNetworkData.title}</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">{franchiseNetworkData.outletCount}</p>
-          </div>
-        </div>
-
-        <div className="p-5">
-          <div className="flex flex-wrap gap-4 mb-6">
-            {franchiseNetworkData.legend.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.label} className="flex items-center gap-1.5">
-                  <div className={clsx("w-2 h-2 rounded-full", getSolidBgStyles(item.intent))} />
-                  {Icon && <Icon size={12} strokeWidth={1.5} className={getTextStyles(item.intent)} />}
-                  <span className="text-gray-600 dark:text-gray-400 text-[10px] font-bold">{item.label}</span>
+    return (
+        <section className="w-full bg-background px-4 py-8">
+            <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
+                <div className="flex items-center gap-1.5">
+                    <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
+                    <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
                 </div>
-              );
-            })}
-          </div>
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            {franchiseNetworkData.networkStats.items.map((item) => (
-              <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-border">
-                <span className="text-gray-500 dark:text-gray-400 text-[10px] font-medium">{item.label}</span>
-                <span className="text-gray-900 dark:text-white text-[10px] font-bold">{item.value}</span>
-              </div>
-            ))}
-          </div>
-          <div className="space-y-3">
-            <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-sm">
-              {franchiseNetworkData.cta.primary}
-            </button>
-            <button className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-xs font-bold rounded">
-              {franchiseNetworkData.cta.secondary}
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  );
+                <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
+                    {franchiseNetworkData.sectionLabel}
+                </p>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+                    <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
+                </div>
+            </div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={clsx("overflow-hidden rounded-[4px] border shadow-sm flex flex-col transition-all duration-300", getCardStyles())}
+            >
+                <div className="w-full h-[220px] bg-gray-50 dark:bg-surface-alt flex items-center justify-center relative border-b border-border">
+                    <div className="absolute inset-0 opacity-20">
+                        <svg viewBox="0 0 400 500" className="w-full h-full">
+                            <path
+                                d="M200,50 C250,80 300,120 310,180 C320,240 280,300 260,340 C240,380 220,420 200,450 C180,420 160,380 140,340 C120,300 80,240 90,180 C100,120 150,80 200,50Z"
+                                fill="none"
+                                stroke="#D4AF37"
+                                strokeWidth="1"
+                                opacity="0.3"
+                            />
+                            <circle cx="200" cy="180" r="4" fill="#D4AF37" />
+                            <circle cx="180" cy="220" r="3" fill="#22c55e" />
+                            <circle cx="230" cy="200" r="3" fill="#3b82f6" />
+                        </svg>
+                    </div>
+                    <div className="z-10 p-4 text-center">
+                        <h3 className="text-gray-900 dark:text-white font-black text-lg mb-1">{franchiseNetworkData.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">{franchiseNetworkData.outletCount}</p>
+                    </div>
+                </div>
+
+                <div className="p-5">
+                    <div className="flex flex-wrap gap-4 mb-6">
+                        {franchiseNetworkData.legend.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <div key={item.label} className="flex items-center gap-1.5">
+                                    <div className={clsx("w-2 h-2 rounded-full", getSolidBgStyles(item.intent))} />
+                                    {Icon && <Icon size={12} strokeWidth={1.5} className={getTextStyles(item.intent)} />}
+                                    <span className="text-gray-600 dark:text-gray-400 text-[10px] font-bold">{item.label}</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                        {franchiseNetworkData.networkStats.items.map((item) => (
+                            <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-border">
+                                <span className="text-gray-500 dark:text-gray-400 text-[10px] font-medium">{item.label}</span>
+                                <span className="text-gray-900 dark:text-white text-[10px] font-bold">{item.value}</span>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="space-y-3">
+                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-sm">
+                            {franchiseNetworkData.cta.primary}
+                        </button>
+                        <button className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-xs font-bold rounded">
+                            {franchiseNetworkData.cta.secondary}
+                        </button>
+                    </div>
+                </div>
+            </motion.div>
+        </section>
+    );
 }

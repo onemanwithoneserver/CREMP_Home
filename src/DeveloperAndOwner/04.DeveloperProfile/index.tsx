@@ -2,9 +2,9 @@ import DesktopDeveloperProfile from "./DesktopDeveloperProfile";
 import MobileDeveloperProfile from "./MobileDeveloperProfile";
 
 export default function DeveloperAndOwnerProfile({
-  isMobile,
+    isMobile,
 }: {
-  isMobile: boolean;
+    isMobile: boolean;
 }) {
-  return isMobile ? <MobileDeveloperProfile /> : <DesktopDeveloperProfile />;
+    return isMobile ? <MobileDeveloperProfile /> : <DesktopDeveloperProfile />;
 }

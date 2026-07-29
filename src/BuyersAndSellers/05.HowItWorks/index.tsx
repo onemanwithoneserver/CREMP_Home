@@ -2,9 +2,9 @@ import DesktopHowItWorks from "./DesktopHowItWorks";
 import MobileHowItWorks from "./MobileHowItWorks";
 
 export default function BuyersAndSellersHowItWorks({
-  isMobile,
+    isMobile,
 }: {
-  isMobile: boolean;
+    isMobile: boolean;
 }) {
-  return isMobile ? <MobileHowItWorks /> : <DesktopHowItWorks />;
+    return isMobile ? <MobileHowItWorks /> : <DesktopHowItWorks />;
 }
