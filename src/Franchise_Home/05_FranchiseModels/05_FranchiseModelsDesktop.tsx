@@ -13,7 +13,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
     const strokeWidth = 65;
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
-    const gap = 1.5;
+    const gapLength = 2;
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [hoveredItem, setHoveredItem] = useState<{ item: CostBreakdownItem, x: number, y: number } | null>(null);
@@ -21,9 +21,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
     const chartData = useMemo(() => {
         let currentOffset = 0;
         return data.map((item) => {
-            const segmentPercent = item.percentage;
-            const rawSegmentLength = (segmentPercent / 100) * circumference;
-            const gapLength = (gap / 100) * circumference;
+            const rawSegmentLength = (item.percentage / 100) * circumference;
             const segmentLength = Math.max(0, rawSegmentLength - gapLength);
             const offset = currentOffset;
             currentOffset += rawSegmentLength;

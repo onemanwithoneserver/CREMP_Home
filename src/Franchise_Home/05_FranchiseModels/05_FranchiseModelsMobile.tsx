@@ -13,7 +13,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
     const strokeWidth = 55;
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
-    const gap = 1.5;
+    const gapLength = 1; 
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [hoveredItem, setHoveredItem] = useState<{ item: CostBreakdownItem, x: number, y: number } | null>(null);
@@ -24,9 +24,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
         <div ref={containerRef} className="relative flex items-center justify-center" style={{ width: size, height: size }}>
             <svg width={size} height={size} className="transform -rotate-90 drop-shadow-md overflow-visible">
                 {data.map((item, i) => {
-                    const segmentPercent = item.percentage;
-                    const rawSegmentLength = (segmentPercent / 100) * circumference;
-                    const gapLength = (gap / 100) * circumference;
+                    const rawSegmentLength = (item.percentage / 100) * circumference;
                     const segmentLength = Math.max(0, rawSegmentLength - gapLength);
 
                     const offset = currentOffset;
