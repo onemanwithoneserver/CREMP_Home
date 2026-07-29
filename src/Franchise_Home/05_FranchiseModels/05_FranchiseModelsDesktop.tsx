@@ -124,7 +124,7 @@ export default function FranchiseModelsDesktop() {
     const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
     return (
-        <section className="w-full bg-background transition-colors duration-300 p-6 flex flex-col gap-8 font-sans overflow-hidden">
+        <section className="w-full bg-background transition-colors duration-300 p-4 flex flex-col gap-8 overflow-hidden">
             <svg width="0" height="0" className="absolute">
                 <defs>
                     <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -282,20 +282,12 @@ export default function FranchiseModelsDesktop() {
                                 ))}
                             </div>
 
-                            <div className="w-full border-none bg-primary rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-xl relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
-                                <span className="text-[9px] uppercase font-bold tracking-widest text-gray-300 dark:text-[#0b162c]/80 mb-1 z-10">
-                                    AVG. TOTAL INVESTMENT
-                                </span>
-                                <span className="text-xl font-black text-white dark:text-[#0b162c] z-10">
-                                    {selected.avgTotal}
-                                </span>
-                            </div>
+ 
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
-                <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-between py-2 relative z-10">
+                <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-center py-2 relative z-10">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={selected.id}
@@ -309,49 +301,10 @@ export default function FranchiseModelsDesktop() {
                         </motion.div>
                     </AnimatePresence>
 
-                    <div className="w-full mt-4 bg-surface-alt rounded-2xl border-none p-4 shadow-sm flex flex-col">
-                        <div className="flex items-center justify-between mb-3">
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
-                                {revenueROIData.paybackPeriod.sectionLabel}
-                            </span>
-                            <span className="text-sm font-black text-[#0b162c] dark:text-white">
-                                {revenueROIData.paybackPeriod.title}
-                            </span>
-                        </div>
-                        <div className="flex items-center gap-2 px-2 mt-1">
-                            {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
-                                const Icon = milestone.icon;
-                                return (
-                                    <div key={idx} className="flex items-center gap-2 flex-1">
-                                        <div
-                                            className={clsx(
-                                                "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border bg-white dark:bg-surface transition-colors duration-300",
-                                                milestone.status === "complete"
-                                                    ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400"
-                                                    : milestone.status === "active"
-                                                        ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
-                                                        : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700 dark:text-slate-500"
-                                            )}
-                                            title={milestone.label}
-                                        >
-                                            <Icon size={12} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
-                                        </div>
-                                        {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
-                                            <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                                                <div className={clsx(
-                                                    "h-full transition-all duration-500",
-                                                    milestone.status === "complete" ? "bg-emerald-400/50 w-full" : "w-0"
-                                                )} />
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
+ 
                 </div>
 
-                <div className="col-span-12 lg:col-span-4 h-full relative z-10">
+                <div className="col-span-12 lg:col-span-4 lg:row-span-2 h-full relative z-10">
                     <div className="bg-surface-alt rounded-2xl border-none p-6 shadow-lg h-full flex flex-col relative overflow-hidden backdrop-blur-sm">
                         <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
@@ -410,6 +363,54 @@ export default function FranchiseModelsDesktop() {
                                                 </p>
                                             </div>
                                         </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-12 lg:col-span-8 relative z-10 mt-auto">
+                    <div className="w-full bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-5 shadow-sm flex flex-col">
+                        <div className="flex items-center justify-between mb-4">
+                            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d4af37]">
+                                {revenueROIData.paybackPeriod.sectionLabel}
+                            </span>
+                            <span className="text-lg font-black text-[#0b162c] dark:text-white">
+                                {revenueROIData.paybackPeriod.title}
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-4 px-4 mt-2 mb-3">
+                            {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
+                                const Icon = milestone.icon;
+                                return (
+                                    <div key={idx} className={clsx("flex items-center gap-3", idx < revenueROIData.paybackPeriod.milestones.length - 1 ? "flex-1" : "")}>
+                                        <div className="relative flex flex-col items-center">
+                                            <div
+                                                className={clsx(
+                                                    "w-10 h-10 rounded-full flex items-center justify-center shrink-0 border bg-white dark:bg-surface transition-colors duration-300",
+                                                    milestone.status === "complete"
+                                                        ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400"
+                                                        : milestone.status === "active"
+                                                            ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
+                                                            : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700 dark:text-slate-500"
+                                                )}
+                                                title={milestone.label}
+                                            >
+                                                <Icon size={16} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
+                                            </div>
+                                            <span className={clsx("absolute -bottom-5 text-[9px] font-bold whitespace-nowrap", milestone.status === "active" ? "text-[#d4af37]" : "text-slate-500 dark:text-slate-400")}>
+                                                {milestone.label}
+                                            </span>
+                                        </div>
+                                        {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
+                                            <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                                <div className={clsx(
+                                                    "h-full transition-all duration-500",
+                                                    milestone.status === "complete" ? "bg-emerald-400/50 w-full" : "w-0"
+                                                )} />
+                                            </div>
+                                        )}
                                     </div>
                                 );
                             })}
