@@ -28,7 +28,7 @@ export const journeyTimelineData = {
     {
       year: "2026",
       description:
-        "187 outlets, brands & closed. International expansion begins.",
+        "187 outlets, brands & opened. International expansion begins.",
       isActive: false,
     },
   ],

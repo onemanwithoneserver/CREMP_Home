@@ -66,7 +66,7 @@ export default function HeroGalleryMobile() {
 
       <div className="flex flex-row gap-2 mt-1">
         <button 
-          className="flex-1 flex flex-row items-center justify-center gap-2 bg-gradient-to-br from-[#bf953f] to-[#b38728] active:to-[#a0761a] text-white px-5 py-3.5 rounded-lg text-[12px] font-bold shadow-md shadow-[#d4af37]/30 transition-all text-center"
+          className="flex-1 flex flex-row items-center justify-center gap-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-5 py-3.5 rounded-[4px] text-[12px] font-bold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all text-center hover-lift"
           aria-label={heroGalleryData.buttons.primary.label}
         >
           <heroGalleryData.buttons.primary.icon size={14} className="shrink-0" />

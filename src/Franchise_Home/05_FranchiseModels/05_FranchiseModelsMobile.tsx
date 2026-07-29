@@ -104,9 +104,19 @@ export default function FranchiseModelsMobile() {
              <div className="w-1 h-1 rounded-full bg-accent-light" />
              <div className="w-4 h-px bg-accent-light" />
            </div>
-           <h2 className="text-[13px] font-black text-primary uppercase tracking-widest">
-             {franchiseModelsData.sectionLabel}
-           </h2>
+           <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
+            <div className="flex items-center gap-1.5">
+              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+            </div>
+            <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
+              {franchiseModelsData.sectionLabel}
+            </p>
+            <div className="flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
+            </div>
+          </div>
            <div className="flex items-center gap-1">
              <div className="w-4 h-px bg-accent-light" />
              <div className="w-1 h-1 rounded-full bg-accent-light" />
@@ -332,3 +342,5 @@ export default function FranchiseModelsMobile() {
     </section>
   );
 }
+
+

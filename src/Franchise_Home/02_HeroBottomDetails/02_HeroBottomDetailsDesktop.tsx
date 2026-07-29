@@ -41,7 +41,7 @@ export default function HeroBottomDetailsDesktop() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full max-w-[1440px] mx-auto bg-background p-4 lg:p-6 flex flex-col gap-4 font-sans relative"
+      className="w-full max-w-[1440px] mx-auto bg-background p-4 lg:p-6 flex flex-col gap-4 relative"
     >
       <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10 pointer-events-none" />

@@ -41,7 +41,7 @@ export default function HeroBottomDetailsMobile() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full bg-background p-4 flex flex-col gap-4 font-sans relative overflow-hidden"
+      className="w-full bg-background p-4 flex flex-col gap-4 relative overflow-hidden"
     >
       <div className="absolute top-10 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
       <div className="absolute bottom-20 right-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl -z-10 pointer-events-none" />

@@ -99,14 +99,14 @@ export default function Header({
   }, [mobileMenuOpen, closeMenu]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-lg border-b border-cremp-primary/15 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/60 dark:bg-cremp-background/80 backdrop-blur-lg border-b border-cremp-primary/15 dark:border-cremp-border shadow-sm">
       <div className="max-w-[1200px] mx-auto px-2">
         <div className="flex items-center justify-between h-14 gap-3">
           <div
             className="flex items-center gap-2 shrink-0"
             aria-label="CREMP Logo"
           >
-            <span className="text-xl font-extrabold tracking-tight text-cremp-primary select-none">
+            <span className="text-xl font-extrabold tracking-tight text-cremp-primary dark:text-white select-none">
               CREMP
             </span>
             <span className="text-[0.45rem] font-bold text-cremp-accent bg-cremp-accent/10 px-1.5 py-0.5 rounded-full">
@@ -122,7 +122,7 @@ export default function Header({
               <div
                 role="group"
                 aria-label="Select view mode"
-                className="flex items-center bg-cremp-primary/8 border border-cremp-primary/15 rounded p-0.5 gap-0.5"
+                className="flex items-center bg-cremp-primary/8 dark:bg-cremp-surface border border-cremp-primary/15 dark:border-cremp-border rounded p-0.5 gap-0.5"
               >
                 <button
                   type="button"
@@ -131,7 +131,7 @@ export default function Header({
                   className={`flex items-center gap-2 px-4 py-1.5 rounded text-xs font-bold transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                     viewMode === "desktop"
                       ? "gradient-primary text-white shadow-elevation-1"
-                      : "text-cremp-primary bg-transparent hover:bg-white/60"
+                      : "text-cremp-primary dark:text-cremp-text-secondary bg-transparent hover:bg-white/60 dark:hover:bg-cremp-surface-alt"
                   }`}
                 >
                   <Monitor
@@ -148,7 +148,7 @@ export default function Header({
                   className={`flex items-center gap-2 px-4 py-1.5 rounded text-xs font-bold transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                     viewMode === "mobile"
                       ? "gradient-primary text-white shadow-elevation-1"
-                      : "text-cremp-primary bg-transparent hover:bg-white/60"
+                      : "text-cremp-primary dark:text-cremp-text-secondary bg-transparent hover:bg-white/60 dark:hover:bg-cremp-surface-alt"
                   }`}
                 >
                   <Smartphone
@@ -180,8 +180,8 @@ export default function Header({
                     onClick={() => onViewModeChange(v)}
                     className={`w-8 h-8 flex items-center justify-center rounded border transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-1 motion-reduce:transition-none ${
                       viewMode === v
-                        ? "border-cremp-primary bg-cremp-primary/10 text-cremp-primary"
-                        : "border-cremp-border bg-white text-cremp-text-muted hover:bg-cremp-surface-alt hover:text-cremp-text-secondary"
+                        ? "border-cremp-primary bg-cremp-primary/10 text-cremp-primary dark:text-cremp-primary-light"
+                        : "border-cremp-border bg-white dark:bg-cremp-surface text-cremp-text-muted hover:bg-cremp-surface-alt hover:text-cremp-text-secondary"
                     }`}
                   >
                     {v === "desktop" ? (
@@ -215,7 +215,7 @@ export default function Header({
                 value={activePage}
                 onChange={handleNavigate}
                 size="sm"
-                className="w-32"
+                className="w-40"
               />
               <div className="w-px h-4 bg-cremp-border mx-1" />
               <button
@@ -235,7 +235,7 @@ export default function Header({
                 aria-haspopup="menu"
                 aria-controls={`mobile-menu-${menuId}`}
                 onClick={() => setMobileMenuOpen((v) => !v)}
-                className="flex items-center gap-1 px-3 py-1.5 rounded border border-cremp-border bg-white text-xs font-semibold text-cremp-text-primary shadow-elevation-1 hover:bg-cremp-surface-alt transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary"
+                className="flex items-center gap-1 px-3 py-1.5 rounded border border-cremp-border bg-white dark:bg-cremp-surface text-xs font-semibold text-cremp-text-primary shadow-elevation-1 hover:bg-cremp-surface-alt transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary"
               >
                 {PAGE_LABELS[activePage]}
                 <ChevronDown
@@ -252,7 +252,7 @@ export default function Header({
                   id={`mobile-menu-${menuId}`}
                   role="menu"
                   aria-label="Navigation Menu"
-                  className="absolute right-0 mt-2 w-36 bg-white rounded border border-cremp-border shadow-elevation-3 overflow-hidden z-50 animate-fade-in-down"
+                  className="absolute right-0 mt-2 w-36 bg-white dark:bg-cremp-surface rounded border border-cremp-border shadow-elevation-3 overflow-hidden z-50 animate-fade-in-down"
                 >
                   {(Object.keys(PAGE_LABELS) as Page[]).map((p) => {
                     const isActive = activePage === p;
@@ -268,8 +268,8 @@ export default function Header({
                         }}
                         className={`w-full text-left px-4 py-2.5 text-xs font-semibold transition-base focus-visible:outline-none focus-visible:bg-cremp-primary/10 motion-reduce:transition-none ${
                           isActive
-                            ? "bg-cremp-primary/10 text-cremp-primary"
-                            : "text-cremp-text-primary hover:bg-cremp-primary/5"
+                            ? "bg-cremp-primary/10 text-cremp-primary dark:text-cremp-primary-light"
+                            : "text-cremp-text-primary hover:bg-cremp-primary/5 dark:hover:bg-cremp-surface-alt"
                         }`}
                       >
                         {PAGE_LABELS[p]}
@@ -284,7 +284,7 @@ export default function Header({
               <button
                 type="button"
                 onClick={onClose}
-                className="flex items-center justify-center w-8 h-8 sm:ml-1 rounded bg-white border border-cremp-border text-cremp-text-muted hover:bg-error-light hover:text-error hover:border-error/20 transition-base shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+                className="flex items-center justify-center w-8 h-8 sm:ml-1 rounded bg-white dark:bg-cremp-surface border border-cremp-border text-cremp-text-muted hover:bg-error-light dark:hover:bg-error/20 hover:text-error hover:border-error/20 transition-base shadow-elevation-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
                 aria-label="Close navigation"
               >
                 <X size={15} strokeWidth={2.5} />

@@ -25,7 +25,7 @@ export default function HeroGalleryDesktop() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full max-w-[1440px] mx-auto bg-background transition-colors duration-300 p-4 lg:p-6 flex flex-col gap-4 font-sans"
+      className="w-full max-w-[1440px] mx-auto bg-background transition-colors duration-300 p-4 lg:p-6 flex flex-col gap-4"
     >
       <div className="grid grid-cols-12 gap-4 min-h-[480px]">
         <motion.div 
@@ -67,7 +67,7 @@ export default function HeroGalleryDesktop() {
             </div>
             <div className="flex flex-wrap items-center gap-5 relative z-10">
               <button 
-                className="flex items-center gap-2.5 bg-gradient-to-br from-[#bf953f] to-[#b38728] hover:to-[#a0761a] text-white px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-lg shadow-[#d4af37]/30 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2"
+                className="flex items-center gap-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2 hover-lift"
                 aria-label={heroGalleryData.buttons.primary.label}
               >
                 <heroGalleryData.buttons.primary.icon size={18} />

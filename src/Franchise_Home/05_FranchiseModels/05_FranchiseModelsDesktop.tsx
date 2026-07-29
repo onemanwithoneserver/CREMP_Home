@@ -88,28 +88,25 @@ export default function FranchiseModelsDesktop() {
 
   return (
     <section className="w-full bg-background transition-colors duration-300 p-6 flex flex-col gap-6 font-sans">
-      
-      {/* Header */}
       <div className="flex flex-col items-center justify-center text-center mb-6">
         <div className="flex items-center gap-4 mb-2">
-           <div className="flex items-center gap-1">
-             <div className="w-1.5 h-1.5 rounded-full bg-accent-light" />
-             <div className="w-8 h-px bg-accent-light" />
-           </div>
-           <h2 className="text-lg font-black text-primary uppercase tracking-widest">
-             {franchiseModelsData.sectionLabel}
-           </h2>
-           <div className="flex items-center gap-1">
-             <div className="w-8 h-px bg-accent-light" />
-             <div className="w-1.5 h-1.5 rounded-full bg-accent-light" />
-           </div>
+           <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
+            <div className="flex items-center gap-1.5">
+              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+            </div>
+            <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
+              {franchiseModelsData.sectionLabel}
+            </p>
+            <div className="flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
+              <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
+            </div>
+          </div>
+
         </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-          {franchiseModelsData.subtitle}
-        </p>
       </div>
 
-      {/* Tabs Row */}
       <div className="flex items-center gap-4 w-full">
          
          <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">
@@ -344,3 +341,5 @@ export default function FranchiseModelsDesktop() {
     </section>
   );
 }
+
+

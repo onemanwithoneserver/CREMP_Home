@@ -127,7 +127,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                   className={`
                     flex items-center justify-between px-3 py-2 text-xs font-semibold cursor-pointer transition-colors
                     ${opt.disabled ? "opacity-50 cursor-not-allowed" : ""}
-                    ${isSelected ? "text-cremp-accent bg-cremp-accent/10" : "text-cremp-text-primary"}
+                    ${isSelected ? "text-cremp-accent bg-cremp-accent/10" : "text-cremp-text-primary hover:bg-cremp-surface-alt"}
                   `}
                 >
                   <span className="truncate pr-4">{opt.label}</span>
