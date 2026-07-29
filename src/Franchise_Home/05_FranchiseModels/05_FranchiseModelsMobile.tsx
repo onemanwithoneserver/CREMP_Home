@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { Info, MapPin, Maximize2, MousePointerClick, Users, Wallet } from "lucide-react";
-import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Info, MapPin, Maximize2, MousePointerClick, Users, Wallet } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
@@ -125,6 +125,31 @@ export default function FranchiseModelsMobile() {
     const activeMilestone = revenueROIData.paybackPeriod.milestones.find(m => m.status === "active")?.label || "";
     const [selectedMilestone, setSelectedMilestone] = useState<string>(activeMilestone);
 
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+
+    const checkScroll = () => {
+        if (tabsRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
+            setCanScrollLeft(scrollLeft > 0);
+            setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
+        }
+    };
+
+    useEffect(() => {
+        checkScroll();
+        window.addEventListener("resize", checkScroll);
+        return () => window.removeEventListener("resize", checkScroll);
+    }, []);
+
+    const scrollTabs = (direction: "left" | "right") => {
+        if (tabsRef.current) {
+            const scrollAmount = 150;
+            tabsRef.current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
+        }
+    };
+
     return (
         <section className="w-full bg-background transition-colors duration-300 p-2 flex flex-col gap-2 ">
             <svg width="0" height="0" className="absolute">
@@ -155,8 +180,21 @@ export default function FranchiseModelsMobile() {
                 </div>
             </div>
 
-            <div className="w-full overflow-hidden">
-                <div className="flex gap-3 w-full overflow-x-auto scrollbar-hide py-2 px-1">
+            <div className="w-full overflow-hidden relative group flex items-center">
+                {canScrollLeft && (
+                    <button
+                        onClick={() => scrollTabs("left")}
+                        className="absolute left-0 z-10 h-full px-1 bg-gradient-to-r from-background via-background to-transparent flex items-center justify-start text-primary dark:text-white"
+                    >
+                        <ChevronLeft size={20} />
+                    </button>
+                )}
+
+                <div 
+                    ref={tabsRef} 
+                    onScroll={checkScroll}
+                    className="flex gap-2 w-full overflow-x-auto scrollbar-hide py-2 px-8 scroll-smooth"
+                >
                     {franchiseModelsData.models.map((model) => {
                         const isActive = model.id === activeModel;
                         const Icon = model.icon;
@@ -164,25 +202,34 @@ export default function FranchiseModelsMobile() {
                             <button
                                 key={model.id}
                                 onClick={() => setActiveModel(model.id)}
-                                className={`shrink-0 flex flex-col items-center justify-center text-center px-4 py-3 rounded border transition-colors duration-300 w-[110px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${isActive
+                                className={`shrink-0 flex flex-col items-center justify-center text-center px-2 py-2 rounded border transition-colors duration-300 w-[85px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${isActive
                                         ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 -translate-y-1"
                                         : "bg-surface border-transparent shadow-sm"
                                     }`}
                             >
-                                <div className={`w-7 h-7 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-white/10" : "bg-surface-alt"
+                                <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-white/10" : "bg-surface-alt"
                                     }`}>
-                                    <Icon size={14} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
+                                    <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0b162c]" : "text-gray-500"} />
                                 </div>
-                                <span className={`font-bold text-[11px] mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
+                                <span className={`font-bold text-[10px] mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                                     {model.name}
                                 </span>
-                                <span className={`text-xs font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
+                                <span className={`text-[10px] font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
                                     {model.priceRange}
                                 </span>
                             </button>
                         );
                     })}
                 </div>
+
+                {canScrollRight && (
+                    <button
+                        onClick={() => scrollTabs("right")}
+                        className="absolute right-0 z-10 h-full px-1 bg-gradient-to-l from-background via-background to-transparent flex items-center justify-end text-primary dark:text-white"
+                    >
+                        <ChevronRight size={20} />
+                    </button>
+                )}
             </div>
 
             <div className="flex flex-col gap-4">

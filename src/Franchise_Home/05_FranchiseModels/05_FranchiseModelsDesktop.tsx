@@ -178,7 +178,7 @@ export default function FranchiseModelsDesktop() {
             </div>
 
             <div className="flex items-center gap-4 w-full">
-                <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-lg overflow-x-auto py-2">
+                <div className="flex gap-4 w-full justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">
                     {franchiseModelsData.models.map((model) => {
                         const isActive = model.id === activeModel;
                         const Icon = model.icon;
@@ -197,7 +197,7 @@ export default function FranchiseModelsDesktop() {
                                         className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isActive ? "bg-white/10" : "bg-surface-alt"
                                             }`}
                                     >
-                                        <Icon size={20} className={isActive ? "[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" : "text-gray-500"} />
+                                        <Icon size={20} className={isActive ? "text-[#d4af37] dark:text-[#0b162c]" : "text-gray-500"} />
                                     </motion.div>
                                     <span className={`font-bold text-[15px] ${isActive ? "text-white" : "text-primary"}`}>
                                         {model.name}
@@ -206,9 +206,7 @@ export default function FranchiseModelsDesktop() {
                                 <span className={`text-sm font-semibold tracking-wider ${isActive ? "text-accent-light" : "text-gray-500"}`}>
                                     {model.priceRange}
                                 </span>
-                                <div className={`flex items-center gap-1.5 mt-2 text-sm font-medium ${isActive ? "text-gray-200" : "text-gray-400"}`}>
-                                    <Users size={14} /> {model.staffCount}
-                                </div>
+
                             </button>
                         );
                     })}
