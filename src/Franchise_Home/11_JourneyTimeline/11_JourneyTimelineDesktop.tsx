@@ -32,6 +32,13 @@ export default function JourneyTimelineDesktop() {
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-transparent via-[#d4af37]/40 to-transparent -translate-x-1/2" 
           />
+          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 overflow-hidden pointer-events-none">
+            <motion.div 
+              animate={{ top: ["0%", "calc(100% - 40px)"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_10px_2px_rgba(212,175,55,0.8)]" 
+            />
+          </div>
 
           <div className="space-y-8">
             {journeyTimelineData.milestones.map((milestone, idx) => (
@@ -56,12 +63,13 @@ export default function JourneyTimelineDesktop() {
                     {milestone.isActive && (
                       <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 to-transparent opacity-50 pointer-events-none" />
                     )}
-                    <p className={`text-base leading-relaxed relative z-10 ${milestone.isActive ? "text-gray-200" : "text-gray-400"}`}>
+                    <p className={`relative z-10 ${milestone.isActive ? "text-gray-200 text-base leading-relaxed" : "text-gray-700 dark:text-gray-300 text-base leading-relaxed"}`}>
                       {milestone.description}
                     </p>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center justify-center">
+                  <div className={`absolute top-1/2 -translate-y-1/2 h-[2px] w-6 ${milestone.isActive ? "bg-[#d4af37]" : "bg-[#d4af37]/20"} ${idx % 2 === 0 ? "-left-6" : "-right-6"}`} />
                   <motion.div
                     animate={milestone.isActive ? { 
                       scale: [1, 1.05, 1],
@@ -91,5 +99,7 @@ export default function JourneyTimelineDesktop() {
     </section>
   );
 }
+
+
 
 

@@ -26,6 +26,13 @@ export default function JourneyTimelineMobile() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute left-5 top-0 w-[2px] bg-gradient-to-b from-transparent via-[#d4af37]/40 to-transparent" 
         />
+        <div className="absolute left-5 top-0 bottom-0 w-[2px] overflow-hidden pointer-events-none">
+          <motion.div 
+            animate={{ top: ["0%", "calc(100% - 20px)"] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_10px_2px_rgba(212,175,55,0.8)]" 
+          />
+        </div>
 
         <div className="space-y-5">
           {journeyTimelineData.milestones.map((milestone, idx) => (
@@ -37,6 +44,7 @@ export default function JourneyTimelineMobile() {
               transition={{ delay: idx * 0.1 }}
               className="relative"
             >
+              <div className={`absolute left-0 top-[27px] w-6 h-[2px] ${milestone.isActive ? "bg-[#d4af37]" : "bg-[#d4af37]/20"}`} />
               <motion.div
                 animate={milestone.isActive ? { 
                   scale: [1, 1.05, 1],
@@ -69,7 +77,7 @@ export default function JourneyTimelineMobile() {
                 <p className={`text-sm font-black mb-1.5 relative z-10 tracking-wide ${milestone.isActive ? "text-[#d4af37]" : "text-gray-300"}`}>
                   {milestone.year}
                 </p>
-                <p className={`text-[13px] leading-relaxed relative z-10 ${milestone.isActive ? "text-gray-200" : "text-gray-400"}`}>
+                <p className={`relative z-10 ${milestone.isActive ? "text-gray-200 text-[13px] leading-relaxed" : "text-gray-700 dark:text-gray-300 text-[13px] leading-relaxed"}`}>
                   {milestone.description}
                 </p>
               </div>
@@ -80,5 +88,7 @@ export default function JourneyTimelineMobile() {
     </section>
   );
 }
+
+
 
 

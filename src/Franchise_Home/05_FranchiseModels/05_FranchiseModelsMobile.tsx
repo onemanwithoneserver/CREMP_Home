@@ -96,6 +96,15 @@ export default function FranchiseModelsMobile() {
 
   return (
     <section className="w-full bg-background transition-colors duration-300 p-4 flex flex-col gap-5 font-sans">
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#bf953f" />
+            <stop offset="50%" stopColor="#d4af37" />
+            <stop offset="100%" stopColor="#b38728" />
+          </linearGradient>
+        </defs>
+      </svg>
       
       {/* Header */}
       <div className="flex flex-col items-center justify-center text-center">
@@ -144,9 +153,9 @@ export default function FranchiseModelsMobile() {
                   }`}
                 >
                    <div className={`w-7 h-7 rounded-full flex items-center justify-center mb-1.5 ${
-                     isActive ? "bg-primary-light text-accent-light" : "bg-surface-alt text-primary text-opacity-80"
+                     isActive ? "bg-primary-light" : "bg-surface-alt"
                    }`}>
-                     <Icon size={14} />
+                     <Icon size={14} stroke="url(#goldGradient)" />
                    </div>
                    <span className={`font-bold text-[11px] mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                      {model.name}
@@ -198,8 +207,8 @@ export default function FranchiseModelsMobile() {
           >
              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary text-accent-light flex items-center justify-center shadow-md">
-                    <selected.icon size={18} />
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md">
+                    <selected.icon size={18} stroke="url(#goldGradient)" />
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-[15px] font-black text-primary leading-tight">

@@ -23,13 +23,13 @@ export const journeyTimelineData = {
       year: "2022",
       description:
         "Crossed ₹1000 annual revenue. 80+ outlets across 8 cities.",
-      isActive: true,
+      isActive: false,
     },
     {
       year: "2026",
       description:
         "187 outlets, brands & opened. International expansion begins.",
-      isActive: false,
+      isActive: true,
     },
   ],
 };
