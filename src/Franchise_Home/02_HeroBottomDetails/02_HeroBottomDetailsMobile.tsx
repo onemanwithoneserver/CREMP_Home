@@ -231,7 +231,7 @@ export default function HeroBottomDetailsMobile() {
                  whileTap={{ scale: 1.1 }}
                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 shadow-inner backdrop-blur-md shrink-0"
                >
-                 <stat.icon size={18} className="text-accent-highlight" strokeWidth={1.5} />
+                 <stat.icon size={18} className={stat.color || "text-accent-highlight"} strokeWidth={1.5} />
                </motion.div>
                <div className="flex flex-col">
                  <motion.span 

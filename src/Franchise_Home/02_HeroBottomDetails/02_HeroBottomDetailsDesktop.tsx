@@ -242,7 +242,7 @@ export default function HeroBottomDetailsDesktop() {
                className="flex items-center gap-4 flex-1 justify-center px-4 group/stat"
              >
                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20 shrink-0 shadow-inner backdrop-blur-md transition-all duration-300 group-hover/stat:bg-white/20 group-hover/stat:scale-110">
-                 <stat.icon size={24} className="text-accent-highlight" strokeWidth={1.5} />
+                 <stat.icon size={24} className={stat.color || "text-accent-highlight"} strokeWidth={1.5} />
                </div>
                <div className="flex flex-col">
                  <motion.span 

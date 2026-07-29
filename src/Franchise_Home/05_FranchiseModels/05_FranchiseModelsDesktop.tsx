@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick } from "lucide-react";
 
-const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
+const DonutChart = ({ data }: { data: CostBreakdownItem[]; totalValue: string }) => {
   const size = 260;
   const strokeWidth = 45;
   const radius = (size - strokeWidth) / 2;
@@ -55,17 +55,6 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
           />
         ))}
       </svg>
-
-      <motion.div 
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5, type: "spring" }}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-background rounded-full pointer-events-none shadow-inner z-10" 
-        style={{ width: size - (strokeWidth * 2) - 8, height: size - (strokeWidth * 2) - 8, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
-      >
-        <span className="text-3xl font-black text-primary">{totalValue}</span>
-        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">avg. total</span>
-      </motion.div>
 
       <AnimatePresence>
         {hoveredItem && (
@@ -364,23 +353,6 @@ export default function FranchiseModelsDesktop() {
                 </motion.div>
               </AnimatePresence>
             </div>
-
-            <div className="mt-8 pt-6 border-t border-border flex items-center justify-between bg-surface-alt">
-              <span className="text-sm font-bold text-primary">
-                Total (Average)
-              </span>
-              <AnimatePresence mode="wait">
-                <motion.span
-                   key={selected.id}
-                   initial={{ opacity: 0, scale: 0.9 }}
-                   animate={{ opacity: 1, scale: 1 }}
-                   exit={{ opacity: 0, scale: 0.9 }}
-                   className="text-xl font-black text-accent bg-accent/10 px-3 py-1 rounded-lg"
-                >
-                   {selected.totalAvgLabel}
-                </motion.span>
-              </AnimatePresence>
-            </div>
           </div>
         </div>
 
@@ -388,3 +360,4 @@ export default function FranchiseModelsDesktop() {
     </section>
   );
 }
+
