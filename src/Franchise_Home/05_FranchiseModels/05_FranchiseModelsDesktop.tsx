@@ -1,9 +1,12 @@
 import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
-import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick } from "lucide-react";
+import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick, TrendingUp, BarChart3, Target, Clock, Award, FileCheck } from "lucide-react";
+import { revenueROIData } from "../06_RevenueROI/data";
+import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/theme";
+import clsx from "clsx";
 
-const DonutChart = ({ data }: { data: CostBreakdownItem[]; totalValue: string }) => {
+const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
   const size = 260;
   const strokeWidth = 45;
   const radius = (size - strokeWidth) / 2;
@@ -55,6 +58,11 @@ const DonutChart = ({ data }: { data: CostBreakdownItem[]; totalValue: string })
           />
         ))}
       </svg>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-transparent rounded-full pointer-events-none z-0" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <span className="text-3xl font-black text-primary dark:text-white">{totalValue}</span>
+        <span className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mt-1">AVG. TOTAL</span>
+      </div>
 
       <AnimatePresence>
         {hoveredItem && (
@@ -196,6 +204,7 @@ export default function FranchiseModelsDesktop() {
           </motion.div>
         </div>
 
+        {/* Left Column: Selected Model Details */}
         <div className="col-span-12 lg:col-span-3 h-full relative z-10">
            <AnimatePresence mode="wait">
              <motion.div
@@ -208,7 +217,7 @@ export default function FranchiseModelsDesktop() {
              >
                 <div className="absolute right-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
                 
-                <div className="flex items-center gap-4 mb-8">
+                <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-md border border-accent/50">
                     <selected.icon size={24} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                   </div>
@@ -219,7 +228,7 @@ export default function FranchiseModelsDesktop() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-6 mb-8 flex-1 relative">
+                <div className="flex flex-col gap-5 mb-6 flex-1 relative">
                   <div className="absolute left-3 top-2 bottom-2 w-px bg-gradient-to-b from-accent/50 via-gray-300 dark:via-gray-700 to-transparent -z-10" />
                   
                   {[
@@ -249,12 +258,12 @@ export default function FranchiseModelsDesktop() {
                   ))}
                 </div>
 
-                <div className="w-full border border-accent/40 bg-primary rounded-xl p-5 flex flex-col items-center justify-center text-center mt-auto shadow-xl relative overflow-hidden">
+                <div className="w-full border border-accent/40 bg-primary rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-xl relative overflow-hidden">
                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
-                   <span className="text-[10px] uppercase font-bold tracking-widest text-gray-300 dark:text-[#0b162c]/80 mb-1 z-10">
+                   <span className="text-[9px] uppercase font-bold tracking-widest text-gray-300 dark:text-[#0b162c]/80 mb-1 z-10">
                      AVG. TOTAL INVESTMENT
                    </span>
-                   <span className="text-2xl font-black text-white dark:text-[#0b162c] z-10">
+                   <span className="text-xl font-black text-white dark:text-[#0b162c] z-10">
                      {selected.avgTotal}
                    </span>
                 </div>
@@ -262,7 +271,8 @@ export default function FranchiseModelsDesktop() {
            </AnimatePresence>
         </div>
 
-        <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-center py-8 relative z-10">
+        {/* Center Column: Donut Chart & Payback Timeline */}
+        <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-between py-2 relative z-10">
            <AnimatePresence mode="wait">
              <motion.div
                key={selected.id}
@@ -270,85 +280,117 @@ export default function FranchiseModelsDesktop() {
                animate={{ opacity: 1, scale: 1, rotate: 0 }}
                exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
                transition={{ duration: 0.5, type: "spring" }}
-               className="relative"
+               className="relative my-auto"
              >
                <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
              </motion.div>
            </AnimatePresence>
            
-           <motion.div 
-             initial={{ opacity: 0, y: 10 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ delay: 0.8 }}
-             className="flex items-center justify-center gap-2 mt-10"
-           >
-             <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
-               Tap segments for detail
-             </span>
-             <motion.div
-               animate={{ y: [0, -4, 0] }}
-               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-             >
-               <MousePointerClick size={16} className="text-accent drop-shadow-md" />
-             </motion.div>
-           </motion.div>
+           <div className="w-full mt-4 bg-surface-alt rounded-2xl border border-border p-4 shadow-sm flex flex-col">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
+                  {revenueROIData.paybackPeriod.sectionLabel}
+                </span>
+                <span className="text-sm font-black text-[#0b162c] dark:text-white">
+                  {revenueROIData.paybackPeriod.title}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
+                  const Icon = milestone.icon;
+                  return (
+                    <div key={idx} className="flex items-center gap-2 flex-1">
+                      <div
+                        className={clsx(
+                          "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border transition-colors duration-300",
+                          milestone.status === "complete"
+                            ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400"
+                            : milestone.status === "active"
+                            ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
+                            : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700 dark:text-slate-500"
+                        )}
+                        title={milestone.label}
+                      >
+                        <Icon size={12} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
+                      </div>
+                      {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
+                        <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                          <div className={clsx(
+                            "h-full transition-all duration-500",
+                            milestone.status === "complete" ? "bg-emerald-400/50 w-full" : "w-0"
+                          )} />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+           </div>
         </div>
 
+        {/* Right Column: Estimated ROI by Year */}
         <div className="col-span-12 lg:col-span-4 h-full relative z-10">
-          <div className="bg-surface-alt rounded-2xl border border-border p-6 shadow-lg h-full flex flex-col relative overflow-hidden backdrop-blur-sm">
+          <div className="bg-white rounded-2xl border border-border p-6 shadow-lg h-full flex flex-col relative overflow-hidden backdrop-blur-sm">
             <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -ml-2 hidden lg:block" />
             
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
-               <span className="text-[11px] uppercase font-bold tracking-widest text-primary text-opacity-90">
-                 COST COMPONENT
-               </span>
-               <span className="text-[11px] uppercase font-bold tracking-widest text-primary text-opacity-90">
-                 AMOUNT • SHARE
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
+               <span className="text-[11px] uppercase font-bold tracking-widest text-[#d4af37] font-black">
+                 {revenueROIData.sectionLabel}
                </span>
             </div>
 
-            <div className="flex flex-col gap-6 flex-1 justify-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={selected.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="space-y-6"
-                >
-                  {selected.costBreakdown.map((item, i) => (
-                    <div key={item.label} className="flex items-center justify-between group">
-                      <div className="flex items-center gap-3">
-                         <div className="w-2 h-2 rounded-full shadow-sm" style={{ backgroundColor: item.color }} />
-                         <div className="w-9 h-9 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-110">
-                            <item.icon size={16} style={{ color: item.color }} />
-                         </div>
-                         <span className="text-sm font-bold text-primary">
-                           {item.label}
-                         </span>
+            <div className="flex flex-col gap-4 flex-1 justify-center">
+              {revenueROIData.revenueCards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <div
+                    key={card.year}
+                    className={clsx(
+                      "rounded-xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm",
+                      "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
+                      "hover:-translate-y-0.5 hover:shadow-md hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40",
+                      "cursor-default transition-all duration-300",
+                      getCardStyles(card.intent)
+                    )}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                        {card.year}
+                      </span>
+                      <span
+                        className={clsx(
+                          "text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow-xs",
+                          getBadgeStyles(card.intent)
+                        )}
+                      >
+                        {card.label}
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={clsx(
+                          "w-9 h-9 rounded-full flex items-center justify-center shrink-0 shadow-inner",
+                          getIconContainerStyles(card.intent)
+                        )}
+                      >
+                        <Icon size={16} strokeWidth={1.75} />
                       </div>
-                      
-                      <div className="flex items-center gap-3">
-                         <span className="text-[13px] font-black text-primary w-12 text-right">
-                           {item.amount}
-                         </span>
-                         <div className="w-20 h-1.5 rounded-full bg-gray-200 dark:bg-gray-800 overflow-hidden hidden sm:block">
-                            <motion.div 
-                              initial={{ width: 0 }}
-                              animate={{ width: `${item.percentage}%` }}
-                              transition={{ duration: 1, delay: 0.3 + (i * 0.1), ease: "easeOut" }}
-                              className="h-full rounded-full" 
-                              style={{ backgroundColor: item.color }} 
-                            />
-                         </div>
-                         <span className="text-xs font-bold text-gray-500 w-8 text-right">
-                           {item.percentage}%
-                         </span>
+                      <p className="text-xl font-black text-[#0b162c] dark:text-white tracking-tight">
+                        {card.range}
+                      </p>
+                      <div className="flex flex-col ml-auto text-right max-w-[60%]">
+                        <p className="text-slate-600 dark:text-slate-300 text-xs font-semibold leading-tight line-clamp-1">
+                          {card.description}
+                        </p>
+                        <p className="text-slate-400 dark:text-slate-500 text-[10px] font-medium leading-none mt-0.5 line-clamp-1">
+                          {card.sublabel}
+                        </p>
                       </div>
                     </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -357,4 +399,3 @@ export default function FranchiseModelsDesktop() {
     </section>
   );
 }
-

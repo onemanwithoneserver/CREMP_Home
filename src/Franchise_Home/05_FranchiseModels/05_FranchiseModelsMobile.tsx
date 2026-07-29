@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
-import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick } from "lucide-react";
+import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick, TrendingUp, BarChart3, Target, Clock, Award, FileCheck } from "lucide-react";
+import { revenueROIData } from "../06_RevenueROI/data";
+import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/theme";
+import clsx from "clsx";
 
 const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
   const size = 200; // Smaller for mobile
@@ -253,64 +256,86 @@ export default function FranchiseModelsMobile() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom: Cost Breakdown List */}
-        <div className="bg-surface rounded border border-border p-5 shadow-sm flex flex-col">
-          <div className="flex items-center justify-between mb-5 pb-3 border-b border-border">
-             <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-90">
-               COST COMPONENT
-             </span>
-             <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-90">
-               AMOUNT
-             </span>
-          </div>
+        {/* Bottom: ROI & Payback Section */}
+        <div className="bg-surface rounded border border-border p-5 shadow-sm flex flex-col gap-4">
+           <div className="flex items-center justify-between pb-3 border-b border-border">
+              <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-90 font-black">
+                {revenueROIData.sectionLabel}
+              </span>
+           </div>
 
-          <div className="flex flex-col gap-4">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selected.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-4"
-              >
-                {selected.costBreakdown.map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-2.5">
-                       <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.color }} />
-                       <div className="w-7 h-7 rounded bg-surface-alt border border-border-light flex items-center justify-center shrink-0">
-                          <item.icon size={12} style={{ color: item.color }} />
+           <div className="flex flex-col gap-3">
+             {revenueROIData.revenueCards.map((card) => {
+               const Icon = card.icon;
+               return (
+                 <div
+                   key={card.year}
+                   className={clsx(
+                     "rounded-xl border border-slate-200 dark:border-slate-800 p-3 shadow-xs",
+                     "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
+                     getCardStyles(card.intent)
+                   )}
+                 >
+                   <div className="flex items-center justify-between mb-2">
+                     <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                       {card.year}
+                     </span>
+                     <span className={clsx("text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow-xs", getBadgeStyles(card.intent))}>
+                       {card.label}
+                     </span>
+                   </div>
+                   
+                   <div className="flex items-center gap-3">
+                     <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-inner", getIconContainerStyles(card.intent))}>
+                       <Icon size={14} strokeWidth={1.75} />
+                     </div>
+                     <p className="text-lg font-black text-[#0b162c] dark:text-white tracking-tight">
+                       {card.range}
+                     </p>
+                     <div className="flex flex-col ml-auto text-right max-w-[60%]">
+                       <p className="text-slate-600 dark:text-slate-300 text-xs font-semibold leading-tight line-clamp-1">
+                         {card.description}
+                       </p>
+                       <p className="text-slate-400 dark:text-slate-500 text-[10px] font-medium leading-none mt-0.5 line-clamp-1">
+                         {card.sublabel}
+                       </p>
+                     </div>
+                   </div>
+                 </div>
+               );
+             })}
+           </div>
+
+           <div className="mt-2 pt-4 border-t border-border flex flex-col gap-3">
+             <div className="flex items-center justify-between">
+                <span className="text-xs uppercase font-bold tracking-widest text-[#d4af37] font-black">
+                  {revenueROIData.paybackPeriod.sectionLabel}
+                </span>
+                <span className="text-sm font-black text-[#0b162c] dark:text-white">
+                  {revenueROIData.paybackPeriod.title}
+                </span>
+             </div>
+             <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide py-1">
+                {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
+                  const Icon = milestone.icon;
+                  return (
+                    <div key={idx} className="flex items-center gap-1.5 shrink-0">
+                       <div className={clsx(
+                          "w-6 h-6 rounded-full flex items-center justify-center shrink-0 border",
+                          milestone.status === "complete" ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10" : "bg-slate-50 border-slate-200 text-slate-400"
+                       )}>
+                          <Icon size={10} />
                        </div>
-                       <span className="text-sm font-bold text-primary">
-                         {item.label}
-                       </span>
+                       <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400">{milestone.label}</span>
+                       {idx < 3 && <span className="text-slate-300 dark:text-slate-700 text-[8px] mx-1">•</span>}
                     </div>
-                    
-                    <div className="flex items-center gap-2">
-                       <span className="text-sm font-black text-primary w-10 text-right">
-                         {item.amount}
-                       </span>
-                       <span className="text-xs font-bold text-gray-500 w-6 text-right">
-                         {item.percentage}%
-                       </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                  );
+                })}
+             </div>
+           </div>
         </div>
 
       </div>
     </section>
   );
 }
-
-
-
-

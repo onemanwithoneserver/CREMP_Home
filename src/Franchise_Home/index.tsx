@@ -2,7 +2,6 @@ import HeroGallery from "./01_HeroGallery";
 import HeroBottomDetails from "./02_HeroBottomDetails";
 import InvestmentSnapshot from "./04_InvestmentSnapshot";
 import FranchiseModels from "./05_FranchiseModels";
-import RevenueROI from "./06_RevenueROI";
 import IdealPartner from "./07_IdealPartner";
 import FullCycleSupport from "./08_FullCycleSupport";
 import FounderStory from "./09_FounderStory";
@@ -27,7 +26,6 @@ export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
           <HeroBottomDetails isMobile={isMobile} />
           <InvestmentSnapshot isMobile={isMobile} />
           <FranchiseModels isMobile={isMobile} />
-          <RevenueROI isMobile={isMobile} />
           <IdealPartner isMobile={isMobile} />
           <FullCycleSupport isMobile={isMobile} />
           <FounderStory isMobile={isMobile} />
