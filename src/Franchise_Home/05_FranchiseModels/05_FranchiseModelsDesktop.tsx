@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
-import { Info, MapPin, Maximize2, Users, Wallet, MousePointerClick, TrendingUp, BarChart3, Target, Clock, Award, FileCheck } from "lucide-react";
+import { Info, MapPin, Maximize2, Users, Wallet, TrendingUp, BarChart3, Target, Clock, Award, FileCheck } from "lucide-react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/theme";
 import clsx from "clsx";
@@ -71,7 +71,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-3 py-2.5 rounded shadow-2xl z-50 flex flex-col gap-1.5 whitespace-nowrap border border-gray-700"
+            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-3 py-2.5 rounded shadow-2xl z-50 flex flex-col gap-1.5 whitespace-nowrap"
             style={{ left: hoveredItem.x + 15, top: hoveredItem.y - 15 }}
           >
             <span className="flex items-center gap-2 text-gray-300">
@@ -162,7 +162,7 @@ export default function FranchiseModelsDesktop() {
                   className={`relative flex-1 flex flex-col items-center justify-center text-center px-4 py-4 rounded-xl border transition-all duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     isActive
                       ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 scale-[1.02] z-10"
-                      : "bg-surface border-border hover:border-accent/50 shadow-sm"
+                      : "bg-surface border-transparent hover:border-accent/50 shadow-sm"
                   }`}
                 >
                   <div className="flex items-center gap-3 mb-2">
@@ -204,7 +204,6 @@ export default function FranchiseModelsDesktop() {
           </motion.div>
         </div>
 
-        {/* Left Column: Selected Model Details */}
         <div className="col-span-12 lg:col-span-3 h-full relative z-10">
            <AnimatePresence mode="wait">
              <motion.div
@@ -213,12 +212,12 @@ export default function FranchiseModelsDesktop() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, type: "spring" }}
-                className="bg-surface-alt rounded-2xl border border-border p-6 flex flex-col h-full shadow-lg backdrop-blur-sm relative overflow-hidden"
+                className="bg-surface-alt rounded-2xl border-none p-6 flex flex-col h-full shadow-lg backdrop-blur-sm relative overflow-hidden"
              >
                 <div className="absolute right-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
                 
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-md border border-accent/50">
+                  <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-md border-none">
                     <selected.icon size={24} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                   </div>
                   <div className="flex flex-col">
@@ -258,7 +257,7 @@ export default function FranchiseModelsDesktop() {
                   ))}
                 </div>
 
-                <div className="w-full border border-accent/40 bg-primary rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-xl relative overflow-hidden">
+                <div className="w-full border-none bg-primary rounded-xl p-4 flex flex-col items-center justify-center text-center mt-auto shadow-xl relative overflow-hidden">
                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
                    <span className="text-[9px] uppercase font-bold tracking-widest text-gray-300 dark:text-[#0b162c]/80 mb-1 z-10">
                      AVG. TOTAL INVESTMENT
@@ -271,7 +270,6 @@ export default function FranchiseModelsDesktop() {
            </AnimatePresence>
         </div>
 
-        {/* Center Column: Donut Chart & Payback Timeline */}
         <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-between py-2 relative z-10">
            <AnimatePresence mode="wait">
              <motion.div
@@ -286,7 +284,7 @@ export default function FranchiseModelsDesktop() {
              </motion.div>
            </AnimatePresence>
            
-           <div className="w-full mt-4 bg-surface-alt rounded-2xl border border-border p-4 shadow-sm flex flex-col">
+           <div className="w-full mt-4 bg-surface-alt rounded-2xl border-none p-4 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
                   {revenueROIData.paybackPeriod.sectionLabel}
@@ -295,14 +293,14 @@ export default function FranchiseModelsDesktop() {
                   {revenueROIData.paybackPeriod.title}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 px-2 mt-1">
                 {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                   const Icon = milestone.icon;
                   return (
                     <div key={idx} className="flex items-center gap-2 flex-1">
                       <div
                         className={clsx(
-                          "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border transition-colors duration-300",
+                          "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border bg-white dark:bg-surface transition-colors duration-300",
                           milestone.status === "complete"
                             ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400"
                             : milestone.status === "active"
@@ -328,13 +326,12 @@ export default function FranchiseModelsDesktop() {
            </div>
         </div>
 
-        {/* Right Column: Estimated ROI by Year */}
         <div className="col-span-12 lg:col-span-4 h-full relative z-10">
-          <div className="bg-white rounded-2xl border border-border p-6 shadow-lg h-full flex flex-col relative overflow-hidden backdrop-blur-sm">
-            <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -ml-2 hidden lg:block" />
+          <div className="bg-surface-alt rounded-2xl border-none p-6 shadow-lg h-full flex flex-col relative overflow-hidden backdrop-blur-sm">
+            <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
             
             <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
-               <span className="text-[11px] uppercase font-bold tracking-widest text-[#d4af37] font-black">
+               <span className="text-[11px] uppercase font-bold tracking-widest text-primary dark:text-white font-black">
                  {revenueROIData.sectionLabel}
                </span>
             </div>
@@ -346,9 +343,9 @@ export default function FranchiseModelsDesktop() {
                   <div
                     key={card.year}
                     className={clsx(
-                      "rounded-xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm",
+                      "rounded-xl border-none p-4 shadow-sm",
                       "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
-                      "hover:-translate-y-0.5 hover:shadow-md hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40",
+                      "hover:-translate-y-0.5 hover:shadow-md",
                       "cursor-default transition-all duration-300",
                       getCardStyles(card.intent)
                     )}

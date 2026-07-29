@@ -7,7 +7,7 @@ import { getCardStyles, getBadgeStyles, getIconContainerStyles } from "../utils/
 import clsx from "clsx";
 
 const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
-  const size = 200; // Smaller for mobile
+  const size = 200;
   const strokeWidth = 35; 
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -75,7 +75,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-2 py-2 rounded shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap border border-gray-800"
+            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-2 py-2 rounded shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap"
             style={{ left: hoveredItem.x, top: hoveredItem.y - 10, transform: 'translate(-50%, -100%)' }}
           >
             <span className="flex items-center gap-1.5 text-gray-300">
@@ -97,8 +97,11 @@ export default function FranchiseModelsMobile() {
 
   const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
+  const activeMilestone = revenueROIData.paybackPeriod.milestones.find(m => m.status === "active")?.label || "";
+  const [selectedMilestone, setSelectedMilestone] = useState<string>(activeMilestone);
+
   return (
-    <section className="w-full bg-background transition-colors duration-300 p-4 flex flex-col gap-5 font-sans">
+    <section className="w-full bg-background transition-colors duration-300 p-2 flex flex-col gap-2 ">
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -109,7 +112,6 @@ export default function FranchiseModelsMobile() {
         </defs>
       </svg>
       
-      {/* Header */}
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex items-center gap-3 mb-1.5">
            <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
@@ -140,7 +142,7 @@ export default function FranchiseModelsMobile() {
                   className={`shrink-0 flex flex-col items-center justify-center text-center px-4 py-3 rounded border transition-colors duration-300 w-[110px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${
                     isActive
                       ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 -translate-y-1"
-                      : "bg-surface border-border shadow-sm"
+                      : "bg-surface border-transparent shadow-sm"
                   }`}
                 >
                    <div className={`w-7 h-7 rounded-full flex items-center justify-center mb-1.5 ${
@@ -160,11 +162,9 @@ export default function FranchiseModelsMobile() {
          </div>
       </div>
 
-      {/* Content Area */}
       <div className="flex flex-col gap-4">
         
-        {/* Top: Donut Chart */}
-        <div className="bg-surface rounded border border-border p-6 flex flex-col items-center justify-center shadow-sm">
+        <div className="bg-surface rounded border-none p-6 flex flex-col items-center justify-center shadow-sm">
            <AnimatePresence mode="wait">
              <motion.div
                key={selected.id}
@@ -186,7 +186,6 @@ export default function FranchiseModelsMobile() {
            </div>
         </div>
 
-        {/* Middle: Summary Card */}
         <AnimatePresence mode="wait">
           <motion.div
              key={selected.id}
@@ -194,11 +193,11 @@ export default function FranchiseModelsMobile() {
              animate={{ opacity: 1, x: 0 }}
              exit={{ opacity: 0, x: 10 }}
              transition={{ duration: 0.3 }}
-             className="bg-surface-alt rounded border border-border p-5 flex flex-col shadow-sm"
+             className="bg-surface-alt rounded border-none p-5 flex flex-col shadow-sm"
           >
              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md border border-accent/50">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md border-none">
                     <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                   </div>
                   <div className="flex flex-col">
@@ -211,7 +210,7 @@ export default function FranchiseModelsMobile() {
 
              <div className="grid grid-cols-2 gap-y-4 gap-x-2">
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border border-accent/30 mt-0.5 z-10">
+                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
                     <Wallet size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
@@ -221,7 +220,7 @@ export default function FranchiseModelsMobile() {
                </div>
                
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border border-accent/30 mt-0.5 z-10">
+                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
                     <Maximize2 size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
@@ -231,7 +230,7 @@ export default function FranchiseModelsMobile() {
                </div>
 
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border border-accent/30 mt-0.5 z-10">
+                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
                     <Users size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
@@ -244,7 +243,7 @@ export default function FranchiseModelsMobile() {
                </div>
 
                <div className="flex items-start gap-2.5">
-                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border border-accent/30 mt-0.5 z-10">
+                 <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
                     <MapPin size={10} className="text-primary dark:text-accent-light" />
                  </div>
                  <div className="flex flex-col">
@@ -256,10 +255,9 @@ export default function FranchiseModelsMobile() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom: ROI & Payback Section */}
-        <div className="bg-surface rounded border border-border p-5 shadow-sm flex flex-col gap-4">
+        <div className="bg-surface rounded border-none p-5 shadow-sm flex flex-col gap-4">
            <div className="flex items-center justify-between pb-3 border-b border-border">
-              <span className="text-xs uppercase font-bold tracking-widest text-primary text-opacity-90 font-black">
+              <span className="text-xs uppercase font-bold tracking-widest text-primary dark:text-white font-black">
                 {revenueROIData.sectionLabel}
               </span>
            </div>
@@ -271,7 +269,7 @@ export default function FranchiseModelsMobile() {
                  <div
                    key={card.year}
                    className={clsx(
-                     "rounded-xl border border-slate-200 dark:border-slate-800 p-3 shadow-xs",
+                     "rounded-xl border-none p-3 shadow-xs",
                      "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
                      getCardStyles(card.intent)
                    )}
@@ -315,23 +313,52 @@ export default function FranchiseModelsMobile() {
                   {revenueROIData.paybackPeriod.title}
                 </span>
              </div>
-             <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide py-1">
+
+             <div className="flex items-center gap-2 px-1 mt-1.5">
                 {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                   const Icon = milestone.icon;
+                  const isSelected = selectedMilestone === milestone.label;
                   return (
-                    <div key={idx} className="flex items-center gap-1.5 shrink-0">
-                       <div className={clsx(
-                          "w-6 h-6 rounded-full flex items-center justify-center shrink-0 border",
-                          milestone.status === "complete" ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10" : "bg-slate-50 border-slate-200 text-slate-400"
-                       )}>
-                          <Icon size={10} />
-                       </div>
-                       <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400">{milestone.label}</span>
-                       {idx < 3 && <span className="text-slate-300 dark:text-slate-700 text-[8px] mx-1">•</span>}
+                    <div key={idx} className="flex items-center gap-2 flex-1">
+                      <button
+                        onClick={() => setSelectedMilestone(milestone.label)}
+                        className={clsx(
+                          "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border bg-white dark:bg-surface transition-all duration-300 focus:outline-none",
+                          milestone.status === "complete"
+                            ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20"
+                            : milestone.status === "active"
+                            ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
+                            : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700",
+                          isSelected && "scale-110 ring-2 ring-primary dark:ring-accent"
+                        )}
+                      >
+                        <Icon size={11} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
+                      </button>
+                      {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
+                        <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                          <div className={clsx(
+                            "h-full transition-all duration-500",
+                            milestone.status === "complete" ? "bg-emerald-400/50 w-full" : "w-0"
+                          )} />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
              </div>
+
+             <AnimatePresence mode="wait">
+               <motion.div
+                 key={selectedMilestone}
+                 initial={{ opacity: 0, y: 4 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 exit={{ opacity: 0, y: -4 }}
+                 transition={{ duration: 0.18 }}
+                 className="text-center mt-1 text-[11px] font-bold text-slate-700 dark:text-slate-300 tracking-wide min-h-[16px]"
+               >
+                 {selectedMilestone}
+               </motion.div>
+             </AnimatePresence>
            </div>
         </div>
 
