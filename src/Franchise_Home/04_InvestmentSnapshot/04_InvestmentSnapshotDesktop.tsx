@@ -4,13 +4,13 @@ import clsx from "clsx";
 import { getCardStyles, getIconContainerStyles } from "../utils/theme";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 400, damping: 30 } },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 300, damping: 24, mass: 0.8 } },
 };
 
 const stagger = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
 };
 
 export default function InvestmentSnapshotDesktop() {
@@ -20,8 +20,9 @@ export default function InvestmentSnapshotDesktop() {
         <motion.div 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex items-center justify-center gap-3 mb-8 w-full"
           >
             <div className="flex items-center gap-1.5">
               <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
@@ -49,22 +50,30 @@ export default function InvestmentSnapshotDesktop() {
               <motion.div
                 key={stat.label}
                 variants={fadeInUp}
-                className={clsx("relative overflow-hidden rounded-lg border p-6 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(stat.intent))}
+                whileHover={{ y: -4, scale: 1.01 }}
+                className={clsx(
+                  "relative overflow-hidden rounded-lg border p-6 shadow-sm hover:shadow-md cursor-default transition-all duration-300 group z-10", 
+                  getCardStyles(stat.intent)
+                )}
               >
-                <div className="flex items-start gap-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="flex items-start gap-4 relative z-10">
                   <div
-                    className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(stat.intent))}
+                    className={clsx(
+                      "w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110", 
+                      getIconContainerStyles(stat.intent)
+                    )}
                   >
-                    <Icon size={20} strokeWidth={1.5} />
+                    <Icon size={20} strokeWidth={1.75} />
                   </div>
-                  <div>
-                    <p className="text-xs uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-1">
+                  <div className="flex flex-col justify-center">
+                    <p className="text-xs uppercase font-bold tracking-[0.15em] text-gray-500 dark:text-gray-400 mb-1 transition-colors group-hover:text-gray-700 dark:group-hover:text-gray-300">
                       {stat.label}
                     </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white leading-tight">
+                    <p className="text-2xl font-black text-gray-900 dark:text-white leading-tight tracking-tight">
                       {stat.value}
                     </p>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mt-1 leading-snug">
+                    <p className="text-[13px] font-medium text-gray-600 dark:text-gray-400 mt-1 leading-snug">
                       {stat.sublabel}
                     </p>
                   </div>
@@ -77,5 +86,3 @@ export default function InvestmentSnapshotDesktop() {
     </section>
   );
 }
-
-

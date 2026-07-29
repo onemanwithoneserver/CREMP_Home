@@ -61,9 +61,9 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
           );
         })}
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-background rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2) - 6, height: size - (strokeWidth * 2) - 6, left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-        <span className="text-xl font-black text-primary">{totalValue}</span>
-        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider mt-0.5">avg. total</span>
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-transparent rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <span className="text-2xl font-black text-primary dark:text-white">{totalValue}</span>
+        <span className="text-[11px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mt-0.5">AVG. TOTAL</span>
       </div>
 
       <AnimatePresence>
