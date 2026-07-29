@@ -9,7 +9,6 @@ export interface MediaItem {
 
 export const mediaGalleryData = {
   sectionLabel: "MEDIA GALLERY",
-  allMediaLabel: "All Media Assets",
   tabs: [
     {
       id: "brand-videos",

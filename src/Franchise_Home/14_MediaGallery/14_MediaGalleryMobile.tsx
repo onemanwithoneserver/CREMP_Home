@@ -23,7 +23,6 @@ export default function MediaGalleryMobile() {
               <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
             </div>
           </div>
-        <span className="text-primary dark:text-accent text-[10px] font-semibold cursor-pointer hover:underline">{mediaGalleryData.allMediaLabel}</span>
       </div>
       <div className="flex gap-1.5 overflow-x-auto pb-3 scrollbar-hide mb-3">
         {mediaGalleryData.tabs.map((tab) => {
