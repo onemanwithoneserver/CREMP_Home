@@ -10,6 +10,6 @@ export const founderStoryData = {
   stats: [
     { value: "187+", label: "Outlets", intent: "warning" },
     { value: "8", label: "Years in Business", intent: "info" },
-    { value: "₹1000Cr+", label: "Network Revenue", intent: "success" },
+    { value: "₹900Cr+", label: "Network Revenue", intent: "success" },
   ],
 };
