@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { getBadgeStyles, getCardStyles, getTextStyles } from "../utils/theme";
 import { numbersSpeakData } from "./data";
 
-function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
+function AnimatedCounter({ value, suffix, intent }: { value: string; suffix: string; intent?: string }) {
     const [count, setCount] = useState(0);
     const target = parseInt(value, 10);
     const ref = useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
     return (
         <div ref={ref} className="text-2xl font-black text-gray-900 dark:text-white">
             {count}
-            <span className="text-primary dark:text-accent">{suffix}</span>
+            <span className={intent ? getTextStyles(intent) : "text-primary dark:text-accent"}>{suffix}</span>
         </div>
     );
 }
@@ -78,7 +78,7 @@ export default function NumbersSpeakMobile() {
                                 </span>
                                 <Icon size={14} strokeWidth={1.5} className={clsx("shrink-0 mt-0.5", getTextStyles(stat.intent))} />
                             </div>
-                            <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                            <AnimatedCounter value={stat.value} suffix={stat.suffix} intent={stat.intent} />
                             <p className="text-gray-600 dark:text-gray-400 text-[11px] font-bold mt-1">{stat.label}</p>
                         </motion.div>
                     );

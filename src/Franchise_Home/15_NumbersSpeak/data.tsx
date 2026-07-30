@@ -13,7 +13,7 @@ export const numbersSpeakData = {
             suffix: "+",
             label: "Active Outlets",
             sublabel: "Nationwide",
-            intent: "primary",
+            intent: "pink",
             animateType: "counter" as const,
         },
         {
@@ -22,7 +22,7 @@ export const numbersSpeakData = {
             suffix: "",
             label: "Cities Covered",
             sublabel: "Tier 1, Tier 2 Cities",
-            intent: "neutral",
+            intent: "violet",
             animateType: "counter" as const,
         },
         {
