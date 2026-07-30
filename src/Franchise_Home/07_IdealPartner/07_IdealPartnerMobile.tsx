@@ -65,7 +65,7 @@ export default function IdealPartnerMobile() {
                 {idealPartnerData.additionalCriteria.map((item) => {
                     const Icon = item.icon;
                     return (
-                        <div key={item.title} className={clsx("bg-white dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-4 shadow-elevation-1 flex flex-col transition-shadow duration-300 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-elevation-2")}>
+                        <div key={item.title} className={clsx("rounded-xl border p-4 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}>
                             <div className="flex items-center gap-3 mb-3">
                                 <div className={clsx("w-8 h-8 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                     <Icon size={14} strokeWidth={1.5} />

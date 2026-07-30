@@ -96,7 +96,7 @@ export default function IdealPartnerDesktop() {
                             <motion.div
                                 key={item.title}
                                 variants={fadeInUp}
-                                className={clsx("bg-white dark:bg-surface border border-gray-200 dark:border-border p-5 rounded-xl shadow-elevation-1 cursor-default transition-shadow duration-300 flex flex-col hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-elevation-2")}
+                                className={clsx("rounded-xl border p-5 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}
                             >
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className={clsx("w-10 h-10 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>

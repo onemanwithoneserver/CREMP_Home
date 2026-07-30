@@ -25,9 +25,10 @@ export const getIconContainerStyles = (intent?: string) => {
         case 'success': return 'bg-gradient-to-br from-[#10B981] to-[#047857] text-white shadow-elevation-2 shadow-[#10B981]/40 border-none';
         case 'info': return 'bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] text-white shadow-elevation-2 shadow-[#0EA5E9]/40 border-none';
         case 'warning': return 'bg-gradient-to-br from-[#FBBF24] to-[#D97706] text-white shadow-elevation-2 shadow-[#FBBF24]/40 border-none';
-        case 'danger': return 'bg-gradient-to-br from-[#F43F5E] to-[#BE123C] text-white shadow-elevation-2 shadow-[#F43F5E]/40 border-none';
-        case 'primary': return 'bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white shadow-glow-accent border-none';
-        case 'neutral': return 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-elevation-2 shadow-[#8B5CF6]/40 border-none';
+        case 'danger': return 'bg-gradient-to-br from-[#EF4444] to-[#B91C1C] text-white shadow-elevation-2 shadow-[#EF4444]/40 border-none';
+        case 'primary': return 'bg-gradient-to-br from-[#BF953F] to-[#B38728] text-white shadow-glow-accent border-none';
+        case 'violet': return 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-elevation-2 shadow-[#8B5CF6]/40 border-none';
+        case 'pink': return 'bg-gradient-to-br from-[#EC4899] to-[#BE185D] text-white shadow-elevation-2 shadow-[#EC4899]/40 border-none';
         default: return 'bg-gradient-to-br from-gray-600 to-gray-800 text-white shadow-elevation-2 shadow-gray-700/40 border-none';
     }
 };
@@ -50,7 +51,7 @@ export const getCardStyles = (intent?: string) => {
         case 'warning': return 'bg-warning/5 border-warning/30 hover:border-warning/50 hover:bg-warning/10 text-warning hover:shadow-[0_4px_20px_rgba(199,154,23,0.15)] transition-all duration-300';
         case 'danger': return 'bg-error/5 border-error/30 hover:border-error/50 hover:bg-error/10 text-error hover:shadow-[0_4px_20px_rgba(220,38,38,0.15)] transition-all duration-300';
         case 'primary': return 'bg-primary/5 border-primary/20 hover:border-primary/40 hover:bg-primary/10 dark:bg-accent/5 dark:border-accent/30 dark:hover:border-accent/50 dark:hover:bg-accent/10 text-primary dark:text-accent hover:shadow-glow-primary dark:hover:shadow-glow-accent transition-all duration-300';
-        default: return 'bg-white dark:bg-surface border-border hover:border-gray-300 dark:hover:border-gray-500 text-gray-900 dark:text-white hover:shadow-elevation-3 transition-all duration-300';
+        default: return 'bg-white dark:bg-surface border-border border-gray-300 dark:border-gray-500 text-gray-900 dark:text-white hover:shadow-elevation-3 transition-all duration-300';
     }
 };
 
