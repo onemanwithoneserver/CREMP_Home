@@ -22,7 +22,7 @@ export const investmentSnapshotData = {
             label: "Franchise Fee",
             value: "₹5 Lakhs",
             sublabel: "One-time licensing fee",
-            intent: "warning",
+            intent: "primary",
         },
         {
             icon: Maximize2,
@@ -36,7 +36,7 @@ export const investmentSnapshotData = {
             label: "Average ROI",
             value: "28–34% p.a.",
             sublabel: "Return on total investment",
-            intent: "success",
+            intent: "violet",
         },
         {
             icon: Clock,
@@ -50,7 +50,7 @@ export const investmentSnapshotData = {
             label: "Model",
             value: "FOCO / FOFO",
             sublabel: "Franchise operating structures",
-            intent: "info",
+            intent: "pink",
         },
     ],
 };

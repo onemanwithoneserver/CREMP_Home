@@ -212,7 +212,7 @@ export default function FranchiseModelsDesktop() {
                                         {model.name}
                                     </span>
                                 </div>
-                                <span className={`text-sm font-semibold tracking-wider ${isActive ? "text-accent-light" : "text-gray-500"}`}>
+                                <span className={`text-sm font-semibold tracking-wider ${isActive ? "text-[#bf953f]" : "text-gray-500"}`}>
                                     {model.priceRange}
                                 </span>
 

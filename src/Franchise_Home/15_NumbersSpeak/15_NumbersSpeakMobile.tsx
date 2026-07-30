@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { getBadgeStyles, getCardStyles, getTextStyles } from "../utils/theme";
+import { getBadgeStyles } from "../utils/theme";
 import { numbersSpeakData } from "./data";
 
-function AnimatedCounter({ value, suffix, intent }: { value: string; suffix: string; intent?: string }) {
+function AnimatedCounter({ value, suffix }: { value: string; suffix: string; intent?: string }) {
     const [count, setCount] = useState(0);
     const target = parseInt(value, 10);
     const ref = useRef<HTMLDivElement>(null);
@@ -41,9 +41,9 @@ function AnimatedCounter({ value, suffix, intent }: { value: string; suffix: str
     }, [hasStarted, target]);
 
     return (
-        <div ref={ref} className="text-2xl font-black text-gray-900 dark:text-white">
+        <div ref={ref} className="text-2xl font-black text-current">
             {count}
-            <span className={intent ? getTextStyles(intent) : "text-primary dark:text-accent"}>{suffix}</span>
+            <span className="opacity-80">{suffix}</span>
         </div>
     );
 }
@@ -51,10 +51,10 @@ function AnimatedCounter({ value, suffix, intent }: { value: string; suffix: str
 export default function NumbersSpeakMobile() {
     return (
         <section className="w-full bg-background px-4 py-8">
-            <div className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-5 mb-6 flex flex-col items-start shadow-elevation-1">
-                <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2">{numbersSpeakData.title}</h2>
-                <p className="text-gray-600 dark:text-gray-400 text-[13px] mb-3">{numbersSpeakData.subtitle}</p>
-                <span className="text-primary dark:text-accent text-xs font-bold cursor-pointer hover:underline flex items-center gap-1 mt-auto">
+            <div className="bg-gray-900 dark:bg-surface border border-gray-800 dark:border-border rounded-lg p-5 mb-6 flex flex-col items-start shadow-elevation-2">
+                <h2 className="text-xl font-black text-white mb-2">{numbersSpeakData.title}</h2>
+                <p className="text-gray-300 text-[13px] mb-3">{numbersSpeakData.subtitle}</p>
+                <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-sm font-bold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-auto">
                     ↗ {numbersSpeakData.verifiedLabel}
                 </span>
             </div>
@@ -68,18 +68,18 @@ export default function NumbersSpeakMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.05 }}
-                            className={clsx("rounded-[4px] border p-4 cursor-default transition-all duration-300", getCardStyles(stat.intent))}
+                            className={clsx("rounded-[4px] border p-4 cursor-default transition-all duration-300", getBadgeStyles(stat.intent))}
                         >
                             <div className="flex items-start justify-between gap-2 mb-3">
                                 <span
-                                    className={clsx("text-[8px] font-bold uppercase tracking-wide px-2 py-1 rounded-[2px] leading-tight text-left", getBadgeStyles(stat.intent))}
+                                    className="text-[8px] font-bold uppercase tracking-wide px-2 py-1 rounded-[2px] leading-tight text-left bg-white/40 dark:bg-black/20 text-current shadow-sm"
                                 >
                                     {stat.sublabel}
                                 </span>
-                                <Icon size={14} strokeWidth={1.5} className={clsx("shrink-0 mt-0.5", getTextStyles(stat.intent))} />
+                                <Icon size={14} strokeWidth={1.5} className="shrink-0 mt-0.5 opacity-80" />
                             </div>
                             <AnimatedCounter value={stat.value} suffix={stat.suffix} intent={stat.intent} />
-                            <p className="text-gray-600 dark:text-gray-400 text-[11px] font-bold mt-1">{stat.label}</p>
+                            <p className="text-[11px] font-bold mt-1 opacity-90">{stat.label}</p>
                         </motion.div>
                     );
                 })}

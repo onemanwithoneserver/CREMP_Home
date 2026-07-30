@@ -7,6 +7,7 @@ export const getBadgeStyles = (intent?: string) => {
         case 'primary': return 'bg-primary/10 text-primary border border-primary/20 dark:bg-accent/10 dark:text-accent dark:border-accent/30 shadow-[0_0_10px_rgba(var(--color-accent),0.1)]';
         case 'violet': return 'bg-purple-500/10 text-purple-600 border border-purple-500/20 shadow-sm';
         case 'pink': return 'bg-pink-500/10 text-pink-600 border border-pink-500/20 shadow-sm';
+        case 'orange': return 'bg-orange-500/10 text-orange-600 border border-orange-500/20 shadow-sm';
         default: return 'bg-gray-100 text-gray-600 border border-gray-200 dark:bg-surface-alt dark:text-gray-400 dark:border-border shadow-sm';
     }
 };
@@ -20,6 +21,7 @@ export const getIconStyles = (intent?: string) => {
         case 'primary': return 'text-primary dark:text-accent drop-shadow-sm';
         case 'violet': return 'text-purple-600 drop-shadow-sm';
         case 'pink': return 'text-pink-600 drop-shadow-sm';
+        case 'orange': return 'text-orange-600 drop-shadow-sm';
         default: return 'text-gray-500 dark:text-gray-400';
     }
 };
@@ -33,6 +35,7 @@ export const getIconContainerStyles = (intent?: string) => {
         case 'primary': return 'bg-gradient-to-br from-[#BF953F] to-[#B38728] text-white shadow-glow-accent border-none';
         case 'violet': return 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-elevation-2 shadow-[#8B5CF6]/40 border-none';
         case 'pink': return 'bg-gradient-to-br from-[#EC4899] to-[#BE185D] text-white shadow-elevation-2 shadow-[#EC4899]/40 border-none';
+        case 'orange': return 'bg-gradient-to-br from-[#F97316] to-[#C2410C] text-white shadow-elevation-2 shadow-[#F97316]/40 border-none';
         default: return 'bg-gradient-to-br from-gray-600 to-gray-800 text-white shadow-elevation-2 shadow-gray-700/40 border-none';
     }
 };
@@ -46,6 +49,7 @@ export const getBorderStyles = (intent?: string) => {
         case 'primary': return 'border-primary/30 hover:border-primary/60 hover:shadow-glow-primary dark:border-accent/30 dark:hover:border-accent/60 dark:hover:shadow-glow-accent transition-all duration-300';
         case 'violet': return 'border-purple-500/30 hover:border-purple-500/60 hover:shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300';
         case 'pink': return 'border-pink-500/30 hover:border-pink-500/60 hover:shadow-[0_0_15px_rgba(236,72,153,0.2)] transition-all duration-300';
+        case 'orange': return 'border-orange-500/30 hover:border-orange-500/60 hover:shadow-[0_0_15px_rgba(249,115,22,0.2)] transition-all duration-300';
         default: return 'border-border hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300';
     }
 };
@@ -59,6 +63,7 @@ export const getCardStyles = (intent?: string) => {
         case 'primary': return 'bg-white dark:bg-surface border-primary/20 hover:border-primary/40 hover:bg-primary/5 dark:border-accent/30 dark:hover:border-accent/50 dark:hover:bg-accent/5 text-primary dark:text-accent hover:shadow-glow-primary dark:hover:shadow-glow-accent transition-all duration-300';
         case 'violet': return 'bg-white dark:bg-surface border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/5 text-purple-600 hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] transition-all duration-300';
         case 'pink': return 'bg-white dark:bg-surface border-pink-500/30 hover:border-pink-500/50 hover:bg-pink-500/5 text-pink-600 hover:shadow-[0_4px_20px_rgba(236,72,153,0.15)] transition-all duration-300';
+        case 'orange': return 'bg-white dark:bg-surface border-orange-500/30 hover:border-orange-500/50 hover:bg-orange-500/5 text-orange-600 hover:shadow-[0_4px_20px_rgba(249,115,22,0.15)] transition-all duration-300';
         default: return 'bg-white dark:bg-surface border-border border-gray-300 dark:border-gray-500 text-gray-900 dark:text-white hover:shadow-elevation-3 transition-all duration-300';
     }
 };
@@ -72,6 +77,7 @@ export const getTextStyles = (intent?: string) => {
         case 'primary': return 'text-primary dark:text-accent font-semibold';
         case 'violet': return 'text-purple-600 font-semibold';
         case 'pink': return 'text-pink-600 font-semibold';
+        case 'orange': return 'text-orange-600 font-semibold';
         default: return 'text-gray-900 dark:text-white';
     }
 };
@@ -85,6 +91,7 @@ export const getSolidBgStyles = (intent?: string) => {
         case 'primary': return 'bg-primary dark:bg-accent shadow-glow-primary dark:shadow-glow-accent';
         case 'violet': return 'bg-purple-600 shadow-lg shadow-purple-500/30';
         case 'pink': return 'bg-pink-600 shadow-lg shadow-pink-500/30';
+        case 'orange': return 'bg-orange-600 shadow-lg shadow-orange-500/30';
         default: return 'bg-gray-500 shadow-elevation-2';
     }
 };

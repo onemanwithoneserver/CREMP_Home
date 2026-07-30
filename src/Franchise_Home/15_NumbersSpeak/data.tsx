@@ -31,7 +31,7 @@ export const numbersSpeakData = {
             suffix: "",
             label: "Years in Business",
             sublabel: "Since 2016",
-            intent: "danger",
+            intent: "orange",
             animateType: "counter" as const,
         },
         {
