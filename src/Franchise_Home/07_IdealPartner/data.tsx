@@ -62,7 +62,7 @@ export const idealPartnerData = {
             items: ["GST Registered", "FSSAI License"],
             description:
                 "Must have standard certificates/local municipality. credit rating check.",
-            intent: "neutral",
+            intent: "violet",
         },
         {
             icon: Users,
