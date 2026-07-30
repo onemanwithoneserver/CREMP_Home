@@ -29,7 +29,7 @@ export default function RevenueROIMobile() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className={clsx("shrink-0 w-[240px] rounded-[4px] border p-5 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(card.intent))}
+                            className={clsx("shrink-0 w-[240px] rounded-[4px] border p-5 cursor-default transition-all duration-300", getCardStyles(card.intent))}
                         >
                             <div className="flex items-start justify-between gap-2 mb-3">
                                 <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{card.year}</span>
@@ -53,7 +53,7 @@ export default function RevenueROIMobile() {
                     );
                 })}
             </div>
-            <div className="bg-white dark:bg-surface border border-border rounded p-5 shadow-sm hover-lift">
+            <div className="bg-white dark:bg-surface border border-border rounded p-5 shadow-elevation-1 transition-shadow duration-300 hover:shadow-elevation-2">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
                     {revenueROIData.paybackPeriod.sectionLabel}
                 </p>

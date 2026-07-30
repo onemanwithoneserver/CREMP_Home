@@ -44,12 +44,12 @@ export default function InvestmentSnapshotMobile() {
                             key={stat.label}
                             variants={item}
                             className={clsx(
-                                "flex flex-col relative z-10 p-3.5 rounded-xl border shadow-sm",
+                                "flex flex-col relative z-10 p-3.5 rounded-xl border transition-all duration-300",
                                 getCardStyles(stat.intent)
                             )}
                         >
                             <div className="flex items-center gap-3 mb-2">
-                                <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm", getIconContainerStyles(stat.intent))}>
+                                <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0", getIconContainerStyles(stat.intent))}>
                                     <Icon size={14} strokeWidth={1.75} />
                                 </div>
                                 <p className="text-[9px] uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 line-clamp-2">

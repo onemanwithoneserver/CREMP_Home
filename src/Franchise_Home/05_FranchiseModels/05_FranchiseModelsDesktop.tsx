@@ -196,8 +196,8 @@ export default function FranchiseModelsDesktop() {
                                 key={model.id}
                                 onClick={() => setActiveModel(model.id)}
                                 className={`relative flex-1 flex flex-col items-center justify-center text-center px-2 py-2 w-1/2 rounded-xl border transition-all duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
-                                        ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 scale-[1.02] z-10"
-                                        : "bg-surface border-transparent hover:border-accent/50 shadow-sm"
+                                        ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-glow-accent scale-[1.02] z-10"
+                                        : "bg-surface border-transparent hover:border-accent/50 shadow-elevation-1 hover:shadow-elevation-2"
                                     }`}
                             >
                                 <div className="flex items-center gap-3 mb-2">
@@ -244,7 +244,7 @@ export default function FranchiseModelsDesktop() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.4, type: "spring" }}
-                            className="bg-surface-alt rounded-2xl border-none p-6 flex flex-col shadow-lg backdrop-blur-sm relative overflow-hidden"
+                            className="bg-surface-alt rounded-2xl border-none p-6 flex flex-col shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300 backdrop-blur-sm relative overflow-hidden"
                         >
                             <div className="absolute right-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
@@ -334,7 +334,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
 
                 <div className="col-span-12 lg:col-span-4 lg:row-span-2 h-full relative z-10">
-                    <div className="bg-surface-alt rounded-2xl border-none px-4 pb-4 shadow-lg h-auto flex flex-col relative overflow-hidden backdrop-blur-sm">
+                    <div className="bg-surface-alt rounded-2xl border-none px-4 pb-4 shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300 h-auto flex flex-col relative overflow-hidden backdrop-blur-sm">
                         <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
                         <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
@@ -350,9 +350,9 @@ export default function FranchiseModelsDesktop() {
                                     <div
                                         key={card.year}
                                         className={clsx(
-                                            "rounded-xl border-none p-4 shadow-sm",
+                                            "rounded-xl border-none p-4",
                                             "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
-                                            "hover:-translate-y-0.5 hover:shadow-md",
+                                            "hover:-translate-y-0.5",
                                             "cursor-default transition-all duration-300",
                                             getCardStyles(card.intent)
                                         )}
@@ -400,7 +400,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
 
                 <div className="col-span-12 lg:col-span-8 relative z-10 h-full">
-                    <div className="w-full h-full bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-6 pb-6 shadow-sm flex flex-col justify-between">
+                    <div className="w-full h-full bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-6 pb-6 shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300 flex flex-col justify-between">
                         <div className="flex items-center justify-between">
                             <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d4af37]">
                                 {revenueROIData.paybackPeriod.sectionLabel}

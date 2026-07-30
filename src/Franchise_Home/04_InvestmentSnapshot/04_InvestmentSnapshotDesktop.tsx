@@ -52,7 +52,7 @@ export default function InvestmentSnapshotDesktop() {
                                 variants={fadeInUp}
                                 whileHover={{ y: -4, scale: 1.01 }}
                                 className={clsx(
-                                    "relative overflow-hidden rounded-lg border p-6 shadow-sm hover:shadow-md cursor-default transition-all duration-300 group z-10",
+                                    "relative overflow-hidden rounded-lg border p-6 cursor-default transition-all duration-300 group z-10",
                                     getCardStyles(stat.intent)
                                 )}
                             >

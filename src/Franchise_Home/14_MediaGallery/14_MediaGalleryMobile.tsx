@@ -30,7 +30,7 @@ export default function MediaGalleryMobile() {
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`flex items-center gap-1 px-3 py-1.5 rounded-[4px] text-[10px] font-bold whitespace-nowrap shrink-0 transition-all shadow-sm ${isActive
+                            className={`flex items-center gap-1 px-3 py-1.5 rounded-[4px] text-[10px] font-bold whitespace-nowrap shrink-0 transition-all shadow-elevation-1 ${isActive
                                     ? "bg-primary text-white"
                                     : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50"
                                 }`}
@@ -49,7 +49,7 @@ export default function MediaGalleryMobile() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.05 }}
-                        className="shrink-0 w-[160px] aspect-[4/3] rounded-[4px] overflow-hidden border border-transparent shadow-sm relative hover-lift"
+                        className="shrink-0 w-[160px] aspect-[4/3] rounded-[4px] overflow-hidden border border-transparent shadow-elevation-1 relative transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2"
                     >
                         <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

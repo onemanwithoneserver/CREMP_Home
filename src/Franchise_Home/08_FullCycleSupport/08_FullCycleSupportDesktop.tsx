@@ -53,7 +53,7 @@ export default function FullCycleSupportDesktop() {
                             <motion.div
                                 key={item.title}
                                 variants={fadeInUp}
-                                className="bg-white dark:bg-surface border border-border rounded-lg p-5 text-center hover-lift cursor-pointer group transition-colors shadow-sm"
+                                className="bg-white dark:bg-surface border border-border rounded-lg p-5 text-center cursor-pointer group transition-all duration-300 shadow-elevation-1 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-gray-300 dark:hover:border-gray-600"
                             >
                                 <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors", item.colorClass)}>
                                     <Icon size={20} strokeWidth={1.5} />

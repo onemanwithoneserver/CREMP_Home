@@ -47,7 +47,7 @@ export default function LeadershipDesktop() {
                         <motion.div
                             key={member.name}
                             variants={fadeInUp}
-                            className={clsx("overflow-hidden rounded-lg border shadow-sm hover-lift cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
+                            className={clsx("overflow-hidden rounded-lg border cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
                         >
                             <div className="relative h-64 overflow-hidden">
                                 <img

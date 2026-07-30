@@ -53,8 +53,8 @@ export default function JourneyTimelineDesktop() {
                             >
                                 <div className={`flex-1 ${idx % 2 === 0 ? "text-right" : "text-left"}`}>
                                     <div
-                                        className={`inline-block border rounded-lg p-7 max-w-sm hover-lift cursor-default transition-all duration-500 shadow-sm relative overflow-hidden ${milestone.isActive
-                                                ? "bg-[#0a1128] border-[#d4af37] shadow-lg shadow-[#d4af37]/10 ring-1 ring-[#d4af37]/20"
+                                        className={`inline-block border rounded-lg p-7 max-w-sm cursor-default transition-all duration-500 shadow-elevation-1 hover:-translate-y-1 hover:shadow-elevation-2 relative overflow-hidden ${milestone.isActive
+                                                ? "bg-[#0a1128] border-[#d4af37] shadow-glow-accent ring-1 ring-[#d4af37]/20"
                                                 : "bg-surface-alt border-white/5 hover:border-white/10"
                                             }`}
                                     >

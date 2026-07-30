@@ -73,8 +73,8 @@ export default function FAQDesktop() {
                                     setExpandedId(null);
                                 }}
                                 className={`px-5 py-2.5 rounded-[4px] text-sm font-bold transition-all duration-300 ${activeTab === tab.id
-                                        ? "bg-primary text-white shadow-sm"
-                                        : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-primary dark:hover:text-accent shadow-sm"
+                                        ? "bg-primary text-white shadow-elevation-1"
+                                        : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-primary dark:hover:text-accent shadow-elevation-1 hover:shadow-elevation-2"
                                     }`}
                             >
                                 {tab.label}
@@ -91,7 +91,7 @@ export default function FAQDesktop() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
                                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                                    className={`bg-white dark:bg-surface border-[0.5px] rounded-lg overflow-hidden transition-colors duration-300 ${expandedId === q.id ? "border-primary-[5px] dark:border-accent shadow-sm" : "border-border shadow-sm hover:border-border-light"
+                                    className={`bg-white dark:bg-surface border-[0.5px] rounded-lg overflow-hidden transition-all duration-300 ${expandedId === q.id ? "border-primary-[5px] dark:border-accent shadow-elevation-2" : "border-border shadow-elevation-1 hover:shadow-elevation-2 hover:border-border-light"
                                         }`}
                                 >
                                     <button

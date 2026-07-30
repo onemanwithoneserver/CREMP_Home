@@ -204,8 +204,8 @@ export default function FranchiseModelsMobile() {
                                 key={model.id}
                                 onClick={() => setActiveModel(model.id)}
                                 className={`shrink-0 flex flex-col items-center justify-center text-center px-2 py-2 rounded border transition-colors duration-300 w-[85px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${isActive
-                                        ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-lg shadow-accent/20 -translate-y-1"
-                                        : "bg-surface border-transparent shadow-sm"
+                                        ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-glow-accent -translate-y-1"
+                                        : "bg-surface border-transparent shadow-elevation-1"
                                     }`}
                             >
                                 <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-white/10" : "bg-surface-alt"
@@ -235,7 +235,7 @@ export default function FranchiseModelsMobile() {
 
             <div className="flex flex-col gap-4">
 
-                <div className="bg-surface rounded border-none p-4 flex flex-col items-center justify-center shadow-sm">
+                <div className="bg-surface rounded border-none p-4 flex flex-col items-center justify-center shadow-elevation-1">
                     <div className="w-full flex justify-end mb-4 z-50">
                         <div className="w-40">
                             <Dropdown
@@ -287,7 +287,7 @@ export default function FranchiseModelsMobile() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 10 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-surface-alt rounded border-none p-5 flex flex-col shadow-sm"
+                        className="bg-surface-alt rounded border-none p-5 flex flex-col shadow-elevation-1"
                     >
                         <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
@@ -349,7 +349,7 @@ export default function FranchiseModelsMobile() {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="bg-surface rounded border-none p-5 shadow-sm flex flex-col gap-4">
+                <div className="bg-surface rounded border-none p-5 shadow-elevation-1 flex flex-col gap-4">
                     <div className="flex items-center justify-between pb-3 border-b border-border">
                         <span className="text-xs uppercase font-bold tracking-widest text-primary dark:text-white font-black">
                             {revenueROIData.sectionLabel}
@@ -363,7 +363,7 @@ export default function FranchiseModelsMobile() {
                                 <div
                                     key={card.year}
                                     className={clsx(
-                                        "rounded-xl border-none p-3 shadow-xs",
+                                        "rounded-xl border-none p-3",
                                         "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
                                         getCardStyles(card.intent)
                                     )}

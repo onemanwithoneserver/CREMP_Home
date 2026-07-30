@@ -32,7 +32,7 @@ export default function FullCycleSupportMobile() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.04 }}
-                            className="bg-white dark:bg-surface border border-border rounded-lg p-4 text-center hover-lift shadow-sm flex flex-col items-center justify-center cursor-pointer"
+                            className="bg-white dark:bg-surface border border-border rounded-lg p-4 text-center flex flex-col items-center justify-center cursor-pointer transition-all duration-300 shadow-elevation-1 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-gray-300 dark:hover:border-gray-600"
                         >
                             <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3", item.colorClass)}>
                                 <Icon size={16} strokeWidth={1.5} />

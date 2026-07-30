@@ -45,7 +45,7 @@ export default function MediaGalleryDesktop() {
                                 onClick={() => setActiveTab(tab.id)}
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.97 }}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-bold whitespace-nowrap transition-all shadow-sm ${isActive
+                                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-bold whitespace-nowrap transition-all shadow-elevation-1 ${isActive
                                         ? "bg-primary text-white"
                                         : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-primary dark:hover:text-accent hover:shadow"
                                     }`}
@@ -68,7 +68,7 @@ export default function MediaGalleryDesktop() {
                             key={item.id}
                             variants={fadeInUp}
                             whileHover={{ y: -4 }}
-                            className="relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer shadow-sm hover-lift border border-transparent"
+                            className="relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer shadow-elevation-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/50 border border-transparent"
                         >
                             <img
                                 src={item.src}

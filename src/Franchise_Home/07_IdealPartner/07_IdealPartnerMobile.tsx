@@ -6,7 +6,7 @@ import { idealPartnerData } from "./data";
 export default function IdealPartnerMobile() {
     return (
         <section className="w-full bg-background px-4 py-8">
-            <div className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded p-6 mb-6 text-center shadow-sm">
+            <div className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded p-6 mb-6 text-center shadow-elevation-1">
                 <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full">
                     <div className="flex items-center gap-1.5">
                         <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
@@ -33,7 +33,7 @@ export default function IdealPartnerMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className={clsx("rounded-xl border p-5 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}
+                            className={clsx("rounded-xl border p-5 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}
                         >
                             <div className="flex items-center gap-4 mb-4 border-b border-gray-100 dark:border-border pb-3">
                                 <div className={clsx("w-10 h-10 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
@@ -65,7 +65,7 @@ export default function IdealPartnerMobile() {
                 {idealPartnerData.additionalCriteria.map((item) => {
                     const Icon = item.icon;
                     return (
-                        <div key={item.title} className={clsx("bg-white dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-4 shadow-sm flex flex-col hover-lift transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-600")}>
+                        <div key={item.title} className={clsx("bg-white dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-4 shadow-elevation-1 flex flex-col transition-shadow duration-300 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-elevation-2")}>
                             <div className="flex items-center gap-3 mb-3">
                                 <div className={clsx("w-8 h-8 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                     <Icon size={14} strokeWidth={1.5} />

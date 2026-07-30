@@ -29,7 +29,7 @@ export default function MissionVisionMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className={clsx("rounded-[4px] border p-6 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles())}
+                            className={clsx("rounded-[4px] border p-6 cursor-default transition-all duration-300", getCardStyles())}
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>

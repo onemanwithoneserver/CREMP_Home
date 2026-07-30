@@ -24,7 +24,7 @@ export default function FranchiseNetworkMobile() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={clsx("overflow-hidden rounded-[4px] border shadow-sm flex flex-col transition-all duration-300", getCardStyles())}
+                className={clsx("overflow-hidden rounded-[4px] border flex flex-col transition-all duration-300", getCardStyles())}
             >
                 <div className="w-full h-[220px] bg-gray-50 dark:bg-surface-alt flex items-center justify-center relative border-b border-border">
                     <div className="absolute inset-0 opacity-20">
@@ -69,7 +69,7 @@ export default function FranchiseNetworkMobile() {
                         ))}
                     </div>
                     <div className="space-y-3">
-                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-sm">
+                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-elevation-1 hover:shadow-elevation-2 transition-shadow">
                             {franchiseNetworkData.cta.primary}
                         </button>
                         <button className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-xs font-bold rounded">

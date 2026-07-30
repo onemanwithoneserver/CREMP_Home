@@ -77,7 +77,7 @@ export default function FAQMobile() {
                             setExpandedId(null);
                         }}
                         className={`px-5 py-2.5 rounded-[4px] text-xs font-bold transition-all duration-300 whitespace-nowrap snap-start shrink-0 ${activeTab === tab.id
-                                ? "bg-primary text-white shadow-sm"
+                                ? "bg-primary text-white shadow-elevation-1"
                                 : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50"
                             }`}
                     >
@@ -96,7 +96,7 @@ export default function FAQMobile() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
-                            className={`bg-white dark:bg-surface border-[0.5px] rounded-[4px] overflow-hidden transition-colors duration-300 ${expandedId === q.id ? "border-primary-[2px] dark:border-accent shadow-sm" : "border-border shadow-sm"
+                            className={`bg-white dark:bg-surface border-[0.5px] rounded-[4px] overflow-hidden transition-all duration-300 ${expandedId === q.id ? "border-primary-[2px] dark:border-accent shadow-elevation-2" : "border-border shadow-elevation-1"
                                 }`}
                         >
                             <button

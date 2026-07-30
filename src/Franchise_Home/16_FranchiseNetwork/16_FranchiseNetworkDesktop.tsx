@@ -30,7 +30,7 @@ export default function FranchiseNetworkDesktop() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white dark:bg-surface border border-border rounded-lg overflow-hidden shadow-sm flex"
+                    className="bg-white dark:bg-surface border border-border rounded-lg overflow-hidden shadow-elevation-2 flex"
                 >
                     <div className="flex-1 relative min-h-[440px] bg-gray-50 dark:bg-surface-alt p-8 flex flex-col">
                         <div className="flex items-center gap-2 mb-2">
@@ -41,7 +41,7 @@ export default function FranchiseNetworkDesktop() {
                         <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 font-medium">
                             {franchiseNetworkData.outletCount}
                         </p>
-                        <div className="w-full flex-1 rounded-lg bg-white dark:bg-background border border-border flex items-center justify-center relative overflow-hidden shadow-sm">
+                        <div className="w-full flex-1 rounded-lg bg-white dark:bg-background border border-border flex items-center justify-center relative overflow-hidden shadow-elevation-1">
                             <div className="absolute inset-0 opacity-20">
                                 <svg viewBox="0 0 400 500" className="w-full h-full">
                                     <path

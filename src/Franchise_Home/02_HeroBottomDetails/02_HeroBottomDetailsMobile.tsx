@@ -64,7 +64,7 @@ export default function HeroBottomDetailsMobile() {
                     className="grid grid-cols-2 gap-4"
                 >
                     {heroDetailsData.partnerFeatures.map((feature, i) => (
-                        <motion.div variants={innerItem} key={i} className="flex flex-col items-center text-center gap-2.5 group bg-white dark:bg-surface-alt p-3.5 rounded-xl border shadow-sm">
+                        <motion.div variants={innerItem} key={i} className="flex flex-col items-center text-center gap-2.5 group bg-white dark:bg-surface-alt p-3.5 rounded-xl border border-gray-100 dark:border-white/5 shadow-elevation-1 transition-shadow duration-300 hover:shadow-elevation-2">
                             <motion.div
                                 whileTap={{ scale: 0.9 }}
                                 className={clsx(
@@ -108,7 +108,7 @@ export default function HeroBottomDetailsMobile() {
                             variants={innerItem}
                             whileTap={{ scale: 0.98, x: 2 }}
                             key={i}
-                            className="flex gap-3 items-center bg-gray-50/80 dark:bg-surface-alt/50 p-3 rounded-lg border border-gray-100 dark:border-white/5 shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-colors active:border-primary/30"
+                            className="flex gap-3 items-center bg-gray-50/80 dark:bg-surface-alt/50 p-3 rounded-lg border border-gray-100 dark:border-white/5 shadow-elevation-1 transition-all duration-300 active:border-primary/30 hover:shadow-elevation-2"
                         >
                             <div className={clsx(
                                 "w-9 h-9 rounded-full flex items-center justify-center shrink-0 border border-white/50 dark:border-white/10 shadow-sm",
@@ -130,7 +130,7 @@ export default function HeroBottomDetailsMobile() {
 
                 <motion.button
                     whileTap={{ scale: 0.96 }}
-                    className="w-3/5 mx-auto py-3.5 bg-primary text-white dark:text-[#0b162c] rounded-lg text-[13px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 relative overflow-hidden group"
+                    className="w-3/5 mx-auto py-3.5 bg-primary text-white dark:text-[#0b162c] rounded-lg text-[13px] font-bold shadow-glow-primary flex items-center justify-center gap-2 relative overflow-hidden group"
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full animate-[shimmer_2s_infinite] skew-x-12" />
                     <span className="relative z-10 flex items-center gap-2">
@@ -164,7 +164,7 @@ export default function HeroBottomDetailsMobile() {
                             variants={innerItem}
                             whileTap={{ scale: 0.92 }}
                             key={loc}
-                            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50/80 dark:bg-surface-alt/80 shadow-xs transition-colors active:border-accent/40 active:bg-white dark:active:bg-surface"
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50/80 dark:bg-surface-alt/80 shadow-elevation-1 transition-all duration-300 hover:shadow-elevation-2 active:border-accent/40 active:bg-white dark:active:bg-surface"
                         >
                             <span className="text-[10px] font-bold text-gray-700 dark:text-gray-200">{loc}</span>
                         </motion.div>

@@ -49,7 +49,7 @@ export default function MissionVisionDesktop() {
                             <motion.div
                                 key={card.label}
                                 variants={fadeInUp}
-                                className={clsx("rounded-lg border p-8 hover-lift cursor-default shadow-sm transition-all duration-300 flex flex-col", getCardStyles())}
+                                className={clsx("rounded-lg border p-8 cursor-default transition-all duration-300 flex flex-col", getCardStyles())}
                             >
                                 <div className="flex items-center gap-4 mb-5">
                                     <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>

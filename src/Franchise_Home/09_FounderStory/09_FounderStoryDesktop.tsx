@@ -31,7 +31,7 @@ export default function FounderStoryDesktop() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-[#0a1128] border border-[#2a2d45] rounded-lg p-10 flex gap-10 shadow-xl"
+                    className="bg-[#0a1128] border border-[#2a2d45] rounded-lg p-10 flex gap-10 shadow-elevation-3"
                 >
                     <div className="flex-1">
                         <Quote size={40} strokeWidth={1.5} className="text-[#d4af37] mb-6" />
@@ -59,7 +59,7 @@ export default function FounderStoryDesktop() {
                             return (
                                 <motion.div
                                     key={stat.label}
-                                    className="bg-[#121c33] border border-white/10 rounded-lg p-4 text-center hover-lift cursor-default transition-colors shadow-md"
+                                    className="bg-[#121c33] border border-white/10 rounded-lg p-4 text-center cursor-default transition-all duration-300 shadow-elevation-1 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/30"
                                 >
                                     <p className={clsx("text-3xl font-black mb-1", getTextStyles(stat.intent))}>
                                         {stat.value}

@@ -51,7 +51,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string }) {
 export default function NumbersSpeakMobile() {
     return (
         <section className="w-full bg-background px-4 py-8">
-            <div className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-5 mb-6 flex flex-col items-start shadow-sm">
+            <div className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-5 mb-6 flex flex-col items-start shadow-elevation-1">
                 <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2">{numbersSpeakData.title}</h2>
                 <p className="text-gray-600 dark:text-gray-400 text-[13px] mb-3">{numbersSpeakData.subtitle}</p>
                 <span className="text-primary dark:text-accent text-xs font-bold cursor-pointer hover:underline flex items-center gap-1 mt-auto">
@@ -68,7 +68,7 @@ export default function NumbersSpeakMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.05 }}
-                            className={clsx("rounded-[4px] border p-4 shadow-sm hover-lift cursor-default transition-all duration-300", getCardStyles(stat.intent))}
+                            className={clsx("rounded-[4px] border p-4 cursor-default transition-all duration-300", getCardStyles(stat.intent))}
                         >
                             <div className="flex items-start justify-between gap-2 mb-3">
                                 <span

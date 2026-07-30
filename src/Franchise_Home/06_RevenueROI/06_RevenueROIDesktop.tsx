@@ -52,9 +52,9 @@ export default function RevenueROIDesktop() {
                                 key={card.year}
                                 variants={fadeInUp}
                                 className={clsx(
-                                    "rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm",
+                                    "rounded-xl border-none p-6",
                                     "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
-                                    "hover:-translate-y-1 hover:shadow-lg hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40",
+                                    "hover:-translate-y-1",
                                     "cursor-default transition-all duration-300",
                                     getCardStyles(card.intent)
                                 )}
@@ -103,7 +103,7 @@ export default function RevenueROIDesktop() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white dark:bg-[#0b162c]/60 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+                    className="bg-white dark:bg-[#0b162c]/60 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300"
                 >
                     <div className="mb-8">
                         <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">

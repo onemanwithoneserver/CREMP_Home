@@ -29,7 +29,7 @@ export default function ProvenPlaybookMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className={clsx("rounded-lg border p-5 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
+                            className={clsx("rounded-lg border p-5 cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
                         >
                             <div className="flex items-center gap-3 mb-3">
                                 <div

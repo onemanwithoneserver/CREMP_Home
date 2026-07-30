@@ -51,7 +51,7 @@ export default function HeroBottomDetailsDesktop() {
 
                     <motion.div
                         variants={item}
-                        className="group relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col justify-center flex-1 overflow-hidden transition-all duration-500 hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1"
+                        className="group relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-elevation-2 transition-all duration-500 hover:shadow-elevation-3 dark:hover:shadow-glow-primary hover:-translate-y-1 flex flex-col justify-center flex-1 overflow-hidden"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -111,7 +111,7 @@ export default function HeroBottomDetailsDesktop() {
 
                     <motion.div
                         variants={item}
-                        className="group relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col overflow-hidden transition-all duration-500 hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1"
+                        className="group relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-elevation-2 flex flex-col overflow-hidden transition-all duration-500 hover:shadow-elevation-3 dark:hover:shadow-glow-primary hover:-translate-y-1"
                     >
                         <div className="absolute -right-10 -top-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors duration-500" />
 
@@ -160,7 +160,7 @@ export default function HeroBottomDetailsDesktop() {
 
                 <motion.div
                     variants={item}
-                    className="col-span-12 lg:col-span-5 bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex flex-col justify-between h-full transition-all duration-500 hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 relative overflow-hidden"
+                    className="col-span-12 lg:col-span-5 bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-elevation-2 flex flex-col justify-between h-full transition-all duration-500 hover:shadow-elevation-3 dark:hover:shadow-glow-primary hover:-translate-y-1 relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-tl from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -198,7 +198,7 @@ export default function HeroBottomDetailsDesktop() {
                     <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-lg text-[14px] font-bold shadow-lg shadow-primary/25 flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
+                        className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-lg text-[14px] font-bold shadow-glow-primary flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
                         <span className="relative z-10 flex items-center gap-2">
@@ -217,7 +217,7 @@ export default function HeroBottomDetailsDesktop() {
 
             <motion.div
                 variants={item}
-                className="w-full bg-gradient-to-r from-primary via-primary-light to-primary rounded-xl py-7 px-6 shadow-xl shadow-primary/10 flex items-center justify-between text-white mt-2 relative overflow-hidden"
+                className="w-full bg-gradient-to-r from-primary via-primary-light to-primary rounded-xl py-7 px-6 shadow-glow-primary flex items-center justify-between text-white mt-2 relative overflow-hidden"
             >
                 <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
                 <motion.div

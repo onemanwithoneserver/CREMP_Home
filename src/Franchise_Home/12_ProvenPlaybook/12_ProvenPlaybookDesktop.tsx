@@ -49,7 +49,7 @@ export default function ProvenPlaybookDesktop() {
                             <motion.div
                                 key={card.title}
                                 variants={fadeInUp}
-                                className={clsx("rounded-lg border p-6 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
+                                className={clsx("rounded-lg border p-6 cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
                             >
                                 <div className="flex items-center gap-4 mb-3">
                                     <div

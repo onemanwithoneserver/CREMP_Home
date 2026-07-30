@@ -66,7 +66,7 @@ export default function NumbersSpeakDesktop() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-8 mb-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between"
+                    className="bg-primary/5 dark:bg-accent/5 border border-primary/10 dark:border-accent/10 rounded-lg p-8 mb-8 shadow-elevation-1 flex flex-col md:flex-row items-start md:items-center justify-between"
                 >
                     <div>
                         <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">
@@ -94,7 +94,7 @@ export default function NumbersSpeakDesktop() {
                             <motion.div
                                 key={stat.label}
                                 variants={fadeInUp}
-                                className={clsx("rounded-lg border p-6 shadow-sm hover-lift cursor-default transition-all duration-300 flex flex-col", getCardStyles(stat.intent))}
+                                className={clsx("rounded-lg border p-6 cursor-default transition-all duration-300 flex flex-col", getCardStyles(stat.intent))}
                             >
                                 <div className="flex items-center justify-between mb-4">
                                     <span

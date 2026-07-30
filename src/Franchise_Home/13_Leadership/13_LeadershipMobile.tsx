@@ -27,7 +27,7 @@ export default function LeadershipMobile() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className={clsx("overflow-hidden rounded-[4px] border shadow-sm hover-lift transition-all duration-300", getCardStyles())}
+                        className={clsx("overflow-hidden rounded-[4px] border transition-all duration-300", getCardStyles())}
                     >
                         <div className="relative h-48 overflow-hidden">
                             <img
