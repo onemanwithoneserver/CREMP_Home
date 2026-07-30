@@ -7,7 +7,7 @@ interface SectionHeaderProps {
     align?: "left" | "center";
 }
 
-export function SectionHeader({ title, subtitle, overline, align = "left" }: SectionHeaderProps) {
+export function SectionHeader({ title, overline, align = "left" }: SectionHeaderProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 15 }}
