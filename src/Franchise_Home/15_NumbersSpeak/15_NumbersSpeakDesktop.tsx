@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { getBadgeStyles } from "../utils/theme";
 import { numbersSpeakData } from "./data";
+import { SectionHeader } from "../components/SectionHeader";
 
 function AnimatedCounter({ value, suffix }: { value: string; suffix: string; intent?: string }) {
     const [count, setCount] = useState(0);
@@ -62,24 +63,17 @@ export default function NumbersSpeakDesktop() {
     return (
         <section className="w-full bg-background px-6 py-12">
             <div className="max-w-7xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="bg-gray-900 dark:bg-surface border border-gray-800 dark:border-border rounded-lg p-8 mb-8 shadow-elevation-2 flex flex-col md:flex-row items-start md:items-center justify-between"
-                >
-                    <div>
-                        <h2 className="text-2xl font-black text-white mb-2">
-                            {numbersSpeakData.title}
-                        </h2>
-                        <p className="text-gray-300 text-base">
-                            {numbersSpeakData.subtitle}
-                        </p>
-                    </div>
-                    <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-base font-bold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-4 md:mt-0">
+                <div className="flex flex-col md:flex-row items-start justify-between mb-2">
+                    <SectionHeader 
+                        overline={numbersSpeakData.sectionLabel}
+                        title={numbersSpeakData.title}
+                        subtitle={numbersSpeakData.subtitle}
+                        align="left"
+                    />
+                    <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-base font-bold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-4 md:mt-0 pt-2">
                         ↗ {numbersSpeakData.verifiedLabel}
                     </span>
-                </motion.div>
+                </div>
 
                 <motion.div
                     initial="hidden"

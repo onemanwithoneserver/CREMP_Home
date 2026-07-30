@@ -7,6 +7,7 @@ import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
 import { CostBreakdownTable } from "./CostBreakdownTable";
+import { SectionHeader } from "../components/SectionHeader";
 
 const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
     const size = 280;
@@ -144,47 +145,12 @@ export default function FranchiseModelsDesktop() {
                 </defs>
             </svg>
 
-            <div className="flex flex-col items-center justify-center text-center">
-                <div className="flex items-center gap-4 mb-2">
-                    <div className="flex items-center justify-center gap-3 w-full">
-                        <div className="flex items-center gap-1.5 overflow-hidden">
-                            <motion.div
-                                initial={{ x: "-100%" }}
-                                animate={{ x: 0 }}
-                                transition={{ duration: 1, ease: "easeOut" }}
-                                className="h-[1px] w-8 sm:w-24 bg-gradient-to-l from-[#d4af37] to-transparent"
-                            />
-                            <motion.div
-                                initial={{ scale: 0, rotate: 0 }}
-                                animate={{ scale: 1, rotate: 45 }}
-                                transition={{ duration: 0.5, delay: 0.8 }}
-                                className="w-1.5 h-1.5 bg-[#d4af37]"
-                            />
-                        </div>
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center"
-                        >
-                            {franchiseModelsData.sectionLabel}
-                        </motion.p>
-                        <div className="flex items-center gap-1.5 overflow-hidden">
-                            <motion.div
-                                initial={{ scale: 0, rotate: 0 }}
-                                animate={{ scale: 1, rotate: 45 }}
-                                transition={{ duration: 0.5, delay: 0.8 }}
-                                className="w-1.5 h-1.5 bg-[#d4af37]"
-                            />
-                            <motion.div
-                                initial={{ x: "100%" }}
-                                animate={{ x: 0 }}
-                                transition={{ duration: 1, ease: "easeOut" }}
-                                className="h-[1px] w-8 sm:w-24 bg-gradient-to-r from-[#d4af37] to-transparent"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <SectionHeader 
+                overline={franchiseModelsData.sectionLabel}
+                title={franchiseModelsData.title}
+                subtitle={franchiseModelsData.subtitle}
+                align="center"
+            />
 
             <div className="flex items-center gap-4 w-full">
                 <div className="flex gap-4 w-full px-40 justify-between items-stretch bg-transparent rounded-lg overflow-x-auto scrollbar-hide py-2">

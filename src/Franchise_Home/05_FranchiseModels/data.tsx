@@ -38,6 +38,8 @@ export interface FranchiseModel {
 
 export const franchiseModelsData = {
     sectionLabel: "INVESTMENT BREAKDOWN",
+    title: "Franchise Models",
+    subtitle: "Explore our flexible investment models designed to suit different capital levels and real estate options.",
     models: [
         {
             id: "kiosk",

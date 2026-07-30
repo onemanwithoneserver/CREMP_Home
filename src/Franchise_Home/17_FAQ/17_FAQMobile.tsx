@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { faqData } from "./data";
+import { SectionHeader } from "../components/SectionHeader";
 
 export default function FAQMobile() {
     const [activeTab, setActiveTab] = useState(faqData.tabs[0].id);
@@ -18,33 +19,11 @@ export default function FAQMobile() {
 
             {}
             <div className="flex flex-col mb-8 text-center items-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="flex items-center justify-center gap-3 mb-4 sm:mb-6 w-full"
-                >
-                    <div className="flex items-center gap-1.5">
-                        <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-[#d4af37] to-transparent"></div>
-                        <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
-                    </div>
-                    <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#0b162c] dark:text-white shrink-0 text-center">
-                        {faqData.sectionLabel}
-                    </p>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]"></div>
-                        <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-[#d4af37] to-transparent"></div>
-                    </div>
-                </motion.div>
-                <motion.h2
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="text-3xl font-black text-gray-900 dark:text-white mb-4 leading-tight"
-                >
-                    {faqData.title}
-                </motion.h2>
+                <SectionHeader 
+                    overline={faqData.sectionLabel}
+                    title={faqData.title}
+                    align="center"
+                />
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}

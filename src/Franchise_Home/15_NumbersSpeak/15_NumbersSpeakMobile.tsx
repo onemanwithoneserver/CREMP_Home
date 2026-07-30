@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { getBadgeStyles } from "../utils/theme";
 import { numbersSpeakData } from "./data";
+import { SectionHeader } from "../components/SectionHeader";
 
 function AnimatedCounter({ value, suffix }: { value: string; suffix: string; intent?: string }) {
     const [count, setCount] = useState(0);
@@ -51,10 +52,14 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string; int
 export default function NumbersSpeakMobile() {
     return (
         <section className="w-full bg-background px-4 py-8">
-            <div className="bg-gray-900 dark:bg-surface border border-gray-800 dark:border-border rounded-lg p-5 mb-6 flex flex-col items-start shadow-elevation-2">
-                <h2 className="text-xl font-black text-white mb-2">{numbersSpeakData.title}</h2>
-                <p className="text-gray-300 text-[13px] mb-3">{numbersSpeakData.subtitle}</p>
-                <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-sm font-bold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-auto">
+            <div className="flex flex-col mb-6">
+                <SectionHeader 
+                    overline={numbersSpeakData.sectionLabel}
+                    title={numbersSpeakData.title}
+                    subtitle={numbersSpeakData.subtitle}
+                    align="left"
+                />
+                <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-sm font-bold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-[-10px] pb-2">
                     ↗ {numbersSpeakData.verifiedLabel}
                 </span>
             </div>
