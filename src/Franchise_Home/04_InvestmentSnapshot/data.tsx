@@ -43,14 +43,14 @@ export const investmentSnapshotData = {
             label: "Payback Period",
             value: "18–24 Months",
             sublabel: "Estimated payback timeline",
-            intent: "primary",
+            intent: "warning",
         },
         {
             icon: Building,
             label: "Model",
             value: "FOCO / FOFO",
             sublabel: "Franchise operating structures",
-            intent: "neutral",
+            intent: "info",
         },
     ],
 };

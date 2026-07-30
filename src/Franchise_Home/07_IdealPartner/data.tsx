@@ -22,7 +22,7 @@ export const idealPartnerData = {
             ],
             description:
                 "A confident person. For 2-3 hours engaged powerfully by the brand love.",
-            intent: "primary",
+            intent: "success",
         },
         {
             icon: Building2,
