@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Info, MapPin, Maximize2, MousePointerClick, Users, Wallet } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
-// removed theme imports
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
 import { CostBreakdownTable } from "./CostBreakdownTable";
@@ -384,7 +383,7 @@ export default function FranchiseModelsMobile() {
                         })}
                     </div>
 
-                    <div className="mt-2 pt-4 border-t border-border flex flex-col gap-3">
+                    <div className="mt-1 pt-3 border-t border-border flex flex-col gap-2">
                         <div className="flex items-center justify-between">
                             <span className="text-xs uppercase font-bold tracking-widest text-[#d4af37] font-black">
                                 {revenueROIData.paybackPeriod.sectionLabel}
@@ -394,51 +393,71 @@ export default function FranchiseModelsMobile() {
                             </span>
                         </div>
 
-                        <div className="flex items-center gap-2 px-1 mt-1.5">
+                        <div className="flex items-start justify-between w-full relative pt-2 pb-1 px-1">
+                            {/* Connecting Line background with Animation */}
+                            <div className="absolute top-[22px] left-[10%] right-[10%] h-[2px] bg-gray-100 dark:bg-slate-800 z-0 rounded-full overflow-hidden">
+                                <motion.div 
+                                    className="h-full bg-gradient-to-r from-[#10B981] via-[#0EA5E9] to-[#D946EF]"
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: "100%" }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                                />
+                            </div>
+                            
                             {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                                 const Icon = milestone.icon;
-                                const isSelected = selectedMilestone === milestone.label;
+                                
+                                // Accent colors for the glowing effects and text
+                                const accents = [
+                                    "#10B981", "#0EA5E9", "#F97316", "#D946EF"
+                                ];
+                                const accent = accents[idx % accents.length];
+                                
+                                const colors = [
+                                    "text-white bg-[#10B981] shadow-md shadow-[#10B981]/30 border-none", 
+                                    "text-white bg-[#0EA5E9] shadow-md shadow-[#0EA5E9]/30 border-none", 
+                                    "text-white bg-[#F97316] shadow-md shadow-[#F97316]/30 border-none", 
+                                    "text-white bg-[#D946EF] shadow-md shadow-[#D946EF]/30 border-none"
+                                ];
+                                const colorClass = colors[idx % colors.length];
+
                                 return (
-                                    <div key={idx} className="flex items-center gap-2 flex-1">
-                                        <button
-                                            onClick={() => setSelectedMilestone(milestone.label)}
-                                            className={clsx(
-                                                "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 focus:outline-none",
-                                                milestone.status === "complete"
-                                                    ? "bg-[#10B981] border-none text-white shadow-sm shadow-[#10B981]/40"
-                                                    : milestone.status === "active"
-                                                        ? "bg-[#0EA5E9] border-none text-white ring-4 ring-[#0EA5E9]/20 shadow-md shadow-[#0EA5E9]/40"
-                                                        : "bg-slate-100 border-none text-slate-400",
-                                                isSelected && "scale-110 ring-1 ring-primary"
-                                            )}
+                                    <motion.div 
+                                        key={idx} 
+                                        className="flex flex-col items-center gap-1.5 relative z-10 flex-1 group"
+                                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: idx * 0.15 + 0.3, type: "spring", stiffness: 120 }}
+                                    >
+                                        <motion.div 
+                                            className={clsx("w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center relative", colorClass)}
+                                            whileTap={{ scale: 0.95 }}
                                         >
-                                            <Icon size={11} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
-                                        </button>
-                                        {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
-                                            <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                                                <div className={clsx(
-                                                    "h-full transition-all duration-500",
-                                                    milestone.status === "complete" ? "bg-[#10B981]/40 w-full" : "w-0"
-                                                )} />
-                                            </div>
-                                        )}
-                                    </div>
+                                            <Icon size={14} strokeWidth={2.5} className="relative z-10 drop-shadow-sm" />
+                                            {/* Pulse ring */}
+                                            <div 
+                                                className="absolute inset-0 rounded-full opacity-0 animate-[ping_3s_infinite]" 
+                                                style={{ backgroundColor: accent }} 
+                                            />
+                                        </motion.div>
+                                        
+                                        <div className="flex flex-col items-center text-center mt-0.5">
+                                            <span 
+                                                className="text-[10px] font-black" 
+                                                style={{ color: accent }}
+                                            >
+                                                0{idx + 1}
+                                            </span>
+                                            <span className="text-[8px] sm:text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase leading-tight max-w-[60px] sm:max-w-[80px]">
+                                                {milestone.label}
+                                            </span>
+                                        </div>
+                                    </motion.div>
                                 );
                             })}
                         </div>
-
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={selectedMilestone}
-                                initial={{ opacity: 0, y: 4 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -4 }}
-                                transition={{ duration: 0.18 }}
-                                className="text-center mt-1 text-sm font-bold text-slate-700 dark:text-slate-300 tracking-wide min-h-[16px]"
-                            >
-                                {selectedMilestone}
-                            </motion.div>
-                        </AnimatePresence>
                     </div>
                 </div>
 

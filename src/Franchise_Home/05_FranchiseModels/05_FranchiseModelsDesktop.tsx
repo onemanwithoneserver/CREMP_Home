@@ -282,7 +282,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
 
                 {/* Bottom Panel: Payback Period */}
-                <div className="col-span-12 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col gap-6 mt-2">
+                <div className="col-span-12 bg-white border border-gray-100 rounded-2xl py-4 px-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col gap-4 mt-0">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42]">
                             PAYBACK PERIOD
@@ -293,35 +293,68 @@ export default function FranchiseModelsDesktop() {
                     </div>
 
                     <div className="flex items-start justify-between w-full relative pt-2 pb-4">
-                        {/* Connecting Line background */}
-                        <div className="absolute top-[28px] left-[5%] right-[5%] h-px border-t-2 border-dashed border-gray-200 z-0" />
+                        {/* Connecting Line background with Animation */}
+                        <div className="absolute top-[28px] left-[5%] right-[5%] h-[3px] bg-gray-100 z-0 rounded-full overflow-hidden">
+                            <motion.div 
+                                className="h-full bg-gradient-to-r from-[#10B981] via-[#0EA5E9] to-[#D946EF]"
+                                initial={{ width: 0 }}
+                                whileInView={{ width: "100%" }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                            />
+                        </div>
                         
                         {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                             const Icon = paybackIcons[idx % paybackIcons.length];
                             
-                            // Map colors based on index for the colorful stepper look
+                            // Accent colors for the glowing effects and text
+                            const accents = [
+                                "#10B981", "#0EA5E9", "#F97316", "#D946EF"
+                            ];
+                            const accent = accents[idx % accents.length];
+                            
                             const colors = [
-                                "text-white bg-[#10B981] shadow-md shadow-[#10B981]/30 border-none", 
-                                "text-white bg-[#0EA5E9] shadow-md shadow-[#0EA5E9]/30 border-none", 
-                                "text-white bg-[#F97316] shadow-md shadow-[#F97316]/30 border-none", 
-                                "text-white bg-[#D946EF] shadow-md shadow-[#D946EF]/30 border-none"
+                                "text-white bg-[#10B981] shadow-lg shadow-[#10B981]/30 border-none", 
+                                "text-white bg-[#0EA5E9] shadow-lg shadow-[#0EA5E9]/30 border-none", 
+                                "text-white bg-[#F97316] shadow-lg shadow-[#F97316]/30 border-none", 
+                                "text-white bg-[#D946EF] shadow-lg shadow-[#D946EF]/30 border-none"
                             ];
                             const colorClass = colors[idx % colors.length];
 
                             return (
-                                <div key={idx} className="flex flex-col items-center gap-3 relative z-10 flex-1">
-                                    <div className={clsx("w-14 h-14 rounded-full flex items-center justify-center border-2 bg-white", colorClass)}>
-                                        <Icon size={20} strokeWidth={2} />
-                                    </div>
+                                <motion.div 
+                                    key={idx} 
+                                    className="flex flex-col items-center gap-3 relative z-10 flex-1 group cursor-pointer"
+                                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: idx * 0.2 + 0.3, type: "spring", stiffness: 100 }}
+                                >
+                                    <motion.div 
+                                        className={clsx("w-14 h-14 rounded-full flex items-center justify-center relative", colorClass)}
+                                        whileHover={{ scale: 1.15 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    >
+                                        <Icon size={20} strokeWidth={2.5} className="relative z-10 drop-shadow-sm" />
+                                        {/* Subtle pulse ring behind icon */}
+                                        <div 
+                                            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-40 group-hover:animate-ping" 
+                                            style={{ backgroundColor: accent, animationDuration: '2s' }} 
+                                        />
+                                    </motion.div>
+                                    
                                     <div className="flex flex-col items-center text-center">
-                                        <span className={clsx("text-xs font-black", colorClass.split(" ")[0])}>
+                                        <span 
+                                            className="text-sm font-black transition-colors duration-300 group-hover:scale-110" 
+                                            style={{ color: accent }}
+                                        >
                                             0{idx + 1}
                                         </span>
-                                        <span className="text-[11px] font-bold text-gray-500 uppercase max-w-[120px]">
+                                        <span className="text-[11px] font-bold text-gray-400 uppercase max-w-[120px] group-hover:text-[#0b1b42] transition-colors duration-300 mt-1">
                                             {milestone.label}
                                         </span>
                                     </div>
-                                </div>
+                                </motion.div>
                             );
                         })}
                     </div>
