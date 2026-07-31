@@ -287,9 +287,9 @@ export default function FranchiseModelsMobile() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 10 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-surface-alt rounded border-none p-5 flex flex-col shadow-elevation-1"
+                        className=" rounded border-none p-2 flex flex-col"
                     >
-                        <div className="flex items-center justify-between mb-6">
+                       {/*  <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md border-none">
                                     <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b1b42]" />
@@ -300,7 +300,7 @@ export default function FranchiseModelsMobile() {
                                     </h3>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="grid grid-cols-2 gap-3 mt-4">
                             {[
@@ -334,7 +334,7 @@ export default function FranchiseModelsMobile() {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="bg-surface rounded border-none p-4 shadow-elevation-1 flex flex-col gap-4">
+                <div className="rounded border-none p-4  flex flex-col gap-4">
                     <div className="flex items-center justify-between pb-3 border-b border-border">
                         <span className="text-xs uppercase font-bold tracking-widest text-primary dark:text-white font-black">
                             {revenueROIData.sectionLabel}
