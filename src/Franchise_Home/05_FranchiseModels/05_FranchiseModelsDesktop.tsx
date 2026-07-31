@@ -4,7 +4,6 @@ import { Info, MapPin, Maximize2, Users, Wallet, Calendar, UserCheck, Clock, Tar
 import { useMemo, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
-import { SectionHeader } from "../components/SectionHeader";
 
 const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
     const size = 300;
@@ -279,7 +278,7 @@ export default function FranchiseModelsDesktop() {
                     </span>
 
                     <div className="flex flex-col gap-4 flex-1 justify-center">
-                        {revenueROIData.revenueCards.map((card, idx) => {
+                        {revenueROIData.revenueCards.map((card) => {
                             const Icon = card.icon;
                             const colorClass = getRoiColor(card.intent);
                             return (

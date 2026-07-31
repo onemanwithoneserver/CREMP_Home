@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
 interface SectionHeaderProps {
-    title: string;
+    title?: string;
     subtitle?: string;
     overline?: string;
     align?: "left" | "center";

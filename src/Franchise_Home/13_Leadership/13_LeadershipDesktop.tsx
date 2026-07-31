@@ -36,13 +36,17 @@ export default function LeadershipDesktop() {
                             variants={fadeInUp}
                             className={clsx("overflow-hidden rounded-2xl border cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
                         >
-                            <div className="relative h-64 overflow-hidden">
+                            <div className="relative h-72 overflow-hidden">
                                 <img
                                     src={member.avatar}
                                     alt={member.name}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="w-full h-full object-cover filter grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-surface" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-[#0a1128]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                    <p className="text-white text-sm font-medium italic translate-y-4 group-hover:translate-y-0 transition-transform duration-300 leading-relaxed">
+                                        "{member.quote}"
+                                    </p>
+                                </div>
                             </div>
 
                             <div className="p-6 -mt-8 relative z-10 flex-1 flex flex-col">
