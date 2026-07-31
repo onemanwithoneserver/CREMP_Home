@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Info, MapPin, Maximize2, MousePointerClick, Users, Wallet } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
-import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/theme";
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
 import { CostBreakdownTable } from "./CostBreakdownTable";
@@ -226,7 +226,7 @@ export default function FranchiseModelsMobile() {
             <div className="flex flex-col gap-4">
 
                 <div className="bg-surface rounded border-none p-4 flex flex-col items-center justify-center shadow-elevation-1">
-                    <div className="w-full flex justify-end mb-4 z-50">
+                    <div className="w-full flex justify-center mb-4 z-50">
                         <div className="w-40">
                             <Dropdown
                                 options={viewOptions}
@@ -339,7 +339,7 @@ export default function FranchiseModelsMobile() {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="bg-surface rounded border-none p-5 shadow-elevation-1 flex flex-col gap-4">
+                <div className="bg-surface rounded border-none p-4 shadow-elevation-1 flex flex-col gap-4">
                     <div className="flex items-center justify-between pb-3 border-b border-border">
                         <span className="text-xs uppercase font-bold tracking-widest text-primary dark:text-white font-black">
                             {revenueROIData.sectionLabel}

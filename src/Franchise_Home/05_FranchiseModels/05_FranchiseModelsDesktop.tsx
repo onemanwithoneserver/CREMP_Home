@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Info, MapPin, Maximize2, Users, Wallet } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
-import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/theme";
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
 import { CostBreakdownTable } from "./CostBreakdownTable";
@@ -188,7 +188,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
             </div>
 
-            <div className="relative grid grid-cols-12 gap-6 items-stretch ">
+            <div className="relative grid grid-cols-12 gap-4 items-stretch ">
 
                 <div className="absolute top-1/2 left-0 w-full h-[1px] hidden lg:block -z-10 bg-gray-200 dark:bg-gray-800">
                     <motion.div
@@ -202,7 +202,7 @@ export default function FranchiseModelsDesktop() {
                     </motion.div>
                 </div>
 
-                <div className="col-span-12 lg:col-span-3 relative z-10 self-start">
+                <div className="col-span-12 lg:col-span-3 relative z-10 lg:flex lg:justify-end">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={selected.id}
@@ -210,11 +210,11 @@ export default function FranchiseModelsDesktop() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.4, type: "spring" }}
-                            className="bg-surface-alt rounded-2xl border-none p-6 flex flex-col shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300 backdrop-blur-sm relative overflow-hidden"
+                            className="bg-surface-alt rounded-2xl border-none p-5 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.06),0_-8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08),0_-12px_40px_rgb(0,0,0,0.08)] transition-shadow duration-300 backdrop-blur-sm relative overflow-hidden h-full w-full lg:max-w-[260px]"
                         >
                             <div className="absolute right-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
-                            <div className="flex items-center gap-4 mb-6">
+                            <div className="flex items-center gap-4 mb-4">
                                 <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-md border-none">
                                     <selected.icon size={24} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
                                 </div>
@@ -225,7 +225,7 @@ export default function FranchiseModelsDesktop() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-5 mb-6 flex-1 relative">
+                            <div className="flex flex-col gap-4 mb-2 flex-1 relative justify-between">
                                 <div className="absolute left-3 top-2 bottom-2 w-px bg-gradient-to-b from-accent/50 via-gray-300 dark:via-gray-700 to-transparent -z-10" />
 
                                 {[
@@ -261,7 +261,7 @@ export default function FranchiseModelsDesktop() {
                 </div>
 
                 <div className="col-span-12 lg:col-span-5 flex flex-col items-center py-2 relative z-10">
-                    <div className="w-full flex justify-end mb-4 z-50">
+                    <div className="w-full flex justify-center mb-4 z-50">
                         <div className="w-40">
                             <Dropdown
                                 options={viewOptions}
@@ -299,24 +299,24 @@ export default function FranchiseModelsDesktop() {
 
                 </div>
 
-                <div className="col-span-12 lg:col-span-4 lg:row-span-2 h-full relative z-10">
-                    <div className="bg-surface-alt rounded-2xl border-none px-4 pb-4 shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300 h-auto flex flex-col relative overflow-hidden backdrop-blur-sm">
+                <div className="col-span-12 lg:col-span-4 relative z-10 lg:flex lg:justify-start">
+                    <div className="bg-surface-alt rounded-2xl border-none px-4 pb-4 shadow-[0_8px_30px_rgb(0,0,0,0.06),0_-8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08),0_-12px_40px_rgb(0,0,0,0.08)] transition-shadow duration-300 h-full flex flex-col relative overflow-hidden backdrop-blur-sm w-full lg:max-w-[280px]">
                         <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
-                        <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
+                        <div className="flex items-center justify-between mb-4 pb-2 border-b border-border">
                             <span className="text-[11px] uppercase font-bold tracking-widest text-primary dark:text-white font-black">
                                 {revenueROIData.sectionLabel}
                             </span>
                         </div>
 
-                        <div className="flex flex-col gap-4 flex-1">
+                        <div className="flex flex-col gap-3 flex-1 justify-between">
                             {revenueROIData.revenueCards.map((card) => {
                                 const Icon = card.icon;
                                 return (
                                     <div
                                         key={card.year}
                                         className={clsx(
-                                            "rounded-xl border-none p-4",
+                                            "rounded-xl border-none px-4 py-3",
                                             "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
                                             "hover:-translate-y-0.5",
                                             "cursor-default transition-all duration-300",
@@ -349,22 +349,22 @@ export default function FranchiseModelsDesktop() {
                     </div>
                 </div>
 
-                <div className="col-span-12 lg:col-span-8 relative z-10 h-full">
-                    <div className="w-full h-full bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-6 pb-6 shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300 flex flex-col justify-between">
+                <div className="col-span-12 lg:col-span-12 relative z-10 lg:flex lg:justify-center lg:items-start lg:mt-6">
+                    <div className="w-full lg:w-[90%] lg:max-w-[800px] bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06),0_-8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08),0_-12px_40px_rgb(0,0,0,0.08)] transition-shadow duration-300 flex flex-col gap-6">
                         <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d4af37]">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#d4af37]">
                                 {revenueROIData.paybackPeriod.sectionLabel}
                             </span>
                             <span className="text-xl font-black text-[#0b162c] dark:text-white">
                                 {revenueROIData.paybackPeriod.title}
                             </span>
                         </div>
-                        <div className="flex items-center gap-4 px-4 mt-auto">
+                        <div className="flex items-start gap-2 px-2">
                             {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                                 const Icon = milestone.icon;
                                 return (
-                                    <div key={idx} className={clsx("flex items-center gap-3", idx < revenueROIData.paybackPeriod.milestones.length - 1 ? "flex-1" : "")}>
-                                        <div className="relative flex flex-col items-center">
+                                    <div key={idx} className={clsx("flex items-start gap-2", idx < revenueROIData.paybackPeriod.milestones.length - 1 ? "flex-1" : "")}>
+                                        <div className="flex flex-col items-center gap-2.5">
                                             <div
                                                 className={clsx(
                                                     "w-10 h-10 rounded-full flex items-center justify-center shrink-0 border bg-white dark:bg-surface transition-colors duration-300",
@@ -378,12 +378,12 @@ export default function FranchiseModelsDesktop() {
                                             >
                                                 <Icon size={16} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
                                             </div>
-                                            <span className={clsx("absolute -bottom-5 text-[9px] font-bold whitespace-nowrap", milestone.status === "active" ? "text-[#d4af37]" : "text-slate-500 dark:text-slate-400")}>
+                                            <span className={clsx("text-xs font-bold whitespace-nowrap text-center", milestone.status === "active" ? "text-[#d4af37]" : "text-slate-500 dark:text-slate-400")}>
                                                 {milestone.label}
                                             </span>
                                         </div>
                                         {idx < revenueROIData.paybackPeriod.milestones.length - 1 && (
-                                            <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                            <div className="flex-1 h-[2px] mt-[19px] rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
                                                 <div className={clsx(
                                                     "h-full transition-all duration-500",
                                                     milestone.status === "complete" ? "bg-emerald-400/50 w-full" : "w-0"
