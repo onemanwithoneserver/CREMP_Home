@@ -38,11 +38,11 @@ export const CostBreakdownTable = ({ data, totalValue }: { data: CostBreakdownIt
                     );
                 })}
             </div>
-            <div className="grid grid-cols-12 items-center mt-5 pt-5 border-t border-gray-100/80 dark:border-gray-800">
+            <div className="grid grid-cols-12 items-center  pt-2 pb-2 ">
                 <div className="col-span-7 flex items-center justify-end pr-4">
                     <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Total Avg</span>
                 </div>
-                <div className="col-span-5 text-right flex flex-col pr-2">
+                <div className="col-span-5 text-right flex flex-col justify-center pr-2">
                     <span className="text-xl font-black text-[#0b1b42] dark:text-white leading-none tracking-tight">{totalValue}</span>
                 </div>
             </div>

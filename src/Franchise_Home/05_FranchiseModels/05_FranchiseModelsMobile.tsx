@@ -341,30 +341,25 @@ export default function FranchiseModelsMobile() {
                         </span>
                     </div>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="grid grid-cols-3 gap-2 w-full mt-2">
                         {revenueROIData.revenueCards.map((card) => {
                             const Icon = card.icon;
                             return (
                                 <div
                                     key={card.year}
-                                    className={clsx(
-                                        "rounded-xl border border-gray-100 shadow-sm p-3",
-                                        "bg-white dark:bg-[#0b1b42]/40 backdrop-blur-sm"
-                                    )}
+                                    className="rounded-[16px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-3 bg-white flex flex-col justify-between"
                                 >
-                                    <div className="mb-2">
-                                        <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-                                            {card.year}
-                                        </span>
-                                    </div>
-
-                                    <div className="flex items-center gap-3">
-                                        <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-inner", getRoiColor(card.intent))}>
-                                            <Icon size={14} strokeWidth={1.75} />
+                                    <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-3">
+                                        {card.year}
+                                    </span>
+                                    
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full">
+                                        <div className={clsx("w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-md", getRoiColor(card.intent))}>
+                                            <Icon size={14} strokeWidth={2.5} />
                                         </div>
-                                        <p className="text-lg font-black text-[#0b1b42] dark:text-white tracking-tight">
+                                        <span className="text-[12px] sm:text-[14px] font-black text-[#0b1b42] tracking-tighter">
                                             {card.range}
-                                        </p>
+                                        </span>
                                     </div>
                                 </div>
                             );
