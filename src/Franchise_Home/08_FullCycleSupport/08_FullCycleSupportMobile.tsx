@@ -27,7 +27,7 @@ export default function FullCycleSupportMobile() {
                                 return (
                                     <div
                                         key={`${keyPrefix}-${item.title}-${idx}`}
-                                        className="w-[160px] shrink-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/80 rounded-[20px] p-5 text-center flex flex-col items-center justify-center transition-transform shadow-sm"
+                                        className="w-[160px] shrink-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/80 rounded-[4px] p-5 text-center flex flex-col items-center justify-center transition-transform shadow-sm"
                                     >
                                         <div className={clsx("w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm", item.colorClass)}>
                                             <Icon size={20} strokeWidth={2.5} />

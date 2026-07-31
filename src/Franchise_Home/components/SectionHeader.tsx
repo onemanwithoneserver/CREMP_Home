@@ -18,7 +18,7 @@ export function SectionHeader({ title, subtitle, overline, align = "left" }: Sec
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className={`w-full max-w-4xl ${align === "center" ? "mx-auto text-center" : "text-left"} mb-12`}
+            className={`w-full max-w-4xl ${align === "center" ? "mx-auto text-center" : "text-left"} mb-2`}
         >
             {overline && (
                 <div className={`flex items-center gap-2 mb-3 ${align === "center" ? "justify-center" : ""}`}>

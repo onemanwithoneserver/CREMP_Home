@@ -287,8 +287,8 @@ export default function FranchiseModelsDesktop() {
                                     key={card.year}
                                     className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4"
                                 >
-                                    <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0", colorClass)}>
-                                        <Icon size={20} strokeWidth={2} />
+                                    <div className={clsx("w-9 h-9 rounded-full flex items-center justify-center shrink-0 shadow-sm", colorClass)}>
+                                        <Icon size={14} strokeWidth={2.5} />
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">

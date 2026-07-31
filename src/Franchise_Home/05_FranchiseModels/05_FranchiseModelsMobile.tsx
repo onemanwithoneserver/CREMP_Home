@@ -191,7 +191,7 @@ export default function FranchiseModelsMobile() {
                 <div 
                     ref={tabsRef} 
                     onScroll={checkScroll}
-                    className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide py-2 px-2 scroll-smooth bg-gray-100 dark:bg-gray-800 rounded-[20px] shadow-inner border border-gray-200/60 dark:border-gray-700/60 mt-1"
+                    className="flex gap-1 w-full overflow-x-auto scrollbar-hide py-1 px-1 scroll-smooth bg-gray-100 dark:bg-gray-800 rounded-[4px] shadow-inner border border-gray-200/60 dark:border-gray-700/60 mt-1"
                 >
                     {franchiseModelsData.models.map((model) => {
                         const isActive = model.id === activeModel;
@@ -347,15 +347,15 @@ export default function FranchiseModelsMobile() {
                             return (
                                 <div
                                     key={card.year}
-                                    className="rounded-[16px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-3 bg-white flex flex-col justify-between"
+                                    className="rounded-[4px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-2 bg-white flex flex-col justify-between"
                                 >
                                     <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-3">
                                         {card.year}
                                     </span>
                                     
                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full">
-                                        <div className={clsx("w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-md", getRoiColor(card.intent))}>
-                                            <Icon size={14} strokeWidth={2.5} />
+                                        <div className={clsx("w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm", getRoiColor(card.intent))}>
+                                            <Icon size={12} strokeWidth={2.5} />
                                         </div>
                                         <span className="text-[12px] sm:text-[14px] font-black text-[#0b1b42] tracking-tighter">
                                             {card.range}
