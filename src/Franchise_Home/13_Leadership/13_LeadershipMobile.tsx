@@ -32,12 +32,6 @@ export default function LeadershipMobile() {
                         <div className="p-5 relative z-10 flex-1 flex flex-col bg-white dark:bg-surface border-t border-gray-100 dark:border-white/5">
                             <h4 className="text-[#0a1128] dark:text-white font-semibold text-lg">{member.name}</h4>
                             <p className="text-[#0a1128] dark:text-accent text-xs font-semibold mb-1">{member.role}</p>
-                            <p className="text-gray-500 dark:text-gray-400 text-xs mb-3 font-medium">
-                                {member.company} · {member.experience}
-                            </p>
-                            <p className="text-gray-700 dark:text-gray-300 text-sm italic leading-relaxed mt-auto">
-                                "{member.quote}"
-                            </p>
                         </div>
                     </motion.div>
                 ))}

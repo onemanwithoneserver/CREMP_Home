@@ -43,21 +43,12 @@ export default function LeadershipDesktop() {
                                     className="w-full h-full object-cover filter grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-[#0a1128]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                    <p className="text-white text-sm font-medium italic translate-y-4 group-hover:translate-y-0 transition-transform duration-300 leading-relaxed">
-                                        "{member.quote}"
-                                    </p>
                                 </div>
                             </div>
 
-                            <div className="p-6 relative z-10 flex-1 flex flex-col bg-white dark:bg-surface border-t border-gray-100 dark:border-white/5">
+                            <div className="p-2 relative z-10 flex-1 flex flex-col bg-white dark:bg-surface border-t border-gray-100 dark:border-white/5">
                                 <h4 className="text-[#0a1128] dark:text-white font-semibold text-xl tracking-tight">{member.name}</h4>
                                 <p className="text-[#0a1128] dark:text-accent text-sm font-semibold mb-1">{member.role}</p>
-                                <p className="text-gray-500 dark:text-gray-400 text-xs font-medium mb-4">
-                                    {member.company} · {member.experience}
-                                </p>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm italic leading-relaxed mt-auto">
-                                    "{member.quote}"
-                                </p>
                             </div>
                         </motion.div>
                     ))}
