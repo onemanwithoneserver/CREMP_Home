@@ -14,6 +14,14 @@ import {
     type LucideIcon,
 } from "lucide-react";
 
+export interface StaffDetail {
+    name: string;
+    count: string;
+    experience: string;
+    type: string;
+    remarks: string;
+}
+
 export interface CostBreakdownItem {
     label: string;
     amount: string;
@@ -28,6 +36,7 @@ export interface FranchiseModel {
     icon: LucideIcon;
     priceRange: string;
     staffCount: string;
+    staffDetails: StaffDetail[];
     investment: string;
     area: string;
     location: string;
@@ -47,6 +56,7 @@ export const franchiseModelsData = {
             icon: Store,
             priceRange: "₹8L - ₹12L",
             staffCount: "1 - 2",
+            staffDetails: [{ name: "Barista / Attendant", count: "1-2", experience: "0-1 Years", type: "Full Time", remarks: "Handles customer orders and basic coffee prep." }],
             investment: "₹8L - ₹12L",
             area: "80 - 150 sq.ft",
             location: "Malls, Tech Parks",
@@ -66,6 +76,7 @@ export const franchiseModelsData = {
             icon: Coffee,
             priceRange: "₹22L - ₹32L",
             staffCount: "2 - 3",
+            staffDetails: [{ name: "Store Manager", count: "1", experience: "2+ Years", type: "Full Time", remarks: "Oversees daily operations and inventory." }, { name: "Barista", count: "1-2", experience: "1+ Years", type: "Full Time", remarks: "Expert in specialty coffee making." }],
             investment: "₹22L - ₹32L",
             area: "200 - 300 sq.ft",
             location: "High Streets",
@@ -106,6 +117,7 @@ export const franchiseModelsData = {
             icon: ShoppingBag,
             priceRange: "₹45L - ₹65L",
             staffCount: "6 - 8",
+            staffDetails: [{ name: "Lounge Manager", count: "1", experience: "4+ Years", type: "Full Time", remarks: "Focuses on customer experience." }, { name: "Senior Barista", count: "2", experience: "2+ Years", type: "Full Time", remarks: "Leads the beverage team." }, { name: "Service Staff", count: "3-5", experience: "0-1 Years", type: "Part Time", remarks: "Handles table service and clearing." }],
             investment: "₹45L - ₹65L",
             area: "800 - 1200 sq.ft",
             location: "High Streets, Premium Malls",
@@ -126,6 +138,7 @@ export const franchiseModelsData = {
             icon: Building2,
             priceRange: "₹55L - ₹75L",
             staffCount: "5 - 7",
+            staffDetails: [{ name: "Experience Manager", count: "1", experience: "5+ Years", type: "Full Time", remarks: "Curates the brand experience." }, { name: "Coffee Experts", count: "2", experience: "3+ Years", type: "Full Time", remarks: "Conducts tasting sessions." }, { name: "Attendants", count: "2-4", experience: "1+ Years", type: "Part Time", remarks: "Assists customers and experts." }],
             investment: "₹55L - ₹75L",
             area: "400 - 600 sq.ft",
             location: "Premium Malls",
@@ -146,6 +159,7 @@ export const franchiseModelsData = {
             icon: Landmark,
             priceRange: "₹75L - ₹1.1Cr",
             staffCount: "8 - 12",
+            staffDetails: [{ name: "Shift Supervisor", count: "2", experience: "3+ Years", type: "Full Time", remarks: "Manages fast-paced drive-thru shifts." }, { name: "Order Takers", count: "3-4", experience: "1+ Years", type: "Part Time", remarks: "Handles window communications." }, { name: "Baristas", count: "3-6", experience: "2+ Years", type: "Full Time", remarks: "Rapid beverage execution." }],
             investment: "₹75L - ₹1.1Cr",
             area: "1500 - 2500 sq.ft",
             location: "Standalone Buildings",

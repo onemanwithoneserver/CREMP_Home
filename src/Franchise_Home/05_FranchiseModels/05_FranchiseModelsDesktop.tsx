@@ -212,9 +212,32 @@ export default function FranchiseModelsDesktop() {
                                             </div>
                                             <div className="flex flex-col pt-1">
                                                 <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-1">{stat.label}</span>
-                                                <div className="flex items-center gap-1.5">
-                                                    <span className="text-[15px] font-black text-[#0b1b42] leading-tight">{stat.value}</span>
-                                                    {stat.extra && <stat.extra size={12} className="text-gray-400" />}
+                                                <div className="flex items-center gap-1.5 relative group/staff cursor-pointer">
+                                                    <span className="text-[15px] font-black text-[#0b1b42] leading-tight group-hover/staff:text-primary transition-colors">{stat.value}</span>
+                                                    {stat.extra && <stat.extra size={12} className="text-gray-400 group-hover/staff:text-primary transition-colors" />}
+                                                    
+                                                    {stat.label === "STAFF NEEDED" && (
+                                                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[130%] mb-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover/staff:opacity-100 group-hover/staff:visible transition-all duration-200 z-50 p-3 pointer-events-none">
+                                                            <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-100 pb-1.5 text-center">Staff Requirements</h5>
+                                                            <div className="flex flex-col gap-2 max-h-48 overflow-y-auto scrollbar-hide">
+                                                                {selected.staffDetails?.map((staff, idx) => (
+                                                                    <div key={idx} className="flex flex-col bg-gray-50/80 rounded-lg p-2.5">
+                                                                        <div className="flex justify-between items-center mb-1">
+                                                                            <span className="text-xs font-black text-[#0b1b42]">{staff.name}</span>
+                                                                            <span className="text-[9px] font-black text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">{staff.count}x</span>
+                                                                        </div>
+                                                                        <div className="flex gap-2 text-[9px] font-bold text-gray-500 mb-1.5 uppercase tracking-wide">
+                                                                            <span>{staff.type}</span>
+                                                                            <span>•</span>
+                                                                            <span>{staff.experience}</span>
+                                                                        </div>
+                                                                        <p className="text-[10px] font-medium text-gray-600 leading-snug">{staff.remarks}</p>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                            <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white drop-shadow-sm" />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
