@@ -84,7 +84,7 @@ export default function NumbersSpeakMobile() {
                                 <Icon size={14} strokeWidth={1.5} className="shrink-0 mt-0.5 opacity-80" />
                             </div>
                             <AnimatedCounter value={stat.value} suffix={stat.suffix} intent={stat.intent} />
-                            <p className="text-[11px] font-bold mt-1 opacity-90">{stat.label}</p>
+                            <p className="text-sm font-bold mt-1 opacity-90">{stat.label}</p>
                         </motion.div>
                     );
                 })}

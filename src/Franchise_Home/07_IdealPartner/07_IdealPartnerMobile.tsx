@@ -35,7 +35,7 @@ export default function IdealPartnerMobile() {
                             <div className="space-y-3 mb-4 flex-1">
                                 {item.items.map((subItem, idx) => (
                                     <div key={idx} className="flex flex-col relative pl-4 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary/40 dark:before:bg-accent/40">
-                                        <span className="text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-0.5">{subItem.label}</span>
+                                        <span className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-widest mb-0.5">{subItem.label}</span>
                                         {subItem.value && (
                                             <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">{subItem.value}</span>
                                         )}
@@ -64,7 +64,7 @@ export default function IdealPartnerMobile() {
                             </div>
                             <div className="flex flex-wrap gap-2 mb-3 mt-auto">
                                 {item.items.map((tag, idx) => (
-                                    <span key={idx} className={clsx("text-[10px] font-semibold py-1 px-2 rounded bg-gray-50 dark:bg-surface-alt border border-gray-100 dark:border-border shadow-xs", getBadgeStyles(item.intent))}>{tag}</span>
+                                    <span key={idx} className={clsx("text-xs font-semibold py-1 px-2 rounded bg-gray-50 dark:bg-surface-alt border border-gray-100 dark:border-border shadow-xs", getBadgeStyles(item.intent))}>{tag}</span>
                                 ))}
                             </div>
                             <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">{item.description}</p>

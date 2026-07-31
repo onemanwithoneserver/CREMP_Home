@@ -184,7 +184,7 @@ export default function HeroBottomDetailsDesktop() {
                                     <detail.icon size={18} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
+                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
                                         {detail.label}
                                     </span>
                                     <span className="text-[13px] font-bold text-gray-900 dark:text-white leading-tight">
@@ -253,7 +253,7 @@ export default function HeroBottomDetailsDesktop() {
                                 >
                                     {stat.value}
                                 </motion.span>
-                                <span className="text-[11px] font-bold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
+                                <span className="text-sm font-bold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
                                     {stat.label}
                                 </span>
                             </div>

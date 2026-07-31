@@ -46,7 +46,7 @@ export default function FranchiseNetworkMobile() {
                                 <div key={item.label} className="flex items-center gap-1.5">
                                     <div className={clsx("w-2 h-2 rounded-full", getSolidBgStyles(item.intent))} />
                                     {Icon && <Icon size={12} strokeWidth={1.5} className={getTextStyles(item.intent)} />}
-                                    <span className="text-gray-600 dark:text-gray-400 text-[10px] font-bold">{item.label}</span>
+                                    <span className="text-gray-600 dark:text-gray-400 text-xs font-bold">{item.label}</span>
                                 </div>
                             );
                         })}
@@ -54,8 +54,8 @@ export default function FranchiseNetworkMobile() {
                     <div className="grid grid-cols-2 gap-3 mb-6">
                         {franchiseNetworkData.networkStats.items.map((item) => (
                             <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-border">
-                                <span className="text-gray-500 dark:text-gray-400 text-[10px] font-medium">{item.label}</span>
-                                <span className="text-gray-900 dark:text-white text-[10px] font-bold">{item.value}</span>
+                                <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">{item.label}</span>
+                                <span className="text-gray-900 dark:text-white text-xs font-bold">{item.value}</span>
                             </div>
                         ))}
                     </div>

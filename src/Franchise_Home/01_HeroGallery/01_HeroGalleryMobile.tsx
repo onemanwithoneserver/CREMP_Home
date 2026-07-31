@@ -40,7 +40,7 @@ export default function HeroGalleryMobile() {
                         {heroGalleryData.tags.map((tag, i) => (
                             <div key={i} className={`flex items-center gap-1 px-2 py-1 rounded-md border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-200'} shadow-sm`}>
                                 <tag.icon size={10} className={i === 0 ? "text-[#8a6831]" : "text-[#c69a54]"} />
-                                <span className="text-[9px] font-bold text-[#0b162c]">{tag.label}</span>
+                                <span className="text-xs font-bold text-[#0b162c]">{tag.label}</span>
                             </div>
                         ))}
                     </div>

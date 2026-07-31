@@ -39,7 +39,7 @@ export default function FounderStoryMobile() {
                         return (
                             <div key={stat.label} className="bg-[#121c33] border border-white/10 rounded-[4px] p-3 text-center shadow-elevation-1 cursor-default transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/30">
                                 <p className={clsx("text-xl font-black mb-1", getTextStyles(stat.intent))}>{stat.value}</p>
-                                <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">{stat.label}</p>
+                                <p className="text-gray-400 text-xs font-bold uppercase tracking-wider">{stat.label}</p>
                             </div>
                         );
                     })}

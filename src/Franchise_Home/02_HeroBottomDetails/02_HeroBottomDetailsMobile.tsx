@@ -45,7 +45,7 @@ export default function HeroBottomDetailsMobile() {
         >
             <motion.div variants={item} className="flex flex-col gap-4">
                 <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
+                    <h3 className="text-sm font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
                         {heroDetailsData.whyPartnerTitle}
                     </h3>
                     <motion.div
@@ -75,7 +75,7 @@ export default function HeroBottomDetailsMobile() {
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-active:translate-y-0 transition-transform duration-300" />
                                 <feature.icon size={18} strokeWidth={1.5} className="relative z-10" />
                             </motion.div>
-                            <h4 className="text-[11px] font-bold text-gray-900 dark:text-gray-100 leading-tight pr-1">
+                            <h4 className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-tight pr-1">
                                 {feature.title}
                             </h4>
                         </motion.div>
@@ -85,7 +85,7 @@ export default function HeroBottomDetailsMobile() {
 
             <motion.div variants={item} className="flex flex-col gap-4">
                 <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
+                    <h3 className="text-sm font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
                         {heroDetailsData.keyDetailsTitle}
                     </h3>
                     <motion.div
@@ -117,7 +117,7 @@ export default function HeroBottomDetailsMobile() {
                                 <detail.icon size={14} strokeWidth={1.5} />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[9px] uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
+                                <span className="text-xs uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
                                     {detail.label}
                                 </span>
                                 <span className="text-xs font-bold text-gray-900 dark:text-white leading-tight">
@@ -148,7 +148,7 @@ export default function HeroBottomDetailsMobile() {
                     >
                         <MapPin className="text-accent" size={16} strokeWidth={1.5} />
                     </motion.div>
-                    <h3 className="text-[11px] font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
+                    <h3 className="text-sm font-bold text-cremp-primary dark:text-primary tracking-[0.2em] uppercase">
                         {heroDetailsData.locationsTitle}
                     </h3>
                 </div>
@@ -166,7 +166,7 @@ export default function HeroBottomDetailsMobile() {
                             key={loc}
                             className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50/80 dark:bg-surface-alt/80 shadow-elevation-1 transition-all duration-300 hover:shadow-elevation-2 active:border-accent/40 active:bg-white dark:active:bg-surface"
                         >
-                            <span className="text-[10px] font-bold text-gray-700 dark:text-gray-200">{loc}</span>
+                            <span className="text-xs font-bold text-gray-700 dark:text-gray-200">{loc}</span>
                         </motion.div>
                     ))}
                 </motion.div>

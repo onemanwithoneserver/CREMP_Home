@@ -47,7 +47,7 @@ export default function JourneyTimelineMobile() {
                                     ]
                                 } : {}}
                                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                                className={`absolute -left-10 top-2 w-10 h-10 rounded-full flex items-center justify-center text-[11px] font-black z-10 ${milestone.isActive
+                                className={`absolute -left-10 top-2 w-10 h-10 rounded-full flex items-center justify-center text-sm font-black z-10 ${milestone.isActive
                                         ? "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white border-none"
                                         : "bg-[#121c33] border border-white/20 text-gray-400"
                                     }`}

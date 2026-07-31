@@ -81,7 +81,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                                 >
                                     <div className="flex flex-col items-center justify-center w-full h-full text-white drop-shadow-md">
                                         <item.icon size={12} className="mb-0.5 opacity-90" />
-                                        <span className="text-[11px] font-black leading-tight mt-0.5">{item.amount}</span>
+                                        <span className="text-sm font-black leading-tight mt-0.5">{item.amount}</span>
                                     </div>
                                 </motion.foreignObject>
                             )}
@@ -137,7 +137,7 @@ export default function FranchiseModelsDesktop() {
         <section className="w-full bg-background transition-colors duration-300 px-4 flex flex-col gap-4 overflow-hidden">
             <svg width="0" height="0" className="absolute">
                 <defs>
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="goldGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
                         <stop offset="0%" stopColor="#bf953f" />
                         <stop offset="50%" stopColor="#d4af37" />
                         <stop offset="100%" stopColor="#b38728" />
@@ -245,7 +245,7 @@ export default function FranchiseModelsDesktop() {
                                             <stat.icon size={12} className="text-primary dark:text-accent-light" />
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">{stat.label}</span>
+                                            <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">{stat.label}</span>
                                             <div className="flex items-center gap-1.5">
                                                 <span className="text-[15px] font-bold text-primary leading-tight">{stat.value}</span>
                                                 {stat.extra && <stat.extra size={12} className="text-gray-400" />}
@@ -304,7 +304,7 @@ export default function FranchiseModelsDesktop() {
                         <div className="absolute left-0 top-1/2 w-4 h-4 bg-accent/20 rounded-full blur-md -mr-2 hidden lg:block" />
 
                         <div className="flex items-center justify-between mb-4 pb-2 border-b border-border">
-                            <span className="text-[11px] uppercase font-bold tracking-widest text-primary dark:text-white font-black">
+                            <span className="text-sm uppercase pt-2 font-bold text-primary dark:text-white">
                                 {revenueROIData.sectionLabel}
                             </span>
                         </div>
@@ -324,7 +324,7 @@ export default function FranchiseModelsDesktop() {
                                         )}
                                     >
                                         <div className="mb-2">
-                                            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                                 {card.year}
                                             </span>
                                         </div>
@@ -352,7 +352,7 @@ export default function FranchiseModelsDesktop() {
                 <div className="col-span-12 lg:col-span-12 relative z-10 lg:flex lg:justify-center lg:items-start lg:mt-6">
                     <div className="w-full lg:w-[90%] lg:max-w-[800px] bg-white dark:bg-[#0b162c]/40 rounded-xl border-none p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06),0_-8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08),0_-12px_40px_rgb(0,0,0,0.08)] transition-shadow duration-300 flex flex-col gap-6">
                         <div className="flex items-center justify-between">
-                            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#d4af37]">
+                            <span className="text-sm font-bold uppercase tracking-[0.25em] text-[#d4af37]">
                                 {revenueROIData.paybackPeriod.sectionLabel}
                             </span>
                             <span className="text-xl font-black text-[#0b162c] dark:text-white">

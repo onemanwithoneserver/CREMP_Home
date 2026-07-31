@@ -44,14 +44,14 @@ export default function InvestmentSnapshotMobile() {
                                 <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0", getIconContainerStyles(stat.intent))}>
                                     <Icon size={14} strokeWidth={1.75} />
                                 </div>
-                                <p className="text-[9px] uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 line-clamp-2">
+                                <p className="text-xs uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 line-clamp-2">
                                     {stat.label}
                                 </p>
                             </div>
                             <p className="text-[17px] font-black text-gray-900 dark:text-white leading-none mb-1 tracking-tight">
                                 {stat.value}
                             </p>
-                            <p className="text-[10px] font-medium text-gray-500 dark:text-gray-400 leading-snug line-clamp-2">
+                            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 leading-snug line-clamp-2">
                                 {stat.sublabel}
                             </p>
                         </motion.div>

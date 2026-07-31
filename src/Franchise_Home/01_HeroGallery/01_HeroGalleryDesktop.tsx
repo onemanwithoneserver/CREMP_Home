@@ -44,7 +44,7 @@ export default function HeroGalleryDesktop() {
                                 </h1>
                                 <div className="flex items-center gap-2 mt-1.5">
                                     <div className="h-[2px] bg-[#c69a54] w-8" />
-                                    <span className="text-[11px] tracking-widest text-[#0b162c]/80 font-bold uppercase">BREW CO.</span>
+                                    <span className="text-sm tracking-widest text-[#0b162c]/80 font-bold uppercase">BREW CO.</span>
                                 </div>
                             </div>
                         </div>

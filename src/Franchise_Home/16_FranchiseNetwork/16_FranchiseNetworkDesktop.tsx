@@ -51,7 +51,7 @@ export default function FranchiseNetworkDesktop() {
                     </div>
                     <div className="w-[320px] border-l border-border bg-white dark:bg-surface p-8 flex flex-col justify-between">
                         <div>
-                            <p className="text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-primary mb-5">
+                            <p className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-primary mb-5">
                                 MAP LEGEND
                             </p>
                             <div className="space-y-4 mb-8">
@@ -69,7 +69,7 @@ export default function FranchiseNetworkDesktop() {
                                 })}
                             </div>
 
-                            <p className="text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-primary mb-4">
+                            <p className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-primary mb-4">
                                 {franchiseNetworkData.networkStats.label}
                             </p>
                             <div className="space-y-2 mb-8">

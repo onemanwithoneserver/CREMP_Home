@@ -27,8 +27,8 @@ export default function FullCycleSupportMobile() {
                             <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3", item.colorClass)}>
                                 <Icon size={16} strokeWidth={1.5} />
                             </div>
-                            <h4 className="text-gray-900 dark:text-white font-bold text-[11px] mb-1.5">{item.title}</h4>
-                            <p className="text-gray-500 dark:text-gray-400 text-[9px] leading-snug">{item.description}</p>
+                            <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-1.5">{item.title}</h4>
+                            <p className="text-gray-500 dark:text-gray-400 text-xs leading-snug">{item.description}</p>
                         </motion.div>
                     );
                 })}

@@ -77,7 +77,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                                 >
                                     <div className="flex flex-col items-center justify-center w-full h-full text-white drop-shadow-md">
                                         <item.icon size={10} className="mb-[1px] opacity-90" />
-                                        <span className="text-[9px] font-black leading-tight mt-[1px]">{item.amount}</span>
+                                        <span className="text-xs font-black leading-tight mt-[1px]">{item.amount}</span>
                                     </div>
                                 </motion.foreignObject>
                             )}
@@ -87,7 +87,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-transparent rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
                 <span className="text-2xl font-black text-primary dark:text-white">{totalValue}</span>
-                <span className="text-[11px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mt-0.5">AVG. TOTAL</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mt-0.5">AVG. TOTAL</span>
             </div>
 
             <AnimatePresence>
@@ -103,7 +103,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                             <hoveredItem.item.icon size={12} className="text-gray-400" />
                             {hoveredItem.item.label}
                         </span>
-                        <span className="text-[#d4af37] text-xs">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-[10px] ml-1">({hoveredItem.item.percentage}%)</span></span>
+                        <span className="text-[#d4af37] text-xs">{hoveredItem.item.amount} <span className="text-gray-400 font-medium text-xs ml-1">({hoveredItem.item.percentage}%)</span></span>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -156,7 +156,7 @@ export default function FranchiseModelsMobile() {
         <section className="w-full bg-background transition-colors duration-300 p-2 flex flex-col gap-2 ">
             <svg width="0" height="0" className="absolute">
                 <defs>
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="goldGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
                         <stop offset="0%" stopColor="#bf953f" />
                         <stop offset="50%" stopColor="#d4af37" />
                         <stop offset="100%" stopColor="#b38728" />
@@ -202,10 +202,10 @@ export default function FranchiseModelsMobile() {
                                     }`}>
                                     <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0b162c]" : "text-gray-500"} />
                                 </div>
-                                <span className={`font-bold text-[10px] mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
+                                <span className={`font-bold text-xs mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                                     {model.name}
                                 </span>
-                                <span className={`text-[10px] font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
+                                <span className={`text-xs font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
                                     {model.priceRange}
                                 </span>
                             </button>
@@ -298,7 +298,7 @@ export default function FranchiseModelsMobile() {
                                     <Wallet size={10} className="text-primary dark:text-accent-light" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
+                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
                                     <span className="text-sm font-bold text-primary leading-tight">{selected.investment}</span>
                                 </div>
                             </div>
@@ -308,7 +308,7 @@ export default function FranchiseModelsMobile() {
                                     <Maximize2 size={10} className="text-primary dark:text-accent-light" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA</span>
+                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA</span>
                                     <span className="text-sm font-bold text-primary leading-tight">{selected.area}</span>
                                 </div>
                             </div>
@@ -318,7 +318,7 @@ export default function FranchiseModelsMobile() {
                                     <Users size={10} className="text-primary dark:text-accent-light" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF</span>
+                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF</span>
                                     <div className="flex items-center gap-1">
                                         <span className="text-sm font-bold text-primary leading-tight">{selected.staffCount}</span>
                                         <Info size={10} className="text-gray-500" />
@@ -331,7 +331,7 @@ export default function FranchiseModelsMobile() {
                                     <MapPin size={10} className="text-primary dark:text-accent-light" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-0.5">LOCATION</span>
+                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">LOCATION</span>
                                     <span className="text-sm font-bold text-primary leading-tight">{selected.location}</span>
                                 </div>
                             </div>
@@ -359,7 +359,7 @@ export default function FranchiseModelsMobile() {
                                     )}
                                 >
                                     <div className="mb-2">
-                                        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                        <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                             {card.year}
                                         </span>
                                     </div>
@@ -427,7 +427,7 @@ export default function FranchiseModelsMobile() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -4 }}
                                 transition={{ duration: 0.18 }}
-                                className="text-center mt-1 text-[11px] font-bold text-slate-700 dark:text-slate-300 tracking-wide min-h-[16px]"
+                                className="text-center mt-1 text-sm font-bold text-slate-700 dark:text-slate-300 tracking-wide min-h-[16px]"
                             >
                                 {selectedMilestone}
                             </motion.div>

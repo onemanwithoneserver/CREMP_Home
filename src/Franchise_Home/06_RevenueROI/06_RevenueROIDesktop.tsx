@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { getBadgeStyles, getCardStyles, getIconContainerStyles } from "../utils/theme";
+import { getCardStyles, getIconContainerStyles } from "../utils/theme";
 import { revenueROIData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 

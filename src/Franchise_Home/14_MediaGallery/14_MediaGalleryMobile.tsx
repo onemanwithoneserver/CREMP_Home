@@ -22,7 +22,7 @@ export default function MediaGalleryMobile() {
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`flex items-center gap-1 px-3 py-1.5 rounded-[4px] text-[10px] font-bold whitespace-nowrap shrink-0 transition-all shadow-elevation-1 ${isActive
+                            className={`flex items-center gap-1 px-3 py-1.5 rounded-[4px] text-xs font-bold whitespace-nowrap shrink-0 transition-all shadow-elevation-1 ${isActive
                                     ? "bg-primary text-white"
                                     : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50"
                                 }`}
@@ -45,7 +45,7 @@ export default function MediaGalleryMobile() {
                     >
                         <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                        <span className="absolute bottom-2 left-3 text-white text-[10px] font-bold">{item.title}</span>
+                        <span className="absolute bottom-2 left-3 text-white text-xs font-bold">{item.title}</span>
                     </motion.div>
                 ))}
             </div>

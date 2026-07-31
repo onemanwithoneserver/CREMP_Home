@@ -92,7 +92,7 @@ export default function NumbersSpeakDesktop() {
                             >
                                 <div className="flex items-center justify-between mb-4">
                                     <span
-                                        className="text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[2px] bg-white/40 dark:bg-black/20 text-current shadow-sm"
+                                        className="text-sm font-bold uppercase tracking-widest px-2.5 py-1 rounded-[2px] bg-white/40 dark:bg-black/20 text-current shadow-sm"
                                     >
                                         {stat.sublabel}
                                     </span>

@@ -50,7 +50,7 @@ export default function IdealPartnerDesktop() {
                                 <div className="space-y-4 mb-5 flex-1">
                                     {item.items.map((subItem, idx) => (
                                         <div key={idx} className="flex flex-col relative pl-4 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary/40 dark:before:bg-accent/40">
-                                            <span className="text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-0.5">{subItem.label}</span>
+                                            <span className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-widest mb-0.5">{subItem.label}</span>
                                             {subItem.value && (
                                                 <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">{subItem.value}</span>
                                             )}
