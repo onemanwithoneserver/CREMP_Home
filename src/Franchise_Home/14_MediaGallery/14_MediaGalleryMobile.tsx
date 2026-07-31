@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { mediaGalleryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+import { Play } from "lucide-react";
 
 export default function MediaGalleryMobile() {
     const [activeTab, setActiveTab] = useState(
         mediaGalleryData.tabs.find((t) => t.isDefault)?.id || mediaGalleryData.tabs[0].id
     );
+
+    const isVideoTab = activeTab.includes("video");
 
     return (
         <section className="w-full bg-background px-4 py-8">
@@ -41,11 +44,19 @@ export default function MediaGalleryMobile() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.05 }}
-                        className="shrink-0 w-[160px] aspect-[4/3] rounded-[4px] overflow-hidden border border-transparent shadow-elevation-1 relative transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2"
+                        className={`shrink-0 ${isVideoTab ? "w-[140px] aspect-[9/16]" : "w-[160px] aspect-[4/3]"} rounded-[4px] overflow-hidden border border-transparent shadow-elevation-1 relative transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2`}
                     >
                         <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                        <span className="absolute bottom-2 left-3 text-white text-xs font-bold">{item.title}</span>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70" />
+                        
+                        {isVideoTab && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+                                    <Play className="text-white ml-1 w-5 h-5" fill="currentColor" />
+                                </div>
+                            </div>
+                        )}
+                        <span className="absolute bottom-2 left-3 text-white text-xs font-bold z-10">{item.title}</span>
                     </motion.div>
                 ))}
             </div>

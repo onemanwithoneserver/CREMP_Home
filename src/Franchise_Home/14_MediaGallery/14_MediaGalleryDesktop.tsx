@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { mediaGalleryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+import { Play } from "lucide-react";
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -17,6 +18,8 @@ export default function MediaGalleryDesktop() {
     const [activeTab, setActiveTab] = useState(
         mediaGalleryData.tabs.find((t) => t.isDefault)?.id || mediaGalleryData.tabs[0].id
     );
+
+    const isVideoTab = activeTab.includes("video");
 
     return (
         <section className="w-full bg-background px-6 py-12">
@@ -58,22 +61,27 @@ export default function MediaGalleryDesktop() {
                             key={item.id}
                             variants={fadeInUp}
                             whileHover={{ y: -4 }}
-                            className="relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer shadow-elevation-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/50 border border-transparent"
+                            className={`relative group overflow-hidden rounded-lg ${isVideoTab ? "aspect-[9/16]" : "aspect-[4/3]"} cursor-pointer shadow-elevation-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/50 border border-transparent`}
                         >
                             <img
                                 src={item.src}
                                 alt={item.title}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                            {isVideoTab && (
+                                <div className="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+                                        <Play className="text-white ml-1 w-6 h-6" fill="currentColor" />
+                                    </div>
+                                </div>
+                            )}
+                            <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10">
                                 <span className="text-white text-sm font-bold">{item.title}</span>
                             </div>
                         </motion.div>
                     ))}
                 </motion.div>
-
-                <p className="text-gray-600 text-sm mt-3">{mediaGalleryData.sourceLabel}</p>
             </div>
         </section>
     );

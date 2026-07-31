@@ -58,5 +58,4 @@ export const mediaGalleryData = {
             type: "image" as const,
         },
     ],
-    sourceLabel: "Source: Brand Repository",
 };
