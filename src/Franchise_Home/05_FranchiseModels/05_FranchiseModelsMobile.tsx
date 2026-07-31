@@ -208,7 +208,7 @@ export default function FranchiseModelsMobile() {
                             >
                                 <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-white/10" : "bg-surface-alt"
                                     }`}>
-                                    <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0a1128]" : "text-gray-500"} />
+                                    <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0b1b42]" : "text-gray-500"} />
                                 </div>
                                 <span className={`font-bold text-xs mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                                     {model.name}
@@ -290,7 +290,7 @@ export default function FranchiseModelsMobile() {
                         <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md border-none">
-                                    <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0a1128]" />
+                                    <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b1b42]" />
                                 </div>
                                 <div className="flex flex-col">
                                     <h3 className="text-[15px] font-black text-primary leading-tight">
@@ -362,7 +362,7 @@ export default function FranchiseModelsMobile() {
                                     key={card.year}
                                     className={clsx(
                                         "rounded-xl border border-gray-100 shadow-sm p-3",
-                                        "bg-white dark:bg-[#0a1128]/40 backdrop-blur-sm"
+                                        "bg-white dark:bg-[#0b1b42]/40 backdrop-blur-sm"
                                     )}
                                 >
                                     <div className="mb-2">
@@ -375,7 +375,7 @@ export default function FranchiseModelsMobile() {
                                         <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-inner", getRoiColor(card.intent))}>
                                             <Icon size={14} strokeWidth={1.75} />
                                         </div>
-                                        <p className="text-lg font-black text-[#0a1128] dark:text-white tracking-tight">
+                                        <p className="text-lg font-black text-[#0b1b42] dark:text-white tracking-tight">
                                             {card.range}
                                         </p>
                                     </div>
@@ -389,7 +389,7 @@ export default function FranchiseModelsMobile() {
                             <span className="text-xs uppercase font-bold tracking-widest text-[#d4af37] font-black">
                                 {revenueROIData.paybackPeriod.sectionLabel}
                             </span>
-                            <span className="text-sm font-black text-[#0a1128] dark:text-white">
+                            <span className="text-sm font-black text-[#0b1b42] dark:text-white">
                                 {revenueROIData.paybackPeriod.title}
                             </span>
                         </div>

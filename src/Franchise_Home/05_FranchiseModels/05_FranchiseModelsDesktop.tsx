@@ -77,7 +77,7 @@ const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[];
                 </svg>
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white rounded-full pointer-events-none z-0 shadow-inner" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-                    <span className="text-3xl font-black text-[#0a1128]">{totalValue}</span>
+                    <span className="text-3xl font-black text-[#0b1b42]">{totalValue}</span>
                     <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5 max-w-[80px] leading-tight">AVG. TOTAL INVESTMENT</span>
                 </div>
             </div>
@@ -88,7 +88,7 @@ const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[];
                     <div key={`legend-${idx}`} className="flex items-center gap-3 w-full">
                         <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
                         <span className="text-sm font-semibold text-gray-600 w-40 truncate">{item.label}</span>
-                        <span className="text-sm font-bold text-[#0a1128] text-right w-12">{item.amount}</span>
+                        <span className="text-sm font-bold text-[#0b1b42] text-right w-12">{item.amount}</span>
                         <span className="text-xs font-medium text-gray-500 text-right w-10">({item.percentage}%)</span>
                     </div>
                 ))}
@@ -141,7 +141,7 @@ export default function FranchiseModelsDesktop() {
                                 className={clsx(
                                     "flex-1 flex flex-col items-center justify-center py-4 px-2 border-r last:border-r-0 transition-all duration-300",
                                     isActive 
-                                        ? "bg-[#0a1128] border-[#d4af37] shadow-[inset_0_-4px_0_0_#d4af37]" 
+                                        ? "bg-[#0b1b42] border-[#d4af37] shadow-[inset_0_-4px_0_0_#d4af37]" 
                                         : "hover:bg-gray-50 border-gray-200"
                                 )}
                             >
@@ -152,7 +152,7 @@ export default function FranchiseModelsDesktop() {
                                     )}>
                                         <Icon size={14} className={isActive ? "text-[#d4af37]" : "text-gray-400"} />
                                     </div>
-                                    <span className={clsx("font-bold text-sm whitespace-nowrap", isActive ? "text-white" : "text-[#0a1128]")}>
+                                    <span className={clsx("font-bold text-sm whitespace-nowrap", isActive ? "text-white" : "text-[#0b1b42]")}>
                                         {model.name}
                                     </span>
                                 </div>
@@ -178,7 +178,7 @@ export default function FranchiseModelsDesktop() {
                             className="flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-xl overflow-hidden"
                         >
                             {/* Header */}
-                            <div className="bg-[#0a1128] p-5 flex flex-col items-start gap-4 shrink-0">
+                            <div className="bg-[#0b1b42] p-5 flex flex-col items-start gap-4 shrink-0">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-full border border-[#d4af37] bg-white/5 flex items-center justify-center shadow-inner">
                                         <selected.icon size={20} className="text-[#d4af37]" />
@@ -213,7 +213,7 @@ export default function FranchiseModelsDesktop() {
                                             <div className="flex flex-col pt-1">
                                                 <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-1">{stat.label}</span>
                                                 <div className="flex items-center gap-1.5">
-                                                    <span className="text-[15px] font-black text-[#0a1128] leading-tight">{stat.value}</span>
+                                                    <span className="text-[15px] font-black text-[#0b1b42] leading-tight">{stat.value}</span>
                                                     {stat.extra && <stat.extra size={12} className="text-gray-400" />}
                                                 </div>
                                             </div>
@@ -228,7 +228,7 @@ export default function FranchiseModelsDesktop() {
 
                 <div className="col-span-12 lg:col-span-6  p-6 flex flex-col">
                     <div className="flex items-center justify-start mb-8">
-                        <span className="text-sm font-bold uppercase tracking-widest text-[#0a1128]">
+                        <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42]">
                             INVESTMENT BREAKDOWN
                         </span>
                     </div>
@@ -251,7 +251,7 @@ export default function FranchiseModelsDesktop() {
 
                 {/* Right Panel: ROI */}
                 <div className="col-span-12 lg:col-span-3 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col">
-                    <span className="text-sm font-bold uppercase tracking-widest text-[#0a1128] mb-6">
+                    <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42] mb-6">
                         ESTIMATED ROI BY YEAR
                     </span>
 
@@ -271,7 +271,7 @@ export default function FranchiseModelsDesktop() {
                                         <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">
                                             {card.year}
                                         </span>
-                                        <p className="text-xl font-black text-[#0a1128] tracking-tight">
+                                        <p className="text-xl font-black text-[#0b1b42] tracking-tight">
                                             {card.range}
                                         </p>
                                     </div>
@@ -284,10 +284,10 @@ export default function FranchiseModelsDesktop() {
                 {/* Bottom Panel: Payback Period */}
                 <div className="col-span-12 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col gap-6 mt-2">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold uppercase tracking-widest text-[#0a1128]">
+                        <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42]">
                             PAYBACK PERIOD
                         </span>
-                        <span className="text-lg font-black text-[#0a1128]">
+                        <span className="text-lg font-black text-[#0b1b42]">
                             {revenueROIData.paybackPeriod.title}
                         </span>
                     </div>
