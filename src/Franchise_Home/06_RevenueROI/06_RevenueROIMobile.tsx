@@ -11,25 +11,20 @@ export default function RevenueROIMobile() {
                 overline={revenueROIData.sectionLabel}
                 align="center"
             />
-            <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-hide mb-6">
+            <div className="flex flex-col gap-6 mb-8">
                 {revenueROIData.revenueCards.map((card, idx) => {
                     const Icon = card.icon;
                     return (
                         <motion.div
                             key={card.year}
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className={clsx("shrink-0 w-[240px] rounded-[4px] border p-5 cursor-default transition-all duration-300", getCardStyles(card.intent))}
+                            className="flex flex-col cursor-default pb-6 border-b border-gray-100 dark:border-white/10 last:border-0 last:pb-0"
                         >
-                            <div className="flex items-start justify-between gap-2 mb-3">
+                            <div className="mb-3">
                                 <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{card.year}</span>
-                                <span
-                                    className={clsx("text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-[2px] leading-tight text-right", getBadgeStyles(card.intent))}
-                                >
-                                    {card.label}
-                                </span>
                             </div>
                             <div className="flex items-center gap-3 mb-3">
                                 <div
@@ -39,13 +34,11 @@ export default function RevenueROIMobile() {
                                 </div>
                                 <p className="text-2xl font-black text-gray-900 dark:text-white">{card.range}</p>
                             </div>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm font-medium leading-snug">{card.description}</p>
-                            <p className="text-gray-400 dark:text-gray-500 text-[10px] mt-1 font-medium">{card.sublabel}</p>
                         </motion.div>
                     );
                 })}
             </div>
-            <div className="bg-white dark:bg-surface border border-border rounded p-5 shadow-elevation-1 transition-shadow duration-300 hover:shadow-elevation-2">
+            <div className="pt-2">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
                     {revenueROIData.paybackPeriod.sectionLabel}
                 </p>

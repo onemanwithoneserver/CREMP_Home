@@ -45,17 +45,9 @@ export default function RevenueROIDesktop() {
                                     getCardStyles(card.intent)
                                 )}
                             >
-                                <div className="flex items-center justify-between mb-4">
+                                <div className="mb-4">
                                     <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                         {card.year}
-                                    </span>
-                                    <span
-                                        className={clsx(
-                                            "text-[10px] font-bold uppercase px-2.5 py-1 rounded-md shadow-sm",
-                                            getBadgeStyles(card.intent)
-                                        )}
-                                    >
-                                        {card.label}
                                     </span>
                                 </div>
 
@@ -72,13 +64,6 @@ export default function RevenueROIDesktop() {
                                         {card.range}
                                     </p>
                                 </div>
-
-                                <p className="text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed">
-                                    {card.description}
-                                </p>
-                                <p className="text-slate-400 dark:text-slate-500 text-xs mt-2 font-medium">
-                                    {card.sublabel}
-                                </p>
                             </motion.div>
                         );
                     })}

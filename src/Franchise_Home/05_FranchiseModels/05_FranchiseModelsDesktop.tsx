@@ -323,17 +323,9 @@ export default function FranchiseModelsDesktop() {
                                             getCardStyles(card.intent)
                                         )}
                                     >
-                                        <div className="flex items-center justify-between mb-2">
+                                        <div className="mb-2">
                                             <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                                 {card.year}
-                                            </span>
-                                            <span
-                                                className={clsx(
-                                                    "text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow-xs",
-                                                    getBadgeStyles(card.intent)
-                                                )}
-                                            >
-                                                {card.label}
                                             </span>
                                         </div>
 
@@ -349,14 +341,6 @@ export default function FranchiseModelsDesktop() {
                                             <p className="text-xl font-black text-[#0b162c] dark:text-white tracking-tight">
                                                 {card.range}
                                             </p>
-                                            <div className="flex flex-col ml-auto text-right max-w-[60%]">
-                                                <p className="text-slate-600 dark:text-slate-300 text-xs font-semibold leading-tight line-clamp-1">
-                                                    {card.description}
-                                                </p>
-                                                <p className="text-slate-400 dark:text-slate-500 text-[10px] font-medium leading-none mt-0.5 line-clamp-1">
-                                                    {card.sublabel}
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
                                 );
