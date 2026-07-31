@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Info, MapPin, Maximize2, MousePointerClick, Users, Wallet } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
-import { getCardStyles, getIconContainerStyles } from "../utils/theme";
+// removed theme imports
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
 import { CostBreakdownTable } from "./CostBreakdownTable";
@@ -124,6 +124,13 @@ export default function FranchiseModelsMobile() {
 
     const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
+    const getRoiColor = (intent: string) => {
+        if (intent === "primary") return "text-[#F97316] bg-gradient-to-br from-[#F97316]/20 to-[#C2410C]/20 border border-[#F97316]/30";
+        if (intent === "success") return "text-[#10B981] bg-gradient-to-br from-[#10B981]/20 to-[#047857]/20 border border-[#10B981]/30";
+        if (intent === "info") return "text-[#0EA5E9] bg-gradient-to-br from-[#0EA5E9]/20 to-[#0369A1]/20 border border-[#0EA5E9]/30";
+        return "text-gray-500 bg-gray-100";
+    };
+
     const activeMilestone = revenueROIData.paybackPeriod.milestones.find(m => m.status === "active")?.label || "";
     const [selectedMilestone, setSelectedMilestone] = useState<string>(activeMilestone);
 
@@ -200,7 +207,7 @@ export default function FranchiseModelsMobile() {
                             >
                                 <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-white/10" : "bg-surface-alt"
                                     }`}>
-                                    <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0b162c]" : "text-gray-500"} />
+                                    <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0a1128]" : "text-gray-500"} />
                                 </div>
                                 <span className={`font-bold text-xs mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
                                     {model.name}
@@ -282,7 +289,7 @@ export default function FranchiseModelsMobile() {
                         <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md border-none">
-                                    <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b162c]" />
+                                    <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0a1128]" />
                                 </div>
                                 <div className="flex flex-col">
                                     <h3 className="text-[15px] font-black text-primary leading-tight">
@@ -294,8 +301,8 @@ export default function FranchiseModelsMobile() {
 
                         <div className="grid grid-cols-2 gap-y-4 gap-x-2">
                             <div className="flex items-start gap-2.5">
-                                <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
-                                    <Wallet size={10} className="text-primary dark:text-accent-light" />
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#14B8A6]/20 to-[#0F766E]/20 text-[#14B8A6] shadow-sm flex items-center justify-center shrink-0 mt-0.5 z-10">
+                                    <Wallet size={10} />
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
@@ -304,8 +311,8 @@ export default function FranchiseModelsMobile() {
                             </div>
 
                             <div className="flex items-start gap-2.5">
-                                <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
-                                    <Maximize2 size={10} className="text-primary dark:text-accent-light" />
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#8B5CF6]/20 to-[#6D28D9]/20 text-[#8B5CF6] shadow-sm flex items-center justify-center shrink-0 mt-0.5 z-10">
+                                    <Maximize2 size={10} />
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA</span>
@@ -314,8 +321,8 @@ export default function FranchiseModelsMobile() {
                             </div>
 
                             <div className="flex items-start gap-2.5">
-                                <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
-                                    <Users size={10} className="text-primary dark:text-accent-light" />
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#F43F5E]/20 to-[#BE123C]/20 text-[#F43F5E] shadow-sm flex items-center justify-center shrink-0 mt-0.5 z-10">
+                                    <Users size={10} />
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF</span>
@@ -327,8 +334,8 @@ export default function FranchiseModelsMobile() {
                             </div>
 
                             <div className="flex items-start gap-2.5">
-                                <div className="w-5 h-5 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center shrink-0 border-2 border-accent/30 mt-0.5 z-10">
-                                    <MapPin size={10} className="text-primary dark:text-accent-light" />
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#3B82F6]/20 to-[#1D4ED8]/20 text-[#3B82F6] shadow-sm flex items-center justify-center shrink-0 mt-0.5 z-10">
+                                    <MapPin size={10} />
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">LOCATION</span>
@@ -353,9 +360,8 @@ export default function FranchiseModelsMobile() {
                                 <div
                                     key={card.year}
                                     className={clsx(
-                                        "rounded-xl border-none p-3",
-                                        "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
-                                        getCardStyles(card.intent)
+                                        "rounded-xl border border-gray-100 shadow-sm p-3",
+                                        "bg-white dark:bg-[#0a1128]/40 backdrop-blur-sm"
                                     )}
                                 >
                                     <div className="mb-2">
@@ -365,10 +371,10 @@ export default function FranchiseModelsMobile() {
                                     </div>
 
                                     <div className="flex items-center gap-3">
-                                        <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-inner", getIconContainerStyles(card.intent))}>
+                                        <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-inner", getRoiColor(card.intent))}>
                                             <Icon size={14} strokeWidth={1.75} />
                                         </div>
-                                        <p className="text-lg font-black text-[#0b162c] dark:text-white tracking-tight">
+                                        <p className="text-lg font-black text-[#0a1128] dark:text-white tracking-tight">
                                             {card.range}
                                         </p>
                                     </div>
@@ -382,7 +388,7 @@ export default function FranchiseModelsMobile() {
                             <span className="text-xs uppercase font-bold tracking-widest text-[#d4af37] font-black">
                                 {revenueROIData.paybackPeriod.sectionLabel}
                             </span>
-                            <span className="text-sm font-black text-[#0b162c] dark:text-white">
+                            <span className="text-sm font-black text-[#0a1128] dark:text-white">
                                 {revenueROIData.paybackPeriod.title}
                             </span>
                         </div>
@@ -396,13 +402,13 @@ export default function FranchiseModelsMobile() {
                                         <button
                                             onClick={() => setSelectedMilestone(milestone.label)}
                                             className={clsx(
-                                                "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border bg-white dark:bg-surface transition-all duration-300 focus:outline-none",
+                                                "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 focus:outline-none",
                                                 milestone.status === "complete"
-                                                    ? "bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-500/20"
+                                                    ? "bg-[#10B981]/10 border-[#10B981]/30 text-[#10B981]"
                                                     : milestone.status === "active"
-                                                        ? "bg-[#d4af37]/10 border-[#d4af37]/10 text-[#d4af37] ring-2 ring-[#d4af37]/10 dark:ring-[#d4af37]/20"
-                                                        : "bg-slate-50 border-slate-200 text-slate-400 dark:bg-slate-800/50 dark:border-slate-700",
-                                                isSelected && "scale-110 ring-1 ring-primary dark:ring-accent"
+                                                        ? "bg-[#0EA5E9]/10 border-[#0EA5E9]/50 text-[#0EA5E9] ring-2 ring-[#0EA5E9]/20"
+                                                        : "bg-slate-50 border-slate-200 text-slate-400",
+                                                isSelected && "scale-110 ring-1 ring-primary"
                                             )}
                                         >
                                             <Icon size={11} strokeWidth={milestone.status === "active" ? 2 : 1.5} />
@@ -411,7 +417,7 @@ export default function FranchiseModelsMobile() {
                                             <div className="flex-1 h-[2px] rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                                                 <div className={clsx(
                                                     "h-full transition-all duration-500",
-                                                    milestone.status === "complete" ? "bg-emerald-400/50 w-full" : "w-0"
+                                                    milestone.status === "complete" ? "bg-[#10B981]/40 w-full" : "w-0"
                                                 )} />
                                             </div>
                                         )}

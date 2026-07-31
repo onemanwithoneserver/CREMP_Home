@@ -2,7 +2,7 @@ import { type CostBreakdownItem } from './data';
 
 export const CostBreakdownTable = ({ data, totalValue }: { data: CostBreakdownItem[], totalValue: string }) => {
     return (
-        <div className="w-full flex flex-col gap-2 bg-white dark:bg-[#0b162c]/40 p-5 rounded-2xl shadow-sm border-none backdrop-blur-sm overflow-hidden h-full">
+        <div className="w-full flex flex-col gap-2 bg-white dark:bg-[#0a1128]/40 p-5 rounded-2xl shadow-sm border-none backdrop-blur-sm overflow-hidden h-full">
             <div className="grid grid-cols-12 text-xs font-bold text-gray-500 uppercase tracking-wider pb-3 border-b border-gray-100 dark:border-gray-800">
                 <div className="col-span-5">Category</div>
                 <div className="col-span-3 text-center">%</div>
@@ -17,7 +17,7 @@ export const CostBreakdownTable = ({ data, totalValue }: { data: CostBreakdownIt
                                 <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: `${item.color}15`, color: item.color }}>
                                     <Icon size={14} />
                                 </div>
-                                <span className="text-sm font-bold text-[#0b162c] dark:text-gray-200 truncate" title={item.label}>{item.label}</span>
+                                <span className="text-sm font-bold text-[#0a1128] dark:text-gray-200 truncate" title={item.label}>{item.label}</span>
                             </div>
                             <div className="col-span-3 flex justify-center">
                                 <span className="text-xs font-bold text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded shadow-inner">{item.percentage}%</span>
@@ -34,7 +34,7 @@ export const CostBreakdownTable = ({ data, totalValue }: { data: CostBreakdownIt
                     <span className="text-xs font-black uppercase tracking-widest text-gray-400">Total Avg</span>
                 </div>
                 <div className="col-span-5 text-right flex flex-col">
-                    <span className="text-xl font-black text-[#0b162c] dark:text-white leading-none">{totalValue}</span>
+                    <span className="text-xl font-black text-[#0a1128] dark:text-white leading-none">{totalValue}</span>
                 </div>
             </div>
         </div>
