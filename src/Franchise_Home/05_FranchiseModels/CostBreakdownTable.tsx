@@ -2,7 +2,7 @@ import { type CostBreakdownItem } from './data';
 
 export const CostBreakdownTable = ({ data, totalValue }: { data: CostBreakdownItem[], totalValue: string }) => {
     return (
-        <div className="w-full flex flex-col gap-2 bg-white dark:bg-[#0b1b42]/40 p-5 rounded-2xl shadow-sm border-none backdrop-blur-sm overflow-hidden h-full">
+        <div className="w-full flex flex-col gap-2 p-2 rounded-2xl border-none h-full">
             <div className="grid grid-cols-12 text-xs font-bold text-gray-500 uppercase tracking-wider pb-3 border-b border-gray-100 dark:border-gray-800">
                 <div className="col-span-5">Category</div>
                 <div className="col-span-3 text-center">%</div>

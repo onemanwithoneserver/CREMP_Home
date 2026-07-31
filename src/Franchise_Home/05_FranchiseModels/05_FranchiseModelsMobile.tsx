@@ -191,7 +191,7 @@ export default function FranchiseModelsMobile() {
                 <div 
                     ref={tabsRef} 
                     onScroll={checkScroll}
-                    className="flex gap-2 w-full overflow-x-auto scrollbar-hide py-2 px-1 scroll-smooth"
+                    className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide py-2 px-2 scroll-smooth bg-gray-100 dark:bg-gray-800 rounded-[20px] shadow-inner border border-gray-200/60 dark:border-gray-700/60 mt-1"
                 >
                     {franchiseModelsData.models.map((model) => {
                         const isActive = model.id === activeModel;
@@ -200,19 +200,22 @@ export default function FranchiseModelsMobile() {
                             <button
                                 key={model.id}
                                 onClick={() => setActiveModel(model.id)}
-                                className={`shrink-0 flex flex-col items-center justify-center text-center px-2 py-2 rounded border transition-colors duration-300 w-[85px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary focus-visible:ring-offset-2 ${isActive
-                                        ? "bg-gradient-to-br from-primary to-primary-light border-accent shadow-glow-accent -translate-y-1"
-                                        : "bg-surface border-transparent shadow-elevation-1"
-                                    }`}
+                                className="shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[14px] transition-all duration-300 w-[85px] focus-visible:outline-none"
                             >
-                                <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-white/10" : "bg-surface-alt"
-                                    }`}>
-                                    <Icon size={12} className={isActive ? "text-[#d4af37] dark:text-[#0b1b42]" : "text-gray-500"} />
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="mobileTabActive"
+                                        className="absolute inset-0 bg-[#0b1b42] shadow-[0_4px_12px_rgba(11,27,66,0.25)] rounded-[14px]"
+                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    />
+                                )}
+                                <div className={clsx("relative z-10 w-7 h-7 rounded-full flex items-center justify-center mb-1 border transition-colors duration-300", isActive ? "bg-white/10 border-[#d4af37]/40 text-[#d4af37]" : "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 shadow-sm")}>
+                                    <Icon size={12} strokeWidth={isActive ? 2.5 : 2} />
                                 </div>
-                                <span className={`font-bold text-xs mb-0.5 ${isActive ? "text-white" : "text-primary"}`}>
+                                <span className={clsx("relative z-10 font-extrabold text-xs mb-0.5 transition-colors duration-300", isActive ? "text-white" : "text-[#0b1b42] dark:text-gray-200")}>
                                     {model.name}
                                 </span>
-                                <span className={`text-xs font-semibold tracking-wider ${isActive ? "text-gray-300" : "text-gray-500"}`}>
+                                <span className={clsx("relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300", isActive ? "text-gray-300" : "text-gray-500 dark:text-gray-400")}>
                                     {model.priceRange}
                                 </span>
                             </button>
@@ -232,7 +235,7 @@ export default function FranchiseModelsMobile() {
 
             <div className="flex flex-col gap-4">
 
-                <div className="bg-surface rounded border-none p-4 flex flex-col items-center justify-center shadow-elevation-1">
+                <div className=" p-4 flex flex-col items-center justify-center ">
                     <div className="w-full flex justify-center mb-4 z-50">
                         <div className="w-40">
                             <Dropdown
@@ -299,49 +302,34 @@ export default function FranchiseModelsMobile() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-y-4 gap-x-2">
-                            <div className="flex items-start gap-2.5">
-                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F766E] text-white shadow-md shadow-[#14B8A6]/30 flex items-center justify-center shrink-0 z-10">
-                                    <Wallet size={12} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">INVESTMENT</span>
-                                    <span className="text-sm font-bold text-primary leading-tight">{selected.investment}</span>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5">
-                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-md shadow-[#8B5CF6]/30 flex items-center justify-center shrink-0 z-10">
-                                    <Maximize2 size={12} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">AREA</span>
-                                    <span className="text-sm font-bold text-primary leading-tight">{selected.area}</span>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5">
-                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#F43F5E] to-[#BE123C] text-white shadow-md shadow-[#F43F5E]/30 flex items-center justify-center shrink-0 z-10">
-                                    <Users size={12} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">STAFF</span>
-                                    <div className="flex items-center gap-1">
-                                        <span className="text-sm font-bold text-primary leading-tight">{selected.staffCount}</span>
-                                        <Info size={10} className="text-gray-500" />
+                        <div className="grid grid-cols-2 gap-3 mt-4">
+                            {[
+                                { icon: Wallet, label: "INVESTMENT", value: selected.investment },
+                                { icon: Maximize2, label: "AREA", value: selected.area },
+                                { icon: Users, label: "STAFF", value: `${selected.staffCount} members`, extra: Info },
+                                { icon: MapPin, label: "LOCATION", value: selected.location }
+                            ].map((stat, i) => (
+                                <div 
+                                    key={stat.label} 
+                                    className="flex flex-col items-start gap-2.5 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700"
+                                >
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 text-white ${
+                                            i === 0 ? 'bg-gradient-to-br from-[#10B981] to-[#047857] shadow-lg shadow-[#10B981]/30' : 
+                                            i === 1 ? 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] shadow-lg shadow-[#8B5CF6]/30' : 
+                                            i === 2 ? 'bg-gradient-to-br from-[#F43F5E] to-[#BE123C] shadow-lg shadow-[#F43F5E]/30' : 
+                                            'bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] shadow-lg shadow-[#0EA5E9]/30'
+                                        }`}>
+                                            <stat.icon size={14} strokeWidth={2.5} />
+                                    </div>
+                                    <div className="flex flex-col w-full">
+                                        <span className="text-[9px] uppercase font-black tracking-widest text-gray-400 mb-0.5">{stat.label}</span>
+                                        <div className="flex items-center justify-between w-full">
+                                            <span className="text-[13px] font-black text-[#0b1b42] dark:text-gray-100 leading-tight truncate">{stat.value}</span>
+                                            {stat.extra && <stat.extra size={10} className="text-gray-300" />}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5">
-                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-white shadow-md shadow-[#3B82F6]/30 flex items-center justify-center shrink-0 z-10">
-                                    <MapPin size={12} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 mb-0.5">LOCATION</span>
-                                    <span className="text-sm font-bold text-primary leading-tight">{selected.location}</span>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </motion.div>
                 </AnimatePresence>
