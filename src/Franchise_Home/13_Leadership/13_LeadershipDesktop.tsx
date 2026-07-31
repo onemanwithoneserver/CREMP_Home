@@ -34,7 +34,7 @@ export default function LeadershipDesktop() {
                         <motion.div
                             key={member.name}
                             variants={fadeInUp}
-                            className={clsx("overflow-hidden rounded-2xl border cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
+                            className={clsx("overflow-hidden rounded-3xl border bg-white dark:bg-surface cursor-default group flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:border-primary/30", getCardStyles())}
                         >
                             <div className="relative h-72 overflow-hidden">
                                 <img
@@ -49,8 +49,8 @@ export default function LeadershipDesktop() {
                                 </div>
                             </div>
 
-                            <div className="p-6 -mt-8 relative z-10 flex-1 flex flex-col">
-                                <h4 className="text-[#0a1128] dark:text-white font-bold text-lg tracking-tight">{member.name}</h4>
+                            <div className="p-6 relative z-10 flex-1 flex flex-col bg-white dark:bg-surface border-t border-gray-100 dark:border-white/5">
+                                <h4 className="text-[#0a1128] dark:text-white font-bold text-xl tracking-tight">{member.name}</h4>
                                 <p className="text-[#0a1128] dark:text-accent text-sm font-semibold mb-1">{member.role}</p>
                                 <p className="text-gray-500 dark:text-gray-400 text-xs font-medium mb-4">
                                     {member.company} · {member.experience}

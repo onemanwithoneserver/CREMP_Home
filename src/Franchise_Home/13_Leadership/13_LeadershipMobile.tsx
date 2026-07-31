@@ -19,7 +19,7 @@ export default function LeadershipMobile() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className={clsx("overflow-hidden rounded-[4px] border transition-all duration-300", getCardStyles())}
+                        className={clsx("overflow-hidden rounded-[20px] border shadow-sm transition-all duration-300", getCardStyles())}
                     >
                         <div className="relative h-48 overflow-hidden">
                             <img
@@ -29,8 +29,8 @@ export default function LeadershipMobile() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-surface" />
                         </div>
-                        <div className="p-5 -mt-6 relative z-10 flex-1 flex flex-col">
-                            <h4 className="text-[#0a1128] dark:text-white font-bold text-base">{member.name}</h4>
+                        <div className="p-5 relative z-10 flex-1 flex flex-col bg-white dark:bg-surface border-t border-gray-100 dark:border-white/5">
+                            <h4 className="text-[#0a1128] dark:text-white font-bold text-lg">{member.name}</h4>
                             <p className="text-[#0a1128] dark:text-accent text-xs font-semibold mb-1">{member.role}</p>
                             <p className="text-gray-500 dark:text-gray-400 text-xs mb-3 font-medium">
                                 {member.company} · {member.experience}

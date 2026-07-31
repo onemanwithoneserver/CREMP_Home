@@ -75,7 +75,7 @@ export default function FAQDesktop() {
                                 >
                                     <button
                                         onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
-                                        className="w-full flex items-center justify-between p-6 text-left"
+                                        className="w-full flex items-center justify-between p-4 text-left"
                                     >
                                         <span className={`text-base font-bold pr-8 transition-colors ${expandedId === q.id ? "text-[#0a1128] dark:text-accent" : "text-[#0a1128] dark:text-white"}`}>
                                             {q.question}

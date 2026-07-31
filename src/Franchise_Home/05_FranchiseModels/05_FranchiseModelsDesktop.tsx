@@ -100,6 +100,7 @@ export default function FranchiseModelsDesktop() {
     const [activeModel, setActiveModel] = useState(
         franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id || franchiseModelsData.models[0].id
     );
+    const [isStaffTooltipOpen, setIsStaffTooltipOpen] = useState(false);
 
     const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
 
@@ -174,10 +175,10 @@ export default function FranchiseModelsDesktop() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.3 }}
-                            className="flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-xl overflow-hidden"
+                            className="flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-xl"
                         >
                             {/* Header */}
-                            <div className="bg-[#0b1b42] p-5 flex flex-col items-start gap-4 shrink-0">
+                            <div className="bg-[#0b1b42] p-5 flex flex-col items-start gap-4 shrink-0 rounded-t-xl">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-full border border-[#d4af37] bg-white/5 flex items-center justify-center shadow-inner">
                                         <selected.icon size={20} className="text-[#d4af37]" />
@@ -189,7 +190,7 @@ export default function FranchiseModelsDesktop() {
                             </div>
 
                             {/* Body */}
-                            <div className="bg-white p-6 flex-1 relative border border-t-0 border-gray-200">
+                            <div className="bg-white p-6 flex-1 relative border border-t-0 border-gray-200 rounded-b-xl">
                                 {/* Vertical Dashed Line */}
                                 <div className="absolute left-[47px] top-10 bottom-10 w-px border-l-2 border-dashed border-gray-200 z-0" />
                                 
@@ -211,12 +212,23 @@ export default function FranchiseModelsDesktop() {
                                             </div>
                                             <div className="flex flex-col pt-1">
                                                 <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-1">{stat.label}</span>
-                                                <div className="flex items-center gap-1.5 relative group/staff cursor-pointer">
+                                                <div 
+                                                    className="flex items-center gap-1.5 relative group/staff cursor-pointer"
+                                                    onClick={() => stat.label === "STAFF NEEDED" && setIsStaffTooltipOpen(!isStaffTooltipOpen)}
+                                                    onKeyDown={(e) => {
+                                                        if (stat.label === "STAFF NEEDED" && (e.key === "Enter" || e.key === " ")) {
+                                                            setIsStaffTooltipOpen(!isStaffTooltipOpen);
+                                                            e.preventDefault();
+                                                        }
+                                                    }}
+                                                    tabIndex={stat.label === "STAFF NEEDED" ? 0 : undefined}
+                                                    aria-expanded={isStaffTooltipOpen}
+                                                >
                                                     <span className="text-[15px] font-black text-[#0b1b42] leading-tight group-hover/staff:text-primary transition-colors">{stat.value}</span>
                                                     {stat.extra && <stat.extra size={12} className="text-gray-400 group-hover/staff:text-primary transition-colors" />}
                                                     
                                                     {stat.label === "STAFF NEEDED" && (
-                                                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[130%] mb-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover/staff:opacity-100 group-hover/staff:visible transition-all duration-200 z-50 p-3 pointer-events-none">
+                                                        <div className={`absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 transition-all duration-200 z-[9999] p-3 pointer-events-auto ${isStaffTooltipOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                                                             <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-100 pb-1.5 text-center">Staff Requirements</h5>
                                                             <div className="flex flex-col gap-2 max-h-48 overflow-y-auto scrollbar-hide">
                                                                 {selected.staffDetails?.map((staff, idx) => (
@@ -234,7 +246,7 @@ export default function FranchiseModelsDesktop() {
                                                                     </div>
                                                                 ))}
                                                             </div>
-                                                            <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white drop-shadow-sm" />
+                                                            <div className="absolute top-1/2 -translate-y-1/2 -left-[6px] w-0 h-0 border-t-[6px] border-b-[6px] border-r-[6px] border-transparent border-r-white drop-shadow-sm" />
                                                         </div>
                                                     )}
                                                 </div>
