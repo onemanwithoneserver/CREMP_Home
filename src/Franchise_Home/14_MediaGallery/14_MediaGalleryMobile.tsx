@@ -60,8 +60,6 @@ export default function MediaGalleryMobile() {
                     </motion.div>
                 ))}
             </div>
-
-            <p className="text-gray-600 text-[8px] mt-2">{mediaGalleryData.sourceLabel}</p>
         </section>
     );
 }

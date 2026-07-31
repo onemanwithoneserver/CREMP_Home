@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 interface SectionHeaderProps {
     title?: string;
@@ -8,6 +9,9 @@ interface SectionHeaderProps {
 }
 
 export function SectionHeader({ title, overline, align = "left" }: SectionHeaderProps) {
+    const location = useLocation();
+    const isMobile = location.pathname.split("/").filter(Boolean)[0] === "mobile";
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -23,9 +27,18 @@ export function SectionHeader({ title, overline, align = "left" }: SectionHeader
             )}
             
             {title && (
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-                    {title}
-                </h2>
+                <>
+                    {isMobile && (
+                        <h2 className="text-lg font-sans font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+                            {title}
+                        </h2>
+                    )}
+                    {!isMobile && (
+                        <h2 className="text-4xl lg:text-5xl font-sans font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+                            {title}
+                        </h2>
+                    )}
+                </>
             )}
             
             {(title || overline) && (
