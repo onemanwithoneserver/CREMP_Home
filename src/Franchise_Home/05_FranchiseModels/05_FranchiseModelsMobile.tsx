@@ -131,8 +131,8 @@ export default function FranchiseModelsMobile() {
         return "text-white bg-gray-400";
     };
 
-    const activeMilestone = revenueROIData.paybackPeriod.milestones.find(m => m.status === "active")?.label || "";
-    const [selectedMilestone, setSelectedMilestone] = useState<string>(activeMilestone);
+
+
 
     const tabsRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);

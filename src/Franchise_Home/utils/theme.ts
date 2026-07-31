@@ -34,11 +34,11 @@ export const getIconContainerStyles = (intent?: string) => {
     }
 };
 
-export const getBorderStyles = (intent?: string) => {
+export const getBorderStyles = (_intent?: string) => {
     return 'border-gray-100 hover:border-gray-200 transition-colors duration-300';
 };
 
-export const getCardStyles = (intent?: string) => {
+export const getCardStyles = (_intent?: string) => {
     return 'bg-white border border-gray-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300';
 };
 

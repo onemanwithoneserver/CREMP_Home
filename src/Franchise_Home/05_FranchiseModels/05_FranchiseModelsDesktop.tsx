@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { Info, MapPin, Maximize2, Users, Wallet, Calendar, UserCheck, Clock, Target } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { revenueROIData } from "../06_RevenueROI/data";
 import { franchiseModelsData, type CostBreakdownItem } from "./data";
 
@@ -131,7 +131,7 @@ export default function FranchiseModelsDesktop() {
             {/* Top Tabs */}
             <div className="w-full max-w-7xl mx-auto flex justify-center mb-2">
                 <div className="flex w-full bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-                    {franchiseModelsData.models.map((model, idx) => {
+                    {franchiseModelsData.models.map((model, _idx) => {
                         const isActive = model.id === activeModel;
                         const Icon = model.icon;
                         return (

@@ -5,7 +5,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 const itemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 25 } },
+    show: { opacity: 1, scale: 1, transition: { type: "spring" as const, stiffness: 300, damping: 25 } },
 };
 
 const staggerContainer = {
