@@ -27,7 +27,7 @@ export default function MissionVisionMobile() {
                                 <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>
                                     <Icon size={16} strokeWidth={1.5} />
                                 </div>
-                                <span className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a1128] dark:text-accent">
+                                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-[#0a1128] dark:text-accent">
                                     {card.label}
                                 </span>
                             </div>

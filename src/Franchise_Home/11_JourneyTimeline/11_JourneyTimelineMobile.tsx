@@ -47,7 +47,7 @@ export default function JourneyTimelineMobile() {
                                     ]
                                 } : {}}
                                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                                className={`absolute -left-10 top-2 w-10 h-10 rounded-full flex items-center justify-center text-sm font-black z-10 ${milestone.isActive
+                                className={`absolute -left-10 top-2 w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold z-10 ${milestone.isActive
                                         ? "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white border-none"
                                         : "bg-[#121c33] border border-white/20 text-gray-400"
                                     }`}
@@ -64,7 +64,7 @@ export default function JourneyTimelineMobile() {
                                 {milestone.isActive && (
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 to-transparent opacity-50 pointer-events-none" />
                                 )}
-                                <p className={`text-sm font-black mb-1.5 relative z-10 tracking-wide ${milestone.isActive ? "text-[#d4af37]" : "text-gray-300"}`}>
+                                <p className={`text-sm font-semibold mb-1.5 relative z-10 tracking-wide ${milestone.isActive ? "text-[#d4af37]" : "text-gray-300"}`}>
                                     {milestone.year}
                                 </p>
                                 <p className={`relative z-10 ${milestone.isActive ? "text-gray-200 text-[13px] leading-relaxed" : "text-gray-700 dark:text-gray-300 text-[13px] leading-relaxed"}`}>

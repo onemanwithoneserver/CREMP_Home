@@ -65,7 +65,7 @@ const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[];
                                     >
                                         <div className="flex flex-col items-center justify-center w-full h-full text-white">
                                             <item.icon size={14} className="mb-0.5 opacity-90" />
-                                            <span className="text-sm font-bold leading-tight drop-shadow-md">{item.amount}</span>
+                                            <span className="text-sm font-semibold leading-tight drop-shadow-md">{item.amount}</span>
                                             <span className="text-[10px] font-medium leading-tight opacity-90">{item.percentage}%</span>
                                         </div>
                                     </motion.foreignObject>
@@ -76,8 +76,8 @@ const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[];
                 </svg>
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white rounded-full pointer-events-none z-0 shadow-inner" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-                    <span className="text-3xl font-black text-[#0b1b42]">{totalValue}</span>
-                    <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5 max-w-[80px] leading-tight">AVG. TOTAL INVESTMENT</span>
+                    <span className="text-3xl font-semibold text-[#0b1b42]">{totalValue}</span>
+                    <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mt-0.5 max-w-[80px] leading-tight">AVG. TOTAL INVESTMENT</span>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@ const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[];
                     <div key={`legend-${idx}`} className="flex items-center gap-3 w-full">
                         <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
                         <span className="text-sm font-semibold text-gray-600 w-40 truncate">{item.label}</span>
-                        <span className="text-sm font-bold text-[#0b1b42] text-right w-12">{item.amount}</span>
+                        <span className="text-sm font-semibold text-[#0b1b42] text-right w-12">{item.amount}</span>
                         <span className="text-xs font-medium text-gray-500 text-right w-10">({item.percentage}%)</span>
                     </div>
                 ))}
@@ -152,11 +152,11 @@ export default function FranchiseModelsDesktop() {
                                     )}>
                                         <Icon size={14} className={isActive ? "text-[#d4af37]" : "text-gray-400"} />
                                     </div>
-                                    <span className={clsx("font-bold text-sm whitespace-nowrap", isActive ? "text-white" : "text-[#0b1b42]")}>
+                                    <span className={clsx("font-semibold text-sm whitespace-nowrap", isActive ? "text-white" : "text-[#0b1b42]")}>
                                         {model.name}
                                     </span>
                                 </div>
-                                <span className={clsx("text-xs font-bold", isActive ? "text-gray-300" : "text-gray-500")}>
+                                <span className={clsx("text-xs font-semibold", isActive ? "text-gray-300" : "text-gray-500")}>
                                     {model.priceRange}
                                 </span>
                             </button>
@@ -183,7 +183,7 @@ export default function FranchiseModelsDesktop() {
                                     <div className="w-12 h-12 rounded-full border border-[#d4af37] bg-white/5 flex items-center justify-center shadow-inner">
                                         <selected.icon size={20} className="text-[#d4af37]" />
                                     </div>
-                                    <h3 className="text-xl font-black text-white leading-tight">
+                                    <h3 className="text-xl font-semibold text-white leading-tight">
                                         {selected.name}
                                     </h3>
                                 </div>
@@ -211,7 +211,7 @@ export default function FranchiseModelsDesktop() {
                                                     <stat.icon size={18} />
                                             </div>
                                             <div className="flex flex-col pt-1">
-                                                <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-1">{stat.label}</span>
+                                                <span className="text-[10px] uppercase font-semibold tracking-widest text-gray-400 mb-1">{stat.label}</span>
                                                 <div 
                                                     className="flex items-center gap-1.5 relative group/staff cursor-pointer"
                                                     onClick={() => stat.label === "STAFF NEEDED" && setIsStaffTooltipOpen(!isStaffTooltipOpen)}
@@ -224,20 +224,20 @@ export default function FranchiseModelsDesktop() {
                                                     tabIndex={stat.label === "STAFF NEEDED" ? 0 : undefined}
                                                     aria-expanded={isStaffTooltipOpen}
                                                 >
-                                                    <span className="text-[15px] font-black text-[#0b1b42] leading-tight group-hover/staff:text-primary transition-colors">{stat.value}</span>
+                                                    <span className="text-[15px] font-semibold text-[#0b1b42] leading-tight group-hover/staff:text-primary transition-colors">{stat.value}</span>
                                                     {stat.extra && <stat.extra size={12} className="text-gray-400 group-hover/staff:text-primary transition-colors" />}
                                                     
                                                     {stat.label === "STAFF NEEDED" && (
                                                         <div className={`absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 transition-all duration-200 z-[9999] p-3 pointer-events-auto ${isStaffTooltipOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                                                            <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-100 pb-1.5 text-center">Staff Requirements</h5>
+                                                            <h5 className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-100 pb-1.5 text-center">Staff Requirements</h5>
                                                             <div className="flex flex-col gap-2 max-h-48 overflow-y-auto scrollbar-hide">
                                                                 {selected.staffDetails?.map((staff, idx) => (
                                                                     <div key={idx} className="flex flex-col bg-gray-50/80 rounded-lg p-2.5">
                                                                         <div className="flex justify-between items-center mb-1">
-                                                                            <span className="text-xs font-black text-[#0b1b42]">{staff.name}</span>
-                                                                            <span className="text-[9px] font-black text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">{staff.count}x</span>
+                                                                            <span className="text-xs font-semibold text-[#0b1b42]">{staff.name}</span>
+                                                                            <span className="text-[9px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">{staff.count}x</span>
                                                                         </div>
-                                                                        <div className="flex gap-2 text-[9px] font-bold text-gray-500 mb-1.5 uppercase tracking-wide">
+                                                                        <div className="flex gap-2 text-[9px] font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
                                                                             <span>{staff.type}</span>
                                                                             <span>•</span>
                                                                             <span>{staff.experience}</span>
@@ -262,7 +262,7 @@ export default function FranchiseModelsDesktop() {
 
                 <div className="col-span-12 lg:col-span-6  p-6 flex flex-col">
                     <div className="flex items-center justify-start mb-8">
-                        <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42]">
+                        <span className="text-sm font-semibold uppercase tracking-widest text-[#0b1b42]">
                             INVESTMENT BREAKDOWN
                         </span>
                     </div>
@@ -285,7 +285,7 @@ export default function FranchiseModelsDesktop() {
 
                 {/* Right Panel: ROI */}
                 <div className="col-span-12 lg:col-span-3 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col">
-                    <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42] mb-6">
+                    <span className="text-sm font-semibold uppercase tracking-widest text-[#0b1b42] mb-6">
                         ESTIMATED ROI BY YEAR
                     </span>
 
@@ -302,10 +302,10 @@ export default function FranchiseModelsDesktop() {
                                         <Icon size={14} strokeWidth={2.5} />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">
+                                        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">
                                             {card.year}
                                         </span>
-                                        <p className="text-xl font-black text-[#0b1b42] tracking-tight">
+                                        <p className="text-xl font-semibold text-[#0b1b42] tracking-tight">
                                             {card.range}
                                         </p>
                                     </div>
@@ -318,10 +318,10 @@ export default function FranchiseModelsDesktop() {
                 {/* Bottom Panel: Payback Period */}
                 <div className="col-span-12 bg-white border border-gray-100 rounded-2xl py-4 px-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col gap-4 mt-0">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold uppercase tracking-widest text-[#0b1b42]">
+                        <span className="text-sm font-semibold uppercase tracking-widest text-[#0b1b42]">
                             PAYBACK PERIOD
                         </span>
-                        <span className="text-lg font-black text-[#0b1b42]">
+                        <span className="text-lg font-semibold text-[#0b1b42]">
                             {revenueROIData.paybackPeriod.title}
                         </span>
                     </div>
@@ -379,12 +379,12 @@ export default function FranchiseModelsDesktop() {
                                     
                                     <div className="flex flex-col items-center text-center">
                                         <span 
-                                            className="text-sm font-black transition-colors duration-300 group-hover:scale-110" 
+                                            className="text-sm font-semibold transition-colors duration-300 group-hover:scale-110" 
                                             style={{ color: accent }}
                                         >
                                             0{idx + 1}
                                         </span>
-                                        <span className="text-[11px] font-bold text-gray-400 uppercase max-w-[120px] group-hover:text-[#0b1b42] transition-colors duration-300 mt-1">
+                                        <span className="text-[11px] font-semibold text-gray-400 uppercase max-w-[120px] group-hover:text-[#0b1b42] transition-colors duration-300 mt-1">
                                             {milestone.label}
                                         </span>
                                     </div>

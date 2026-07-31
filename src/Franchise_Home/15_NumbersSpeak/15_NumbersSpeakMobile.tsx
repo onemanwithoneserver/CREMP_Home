@@ -42,7 +42,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string; int
     }, [hasStarted, target]);
 
     return (
-        <div ref={ref} className="text-2xl tracking-tight font-black text-current">
+        <div ref={ref} className="text-2xl tracking-tight font-semibold text-current">
             {count}
             <span className="opacity-80">{suffix}</span>
         </div>
@@ -59,7 +59,7 @@ export default function NumbersSpeakMobile() {
                     subtitle={numbersSpeakData.subtitle}
                     align="left"
                 />
-                <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-sm font-bold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-[-10px] pb-2">
+                <span className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-transparent bg-clip-text text-sm font-semibold cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-1 mt-[-10px] pb-2">
                     ↗ {numbersSpeakData.verifiedLabel}
                 </span>
             </div>
@@ -77,14 +77,14 @@ export default function NumbersSpeakMobile() {
                         >
                             <div className="flex items-start justify-between gap-2 mb-3">
                                 <span
-                                    className="text-[8px] font-bold uppercase tracking-wide px-2 py-1 rounded-[2px] leading-tight text-left bg-white/40 dark:bg-black/20 text-current shadow-sm"
+                                    className="text-[8px] font-semibold uppercase tracking-wide px-2 py-1 rounded-[2px] leading-tight text-left bg-white/40 dark:bg-black/20 text-current shadow-sm"
                                 >
                                     {stat.sublabel}
                                 </span>
                                 <Icon size={14} strokeWidth={1.5} className="shrink-0 mt-0.5 opacity-80" />
                             </div>
                             <AnimatedCounter value={stat.value} suffix={stat.suffix} intent={stat.intent} />
-                            <p className="text-sm font-bold mt-1 opacity-90">{stat.label}</p>
+                            <p className="text-sm font-semibold mt-1 opacity-90">{stat.label}</p>
                         </motion.div>
                     );
                 })}

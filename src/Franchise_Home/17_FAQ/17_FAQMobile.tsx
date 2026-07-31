@@ -39,7 +39,7 @@ export default function FAQMobile() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] text-sm font-bold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all hover-lift"
+                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] text-sm font-semibold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all hover-lift"
                 >
                     {(() => { const Icon = faqData.ctaButton.icon; return <Icon size={16} />; })()}
                     {faqData.ctaButton.label}
@@ -55,7 +55,7 @@ export default function FAQMobile() {
                             setActiveTab(tab.id);
                             setExpandedId(null);
                         }}
-                        className={`px-5 py-2.5 rounded-[4px] text-xs font-bold transition-all duration-300 whitespace-nowrap snap-start shrink-0 ${activeTab === tab.id
+                        className={`px-5 py-2.5 rounded-[4px] text-xs font-semibold transition-all duration-300 whitespace-nowrap snap-start shrink-0 ${activeTab === tab.id
                                 ? "bg-primary text-white shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                                 : "bg-white dark:bg-white border border-gray-100 text-gray-600 dark:text-gray-400 hover:border-primary/50"
                             }`}
@@ -82,7 +82,7 @@ export default function FAQMobile() {
                                 onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
                                 className="w-full flex items-center justify-between p-4 text-left"
                             >
-                                <span className={`text-[13px] font-bold pr-4 transition-colors leading-snug ${expandedId === q.id ? "text-[#0a1128] dark:text-accent" : "text-[#0a1128] dark:text-white"}`}>
+                                <span className={`text-[13px] font-semibold pr-4 transition-colors leading-snug ${expandedId === q.id ? "text-[#0a1128] dark:text-accent" : "text-[#0a1128] dark:text-white"}`}>
                                     {q.question}
                                 </span>
                                 <div

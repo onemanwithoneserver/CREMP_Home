@@ -50,7 +50,7 @@ export default function LeadershipDesktop() {
                             </div>
 
                             <div className="p-6 relative z-10 flex-1 flex flex-col bg-white dark:bg-surface border-t border-gray-100 dark:border-white/5">
-                                <h4 className="text-[#0a1128] dark:text-white font-bold text-xl tracking-tight">{member.name}</h4>
+                                <h4 className="text-[#0a1128] dark:text-white font-semibold text-xl tracking-tight">{member.name}</h4>
                                 <p className="text-[#0a1128] dark:text-accent text-sm font-semibold mb-1">{member.role}</p>
                                 <p className="text-gray-500 dark:text-gray-400 text-xs font-medium mb-4">
                                     {member.company} · {member.experience}

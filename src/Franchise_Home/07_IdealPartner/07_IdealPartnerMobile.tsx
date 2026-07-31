@@ -63,7 +63,7 @@ export default function IdealPartnerMobile() {
                                 <div className={clsx("w-12 h-12 rounded-2xl flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                     <Icon size={20} strokeWidth={2.5} />
                                 </div>
-                                <h4 className="text-gray-900 dark:text-white font-extrabold text-[15px] leading-tight">
+                                <h4 className="text-gray-900 dark:text-white font-semibold text-[15px] leading-tight">
                                     {item.title}
                                 </h4>
                             </div>
@@ -102,10 +102,10 @@ export default function IdealPartnerMobile() {
                             )}
                         >
                             <div className="flex flex-col">
-                                <span className="text-gray-400 dark:text-gray-500 text-[10px] font-extrabold uppercase tracking-widest mb-1">
+                                <span className="text-gray-400 dark:text-gray-500 text-[10px] font-semibold uppercase tracking-widest mb-1">
                                     {item.title}
                                 </span>
-                                <span className="text-gray-900 dark:text-white font-black text-sm tracking-tight">
+                                <span className="text-gray-900 dark:text-white font-semibold text-sm tracking-tight">
                                     {item.value}
                                 </span>
                             </div>
@@ -132,7 +132,7 @@ export default function IdealPartnerMobile() {
                         <div className="w-12 h-12 rounded-xl bg-gray-900 dark:bg-gray-800 flex items-center justify-center shrink-0 shadow-sm">
                             <idealPartnerData.additionalExpectations.icon size={20} className="text-white" strokeWidth={2.5} />
                         </div>
-                        <h4 className="text-gray-900 dark:text-white font-extrabold text-[15px] tracking-tight">
+                        <h4 className="text-gray-900 dark:text-white font-semibold text-[15px] tracking-tight">
                             {idealPartnerData.additionalExpectations.title}
                         </h4>
                     </div>

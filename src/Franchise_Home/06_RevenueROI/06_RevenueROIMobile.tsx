@@ -24,7 +24,7 @@ export default function RevenueROIMobile() {
                             className="flex flex-col cursor-default pb-6 border-b border-gray-100 dark:border-white/10 last:border-0 last:pb-0"
                         >
                             <div className="mb-3">
-                                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{card.year}</span>
+                                <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">{card.year}</span>
                             </div>
                             <div className="flex items-center gap-3 mb-3">
                                 <div
@@ -32,17 +32,17 @@ export default function RevenueROIMobile() {
                                 >
                                     <Icon size={14} strokeWidth={1.5} />
                                 </div>
-                                <p className="text-2xl tracking-tight font-black text-[#0a1128] dark:text-white">{card.range}</p>
+                                <p className="text-2xl tracking-tight font-semibold text-[#0a1128] dark:text-white">{card.range}</p>
                             </div>
                         </motion.div>
                     );
                 })}
             </div>
             <div className="pt-2">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
                     {revenueROIData.paybackPeriod.sectionLabel}
                 </p>
-                <h3 className="text-xl font-black text-[#0a1128] dark:text-white mb-5">
+                <h3 className="text-xl font-semibold text-[#0a1128] dark:text-white mb-5">
                     {revenueROIData.paybackPeriod.title}
                 </h3>
                 <div className="space-y-4">

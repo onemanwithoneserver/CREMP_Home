@@ -39,16 +39,16 @@ export default function HeroGalleryDesktop() {
                                 <Coffee size={32} strokeWidth={2} />
                             </div>
                             <div className="flex flex-col">
-                                <h1 className="text-2xl tracking-tight font-serif font-black tracking-widest text-[#0b162c] uppercase leading-none">
+                                <h1 className="text-2xl tracking-tight font-serif font-semibold tracking-widest text-[#0b162c] uppercase leading-none">
                                     THE URBAN
                                 </h1>
                                 <div className="flex items-center gap-2 mt-1.5">
                                     <div className="h-[2px] bg-[#c69a54] w-8" />
-                                    <span className="text-sm tracking-widest text-[#0b162c]/80 font-bold uppercase">BREW CO.</span>
+                                    <span className="text-sm tracking-widest text-[#0b162c]/80 font-semibold uppercase">BREW CO.</span>
                                 </div>
                             </div>
                         </div>
-                        <h2 className="text-[44px] leading-[1.1] font-serif font-bold text-[#0b162c] mb-8 relative z-10 max-w-xl">
+                        <h2 className="text-[44px] leading-[1.1] font-serif font-semibold text-[#0b162c] mb-8 relative z-10 max-w-xl">
                             Redefining the café experience, <br />
                             <span className="text-[#c69a54] italic font-medium relative inline-block mt-2">
                                 one cup
@@ -61,20 +61,20 @@ export default function HeroGalleryDesktop() {
                             {heroGalleryData.tags.map((tag, i) => (
                                 <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-2xl border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-100'} shadow-sm`}>
                                     <tag.icon size={16} className={i === 0 ? "text-[#8a6831]" : "text-[#c69a54]"} />
-                                    <span className="text-sm font-bold text-[#0b162c]">{tag.label}</span>
+                                    <span className="text-sm font-semibold text-[#0b162c]">{tag.label}</span>
                                 </div>
                             ))}
                         </div>
                         <div className="flex flex-wrap items-center gap-5 relative z-10">
                             <button
-                                className="flex items-center gap-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-8 py-4 rounded-2xl text-[15px] font-bold transition-all duration-300 shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2 hover-lift"
+                                className="flex items-center gap-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-8 py-4 rounded-2xl text-[15px] font-semibold transition-all duration-300 shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2 hover-lift"
                                 aria-label={heroGalleryData.buttons.primary.label}
                             >
                                 <heroGalleryData.buttons.primary.icon size={18} />
                                 {heroGalleryData.buttons.primary.label}
                             </button>
                             <button
-                                className="flex items-center gap-2.5 bg-[#121c33] hover:bg-[#1a2542] text-white border border-[#d4af37]/40 hover:border-[#d4af37] px-8 py-4 rounded-2xl text-[15px] font-bold transition-all duration-300 shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#121c33] focus:ring-offset-2"
+                                className="flex items-center gap-2.5 bg-[#121c33] hover:bg-[#1a2542] text-white border border-[#d4af37]/40 hover:border-[#d4af37] px-8 py-4 rounded-2xl text-[15px] font-semibold transition-all duration-300 shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#121c33] focus:ring-offset-2"
                                 aria-label={heroGalleryData.buttons.secondary.label}
                             >
                                 <heroGalleryData.buttons.secondary.icon size={18} className="text-white" />

@@ -44,7 +44,7 @@ export default function ProvenPlaybookDesktop() {
                                     >
                                         <Icon size={20} strokeWidth={1.5} />
                                     </div>
-                                    <h4 className="text-[#0a1128] dark:text-white font-bold text-lg tracking-tight">{card.title}</h4>
+                                    <h4 className="text-[#0a1128] dark:text-white font-semibold text-lg tracking-tight">{card.title}</h4>
                                 </div>
                                 {card.description && (
                                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{card.description}</p>

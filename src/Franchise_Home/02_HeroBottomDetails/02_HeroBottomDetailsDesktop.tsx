@@ -64,7 +64,7 @@ export default function HeroBottomDetailsDesktop() {
                             >
                                 <div className="absolute right-0 -top-[3px] w-1.5 h-1.5 rotate-45 bg-cremp-accent animate-pulse"></div>
                             </motion.div>
-                            <h3 className="text-[16px] font-bold text-cremp-primary dark:text-[#0a1128] tracking-[0.1em] uppercase">
+                            <h3 className="text-[16px] font-semibold text-cremp-primary dark:text-[#0a1128] tracking-[0.1em] uppercase">
                                 {heroDetailsData.whyPartnerTitle}
                             </h3>
                             <motion.div
@@ -100,7 +100,7 @@ export default function HeroBottomDetailsDesktop() {
                                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/feature:translate-y-0 transition-transform duration-300" />
                                         <feature.icon size={24} strokeWidth={1.5} className="relative z-10" />
                                     </motion.div>
-                                    <h4 className="text-[13px] font-bold text-[#0a1128] dark:text-white leading-snug mb-3 transition-colors duration-300 group-hover/feature:text-[#0a1128]">
+                                    <h4 className="text-[13px] font-semibold text-[#0a1128] dark:text-white leading-snug mb-3 transition-colors duration-300 group-hover/feature:text-[#0a1128]">
                                         {feature.title}
                                     </h4>
                                     <div className="w-0 group-hover/feature:w-8 h-0.5 bg-accent transition-all duration-300 mx-auto rounded-full"></div>
@@ -122,7 +122,7 @@ export default function HeroBottomDetailsDesktop() {
                             >
                                 <MapPin className="text-accent" size={20} strokeWidth={2} />
                             </motion.div>
-                            <h3 className="text-[14px] font-bold text-[#0a1128] dark:text-white tracking-[0.1em] uppercase">
+                            <h3 className="text-[14px] font-semibold text-[#0a1128] dark:text-white tracking-[0.1em] uppercase">
                                 {heroDetailsData.locationsTitle}
                             </h3>
                         </div>
@@ -184,10 +184,10 @@ export default function HeroBottomDetailsDesktop() {
                                     <detail.icon size={18} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-xs uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
+                                    <span className="text-xs uppercase font-semibold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
                                         {detail.label}
                                     </span>
-                                    <span className="text-[13px] font-bold text-[#0a1128] dark:text-white leading-tight">
+                                    <span className="text-[13px] font-semibold text-[#0a1128] dark:text-white leading-tight">
                                         {detail.value}
                                     </span>
                                 </div>
@@ -198,7 +198,7 @@ export default function HeroBottomDetailsDesktop() {
                     <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-2xl text-[14px] font-bold shadow-glow-primary flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
+                        className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-2xl text-[14px] font-semibold shadow-glow-primary flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
                         <span className="relative z-10 flex items-center gap-2">
@@ -249,11 +249,11 @@ export default function HeroBottomDetailsDesktop() {
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: i * 0.1 + 0.3, type: "spring" }}
-                                    className="text-[32px] font-black text-white dark:text-[#0b162c] leading-none mb-1 drop-shadow-sm"
+                                    className="text-[32px] font-semibold text-white dark:text-[#0b162c] leading-none mb-1 drop-shadow-sm"
                                 >
                                     {stat.value}
                                 </motion.span>
-                                <span className="text-sm font-bold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
+                                <span className="text-sm font-semibold text-accent-highlight dark:text-[#0b162c]/90 uppercase tracking-[0.15em] leading-tight opacity-90">
                                     {stat.label}
                                 </span>
                             </div>

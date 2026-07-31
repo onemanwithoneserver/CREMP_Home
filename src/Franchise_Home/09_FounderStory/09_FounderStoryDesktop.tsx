@@ -32,7 +32,7 @@ export default function FounderStoryDesktop() {
                                 className="w-14 h-14 rounded-full object-cover shadow-sm border border-gray-100"
                             />
                             <div>
-                                <p className="text-white font-bold text-base">
+                                <p className="text-white font-semibold text-base">
                                     {founderStoryData.founder.name}
                                 </p>
                                 <p className="text-gray-400 text-sm font-medium">
@@ -48,10 +48,10 @@ export default function FounderStoryDesktop() {
                                     key={stat.label}
                                     className="bg-[#121c33] border border-white/10 rounded-2xl p-6 text-center cursor-default transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-[#d4af37]/30"
                                 >
-                                    <p className={clsx("text-3xl tracking-tight font-black mb-1", getTextStyles(stat.intent))}>
+                                    <p className={clsx("text-3xl tracking-tight font-semibold mb-1", getTextStyles(stat.intent))}>
                                         {stat.value}
                                     </p>
-                                    <p className="text-gray-400 text-xs font-bold uppercase tracking-wider">
+                                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider">
                                         {stat.label}
                                     </p>
                                 </motion.div>

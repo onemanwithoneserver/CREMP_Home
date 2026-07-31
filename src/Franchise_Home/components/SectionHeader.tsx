@@ -22,7 +22,7 @@ export function SectionHeader({ title, subtitle, overline, align = "left" }: Sec
         >
             {overline && (
                 <div className={`flex items-center gap-2 mb-3 ${align === "center" ? "justify-center" : ""}`}>
-                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37]">
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d4af37]">
                         {overline}
                     </span>
                 </div>
@@ -32,11 +32,11 @@ export function SectionHeader({ title, subtitle, overline, align = "left" }: Sec
                 <>
                     {/* Mobile Title */}
                     {isMobile ? (
-                        <h2 className="text-2xl font-black text-[#0a1128] tracking-tight mb-4 leading-tight">
+                        <h2 className="text-2xl font-semibold text-[#0a1128] tracking-tight mb-4 leading-tight">
                             {title}
                         </h2>
                     ) : (
-                        <h2 className="text-4xl lg:text-[42px] font-black text-[#0a1128] tracking-tight mb-4 leading-tight">
+                        <h2 className="text-4xl lg:text-[42px] font-semibold text-[#0a1128] tracking-tight mb-4 leading-tight">
                             {title}
                         </h2>
                     )}

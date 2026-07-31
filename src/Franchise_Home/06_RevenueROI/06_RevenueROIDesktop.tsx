@@ -46,7 +46,7 @@ export default function RevenueROIDesktop() {
                                 )}
                             >
                                 <div className="mb-4">
-                                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                         {card.year}
                                     </span>
                                 </div>
@@ -60,7 +60,7 @@ export default function RevenueROIDesktop() {
                                     >
                                         <Icon size={20} strokeWidth={1.75} />
                                     </div>
-                                    <p className="text-3xl tracking-tight font-black text-[#0b162c] dark:text-white tracking-tight">
+                                    <p className="text-3xl tracking-tight font-semibold text-[#0b162c] dark:text-white tracking-tight">
                                         {card.range}
                                     </p>
                                 </div>
@@ -77,10 +77,10 @@ export default function RevenueROIDesktop() {
                     className="bg-white dark:bg-[#0b162c]/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:shadow-[0_16px_50px_rgb(0,0,0,0.12)] transition-shadow duration-300"
                 >
                     <div className="mb-8">
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
                             {revenueROIData.paybackPeriod.sectionLabel}
                         </p>
-                        <h3 className="text-2xl tracking-tight font-black text-[#0b162c] dark:text-white">
+                        <h3 className="text-2xl tracking-tight font-semibold text-[#0b162c] dark:text-white">
                             {revenueROIData.paybackPeriod.title}
                         </h3>
                     </div>

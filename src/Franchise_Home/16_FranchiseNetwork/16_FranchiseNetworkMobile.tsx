@@ -33,7 +33,7 @@ export default function FranchiseNetworkMobile() {
                         </svg>
                     </div>
                     <div className="z-10 p-6 text-center">
-                        <h3 className="text-[#0a1128] dark:text-white font-black text-lg tracking-tight mb-1">{franchiseNetworkData.title}</h3>
+                        <h3 className="text-[#0a1128] dark:text-white font-semibold text-lg tracking-tight mb-1">{franchiseNetworkData.title}</h3>
                         <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">{franchiseNetworkData.outletCount}</p>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ export default function FranchiseNetworkMobile() {
                                 <div key={item.label} className="flex items-center gap-1.5">
                                     <div className={clsx("w-2 h-2 rounded-full", getSolidBgStyles(item.intent))} />
                                     {Icon && <Icon size={12} strokeWidth={1.5} className={getTextStyles(item.intent)} />}
-                                    <span className="text-gray-600 dark:text-gray-400 text-xs font-bold">{item.label}</span>
+                                    <span className="text-gray-600 dark:text-gray-400 text-xs font-semibold">{item.label}</span>
                                 </div>
                             );
                         })}
@@ -55,15 +55,15 @@ export default function FranchiseNetworkMobile() {
                         {franchiseNetworkData.networkStats.items.map((item) => (
                             <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-gray-100">
                                 <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">{item.label}</span>
-                                <span className="text-[#0a1128] dark:text-white text-xs font-bold">{item.value}</span>
+                                <span className="text-[#0a1128] dark:text-white text-xs font-semibold">{item.value}</span>
                             </div>
                         ))}
                     </div>
                     <div className="space-y-3">
-                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-shadow">
+                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-semibold rounded shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-shadow">
                             {franchiseNetworkData.cta.primary}
                         </button>
-                        <button className="w-full px-4 py-2.5 border border-gray-100 text-gray-700 dark:text-gray-300 text-xs font-bold rounded">
+                        <button className="w-full px-4 py-2.5 border border-gray-100 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded">
                             {franchiseNetworkData.cta.secondary}
                         </button>
                     </div>

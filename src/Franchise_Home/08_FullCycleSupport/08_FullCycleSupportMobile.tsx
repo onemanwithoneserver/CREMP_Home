@@ -32,7 +32,7 @@ export default function FullCycleSupportMobile() {
                                         <div className={clsx("w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm", item.colorClass)}>
                                             <Icon size={20} strokeWidth={2.5} />
                                         </div>
-                                        <h4 className="text-[#0a1128] dark:text-white font-extrabold text-[14px] mb-1.5 whitespace-nowrap tracking-tight">
+                                        <h4 className="text-[#0a1128] dark:text-white font-semibold text-[14px] mb-1.5 whitespace-nowrap tracking-tight">
                                             {item.title}
                                         </h4>
                                         <p className="text-gray-500 dark:text-gray-400 text-[12px] font-medium leading-snug line-clamp-2">

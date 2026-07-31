@@ -21,7 +21,7 @@ export default function FranchiseNetworkDesktop() {
                 >
                     <div className="flex-1 relative min-h-[440px] bg-gray-50 dark:bg-white p-8 flex flex-col">
                         <div className="flex items-center gap-2 mb-2">
-                            <h3 className="text-[#0a1128] dark:text-white font-black text-xl">
+                            <h3 className="text-[#0a1128] dark:text-white font-semibold text-xl">
                                 {franchiseNetworkData.title}
                             </h3>
                         </div>
@@ -51,7 +51,7 @@ export default function FranchiseNetworkDesktop() {
                     </div>
                     <div className="w-[320px] border-l border-gray-100 bg-white dark:bg-white p-8 flex flex-col justify-between">
                         <div>
-                            <p className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-[#0a1128] mb-5">
+                            <p className="text-sm font-semibold uppercase tracking-widest text-gray-500 dark:text-[#0a1128] mb-5">
                                 MAP LEGEND
                             </p>
                             <div className="space-y-4 mb-8">
@@ -69,14 +69,14 @@ export default function FranchiseNetworkDesktop() {
                                 })}
                             </div>
 
-                            <p className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-[#0a1128] mb-4">
+                            <p className="text-sm font-semibold uppercase tracking-widest text-gray-500 dark:text-[#0a1128] mb-4">
                                 {franchiseNetworkData.networkStats.label}
                             </p>
                             <div className="space-y-2 mb-8">
                                 {franchiseNetworkData.networkStats.items.map((item) => (
                                     <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-gray-100 last:border-0">
                                         <span className="text-gray-600 dark:text-gray-400 text-xs font-medium">{item.label}</span>
-                                        <span className="text-[#0a1128] dark:text-white text-xs font-bold">{item.value}</span>
+                                        <span className="text-[#0a1128] dark:text-white text-xs font-semibold">{item.value}</span>
                                     </div>
                                 ))}
                             </div>
@@ -85,14 +85,14 @@ export default function FranchiseNetworkDesktop() {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full px-4 py-2.5 bg-primary text-white text-sm font-bold rounded-[4px] hover-lift transition-all"
+                                    className="w-full px-4 py-2.5 bg-primary text-white text-sm font-semibold rounded-[4px] hover-lift transition-all"
                                 >
                                     {franchiseNetworkData.cta.primary}
                                 </motion.button>
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full px-4 py-2.5 border border-gray-100 text-gray-700 dark:text-gray-300 text-sm font-bold rounded-[4px] hover-lift hover:border-primary/50 transition-all"
+                                    className="w-full px-4 py-2.5 border border-gray-100 text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-[4px] hover-lift hover:border-primary/50 transition-all"
                                 >
                                     {franchiseNetworkData.cta.secondary}
                                 </motion.button>

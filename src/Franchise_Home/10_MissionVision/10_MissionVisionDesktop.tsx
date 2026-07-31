@@ -42,7 +42,7 @@ export default function MissionVisionDesktop() {
                                     <div className={clsx("w-12 h-12 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>
                                         <Icon size={20} strokeWidth={1.5} />
                                     </div>
-                                    <span className="text-sm font-bold uppercase tracking-widest text-[#0a1128] dark:text-accent">
+                                    <span className="text-sm font-semibold uppercase tracking-widest text-[#0a1128] dark:text-accent">
                                         {card.label}
                                     </span>
                                 </div>

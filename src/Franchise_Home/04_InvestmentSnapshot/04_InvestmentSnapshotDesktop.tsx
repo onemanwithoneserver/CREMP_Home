@@ -53,10 +53,10 @@ export default function InvestmentSnapshotDesktop() {
                                         <Icon size={20} strokeWidth={1.75} />
                                     </div>
                                     <div className="flex flex-col justify-center">
-                                        <p className="text-xs uppercase font-bold tracking-[0.15em] text-gray-500 dark:text-gray-400 mb-1 transition-colors group-hover:text-gray-700 dark:group-hover:text-gray-300">
+                                        <p className="text-xs uppercase font-semibold tracking-[0.15em] text-gray-500 dark:text-gray-400 mb-1 transition-colors group-hover:text-gray-700 dark:group-hover:text-gray-300">
                                             {stat.label}
                                         </p>
-                                        <p className="text-2xl tracking-tight font-black text-[#0a1128] dark:text-white leading-tight tracking-tight">
+                                        <p className="text-2xl tracking-tight font-semibold text-[#0a1128] dark:text-white leading-tight tracking-tight">
                                             {stat.value}
                                         </p>
                                         <p className="text-[13px] font-medium text-gray-600 dark:text-gray-400 mt-1 leading-snug">

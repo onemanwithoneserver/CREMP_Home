@@ -32,7 +32,7 @@ export default function FullCycleSupportDesktop() {
                                         <div className={clsx("w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 transition-colors", item.colorClass)}>
                                             <Icon size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h4 className="text-[#0a1128] dark:text-white font-extrabold text-[15px] mb-2">{item.title}</h4>
+                                        <h4 className="text-[#0a1128] dark:text-white font-semibold text-[15px] mb-2">{item.title}</h4>
                                         <p className="text-gray-500 dark:text-gray-400 text-sm leading-snug">{item.description}</p>
                                     </div>
                                 );

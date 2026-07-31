@@ -64,7 +64,7 @@ export default function IdealPartnerDesktop() {
                                     <div className={clsx("w-12 h-12 rounded-2xl flex shrink-0 items-center justify-center shadow-sm transition-transform duration-300 group-hover:scale-110", getIconContainerStyles(item.intent))}>
                                         <Icon size={22} strokeWidth={2.5} />
                                     </div>
-                                    <h4 className="text-gray-900 dark:text-white font-extrabold text-lg tracking-tight leading-tight">
+                                    <h4 className="text-gray-900 dark:text-white font-semibold text-lg tracking-tight leading-tight">
                                         {item.title}
                                     </h4>
                                 </div>
@@ -106,10 +106,10 @@ export default function IdealPartnerDesktop() {
                                     <Icon size={18} strokeWidth={2.5} />
                                 </div>
                                 <div className="flex flex-col justify-center">
-                                    <span className="text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-0.5">
+                                    <span className="text-gray-400 dark:text-gray-500 text-[10px] font-semibold uppercase tracking-[0.2em] mb-0.5">
                                         {item.title}
                                     </span>
-                                    <span className="text-gray-900 dark:text-white font-black text-sm tracking-tight">
+                                    <span className="text-gray-900 dark:text-white font-semibold text-sm tracking-tight">
                                         {item.value}
                                     </span>
                                 </div>
@@ -133,7 +133,7 @@ export default function IdealPartnerDesktop() {
                             <idealPartnerData.additionalExpectations.icon size={20} className="text-white" strokeWidth={2.5} />
                         </div>
                         <div className="flex flex-col pt-0.5">
-                            <h4 className="text-gray-900 dark:text-white font-extrabold text-lg tracking-tight mb-1.5">
+                            <h4 className="text-gray-900 dark:text-white font-semibold text-lg tracking-tight mb-1.5">
                                 {idealPartnerData.additionalExpectations.title}
                             </h4>
                             <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium text-sm">

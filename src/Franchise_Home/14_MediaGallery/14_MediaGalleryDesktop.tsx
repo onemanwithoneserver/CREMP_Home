@@ -38,7 +38,7 @@ export default function MediaGalleryDesktop() {
                                 onClick={() => setActiveTab(tab.id)}
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.97 }}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-bold whitespace-nowrap transition-all shadow-[0_8px_30px_rgb(0,0,0,0.06)] ${isActive
+                                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-semibold whitespace-nowrap transition-all shadow-[0_8px_30px_rgb(0,0,0,0.06)] ${isActive
                                         ? "bg-primary text-white"
                                         : "bg-white dark:bg-white border border-gray-100 text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-[#0a1128] dark:hover:text-accent hover:shadow"
                                     }`}
@@ -77,7 +77,7 @@ export default function MediaGalleryDesktop() {
                                 </div>
                             )}
                             <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10">
-                                <span className="text-white text-sm font-bold">{item.title}</span>
+                                <span className="text-white text-sm font-semibold">{item.title}</span>
                             </div>
                         </motion.div>
                     ))}

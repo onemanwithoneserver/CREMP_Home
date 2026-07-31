@@ -65,7 +65,7 @@ export default function JourneyTimelineDesktop() {
                                             ]
                                         } : {}}
                                         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                                        className={`w-16 h-16 rounded-full flex items-center justify-center text-[15px] font-black tracking-wider z-10 ${milestone.isActive
+                                        className={`w-16 h-16 rounded-full flex items-center justify-center text-[15px] font-semibold tracking-wider z-10 ${milestone.isActive
                                                 ? "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white border-none"
                                                 : "bg-[#121c33] border border-white/20 text-gray-400"
                                             }`}

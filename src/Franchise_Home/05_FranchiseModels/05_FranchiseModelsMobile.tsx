@@ -76,7 +76,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                                 >
                                     <div className="flex flex-col items-center justify-center w-full h-full text-white drop-shadow-md">
                                         <item.icon size={10} className="mb-[1px] opacity-90" />
-                                        <span className="text-xs font-black leading-tight mt-[1px]">{item.amount}</span>
+                                        <span className="text-xs font-semibold leading-tight mt-[1px]">{item.amount}</span>
                                     </div>
                                 </motion.foreignObject>
                             )}
@@ -85,8 +85,8 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                 })}
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-transparent rounded-full pointer-events-none" style={{ width: size - (strokeWidth * 2), height: size - (strokeWidth * 2), left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-                <span className="text-2xl font-black text-primary dark:text-white">{totalValue}</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mt-0.5">AVG. TOTAL</span>
+                <span className="text-2xl font-semibold text-primary dark:text-white">{totalValue}</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-widest mt-0.5">AVG. TOTAL</span>
             </div>
 
             <AnimatePresence>
@@ -95,7 +95,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="absolute pointer-events-none bg-gray-900 text-white text-xs font-bold px-2 py-2 rounded shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap"
+                        className="absolute pointer-events-none bg-gray-900 text-white text-xs font-semibold px-2 py-2 rounded shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap"
                         style={{ left: hoveredItem.x, top: hoveredItem.y - 10, transform: 'translate(-50%, -100%)' }}
                     >
                         <span className="flex items-center gap-1.5 text-gray-300">
@@ -212,10 +212,10 @@ export default function FranchiseModelsMobile() {
                                 <div className={clsx("relative z-10 w-7 h-7 rounded-full flex items-center justify-center mb-1 border transition-colors duration-300", isActive ? "bg-white/10 border-[#d4af37]/40 text-[#d4af37]" : "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 shadow-sm")}>
                                     <Icon size={12} strokeWidth={isActive ? 2.5 : 2} />
                                 </div>
-                                <span className={clsx("relative z-10 font-extrabold text-xs mb-0.5 transition-colors duration-300", isActive ? "text-white" : "text-[#0b1b42] dark:text-gray-200")}>
+                                <span className={clsx("relative z-10 font-semibold text-xs mb-0.5 transition-colors duration-300", isActive ? "text-white" : "text-[#0b1b42] dark:text-gray-200")}>
                                     {model.name}
                                 </span>
-                                <span className={clsx("relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300", isActive ? "text-gray-300" : "text-gray-500 dark:text-gray-400")}>
+                                <span className={clsx("relative z-10 text-[10px] font-semibold tracking-wider transition-colors duration-300", isActive ? "text-gray-300" : "text-gray-500 dark:text-gray-400")}>
                                     {model.priceRange}
                                 </span>
                             </button>
@@ -259,7 +259,7 @@ export default function FranchiseModelsMobile() {
                             >
                                 <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
                                 <div className="flex items-center justify-center gap-1.5 mt-5 animate-bounce">
-                                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">
                                         Tap segments for detail
                                     </span>
                                     <MousePointerClick size={12} className="text-accent" />
@@ -295,7 +295,7 @@ export default function FranchiseModelsMobile() {
                                     <selected.icon size={18} className="[stroke:url(#goldGradient)] dark:!stroke-[#0b1b42]" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <h3 className="text-[15px] font-black text-primary leading-tight">
+                                    <h3 className="text-[15px] font-semibold text-primary leading-tight">
                                         {selected.name}
                                     </h3>
                                 </div>
@@ -322,9 +322,9 @@ export default function FranchiseModelsMobile() {
                                             <stat.icon size={14} strokeWidth={2.5} />
                                     </div>
                                     <div className="flex flex-col w-full">
-                                        <span className="text-[9px] uppercase font-black tracking-widest text-gray-400 mb-0.5">{stat.label}</span>
+                                        <span className="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-0.5">{stat.label}</span>
                                         <div className="flex items-center justify-between w-full">
-                                            <span className="text-[13px] font-black text-[#0b1b42] dark:text-gray-100 leading-tight truncate">{stat.value}</span>
+                                            <span className="text-[13px] font-semibold text-[#0b1b42] dark:text-gray-100 leading-tight truncate">{stat.value}</span>
                                             {stat.extra && <stat.extra size={10} className="text-gray-300" />}
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@ export default function FranchiseModelsMobile() {
 
                 <div className="rounded border-none p-4  flex flex-col gap-4">
                     <div className="flex items-center justify-between pb-3 border-b border-border">
-                        <span className="text-xs uppercase font-bold tracking-widest text-primary dark:text-white font-black">
+                        <span className="text-xs uppercase font-semibold tracking-widest text-primary dark:text-white font-semibold">
                             {revenueROIData.sectionLabel}
                         </span>
                     </div>
@@ -349,7 +349,7 @@ export default function FranchiseModelsMobile() {
                                     key={card.year}
                                     className="rounded-[4px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-2 bg-white flex flex-col justify-between"
                                 >
-                                    <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-3">
+                                    <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3">
                                         {card.year}
                                     </span>
                                     
@@ -357,7 +357,7 @@ export default function FranchiseModelsMobile() {
                                         <div className={clsx("w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm", getRoiColor(card.intent))}>
                                             <Icon size={12} strokeWidth={2.5} />
                                         </div>
-                                        <span className="text-[12px] sm:text-[14px] font-black text-[#0b1b42] tracking-tighter">
+                                        <span className="text-[12px] sm:text-[14px] font-semibold text-[#0b1b42] tracking-tighter">
                                             {card.range}
                                         </span>
                                     </div>
@@ -368,10 +368,10 @@ export default function FranchiseModelsMobile() {
 
                     <div className="mt-1 pt-3 border-t border-border flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                            <span className="text-xs uppercase font-bold tracking-widest text-[#d4af37] font-black">
+                            <span className="text-xs uppercase font-semibold tracking-widest text-[#d4af37] font-semibold">
                                 {revenueROIData.paybackPeriod.sectionLabel}
                             </span>
-                            <span className="text-sm font-black text-[#0b1b42] dark:text-white">
+                            <span className="text-sm font-semibold text-[#0b1b42] dark:text-white">
                                 {revenueROIData.paybackPeriod.title}
                             </span>
                         </div>
@@ -428,12 +428,12 @@ export default function FranchiseModelsMobile() {
                                         
                                         <div className="flex flex-col items-center text-center mt-0.5">
                                             <span 
-                                                className="text-[10px] font-black" 
+                                                className="text-[10px] font-semibold" 
                                                 style={{ color: accent }}
                                             >
                                                 0{idx + 1}
                                             </span>
-                                            <span className="text-[8px] sm:text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase leading-tight max-w-[60px] sm:max-w-[80px]">
+                                            <span className="text-[8px] sm:text-[9px] font-semibold text-gray-500 dark:text-gray-400 uppercase leading-tight max-w-[60px] sm:max-w-[80px]">
                                                 {milestone.label}
                                             </span>
                                         </div>

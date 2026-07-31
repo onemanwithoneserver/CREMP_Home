@@ -16,17 +16,17 @@ export default function HeroGalleryMobile() {
                             <Coffee size={20} strokeWidth={2} />
                         </div>
                         <div className="flex flex-col">
-                            <h1 className="text-[13px] font-serif font-black tracking-widest text-[#0b162c] uppercase leading-none">
+                            <h1 className="text-[13px] font-serif font-semibold tracking-widest text-[#0b162c] uppercase leading-none">
                                 THE URBAN
                             </h1>
                             <div className="flex items-center gap-1.5 mt-1">
                                 <div className="h-px bg-[#c69a54] w-4" />
-                                <span className="text-[7px] tracking-widest text-[#0b162c]/80 font-bold uppercase">BREW CO.</span>
+                                <span className="text-[7px] tracking-widest text-[#0b162c]/80 font-semibold uppercase">BREW CO.</span>
                             </div>
                         </div>
                     </div>
 
-                    <h2 className="text-[20px] leading-[1.1] font-serif font-bold text-[#0b162c] mb-5 relative z-10">
+                    <h2 className="text-[20px] leading-[1.1] font-serif font-semibold text-[#0b162c] mb-5 relative z-10">
                         Redefining the café experience, <br />
                         <span className="text-[#c69a54] italic font-medium relative inline-block mt-1">
                             one cup
@@ -40,7 +40,7 @@ export default function HeroGalleryMobile() {
                         {heroGalleryData.tags.map((tag, i) => (
                             <div key={i} className={`flex items-center gap-1 px-2 py-1 rounded-md border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-100'} shadow-sm`}>
                                 <tag.icon size={10} className={i === 0 ? "text-[#8a6831]" : "text-[#c69a54]"} />
-                                <span className="text-xs font-bold text-[#0b162c]">{tag.label}</span>
+                                <span className="text-xs font-semibold text-[#0b162c]">{tag.label}</span>
                             </div>
                         ))}
                     </div>
@@ -62,14 +62,14 @@ export default function HeroGalleryMobile() {
 
             <div className="flex flex-row gap-2 mt-1 px-2">
                 <button
-                    className="flex-1 flex flex-row items-center justify-center gap-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-5 py-3.5 rounded-[4px] text-[12px] font-bold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all text-center hover-lift"
+                    className="flex-1 flex flex-row items-center justify-center gap-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-5 py-3.5 rounded-[4px] text-[12px] font-semibold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all text-center hover-lift"
                     aria-label={heroGalleryData.buttons.primary.label}
                 >
                     <heroGalleryData.buttons.primary.icon size={14} className="shrink-0" />
                     <span className="truncate">{heroGalleryData.buttons.primary.label}</span>
                 </button>
                 <button
-                    className="shrink-0 flex flex-row items-center justify-center gap-2 bg-[#121c33] active:bg-[#1a2542] text-white border border-[#d4af37]/40 px-5 py-3.5 rounded-2xl text-[12px] font-bold shadow-sm transition-all text-center"
+                    className="shrink-0 flex flex-row items-center justify-center gap-2 bg-[#121c33] active:bg-[#1a2542] text-white border border-[#d4af37]/40 px-5 py-3.5 rounded-2xl text-[12px] font-semibold shadow-sm transition-all text-center"
                     aria-label={heroGalleryData.buttons.secondary.label}
                 >
                     <heroGalleryData.buttons.secondary.icon size={14} className="text-white shrink-0" />
