@@ -4,7 +4,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function JourneyTimelineMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={journeyTimelineData.sectionLabel}
                 align="center"
@@ -56,9 +56,9 @@ export default function JourneyTimelineMobile() {
                             </motion.div>
 
                             <div
-                                className={`ml-6 border rounded-[4px] p-5 cursor-default transition-all duration-500 shadow-elevation-1 hover:-translate-y-1 hover:shadow-elevation-2 relative overflow-hidden ${milestone.isActive
+                                className={`ml-6 border rounded-[4px] p-5 cursor-default transition-all duration-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] relative overflow-hidden ${milestone.isActive
                                         ? "bg-[#0a1128] border-[#d4af37] shadow-glow-accent ring-1 ring-[#d4af37]/20"
-                                        : "bg-surface-alt border-white/5"
+                                        : "bg-white border-white/5"
                                     }`}
                             >
                                 {milestone.isActive && (

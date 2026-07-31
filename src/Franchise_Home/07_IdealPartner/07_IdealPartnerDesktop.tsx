@@ -16,7 +16,7 @@ const stagger = {
 
 export default function IdealPartnerDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-10">
+        <section className="w-full bg-[#FAFAFA] px-6 py-10">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={idealPartnerData.sectionLabel}
@@ -30,7 +30,7 @@ export default function IdealPartnerDesktop() {
                     whileInView="show"
                     viewport={{ once: true }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-4 mb-6"
+                    className="grid grid-cols-3 gap-6 mb-6"
                 >
                     {idealPartnerData.criteria.map((item) => {
                         const Icon = item.icon;
@@ -38,13 +38,13 @@ export default function IdealPartnerDesktop() {
                             <motion.div
                                 key={item.title}
                                 variants={fadeInUp}
-                                className={clsx("rounded-xl border p-4 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}
+                                className={clsx("rounded-2xl border p-6 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-white", getCardStyles(item.intent))}
                             >
-                                <div className="flex items-center gap-4 mb-2 pb-2">
+                                <div className="flex items-center gap-6 mb-2 pb-2">
                                     <div className={clsx("w-12 h-12 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                         <Icon size={20} strokeWidth={1.5} />
                                     </div>
-                                    <h4 className="text-gray-900 dark:text-white font-extrabold text-lg leading-tight">{item.title}</h4>
+                                    <h4 className="text-[#0a1128] dark:text-white font-extrabold text-lg tracking-tight leading-tight">{item.title}</h4>
                                 </div>
 
                                 <div className="space-y-4 mb-5 flex-1">
@@ -71,7 +71,7 @@ export default function IdealPartnerDesktop() {
                     whileInView="show"
                     viewport={{ once: true }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-4"
+                    className="grid grid-cols-3 gap-6"
                 >
                     {idealPartnerData.additionalCriteria.map((item) => {
                         const Icon = item.icon;
@@ -79,18 +79,18 @@ export default function IdealPartnerDesktop() {
                             <motion.div
                                 key={item.title}
                                 variants={fadeInUp}
-                                className={clsx("rounded-xl border p-5 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}
+                                className={clsx("rounded-2xl border p-5 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-white", getCardStyles(item.intent))}
                             >
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className={clsx("w-10 h-10 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                         <Icon size={16} strokeWidth={1.5} />
                                     </div>
-                                    <h4 className="text-gray-900 dark:text-white font-bold text-base">{item.title}</h4>
+                                    <h4 className="text-[#0a1128] dark:text-white font-bold text-base">{item.title}</h4>
                                 </div>
 
                                 <div className="flex flex-wrap gap-2 mb-4 flex-1">
                                     {item.items.map((tag, idx) => (
-                                        <span key={idx} className={clsx("text-xs px-3 py-1.5 rounded bg-gray-50 dark:bg-surface-alt shadow-xs font-semibold border border-gray-100 dark:border-border", getBadgeStyles(item.intent))}>
+                                        <span key={idx} className={clsx("text-xs px-3 py-1.5 rounded bg-gray-50 dark:bg-white shadow-xs font-semibold border border-gray-100 dark:border-gray-100", getBadgeStyles(item.intent))}>
                                             {tag}
                                         </span>
                                     ))}

@@ -106,10 +106,11 @@ export default function FranchiseModelsDesktop() {
 
     // Mapping ROI intents to specific colors from the image
     const getRoiColor = (intent: string) => {
-        if (intent === "primary") return "text-[#F97316] bg-gradient-to-br from-[#F97316]/20 to-[#C2410C]/20 border border-[#F97316]/30";
-        if (intent === "success") return "text-[#10B981] bg-gradient-to-br from-[#10B981]/20 to-[#047857]/20 border border-[#10B981]/30";
-        if (intent === "info") return "text-[#0EA5E9] bg-gradient-to-br from-[#0EA5E9]/20 to-[#0369A1]/20 border border-[#0EA5E9]/30";
-        return "text-gray-500 bg-gray-100";
+        if (intent === "primary") return "text-white bg-gradient-to-br from-[#F97316] to-[#C2410C] shadow-md shadow-[#F97316]/30";
+        if (intent === "success") return "text-white bg-gradient-to-br from-[#10B981] to-[#047857] shadow-md shadow-[#10B981]/30";
+        if (intent === "info") return "text-white bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] shadow-md shadow-[#0EA5E9]/30";
+        if (intent === "warning") return "text-white bg-gradient-to-br from-[#FBBF24] to-[#D97706] shadow-md shadow-[#FBBF24]/30";
+        return "text-white bg-gray-400";
     };
     
     // Fallback payback icons if needed
@@ -201,15 +202,13 @@ export default function FranchiseModelsDesktop() {
                                         { icon: MapPin, label: "IDEAL LOCATION", value: selected.location }
                                     ].map((stat, i) => (
                                         <div key={stat.label} className="flex items-start gap-5">
-                                            <div className="w-12 h-12 rounded-full bg-[#f8f9fa] border-2 border-white shadow-sm flex items-center justify-center shrink-0 z-10">
-                                                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                                                    i === 0 ? 'bg-gradient-to-br from-[#14B8A6]/20 to-[#0F766E]/20 text-[#14B8A6]' : 
-                                                    i === 1 ? 'bg-gradient-to-br from-[#8B5CF6]/20 to-[#6D28D9]/20 text-[#8B5CF6]' : 
-                                                    i === 2 ? 'bg-gradient-to-br from-[#F43F5E]/20 to-[#BE123C]/20 text-[#F43F5E]' : 
-                                                    'bg-gradient-to-br from-[#3B82F6]/20 to-[#1D4ED8]/20 text-[#3B82F6]'
+                                            <div className={`w-10 h-10 rounded-full shadow-md flex items-center justify-center shrink-0 z-10 text-white ${
+                                                    i === 0 ? 'bg-gradient-to-br from-[#14B8A6] to-[#0F766E] shadow-[#14B8A6]/30' : 
+                                                    i === 1 ? 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] shadow-[#8B5CF6]/30' : 
+                                                    i === 2 ? 'bg-gradient-to-br from-[#F43F5E] to-[#BE123C] shadow-[#F43F5E]/30' : 
+                                                    'bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] shadow-[#3B82F6]/30'
                                                 }`}>
-                                                    <stat.icon size={14} />
-                                                </div>
+                                                    <stat.icon size={18} />
                                             </div>
                                             <div className="flex flex-col pt-1">
                                                 <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-1">{stat.label}</span>
@@ -302,10 +301,10 @@ export default function FranchiseModelsDesktop() {
                             
                             // Map colors based on index for the colorful stepper look
                             const colors = [
-                                "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30", 
-                                "text-[#0EA5E9] bg-[#0EA5E9]/10 border-[#0EA5E9]/30", 
-                                "text-[#F97316] bg-[#F97316]/10 border-[#F97316]/30", 
-                                "text-[#D946EF] bg-[#D946EF]/10 border-[#D946EF]/30"
+                                "text-white bg-[#10B981] shadow-md shadow-[#10B981]/30 border-none", 
+                                "text-white bg-[#0EA5E9] shadow-md shadow-[#0EA5E9]/30 border-none", 
+                                "text-white bg-[#F97316] shadow-md shadow-[#F97316]/30 border-none", 
+                                "text-white bg-[#D946EF] shadow-md shadow-[#D946EF]/30 border-none"
                             ];
                             const colorClass = colors[idx % colors.length];
 

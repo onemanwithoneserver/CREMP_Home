@@ -7,7 +7,7 @@ export default function FullCycleSupportMobile() {
     const [isPaused, setIsPaused] = useState(false);
 
     return (
-        <section className="w-full bg-background py-8">
+        <section className="w-full bg-[#FAFAFA] py-8">
             <style>{`
                 @keyframes marquee-slide {
                     0% { transform: translateX(0); }
@@ -46,12 +46,12 @@ export default function FullCycleSupportMobile() {
                                 return (
                                     <div
                                         key={`${keyPrefix}-${item.title}-${idx}`}
-                                        className="w-[180px] shrink-0 bg-white dark:bg-surface border border-border rounded-lg p-4 text-center flex flex-col items-center justify-center transition-all duration-300 shadow-elevation-1"
+                                        className="w-[180px] shrink-0 bg-white dark:bg-white border border-gray-100 rounded-2xl p-6 text-center flex flex-col items-center justify-center transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                                     >
                                         <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3", item.colorClass)}>
                                             <Icon size={16} strokeWidth={1.5} />
                                         </div>
-                                        <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-1.5 whitespace-nowrap">
+                                        <h4 className="text-[#0a1128] dark:text-white font-bold text-sm mb-1.5 whitespace-nowrap">
                                             {item.title}
                                         </h4>
                                         <p className="text-gray-500 dark:text-gray-400 text-xs leading-snug line-clamp-2">

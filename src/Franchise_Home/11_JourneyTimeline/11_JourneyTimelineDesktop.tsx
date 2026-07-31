@@ -4,7 +4,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function JourneyTimelineDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-10">
+        <section className="w-full bg-[#FAFAFA] px-6 py-10">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={journeyTimelineData.sectionLabel}
@@ -40,9 +40,9 @@ export default function JourneyTimelineDesktop() {
                             >
                                 <div className={`flex-1 ${idx % 2 === 0 ? "text-right" : "text-left"}`}>
                                     <div
-                                        className={`inline-block border rounded-lg p-7 max-w-sm cursor-default transition-all duration-500 shadow-elevation-1 hover:-translate-y-1 hover:shadow-elevation-2 relative overflow-hidden ${milestone.isActive
+                                        className={`inline-block border rounded-2xl p-7 max-w-sm cursor-default transition-all duration-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] relative overflow-hidden ${milestone.isActive
                                                 ? "bg-[#0a1128] border-[#d4af37] shadow-glow-accent ring-1 ring-[#d4af37]/20"
-                                                : "bg-surface-alt border-white/5 hover:border-white/10"
+                                                : "bg-white border-white/5 hover:border-white/10"
                                             }`}
                                     >
                                         {milestone.isActive && (

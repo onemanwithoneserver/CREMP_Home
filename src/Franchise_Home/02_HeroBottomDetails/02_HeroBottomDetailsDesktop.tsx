@@ -41,17 +41,17 @@ export default function HeroBottomDetailsDesktop() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="w-full max-w-[1440px] mx-auto bg-background p-4 lg:p-6 flex flex-col gap-4 relative"
+            className="w-full max-w-[1440px] mx-auto bg-[#FAFAFA] p-6 lg:p-6 flex flex-col gap-6 relative"
         >
             <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10 pointer-events-none" />
 
-            <div className="grid grid-cols-12 gap-4">
-                <div className="col-span-12 lg:col-span-7 flex flex-col gap-4">
+            <div className="grid grid-cols-12 gap-6">
+                <div className="col-span-12 lg:col-span-7 flex flex-col gap-6">
 
                     <motion.div
                         variants={item}
-                        className="group relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-elevation-2 transition-all duration-500 hover:shadow-elevation-3 dark:hover:shadow-glow-primary hover:-translate-y-1 flex flex-col justify-center flex-1 overflow-hidden"
+                        className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-white/5 p-8 shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:shadow-[0_16px_50px_rgb(0,0,0,0.12)] dark:hover:shadow-glow-primary hover:-translate-y-1 flex flex-col justify-center flex-1 overflow-hidden"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -64,7 +64,7 @@ export default function HeroBottomDetailsDesktop() {
                             >
                                 <div className="absolute right-0 -top-[3px] w-1.5 h-1.5 rotate-45 bg-cremp-accent animate-pulse"></div>
                             </motion.div>
-                            <h3 className="text-[16px] font-bold text-cremp-primary dark:text-primary tracking-[0.1em] uppercase">
+                            <h3 className="text-[16px] font-bold text-cremp-primary dark:text-[#0a1128] tracking-[0.1em] uppercase">
                                 {heroDetailsData.whyPartnerTitle}
                             </h3>
                             <motion.div
@@ -100,7 +100,7 @@ export default function HeroBottomDetailsDesktop() {
                                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/feature:translate-y-0 transition-transform duration-300" />
                                         <feature.icon size={24} strokeWidth={1.5} className="relative z-10" />
                                     </motion.div>
-                                    <h4 className="text-[13px] font-bold text-gray-900 dark:text-white leading-snug mb-3 transition-colors duration-300 group-hover/feature:text-primary">
+                                    <h4 className="text-[13px] font-bold text-[#0a1128] dark:text-white leading-snug mb-3 transition-colors duration-300 group-hover/feature:text-[#0a1128]">
                                         {feature.title}
                                     </h4>
                                     <div className="w-0 group-hover/feature:w-8 h-0.5 bg-accent transition-all duration-300 mx-auto rounded-full"></div>
@@ -111,7 +111,7 @@ export default function HeroBottomDetailsDesktop() {
 
                     <motion.div
                         variants={item}
-                        className="group relative bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-elevation-2 flex flex-col overflow-hidden transition-all duration-500 hover:shadow-elevation-3 dark:hover:shadow-glow-primary hover:-translate-y-1"
+                        className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-white/5 p-8 shadow-[0_12px_40px_rgb(0,0,0,0.08)] flex flex-col overflow-hidden transition-all duration-500 hover:shadow-[0_16px_50px_rgb(0,0,0,0.12)] dark:hover:shadow-glow-primary hover:-translate-y-1"
                     >
                         <div className="absolute -right-10 -top-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors duration-500" />
 
@@ -122,7 +122,7 @@ export default function HeroBottomDetailsDesktop() {
                             >
                                 <MapPin className="text-accent" size={20} strokeWidth={2} />
                             </motion.div>
-                            <h3 className="text-[14px] font-bold text-gray-900 dark:text-white tracking-[0.1em] uppercase">
+                            <h3 className="text-[14px] font-bold text-[#0a1128] dark:text-white tracking-[0.1em] uppercase">
                                 {heroDetailsData.locationsTitle}
                             </h3>
                         </div>
@@ -147,7 +147,7 @@ export default function HeroBottomDetailsDesktop() {
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     key={loc}
-                                    className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-surface-alt shadow-sm shrink-0 transition-all duration-300 hover:bg-white hover:border-accent/40 hover:shadow-[0_0_15px_rgba(var(--accent-rgb),0.15)] dark:hover:bg-surface cursor-default"
+                                    className="flex items-center gap-2 px-3.5 py-2.5 rounded-2xl border border-gray-100 dark:border-white/10 bg-gray-50 dark:bg-white shadow-sm shrink-0 transition-all duration-300 hover:bg-white hover:border-accent/40 hover:shadow-[0_0_15px_rgba(var(--accent-rgb),0.15)] dark:hover:bg-white cursor-default"
                                 >
                                     <span className="text-[13px] font-semibold text-gray-700 dark:text-gray-200">
                                         {loc}
@@ -160,7 +160,7 @@ export default function HeroBottomDetailsDesktop() {
 
                 <motion.div
                     variants={item}
-                    className="col-span-12 lg:col-span-5 bg-white/90 dark:bg-surface/90 backdrop-blur-sm rounded-xl border border-gray-100 dark:border-white/5 p-8 shadow-elevation-2 flex flex-col justify-between h-full transition-all duration-500 hover:shadow-elevation-3 dark:hover:shadow-glow-primary hover:-translate-y-1 relative overflow-hidden"
+                    className="col-span-12 lg:col-span-5 bg-white/90 dark:bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-white/5 p-8 shadow-[0_12px_40px_rgb(0,0,0,0.08)] flex flex-col justify-between h-full transition-all duration-500 hover:shadow-[0_16px_50px_rgb(0,0,0,0.12)] dark:hover:shadow-glow-primary hover:-translate-y-1 relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-tl from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -168,14 +168,14 @@ export default function HeroBottomDetailsDesktop() {
                         variants={innerContainer}
                         initial="hidden"
                         animate="show"
-                        className="grid grid-cols-2 gap-4 mb-6 relative z-10"
+                        className="grid grid-cols-2 gap-6 mb-6 relative z-10"
                     >
                         {heroDetailsData.keyDetails.map((detail, i) => (
                             <motion.div
                                 variants={innerItem}
                                 whileHover={{ scale: 1.03, x: 2 }}
                                 key={i}
-                                className="flex gap-3 items-center bg-gray-50/80 dark:bg-surface-alt/50 p-3.5 rounded-xl border border-gray-100 dark:border-white/5 shadow-[0_2px_10px_rgb(0,0,0,0.02)] hover:shadow-md hover:border-primary/20 transition-all duration-300 cursor-default"
+                                className="flex gap-3 items-center bg-gray-50/80 dark:bg-white/50 p-3.5 rounded-2xl border border-gray-100 dark:border-white/5 shadow-[0_2px_10px_rgb(0,0,0,0.02)] hover:shadow-md hover:border-primary/20 transition-all duration-300 cursor-default"
                             >
                                 <div className={clsx(
                                     "w-10 h-10 rounded-full flex items-center justify-center shrink-0 border border-white/50 dark:border-white/10 shadow-sm",
@@ -187,7 +187,7 @@ export default function HeroBottomDetailsDesktop() {
                                     <span className="text-xs uppercase font-bold tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">
                                         {detail.label}
                                     </span>
-                                    <span className="text-[13px] font-bold text-gray-900 dark:text-white leading-tight">
+                                    <span className="text-[13px] font-bold text-[#0a1128] dark:text-white leading-tight">
                                         {detail.value}
                                     </span>
                                 </div>
@@ -198,7 +198,7 @@ export default function HeroBottomDetailsDesktop() {
                     <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-lg text-[14px] font-bold shadow-glow-primary flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
+                        className="w-2/5 mx-auto py-3.5 bg-primary hover:bg-primary-light text-white dark:text-[#0b162c] rounded-2xl text-[14px] font-bold shadow-glow-primary flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden group mt-auto z-10"
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-[#0b162c]/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
                         <span className="relative z-10 flex items-center gap-2">
@@ -217,7 +217,7 @@ export default function HeroBottomDetailsDesktop() {
 
             <motion.div
                 variants={item}
-                className="w-full bg-gradient-to-r from-primary via-primary-light to-primary rounded-xl py-7 px-6 shadow-glow-primary flex items-center justify-between text-white mt-2 relative overflow-hidden"
+                className="w-full bg-gradient-to-r from-primary via-primary-light to-primary rounded-2xl py-7 px-6 shadow-glow-primary flex items-center justify-between text-white mt-2 relative overflow-hidden"
             >
                 <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
                 <motion.div
@@ -238,7 +238,7 @@ export default function HeroBottomDetailsDesktop() {
                             variants={innerItem}
                             whileHover={{ y: -4 }}
                             key={i}
-                            className="flex items-center gap-4 flex-1 justify-center px-4 group/stat"
+                            className="flex items-center gap-6 flex-1 justify-center px-4 group/stat"
                         >
                             <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20 shrink-0 shadow-inner backdrop-blur-md transition-all duration-300 group-hover/stat:bg-white/20 group-hover/stat:scale-110">
                                 <stat.icon size={24} className={stat.color || "text-accent-highlight"} strokeWidth={1.5} />

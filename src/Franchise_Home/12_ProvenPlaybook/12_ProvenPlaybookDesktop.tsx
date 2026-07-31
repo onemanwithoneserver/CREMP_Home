@@ -16,7 +16,7 @@ const stagger = {
 
 export default function ProvenPlaybookDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-10">
+        <section className="w-full bg-[#FAFAFA] px-6 py-10">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={provenPlaybookData.sectionLabel}
@@ -28,7 +28,7 @@ export default function ProvenPlaybookDesktop() {
                     whileInView="show"
                     viewport={{ once: true }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-4"
+                    className="grid grid-cols-3 gap-6"
                 >
                     {provenPlaybookData.cards.map((card) => {
                         const Icon = card.icon;
@@ -36,15 +36,15 @@ export default function ProvenPlaybookDesktop() {
                             <motion.div
                                 key={card.title}
                                 variants={fadeInUp}
-                                className={clsx("rounded-lg border p-6 cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
+                                className={clsx("rounded-2xl border p-6 cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
                             >
-                                <div className="flex items-center gap-4 mb-3">
+                                <div className="flex items-center gap-6 mb-3">
                                     <div
                                         className={clsx("w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-xs", getIconContainerStyles(card.intent))}
                                     >
                                         <Icon size={20} strokeWidth={1.5} />
                                     </div>
-                                    <h4 className="text-gray-900 dark:text-white font-bold text-lg">{card.title}</h4>
+                                    <h4 className="text-[#0a1128] dark:text-white font-bold text-lg tracking-tight">{card.title}</h4>
                                 </div>
                                 {card.description && (
                                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{card.description}</p>

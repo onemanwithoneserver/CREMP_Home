@@ -6,7 +6,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function LeadershipMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={leadershipData.sectionLabel}
                 align="center"
@@ -30,8 +30,8 @@ export default function LeadershipMobile() {
                             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-surface" />
                         </div>
                         <div className="p-5 -mt-6 relative z-10 flex-1 flex flex-col">
-                            <h4 className="text-gray-900 dark:text-white font-bold text-base">{member.name}</h4>
-                            <p className="text-primary dark:text-accent text-xs font-semibold mb-1">{member.role}</p>
+                            <h4 className="text-[#0a1128] dark:text-white font-bold text-base">{member.name}</h4>
+                            <p className="text-[#0a1128] dark:text-accent text-xs font-semibold mb-1">{member.role}</p>
                             <p className="text-gray-500 dark:text-gray-400 text-xs mb-3 font-medium">
                                 {member.company} · {member.experience}
                             </p>

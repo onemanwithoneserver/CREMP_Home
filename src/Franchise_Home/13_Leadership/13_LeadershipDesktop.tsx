@@ -16,7 +16,7 @@ const stagger = {
 
 export default function LeadershipDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-10">
+        <section className="w-full bg-[#FAFAFA] px-6 py-10">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={leadershipData.sectionLabel}
@@ -34,7 +34,7 @@ export default function LeadershipDesktop() {
                         <motion.div
                             key={member.name}
                             variants={fadeInUp}
-                            className={clsx("overflow-hidden rounded-lg border cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
+                            className={clsx("overflow-hidden rounded-2xl border cursor-default group flex flex-col transition-all duration-300", getCardStyles())}
                         >
                             <div className="relative h-64 overflow-hidden">
                                 <img
@@ -46,8 +46,8 @@ export default function LeadershipDesktop() {
                             </div>
 
                             <div className="p-6 -mt-8 relative z-10 flex-1 flex flex-col">
-                                <h4 className="text-gray-900 dark:text-white font-bold text-lg">{member.name}</h4>
-                                <p className="text-primary dark:text-accent text-sm font-semibold mb-1">{member.role}</p>
+                                <h4 className="text-[#0a1128] dark:text-white font-bold text-lg tracking-tight">{member.name}</h4>
+                                <p className="text-[#0a1128] dark:text-accent text-sm font-semibold mb-1">{member.role}</p>
                                 <p className="text-gray-500 dark:text-gray-400 text-xs font-medium mb-4">
                                     {member.company} · {member.experience}
                                 </p>

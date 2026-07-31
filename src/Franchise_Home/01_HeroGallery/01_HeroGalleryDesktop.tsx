@@ -25,21 +25,21 @@ export default function HeroGalleryDesktop() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="w-full max-w-[1440px] mx-auto bg-background transition-colors duration-300 p-4 lg:p-6 flex flex-col gap-4"
+            className="w-full max-w-[1440px] mx-auto bg-[#FAFAFA] transition-colors duration-300 p-6 lg:p-6 flex flex-col gap-6"
         >
-            <div className="grid grid-cols-12 gap-4 min-h-[480px]">
+            <div className="grid grid-cols-12 gap-6 min-h-[480px]">
                 <motion.div
                     variants={item}
-                    className="col-span-12 lg:col-span-9 flex flex-col lg:flex-row rounded-2xl overflow-hidden shadow-sm border border-border group/main"
+                    className="col-span-12 lg:col-span-9 flex flex-col lg:flex-row rounded-2xl overflow-hidden shadow-sm border border-gray-100 group/main"
                 >
                     <div className="w-full lg:w-[55.55%] bg-[#f9f9f9] flex flex-col justify-center p-12 relative transition-colors duration-500 overflow-hidden">
                         <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#0b162c]/80 blur-[80px] rounded-full pointer-events-none" />
-                        <div className="flex items-center gap-4 mb-8 relative z-10">
+                        <div className="flex items-center gap-6 mb-8 relative z-10">
                             <div className="w-14 h-14 rounded-2xl bg-[#f4ebd0] flex items-center justify-center text-[#c69a54] shadow-sm">
                                 <Coffee size={32} strokeWidth={2} />
                             </div>
                             <div className="flex flex-col">
-                                <h1 className="text-2xl font-serif font-black tracking-widest text-[#0b162c] uppercase leading-none">
+                                <h1 className="text-2xl tracking-tight font-serif font-black tracking-widest text-[#0b162c] uppercase leading-none">
                                     THE URBAN
                                 </h1>
                                 <div className="flex items-center gap-2 mt-1.5">
@@ -59,7 +59,7 @@ export default function HeroGalleryDesktop() {
                         </h2>
                         <div className="flex flex-wrap gap-3 mb-10 relative z-10">
                             {heroGalleryData.tags.map((tag, i) => (
-                                <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-200'} shadow-sm`}>
+                                <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-2xl border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-100'} shadow-sm`}>
                                     <tag.icon size={16} className={i === 0 ? "text-[#8a6831]" : "text-[#c69a54]"} />
                                     <span className="text-sm font-bold text-[#0b162c]">{tag.label}</span>
                                 </div>
@@ -67,14 +67,14 @@ export default function HeroGalleryDesktop() {
                         </div>
                         <div className="flex flex-wrap items-center gap-5 relative z-10">
                             <button
-                                className="flex items-center gap-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2 hover-lift"
+                                className="flex items-center gap-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white px-8 py-4 rounded-2xl text-[15px] font-bold transition-all duration-300 shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#bf953f] focus:ring-offset-2 hover-lift"
                                 aria-label={heroGalleryData.buttons.primary.label}
                             >
                                 <heroGalleryData.buttons.primary.icon size={18} />
                                 {heroGalleryData.buttons.primary.label}
                             </button>
                             <button
-                                className="flex items-center gap-2.5 bg-[#121c33] hover:bg-[#1a2542] text-white border border-[#d4af37]/40 hover:border-[#d4af37] px-8 py-4 rounded-lg text-[15px] font-bold transition-all duration-300 shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#121c33] focus:ring-offset-2"
+                                className="flex items-center gap-2.5 bg-[#121c33] hover:bg-[#1a2542] text-white border border-[#d4af37]/40 hover:border-[#d4af37] px-8 py-4 rounded-2xl text-[15px] font-bold transition-all duration-300 shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#121c33] focus:ring-offset-2"
                                 aria-label={heroGalleryData.buttons.secondary.label}
                             >
                                 <heroGalleryData.buttons.secondary.icon size={18} className="text-white" />
@@ -96,7 +96,7 @@ export default function HeroGalleryDesktop() {
                     </div>
                 </motion.div>
 
-                <motion.div variants={item} className="col-span-12 lg:col-span-3 flex flex-col gap-4">
+                <motion.div variants={item} className="col-span-12 lg:col-span-3 flex flex-col gap-6">
                     <div className="h-1/2 rounded-2xl overflow-hidden relative shadow-sm group cursor-pointer focus-within:ring-2 focus-within:ring-accent">
                         <img src={interiorImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" alt="Cafe Interior View" />
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 flex items-center justify-center">
@@ -106,7 +106,7 @@ export default function HeroGalleryDesktop() {
                         </div>
                     </div>
 
-                    <div className="h-1/2 grid grid-cols-2 gap-4">
+                    <div className="h-1/2 grid grid-cols-2 gap-6">
                         <div className="rounded-2xl overflow-hidden relative shadow-sm group cursor-pointer focus-within:ring-2 focus-within:ring-accent">
                             <img src={beansImg} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" alt="Fresh Coffee Beans" />
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 flex items-center justify-center">

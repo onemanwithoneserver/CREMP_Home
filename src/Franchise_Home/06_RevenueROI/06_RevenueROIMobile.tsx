@@ -6,7 +6,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function RevenueROIMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={revenueROIData.sectionLabel}
                 align="center"
@@ -32,7 +32,7 @@ export default function RevenueROIMobile() {
                                 >
                                     <Icon size={14} strokeWidth={1.5} />
                                 </div>
-                                <p className="text-2xl font-black text-gray-900 dark:text-white">{card.range}</p>
+                                <p className="text-2xl tracking-tight font-black text-[#0a1128] dark:text-white">{card.range}</p>
                             </div>
                         </motion.div>
                     );
@@ -42,7 +42,7 @@ export default function RevenueROIMobile() {
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
                     {revenueROIData.paybackPeriod.sectionLabel}
                 </p>
-                <h3 className="text-xl font-black text-gray-900 dark:text-white mb-5">
+                <h3 className="text-xl font-black text-[#0a1128] dark:text-white mb-5">
                     {revenueROIData.paybackPeriod.title}
                 </h3>
                 <div className="space-y-4">

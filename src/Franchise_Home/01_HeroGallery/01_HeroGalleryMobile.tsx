@@ -5,14 +5,14 @@ import mainCupImg from "../../assets/main_coffee_cup.png";
 
 export default function HeroGalleryMobile() {
     return (
-        <section className="w-full bg-background transition-colors duration-300 flex flex-col gap-4">
+        <section className="w-full bg-[#FAFAFA] transition-colors duration-300 flex flex-col gap-6">
             <div className="bg-[#f9f9f9] rounded-2xl overflow-hidden shadow-sm flex flex-row border border-gray-100 relative min-h-[320px]">
 
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0b162c]/80 blur-[40px] rounded-full pointer-events-none" />
 
-                <div className="w-[55%] p-4 flex flex-col justify-center relative z-10">
+                <div className="w-[55%] p-6 flex flex-col justify-center relative z-10">
                     <div className="flex items-center gap-2.5 mb-5">
-                        <div className="w-10 h-10 rounded-xl bg-[#f4ebd0] flex items-center justify-center text-[#c69a54] shadow-sm shrink-0">
+                        <div className="w-10 h-10 rounded-2xl bg-[#f4ebd0] flex items-center justify-center text-[#c69a54] shadow-sm shrink-0">
                             <Coffee size={20} strokeWidth={2} />
                         </div>
                         <div className="flex flex-col">
@@ -38,7 +38,7 @@ export default function HeroGalleryMobile() {
 
                     <div className="flex flex-wrap gap-1.5 mb-6 relative z-10">
                         {heroGalleryData.tags.map((tag, i) => (
-                            <div key={i} className={`flex items-center gap-1 px-2 py-1 rounded-md border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-200'} shadow-sm`}>
+                            <div key={i} className={`flex items-center gap-1 px-2 py-1 rounded-md border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-100'} shadow-sm`}>
                                 <tag.icon size={10} className={i === 0 ? "text-[#8a6831]" : "text-[#c69a54]"} />
                                 <span className="text-xs font-bold text-[#0b162c]">{tag.label}</span>
                             </div>
@@ -69,7 +69,7 @@ export default function HeroGalleryMobile() {
                     <span className="truncate">{heroGalleryData.buttons.primary.label}</span>
                 </button>
                 <button
-                    className="shrink-0 flex flex-row items-center justify-center gap-2 bg-[#121c33] active:bg-[#1a2542] text-white border border-[#d4af37]/40 px-5 py-3.5 rounded-lg text-[12px] font-bold shadow-sm transition-all text-center"
+                    className="shrink-0 flex flex-row items-center justify-center gap-2 bg-[#121c33] active:bg-[#1a2542] text-white border border-[#d4af37]/40 px-5 py-3.5 rounded-2xl text-[12px] font-bold shadow-sm transition-all text-center"
                     aria-label={heroGalleryData.buttons.secondary.label}
                 >
                     <heroGalleryData.buttons.secondary.icon size={14} className="text-white shrink-0" />

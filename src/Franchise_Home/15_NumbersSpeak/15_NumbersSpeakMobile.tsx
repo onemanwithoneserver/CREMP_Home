@@ -42,7 +42,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string; int
     }, [hasStarted, target]);
 
     return (
-        <div ref={ref} className="text-2xl font-black text-current">
+        <div ref={ref} className="text-2xl tracking-tight font-black text-current">
             {count}
             <span className="opacity-80">{suffix}</span>
         </div>
@@ -51,7 +51,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string; int
 
 export default function NumbersSpeakMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <div className="flex flex-col mb-6">
                 <SectionHeader 
                     overline={numbersSpeakData.sectionLabel}
@@ -73,7 +73,7 @@ export default function NumbersSpeakMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.05 }}
-                            className={clsx("rounded-[4px] border p-4 cursor-default transition-all duration-300", getBadgeStyles(stat.intent))}
+                            className={clsx("rounded-[4px] border p-6 cursor-default transition-all duration-300", getBadgeStyles(stat.intent))}
                         >
                             <div className="flex items-start justify-between gap-2 mb-3">
                                 <span

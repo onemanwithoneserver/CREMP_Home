@@ -6,7 +6,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function IdealPartnerMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={idealPartnerData.sectionLabel}
                 title={idealPartnerData.title}
@@ -23,13 +23,13 @@ export default function IdealPartnerMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className={clsx("rounded-xl border p-5 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}
+                            className={clsx("rounded-2xl border p-5 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-white", getCardStyles(item.intent))}
                         >
-                            <div className="flex items-center gap-4 mb-4 border-b border-gray-100 dark:border-border pb-3">
+                            <div className="flex items-center gap-6 mb-4 border-b border-gray-100 dark:border-gray-100 pb-3">
                                 <div className={clsx("w-10 h-10 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                     <Icon size={18} strokeWidth={1.5} />
                                 </div>
-                                <h4 className="text-gray-900 dark:text-white font-extrabold text-base leading-tight">{item.title}</h4>
+                                <h4 className="text-[#0a1128] dark:text-white font-extrabold text-base leading-tight">{item.title}</h4>
                             </div>
 
                             <div className="space-y-3 mb-4 flex-1">
@@ -43,7 +43,7 @@ export default function IdealPartnerMobile() {
                                 ))}
                             </div>
 
-                            <div className="pt-3 border-t border-gray-100 dark:border-border mt-auto">
+                            <div className="pt-3 border-t border-gray-100 dark:border-gray-100 mt-auto">
                                 <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{item.description}</p>
                             </div>
                         </motion.div>
@@ -55,16 +55,16 @@ export default function IdealPartnerMobile() {
                 {idealPartnerData.additionalCriteria.map((item) => {
                     const Icon = item.icon;
                     return (
-                        <div key={item.title} className={clsx("rounded-xl border p-4 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-surface", getCardStyles(item.intent))}>
+                        <div key={item.title} className={clsx("rounded-2xl border p-6 cursor-default transition-all duration-300 flex flex-col bg-white dark:bg-white", getCardStyles(item.intent))}>
                             <div className="flex items-center gap-3 mb-3">
                                 <div className={clsx("w-8 h-8 rounded-full flex shrink-0 items-center justify-center shadow-sm", getIconContainerStyles(item.intent))}>
                                     <Icon size={14} strokeWidth={1.5} />
                                 </div>
-                                <h4 className="text-gray-900 dark:text-white font-bold text-sm leading-tight">{item.title}</h4>
+                                <h4 className="text-[#0a1128] dark:text-white font-bold text-sm leading-tight">{item.title}</h4>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-3 mt-auto">
                                 {item.items.map((tag, idx) => (
-                                    <span key={idx} className={clsx("text-xs font-semibold py-1 px-2 rounded bg-gray-50 dark:bg-surface-alt border border-gray-100 dark:border-border shadow-xs", getBadgeStyles(item.intent))}>{tag}</span>
+                                    <span key={idx} className={clsx("text-xs font-semibold py-1 px-2 rounded bg-gray-50 dark:bg-white border border-gray-100 dark:border-gray-100 shadow-xs", getBadgeStyles(item.intent))}>{tag}</span>
                                 ))}
                             </div>
                             <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">{item.description}</p>

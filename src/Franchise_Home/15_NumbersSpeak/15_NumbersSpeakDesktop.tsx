@@ -42,7 +42,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix: string; int
     }, [hasStarted, target]);
 
     return (
-        <div ref={ref} className="text-4xl font-black text-current">
+        <div ref={ref} className="text-4xl tracking-tight font-black text-current">
             {count}
             <span className="opacity-80">{suffix}</span>
         </div>
@@ -61,7 +61,7 @@ const stagger = {
 
 export default function NumbersSpeakDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-12">
+        <section className="w-full bg-[#FAFAFA] px-6 py-12">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row items-start justify-between mb-2">
                     <SectionHeader 
@@ -80,7 +80,7 @@ export default function NumbersSpeakDesktop() {
                     whileInView="show"
                     viewport={{ once: true }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-4"
+                    className="grid grid-cols-3 gap-6"
                 >
                     {numbersSpeakData.stats.map((stat) => {
                         const Icon = stat.icon;
@@ -88,7 +88,7 @@ export default function NumbersSpeakDesktop() {
                             <motion.div
                                 key={stat.label}
                                 variants={fadeInUp}
-                                className={clsx("rounded-lg border p-6 cursor-default transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-lg", getBadgeStyles(stat.intent))}
+                                className={clsx("rounded-2xl border p-6 cursor-default transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-lg", getBadgeStyles(stat.intent))}
                             >
                                 <div className="flex items-center justify-between mb-4">
                                     <span

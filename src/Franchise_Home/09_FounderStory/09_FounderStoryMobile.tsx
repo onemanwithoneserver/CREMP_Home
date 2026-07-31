@@ -7,7 +7,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FounderStoryMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={founderStoryData.sectionLabel}
                 align="center"
@@ -16,7 +16,7 @@ export default function FounderStoryMobile() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-[#0a1128] border border-[#2a2d45] rounded-lg p-6 shadow-elevation-2"
+                className="bg-[#0a1128] border border-[#2a2d45] rounded-2xl p-6 shadow-[0_12px_40px_rgb(0,0,0,0.08)]"
             >
                 <Quote size={28} strokeWidth={1.5} className="text-[#d4af37] mb-4" />
                 <p className="text-gray-300 text-sm leading-relaxed mb-6 italic">
@@ -26,7 +26,7 @@ export default function FounderStoryMobile() {
                     <img
                         src={founderStoryData.founder.avatar}
                         alt={founderStoryData.founder.name}
-                        className="w-12 h-12 rounded-full object-cover shadow-sm border border-border"
+                        className="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-100"
                     />
                     <div>
                         <p className="text-white font-bold text-sm">{founderStoryData.founder.name}</p>
@@ -37,7 +37,7 @@ export default function FounderStoryMobile() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {founderStoryData.stats.map((stat) => {
                         return (
-                            <div key={stat.label} className="bg-[#121c33] border border-white/10 rounded-[4px] p-3 text-center shadow-elevation-1 cursor-default transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/30">
+                            <div key={stat.label} className="bg-[#121c33] border border-white/10 rounded-[4px] p-3 text-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-default transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-[#d4af37]/30">
                                 <p className={clsx("text-xl font-black mb-1", getTextStyles(stat.intent))}>{stat.value}</p>
                                 <p className="text-gray-400 text-xs font-bold uppercase tracking-wider">{stat.label}</p>
                             </div>

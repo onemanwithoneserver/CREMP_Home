@@ -15,7 +15,7 @@ export default function FAQMobile() {
     );
 
     return (
-        <section className="w-full bg-background px-4 py-12">
+        <section className="w-full bg-[#FAFAFA] px-4 py-12">
 
             {}
             <div className="flex flex-col mb-8 text-center items-center">
@@ -56,8 +56,8 @@ export default function FAQMobile() {
                             setExpandedId(null);
                         }}
                         className={`px-5 py-2.5 rounded-[4px] text-xs font-bold transition-all duration-300 whitespace-nowrap snap-start shrink-0 ${activeTab === tab.id
-                                ? "bg-primary text-white shadow-elevation-1"
-                                : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50"
+                                ? "bg-primary text-white shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
+                                : "bg-white dark:bg-white border border-gray-100 text-gray-600 dark:text-gray-400 hover:border-primary/50"
                             }`}
                     >
                         {tab.label}
@@ -75,14 +75,14 @@ export default function FAQMobile() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
-                            className={`bg-white dark:bg-surface border-[0.5px] rounded-[4px] overflow-hidden transition-all duration-300 ${expandedId === q.id ? "border-primary-[2px] dark:border-accent shadow-elevation-2" : "border-border shadow-elevation-1"
+                            className={`bg-white dark:bg-white border-[0.5px] rounded-[4px] overflow-hidden transition-all duration-300 ${expandedId === q.id ? "border-primary-[2px] dark:border-accent shadow-[0_12px_40px_rgb(0,0,0,0.08)]" : "border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                                 }`}
                         >
                             <button
                                 onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
-                                className="w-full flex items-center justify-between p-4 text-left"
+                                className="w-full flex items-center justify-between p-6 text-left"
                             >
-                                <span className={`text-[13px] font-bold pr-4 transition-colors leading-snug ${expandedId === q.id ? "text-primary dark:text-accent" : "text-gray-900 dark:text-white"}`}>
+                                <span className={`text-[13px] font-bold pr-4 transition-colors leading-snug ${expandedId === q.id ? "text-[#0a1128] dark:text-accent" : "text-[#0a1128] dark:text-white"}`}>
                                     {q.question}
                                 </span>
                                 <div

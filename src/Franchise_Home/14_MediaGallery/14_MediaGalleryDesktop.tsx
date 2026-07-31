@@ -22,7 +22,7 @@ export default function MediaGalleryDesktop() {
     const isVideoTab = activeTab.includes("video");
 
     return (
-        <section className="w-full bg-background px-6 py-12">
+        <section className="w-full bg-[#FAFAFA] px-6 py-12">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={mediaGalleryData.sectionLabel}
@@ -38,9 +38,9 @@ export default function MediaGalleryDesktop() {
                                 onClick={() => setActiveTab(tab.id)}
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.97 }}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-bold whitespace-nowrap transition-all shadow-elevation-1 ${isActive
+                                className={`flex items-center gap-2 px-4 py-2 rounded-[4px] text-xs font-bold whitespace-nowrap transition-all shadow-[0_8px_30px_rgb(0,0,0,0.06)] ${isActive
                                         ? "bg-primary text-white"
-                                        : "bg-white dark:bg-surface border border-border text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-primary dark:hover:text-accent hover:shadow"
+                                        : "bg-white dark:bg-white border border-gray-100 text-gray-600 dark:text-gray-400 hover:border-primary/50 hover:text-[#0a1128] dark:hover:text-accent hover:shadow"
                                     }`}
                             >
                                 <Icon size={14} />
@@ -61,7 +61,7 @@ export default function MediaGalleryDesktop() {
                             key={item.id}
                             variants={fadeInUp}
                             whileHover={{ y: -4 }}
-                            className={`relative group overflow-hidden rounded-lg ${isVideoTab ? "aspect-[9/16]" : "aspect-[4/3]"} cursor-pointer shadow-elevation-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevation-2 hover:border-[#d4af37]/50 border border-transparent`}
+                            className={`relative group overflow-hidden rounded-2xl ${isVideoTab ? "aspect-[9/16]" : "aspect-[4/3]"} cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-[#d4af37]/50 border border-transparent`}
                         >
                             <img
                                 src={item.src}
@@ -76,7 +76,7 @@ export default function MediaGalleryDesktop() {
                                     </div>
                                 </div>
                             )}
-                            <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10">
+                            <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10">
                                 <span className="text-white text-sm font-bold">{item.title}</span>
                             </div>
                         </motion.div>

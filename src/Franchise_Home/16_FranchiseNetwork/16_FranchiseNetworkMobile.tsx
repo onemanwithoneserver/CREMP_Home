@@ -6,7 +6,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FranchiseNetworkMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={franchiseNetworkData.sectionLabel}
                 align="center"
@@ -17,7 +17,7 @@ export default function FranchiseNetworkMobile() {
                 viewport={{ once: true }}
                 className={clsx("overflow-hidden rounded-[4px] border flex flex-col transition-all duration-300", getCardStyles())}
             >
-                <div className="w-full h-[220px] bg-gray-50 dark:bg-surface-alt flex items-center justify-center relative border-b border-border">
+                <div className="w-full h-[220px] bg-gray-50 dark:bg-white flex items-center justify-center relative border-b border-gray-100">
                     <div className="absolute inset-0 opacity-20">
                         <svg viewBox="0 0 400 500" className="w-full h-full">
                             <path
@@ -32,14 +32,14 @@ export default function FranchiseNetworkMobile() {
                             <circle cx="230" cy="200" r="3" fill="#3b82f6" />
                         </svg>
                     </div>
-                    <div className="z-10 p-4 text-center">
-                        <h3 className="text-gray-900 dark:text-white font-black text-lg mb-1">{franchiseNetworkData.title}</h3>
+                    <div className="z-10 p-6 text-center">
+                        <h3 className="text-[#0a1128] dark:text-white font-black text-lg tracking-tight mb-1">{franchiseNetworkData.title}</h3>
                         <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">{franchiseNetworkData.outletCount}</p>
                     </div>
                 </div>
 
                 <div className="p-5">
-                    <div className="flex flex-wrap gap-4 mb-6">
+                    <div className="flex flex-wrap gap-6 mb-6">
                         {franchiseNetworkData.legend.map((item) => {
                             const Icon = item.icon;
                             return (
@@ -53,17 +53,17 @@ export default function FranchiseNetworkMobile() {
                     </div>
                     <div className="grid grid-cols-2 gap-3 mb-6">
                         {franchiseNetworkData.networkStats.items.map((item) => (
-                            <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-border">
+                            <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-gray-100">
                                 <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">{item.label}</span>
-                                <span className="text-gray-900 dark:text-white text-xs font-bold">{item.value}</span>
+                                <span className="text-[#0a1128] dark:text-white text-xs font-bold">{item.value}</span>
                             </div>
                         ))}
                     </div>
                     <div className="space-y-3">
-                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-elevation-1 hover:shadow-elevation-2 transition-shadow">
+                        <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-bold rounded shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-shadow">
                             {franchiseNetworkData.cta.primary}
                         </button>
-                        <button className="w-full px-4 py-2.5 border border-border text-gray-700 dark:text-gray-300 text-xs font-bold rounded">
+                        <button className="w-full px-4 py-2.5 border border-gray-100 text-gray-700 dark:text-gray-300 text-xs font-bold rounded">
                             {franchiseNetworkData.cta.secondary}
                         </button>
                     </div>

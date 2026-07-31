@@ -6,7 +6,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function MissionVisionMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={missionVisionData.sectionLabel}
                 align="center"
@@ -27,7 +27,7 @@ export default function MissionVisionMobile() {
                                 <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center shadow-xs", getIconContainerStyles('primary'))}>
                                     <Icon size={16} strokeWidth={1.5} />
                                 </div>
-                                <span className="text-xs font-bold uppercase tracking-[0.1em] text-primary dark:text-accent">
+                                <span className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a1128] dark:text-accent">
                                     {card.label}
                                 </span>
                             </div>

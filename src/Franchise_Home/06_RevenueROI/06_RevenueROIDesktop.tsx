@@ -16,7 +16,7 @@ const stagger = {
 
 export default function RevenueROIDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-10">
+        <section className="w-full bg-[#FAFAFA] px-6 py-10">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={revenueROIData.sectionLabel}
@@ -38,7 +38,7 @@ export default function RevenueROIDesktop() {
                                 key={card.year}
                                 variants={fadeInUp}
                                 className={clsx(
-                                    "rounded-xl border-none p-6",
+                                    "rounded-2xl border-none p-6",
                                     "bg-white dark:bg-[#0b162c]/40 backdrop-blur-sm",
                                     "hover:-translate-y-1",
                                     "cursor-default transition-all duration-300",
@@ -51,7 +51,7 @@ export default function RevenueROIDesktop() {
                                     </span>
                                 </div>
 
-                                <div className="flex items-center gap-4 mb-5">
+                                <div className="flex items-center gap-6 mb-5">
                                     <div
                                         className={clsx(
                                             "w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-inner",
@@ -60,7 +60,7 @@ export default function RevenueROIDesktop() {
                                     >
                                         <Icon size={20} strokeWidth={1.75} />
                                     </div>
-                                    <p className="text-3xl font-black text-[#0b162c] dark:text-white tracking-tight">
+                                    <p className="text-3xl tracking-tight font-black text-[#0b162c] dark:text-white tracking-tight">
                                         {card.range}
                                     </p>
                                 </div>
@@ -74,22 +74,22 @@ export default function RevenueROIDesktop() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white dark:bg-[#0b162c]/60 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-elevation-2 hover:shadow-elevation-3 transition-shadow duration-300"
+                    className="bg-white dark:bg-[#0b162c]/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:shadow-[0_16px_50px_rgb(0,0,0,0.12)] transition-shadow duration-300"
                 >
                     <div className="mb-8">
                         <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37] mb-2">
                             {revenueROIData.paybackPeriod.sectionLabel}
                         </p>
-                        <h3 className="text-2xl font-black text-[#0b162c] dark:text-white">
+                        <h3 className="text-2xl tracking-tight font-black text-[#0b162c] dark:text-white">
                             {revenueROIData.paybackPeriod.title}
                         </h3>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-6">
                         {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
                             const Icon = milestone.icon;
                             return (
-                                <div key={idx} className="flex items-center gap-4 flex-1">
+                                <div key={idx} className="flex items-center gap-6 flex-1">
                                     <div
                                         className={clsx(
                                             "w-12 h-12 rounded-full flex items-center justify-center shrink-0 border transition-colors duration-300",

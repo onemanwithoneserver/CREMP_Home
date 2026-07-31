@@ -16,7 +16,7 @@ const stagger = {
 
 export default function InvestmentSnapshotDesktop() {
     return (
-        <section className="w-full bg-background px-6 py-10">
+        <section className="w-full bg-[#FAFAFA] px-6 py-10">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={investmentSnapshotData.sectionLabel}
@@ -28,7 +28,7 @@ export default function InvestmentSnapshotDesktop() {
                     whileInView="show"
                     viewport={{ once: true }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-4"
+                    className="grid grid-cols-3 gap-6"
                 >
                     {investmentSnapshotData.stats.map((stat) => {
                         const Icon = stat.icon;
@@ -38,12 +38,12 @@ export default function InvestmentSnapshotDesktop() {
                                 variants={fadeInUp}
                                 whileHover={{ y: -4, scale: 1.01 }}
                                 className={clsx(
-                                    "relative overflow-hidden rounded-lg border p-6 cursor-default transition-all duration-300 group z-10",
+                                    "relative overflow-hidden rounded-2xl border p-6 cursor-default transition-all duration-300 group z-10",
                                     getCardStyles(stat.intent)
                                 )}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                                <div className="flex items-start gap-4 relative z-10">
+                                <div className="flex items-start gap-6 relative z-10">
                                     <div
                                         className={clsx(
                                             "w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110",
@@ -56,7 +56,7 @@ export default function InvestmentSnapshotDesktop() {
                                         <p className="text-xs uppercase font-bold tracking-[0.15em] text-gray-500 dark:text-gray-400 mb-1 transition-colors group-hover:text-gray-700 dark:group-hover:text-gray-300">
                                             {stat.label}
                                         </p>
-                                        <p className="text-2xl font-black text-gray-900 dark:text-white leading-tight tracking-tight">
+                                        <p className="text-2xl tracking-tight font-black text-[#0a1128] dark:text-white leading-tight tracking-tight">
                                             {stat.value}
                                         </p>
                                         <p className="text-[13px] font-medium text-gray-600 dark:text-gray-400 mt-1 leading-snug">

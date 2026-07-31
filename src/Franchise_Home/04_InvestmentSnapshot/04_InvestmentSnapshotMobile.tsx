@@ -16,7 +16,7 @@ const item = {
 
 export default function InvestmentSnapshotMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={investmentSnapshotData.sectionLabel}
                 align="center"
@@ -27,7 +27,7 @@ export default function InvestmentSnapshotMobile() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-6"
             >
                 {investmentSnapshotData.stats.map((stat) => {
                     const Icon = stat.icon;
@@ -36,7 +36,7 @@ export default function InvestmentSnapshotMobile() {
                             key={stat.label}
                             variants={item}
                             className={clsx(
-                                "flex flex-col relative z-10 p-3.5 rounded-xl border transition-all duration-300",
+                                "flex flex-col relative z-10 p-3.5 rounded-2xl border transition-all duration-300",
                                 getCardStyles(stat.intent)
                             )}
                         >
@@ -48,7 +48,7 @@ export default function InvestmentSnapshotMobile() {
                                     {stat.label}
                                 </p>
                             </div>
-                            <p className="text-[17px] font-black text-gray-900 dark:text-white leading-none mb-1 tracking-tight">
+                            <p className="text-[17px] font-black text-[#0a1128] dark:text-white leading-none mb-1 tracking-tight">
                                 {stat.value}
                             </p>
                             <p className="text-xs font-medium text-gray-500 dark:text-gray-400 leading-snug line-clamp-2">

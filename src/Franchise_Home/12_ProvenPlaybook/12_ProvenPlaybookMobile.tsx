@@ -6,7 +6,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function ProvenPlaybookMobile() {
     return (
-        <section className="w-full bg-background px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-8">
             <SectionHeader 
                 overline={provenPlaybookData.sectionLabel}
                 align="center"
@@ -21,7 +21,7 @@ export default function ProvenPlaybookMobile() {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className={clsx("rounded-lg border p-5 cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
+                            className={clsx("rounded-2xl border p-5 cursor-default transition-all duration-300 flex flex-col", getCardStyles(card.intent))}
                         >
                             <div className="flex items-center gap-3 mb-3">
                                 <div
@@ -29,7 +29,7 @@ export default function ProvenPlaybookMobile() {
                                 >
                                     <Icon size={18} strokeWidth={1.5} />
                                 </div>
-                                <h4 className="text-gray-900 dark:text-white font-bold text-sm">{card.title}</h4>
+                                <h4 className="text-[#0a1128] dark:text-white font-bold text-sm">{card.title}</h4>
                             </div>
                             {card.description && (
                                 <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">{card.description}</p>
