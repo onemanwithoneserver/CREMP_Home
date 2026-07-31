@@ -61,7 +61,7 @@ export default function MediaGalleryDesktop() {
                             key={item.id}
                             variants={fadeInUp}
                             whileHover={{ y: -4 }}
-                            className={`relative group overflow-hidden rounded-2xl ${isVideoTab ? "aspect-[9/16]" : "aspect-[4/3]"} cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-[#d4af37]/50 border border-transparent`}
+                            className={`relative group overflow-hidden rounded-2xl aspect-[9/16] cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-[#d4af37]/50 border border-transparent`}
                         >
                             <img
                                 src={item.src}

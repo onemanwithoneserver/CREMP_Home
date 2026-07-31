@@ -44,7 +44,7 @@ export default function MediaGalleryMobile() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.05 }}
-                        className={`shrink-0 ${isVideoTab ? "w-[140px] aspect-[9/16]" : "w-[160px] aspect-[4/3]"} rounded-[4px] overflow-hidden border border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)]`}
+                        className={`shrink-0 w-[140px] aspect-[9/16] rounded-[4px] overflow-hidden border border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)]`}
                     >
                         <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70" />
