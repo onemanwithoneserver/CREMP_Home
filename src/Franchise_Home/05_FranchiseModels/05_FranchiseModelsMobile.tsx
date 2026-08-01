@@ -115,6 +115,7 @@ export default function FranchiseModelsMobile() {
         franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id || franchiseModelsData.models[0].id
     );
     const [viewType, setViewType] = useState<"chart" | "table">("chart");
+    const [isStaffModalOpen, setIsStaffModalOpen] = useState(false);
 
     const viewOptions = [
         { value: "chart", label: "Pie Chart View" },
@@ -311,22 +312,29 @@ export default function FranchiseModelsMobile() {
                             ].map((stat, i) => (
                                 <div 
                                     key={stat.label} 
-                                    className="flex flex-col items-start gap-2.5 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700"
+                                    className="flex flex-col items-start gap-2 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700"
                                 >
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 text-white ${
-                                            i === 0 ? 'bg-gradient-to-br from-[#10B981] to-[#047857] shadow-lg shadow-[#10B981]/30' : 
-                                            i === 1 ? 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] shadow-lg shadow-[#8B5CF6]/30' : 
-                                            i === 2 ? 'bg-gradient-to-br from-[#F43F5E] to-[#BE123C] shadow-lg shadow-[#F43F5E]/30' : 
-                                            'bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] shadow-lg shadow-[#0EA5E9]/30'
-                                        }`}>
-                                            <stat.icon size={14} strokeWidth={2.5} />
-                                    </div>
-                                    <div className="flex flex-col w-full">
-                                        <span className="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-0.5">{stat.label}</span>
-                                        <div className="flex items-center justify-between w-full">
-                                            <span className="text-[13px] font-semibold text-[#0b1b42] dark:text-gray-100 leading-tight truncate">{stat.value}</span>
-                                            {stat.extra && <stat.extra size={10} className="text-gray-300" />}
+                                    <div className="flex items-center gap-2">
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 text-white ${
+                                                i === 0 ? 'bg-gradient-to-br from-[#10B981] to-[#047857] shadow-lg shadow-[#10B981]/30' : 
+                                                i === 1 ? 'bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] shadow-lg shadow-[#8B5CF6]/30' : 
+                                                i === 2 ? 'bg-gradient-to-br from-[#F43F5E] to-[#BE123C] shadow-lg shadow-[#F43F5E]/30' : 
+                                                'bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] shadow-lg shadow-[#0EA5E9]/30'
+                                            }`}>
+                                                <stat.icon size={14} strokeWidth={2.5} />
                                         </div>
+                                        <span className="text-[12px] uppercase font-semibold text-gray-600 mb-0.5">{stat.label}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between w-full">
+                                        <span className="text-[13px] font-semibold text-[#0b1b42] dark:text-gray-100 leading-tight truncate">{stat.value}</span>
+                                        {stat.extra && (
+                                            <button 
+                                                onClick={() => stat.label === "STAFF" && setIsStaffModalOpen(true)}
+                                                className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary shadow-sm border border-primary/20 shrink-0 hover:bg-primary/20 transition-colors"
+                                            >
+                                                <stat.extra size={12} strokeWidth={2.5} />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             ))}
@@ -334,20 +342,20 @@ export default function FranchiseModelsMobile() {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="rounded border-none p-4  flex flex-col gap-4">
-                    <div className="flex items-center justify-between pb-3 border-b border-border">
+                <div className="rounded border-none p-2  flex flex-col gap-4">
+                    <div className="flex items-center justify-between pb-1 border-b border-border">
                         <span className="text-xs uppercase font-semibold tracking-widest text-primary dark:text-white font-semibold">
                             {revenueROIData.sectionLabel}
                         </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 w-full mt-2">
+                    <div className="grid grid-cols-3 gap-1 w-full mt-1">
                         {revenueROIData.revenueCards.map((card) => {
                             const Icon = card.icon;
                             return (
                                 <div
                                     key={card.year}
-                                    className="rounded-[4px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-2 bg-white flex flex-col justify-between"
+                                    className="rounded-[4px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-3 bg-white flex flex-col justify-between"
                                 >
                                     <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3">
                                         {card.year}
@@ -443,6 +451,52 @@ export default function FranchiseModelsMobile() {
                         </div>
                     </div>
                 </div>
+
+                <AnimatePresence>
+                    {isStaffModalOpen && (
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+                            onClick={() => setIsStaffModalOpen(false)}
+                        >
+                            <motion.div 
+                                initial={{ scale: 0.95, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.95, opacity: 0 }}
+                                className="w-full max-w-xs bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-5 relative"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <button 
+                                    onClick={() => setIsStaffModalOpen(false)}
+                                    className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
+                                <h5 className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4 border-b border-gray-100 dark:border-gray-700 pb-2 text-center">
+                                    Staff Requirements
+                                </h5>
+                                <div className="flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-1 scrollbar-hide">
+                                    {selected.staffDetails?.map((staff, idx) => (
+                                        <div key={idx} className="flex flex-col bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border border-gray-100 dark:border-gray-700">
+                                            <div className="flex items-center justify-between mb-1.5">
+                                                <span className="text-[13px] font-bold text-[#0b1b42] dark:text-white">{staff.name}</span>
+                                                <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">{staff.count}x</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mb-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                                                <span>{staff.type}</span>
+                                                <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                                                <span>{staff.experience}</span>
+                                            </div>
+                                            <p className="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-snug">{staff.remarks}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
             </div>
         </section>
