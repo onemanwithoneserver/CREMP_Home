@@ -40,7 +40,7 @@ const getStatIcon = (label: string) => {
 
 const getIconBgColor = (idx: number) => {
   const colors = [
-    "bg-[#d4af37]", 
+    "bg-amber-600", 
     "bg-blue-500", 
     "bg-emerald-500", 
     "bg-pink-500"
