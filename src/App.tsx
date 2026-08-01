@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import BuyersAndSellers from "./BuyersAndSellers";
 import MobileViewport from "./components/commonfiles/MobileViewport";
-import Connect from "./components/Connect";
+
 import Header, { type ViewMode } from "./components/Header";
 import { PageTransition } from "./components/layout";
 import DeveloperAndOwner from "./DeveloperAndOwner";
@@ -90,7 +90,6 @@ function App() {
                             />
                         </Routes>
                     </PageTransition>
-                    <Connect isMobile={isMobile} />
                 </MobileViewport>
             </div>
         </div>

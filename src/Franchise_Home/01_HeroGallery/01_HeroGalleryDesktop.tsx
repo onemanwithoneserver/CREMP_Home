@@ -40,28 +40,28 @@ export default function HeroGalleryDesktop() {
                             </div>
                             <div className="flex flex-col">
                                 <h1 className="text-2xl tracking-tight font-serif font-semibold tracking-widest text-[#0b162c] uppercase leading-none">
-                                    THE URBAN
+                                    {heroGalleryData.brandName}
                                 </h1>
                                 <div className="flex items-center gap-2 mt-1.5">
                                     <div className="h-[2px] bg-[#c69a54] w-8" />
-                                    <span className="text-sm tracking-widest text-[#0b162c]/80 font-semibold uppercase">BREW CO.</span>
+                                    <span className="text-sm tracking-widest text-[#0b162c]/80 font-semibold uppercase">FRANCHISE</span>
                                 </div>
                             </div>
                         </div>
-                        <h2 className="text-[44px] leading-[1.1] font-serif font-semibold text-[#0b162c] mb-8 relative z-10 max-w-xl">
-                            Redefining the café experience, <br />
-                            <span className="text-[#c69a54] italic font-medium relative inline-block mt-2">
-                                one cup
-                                <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#c69a54]" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                    <path d="M0 5 Q 12.5 0 25 5 T 50 5 T 75 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="2.5" />
-                                </svg>
-                            </span> at a time.
+                        <h2 className="text-[28px] leading-[1.3] font-serif font-semibold text-[#0b162c] mb-6 relative z-10 max-w-xl">
+                            {heroGalleryData.logoDescription}
                         </h2>
+                        <p className="text-base text-gray-600 mb-8 max-w-xl leading-relaxed relative z-10">
+                            {heroGalleryData.description}
+                        </p>
                         <div className="flex flex-wrap gap-3 mb-10 relative z-10">
-                            {heroGalleryData.tags.map((tag, i) => (
-                                <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-2xl border ${i === 0 ? 'bg-[#f4ebd0] border-transparent' : 'bg-white border-gray-100'} shadow-sm`}>
-                                    <tag.icon size={16} className={i === 0 ? "text-[#8a6831]" : "text-[#c69a54]"} />
-                                    <span className="text-sm font-semibold text-[#0b162c]">{tag.label}</span>
+                            <div className={`flex items-center gap-2 px-4 py-2 rounded-2xl shadow-sm`} style={{ backgroundColor: heroGalleryData.tag.bg, color: heroGalleryData.tag.textColor }}>
+                                <span className="text-sm font-semibold">{heroGalleryData.tag.text}</span>
+                            </div>
+                            {heroGalleryData.categories.map((category, i) => (
+                                <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-2xl border bg-white border-gray-100 shadow-sm`}>
+                                    <category.icon size={16} className="text-gray-500" />
+                                    <span className="text-sm font-semibold text-[#0b162c]">{category.label}</span>
                                 </div>
                             ))}
                         </div>

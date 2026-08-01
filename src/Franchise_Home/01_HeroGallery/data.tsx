@@ -4,19 +4,27 @@ import {
     CalendarDays,
     Download,
     Store,
+    Coffee,
+    Utensils,
 } from "lucide-react";
 
 export const heroGalleryData = {
-    sectionLabel: "THE URBAN BREW CO.",
-    badge: "Verified",
-    titleHighlight: "one cup",
+    brandName: "The Third Place",
+    logoText: "THE THIRD PLACE", // Using text for logo if image isn't available
+    tag: {
+        text: "urban favourite Third Place Business",
+        bg: "#ffffff",
+        textColor: "#c69a54",
+    },
+    logoDescription: "Experience a blended world of coffee with warm and minimalist space, strong youth mindfulness 'The Third Place'.",
     description:
-        "India's fastest-growing speciality coffee franchise, blending third-wave coffee culture with community-driven values and iconic café experiences.",
-
-    tags: [
-        { label: "FOCO / FOFO", icon: Building2 },
-        { label: "Est. 2016", icon: CalendarDays },
-        { label: "187+ Outlets", icon: Store },
+        "The Third place is a fast-growing QSR franchise founded in 2024, specializing in modern, minimalist, and light-roast third wave 100% arabica or cane india, we offer a fully managed franchise model with zero local supply chain, marketing support, and technology-backed operations.",
+    
+    categories: [
+        { label: "Food & Beverage", icon: Utensils },
+        { label: "Quick Service Restaurant", icon: Store },
+        { label: "Cafe & Snacks", icon: Coffee },
+        { label: "Beverages", icon: Coffee },
     ],
 
     buttons: {
@@ -25,10 +33,8 @@ export const heroGalleryData = {
             icon: Download,
         },
         secondary: {
-            label: "View Editions",
+            label: "Apply Now",
             icon: BookOpen,
         },
     },
-
 };
-

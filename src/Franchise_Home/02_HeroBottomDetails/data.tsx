@@ -48,55 +48,43 @@ export const heroDetailsData = {
     locationsTitle: "Where We Brew",
     locations: ["Mumbai", "Delhi NCR", "Hyderabad", "Pune", "Bengaluru", "Chennai", "Kolkata", "Ahmedabad"],
 
-    keyDetailsTitle: "Key Details",
+    keyDetailsTitle: "Feature Categories",
     keyDetails: [
         {
-            label: "Sector",
+            label: "Primary Category",
             value: "Food & Beverage",
             icon: Briefcase,
             colorClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-sm shadow-[#8B5CF6]/30"
         },
         {
-            label: "Category",
-            value: "Speciality Café",
+            label: "Sub Category",
+            value: "Quick Service Restaurant",
             icon: Award,
             colorClass: "bg-gradient-to-br from-[#FBBF24] to-[#D97706] text-white shadow-sm shadow-[#FBBF24]/30"
         },
         {
-            label: "Headquarters",
-            value: "Bengaluru, KA",
+            label: "Micro Category",
+            value: "Cafe & Snacks",
             icon: Building2,
             colorClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-white shadow-sm shadow-[#3B82F6]/30"
         },
         {
-            label: "Founder",
-            value: "Arjun Malhotra",
-            icon: User,
+            label: "Secondary Micro",
+            value: "Beverages",
+            icon: CupSoda,
             colorClass: "bg-gradient-to-br from-[#D946EF] to-[#A21CAF] text-white shadow-sm shadow-[#D946EF]/30"
         },
         {
-            label: "Presence",
-            value: "14+ Cities",
-            icon: MapPin,
+            label: "Format",
+            value: "FOCO / FOFO",
+            icon: Store,
             colorClass: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C] text-white shadow-sm shadow-[#F43F5E]/30"
         },
         {
-            label: "Footprint",
-            value: "Pan-India",
-            icon: Globe2,
+            label: "Status",
+            value: "Active",
+            icon: Sparkles,
             colorClass: "bg-gradient-to-br from-[#10B981] to-[#047857] text-white shadow-sm shadow-[#10B981]/30"
-        },
-        {
-            label: "Contact",
-            value: "+91 80 4567 8900",
-            icon: Phone,
-            colorClass: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E] text-white shadow-sm shadow-[#14B8A6]/30"
-        },
-        {
-            label: "Email",
-            value: "partner@urbanbrew.co",
-            icon: Mail,
-            colorClass: "bg-gradient-to-br from-[#6366F1] to-[#4338CA] text-white shadow-sm shadow-[#6366F1]/30"
         },
     ],
 
