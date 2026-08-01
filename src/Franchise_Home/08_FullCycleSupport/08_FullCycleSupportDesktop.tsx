@@ -5,7 +5,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FullCycleSupportDesktop() {
     return (
-        <section className="w-full bg-[#FAFAFA] px-6 py-12 overflow-hidden">
+        <section className="w-full bg-[#FAFAFA] px-6 py-16 overflow-hidden">
             <div className="max-w-7xl mx-auto mb-8 flex items-center justify-center">
                 <SectionHeader 
                     overline={fullCycleSupportData.sectionLabel}

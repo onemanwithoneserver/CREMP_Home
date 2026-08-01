@@ -42,6 +42,12 @@ export function SectionHeader({ title, subtitle, overline, align = "left" }: Sec
                     )}
                 </>
             )}
+            
+            {subtitle && (
+                <p className="text-gray-600 font-medium text-sm lg:text-base mb-6 max-w-2xl mx-auto">
+                    {subtitle}
+                </p>
+            )}
         </motion.div>
     );
 }

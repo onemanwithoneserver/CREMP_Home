@@ -15,7 +15,7 @@ const staggerContainer = {
 
 export default function LeadershipMobile() {
     return (
-        <section className="w-full bg-white dark:bg-[#0b162c] py-16 overflow-hidden relative">
+        <section className="w-full bg-white dark:bg-[#0b162c] py-12 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/5 rounded-full blur-[80px] pointer-events-none" />
             
             <div className="px-4">

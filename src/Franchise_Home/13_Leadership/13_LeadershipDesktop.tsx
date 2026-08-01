@@ -43,7 +43,7 @@ export default function LeadershipDesktop() {
     };
 
     return (
-        <section className="w-full bg-white dark:bg-[#0b162c] px-6 py-5 relative overflow-hidden">
+        <section className="w-full bg-white dark:bg-[#0b162c] px-6 py-16 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[100px]" />
                 <div className="absolute -bottom-[10%] -left-[5%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />

@@ -2,8 +2,7 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Info, MapPin, Maximize2, MousePointerClick, Users, Wallet } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { revenueROIData } from "../06_RevenueROI/data";
-import { franchiseModelsData, type CostBreakdownItem } from "./data";
+import { franchiseModelsData, revenueROIData, type CostBreakdownItem } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
 import { CostBreakdownTable } from "./CostBreakdownTable";
 import { SectionHeader } from "../components/SectionHeader";
@@ -161,7 +160,7 @@ export default function FranchiseModelsMobile() {
     };
 
     return (
-        <section className="w-full bg-background transition-colors duration-300 p-2 flex flex-col gap-2 ">
+        <section className="w-full bg-background transition-colors duration-300 px-4 py-12 flex flex-col gap-6 ">
             <svg width="0" height="0" className="absolute">
                 <defs>
                     <linearGradient id="goldGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
@@ -350,7 +349,7 @@ export default function FranchiseModelsMobile() {
                     </div>
 
                     <div className="grid grid-cols-3 gap-1 w-full mt-1">
-                        {revenueROIData.revenueCards.map((card) => {
+                        {revenueROIData.revenueCards.map((card: any) => {
                             const Icon = card.icon;
                             return (
                                 <div
@@ -385,7 +384,6 @@ export default function FranchiseModelsMobile() {
                         </div>
 
                         <div className="flex items-start justify-between w-full relative pt-2 pb-1 px-1">
-                            {/* Connecting Line background with Animation */}
                             <div className="absolute top-[22px] left-[10%] right-[10%] h-[2px] bg-gray-100 dark:bg-slate-800 z-0 rounded-full overflow-hidden">
                                 <motion.div 
                                     className="h-full bg-gradient-to-r from-[#10B981] via-[#0EA5E9] to-[#D946EF]"
@@ -396,7 +394,7 @@ export default function FranchiseModelsMobile() {
                                 />
                             </div>
                             
-                            {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
+                            {revenueROIData.paybackPeriod.milestones.map((milestone: any, idx: number) => {
                                 const Icon = milestone.icon;
                                 
                                 // Accent colors for the glowing effects and text
@@ -427,7 +425,6 @@ export default function FranchiseModelsMobile() {
                                             whileTap={{ scale: 0.95 }}
                                         >
                                             <Icon size={14} strokeWidth={2.5} className="relative z-10 drop-shadow-sm" />
-                                            {/* Pulse ring */}
                                             <div 
                                                 className="absolute inset-0 rounded-full opacity-0 animate-[ping_3s_infinite]" 
                                                 style={{ backgroundColor: accent }} 

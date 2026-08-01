@@ -2,8 +2,7 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { Info, MapPin, Maximize2, Users, Wallet, Calendar, UserCheck, Clock, Target } from "lucide-react";
 import { useMemo, useState } from "react";
-import { revenueROIData } from "../06_RevenueROI/data";
-import { franchiseModelsData, type CostBreakdownItem } from "./data";
+import { franchiseModelsData, revenueROIData, type CostBreakdownItem } from "./data";
 
 const DonutChartWithLegend = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string }) => {
     const size = 300;
@@ -117,7 +116,7 @@ export default function FranchiseModelsDesktop() {
     const paybackIcons = [Calendar, UserCheck, Clock, Target];
 
     return (
-        <section className="w-full bg-[#f8f9fa] transition-colors duration-300 px-8 py-10 flex flex-col gap-6 overflow-hidden min-h-screen">
+        <section className="w-full bg-[#f8f9fa] transition-colors duration-300 px-8 py-16 flex flex-col gap-6 overflow-hidden min-h-screen">
             <svg width="0" height="0" className="absolute">
                 <defs>
                     <linearGradient id="goldGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
@@ -128,7 +127,6 @@ export default function FranchiseModelsDesktop() {
                 </defs>
             </svg>
 
-            {/* Top Tabs */}
             <div className="w-full max-w-7xl mx-auto flex justify-center mb-2">
                 <div className="flex w-full bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
                     {franchiseModelsData.models.map((model, _idx) => {
@@ -166,7 +164,6 @@ export default function FranchiseModelsDesktop() {
             </div>
 
             <div className="w-full max-w-7xl mx-auto grid grid-cols-12 gap-6">
-                {/* Left Panel: Details */}
                 <div className="col-span-12 lg:col-span-3 flex flex-col h-full">
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -177,7 +174,6 @@ export default function FranchiseModelsDesktop() {
                             transition={{ duration: 0.3 }}
                             className="flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-xl"
                         >
-                            {/* Header */}
                             <div className="bg-[#0b1b42] p-5 flex flex-col items-start gap-4 shrink-0 rounded-t-xl">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-full border border-[#d4af37] bg-white/5 flex items-center justify-center shadow-inner">
@@ -189,9 +185,7 @@ export default function FranchiseModelsDesktop() {
                                 </div>
                             </div>
 
-                            {/* Body */}
                             <div className="bg-white p-6 flex-1 relative border border-t-0 border-gray-200 rounded-b-xl">
-                                {/* Vertical Dashed Line */}
                                 <div className="absolute left-[47px] top-10 bottom-10 w-px border-l-2 border-dashed border-gray-200 z-0" />
                                 
                                 <div className="flex flex-col gap-6 relative z-10">
@@ -283,14 +277,13 @@ export default function FranchiseModelsDesktop() {
                     </div>
                 </div>
 
-                {/* Right Panel: ROI */}
                 <div className="col-span-12 lg:col-span-3 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col">
                     <span className="text-sm font-semibold uppercase tracking-widest text-[#0b1b42] mb-6">
                         ESTIMATED ROI BY YEAR
                     </span>
 
                     <div className="flex flex-col gap-4 flex-1 justify-center">
-                        {revenueROIData.revenueCards.map((card) => {
+                        {revenueROIData.revenueCards.map((card: any) => {
                             const Icon = card.icon;
                             const colorClass = getRoiColor(card.intent);
                             return (
@@ -315,7 +308,6 @@ export default function FranchiseModelsDesktop() {
                     </div>
                 </div>
 
-                {/* Bottom Panel: Payback Period */}
                 <div className="col-span-12 bg-white border border-gray-100 rounded-2xl py-4 px-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col gap-4 mt-0">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-semibold uppercase tracking-widest text-[#0b1b42]">
@@ -327,7 +319,6 @@ export default function FranchiseModelsDesktop() {
                     </div>
 
                     <div className="flex items-start justify-between w-full relative pt-2 pb-4">
-                        {/* Connecting Line background with Animation */}
                         <div className="absolute top-[28px] left-[5%] right-[5%] h-[3px] bg-gray-100 z-0 rounded-full overflow-hidden">
                             <motion.div 
                                 className="h-full bg-gradient-to-r from-[#10B981] via-[#0EA5E9] to-[#D946EF]"
@@ -338,7 +329,7 @@ export default function FranchiseModelsDesktop() {
                             />
                         </div>
                         
-                        {revenueROIData.paybackPeriod.milestones.map((milestone, idx) => {
+                        {revenueROIData.paybackPeriod.milestones.map((milestone: any, idx: number) => {
                             const Icon = paybackIcons[idx % paybackIcons.length];
                             
                             // Accent colors for the glowing effects and text
@@ -370,7 +361,6 @@ export default function FranchiseModelsDesktop() {
                                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                     >
                                         <Icon size={20} strokeWidth={2.5} className="relative z-10 drop-shadow-sm" />
-                                        {/* Subtle pulse ring behind icon */}
                                         <div 
                                             className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-40 group-hover:animate-ping" 
                                             style={{ backgroundColor: accent, animationDuration: '2s' }} 

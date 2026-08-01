@@ -17,8 +17,6 @@ export default function FAQDesktop() {
     return (
         <section className="w-full bg-[#FAFAFA] py-16 px-6">
             <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 ">
-
-                {}
                 <div className="w-full lg:w-2/5 flex flex-col relative">
                     <div className="sticky top-24">
                         <SectionHeader 
@@ -40,9 +38,7 @@ export default function FAQDesktop() {
                     </div>
                 </div>
 
-                {}
                 <div className="w-full lg:w-2/3 flex flex-col">
-                    {}
                     <div className="flex flex-wrap items-center gap-3 mb-10">
                         {faqData.tabs.map((tab) => (
                             <button

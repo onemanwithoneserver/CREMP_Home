@@ -7,7 +7,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FounderStoryDesktop() {
     return (
-        <section className="w-full bg-[#FAFAFA] px-6 py-12">
+        <section className="w-full bg-[#FAFAFA] px-6 py-16">
             <div className="max-w-7xl mx-auto">
                 <SectionHeader 
                     overline={founderStoryData.sectionLabel}

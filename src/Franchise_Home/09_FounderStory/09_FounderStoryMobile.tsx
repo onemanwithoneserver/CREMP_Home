@@ -7,7 +7,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FounderStoryMobile() {
     return (
-        <section className="w-full bg-[#FAFAFA] px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-12">
             <SectionHeader 
                 overline={founderStoryData.sectionLabel}
                 align="center"

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Play, CalendarDays, Banknote, Clock, Coffee, Utensils, Mail, Phone, Globe, MapPin } from "lucide-react";
+import { Play, Coffee, Utensils, Mail, Phone, Globe, MapPin } from "lucide-react";
 import mainCupImg from "../../assets/main_coffee_cup.png";
 import { heroData } from "./data";
 

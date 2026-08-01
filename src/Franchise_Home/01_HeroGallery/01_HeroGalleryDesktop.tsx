@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Play, CalendarDays, Banknote, Clock, Coffee, Utensils, Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Play, Coffee, Utensils, Mail, Phone, MapPin, Globe } from "lucide-react";
 import mainCupImg from "../../assets/main_coffee_cup.png";
 import { heroData } from "./data";
 
@@ -77,7 +77,7 @@ export default function HeroGalleryDesktop() {
                                         rel={item.icon === Globe ? "noopener noreferrer" : undefined} 
                                         animate={{ boxShadow: [`0px 4px 10px ${item.shadowColor}0.15)`, `0px 4px 20px ${item.shadowColor}0.4)`, `0px 4px 10px ${item.shadowColor}0.15)`] }}
                                         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                                        className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${item.colors} font-bold text-[12px] border ${item.href === "#" ? "cursor-default" : ""}`}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-[4px] bg-gradient-to-r ${item.colors} font-bold text-[12px] border ${item.href === "#" ? "cursor-default" : ""}`}
                                     >
                                         <item.icon size={14} />
                                         {item.label}

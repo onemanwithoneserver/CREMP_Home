@@ -5,7 +5,7 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FullCycleSupportMobile() {
     return (
-        <section className="w-full bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 py-8 overflow-hidden">
+        <section className="w-full bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 py-12 overflow-hidden">
             <div className="px-2 flex items-center justify-center">
                 <SectionHeader 
                     overline={fullCycleSupportData.sectionLabel}

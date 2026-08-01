@@ -16,8 +16,6 @@ export default function FAQMobile() {
 
     return (
         <section className="w-full bg-[#FAFAFA] px-4 py-12">
-
-            {}
             <div className="flex flex-col mb-2 text-center items-center">
                 <SectionHeader 
                     overline={faqData.sectionLabel}
@@ -25,8 +23,6 @@ export default function FAQMobile() {
                     align="center"
                 />
             </div>
-
-            {}
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide mb-2 -mx-2 px-2 snap-x">
                 {faqData.tabs.map((tab) => (
                     <button
@@ -45,7 +41,6 @@ export default function FAQMobile() {
                 ))}
             </div>
 
-            {/* Accordion List */}
             <div className="flex flex-col gap-3">
                 <AnimatePresence mode="popLayout">
                     {filteredQuestions.map((q, index) => (

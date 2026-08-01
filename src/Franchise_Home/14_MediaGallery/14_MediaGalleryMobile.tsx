@@ -12,7 +12,7 @@ export default function MediaGalleryMobile() {
     const isVideoTab = activeTab.includes("video");
 
     return (
-        <section className="w-full bg-[#FAFAFA] px-4 py-8">
+        <section className="w-full bg-[#FAFAFA] px-4 py-12">
             <SectionHeader 
                 overline={mediaGalleryData.sectionLabel}
                 align="center"

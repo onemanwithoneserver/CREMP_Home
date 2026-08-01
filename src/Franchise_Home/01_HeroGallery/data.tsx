@@ -2,12 +2,7 @@ import {
     LineChart,
     Users,
     Coffee,
-    Heart,
-    Utensils,
-    Store,
-    Clock,
-    Banknote,
-    CalendarDays
+    Heart
 } from "lucide-react";
 
 export const heroData = {
