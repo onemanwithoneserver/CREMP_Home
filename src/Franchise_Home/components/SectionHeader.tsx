@@ -10,7 +10,6 @@ interface SectionHeaderProps {
 
 export function SectionHeader({
   title,
-  subtitle,
   overline,
   align = "left",
 }: SectionHeaderProps) {

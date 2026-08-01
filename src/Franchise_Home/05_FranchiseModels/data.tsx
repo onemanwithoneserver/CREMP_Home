@@ -22,7 +22,6 @@ import {
   Users,
   MapPin,
   Info,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
