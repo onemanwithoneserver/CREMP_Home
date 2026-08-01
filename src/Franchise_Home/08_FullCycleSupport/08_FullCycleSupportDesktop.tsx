@@ -21,9 +21,9 @@ export default function FullCycleSupportDesktop() {
   });
 
   return (
-    <section className="w-full px-6 py-16 overflow-hidden relative bg-white dark:bg-gray-900">
+    <section className="w-full px-6 py-16 overflow-hidden relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[30%] left-[-5%] w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float" />
+        <div className="absolute top-[30%] left-[-5%] w-72 h-72 bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-2xl animate-float" />
         <div
           className="absolute bottom-[30%] right-[-5%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float"
           style={{ animationDelay: "3s" }}
@@ -50,20 +50,20 @@ export default function FullCycleSupportDesktop() {
                 return (
                   <div
                     key={`${keyPrefix}-${idx}`}
-                    className="w-[240px] shrink-0 rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-gray-300"
+                    className="w-[240px] shrink-0 rounded-[4px] border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#121c33] p-6 text-center shadow-sm transition-all duration-300 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700"
                   >
                     <div
                       className={clsx(
-                        "mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full",
+                        "mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-[4px] shadow-sm",
                         item.colorClass,
                       )}
                     >
-                      <Icon size={24} strokeWidth={1.5} />
+                      <Icon size={24} strokeWidth={2} className="text-white" />
                     </div>
-                    <h4 className="mb-2 text-[15px] font-semibold text-[#0a1128]">
+                    <h4 className="mb-2 text-[15px] font-bold text-[#0a1128] dark:text-white">
                       {item.title}
                     </h4>
-                    <p className="text-sm leading-snug text-gray-500">
+                    <p className="text-sm leading-snug text-gray-600 dark:text-gray-300">
                       {item.description}
                     </p>
                   </div>
@@ -72,8 +72,8 @@ export default function FullCycleSupportDesktop() {
             </div>
           ))}
         </motion.div>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white dark:from-[#0a1128] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white dark:from-[#0a1128] to-transparent z-10" />
       </div>
     </section>
   );

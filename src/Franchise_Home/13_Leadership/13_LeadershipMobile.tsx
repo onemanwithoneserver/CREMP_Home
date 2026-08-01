@@ -32,7 +32,7 @@ function LeaderCardMobile({
 }) {
   return (
     <div
-      className="h-[500px] w-full [perspective:1500px] cursor-pointer group rounded-[8px]"
+      className="h-[500px] w-full [perspective:1500px] cursor-pointer group rounded-[4px]"
       onClick={onToggle}
     >
       <motion.div
@@ -45,7 +45,7 @@ function LeaderCardMobile({
         }}
         className="relative w-full h-full [transform-style:preserve-3d] shadow-xl"
       >
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white dark:bg-gray-800 rounded-[8px] [backface-visibility:hidden]">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white dark:bg-[#121c33] rounded-[4px] border border-gray-200 dark:border-gray-800 [backface-visibility:hidden]">
           <img
             src={member.avatar}
             alt={member.name}
@@ -55,13 +55,13 @@ function LeaderCardMobile({
 
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/40 to-transparent opacity-95" />
           <div className="absolute top-4 right-4 z-20">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60">
               <span>View Bio</span>
               <RotateCw size={12} className="text-[#d4af37]" />
             </div>
           </div>
           <div className="absolute bottom-0 left-0 w-full px-4 pb-6 pt-4 flex flex-col justify-end z-10">
-            <span className="inline-block px-2 py-1 rounded text-[#d4af37] text-[9px] font-bold uppercase tracking-wider mb-2 w-max border border-[#d4af37]/30 bg-[#d4af37]/10 backdrop-blur-sm">
+            <span className="inline-block px-2 py-0.5 rounded-[2px] text-[#d4af37] text-[9px] font-bold uppercase tracking-wider mb-2 w-max border border-[#d4af37]/30 bg-[#d4af37]/10 backdrop-blur-sm">
               {member.experience}
             </span>
             <h4 className="text-white font-bold text-xl tracking-tight leading-tight mb-1">
@@ -74,14 +74,14 @@ function LeaderCardMobile({
             <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
           </div>
         </div>
-        <div className="absolute inset-0 rounded-[8px] w-full h-full overflow-hidden px-5 py-6 bg-[#0a1128] border border-[#d4af37]/40 shadow-[0_20px_50px_rgba(212,175,55,0.2)] flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0a1128] border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
-                <h5 className="font-semibold text-lg text-white tracking-tight leading-tight">
+                <h5 className="font-bold text-lg text-white tracking-tight leading-tight">
                   {member.name}
                 </h5>
                 <span className="text-[#d4af37] text-[13px] font-bold tracking-wider uppercase mt-1">
@@ -95,7 +95,7 @@ function LeaderCardMobile({
                 e.stopPropagation();
                 onToggle();
               }}
-              className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+              className="p-2 rounded-[4px] bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
               title="Flip back"
             >
               <RotateCw size={14} className="text-[#d4af37]" />
@@ -103,15 +103,15 @@ function LeaderCardMobile({
           </div>
 
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
-            <p className="text-[15px] text-gray-200 leading-relaxed font-medium">
+            <p className="text-[14px] text-gray-200 leading-relaxed font-normal">
               {member.bio}
             </p>
 
-            <div className="mt-5 flex flex-col gap-2.5">
+            <div className="mt-4 flex flex-col gap-2">
               {member.highlights.map((highlight, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
                   <Sparkles size={14} className="text-[#d4af37] shrink-0 mt-[3px]" />
-                  <span className="text-[14px] font-medium text-gray-100 leading-tight">
+                  <span className="text-[13px] font-medium text-gray-100 leading-tight">
                     {highlight}
                   </span>
                 </div>
@@ -119,13 +119,13 @@ function LeaderCardMobile({
             </div>
           </div>
 
-          <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col gap-2">
-            <div className="flex items-start gap-2.5 bg-transparent p-4 rounded-xl border border-white/10">
+          <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2">
+            <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[4px] border border-white/10">
               <Quote
-                size={18}
+                size={16}
                 className="text-[#d4af37] shrink-0 mt-0.5 rotate-180 opacity-80"
               />
-              <p className="text-[14px] italic text-amber-100/90 leading-relaxed font-semibold">
+              <p className="text-[13px] italic text-amber-100/90 leading-relaxed font-medium">
                 "{member.quote}"
               </p>
             </div>
@@ -160,11 +160,11 @@ export default function LeadershipMobile() {
   };
 
   return (
-    <section className="w-full py-4 relative overflow-hidden bg-white dark:bg-gray-900">
+    <section className="w-full py-6 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px] animate-pulse" />
+        <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px]" />
         <div
-          className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[80px] animate-pulse"
+          className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-[#d4af37]/5 rounded-full blur-[80px]"
           style={{ animationDelay: "2s" }}
         />
       </div>
@@ -213,15 +213,15 @@ export default function LeadershipMobile() {
             ))}
           </motion.div>
 
-          <div className="flex justify-center items-center gap-2.5 mt-2">
+          <div className="flex justify-center items-center gap-2 mt-2">
             {leadershipData.members.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => scrollTo(idx)}
-                className={`transition-all duration-500 rounded-full ${
+                className={`transition-all duration-500 rounded-[2px] ${
                   activeIndex === idx
-                    ? "w-8 h-2 bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]"
-                    : "w-2 h-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400"
+                    ? "w-8 h-1.5 bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]"
+                    : "w-2 h-1.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />

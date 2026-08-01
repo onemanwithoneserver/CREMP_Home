@@ -19,18 +19,16 @@ export default function FranchiseNetworkDesktop() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
-      {/* Background ambient lighting */}
+    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[140px] animate-pulse-soft" />
+        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[140px]" />
         <div
-          className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[140px] animate-pulse-soft"
+          className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[140px]"
           style={{ animationDelay: "2.5s" }}
         />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-10">
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-100 dark:border-gray-800 pb-8">
           <div>
             <SectionHeader
@@ -43,7 +41,7 @@ export default function FranchiseNetworkDesktop() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-3.5 py-2 bg-gray-50 dark:bg-gray-800/80 rounded-[4px] border border-gray-200 dark:border-gray-700 backdrop-blur-sm self-start md:self-auto shrink-0">
+          <div className="flex items-center gap-2 px-3.5 py-2 bg-gray-50 dark:bg-[#121c33] rounded-[4px] border border-gray-200 dark:border-gray-800 backdrop-blur-sm self-start md:self-auto shrink-0">
             <Sparkles size={14} className="text-[#d4af37]" />
             <span className="text-xs font-bold text-gray-800 dark:text-gray-200">
               {franchiseNetworkData.outletCount}
@@ -51,7 +49,6 @@ export default function FranchiseNetworkDesktop() {
           </div>
         </div>
 
-        {/* National Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
@@ -62,7 +59,7 @@ export default function FranchiseNetworkDesktop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="bg-gray-50/70 dark:bg-gray-800/50 border border-gray-200/70 dark:border-gray-700/60 rounded-[4px] p-5 flex flex-col justify-between hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40 transition-colors shadow-sm"
+                className="bg-gray-50/70 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 flex flex-col justify-between hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40 transition-colors shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
@@ -86,11 +83,8 @@ export default function FranchiseNetworkDesktop() {
           })}
         </div>
 
-        {/* Interactive Map Visual + City Inspector */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Main Map Container (8 cols) */}
           <div className="lg:col-span-8 relative min-h-[540px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-2xl flex flex-col justify-between p-6">
-            {/* Background Map Graphic */}
             <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-luminosity overflow-hidden">
               <img
                 src={mapBg}
@@ -100,7 +94,6 @@ export default function FranchiseNetworkDesktop() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-transparent to-[#070d1e]/80" />
             </div>
 
-            {/* Connecting Corridors & Network Vectors */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-60">
               <defs>
                 <linearGradient id="networkGold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -108,7 +101,6 @@ export default function FranchiseNetworkDesktop() {
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
                 </linearGradient>
               </defs>
-              {/* Animated Connection Arcs */}
               <path
                 d="M 44% 62% Q 42% 69% 40% 76%"
                 stroke="url(#networkGold)"
@@ -146,7 +138,6 @@ export default function FranchiseNetworkDesktop() {
               />
             </svg>
 
-            {/* Top Overlay Badge */}
             <div className="relative z-20 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0a1128]/80 backdrop-blur-md border border-[#d4af37]/30 rounded-[4px]">
                 <Globe2 size={14} className="text-[#d4af37] animate-spin-slow" />
@@ -156,7 +147,6 @@ export default function FranchiseNetworkDesktop() {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-1" />
               </div>
 
-              {/* Map Legend Pills */}
               <div className="flex items-center gap-2 bg-[#0a1128]/90 backdrop-blur-md px-3 py-1.5 rounded-[4px] border border-gray-700/60">
                 {franchiseNetworkData.legend.map((l) => (
                   <div key={l.status} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-medium">
@@ -167,7 +157,6 @@ export default function FranchiseNetworkDesktop() {
               </div>
             </div>
 
-            {/* Map Node Pins */}
             <div className="relative w-full h-[400px] z-20">
               {franchiseNetworkData.cities.map((city) => {
                 const isSelected = activeCity.id === city.id;
@@ -189,7 +178,6 @@ export default function FranchiseNetworkDesktop() {
                     onMouseLeave={() => setHoveredCity(null)}
                     onClick={() => setActiveCity(city)}
                   >
-                    {/* Pulsing Radar Ring for Active/Featured */}
                     <div
                       className={clsx(
                         "absolute -inset-2 rounded-full opacity-60 animate-ping pointer-events-none",
@@ -198,7 +186,6 @@ export default function FranchiseNetworkDesktop() {
                       style={{ animationDuration: "3s" }}
                     />
 
-                    {/* Node Core */}
                     <motion.div
                       whileHover={{ scale: 1.25 }}
                       whileTap={{ scale: 0.95 }}
@@ -215,7 +202,6 @@ export default function FranchiseNetworkDesktop() {
                       <MapPin size={13} className="drop-shadow" />
                     </motion.div>
 
-                    {/* Node Label Tooltip */}
                     <div
                       className={clsx(
                         "absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap px-2 py-0.5 rounded-[2px] text-[10px] font-bold tracking-tight shadow-md border transition-all duration-200 pointer-events-none z-30",
@@ -232,7 +218,6 @@ export default function FranchiseNetworkDesktop() {
               })}
             </div>
 
-            {/* Bottom Map Note */}
             <div className="relative z-20 flex items-center justify-between text-[11px] text-gray-400 border-t border-gray-800/80 pt-3">
               <span className="flex items-center gap-1.5">
                 <Navigation size={12} className="text-[#d4af37]" />
@@ -242,11 +227,9 @@ export default function FranchiseNetworkDesktop() {
             </div>
           </div>
 
-          {/* City Inspector & Territory Side Panel (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col justify-between bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-[4px] p-6 shadow-sm">
+          <div className="lg:col-span-4 flex flex-col justify-between bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-6 shadow-sm">
             <div className="flex flex-col gap-5">
-              {/* Selected City Header Card */}
-              <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
+              <div className="border-b border-gray-200 dark:border-gray-800 pb-4">
                 <div className="flex items-center justify-between mb-2">
                   <span className={clsx(
                     "text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[2px] border",
@@ -271,9 +254,8 @@ export default function FranchiseNetworkDesktop() {
                 </p>
               </div>
 
-              {/* Territory Detailed Metrics */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700/80 rounded-[4px]">
+                <div className="p-3 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px]">
                   <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 block">
                     Operating Stores
                   </span>
@@ -282,7 +264,7 @@ export default function FranchiseNetworkDesktop() {
                   </span>
                 </div>
 
-                <div className="p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700/80 rounded-[4px]">
+                <div className="p-3 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px]">
                   <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 block">
                     In Pipeline
                   </span>
@@ -292,25 +274,23 @@ export default function FranchiseNetworkDesktop() {
                 </div>
               </div>
 
-              {/* Quick Hub Highlights */}
               <div className="space-y-2 text-xs">
-                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700/50">
+                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
                   <span className="text-gray-600 dark:text-gray-400">Territory Exclusivity</span>
                   <span className="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                     <CheckCircle2 size={12} /> Guaranteed
                   </span>
                 </div>
-                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700/50">
+                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
                   <span className="text-gray-600 dark:text-gray-400">Supply Chain Access</span>
                   <span className="font-semibold text-gray-900 dark:text-white">24h Direct Depot</span>
                 </div>
-                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700/50">
+                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
                   <span className="text-gray-600 dark:text-gray-400">Launch Timeline</span>
                   <span className="font-semibold text-gray-900 dark:text-white">45–60 Days</span>
                 </div>
               </div>
 
-              {/* High-Growth Cities Quick List */}
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
                   Key Growth Hubs ({franchiseNetworkData.cities.length})
@@ -324,7 +304,7 @@ export default function FranchiseNetworkDesktop() {
                         "px-2.5 py-1 text-xs rounded-[2px] border transition-all",
                         activeCity.id === city.id
                           ? "bg-[#0a1128] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 dark:border-[#d4af37] font-bold"
-                          : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-[#d4af37]"
+                          : "bg-white dark:bg-[#0a1128] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-[#d4af37]"
                       )}
                     >
                       {city.name}
@@ -334,14 +314,13 @@ export default function FranchiseNetworkDesktop() {
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col gap-2.5 pt-5 border-t border-gray-200 dark:border-gray-700 mt-4">
+            <div className="flex flex-col gap-2.5 pt-5 border-t border-gray-200 dark:border-gray-800 mt-4">
               <button className="w-full py-3 px-4 bg-[#0a1128] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
                 <ChevronRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </button>
 
-              <button className="w-full py-2.5 px-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] transition-all flex items-center justify-center gap-2">
+              <button className="w-full py-2.5 px-4 bg-white dark:bg-[#0a1128] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] transition-all flex items-center justify-center gap-2">
                 <Download size={14} className="text-[#d4af37]" />
                 <span>{franchiseNetworkData.cta.secondary}</span>
               </button>

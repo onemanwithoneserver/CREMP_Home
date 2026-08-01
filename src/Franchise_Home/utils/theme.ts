@@ -1,17 +1,17 @@
 export const getBadgeStyles = (intent?: string) => {
   switch (intent) {
     case "success":
-      return "bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm rounded-full px-3 py-1";
+      return "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/60 shadow-sm rounded-[2px] px-3 py-1";
     case "info":
-      return "bg-sky-50 text-sky-600 border border-sky-100 shadow-sm rounded-full px-3 py-1";
+      return "bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border border-sky-100 dark:border-sky-800/60 shadow-sm rounded-[2px] px-3 py-1";
     case "warning":
-      return "bg-amber-50 text-amber-600 border border-amber-100 shadow-sm rounded-full px-3 py-1";
+      return "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-800/60 shadow-sm rounded-[2px] px-3 py-1";
     case "danger":
-      return "bg-rose-50 text-rose-600 border border-rose-100 shadow-sm rounded-full px-3 py-1";
+      return "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-100 dark:border-rose-800/60 shadow-sm rounded-[2px] px-3 py-1";
     case "primary":
-      return "bg-[#0a1128]/5 text-[#0a1128] border border-[#0a1128]/10 shadow-sm rounded-full px-3 py-1";
+      return "bg-[#0a1128]/5 dark:bg-[#d4af37]/10 text-[#0a1128] dark:text-[#d4af37] border border-[#0a1128]/10 dark:border-[#d4af37]/30 shadow-sm rounded-[2px] px-3 py-1";
     default:
-      return "bg-gray-50 text-gray-600 border border-gray-100 shadow-sm rounded-full px-3 py-1";
+      return "bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-100 dark:border-gray-700 shadow-sm rounded-[2px] px-3 py-1";
   }
 };
 
@@ -43,7 +43,7 @@ export const getIconContainerStyles = (intent?: string) => {
     case "danger":
       return "bg-[#dc2626] text-white shadow-md shadow-[#dc2626]/25";
     case "primary":
-      return "bg-[#0b162c] text-white shadow-md shadow-[#0b162c]/25";
+      return "bg-[#0a1128] text-white shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30";
     case "violet":
       return "bg-[#7c3aed] text-white shadow-md shadow-[#7c3aed]/25";
     case "pink":
@@ -56,27 +56,27 @@ export const getIconContainerStyles = (intent?: string) => {
 };
 
 export const getBorderStyles = (_intent?: string) => {
-  return "border-gray-100 hover:border-gray-200 transition-colors duration-300";
+  return "border-gray-100 dark:border-gray-800 hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300";
 };
 
 export const getCardStyles = (_intent?: string) => {
-  return "bg-white border border-gray-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300";
+  return "bg-white dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 rounded-[4px] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300";
 };
 
 export const getTextStyles = (intent?: string) => {
   switch (intent) {
     case "success":
-      return "text-emerald-600 font-bold";
+      return "text-emerald-600 dark:text-emerald-400 font-bold";
     case "info":
-      return "text-sky-600 font-bold";
+      return "text-sky-600 dark:text-sky-400 font-bold";
     case "warning":
-      return "text-amber-600 font-bold";
+      return "text-amber-600 dark:text-amber-400 font-bold";
     case "danger":
-      return "text-rose-600 font-bold";
+      return "text-rose-600 dark:text-rose-400 font-bold";
     case "primary":
-      return "text-[#0a1128] font-bold";
+      return "text-[#0a1128] dark:text-white font-bold";
     default:
-      return "text-gray-800 font-semibold";
+      return "text-gray-800 dark:text-gray-200 font-semibold";
   }
 };
 
@@ -91,9 +91,9 @@ export const getSolidBgStyles = (intent?: string) => {
     case "danger":
       return "bg-rose-500 text-white shadow-lg shadow-rose-500/20";
     case "primary":
-      return "bg-[#0a1128] text-white shadow-[0_8px_30px_rgb(10,17,40,0.2)]";
+      return "bg-[#0a1128] text-white shadow-md border border-[#d4af37]/30";
     default:
-      return "bg-white text-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.08)]";
+      return "bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow-sm";
   }
 };
 
@@ -121,8 +121,8 @@ export const getCheckBadgeStyles = (intent?: string) => {
       };
     case "primary":
       return {
-        wrapper: "group-hover/item:bg-[#0b162c]/15 group-hover/item:ring-[#0b162c]/30",
-        icon: "group-hover/item:text-[#0b162c]",
+        wrapper: "group-hover/item:bg-[#0b162c]/15 dark:group-hover/item:bg-[#d4af37]/20 group-hover/item:ring-[#0b162c]/30 dark:group-hover/item:ring-[#d4af37]/40",
+        icon: "group-hover/item:text-[#0b162c] dark:group-hover/item:text-[#d4af37]",
       };
     case "violet":
       return {

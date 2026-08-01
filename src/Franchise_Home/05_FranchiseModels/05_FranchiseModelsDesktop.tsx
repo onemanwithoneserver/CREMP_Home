@@ -130,7 +130,7 @@ const DonutChartWithLegend = ({
         </svg>
 
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-gray-900 rounded-full pointer-events-none z-10 shadow-lg border border-gray-100 dark:border-gray-800"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-[#0a1128] rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
           style={{
             width: size - strokeWidth * 2,
             height: size - strokeWidth * 2,
@@ -139,16 +139,16 @@ const DonutChartWithLegend = ({
             transform: "translate(-50%, -50%)",
           }}
         >
-          <span className="text-3xl font-semibold text-[#0b1b42] dark:text-white tracking-tight relative z-10">
+          <span className="text-3xl font-bold text-[#0a1128] dark:text-white tracking-tight relative z-10">
             {totalValue}
           </span>
-          <span className="text-[10px] text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-wider mt-0.5 max-w-[85px] leading-tight relative z-10">
+          <span className="text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mt-0.5 max-w-[85px] leading-tight relative z-10">
             {franchiseModelsUI.avgTotalInvestment}
           </span>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2.5 justify-center flex-1 max-w-sm w-full">
+      <div className="flex flex-col gap-2 justify-center flex-1 max-w-sm w-full">
         {data.map((item, idx) => {
           const isHovered = hoveredIdx === idx;
           return (
@@ -159,10 +159,10 @@ const DonutChartWithLegend = ({
               whileHover={{ x: 4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={clsx(
-                "flex items-center justify-between p-2.5 px-3.5 rounded-xl transition-all duration-300 cursor-pointer border",
+                "flex items-center justify-between p-2 px-3.5 rounded-[4px] transition-all duration-300 cursor-pointer border",
                 isHovered
-                  ? "bg-white dark:bg-gray-800 shadow-md border-gray-200 dark:border-gray-600 scale-[1.02]"
-                  : "bg-gray-50 dark:bg-gray-800/50 border-gray-100 dark:border-gray-700 hover:border-gray-200",
+                  ? "bg-white dark:bg-[#121c33] shadow-md border-gray-300 dark:border-[#d4af37]/40 scale-[1.02]"
+                  : "bg-gray-50 dark:bg-[#0a1128] border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700",
               )}
             >
               <div className="flex items-center gap-3">
@@ -171,15 +171,15 @@ const DonutChartWithLegend = ({
                   className="w-3.5 h-3.5 rounded-full shrink-0"
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="text-sm font-semibold text-[#0b1b42] dark:text-gray-200">
+                <span className="text-sm font-semibold text-[#0a1128] dark:text-gray-200">
                   {item.label}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-[#0b1b42] dark:text-white">
+                <span className="text-sm font-bold text-[#0a1128] dark:text-white">
                   {item.amount}
                 </span>
-                <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 px-2 py-0.5 rounded-md">
+                <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-[2px]">
                   {item.percentage}%
                 </span>
               </div>
@@ -208,7 +208,7 @@ export default function FranchiseModelsDesktop() {
   );
 
   return (
-    <section className="w-full px-8 py-16 -pb-8 flex flex-col gap-6 relative bg-gray-50 dark:bg-gray-900">
+    <section className="w-full px-8 py-16 flex flex-col gap-6 relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <SectionHeader
         overline={franchiseModelsData.sectionLabel}
         title={franchiseModelsData.title}
@@ -217,7 +217,7 @@ export default function FranchiseModelsDesktop() {
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex justify-center mb-6">
-        <div className="flex w-full bg-white dark:bg-gray-800 rounded-2xl p-1.5 border border-gray-200 dark:border-gray-700 shadow-sm relative gap-1.5">
+        <div className="flex w-full bg-gray-50 dark:bg-[#121c33] rounded-[4px] p-1.5 border border-gray-200 dark:border-gray-800 shadow-sm relative gap-1.5">
           {franchiseModelsData.models.map((model) => {
             const isActive = model.id === activeModel;
             const Icon = model.icon;
@@ -225,12 +225,12 @@ export default function FranchiseModelsDesktop() {
               <button
                 key={model.id}
                 onClick={() => setActiveModel(model.id)}
-                className="flex-1 relative flex flex-col items-center justify-center py-3.5 px-3 rounded-xl transition-all duration-300 z-10 group focus-visible:outline-none"
+                className="flex-1 relative flex flex-col items-center justify-center py-3 px-3 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none"
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeModelIndicator"
-                    className="absolute inset-0 bg-[#0a1128] dark:bg-gray-700 rounded-xl shadow-md"
+                    className="absolute inset-0 bg-[#0a1128] dark:bg-[#0a1128] border border-[#d4af37]/40 rounded-[4px] shadow-md"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -238,10 +238,10 @@ export default function FranchiseModelsDesktop() {
                 <div className="flex items-center gap-2 mb-1 relative z-10">
                   <motion.div
                     className={clsx(
-                      "w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-300",
+                      "w-7 h-7 rounded-[2px] flex items-center justify-center transition-colors duration-300",
                       isActive
                         ? "bg-[#d4af37]/20 text-[#d4af37]"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-500 group-hover:bg-gray-200 dark:group-hover:bg-gray-700",
+                        : "bg-white dark:bg-[#0a1128] text-gray-500 group-hover:bg-gray-100 dark:group-hover:bg-gray-800",
                     )}
                     animate={
                       isActive
@@ -251,17 +251,17 @@ export default function FranchiseModelsDesktop() {
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                   >
                     <Icon
-                      size={15}
+                      size={14}
                       strokeWidth={isActive ? 2.5 : 2}
                       className={isActive ? "text-[#d4af37]" : "text-gray-500"}
                     />
                   </motion.div>
                   <span
                     className={clsx(
-                      "font-semibold text-sm whitespace-nowrap transition-colors duration-300",
+                      "font-bold text-sm whitespace-nowrap transition-colors duration-300",
                       isActive
                         ? "text-white"
-                        : "text-[#0b1b42] dark:text-gray-200",
+                        : "text-[#0a1128] dark:text-gray-200",
                     )}
                   >
                     {model.name}
@@ -292,32 +292,32 @@ export default function FranchiseModelsDesktop() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm relative overflow-visible"
+              className="flex flex-col h-full bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm relative overflow-visible"
             >
-              <div className="bg-[#0a1128] dark:bg-gray-900 p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-2xl">
+              <div className="bg-[#0a1128] p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-[#d4af37]/30">
                 <div className="flex items-center gap-3 relative z-10">
                   <motion.div
                     initial={{ rotate: -90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
                     transition={{ type: "spring", delay: 0.1 }}
-                    className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center"
+                    className="w-10 h-10 rounded-[4px] bg-white/10 flex items-center justify-center"
                   >
                     <selected.icon size={20} className="text-[#d4af37]" />
                   </motion.div>
                   <div>
-                    <span className="text-[10px] font-semibold text-[#d4af37] uppercase tracking-widest block">
+                    <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest block">
                       {franchiseModelsUI.specificationLabel}
                     </span>
-                    <h3 className="text-lg font-semibold text-white leading-tight">
+                    <h3 className="text-lg font-bold text-white leading-tight">
                       {selected.name}
                     </h3>
                   </div>
                 </div>
               </div>
 
-              <div className="p-6 flex-1 relative flex flex-col justify-between">
-                <div className="flex flex-col gap-6 relative z-10">
-                  <div className="absolute left-[32px] -translate-x-1/2 top-[32px] bottom-[32px] w-[3px] pointer-events-none z-0">
+              <div className="p-5 flex-1 relative flex flex-col justify-between">
+                <div className="flex flex-col gap-4 relative z-10">
+                  <div className="absolute left-[32px] -translate-x-1/2 top-[24px] bottom-[24px] w-[3px] pointer-events-none z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                     <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
                     <motion.div
@@ -337,20 +337,20 @@ export default function FranchiseModelsDesktop() {
                   {specifications.map((stat) => (
                     <div
                       key={stat.label}
-                      className="p-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 transition-colors duration-300 flex items-center gap-3.5 group cursor-default shadow-sm relative z-10"
+                      className="p-3 rounded-[4px] bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-300 flex items-center gap-3.5 group cursor-default shadow-sm relative z-10"
                     >
                       <motion.div
-                        whileHover={{ scale: 1.15, rotate: 5 }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
                         className={clsx(
-                          "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 relative z-10 shadow-sm",
+                          "w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm",
                           stat.color,
                         )}
                       >
-                        <stat.icon size={18} strokeWidth={2.2} />
+                        <stat.icon size={17} strokeWidth={2.2} />
                       </motion.div>
 
                       <div className="flex flex-col flex-1">
-                        <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
+                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
                           {stat.label}
                         </span>
                         <div
@@ -371,13 +371,13 @@ export default function FranchiseModelsDesktop() {
                           tabIndex={stat.hasStaffModal ? 0 : undefined}
                           aria-expanded={isStaffTooltipOpen}
                         >
-                          <span className="text-base font-semibold text-[#0b1b42] dark:text-white leading-tight group-hover/staff:text-blue-600 dark:group-hover/staff:text-blue-400 transition-colors">
+                          <span className="text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover/staff:text-[#d4af37] transition-colors">
                             {stat.value}
                           </span>
                           {stat.extra && (
                             <stat.extra
                               size={14}
-                              className="text-gray-400 group-hover/staff:text-blue-500 transition-colors"
+                              className="text-gray-400 group-hover/staff:text-[#d4af37] transition-colors"
                             />
                           )}
 
@@ -408,17 +408,15 @@ export default function FranchiseModelsDesktop() {
                                   damping: 30,
                                   mass: 0.8,
                                 }}
-                                className="absolute left-[calc(100%+24px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-white/50 dark:border-white/10 z-[99999] p-6 pointer-events-auto cursor-default"
+                                className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white dark:bg-[#0a1128] backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200 dark:border-gray-700 z-[99999] p-5 pointer-events-auto cursor-default"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <div className="absolute bottom-12 -left-2 w-5 h-5 bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl border-l border-b border-white/50 dark:border-white/10 rotate-45 pointer-events-none" />
-
-                                <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-200/50 dark:border-gray-700/50 relative z-10">
-                                  <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                                      <Users size={16} strokeWidth={2.5} />
+                                <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800 relative z-10">
+                                  <div className="flex items-center gap-2.5">
+                                    <div className="w-7 h-7 rounded-[2px] bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                      <Users size={15} strokeWidth={2.5} />
                                     </div>
-                                    <span className="text-sm font-semibold uppercase tracking-wider text-[#0b1b42] dark:text-white">
+                                    <span className="text-xs font-bold uppercase tracking-wider text-[#0a1128] dark:text-white">
                                       {franchiseModelsUI.staffRequirements}
                                     </span>
                                   </div>
@@ -427,38 +425,38 @@ export default function FranchiseModelsDesktop() {
                                       e.stopPropagation();
                                       setIsStaffTooltipOpen(false);
                                     }}
-                                    className="w-7 h-7 rounded-full flex items-center justify-center bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800/80 dark:hover:bg-red-900/50 transition-colors"
+                                    className="w-6 h-6 rounded-[2px] flex items-center justify-center bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800 dark:hover:bg-red-900/50 transition-colors"
                                     aria-label="Close"
                                   >
                                     <X size={14} strokeWidth={2.5} />
                                   </button>
                                 </div>
 
-                                <div className="flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2 relative z-10 scrollbar-thin">
+                                <div className="flex flex-col gap-2.5 max-h-[360px] overflow-y-auto pr-1 relative z-10 scrollbar-thin">
                                   {selected.staffDetails?.map((staff, idx) => (
                                     <div
                                       key={idx}
-                                      className="flex flex-col bg-white/50 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl p-4 border border-white/60 dark:border-white/5 shadow-sm"
+                                      className="flex flex-col bg-gray-50 dark:bg-[#121c33] rounded-[4px] p-3 border border-gray-200 dark:border-gray-800 shadow-sm"
                                     >
-                                      <div className="flex justify-between items-center mb-2">
-                                        <span className="text-sm font-semibold text-[#0b1b42] dark:text-white">
+                                      <div className="flex justify-between items-center mb-1">
+                                        <span className="text-xs font-bold text-[#0a1128] dark:text-white">
                                           {staff.name}
                                         </span>
                                         <span
                                           className={clsx(
-                                            "text-[10px] font-semibold px-2.5 py-1 rounded-full",
+                                            "text-[10px] font-bold px-2 py-0.5 rounded-[2px]",
                                             getStaffBadgeColor(idx),
                                           )}
                                         >
                                           {staff.count}x
                                         </span>
                                       </div>
-                                      <div className="flex gap-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                                      <div className="flex gap-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
                                         <span>{staff.type}</span>
                                         <span>•</span>
                                         <span>{staff.experience}</span>
                                       </div>
-                                      <p className="text-xs font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
+                                      <p className="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
                                         {staff.remarks}
                                       </p>
                                     </div>
@@ -477,7 +475,7 @@ export default function FranchiseModelsDesktop() {
           </AnimatePresence>
         </div>
 
-        <div className="col-span-12 lg:col-span-6 rounded-2xl p-2 flex flex-col justify-center relative overflow-hidden">
+        <div className="col-span-12 lg:col-span-6 rounded-[4px] p-2 flex flex-col justify-center relative overflow-hidden">
           <div className="flex-1 flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -497,15 +495,15 @@ export default function FranchiseModelsDesktop() {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm flex flex-col h-full relative overflow-hidden">
-          <div className="flex items-center justify-between mb-5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#0b1b42] dark:text-white">
+        <div className="col-span-12 lg:col-span-3 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 shadow-sm flex flex-col h-full relative overflow-hidden">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0a1128] dark:text-white">
               {revenueROIData.sectionLabel}
             </span>
           </div>
 
           <div className="relative flex flex-col justify-between flex-1 py-1">
-            <div className="absolute left-[32px] -translate-x-1/2 top-[32px] bottom-[38px] w-[3px] pointer-events-none z-0">
+            <div className="absolute left-[32px] -translate-x-1/2 top-[24px] bottom-[28px] w-[3px] pointer-events-none z-0">
               <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
               <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
               <motion.div
@@ -529,28 +527,28 @@ export default function FranchiseModelsDesktop() {
                 return (
                   <div
                     key={card.year}
-                    className="p-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 transition-all duration-300 flex items-center gap-3.5 group cursor-default shadow-sm"
+                    className="p-3 rounded-[4px] bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 flex items-center gap-3.5 group cursor-default shadow-sm"
                   >
                     <motion.div
-                      whileHover={{ scale: 1.15, rotate: -5 }}
+                      whileHover={{ scale: 1.1, rotate: -5 }}
                       className={clsx(
-                        "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 relative z-10 shadow-sm",
+                        "w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm",
                         colorClass,
                       )}
                     >
-                      <Icon size={18} strokeWidth={2.2} />
+                      <Icon size={17} strokeWidth={2.2} />
                     </motion.div>
 
                     <div className="flex flex-col">
                       <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                           {card.year}
                         </span>
                         <span className="text-[10px] font-semibold text-gray-400">
                           • {card.label || "Projected"}
                         </span>
                       </div>
-                      <p className="text-lg font-semibold text-[#0b1b42] dark:text-white tracking-tight">
+                      <p className="text-base font-bold text-[#0a1128] dark:text-white tracking-tight">
                         {card.range}
                       </p>
                     </div>
@@ -559,7 +557,7 @@ export default function FranchiseModelsDesktop() {
               })}
             </div>
 
-            <div className="mt-4 bg-[#0a1128] dark:bg-gray-900 border border-[#d4af37]/40 rounded-2xl p-4 shadow-md flex items-center gap-3.5 relative overflow-hidden group z-10 cursor-default">
+            <div className="mt-4 bg-[#0a1128] border border-[#d4af37]/40 rounded-[4px] p-4 shadow-md flex items-center gap-3.5 relative overflow-hidden group z-10 cursor-default">
               <div className="relative shrink-0">
                 <motion.div
                   animate={{ rotate: [0, 15, -15, 0] }}
@@ -568,19 +566,19 @@ export default function FranchiseModelsDesktop() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="w-11 h-11 rounded-xl bg-[#d4af37] text-[#0b1b42] flex items-center justify-center relative z-10 shadow-sm"
+                  className="w-10 h-10 rounded-[4px] bg-[#d4af37] text-[#0a1128] flex items-center justify-center relative z-10 shadow-sm"
                 >
-                  <Sparkles size={20} strokeWidth={2.2} />
+                  <Sparkles size={18} strokeWidth={2.2} />
                 </motion.div>
               </div>
 
               <div className="flex flex-col relative z-10">
                 <div className="flex items-center gap-1.5 mb-0.5">
-                  <span className="text-[10px] font-semibold text-amber-500 uppercase tracking-widest">
+                  <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest">
                     {revenueROIData.paybackPeriod.destinationLabel}
                   </span>
                 </div>
-                <p className="text-xl font-semibold text-white tracking-tight">
+                <p className="text-lg font-bold text-white tracking-tight">
                   {revenueROIData.paybackPeriod.title}
                 </p>
                 <span className="text-[10px] font-medium text-gray-400">

@@ -39,11 +39,11 @@ export default function HeroGalleryMobile() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full flex flex-col pt-0 pb-10 relative overflow-hidden bg-white dark:bg-gray-900"
+      className="w-full flex flex-col pt-0 pb-10 relative overflow-hidden bg-white dark:bg-[#0a1128]"
     >
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div
-          className="absolute top-[-5%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float"
+          className="absolute top-[-5%] left-[-10%] w-64 h-64 bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-2xl animate-float"
           style={{ animationDuration: "10s" }}
         />
         <div
@@ -58,7 +58,7 @@ export default function HeroGalleryMobile() {
           alt="Hero Media"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b162c]/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 via-transparent to-transparent" />
 
         <button
           onClick={() => setIsPlaying(!isPlaying)}
@@ -68,7 +68,7 @@ export default function HeroGalleryMobile() {
           }
         >
           <motion.div
-            className="w-16 h-16 rounded-full bg-slate-800/80 flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] active:scale-95 transition-colors duration-300 hover:bg-slate-900"
+            className="w-16 h-16 rounded-full bg-[#0a1128]/80 flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/20 active:scale-95 transition-colors duration-300 hover:bg-[#0a1128]"
             whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -106,95 +106,89 @@ export default function HeroGalleryMobile() {
         </button>
       </motion.div>
 
-      <div className="px-2 -mt-6 relative z-10 flex flex-col gap-6 ">
+      <div className="px-2 -mt-6 relative z-10 flex flex-col gap-6">
         <motion.div
           variants={item}
-          className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-gray-700/50 p-6 flex flex-col gap-6"
+          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 p-5 flex flex-col gap-5"
         >
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap gap-2">
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-white border border-gray-100 rounded-md text-[#c69a54] text-[10px] font-bold uppercase tracking-wider shadow-sm">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 rounded-[2px] text-[#c69a54] text-[10px] font-bold uppercase tracking-wider shadow-sm">
                 <Utensils size={12} strokeWidth={2.5} />
                 {heroData.category}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-white border border-gray-100 rounded-md text-primary text-[10px] font-bold uppercase tracking-wider shadow-sm">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 rounded-[2px] text-[#0a1128] dark:text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
                 <Coffee size={12} strokeWidth={2.5} />
                 {heroData.subCategory}
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center p-2.5 bg-[#0b162c] text-white rounded-xl shadow-lg border border-[#c69a54]/20 shrink-0">
+              <div className="flex items-center justify-center p-2.5 bg-[#0a1128] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
                 <AppsIcon style={{ fontSize: 36 }} />
               </div>
-              <motion.h1
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="text-4xl tracking-tight font-black uppercase leading-[1.1] text-[#0b162c]"
-              >
+              <h1 className="text-3xl tracking-tight font-black uppercase leading-[1.1] text-[#0a1128] dark:text-white">
                 {heroData.brandName}
-              </motion.h1>
+              </h1>
             </div>
           </div>
 
           <div className="relative pl-5">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#bf953f] via-[#d4af37] to-transparent rounded-full" />
-            <p className="text-[14px] text-[#161E31] leading-[1.8] font-light">
+            <p className="text-[14px] text-gray-700 dark:text-gray-200 leading-[1.8] font-normal">
               {heroData.shortDescription}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4  bg-white rounded-2xl w-full mx-auto">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/20 shrink-0">
-                <Calendar size={18} className="text-white" />
+          <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px] p-3 w-full mx-auto">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0">
+                <Calendar size={16} className="text-white" />
               </div>
               <div className="flex flex-col overflow-hidden">
-                <span className="text-[9px] font-bold text-gray-800 uppercase">
+                <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Since
                 </span>
-                <span className="text-[#0b162c] font-black text-[15px] truncate">
+                <span className="text-[#0a1128] dark:text-white font-bold text-[14px] truncate">
                   {heroData.yearEstablished}
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-md shadow-orange-500/20 shrink-0">
-                <Wallet size={18} className="text-white" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0">
+                <Wallet size={16} className="text-white" />
               </div>
               <div className="flex flex-col overflow-hidden">
-                <span className="text-[9px] font-bold text-gray-800 uppercase">
+                <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Starts From
                 </span>
-                <span className="text-[#0b162c] font-black text-[15px] truncate">
+                <span className="text-[#0a1128] dark:text-white font-bold text-[14px] truncate">
                   {heroData.investmentRange.split(" - ")[0]}
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-md shadow-emerald-500/20 shrink-0">
-                <TrendingUp size={18} className="text-white" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0">
+                <TrendingUp size={16} className="text-white" />
               </div>
               <div className="flex flex-col overflow-hidden">
-                <span className="text-[9px] font-bold text-gray-800 uppercase">
+                <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Break-Even
                 </span>
-                <span className="text-[#0b162c] font-black text-[15px] truncate">
+                <span className="text-[#0a1128] dark:text-white font-bold text-[14px] truncate">
                   {heroData.breakevenTimeframe.replace(" Months", " Mo")}
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-md shadow-red-500/20 shrink-0">
-                <MapPin size={18} className="text-white" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0">
+                <MapPin size={16} className="text-white" />
               </div>
               <div className="flex flex-col overflow-hidden">
-                <span className="text-[9px] font-bold text-gray-800 uppercase">
+                <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Head Quarters
                 </span>
-                <span className="text-[#0b162c] font-black text-[15px] truncate">
+                <span className="text-[#0a1128] dark:text-white font-bold text-[14px] truncate">
                   {heroData.contactInfo.headquarters.split(",")[0]}
                 </span>
               </div>
@@ -204,32 +198,32 @@ export default function HeroGalleryMobile() {
 
         <motion.div
           variants={item}
-          className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-[4px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 dark:border-gray-700/50 p-6 flex flex-col gap-6"
+          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 p-5 flex flex-col gap-4"
         >
           <div className="flex items-center gap-3">
-            <div className="h-px bg-gradient-to-r from-transparent to-[#c69a54] w-8" />
-            <h3 className="text-[13px] font-semibold text-[#0b162c] tracking-[0.2em] uppercase">
+            <div className="h-px bg-gradient-to-r from-transparent to-[#d4af37] w-8" />
+            <h3 className="text-xs font-bold text-[#0a1128] dark:text-white tracking-[0.2em] uppercase">
               Why Choose Us
             </h3>
-            <div className="h-px bg-gradient-to-l from-transparent to-[#c69a54] flex-1" />
+            <div className="h-px bg-gradient-to-l from-transparent to-[#d4af37] flex-1" />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {heroData.whyChooseUs.map((feature, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center text-center p-4 bg-white dark:bg-gray-850 rounded-[4px] border border-gray-100 dark:border-gray-700/40 shadow-[0_8px_30px_rgb(0,0,0,0.02)] group"
+                className="flex flex-col items-center text-center p-3 bg-gray-50 dark:bg-[#0a1128] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
               >
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 shadow-[0_4px_10px_rgba(0,0,0,0.08)] ${feature.colorClass}`}
+                  className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-2 shadow-sm ${feature.colorClass}`}
                 >
                   <feature.icon
-                    size={20}
+                    size={18}
                     strokeWidth={2}
                     className="text-white"
                   />
                 </div>
-                <h4 className="text-[13px] font-bold text-[#0b162c] dark:text-white leading-tight">
+                <h4 className="text-xs font-bold text-[#0a1128] dark:text-white leading-tight">
                   {feature.title}
                 </h4>
               </div>

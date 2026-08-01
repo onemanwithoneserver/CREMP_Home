@@ -14,10 +14,9 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
 
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
-      {/* Ambient background light */}
+    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-[#d4af37]/10 rounded-full blur-[80px] animate-pulse-soft" />
+        <div className="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-[#d4af37]/10 rounded-full blur-[80px]" />
       </div>
 
       <div className="relative z-10 w-full flex flex-col gap-6">
@@ -32,12 +31,11 @@ export default function FranchiseNetworkMobile() {
           </p>
         </div>
 
-        {/* Quick Stats 2x2 Grid */}
         <div className="grid grid-cols-2 gap-2.5">
           {franchiseNetworkData.stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700/60 rounded-[4px] p-3.5 flex flex-col justify-between shadow-sm"
+              className="bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-3.5 flex flex-col justify-between shadow-sm"
             >
               <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                 {stat.label}
@@ -52,7 +50,6 @@ export default function FranchiseNetworkMobile() {
           ))}
         </div>
 
-        {/* Map Container */}
         <div className="relative min-h-[360px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-xl p-4 flex flex-col justify-between">
           <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-luminosity">
             <img
@@ -63,7 +60,6 @@ export default function FranchiseNetworkMobile() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-transparent to-[#070d1e]/70" />
           </div>
 
-          {/* Top Label */}
           <div className="relative z-20 flex items-center justify-between">
             <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#0a1128]/90 border border-[#d4af37]/30 rounded-[4px]">
               <Globe2 size={12} className="text-[#d4af37]" />
@@ -77,7 +73,6 @@ export default function FranchiseNetworkMobile() {
             </span>
           </div>
 
-          {/* Map Node Pins */}
           <div className="relative w-full h-[260px] z-20">
             {franchiseNetworkData.cities.map((city) => {
               const isSelected = activeCity.id === city.id;
@@ -110,7 +105,6 @@ export default function FranchiseNetworkMobile() {
             })}
           </div>
 
-          {/* Legend Pills */}
           <div className="relative z-20 flex flex-wrap items-center justify-between gap-1 text-[10px] text-gray-300 border-t border-gray-800/80 pt-2">
             <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Active</span>
             <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" /> Expanding</span>
@@ -118,8 +112,7 @@ export default function FranchiseNetworkMobile() {
           </div>
         </div>
 
-        {/* Selected Hub Details Card */}
-        <div className="bg-gray-50 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-[4px] p-4 flex flex-col gap-3 shadow-sm">
+        <div className="bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-4 flex flex-col gap-3 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <span className={clsx(
@@ -148,17 +141,16 @@ export default function FranchiseNetworkMobile() {
           </div>
 
           <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="p-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-[4px]">
+            <div className="p-2.5 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px]">
               <span className="text-[10px] text-gray-500 dark:text-gray-400 block">Upcoming Pipeline</span>
               <span className="font-bold text-[#d4af37]">{activeCity.pipeline} Stores</span>
             </div>
-            <div className="p-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-[4px]">
+            <div className="p-2.5 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px]">
               <span className="text-[10px] text-gray-500 dark:text-gray-400 block">Zone Region</span>
               <span className="font-bold text-gray-900 dark:text-white">{activeCity.zone} Zone</span>
             </div>
           </div>
 
-          {/* Quick Select City Chips */}
           <div className="flex flex-wrap gap-1 mt-1">
             {franchiseNetworkData.cities.map((city) => (
               <button
@@ -168,7 +160,7 @@ export default function FranchiseNetworkMobile() {
                   "px-2 py-1 text-[11px] rounded-[2px] border",
                   activeCity.id === city.id
                     ? "bg-[#0a1128] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 font-bold"
-                    : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700"
+                    : "bg-white dark:bg-[#0a1128] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800"
                 )}
               >
                 {city.name}
@@ -176,13 +168,12 @@ export default function FranchiseNetworkMobile() {
             ))}
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-gray-200 dark:border-gray-800">
             <button className="w-full py-2.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-sm flex items-center justify-center gap-1.5">
               <span>{franchiseNetworkData.cta.primary}</span>
               <ChevronRight size={14} />
             </button>
-            <button className="w-full py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] flex items-center justify-center gap-1.5">
+            <button className="w-full py-2 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] flex items-center justify-center gap-1.5">
               <Download size={13} className="text-[#d4af37]" />
               <span>{franchiseNetworkData.cta.secondary}</span>
             </button>

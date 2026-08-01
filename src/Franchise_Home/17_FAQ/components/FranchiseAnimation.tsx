@@ -67,13 +67,11 @@ export function FranchiseAnimation() {
 
   return (
     <div className="w-full relative rounded-[4px] overflow-hidden bg-gradient-to-br from-[#070d1e] via-[#0a142c] to-[#040813] border border-gray-800/90 shadow-2xl p-6 flex flex-col justify-between select-none group">
-      {/* Ambient background glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#d4af37]/10 rounded-full blur-[100px] animate-pulse-soft" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#d4af37]/10 rounded-full blur-[100px]" />
         <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-blue-500/10 rounded-full blur-[80px]" />
         <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-emerald-500/10 rounded-full blur-[80px]" />
         
-        {/* Subtle cyber grid background */}
         <div 
           className="absolute inset-0 opacity-[0.07] mix-blend-overlay"
           style={{
@@ -84,7 +82,6 @@ export function FranchiseAnimation() {
         />
       </div>
 
-      {/* Top Header Live Status */}
       <div className="relative z-10 flex items-center justify-between border-b border-gray-800/80 pb-3 mb-2">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -98,9 +95,7 @@ export function FranchiseAnimation() {
         </div>
       </div>
 
-      {/* Central 3D Interactive Animation Arena */}
       <div className="relative w-full h-[320px] flex items-center justify-center my-2">
-        {/* Rotating Concentric Radar Rings & Vector Grid */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 320 320">
           <defs>
             <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
@@ -113,17 +108,14 @@ export function FranchiseAnimation() {
             </linearGradient>
           </defs>
 
-          {/* Concentric Coordinate Rings */}
           <circle cx="160" cy="160" r="140" fill="none" stroke="#1e293b" strokeWidth="1" strokeDasharray="3 6" opacity="0.6" />
           <circle cx="160" cy="160" r="105" fill="none" stroke="#334155" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
           <circle cx="160" cy="160" r="70" fill="url(#radarGlow)" stroke="#d4af37" strokeWidth="1" opacity="0.4" />
           <circle cx="160" cy="160" r="40" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.6" />
 
-          {/* Coordinate Crosshairs */}
           <line x1="160" y1="10" x2="160" y2="310" stroke="#334155" strokeWidth="1" strokeDasharray="2 4" opacity="0.3" />
           <line x1="10" y1="160" x2="310" y2="160" stroke="#334155" strokeWidth="1" strokeDasharray="2 4" opacity="0.3" />
 
-          {/* 360-Degree Continuous Radar Beam Sweep */}
           <g className="origin-[160px_160px] animate-spin-slow">
             <path
               d="M 160 160 L 300 160 A 140 140 0 0 0 258 62 Z"
@@ -134,19 +126,15 @@ export function FranchiseAnimation() {
           </g>
         </svg>
 
-        {/* Orbiting Ring 1 (Smooth Counter-Clockwise Rotation) */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           className="absolute w-[220px] h-[220px] rounded-full border border-dashed border-[#d4af37]/30 pointer-events-none"
         >
-          {/* Orbital Node 1 */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#d4af37] shadow-[0_0_12px_#d4af37]" />
-          {/* Orbital Node 2 */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_#60a5fa]" />
         </motion.div>
 
-        {/* Orbiting Ring 2 (Clockwise Rotation) */}
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -156,12 +144,10 @@ export function FranchiseAnimation() {
           <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]" />
         </motion.div>
 
-        {/* Center Illuminated Coffee Franchise Core */}
         <motion.div
           whileHover={{ scale: 1.08 }}
           className="relative z-20 w-24 h-24 rounded-full bg-gradient-to-tr from-[#0a1128] via-[#16254c] to-[#0a1128] border-2 border-[#d4af37] shadow-[0_0_40px_rgba(212,175,55,0.4)] flex flex-col items-center justify-center cursor-pointer group/core"
         >
-          {/* Pulsing Core Ripple */}
           <div className="absolute -inset-2 rounded-full border border-[#d4af37]/40 animate-ping pointer-events-none" />
           <div className="absolute -inset-4 rounded-full border border-[#d4af37]/20 pointer-events-none" />
 
@@ -174,17 +160,15 @@ export function FranchiseAnimation() {
           </span>
         </motion.div>
 
-        {/* 4 Interactive Satellite Floating Micro-Cards */}
         {orbitingSatellites.map((node, i) => {
           const isSelected = activeNode === node.id;
           const Icon = node.icon;
 
-          // Position in 4 quadrants around the center
           const positions = [
-            "top-2 left-2",       // Top-Left: ROI
-            "top-2 right-2",      // Top-Right: Territory
-            "bottom-2 left-2",    // Bottom-Left: Turnkey
-            "bottom-2 right-2",   // Bottom-Right: Supply Chain
+            "top-2 left-2",
+            "top-2 right-2",
+            "bottom-2 left-2",
+            "bottom-2 right-2",
           ];
 
           return (
@@ -219,7 +203,6 @@ export function FranchiseAnimation() {
         })}
       </div>
 
-      {/* Dynamic Animated Frequency Audio/Telemetry Wave */}
       <div className="relative z-10 bg-gray-950/70 border border-gray-800/80 rounded-[4px] p-3 flex flex-col gap-2 mt-1">
         <div className="flex items-center justify-between text-[10px] text-gray-400 font-mono">
           <span className="flex items-center gap-1.5 text-gray-300 font-bold">
@@ -229,7 +212,6 @@ export function FranchiseAnimation() {
           <span className="text-emerald-400 font-bold">99.8% EFFICIENCY</span>
         </div>
 
-        {/* Live Audio Visualizer / Frequency Bars */}
         <div className="flex items-end gap-1 h-7 w-full overflow-hidden px-1">
           {Array.from({ length: 24 }).map((_, barIdx) => {
             const heightFactor = Math.sin((tick + barIdx * 4) * 0.2) * 45 + 50;
@@ -247,7 +229,6 @@ export function FranchiseAnimation() {
           })}
         </div>
 
-        {/* Real-time Ticker */}
         <div className="text-[10px] font-mono text-gray-400 flex items-center justify-between border-t border-gray-800/60 pt-1.5">
           <span className="truncate flex items-center gap-1">
             <Sparkles size={10} className="text-[#d4af37]" />

@@ -34,7 +34,7 @@ const stagger = {
 
 export default function IdealPartnerMobile() {
   return (
-    <section className="w-full px-4 py-10 relative overflow-hidden bg-gray-50 dark:bg-gray-900">
+    <section className="w-full px-4 py-10 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <div className="relative z-10 w-full">
         <SectionHeader
           overline={idealPartnerData.sectionLabel}
@@ -57,7 +57,7 @@ export default function IdealPartnerMobile() {
                 key={item.title}
                 variants={fadeInUp}
                 className={clsx(
-                  "rounded-2xl border border-gray-200 dark:border-gray-700 p-4 flex flex-col bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 group",
+                  "rounded-[4px] border border-gray-200 dark:border-gray-800 p-4 flex flex-col bg-white dark:bg-[#121c33] shadow-sm transition-all duration-300 group",
                   getCardStyles(item.intent),
                 )}
               >
@@ -66,13 +66,13 @@ export default function IdealPartnerMobile() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className={clsx(
-                      "w-10 h-10 rounded-xl flex shrink-0 items-center justify-center shadow-sm",
+                      "w-9 h-9 rounded-[4px] flex shrink-0 items-center justify-center shadow-sm",
                       getIconContainerStyles(item.intent),
                     )}
                   >
                     <Icon size={18} strokeWidth={2} className="text-white" />
                   </motion.div>
-                  <h4 className="text-[#0b1b42] dark:text-white font-bold text-base tracking-tight leading-tight group-hover:text-[#d4af37] transition-colors duration-300">
+                  <h4 className="text-[#0a1128] dark:text-white font-bold text-base tracking-tight leading-tight group-hover:text-[#d4af37] transition-colors duration-300">
                     {item.title}
                   </h4>
                 </div>
@@ -100,7 +100,7 @@ export default function IdealPartnerMobile() {
                             strokeWidth={2}
                           />
                         </div>
-                        <span className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-snug group-hover/item:text-[#0b1b42] dark:group-hover/item:text-white transition-colors duration-300">
+                        <span className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-snug group-hover/item:text-[#0a1128] dark:group-hover/item:text-white transition-colors duration-300">
                           {subItem}
                         </span>
                       </div>
@@ -126,7 +126,7 @@ export default function IdealPartnerMobile() {
                 key={item.title}
                 variants={fadeInUp}
                 className={clsx(
-                  "rounded-2xl border border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-3.5 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 group",
+                  "rounded-[4px] border border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center gap-3.5 bg-white dark:bg-[#121c33] shadow-sm transition-all duration-300 group",
                   getCardStyles(item.intent),
                 )}
               >
@@ -134,7 +134,7 @@ export default function IdealPartnerMobile() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   className={clsx(
-                    "w-10 h-10 rounded-xl flex shrink-0 items-center justify-center shadow-sm",
+                    "w-9 h-9 rounded-[4px] flex shrink-0 items-center justify-center shadow-sm",
                     getIconContainerStyles(item.intent),
                   )}
                 >
@@ -144,7 +144,7 @@ export default function IdealPartnerMobile() {
                   <span className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-0.5 group-hover:text-[#d4af37] transition-colors duration-300">
                     {item.title}
                   </span>
-                  <span className="text-[#0b1b42] dark:text-white font-bold text-sm tracking-tight">
+                  <span className="text-[#0a1128] dark:text-white font-bold text-sm tracking-tight">
                     {item.value}
                   </span>
                 </div>
@@ -161,13 +161,13 @@ export default function IdealPartnerMobile() {
         >
           <motion.div
             variants={fadeInUp}
-            className="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 shadow-sm flex flex-col gap-3 group"
+            className="w-full bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-4 shadow-sm flex flex-col gap-3 group"
           >
             <div className="flex items-center gap-3">
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 10 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="w-10 h-10 rounded-xl bg-[#0a1128] dark:bg-gray-700 text-white flex items-center justify-center shrink-0 shadow-sm"
+                className="w-9 h-9 rounded-[4px] bg-[#0a1128] border border-[#d4af37]/30 text-white flex items-center justify-center shrink-0 shadow-sm"
               >
                 <idealPartnerData.additionalExpectations.icon
                   size={18}
@@ -175,7 +175,7 @@ export default function IdealPartnerMobile() {
                   strokeWidth={2}
                 />
               </motion.div>
-              <h4 className="text-[#0b1b42] dark:text-white font-bold text-base tracking-tight">
+              <h4 className="text-[#0a1128] dark:text-white font-bold text-base tracking-tight">
                 {idealPartnerData.additionalExpectations.title}
               </h4>
             </div>
