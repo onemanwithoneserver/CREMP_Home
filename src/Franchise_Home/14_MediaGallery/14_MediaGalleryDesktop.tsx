@@ -158,7 +158,7 @@ export default function MediaGalleryDesktop() {
                 {images.length > 0 && (
                   <div className="flex flex-col gap-4">
                     {activeCategory === "All" && (
-                      <h3 className="text-xl font-serif font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
+                      <h3 className="text-xl font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
                         Photos
                       </h3>
                     )}
@@ -219,7 +219,7 @@ export default function MediaGalleryDesktop() {
                 {videos.length > 0 && (
                   <div className="flex flex-col gap-4">
                     {activeCategory === "All" && (
-                      <h3 className="text-xl font-serif font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
+                      <h3 className="text-xl font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
                         Videos & Shorts
                       </h3>
                     )}
@@ -288,7 +288,7 @@ export default function MediaGalleryDesktop() {
                 {documents.length > 0 && (
                   <div className="flex flex-col gap-4">
                     {activeCategory === "All" && (
-                      <h3 className="text-xl font-serif font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
+                      <h3 className="text-xl font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
                         Documents
                       </h3>
                     )}

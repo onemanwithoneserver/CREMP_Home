@@ -122,7 +122,7 @@ export default function HeroGalleryMobile() {
               <motion.h1
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="text-4xl tracking-tight font-serif font-black uppercase leading-[1.1] text-[#0b162c]"
+                className="text-4xl tracking-tight font-black uppercase leading-[1.1] text-[#0b162c]"
               >
                 {heroData.brandName}
               </motion.h1>

@@ -160,7 +160,7 @@ export default function MediaGalleryMobile() {
                 {images.length > 0 && (
                   <div className="flex flex-col gap-3">
                     {activeCategory === "All" && (
-                      <h3 className="text-[15px] font-serif font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
+                      <h3 className="text-[15px] font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
                         Photos
                       </h3>
                     )}
@@ -221,7 +221,7 @@ export default function MediaGalleryMobile() {
                 {videos.length > 0 && (
                   <div className="flex flex-col gap-3">
                     {activeCategory === "All" && (
-                      <h3 className="text-[15px] font-serif font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
+                      <h3 className="text-[15px] font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
                         Videos & Shorts
                       </h3>
                     )}
@@ -290,7 +290,7 @@ export default function MediaGalleryMobile() {
                 {documents.length > 0 && (
                   <div className="flex flex-col gap-3">
                     {activeCategory === "All" && (
-                      <h3 className="text-[15px] font-serif font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
+                      <h3 className="text-[15px] font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
                         Documents
                       </h3>
                     )}

@@ -76,7 +76,7 @@ export default function HeroGalleryDesktop() {
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  className="text-5xl lg:text-[64px] tracking-tight font-serif font-bold uppercase leading-[1.05] text-[#0b162c]"
+                  className="text-5xl lg:text-[64px] tracking-tight font-bold uppercase leading-[1.05] text-[#0b162c]"
                 >
                   {heroData.brandName}
                 </motion.h1>
