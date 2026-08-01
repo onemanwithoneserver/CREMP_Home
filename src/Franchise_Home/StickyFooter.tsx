@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, Heart, MessageCircle, Calendar } from "lucide-react";
+import { Download, Heart, Share2, Calendar } from "lucide-react";
 import clsx from "clsx";
 
 export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
@@ -28,8 +28,8 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
 
           <button className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-[#161e31] border border-white rounded-[4px] text-white hover:bg-[#F59E0B]/15 hover:border-[#F59E0B] transition-all hover:-translate-y-0.5 shadow-sm font-medium shrink-0">
             <Download size={15} strokeWidth={1.5} />
-            <span className={isMobile ? "text-[12px]" : "text-[13px]"}>
-              Download
+            <span className={isMobile ? "hidden" : "text-[13px]"}>
+              Brochure
             </span>
           </button>
         </div>
@@ -44,12 +44,10 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
             isMobile ? "flex-1 w-full" : "shrink-0",
           )}
         >
-          {!isMobile && (
-            <button className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-[4px] bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all hover:-translate-y-0.5 text-[13px] font-semibold shadow-[0_4px_14px_rgba(37,211,102,0.3)]">
-              <MessageCircle size={16} strokeWidth={2} />
-              <span>WhatsApp</span>
-            </button>
-          )}
+          <button className="flex items-center justify-center gap-2 px-3 py-2.5 md:px-6 md:py-2.5 rounded-[4px] bg-[#2563eb] hover:bg-[#1d4ed8] text-white transition-all hover:-translate-y-0.5 text-[13px] font-semibold shadow-[0_4px_14px_rgba(37,99,235,0.3)]">
+            <Share2 size={16} strokeWidth={2} />
+            <span className={isMobile ? "hidden" : "block"}>Share</span>
+          </button>
 
           <button
             className={clsx(

@@ -124,7 +124,7 @@ export default function HeroGalleryMobile() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 mt-2 pt-6 w-5/6 justify-center items-center border-t border-gray-200/60">
+          <div className="flex flex-col gap-3 mt-2 pt-6 w-full mx-auto justify-start items-start border-t border-gray-200/60">
             {[
               {
                 icon: Mail,
@@ -187,7 +187,7 @@ export default function HeroGalleryMobile() {
               );
             })}
 
-            <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-200/60 justify-center">
+            <div className="flex w-full items-center justify-center gap-4 mt-6">
               <motion.a
                 href="#"
                 animate={{ y: [0, -3, 0] }}

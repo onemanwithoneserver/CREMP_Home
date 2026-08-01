@@ -139,8 +139,9 @@ export default function HeroGalleryDesktop() {
                   </ItemWrapper>
                 );
               })}
+            </div>
 
-              <div className="flex items-center gap-3 ml-auto pl-5 border-l border-gray-200/60">
+            <div className="flex w-full items-center justify-center gap-4 mt-6">
                 <motion.a
                   href="#"
                   animate={{ y: [0, -3, 0] }}
