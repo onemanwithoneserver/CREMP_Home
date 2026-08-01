@@ -91,7 +91,7 @@ export default function HeroGalleryDesktop() {
                   <Calendar size={16} className="text-white" />
                 </div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Since</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">Since</span>
                   <span className="text-[#0b162c] font-bold text-[13px] xl:text-[15px] whitespace-nowrap tracking-tight">{heroData.yearEstablished}</span>
                 </div>
               </div>
@@ -100,8 +100,8 @@ export default function HeroGalleryDesktop() {
                   <Wallet size={16} className="text-white" />
                 </div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Investment</span>
-                  <span className="text-[#0b162c] font-bold text-[13px] xl:text-[15px] whitespace-nowrap tracking-tight">{heroData.investmentRange}</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">Starts From</span>
+                  <span className="text-[#0b162c] font-bold text-[13px] xl:text-[15px] whitespace-nowrap tracking-tight">{heroData.investmentRange.split(' - ')[0]}</span>
                 </div>
               </div>
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4 border-r border-gray-100">
@@ -109,7 +109,7 @@ export default function HeroGalleryDesktop() {
                   <TrendingUp size={16} className="text-white" />
                 </div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5 whitespace-nowrap">Break-Even</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase whitespace-nowrap">Break-Even</span>
                   <span className="text-[#0b162c] font-bold text-[13px] xl:text-[15px] whitespace-nowrap tracking-tight">{heroData.breakevenTimeframe.replace(' Months', ' Mo')}</span>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function HeroGalleryDesktop() {
                   <MapPin size={16} className="text-white" />
                 </div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Location</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">Head Quarters</span>
                   <span className="text-[#0b162c] font-bold text-[13px] xl:text-[15px] whitespace-nowrap tracking-tight">{heroData.contactInfo.headquarters.split(',')[0]}</span>
                 </div>
               </div>

@@ -136,7 +136,7 @@ export default function HeroGalleryMobile() {
                   <Calendar size={18} className="text-white" />
                 </div>
                 <div className="flex flex-col overflow-hidden">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Since</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">Since</span>
                   <span className="text-[#0b162c] font-black text-[15px] truncate">{heroData.yearEstablished}</span>
                 </div>
               </div>
@@ -145,8 +145,8 @@ export default function HeroGalleryMobile() {
                   <Wallet size={18} className="text-white" />
                 </div>
                 <div className="flex flex-col overflow-hidden">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Investment</span>
-                  <span className="text-[#0b162c] font-black text-[15px] truncate">{heroData.investmentRange}</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">Starts From</span>
+                  <span className="text-[#0b162c] font-black text-[15px] truncate">{heroData.investmentRange.split(' - ')[0]}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -154,7 +154,7 @@ export default function HeroGalleryMobile() {
                   <TrendingUp size={18} className="text-white" />
                 </div>
                 <div className="flex flex-col overflow-hidden">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Break-Even</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">Break-Even</span>
                   <span className="text-[#0b162c] font-black text-[15px] truncate">{heroData.breakevenTimeframe.replace(' Months', ' Mo')}</span>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function HeroGalleryMobile() {
                   <MapPin size={18} className="text-white" />
                 </div>
                 <div className="flex flex-col overflow-hidden">
-                  <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Location</span>
+                  <span className="text-[9px] font-bold text-gray-800 uppercase">HQ Location</span>
                   <span className="text-[#0b162c] font-black text-[15px] truncate">{heroData.contactInfo.headquarters.split(',')[0]}</span>
                 </div>
               </div>
