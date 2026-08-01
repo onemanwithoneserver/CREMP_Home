@@ -149,7 +149,7 @@ export default function LeadershipDesktop() {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full px-6 py-20 relative overflow-hidden bg-white dark:bg-gray-900">
+    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[100px] animate-pulse-soft" />
         <div
@@ -159,7 +159,7 @@ export default function LeadershipDesktop() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
-        <div className="mb-12">
+        <div className="mb-2">
           <SectionHeader
             overline={leadershipData.sectionLabel}
             title={leadershipData.title}

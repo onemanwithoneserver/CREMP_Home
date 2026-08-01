@@ -8,6 +8,11 @@ export const founderStoryData = {
     name: "Arjun Malhotra",
     title: "Founder & CEO",
     avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80",
+    socials: {
+      youtube: "https://youtube.com/@urbanbrew",
+      instagram: "https://instagram.com/urbanbrew",
+      linkedin: "https://linkedin.com/company/urbanbrew",
+    },
   },
   stats: [
     { value: "187+", label: "Outlets", intent: "warning" },
