@@ -1,9 +1,34 @@
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Quote, Store, Users, Award, TrendingUp, IndianRupee } from "lucide-react";
 import { getTextStyles } from "../utils/theme";
 import { founderStoryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 200, damping: 20 },
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
 
 function YoutubeIcon({ size = 18 }: { size?: number }) {
   return (
@@ -50,14 +75,17 @@ const getIconBgColor = (idx: number) => {
 
 export default function FounderStoryDesktop() {
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
-        <div className="absolute w-[50rem] h-[50rem] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[120px] animate-pulse-soft" />
-        <div
-          className="absolute w-[40rem] h-[40rem] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[100px] animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -left-[10%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute right-[-5%] bottom-[-10%] h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
         <div className="mb-12">
@@ -71,10 +99,10 @@ export default function FounderStoryDesktop() {
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             className="lg:col-span-3 relative rounded-[8px] overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-[#0a1128] h-full"
           >
             <div className="relative z-10 p-10 flex flex-col gap-6 h-full min-h-[400px]">
@@ -85,7 +113,9 @@ export default function FounderStoryDesktop() {
                 />
                 
                 <div className="flex items-center gap-2">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href={founderStoryData.founder.socials.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -94,8 +124,10 @@ export default function FounderStoryDesktop() {
                     title="YouTube"
                   >
                     <YoutubeIcon size={18} />
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href={founderStoryData.founder.socials.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -104,8 +136,10 @@ export default function FounderStoryDesktop() {
                     title="Instagram"
                   >
                     <InstagramIcon size={18} />
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href={founderStoryData.founder.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -114,7 +148,7 @@ export default function FounderStoryDesktop() {
                     title="LinkedIn"
                   >
                     <LinkedinIcon size={18} />
-                  </a>
+                  </motion.a>
                 </div>
               </div>
 
@@ -153,10 +187,12 @@ export default function FounderStoryDesktop() {
                     duration: 0.5,
                     delay: idx * 0.15 + 0.3,
                     type: "spring",
-                    stiffness: 120,
+                    stiffness: 400,
+                    damping: 30,
                   }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   key={stat.label}
-                  className="flex-1 bg-[#0a1128] border border-white/10 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-[0_8px_30px_rgb(0,0,0,0.08)] group hover:-translate-y-1 hover:border-[#d4af37]/40 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-300 relative overflow-hidden"
+                  className="flex-1 bg-[#0a1128] border border-white/10 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-[0_8px_30px_rgb(0,0,0,0.08)] group hover:border-[#d4af37]/40 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-[#d4af37]/10 transition-colors duration-500" />
                   

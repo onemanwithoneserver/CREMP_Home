@@ -1,8 +1,16 @@
 import { useRef, useState } from "react";
 import clsx from "clsx";
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion, useAnimationFrame, type Variants } from "framer-motion";
 import { fullCycleSupportData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 
 export default function FullCycleSupportDesktop() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,14 +29,17 @@ export default function FullCycleSupportDesktop() {
   });
 
   return (
-    <section className="w-full px-6 py-16 overflow-hidden relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[30%] left-[-5%] w-72 h-72 bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-2xl animate-float" />
-        <div
-          className="absolute bottom-[30%] right-[-5%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float"
-          style={{ animationDelay: "3s" }}
-        />
-      </div>
+    <section className="w-full px-6 py-16 overflow-hidden relative rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute top-[20%] left-[-5%] w-[400px] h-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute bottom-[20%] right-[-5%] w-[400px] h-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
+      />
       <div className="relative z-10 max-w-7xl mx-auto mb-8 flex justify-center">
         <SectionHeader
           overline={fullCycleSupportData.sectionLabel}
@@ -48,9 +59,10 @@ export default function FullCycleSupportDesktop() {
               {fullCycleSupportData.supportItems.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <motion.div
                     key={`${keyPrefix}-${idx}`}
-                    className="w-[240px] shrink-0 rounded-[4px] border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#121c33] p-6 text-center shadow-sm transition-all duration-300 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700"
+                    whileHover={{ y: -6, scale: 1.03, transition: { type: "spring", stiffness: 400, damping: 20 } }}
+                    className="w-[240px] shrink-0 rounded-[4px] border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#121c33] p-6 text-center shadow-sm hover:shadow-xl hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40 transition-all duration-300"
                   >
                     <div
                       className={clsx(
@@ -66,7 +78,7 @@ export default function FullCycleSupportDesktop() {
                     <p className="text-sm leading-snug text-gray-600 dark:text-gray-300">
                       {item.description}
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>

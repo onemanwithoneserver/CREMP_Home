@@ -1,8 +1,16 @@
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { RotateCw, Sparkles, Quote } from "lucide-react";
 import { leadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -160,14 +168,17 @@ export default function LeadershipMobile() {
   };
 
   return (
-    <section className="w-full py-6 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px]" />
-        <div
-          className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-[#d4af37]/5 rounded-full blur-[80px]"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
+    <section className="w-full py-6 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
+      />
 
       <div className="relative z-10 flex flex-col items-center">
         <motion.div 

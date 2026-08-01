@@ -1,5 +1,14 @@
 import { useState } from "react";
 import clsx from "clsx";
+import { motion, type Variants } from "framer-motion";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 import { 
   ChevronRight, 
   Download, 
@@ -14,10 +23,17 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
 
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-[#d4af37]/10 rounded-full blur-[80px]" />
-      </div>
+    <section className="w-full px-4 py-12 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute top-[10%] left-[10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute bottom-[10%] right-[10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
+      />
 
       <div className="relative z-10 w-full flex flex-col gap-6">
         <div>

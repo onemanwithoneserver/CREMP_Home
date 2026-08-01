@@ -1,5 +1,13 @@
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 import {
   getCardStyles,
   getIconContainerStyles,
@@ -34,7 +42,17 @@ const stagger = {
 
 export default function IdealPartnerDesktop() {
   return (
-    <section className="w-full px-6 py-12 relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
+    <section className="w-full px-6 py-12 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -left-[10%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute right-[-5%] bottom-[-10%] h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
+      />
       <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader
           overline={idealPartnerData.sectionLabel}

@@ -1,8 +1,16 @@
 import { useRef, useState } from "react";
 import clsx from "clsx";
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion, useAnimationFrame, type Variants } from "framer-motion";
 import { fullCycleSupportData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 
 export default function FullCycleSupportMobile() {
   const marqueeRef = useRef<HTMLDivElement>(null);
@@ -21,14 +29,17 @@ export default function FullCycleSupportMobile() {
   });
 
   return (
-    <section className="w-full py-12 overflow-hidden relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[30%] left-[-10%] w-64 h-64 bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-2xl animate-float" />
-        <div
-          className="absolute bottom-[30%] right-[-10%] w-64 h-64 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float"
-          style={{ animationDelay: "3s" }}
-        />
-      </div>
+    <section className="w-full py-12 overflow-hidden relative rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute top-[20%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute bottom-[20%] right-[-10%] w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
+      />
       <div className="relative z-10 px-2 flex justify-center">
         <SectionHeader
           overline={fullCycleSupportData.sectionLabel}

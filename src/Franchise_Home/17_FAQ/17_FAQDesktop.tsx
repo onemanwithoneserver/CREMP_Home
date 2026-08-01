@@ -1,6 +1,14 @@
 import { useState, useMemo } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import clsx from "clsx";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 import { 
   HelpCircle, 
   Minus, 
@@ -30,14 +38,17 @@ export default function FAQDesktop() {
   }, [searchQuery]);
 
   return (
-    <section className="w-full py-16 pb-20 px-6 relative bg-white dark:bg-gray-900 transition-colors duration-300">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[15%] right-[5%] w-[500px] h-[500px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[140px] animate-pulse-soft" />
-        <div
-          className="absolute bottom-[15%] left-[5%] w-[500px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[140px] animate-pulse-soft"
-          style={{ animationDelay: "2.5s" }}
-        />
-      </div>
+    <section className="w-full py-16 pb-20 px-6 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute top-[15%] right-[5%] w-[500px] h-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute bottom-[15%] left-[5%] w-[500px] h-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
+      />
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-12 relative z-10">
         <div className="w-full lg:w-[440px] shrink-0 sticky top-24 self-start flex flex-col gap-6">

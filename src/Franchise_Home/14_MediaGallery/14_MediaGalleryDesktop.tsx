@@ -1,4 +1,12 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 import { useState, useRef, useEffect } from "react";
 import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -46,14 +54,17 @@ export default function MediaGalleryDesktop() {
   const documents = filteredItems.filter((item) => item.format === "document");
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900 min-h-screen">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[5%] left-[-10%] w-[600px] h-[600px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[120px] animate-pulse-soft" />
-        <div
-          className="absolute bottom-[-10%] right-[-5%] w-[800px] h-[800px] bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[150px] animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none min-h-screen">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute top-[5%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

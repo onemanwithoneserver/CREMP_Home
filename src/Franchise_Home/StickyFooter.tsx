@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Heart, Share2, Calendar } from "lucide-react";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import clsx from "clsx";
@@ -35,10 +36,12 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
       <div className="max-w-[1440px] w-full flex items-center justify-between gap-2 md:gap-4 relative z-10">
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
           <Tooltip text={isSaved ? "Saved" : "Save"} show={isMobile}>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.92 }}
               onClick={() => setIsSaved(!isSaved)}
               className={clsx(
-                "h-11 flex items-center justify-center gap-2 rounded-[4px] text-[13px] font-semibold transition-all duration-300 active:scale-95 border shrink-0",
+                "h-11 flex items-center justify-center gap-2 rounded-[4px] text-[13px] font-semibold transition-all duration-300 border shrink-0",
                 isMobile ? "w-10 px-0" : "px-5",
                 isSaved
                   ? "bg-rose-500/20 border-rose-500/50 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.2)]"
@@ -56,7 +59,7 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
                 )}
               />
               {!isMobile && <span>{isSaved ? "Saved" : "Save"}</span>}
-            </button>
+            </motion.button>
           </Tooltip>
 
           {!isMobile && (
@@ -64,9 +67,11 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
           )}
 
           <Tooltip text="Website Link" show={isMobile}>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.92 }}
               className={clsx(
-                "h-11 flex items-center justify-center gap-2 rounded-[4px] text-[13px] font-semibold transition-all duration-300 active:scale-95 bg-white/5 hover:bg-blue-500/10 border border-white/10 hover:border-blue-400/50 text-white hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] shrink-0",
+                "h-11 flex items-center justify-center gap-2 rounded-[4px] text-[13px] font-semibold transition-all duration-300 bg-white/5 hover:bg-blue-500/10 border border-white/10 hover:border-blue-400/50 text-white hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] shrink-0",
                 isMobile ? "w-10 px-0" : "px-5",
               )}
             >
@@ -74,31 +79,35 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
               {!isMobile && (
                 <span className="whitespace-nowrap">Website Link</span>
               )}
-            </button>
+            </motion.button>
           </Tooltip>
 
           <Tooltip text="Share" show={isMobile}>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.92 }}
               className={clsx(
-                "h-11 flex items-center justify-center gap-2 rounded-[4px] text-[13px] font-semibold transition-all duration-300 active:scale-95 bg-white/5 hover:bg-emerald-500/10 border border-white/10 hover:border-emerald-400/50 text-white hover:text-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.15)] shrink-0",
+                "h-11 flex items-center justify-center gap-2 rounded-[4px] text-[13px] font-semibold transition-all duration-300 bg-white/5 hover:bg-emerald-500/10 border border-white/10 hover:border-emerald-400/50 text-white hover:text-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.15)] shrink-0",
                 isMobile ? "w-10 px-0" : "px-5",
               )}
             >
               <Share2 size={18} strokeWidth={2} />
               {!isMobile && <span>Share</span>}
-            </button>
+            </motion.button>
           </Tooltip>
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.92 }}
           className={clsx(
-            "h-11 flex items-center justify-center gap-2 rounded-[4px] font-bold transition-all duration-300 active:scale-95 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 ml-auto",
+            "h-11 flex items-center justify-center gap-2 rounded-[4px] font-bold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 ml-auto",
             isMobile ? "w-3/5 px-2 text-[13px]" : "px-8 text-sm shrink-0",
           )}
         >
           <Calendar size={18} strokeWidth={2} />
           <span className="truncate">Book a Call</span>
-        </button>
+        </motion.button>
       </div>
     </div>
   );

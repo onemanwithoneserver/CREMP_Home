@@ -1,9 +1,17 @@
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Quote, Store, Users, Award, TrendingUp, IndianRupee } from "lucide-react";
 import { getTextStyles } from "../utils/theme";
 import { founderStoryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
 
 function YoutubeIcon({ size = 15 }: { size?: number }) {
   return (
@@ -50,14 +58,17 @@ const getIconBgColor = (idx: number) => {
 
 export default function FounderStoryMobile() {
   return (
-    <section className="w-full px-4 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
-        <div className="absolute w-80 h-80 bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[80px] animate-pulse-soft" />
-        <div
-          className="absolute w-64 h-64 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[80px] animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
+    <section className="w-full px-4 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -left-[10%] top-[-10%] h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute right-[-5%] bottom-[-10%] h-[250px] w-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
+      />
 
       <div className="relative z-10 w-full flex flex-col items-center">
         <div className="mb-8 w-full">
@@ -87,33 +98,39 @@ export default function FounderStoryMobile() {
                 />
                 
                 <div className="flex items-center gap-2">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href={founderStoryData.founder.socials.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-full bg-red-500/80  text-white transition-all duration-300"
+                    className="p-1.5 rounded-full bg-red-500/80 text-white transition-all duration-300"
                     title="YouTube"
                   >
                     <YoutubeIcon size={15} />
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href={founderStoryData.founder.socials.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-full bg-pink-500/80  text-white transition-all duration-300"
+                    className="p-1.5 rounded-full bg-pink-500/80 text-white transition-all duration-300"
                     title="Instagram"
                   >
                     <InstagramIcon size={15} />
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     href={founderStoryData.founder.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-full  bg-blue-600/80  text-white transition-all duration-300"
+                    className="p-1.5 rounded-full bg-blue-600/80 text-white transition-all duration-300"
                     title="LinkedIn"
                   >
                     <LinkedinIcon size={15} />
-                  </a>
+                  </motion.a>
                 </div>
               </div>
 
@@ -147,15 +164,17 @@ export default function FounderStoryMobile() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
+                  viewport={{ once: false, margin: "-50px" }}
                   transition={{
                     duration: 0.5,
                     delay: idx * 0.1,
                     type: "spring",
-                    stiffness: 120,
+                    stiffness: 400,
+                    damping: 30,
                   }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   key={stat.label}
-                  className="bg-[#0a1128] border border-white/10 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-md relative overflow-hidden"
+                  className="bg-[#0a1128] border border-white/10 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-md relative overflow-hidden hover:border-[#d4af37]/40 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-300"
                 >
                   <div className="absolute -right-4 -top-4 w-12 h-12 bg-white/5 rounded-full blur-xl" />
                   
