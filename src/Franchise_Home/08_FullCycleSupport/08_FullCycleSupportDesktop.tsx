@@ -21,10 +21,13 @@ export default function FullCycleSupportDesktop() {
   });
 
   return (
-    <section className="w-full bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-6 py-16 overflow-hidden relative">
+    <section className="w-full px-6 py-16 overflow-hidden relative bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[30%] left-[-5%] w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float" />
-        <div className="absolute bottom-[30%] right-[-5%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }} />
+        <div
+          className="absolute bottom-[30%] right-[-5%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float"
+          style={{ animationDelay: "3s" }}
+        />
       </div>
       <div className="relative z-10 max-w-7xl mx-auto mb-8 flex justify-center">
         <SectionHeader
@@ -52,7 +55,7 @@ export default function FullCycleSupportDesktop() {
                     <div
                       className={clsx(
                         "mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full",
-                        item.colorClass
+                        item.colorClass,
                       )}
                     >
                       <Icon size={24} strokeWidth={1.5} />

@@ -102,7 +102,7 @@ export default function MediaGalleryMobile() {
   }, [activeCategory, videos.length, images.length]);
 
   return (
-    <section className="w-full bg-gradient-to-tr from-white via-gray-50 to-[#f8f9fa] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 px-4 py-12 relative overflow-hidden">
+    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[5%] left-[-10%] w-[300px] h-[300px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[80px] animate-pulse-soft" />
         <div

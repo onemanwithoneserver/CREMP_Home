@@ -7,10 +7,13 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FounderStoryDesktop() {
   return (
-    <section className="w-full bg-gradient-to-br from-white via-[#f8f9fa] to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-6 py-16 relative overflow-hidden">
+    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
         <div className="absolute w-[40rem] h-[40rem] bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl animate-pulse-soft" />
-        <div className="absolute w-[30rem] h-[30rem] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute w-[30rem] h-[30rem] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
       <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader

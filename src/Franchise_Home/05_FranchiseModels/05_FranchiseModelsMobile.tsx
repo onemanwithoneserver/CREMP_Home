@@ -210,7 +210,7 @@ export default function FranchiseModelsMobile() {
       "text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/20",
       "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-500/20",
       "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-500/20",
-      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20"
+      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20",
     ];
     return colors[idx % colors.length];
   };
@@ -244,10 +244,13 @@ export default function FranchiseModelsMobile() {
   };
 
   return (
-    <section className="w-full bg-gradient-to-tr from-background via-white to-[#f1f5f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-2 flex flex-col relative overflow-hidden">
+    <section className="w-full px-4 py-2 flex flex-col relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[5%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-pulse-soft" />
-        <div className="absolute bottom-[20%] right-[-10%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-[20%] right-[-10%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-pulse-soft"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       <svg width="0" height="0" className="absolute">
@@ -505,17 +508,17 @@ export default function FranchiseModelsMobile() {
                 </div>
               );
             })}
-            
+
             <div className="rounded-[4px] border border-[#d4af37]/30 shadow-[0_4px_12px_rgba(212,175,55,0.15)] p-3 bg-[#0b1b42] flex flex-col justify-between relative overflow-hidden">
-               <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
-               <span className="text-[10px] font-semibold text-gray-300 uppercase tracking-widest mb-3 relative z-10">
-                 Breakeven Timeframe
-               </span>
-               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full relative z-10">
-                 <span className="text-[12px] sm:text-[14px] font-bold text-[#d4af37] tracking-tighter">
-                   {revenueROIData.paybackPeriod.title}
-                 </span>
-               </div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
+              <span className="text-[10px] font-semibold text-gray-300 uppercase tracking-widest mb-3 relative z-10">
+                Breakeven Timeframe
+              </span>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full relative z-10">
+                <span className="text-[12px] sm:text-[14px] font-bold text-[#d4af37] tracking-tighter">
+                  {revenueROIData.paybackPeriod.title}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -568,7 +571,12 @@ export default function FranchiseModelsMobile() {
                         <span className="text-[13px] font-bold text-[#0b1b42] dark:text-white">
                           {staff.name}
                         </span>
-                        <span className={clsx("text-[10px] font-bold px-2 py-0.5 rounded-full", getStaffBadgeColor(idx))}>
+                        <span
+                          className={clsx(
+                            "text-[10px] font-bold px-2 py-0.5 rounded-full",
+                            getStaffBadgeColor(idx),
+                          )}
+                        >
                           {staff.count}x
                         </span>
                       </div>

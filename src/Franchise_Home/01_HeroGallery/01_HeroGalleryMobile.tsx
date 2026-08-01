@@ -39,7 +39,7 @@ export default function HeroGalleryMobile() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full bg-gradient-to-br from-[#FAFAFA] via-white to-[#f4f4f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 flex flex-col pt-0 pb-10 relative overflow-hidden"
+      className="w-full flex flex-col pt-0 pb-10 relative overflow-hidden bg-white dark:bg-gray-900"
     >
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div

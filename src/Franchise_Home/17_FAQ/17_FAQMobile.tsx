@@ -10,7 +10,7 @@ export default function FAQMobile() {
   );
 
   return (
-    <section className="w-full bg-gradient-to-tr from-[#fafafa] via-white to-[#f4f4f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-10 relative overflow-hidden ">
+    <section className="w-full px-4 py-10 relative overflow-hidden  bg-white dark:bg-gray-900">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[10%] -right-[10%] w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px] animate-pulse-soft" />
       </div>

@@ -102,7 +102,7 @@ export default function MediaGalleryDesktop() {
   }, [activeCategory, videos.length, images.length]);
 
   return (
-    <section className="w-full bg-gradient-to-tr from-white via-gray-50 to-[#f8f9fa] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 px-6 py-16 relative overflow-hidden">
+    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-[4px] blur-[100px] animate-pulse-soft" />
         <div

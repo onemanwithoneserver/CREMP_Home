@@ -11,7 +11,7 @@ export default function FullCycleSupportMobile() {
   const x = useRef(0);
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
-    const speed = 45; 
+    const speed = 45;
     x.current -= (speed * delta) / 1000;
     const loopWidth = marqueeRef.current.scrollWidth / 2;
     if (-x.current >= loopWidth) {
@@ -21,10 +21,13 @@ export default function FullCycleSupportMobile() {
   });
 
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 py-12 overflow-hidden relative">
+    <section className="w-full py-12 overflow-hidden relative bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[30%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float" />
-        <div className="absolute bottom-[30%] right-[-10%] w-64 h-64 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }} />
+        <div
+          className="absolute bottom-[30%] right-[-10%] w-64 h-64 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float"
+          style={{ animationDelay: "3s" }}
+        />
       </div>
       <div className="relative z-10 px-2 flex justify-center">
         <SectionHeader
@@ -55,7 +58,7 @@ export default function FullCycleSupportMobile() {
                     <div
                       className={clsx(
                         "w-12 h-12 rounded-xl flex items-center justify-center mb-3 shadow-sm",
-                        item.colorClass
+                        item.colorClass,
                       )}
                     >
                       <Icon size={20} strokeWidth={2.5} />

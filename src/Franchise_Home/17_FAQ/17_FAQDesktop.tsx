@@ -10,10 +10,13 @@ export default function FAQDesktop() {
   );
 
   return (
-    <section className="w-full bg-gradient-to-tr from-[#fafafa] via-white to-[#f4f4f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 py-12 px-6 relative overflow-hidden">
+    <section className="w-full py-12 px-6 relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-[#d4af37]/5 rounded-full blur-[120px] animate-pulse-soft" />
-        <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] animate-pulse-soft"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row pb-10 gap-8 relative z-10">

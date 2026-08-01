@@ -1,12 +1,6 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Info,
-  MapPin,
-  Maximize2,
-  Users,
-  Wallet,
-} from "lucide-react";
+import { Info, MapPin, Maximize2, Users, Wallet } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   franchiseModelsData,
@@ -181,15 +175,18 @@ export default function FranchiseModelsDesktop() {
       "text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/20",
       "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-500/20",
       "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-500/20",
-      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20"
+      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20",
     ];
     return colors[idx % colors.length];
   };
   return (
-    <section className="w-full bg-gradient-to-tr from-[#f8f9fa] via-white to-[#f1f5f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-8 py-16 flex flex-col gap-6 overflow-hidden min-h-screen relative">
+    <section className="w-full px-8 py-16 flex flex-col gap-6 overflow-hidden min-h-screen relative bg-white dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[10%] left-[0%] w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl animate-pulse-soft" />
-        <div className="absolute bottom-[20%] right-[-5%] w-96 h-96 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-[20%] right-[-5%] w-96 h-96 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       <svg width="0" height="0" className="absolute">
@@ -380,7 +377,19 @@ export default function FranchiseModelsDesktop() {
                                   className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
                                   aria-label="Close"
                                 >
-                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                  <svg
+                                    width="10"
+                                    height="10"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                  </svg>
                                 </button>
                               </h5>
                               <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto pr-2">
@@ -393,7 +402,12 @@ export default function FranchiseModelsDesktop() {
                                       <span className="text-xs font-semibold text-[#0b1b42]">
                                         {staff.name}
                                       </span>
-                                      <span className={clsx("text-[9px] font-bold px-1.5 py-0.5 rounded-full", getStaffBadgeColor(idx))}>
+                                      <span
+                                        className={clsx(
+                                          "text-[9px] font-bold px-1.5 py-0.5 rounded-full",
+                                          getStaffBadgeColor(idx),
+                                        )}
+                                      >
                                         {staff.count}x
                                       </span>
                                     </div>

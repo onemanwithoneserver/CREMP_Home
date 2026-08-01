@@ -21,10 +21,13 @@ const staggerContainer = {
 
 export default function LeadershipMobile() {
   return (
-    <section className="w-full bg-gradient-to-bl from-[#FAFAFA] via-white to-[#f4f4f9] dark:from-[#0b162c] dark:via-gray-900 dark:to-gray-950 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-16 relative overflow-hidden">
+    <section className="w-full px-4 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[10%] -right-[5%] w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px] animate-pulse-soft" />
-        <div className="absolute -bottom-[10%] -left-[5%] w-[300px] h-[300px] bg-primary/10 rounded-full blur-[80px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute -bottom-[10%] -left-[5%] w-[300px] h-[300px] bg-primary/10 rounded-full blur-[80px] animate-pulse-soft"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       <div className="relative z-10 flex flex-col items-center">
