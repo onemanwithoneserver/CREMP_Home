@@ -473,7 +473,7 @@ export default function FranchiseModelsDesktop() {
               return (
                 <div
                   key={card.year}
-                  className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4"
+                  className="p-4 transition-shadow flex items-center gap-4"
                 >
                   <div
                     className={clsx(

@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import {
-  getBadgeStyles,
   getCardStyles,
   getIconContainerStyles,
 } from "../utils/theme";
