@@ -1,14 +1,6 @@
 import { useState, useMemo } from "react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import clsx from "clsx";
-
-const pulseGlow: Variants = {
-  animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-  },
-};
 import { 
   CheckCircle2, 
   HelpCircle, 
@@ -19,6 +11,15 @@ import {
 } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
+
 
 export default function FAQMobile() {
   const [searchQuery, setSearchQuery] = useState<string>("");

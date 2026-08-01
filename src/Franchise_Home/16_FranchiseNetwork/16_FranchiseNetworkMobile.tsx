@@ -1,14 +1,6 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { motion, type Variants } from "framer-motion";
-
-const pulseGlow: Variants = {
-  animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-  },
-};
 import { 
   ChevronRight, 
   Download, 
@@ -18,6 +10,15 @@ import {
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+  },
+};
+
 
 export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);

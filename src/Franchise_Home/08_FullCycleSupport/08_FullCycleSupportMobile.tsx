@@ -64,7 +64,7 @@ export default function FullCycleSupportMobile() {
                 return (
                   <div
                     key={`${copy}-${idx}`}
-                    className="w-[160px] shrink-0 bg-white/95 dark:bg-[#121c33] backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 text-center flex flex-col items-center justify-center shadow-sm"
+                    className="relative hover:z-10 w-[160px] shrink-0 bg-white/95 dark:bg-[#121c33] backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 text-center flex flex-col items-center justify-center shadow-sm"
                   >
                     <div
                       className={clsx(

@@ -1,4 +1,9 @@
 import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { mediaGalleryData, type MediaItem } from "./data";
+import { SectionHeader } from "../components/SectionHeader";
+import { Play, FileText, Download, ImageIcon, ChevronLeft, ChevronRight, ChevronDown, Film, Smartphone, FileCheck2 } from "lucide-react";
+import clsx from "clsx";
 
 const pulseGlow: Variants = {
   animate: {
@@ -7,11 +12,7 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-import { useState, useRef, useEffect } from "react";
-import { mediaGalleryData, type MediaItem } from "./data";
-import { SectionHeader } from "../components/SectionHeader";
-import { Play, FileText, Download, ImageIcon, ChevronLeft, ChevronRight, ChevronDown, Film, Smartphone, FileCheck2 } from "lucide-react";
-import clsx from "clsx";
+
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },

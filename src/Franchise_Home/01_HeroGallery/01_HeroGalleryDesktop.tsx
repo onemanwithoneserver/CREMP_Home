@@ -92,7 +92,7 @@ export default function HeroGalleryDesktop() {
               </div>
             </div>
 
-            <div className="flex flex-row w-full mt-4 bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm overflow-hidden">
+            <div className="flex flex-row w-full mt-4 rounded-[4px] overflow-hidden">
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
                 <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0">
                   <Calendar size={16} className="text-white" />

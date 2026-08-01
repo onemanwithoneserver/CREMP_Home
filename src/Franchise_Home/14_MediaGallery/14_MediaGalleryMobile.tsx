@@ -1,12 +1,4 @@
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-
-const pulseGlow: Variants = {
-  animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-  },
-};
 import { useState, useRef, useEffect } from "react";
 import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -23,6 +15,15 @@ import {
   FileCheck2 
 } from "lucide-react";
 import clsx from "clsx";
+
+const pulseGlow: Variants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.3, 0.6, 0.3],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
+};
+
 
 export default function MediaGalleryMobile() {
   const [activeCategory, setActiveCategory] = useState("All");

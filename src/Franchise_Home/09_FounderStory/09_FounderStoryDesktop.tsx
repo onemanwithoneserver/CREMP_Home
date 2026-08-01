@@ -22,13 +22,7 @@ const fadeInUp: Variants = {
   },
 };
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
+
 
 function YoutubeIcon({ size = 18 }: { size?: number }) {
   return (
