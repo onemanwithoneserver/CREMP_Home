@@ -176,7 +176,15 @@ export default function FranchiseModelsDesktop() {
     return "text-white bg-gray-400";
   };
 
-
+  const getStaffBadgeColor = (idx: number) => {
+    const colors = [
+      "text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/20",
+      "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-500/20",
+      "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-500/20",
+      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20"
+    ];
+    return colors[idx % colors.length];
+  };
   return (
     <section className="w-full bg-gradient-to-tr from-[#f8f9fa] via-white to-[#f1f5f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-8 py-16 flex flex-col gap-6 overflow-hidden min-h-screen relative">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
@@ -283,10 +291,10 @@ export default function FranchiseModelsDesktop() {
                 </div>
               </div>
 
-              <div className="bg-white p-6 flex-1 relative border border-t-0 border-gray-200 rounded-b-xl">
+              <div className="bg-white p-6 flex-1 relative border border-t-0 border-gray-200 rounded-b-xl flex flex-col">
                 <div className="absolute left-[47px] top-10 bottom-10 w-px border-l-2 border-dashed border-gray-200 z-0" />
 
-                <div className="flex flex-col gap-6 relative z-10">
+                <div className="flex flex-col flex-1 justify-between relative z-10 py-2">
                   {[
                     {
                       icon: Wallet,
@@ -362,10 +370,20 @@ export default function FranchiseModelsDesktop() {
                             <div
                               className={`absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 transition-all duration-200 z-[9999] p-3 pointer-events-auto ${isStaffTooltipOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
                             >
-                              <h5 className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-100 pb-1.5 text-center">
+                              <h5 className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-100 pb-1.5 text-center relative">
                                 Staff Requirements
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsStaffTooltipOpen(false);
+                                  }}
+                                  className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
+                                  aria-label="Close"
+                                >
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
                               </h5>
-                              <div className="flex flex-col gap-2 max-h-48 overflow-y-auto scrollbar-hide">
+                              <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto pr-2">
                                 {selected.staffDetails?.map((staff, idx) => (
                                   <div
                                     key={idx}
@@ -375,7 +393,7 @@ export default function FranchiseModelsDesktop() {
                                       <span className="text-xs font-semibold text-[#0b1b42]">
                                         {staff.name}
                                       </span>
-                                      <span className="text-[9px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
+                                      <span className={clsx("text-[9px] font-bold px-1.5 py-0.5 rounded-full", getStaffBadgeColor(idx))}>
                                         {staff.count}x
                                       </span>
                                     </div>
@@ -429,12 +447,12 @@ export default function FranchiseModelsDesktop() {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-3 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col">
+        <div className="col-span-12 lg:col-span-3 bg-white border border-gray-100 rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col h-full">
           <span className="text-sm font-semibold uppercase tracking-widest text-[#0b1b42] mb-6">
             Break Even & Estimated ROI
           </span>
 
-          <div className="flex flex-col gap-4 flex-1 justify-center">
+          <div className="flex flex-col gap-4 flex-1 justify-between py-2">
             {revenueROIData.revenueCards.map((card: any) => {
               const Icon = card.icon;
               const colorClass = getRoiColor(card.intent);
@@ -462,6 +480,18 @@ export default function FranchiseModelsDesktop() {
                 </div>
               );
             })}
+
+            <div className="bg-[#0b1b42] border border-[#d4af37]/30 rounded-xl p-4 shadow-lg shadow-[#0b1b42]/20 flex items-center gap-4 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-gray-300 uppercase tracking-wider mb-0.5">
+                  Breakeven Timeframe
+                </span>
+                <p className="text-xl font-bold text-[#d4af37] tracking-tight">
+                  {revenueROIData.paybackPeriod.title}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

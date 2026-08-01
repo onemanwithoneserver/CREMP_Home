@@ -205,6 +205,16 @@ export default function FranchiseModelsMobile() {
     return "text-white bg-gray-400";
   };
 
+  const getStaffBadgeColor = (idx: number) => {
+    const colors = [
+      "text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/20",
+      "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-500/20",
+      "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-500/20",
+      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20"
+    ];
+    return colors[idx % colors.length];
+  };
+
   const tabsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -467,7 +477,7 @@ export default function FranchiseModelsMobile() {
             </span>
           </div>
 
-          <div className="grid grid-cols-3 gap-1 w-full mt-1">
+          <div className="grid grid-cols-2 gap-2 w-full mt-2">
             {revenueROIData.revenueCards.map((card: any) => {
               const Icon = card.icon;
               return (
@@ -495,6 +505,18 @@ export default function FranchiseModelsMobile() {
                 </div>
               );
             })}
+            
+            <div className="rounded-[4px] border border-[#d4af37]/30 shadow-[0_4px_12px_rgba(212,175,55,0.15)] p-3 bg-[#0b1b42] flex flex-col justify-between relative overflow-hidden">
+               <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
+               <span className="text-[10px] font-semibold text-gray-300 uppercase tracking-widest mb-3 relative z-10">
+                 Breakeven Timeframe
+               </span>
+               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full relative z-10">
+                 <span className="text-[12px] sm:text-[14px] font-bold text-[#d4af37] tracking-tighter">
+                   {revenueROIData.paybackPeriod.title}
+                 </span>
+               </div>
+            </div>
           </div>
         </div>
 
@@ -516,7 +538,7 @@ export default function FranchiseModelsMobile() {
               >
                 <button
                   onClick={() => setIsStaffModalOpen(false)}
-                  className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
+                  className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -536,7 +558,7 @@ export default function FranchiseModelsMobile() {
                 <h5 className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4 border-b border-gray-100 dark:border-gray-700 pb-2 text-center">
                   Staff Requirements
                 </h5>
-                <div className="flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-1 scrollbar-hide">
+                <div className="flex flex-col gap-3 max-h-[80vh] overflow-y-auto pr-2">
                   {selected.staffDetails?.map((staff, idx) => (
                     <div
                       key={idx}
@@ -546,7 +568,7 @@ export default function FranchiseModelsMobile() {
                         <span className="text-[13px] font-bold text-[#0b1b42] dark:text-white">
                           {staff.name}
                         </span>
-                        <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                        <span className={clsx("text-[10px] font-bold px-2 py-0.5 rounded-full", getStaffBadgeColor(idx))}>
                           {staff.count}x
                         </span>
                       </div>
