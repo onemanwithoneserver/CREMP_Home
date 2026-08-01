@@ -18,6 +18,8 @@ export default function FounderStoryMobile() {
       <div className="relative z-10 w-full">
         <SectionHeader
           overline={founderStoryData.sectionLabel}
+          title={founderStoryData.title}
+          subtitle={founderStoryData.subtitle}
           align="center"
         />
         <motion.div

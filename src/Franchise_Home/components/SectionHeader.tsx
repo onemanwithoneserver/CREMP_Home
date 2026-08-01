@@ -48,14 +48,6 @@ export function SectionHeader({
           )}
         </>
       )}
-
-      {subtitle && (
-        <p
-          className={`text-sm md:text-base text-gray-600 dark:text-gray-400 font-normal leading-relaxed mb-4 ${align === "center" ? "max-w-2xl mx-auto" : "max-w-2xl"}`}
-        >
-          {subtitle}
-        </p>
-      )}
     </motion.div>
   );
 }

@@ -18,6 +18,8 @@ export default function FounderStoryDesktop() {
       <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader
           overline={founderStoryData.sectionLabel}
+          title={founderStoryData.title}
+          subtitle={founderStoryData.subtitle}
           align="center"
         />
 

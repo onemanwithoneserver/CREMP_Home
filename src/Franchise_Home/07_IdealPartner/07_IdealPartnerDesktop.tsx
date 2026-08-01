@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import {
   getCardStyles,
   getIconContainerStyles,
+  getCheckBadgeStyles,
 } from "../utils/theme";
 import { idealPartnerData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -77,23 +78,34 @@ export default function IdealPartnerDesktop() {
                 </div>
 
                 <div className="flex flex-col gap-3 flex-1">
-                  {item.items.map((subItem, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-start gap-2.5 group/item cursor-default"
-                    >
-                      <div className="mt-[2px] shrink-0 transition-transform duration-300 group-hover/item:scale-110">
-                        <BadgeCheck
-                          size={16}
-                          className="text-gray-300 dark:text-gray-600 group-hover/item:text-[#d4af37] group-hover/item:drop-shadow-[0_0_6px_rgba(212,175,55,0.3)] transition-all duration-300"
-                          strokeWidth={2}
-                        />
+                  {item.items.map((subItem, idx) => {
+                    const badgeStyles = getCheckBadgeStyles(item.intent);
+                    return (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2.5 group/item cursor-default"
+                      >
+                        <div
+                          className={clsx(
+                            "mt-[2px] shrink-0 transition-transform duration-300 group-hover/item:scale-110 rounded-full p-0.5",
+                            badgeStyles.wrapper,
+                          )}
+                        >
+                          <BadgeCheck
+                            size={16}
+                            className={clsx(
+                              "text-gray-300 dark:text-gray-600 transition-all duration-300 group-hover/item:drop-shadow-md",
+                              badgeStyles.icon,
+                            )}
+                            strokeWidth={2}
+                          />
+                        </div>
+                        <span className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-snug group-hover/item:text-[#0b1b42] dark:group-hover/item:text-white transition-colors duration-300">
+                          {subItem}
+                        </span>
                       </div>
-                      <span className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-snug group-hover/item:text-[#0b1b42] dark:group-hover/item:text-white transition-colors duration-300">
-                        {subItem}
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </motion.div>
             );

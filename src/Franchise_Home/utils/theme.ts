@@ -96,3 +96,53 @@ export const getSolidBgStyles = (intent?: string) => {
       return "bg-white text-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.08)]";
   }
 };
+
+export const getCheckBadgeStyles = (intent?: string) => {
+  switch (intent) {
+    case "success":
+      return {
+        wrapper: "group-hover/item:bg-[#059669]/15 group-hover/item:ring-[#059669]/30",
+        icon: "group-hover/item:text-[#059669]",
+      };
+    case "info":
+      return {
+        wrapper: "group-hover/item:bg-[#0284c7]/15 group-hover/item:ring-[#0284c7]/30",
+        icon: "group-hover/item:text-[#0284c7]",
+      };
+    case "warning":
+      return {
+        wrapper: "group-hover/item:bg-[#d97706]/15 group-hover/item:ring-[#d97706]/30",
+        icon: "group-hover/item:text-[#d97706]",
+      };
+    case "danger":
+      return {
+        wrapper: "group-hover/item:bg-[#dc2626]/15 group-hover/item:ring-[#dc2626]/30",
+        icon: "group-hover/item:text-[#dc2626]",
+      };
+    case "primary":
+      return {
+        wrapper: "group-hover/item:bg-[#0b162c]/15 group-hover/item:ring-[#0b162c]/30",
+        icon: "group-hover/item:text-[#0b162c]",
+      };
+    case "violet":
+      return {
+        wrapper: "group-hover/item:bg-[#7c3aed]/15 group-hover/item:ring-[#7c3aed]/30",
+        icon: "group-hover/item:text-[#7c3aed]",
+      };
+    case "pink":
+      return {
+        wrapper: "group-hover/item:bg-[#e11d48]/15 group-hover/item:ring-[#e11d48]/30",
+        icon: "group-hover/item:text-[#e11d48]",
+      };
+    case "orange":
+      return {
+        wrapper: "group-hover/item:bg-[#ea580c]/15 group-hover/item:ring-[#ea580c]/30",
+        icon: "group-hover/item:text-[#ea580c]",
+      };
+    default:
+      return {
+        wrapper: "group-hover/item:bg-gray-500/15 group-hover/item:ring-gray-500/30",
+        icon: "group-hover/item:text-gray-500",
+      };
+  }
+};
