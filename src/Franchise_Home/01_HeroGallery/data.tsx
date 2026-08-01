@@ -26,28 +26,28 @@ export const heroData = {
       description: "Strong unit economics and scalable operations",
       icon: LineChart,
       colorClass:
-        "bg-gradient-to-br from-[#2E3192] to-[#1BFFFF] text-white shadow-md shadow-[#2E3192]/30",
+        "bg-gradient-to-br from-[#00F2FE] to-[#4FACFE] text-white shadow-md shadow-[#4FACFE]/30",
     },
     {
       title: "End-to-End Support",
       description: "Training, setup, marketing & ongoing operations",
       icon: Users,
       colorClass:
-        "bg-gradient-to-br from-[#662D8C] to-[#ED1E79] text-white shadow-md shadow-[#ED1E79]/30",
+        "bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white shadow-md shadow-[#7F00FF]/30",
     },
     {
       title: "Premium Quality",
       description: "Signature blends and high-quality ethical sourcing",
       icon: Coffee,
       colorClass:
-        "bg-gradient-to-br from-blue-600 to-blue-800 text-white shadow-md shadow-blue-700/30",
+        "bg-gradient-to-br from-[#00c6ff] to-[#0072ff] text-white shadow-md shadow-[#0072ff]/30",
     },
     {
       title: "Brand Recall",
       description: "Loved by communities across the nation",
       icon: Heart,
       colorClass:
-        "bg-gradient-to-br from-[#FF512F] to-[#DD2476] text-white shadow-md shadow-[#DD2476]/30",
+        "bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] text-white shadow-md shadow-[#4F46E5]/30",
     },
   ],
 };
