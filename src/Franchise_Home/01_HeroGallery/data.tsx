@@ -46,7 +46,7 @@ export const heroData = {
             title: "Premium Quality",
             description: "Signature blends and high-quality ethical sourcing",
             icon: Coffee,
-            colorClass: "bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-[#d4af37] border border-[#d4af37]/30 shadow-md shadow-[#d4af37]/20"
+            colorClass: "bg-gradient-to-br from-blue-600 to-blue-800 text-white shadow-md shadow-blue-700/30"
         },
         {
             title: "Brand Recall",
