@@ -4,6 +4,11 @@ import { mediaGalleryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { Play } from "lucide-react";
 
+import cafeInterior from "../../assets/cafe_interior.png";
+import topDownCups from "../../assets/top_down_cups.png";
+import coffeeBeans from "../../assets/coffee_beans.png";
+import coffeeEquipment from "../../assets/coffee_equipment.png";
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -62,7 +67,7 @@ export default function MediaGalleryDesktop() {
           variants={stagger}
           className="grid grid-cols-5 gap-3"
         >
-          {mediaGalleryData.items.map((item) => (
+          {mediaGalleryData.items.slice(0, 4).map((item) => (
             <motion.div
               key={item.id}
               variants={fadeInUp}
@@ -92,6 +97,26 @@ export default function MediaGalleryDesktop() {
               </div>
             </motion.div>
           ))}
+          <motion.div
+            variants={fadeInUp}
+            className="grid grid-cols-2 grid-rows-2 gap-3 aspect-[9/16]"
+          >
+            {[cafeInterior, topDownCups, coffeeBeans, coffeeEquipment].map(
+              (src, i) => (
+                <div
+                  key={i}
+                  className="relative group overflow-hidden rounded-2xl cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-lg transition-all"
+                >
+                  <img
+                    src={src}
+                    alt={`Uploaded Asset ${i + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+                </div>
+              ),
+            )}
+          </motion.div>
         </motion.div>
       </div>
     </section>

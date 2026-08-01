@@ -4,6 +4,11 @@ import { mediaGalleryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { Play } from "lucide-react";
 
+import cafeInterior from "../../assets/cafe_interior.png";
+import topDownCups from "../../assets/top_down_cups.png";
+import coffeeBeans from "../../assets/coffee_beans.png";
+import coffeeEquipment from "../../assets/coffee_equipment.png";
+
 export default function MediaGalleryMobile() {
   const [activeTab, setActiveTab] = useState(
     mediaGalleryData.tabs.find((t) => t.isDefault)?.id ||
@@ -36,7 +41,7 @@ export default function MediaGalleryMobile() {
         })}
       </div>
       <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-        {mediaGalleryData.items.map((item, idx) => (
+        {mediaGalleryData.items.slice(0, 4).map((item, idx) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -67,6 +72,21 @@ export default function MediaGalleryMobile() {
             </span>
           </motion.div>
         ))}
+        
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 4 * 0.05 }}
+          className="shrink-0 w-[140px] aspect-[9/16] grid grid-cols-2 grid-rows-2 gap-1.5"
+        >
+          {[cafeInterior, topDownCups, coffeeBeans, coffeeEquipment].map((src, i) => (
+            <div key={i} className="relative rounded-[4px] overflow-hidden shadow-sm">
+              <img src={src} className="w-full h-full object-cover" alt={`Asset ${i+1}`} />
+              <div className="absolute inset-0 bg-black/10" />
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
