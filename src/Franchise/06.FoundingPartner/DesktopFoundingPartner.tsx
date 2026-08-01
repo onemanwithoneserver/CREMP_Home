@@ -247,9 +247,7 @@ export default function DesktopFoundingPartner() {
                             </h3>
                         </div>
 
-                        {/* Thread-Like Benefits Timeline */}
                         <div className="relative mb-10 flex flex-1 flex-col gap-3">
-                            {/* Continuous Thread Line */}
                             <div className="pointer-events-none absolute left-[26px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-[#D4AF37]/20" />
 
                             {foundingData.benefits.map((benefit, idx) => (
@@ -266,17 +264,14 @@ export default function DesktopFoundingPartner() {
                                     whileHover={{ scale: 1.02 }}
                                     className="group relative flex w-full cursor-pointer items-center gap-4 rounded-[4px] p-3 px-4 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:hover:bg-[#121c33]/90"
                                 >
-                                    {/* Thread Node with Tick Mark */}
                                     <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37] group-hover:text-white dark:bg-[#0a1128] dark:group-hover:text-[#0a1128]">
                                         <Check size={12} strokeWidth={3} />
                                     </div>
 
-                                    {/* Benefit Icon */}
                                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 transition-all duration-300 group-hover:border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] group-hover:shadow-lg dark:border-gray-800 dark:bg-[#111827] dark:group-hover:border-[#D4AF37]/50 dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37]">
                                         <benefit.icon size={18} strokeWidth={1.5} />
                                     </div>
 
-                                    {/* Text */}
                                     <span className="text-[1.05rem] font-bold text-gray-900 transition-colors group-hover:text-[#D4AF37] dark:text-white dark:group-hover:text-[#D4AF37]">
                                         {benefit.text}
                                     </span>

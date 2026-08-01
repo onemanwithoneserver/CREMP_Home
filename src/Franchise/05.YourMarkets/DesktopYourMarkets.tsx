@@ -121,7 +121,7 @@ export default function DesktopYourMarkets() {
                             </h3>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-1">
+                        <div className="grid grid-cols-1 gap-4">
                             {marketData.benefits.map((benefit, idx) => (
                                 <motion.div
                                     key={idx}
@@ -131,7 +131,7 @@ export default function DesktopYourMarkets() {
                                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
                                         <benefit.icon size={15} strokeWidth={2.5} />
                                     </div>
-                                    <p className="text-base font-bold leading-snug text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
+                                    <p className="text-base font-semibold leading-snug text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
                                         {benefit.text}
                                     </p>
                                 </motion.div>

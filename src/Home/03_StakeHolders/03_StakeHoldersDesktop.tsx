@@ -62,7 +62,7 @@ export default function Desktop() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full bg-[#FAFAFA] transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#030811]"
+            className="relative w-full bg-[#FAFAFA] transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#0a1128]"
         >
             <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
                 <motion.div
