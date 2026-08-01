@@ -3,19 +3,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
-  Info,
-  MapPin,
-  Maximize2,
   MousePointerClick,
-  Users,
-  Wallet,
   Sparkles,
+  Users,
   X,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   franchiseModelsData,
+  franchiseModelsUI,
+  getModelSpecifications,
+  getRoiColor,
+  getStaffBadgeColor,
   revenueROIData,
+  viewOptions,
   type CostBreakdownItem,
 } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
@@ -151,7 +152,7 @@ const DonutChart = ({
           {totalValue}
         </span>
         <span className="text-[9px] text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-widest mt-0.5 relative z-10">
-          AVG. TOTAL
+          {franchiseModelsUI.avgTotalMobile}
         </span>
       </div>
 
@@ -193,34 +194,14 @@ export default function FranchiseModelsMobile() {
   const [viewType, setViewType] = useState<"chart" | "table">("chart");
   const [isStaffModalOpen, setIsStaffModalOpen] = useState(false);
 
-  const viewOptions = [
-    { value: "chart", label: "Pie Chart View" },
-    { value: "table", label: "Tabular View" },
-  ];
-
   const selected = franchiseModelsData.models.find(
     (m) => m.id === activeModel,
   )!;
 
-  const getRoiColor = (intent: string) => {
-    if (intent === "primary" || intent === "warning")
-      return "bg-[#d97706] text-white";
-    if (intent === "success")
-      return "bg-[#059669] text-white";
-    if (intent === "info")
-      return "bg-[#0284c7] text-white";
-    return "bg-[#7c3aed] text-white";
-  };
-
-  const getStaffBadgeColor = (idx: number) => {
-    const colors = [
-      "text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-900",
-      "text-blue-700 bg-blue-100 dark:text-blue-300 dark:bg-blue-900",
-      "text-orange-700 bg-orange-100 dark:text-orange-300 dark:bg-orange-900",
-      "text-purple-700 bg-purple-100 dark:text-purple-300 dark:bg-purple-900",
-    ];
-    return colors[idx % colors.length];
-  };
+  const specifications = useMemo(
+    () => getModelSpecifications(selected),
+    [selected],
+  );
 
   const tabsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -370,7 +351,7 @@ export default function FranchiseModelsMobile() {
                 />
                 <div className="flex items-center justify-center gap-1.5 mt-8 animate-bounce">
                   <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
-                    Tap segments for detail
+                    {franchiseModelsUI.tapSegmentsHint}
                   </span>
                   <MousePointerClick size={14} className="text-blue-500" />
                 </div>
@@ -424,33 +405,7 @@ export default function FranchiseModelsMobile() {
                       }}
                     />
                   </div>
-                  {[
-                    {
-                      icon: Wallet,
-                      label: "INVESTMENT",
-                      value: selected.investment,
-                      color: "bg-[#059669] text-white",
-                    },
-                    {
-                      icon: Maximize2,
-                      label: "AREA",
-                      value: selected.area,
-                      color: "bg-[#7c3aed] text-white",
-                    },
-                    {
-                      icon: Users,
-                      label: "STAFF",
-                      value: `${selected.staffCount} members`,
-                      color: "bg-[#d97706] text-white",
-                      extra: Info,
-                    },
-                    {
-                      icon: MapPin,
-                      label: "LOCATION",
-                      value: selected.location,
-                      color: "bg-[#0284c7] text-white",
-                    },
-                  ].map((stat, i) => (
+                  {specifications.map((stat, i) => (
                     <div
                       key={stat.label}
                       className="rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-3 bg-white dark:bg-gray-800 flex items-center justify-between gap-3 relative z-10"
@@ -467,7 +422,7 @@ export default function FranchiseModelsMobile() {
                         </motion.div>
                         <div className="flex flex-col">
                           <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                            {stat.label}
+                            {stat.mobileLabel || stat.label}
                           </span>
                           <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500">
                             Milestone 0{i + 1}
@@ -482,7 +437,7 @@ export default function FranchiseModelsMobile() {
                         {stat.extra && (
                           <button
                             onClick={() =>
-                              stat.label === "STAFF" &&
+                              stat.hasStaffModal &&
                               setIsStaffModalOpen(true)
                             }
                             className="w-6 h-6 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
@@ -502,7 +457,7 @@ export default function FranchiseModelsMobile() {
         <div className="p-2  flex flex-col gap-4 relative overflow-hidden">
           <div className="flex items-center justify-between">
             <span className="text-xs uppercase font-semibold tracking-wider text-[#0b1b42] dark:text-white">
-              Break Even & Estimated ROI
+              {revenueROIData.sectionLabel}
             </span>
           </div>
 
@@ -577,10 +532,10 @@ export default function FranchiseModelsMobile() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-semibold text-amber-500 uppercase tracking-widest">
-                    Destination • Breakeven
+                    {revenueROIData.paybackPeriod.destinationLabel}
                   </span>
                   <span className="text-[10px] text-gray-400">
-                    Full ROI Recovery
+                    {revenueROIData.paybackPeriod.mobileSubtitle}
                   </span>
                 </div>
               </div>
@@ -619,7 +574,7 @@ export default function FranchiseModelsMobile() {
                       <Users size={16} strokeWidth={2.5} />
                     </div>
                     <h5 className="text-sm font-semibold text-[#0b1b42] dark:text-white uppercase tracking-wider">
-                      Staff Requirements
+                      {franchiseModelsUI.staffRequirements}
                     </h5>
                   </div>
                   <button

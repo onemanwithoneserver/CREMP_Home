@@ -1,17 +1,13 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Info,
-  MapPin,
-  Maximize2,
-  Users,
-  Wallet,
-  Sparkles,
-  X,
-} from "lucide-react";
+import { Sparkles, Users, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   franchiseModelsData,
+  franchiseModelsUI,
+  getModelSpecifications,
+  getRoiColor,
+  getStaffBadgeColor,
   revenueROIData,
   type CostBreakdownItem,
 } from "./data";
@@ -147,7 +143,7 @@ const DonutChartWithLegend = ({
             {totalValue}
           </span>
           <span className="text-[10px] text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-wider mt-0.5 max-w-[85px] leading-tight relative z-10">
-            AVG. TOTAL INVESTMENT
+            {franchiseModelsUI.avgTotalInvestment}
           </span>
         </div>
       </div>
@@ -206,23 +202,10 @@ export default function FranchiseModelsDesktop() {
     (m) => m.id === activeModel,
   )!;
 
-  const getRoiColor = (intent: string) => {
-    if (intent === "primary" || intent === "warning")
-      return "bg-[#d97706] text-white";
-    if (intent === "success") return "bg-[#059669] text-white";
-    if (intent === "info") return "bg-[#0284c7] text-white";
-    return "bg-[#7c3aed] text-white";
-  };
-
-  const getStaffBadgeColor = (idx: number) => {
-    const colors = [
-      "text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-900",
-      "text-blue-700 bg-blue-100 dark:text-blue-300 dark:bg-blue-900",
-      "text-orange-700 bg-orange-100 dark:text-orange-300 dark:bg-orange-900",
-      "text-purple-700 bg-purple-100 dark:text-purple-300 dark:bg-purple-900",
-    ];
-    return colors[idx % colors.length];
-  };
+  const specifications = useMemo(
+    () => getModelSpecifications(selected),
+    [selected],
+  );
 
   return (
     <section className="w-full px-8 py-16 -pb-8 flex flex-col gap-6 relative bg-gray-50 dark:bg-gray-900">
@@ -323,7 +306,7 @@ export default function FranchiseModelsDesktop() {
                   </motion.div>
                   <div>
                     <span className="text-[10px] font-semibold text-[#d4af37] uppercase tracking-widest block">
-                      MODEL SPECIFICATIONS
+                      {franchiseModelsUI.specificationLabel}
                     </span>
                     <h3 className="text-lg font-semibold text-white leading-tight">
                       {selected.name}
@@ -333,7 +316,7 @@ export default function FranchiseModelsDesktop() {
               </div>
 
               <div className="p-6 flex-1 relative flex flex-col justify-between">
-                <div className="flex flex-col gap-3 relative z-10">
+                <div className="flex flex-col gap-6 relative z-10">
                   <div className="absolute left-[32px] -translate-x-1/2 top-[32px] bottom-[32px] w-[3px] pointer-events-none z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                     <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
@@ -351,33 +334,7 @@ export default function FranchiseModelsDesktop() {
                     />
                   </div>
 
-                  {[
-                    {
-                      icon: Wallet,
-                      label: "INVESTMENT",
-                      value: selected.investment,
-                      color: "bg-[#059669] text-white",
-                    },
-                    {
-                      icon: Maximize2,
-                      label: "AREA REQUIRED",
-                      value: selected.area,
-                      color: "bg-[#7c3aed] text-white",
-                    },
-                    {
-                      icon: Users,
-                      label: "STAFF NEEDED",
-                      value: `${selected.staffCount} members`,
-                      color: "bg-[#d97706] text-white",
-                      extra: Info,
-                    },
-                    {
-                      icon: MapPin,
-                      label: "IDEAL LOCATION",
-                      value: selected.location,
-                      color: "bg-[#0284c7] text-white",
-                    },
-                  ].map((stat) => (
+                  {specifications.map((stat) => (
                     <div
                       key={stat.label}
                       className="p-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 transition-colors duration-300 flex items-center gap-3.5 group cursor-default shadow-sm relative z-10"
@@ -399,21 +356,19 @@ export default function FranchiseModelsDesktop() {
                         <div
                           className="flex items-center gap-1.5 relative group/staff cursor-pointer"
                           onClick={() =>
-                            stat.label === "STAFF NEEDED" &&
+                            stat.hasStaffModal &&
                             setIsStaffTooltipOpen(!isStaffTooltipOpen)
                           }
                           onKeyDown={(e) => {
                             if (
-                              stat.label === "STAFF NEEDED" &&
+                              stat.hasStaffModal &&
                               (e.key === "Enter" || e.key === " ")
                             ) {
                               setIsStaffTooltipOpen(!isStaffTooltipOpen);
                               e.preventDefault();
                             }
                           }}
-                          tabIndex={
-                            stat.label === "STAFF NEEDED" ? 0 : undefined
-                          }
+                          tabIndex={stat.hasStaffModal ? 0 : undefined}
                           aria-expanded={isStaffTooltipOpen}
                         >
                           <span className="text-base font-semibold text-[#0b1b42] dark:text-white leading-tight group-hover/staff:text-blue-600 dark:group-hover/staff:text-blue-400 transition-colors">
@@ -427,93 +382,90 @@ export default function FranchiseModelsDesktop() {
                           )}
 
                           <AnimatePresence>
-                            {isStaffTooltipOpen &&
-                              stat.label === "STAFF NEEDED" && (
-                                <motion.div
-                                  initial={{
-                                    opacity: 0,
-                                    scale: 0.9,
-                                    y: 20,
-                                    filter: "blur(8px)",
-                                  }}
-                                  animate={{
-                                    opacity: 1,
-                                    scale: 1,
-                                    y: 0,
-                                    filter: "blur(0px)",
-                                  }}
-                                  exit={{
-                                    opacity: 0,
-                                    scale: 0.9,
-                                    y: 20,
-                                    filter: "blur(8px)",
-                                  }}
-                                  transition={{
-                                    type: "spring",
-                                    stiffness: 400,
-                                    damping: 30,
-                                    mass: 0.8,
-                                  }}
-                                  className="absolute left-[calc(100%+24px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-white/50 dark:border-white/10 z-[99999] p-6 pointer-events-auto cursor-default"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <div className="absolute bottom-12 -left-2 w-5 h-5 bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl border-l border-b border-white/50 dark:border-white/10 rotate-45 pointer-events-none" />
+                            {isStaffTooltipOpen && stat.hasStaffModal && (
+                              <motion.div
+                                initial={{
+                                  opacity: 0,
+                                  scale: 0.9,
+                                  y: 20,
+                                  filter: "blur(8px)",
+                                }}
+                                animate={{
+                                  opacity: 1,
+                                  scale: 1,
+                                  y: 0,
+                                  filter: "blur(0px)",
+                                }}
+                                exit={{
+                                  opacity: 0,
+                                  scale: 0.9,
+                                  y: 20,
+                                  filter: "blur(8px)",
+                                }}
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 400,
+                                  damping: 30,
+                                  mass: 0.8,
+                                }}
+                                className="absolute left-[calc(100%+24px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-white/50 dark:border-white/10 z-[99999] p-6 pointer-events-auto cursor-default"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <div className="absolute bottom-12 -left-2 w-5 h-5 bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl border-l border-b border-white/50 dark:border-white/10 rotate-45 pointer-events-none" />
 
-                                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-200/50 dark:border-gray-700/50 relative z-10">
-                                    <div className="flex items-center gap-3">
-                                      <div className="w-8 h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                                        <Users size={16} strokeWidth={2.5} />
-                                      </div>
-                                      <span className="text-sm font-semibold uppercase tracking-wider text-[#0b1b42] dark:text-white">
-                                        Staff Requirements
-                                      </span>
+                                <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-200/50 dark:border-gray-700/50 relative z-10">
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                      <Users size={16} strokeWidth={2.5} />
                                     </div>
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        setIsStaffTooltipOpen(false);
-                                      }}
-                                      className="w-7 h-7 rounded-full flex items-center justify-center bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800/80 dark:hover:bg-red-900/50 transition-colors"
-                                      aria-label="Close"
-                                    >
-                                      <X size={14} strokeWidth={2.5} />
-                                    </button>
+                                    <span className="text-sm font-semibold uppercase tracking-wider text-[#0b1b42] dark:text-white">
+                                      {franchiseModelsUI.staffRequirements}
+                                    </span>
                                   </div>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setIsStaffTooltipOpen(false);
+                                    }}
+                                    className="w-7 h-7 rounded-full flex items-center justify-center bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800/80 dark:hover:bg-red-900/50 transition-colors"
+                                    aria-label="Close"
+                                  >
+                                    <X size={14} strokeWidth={2.5} />
+                                  </button>
+                                </div>
 
-                                  <div className="flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2 relative z-10 scrollbar-thin">
-                                    {selected.staffDetails?.map(
-                                      (staff, idx) => (
-                                        <div
-                                          key={idx}
-                                          className="flex flex-col bg-white/50 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl p-4 border border-white/60 dark:border-white/5 shadow-sm"
+                                <div className="flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2 relative z-10 scrollbar-thin">
+                                  {selected.staffDetails?.map((staff, idx) => (
+                                    <div
+                                      key={idx}
+                                      className="flex flex-col bg-white/50 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl p-4 border border-white/60 dark:border-white/5 shadow-sm"
+                                    >
+                                      <div className="flex justify-between items-center mb-2">
+                                        <span className="text-sm font-semibold text-[#0b1b42] dark:text-white">
+                                          {staff.name}
+                                        </span>
+                                        <span
+                                          className={clsx(
+                                            "text-[10px] font-semibold px-2.5 py-1 rounded-full",
+                                            getStaffBadgeColor(idx),
+                                          )}
                                         >
-                                          <div className="flex justify-between items-center mb-2">
-                                            <span className="text-sm font-semibold text-[#0b1b42] dark:text-white">
-                                              {staff.name}
-                                            </span>
-                                            <span
-                                              className={clsx(
-                                                "text-[10px] font-semibold px-2.5 py-1 rounded-full",
-                                                getStaffBadgeColor(idx),
-                                              )}
-                                            >
-                                              {staff.count}x
-                                            </span>
-                                          </div>
-                                          <div className="flex gap-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
-                                            <span>{staff.type}</span>
-                                            <span>•</span>
-                                            <span>{staff.experience}</span>
-                                          </div>
-                                          <p className="text-xs font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
-                                            {staff.remarks}
-                                          </p>
-                                        </div>
-                                      ),
-                                    )}
-                                  </div>
-                                </motion.div>
-                              )}
+                                          {staff.count}x
+                                        </span>
+                                      </div>
+                                      <div className="flex gap-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                                        <span>{staff.type}</span>
+                                        <span>•</span>
+                                        <span>{staff.experience}</span>
+                                      </div>
+                                      <p className="text-xs font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
+                                        {staff.remarks}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
                           </AnimatePresence>
                         </div>
                       </div>
@@ -548,7 +500,7 @@ export default function FranchiseModelsDesktop() {
         <div className="col-span-12 lg:col-span-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm flex flex-col h-full relative overflow-hidden">
           <div className="flex items-center justify-between mb-5">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#0b1b42] dark:text-white">
-              Break Even & Estimated ROI
+              {revenueROIData.sectionLabel}
             </span>
           </div>
 
@@ -625,14 +577,14 @@ export default function FranchiseModelsDesktop() {
               <div className="flex flex-col relative z-10">
                 <div className="flex items-center gap-1.5 mb-0.5">
                   <span className="text-[10px] font-semibold text-amber-500 uppercase tracking-widest">
-                    Destination • Breakeven
+                    {revenueROIData.paybackPeriod.destinationLabel}
                   </span>
                 </div>
                 <p className="text-xl font-semibold text-white tracking-tight">
                   {revenueROIData.paybackPeriod.title}
                 </p>
                 <span className="text-[10px] font-medium text-gray-400">
-                  Target milestone for full investment recovery
+                  {revenueROIData.paybackPeriod.subtitle}
                 </span>
               </div>
             </div>

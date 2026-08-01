@@ -17,6 +17,12 @@ import {
   FileCheck,
   Target,
   TrendingUp,
+  Wallet,
+  Maximize2,
+  Users,
+  MapPin,
+  Info,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
@@ -34,6 +40,26 @@ export interface CostBreakdownItem {
   percentage: number;
   color: string;
   icon: LucideIcon;
+}
+
+export interface ModelSpecificationItem {
+  icon: LucideIcon;
+  label: string;
+  mobileLabel: string;
+  value: string;
+  color: string;
+  extra?: LucideIcon;
+  hasStaffModal?: boolean;
+}
+
+export interface RevenueCardItem {
+  icon: LucideIcon;
+  year: string;
+  label: string;
+  range: string;
+  description: string;
+  sublabel: string;
+  intent: "warning" | "success" | "info" | "primary";
 }
 
 export interface FranchiseModel {
@@ -517,6 +543,9 @@ export const revenueROIData = {
   paybackPeriod: {
     sectionLabel: "PAYBACK PERIOD",
     title: "18–24 Months",
+    destinationLabel: "Destination • Breakeven",
+    subtitle: "Target milestone for full investment recovery",
+    mobileSubtitle: "Full ROI Recovery",
     milestones: [
       { icon: FileCheck, label: "ROI Time Breakeven", status: "complete" },
       { icon: Award, label: "ROI: Staff Settled", status: "complete" },
@@ -524,4 +553,79 @@ export const revenueROIData = {
       { icon: Target, label: "ROI: Full Payback", status: "upcoming" },
     ],
   },
+};
+
+export const getModelSpecifications = (
+  model: FranchiseModel,
+): ModelSpecificationItem[] => [
+  {
+    icon: Wallet,
+    label: "INVESTMENT",
+    mobileLabel: "INVESTMENT",
+    value: model.investment,
+    color: "bg-[#059669] text-white",
+  },
+  {
+    icon: Maximize2,
+    label: "AREA REQUIRED",
+    mobileLabel: "AREA",
+    value: model.area,
+    color: "bg-[#7c3aed] text-white",
+  },
+  {
+    icon: Users,
+    label: "STAFF NEEDED",
+    mobileLabel: "STAFF",
+    value: `${model.staffCount} members`,
+    color: "bg-[#d97706] text-white",
+    extra: Info,
+    hasStaffModal: true,
+  },
+  {
+    icon: MapPin,
+    label: "IDEAL LOCATION",
+    mobileLabel: "LOCATION",
+    value: model.location,
+    color: "bg-[#0284c7] text-white",
+  },
+];
+
+export const getRoiColor = (intent: string) => {
+  if (intent === "primary" || intent === "warning")
+    return "bg-[#d97706] text-white";
+  if (intent === "success") return "bg-[#059669] text-white";
+  if (intent === "info") return "bg-[#0284c7] text-white";
+  return "bg-[#7c3aed] text-white";
+};
+
+export const staffBadgeColors = [
+  "text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-900",
+  "text-blue-700 bg-blue-100 dark:text-blue-300 dark:bg-blue-900",
+  "text-orange-700 bg-orange-100 dark:text-orange-300 dark:bg-orange-900",
+  "text-purple-700 bg-purple-100 dark:text-purple-300 dark:bg-purple-900",
+];
+
+export const getStaffBadgeColor = (idx: number) => {
+  return staffBadgeColors[idx % staffBadgeColors.length];
+};
+
+export const viewOptions = [
+  { value: "chart", label: "Pie Chart View" },
+  { value: "table", label: "Tabular View" },
+];
+
+export const franchiseModelsUI = {
+  specificationLabel: "MODEL SPECIFICATIONS",
+  avgTotalInvestment: "AVG. TOTAL INVESTMENT",
+  avgTotalMobile: "AVG. TOTAL",
+  staffRequirements: "Staff Requirements",
+  roiTitle: "Break Even & Estimated ROI",
+  destinationBreakeven: "Destination • Breakeven",
+  recoverySubtitle: "Target milestone for full investment recovery",
+  mobileRecoverySubtitle: "Full ROI Recovery",
+  tapSegmentsHint: "Tap segments for detail",
+  totalAvg: "Total Avg",
+  category: "Category",
+  amount: "Amount",
+  percentage: "%",
 };
