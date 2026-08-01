@@ -230,7 +230,7 @@ export default function FranchiseModelsDesktop() {
                 {isActive && (
                   <motion.div
                     layoutId="activeModelIndicator"
-                    className="absolute inset-0 bg-[#0b1b42] dark:bg-gray-700 rounded-xl shadow-md"
+                    className="absolute inset-0 bg-[#0a1128] dark:bg-gray-700 rounded-xl shadow-md"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -294,7 +294,7 @@ export default function FranchiseModelsDesktop() {
               transition={{ duration: 0.3 }}
               className="flex flex-col h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm relative overflow-visible"
             >
-              <div className="bg-[#0b1b42] dark:bg-gray-900 p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-2xl">
+              <div className="bg-[#0a1128] dark:bg-gray-900 p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-2xl">
                 <div className="flex items-center gap-3 relative z-10">
                   <motion.div
                     initial={{ rotate: -90, opacity: 0 }}
@@ -559,7 +559,7 @@ export default function FranchiseModelsDesktop() {
               })}
             </div>
 
-            <div className="mt-4 bg-[#0b1b42] dark:bg-gray-900 border border-[#d4af37]/40 rounded-2xl p-4 shadow-md flex items-center gap-3.5 relative overflow-hidden group z-10 cursor-default">
+            <div className="mt-4 bg-[#0a1128] dark:bg-gray-900 border border-[#d4af37]/40 rounded-2xl p-4 shadow-md flex items-center gap-3.5 relative overflow-hidden group z-10 cursor-default">
               <div className="relative shrink-0">
                 <motion.div
                   animate={{ rotate: [0, 15, -15, 0] }}

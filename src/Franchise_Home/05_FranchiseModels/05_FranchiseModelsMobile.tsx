@@ -267,7 +267,7 @@ export default function FranchiseModelsMobile() {
                 {isActive && (
                   <motion.div
                     layoutId="mobileTabActive"
-                    className="absolute inset-0 bg-[#0b1b42] dark:bg-gray-700 rounded-xl shadow-md"
+                    className="absolute inset-0 bg-[#0a1128] dark:bg-gray-700 rounded-xl shadow-md"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -515,7 +515,7 @@ export default function FranchiseModelsMobile() {
               })}
             </div>
 
-            <div className="mt-3 bg-[#0b1b42] dark:bg-gray-900 border border-[#d4af37]/40 rounded-2xl p-4 shadow-md flex items-center justify-between gap-3 relative overflow-hidden z-10">
+            <div className="mt-3 bg-[#0a1128] dark:bg-gray-900 border border-[#d4af37]/40 rounded-2xl p-4 shadow-md flex items-center justify-between gap-3 relative overflow-hidden z-10">
               <div className="flex items-center gap-3 relative z-10">
                 <div className="relative shrink-0">
                   <motion.div

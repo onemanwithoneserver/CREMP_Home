@@ -28,9 +28,9 @@ export default function FounderStoryDesktop() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="bg-[#0a1128] border border-[#2a2d45] rounded-2xl p-10 flex gap-10 shadow-[0_16px_50px_rgb(0,0,0,0.12)]"
-        >
+        > 
           <div className="flex-1">
-            <Quote
+            <Quote 
               size={40}
               strokeWidth={1.5}
               className="text-[#d4af37] mb-6"

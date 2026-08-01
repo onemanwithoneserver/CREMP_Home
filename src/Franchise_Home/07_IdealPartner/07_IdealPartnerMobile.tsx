@@ -167,7 +167,7 @@ export default function IdealPartnerMobile() {
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 10 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="w-10 h-10 rounded-xl bg-[#0b1b42] dark:bg-gray-700 text-white flex items-center justify-center shrink-0 shadow-sm"
+                className="w-10 h-10 rounded-xl bg-[#0a1128] dark:bg-gray-700 text-white flex items-center justify-center shrink-0 shadow-sm"
               >
                 <idealPartnerData.additionalExpectations.icon
                   size={18}
