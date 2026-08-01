@@ -67,7 +67,7 @@ export default function DesktopCategories() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     className="mb-20 flex max-w-4xl flex-col items-center text-center"
                 >
                     <motion.div
@@ -102,7 +102,7 @@ export default function DesktopCategories() {
                     variants={staggerGrid}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     className="mb-20 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 xl:gap-6"
                 >
                     {categoriesData.categories.map((category, idx) => (
@@ -138,7 +138,7 @@ export default function DesktopCategories() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="flex w-full flex-col items-center gap-8"
                 >

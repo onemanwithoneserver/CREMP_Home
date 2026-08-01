@@ -10,7 +10,7 @@ export default function DesktopHowItWorks() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="mb-4 inline-flex items-center justify-center"
                     >
                         <span className="rounded-[8px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
@@ -20,7 +20,7 @@ export default function DesktopHowItWorks() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.1 }}
                         className="mb-6 text-[3rem] font-black leading-tight text-gray-900 dark:text-white"
                     >
@@ -32,7 +32,7 @@ export default function DesktopHowItWorks() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.2 }}
                         className="mx-auto max-w-2xl text-[1.1rem] leading-relaxed text-gray-600 dark:text-gray-400"
                     >
@@ -51,7 +51,7 @@ export default function DesktopHowItWorks() {
                                     key={idx}
                                     initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-100px" }}
+                                    viewport={{ once: false, margin: "-100px" }}
                                     transition={{ type: "spring", stiffness: 200, damping: 25 }}
                                     className={`flex w-full items-center justify-between ${isEven ? "flex-row" : "flex-row-reverse"}`}
                                 >

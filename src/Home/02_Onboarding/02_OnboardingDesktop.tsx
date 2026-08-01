@@ -184,7 +184,7 @@ export default function Desktop() {
                                     opacity: { duration: 1 },
                                     rotate: { repeat: Infinity, duration: 60, ease: "linear" },
                                 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="absolute inset-0 rounded-full border border-dashed border-gray-800/80"
                             />
 
@@ -192,7 +192,7 @@ export default function Desktop() {
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 transition={{ duration: 1, delay: 0.2 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="absolute inset-[9%] rounded-full border border-gray-700/30"
                             />
 
@@ -204,7 +204,7 @@ export default function Desktop() {
                                     opacity: { duration: 1, delay: 0.4 },
                                     rotate: { repeat: Infinity, duration: 30, ease: "linear" },
                                 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="absolute inset-[18%] rounded-full border border-[#121c33]"
                             >
                                 <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
@@ -217,7 +217,7 @@ export default function Desktop() {
                                 initial={{ scale: 0 }}
                                 whileInView={{ scale: 1 }}
                                 transition={{ type: "spring", duration: 1, delay: 0.6 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-gray-800 dark:border-white bg-[#0a1128] dark:bg-white shadow-[0_0_20px_rgba(246,178,59,0.1)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#0a0f25] dark:before:from-white/50 before:to-transparent group-hover/orbit:shadow-[0_0_30px_rgba(246,178,59,0.15)]"
                             >
                                 <div className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37]/10 opacity-20 duration-[3000ms]" />
@@ -258,7 +258,7 @@ export default function Desktop() {
                                                 duration: 0.6,
                                                 delay: 0.8 + index * 0.1,
                                             }}
-                                            viewport={{ once: true }}
+                                            viewport={{ once: false }}
                                             className="absolute flex flex-col items-center justify-center"
                                             style={{ left: `${x}%`, top: `${y}%` }}
                                         >
@@ -308,7 +308,7 @@ export default function Desktop() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ ...springAnim, delay: 0.6 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-800 bg-[#121c33] px-6 py-4 shadow-lg lg:flex-row"
                     >
                         <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-gray-200">

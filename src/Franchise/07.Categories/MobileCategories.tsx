@@ -64,7 +64,7 @@ export default function MobileCategories() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="mb-8 flex flex-col items-center text-center"
                 >
                     <motion.div
@@ -99,7 +99,7 @@ export default function MobileCategories() {
                     variants={staggerGrid}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="mb-8 grid w-full grid-cols-2 gap-3 sm:grid-cols-3"
                 >
                     {categoriesData.categories.map((category, idx) => (
@@ -129,7 +129,7 @@ export default function MobileCategories() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="flex w-full flex-col items-center gap-6"
                 >

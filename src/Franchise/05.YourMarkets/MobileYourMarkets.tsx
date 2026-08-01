@@ -59,7 +59,7 @@ export default function MobileYourMarkets() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-full flex-col items-center justify-center"
                     >
                         <motion.div
@@ -107,7 +107,7 @@ export default function MobileYourMarkets() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             className="relative h-full w-full overflow-hidden rounded-[8px] bg-[#0A0F1C] shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
                         >
@@ -140,7 +140,7 @@ export default function MobileYourMarkets() {
                                         key={idx}
                                         initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         transition={{
                                             duration: 0.8,
                                             delay: 0.5 + idx * 0.15,
@@ -274,7 +274,7 @@ export default function MobileYourMarkets() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
                         className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-3 py-4 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#121c33]"
                     >

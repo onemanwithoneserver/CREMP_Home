@@ -43,7 +43,7 @@ export default function DesktopGrowthStages() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-full max-w-4xl flex-col items-center justify-center"
                     >
                         <motion.div
@@ -83,7 +83,7 @@ export default function DesktopGrowthStages() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     className="grid grid-cols-1 gap-8 md:grid-cols-3"
                 >
                     {growthStagesData.stages.map((stage) => {

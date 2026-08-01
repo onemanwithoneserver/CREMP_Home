@@ -14,7 +14,7 @@ export default function DesktopDeveloperProfile() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="mb-4 inline-flex items-center justify-center"
                     >
                         <span className="rounded-[8px] bg-[#D4AF37]/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
@@ -24,7 +24,7 @@ export default function DesktopDeveloperProfile() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.1 }}
                         className="mb-6 text-[3rem] font-black leading-tight text-gray-900 dark:text-white"
                     >
@@ -36,7 +36,7 @@ export default function DesktopDeveloperProfile() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.2 }}
                         className="mx-auto max-w-2xl text-[1.1rem] leading-relaxed text-gray-600 dark:text-gray-400"
                     >

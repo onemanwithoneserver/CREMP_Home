@@ -105,7 +105,7 @@ export default function DashboardShowcase() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-full flex-col justify-center lg:w-[45%]"
                     >
                         <motion.div variants={fadeInUp}>
@@ -192,7 +192,7 @@ export default function DashboardShowcase() {
                             variants={floatAnimation}
                             initial="hidden"
                             whileInView={["show", "animate"]}
-                            viewport={{ once: true, margin: "-50px" }}
+                            viewport={{ once: false, margin: "-50px" }}
                             className="relative flex h-[500px] w-full max-w-[600px] items-center justify-center lg:translate-x-4 xl:translate-x-8"
                         >
                             {items.map((item) => {

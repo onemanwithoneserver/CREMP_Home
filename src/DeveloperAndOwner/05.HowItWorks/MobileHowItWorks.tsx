@@ -24,7 +24,7 @@ export default function MobileHowItWorks() {
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="relative z-10 flex flex-col"
             >
                 <div className="mb-10 text-center">

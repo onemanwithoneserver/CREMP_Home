@@ -43,7 +43,7 @@ export default function MobileYourInvestors() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-full flex-col items-center"
                     >
                         <motion.div
@@ -89,7 +89,7 @@ export default function MobileYourInvestors() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 250, damping: 25 }}
                         className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-gray-50 p-6 text-center shadow-md dark:border-gray-800/50 dark:bg-[#121c33]"
                     >
@@ -137,7 +137,7 @@ export default function MobileYourInvestors() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{
                             type: "spring",
                             stiffness: 250,

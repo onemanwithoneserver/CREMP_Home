@@ -49,7 +49,7 @@ export default function MobileStakeHolder1() {
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 className="rounded-[4px] bg-slate-50 dark:bg-slate-900/40 relative shadow-sm border border-slate-200 dark:border-slate-800 w-full flex flex-col overflow-hidden"
             >
                 <div className="absolute top-0 right-0 w-full h-48 pointer-events-none opacity-40 dark:opacity-20">
@@ -134,7 +134,7 @@ export default function MobileStakeHolder1() {
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 className="rounded-[4px] bg-white dark:bg-slate-900 overflow-hidden p-5 flex flex-col gap-6 relative shadow-sm border border-cyan-100 dark:border-slate-800 w-full"
             >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.05),transparent_60%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.15),transparent_60%)] pointer-events-none"></div>
@@ -231,7 +231,7 @@ export default function MobileStakeHolder1() {
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 className="rounded-[4px] bg-emerald-50 dark:bg-emerald-950/20 overflow-hidden flex flex-col relative shadow-sm border border-emerald-100 dark:border-emerald-900/30 w-full"
             >
                 <div className="p-5 flex flex-col gap-6 z-10 w-full">

@@ -55,7 +55,7 @@ export default function MobileFoundingPartner() {
                         <motion.div
                             initial="hidden"
                             whileInView="show"
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             variants={staggerContainer}
                             className="flex flex-col items-center"
                         >
@@ -91,7 +91,7 @@ export default function MobileFoundingPartner() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: "-50px" }}
+                            viewport={{ once: false, margin: "-50px" }}
                             transition={{
                                 duration: 0.8,
                                 delay: 0.2,
@@ -152,7 +152,7 @@ export default function MobileFoundingPartner() {
                                             key={idx}
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
+                                            viewport={{ once: false }}
                                             transition={{
                                                 duration: 0.5,
                                                 delay: 0.6 + idx * 0.1,
@@ -245,7 +245,7 @@ export default function MobileFoundingPartner() {
                                     key={idx}
                                     initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
+                                    viewport={{ once: false }}
                                     transition={{
                                         duration: 0.5,
                                         delay: 0.2 + idx * 0.08,

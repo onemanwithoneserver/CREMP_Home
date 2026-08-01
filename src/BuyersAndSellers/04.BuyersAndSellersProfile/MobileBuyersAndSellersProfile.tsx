@@ -28,7 +28,7 @@ export default function MobileBuyersAndSellersProfile() {
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="relative z-10 flex flex-col items-center"
             >
                 <div className="mb-8 text-center">

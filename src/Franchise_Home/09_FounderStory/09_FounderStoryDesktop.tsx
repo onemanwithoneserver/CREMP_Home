@@ -73,7 +73,7 @@ export default function FounderStoryDesktop() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             className="lg:col-span-3 relative rounded-[8px] overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-[#0a1128] h-full"
           >
@@ -148,7 +148,7 @@ export default function FounderStoryDesktop() {
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  viewport={{ once: false, margin: "-50px" }}
                   transition={{
                     duration: 0.5,
                     delay: idx * 0.15 + 0.3,

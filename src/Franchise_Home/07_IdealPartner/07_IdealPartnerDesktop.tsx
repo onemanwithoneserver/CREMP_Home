@@ -46,7 +46,7 @@ export default function IdealPartnerDesktop() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           variants={stagger}
           className="grid grid-cols-3 gap-4 mt-6 mb-4"
         >
@@ -115,7 +115,7 @@ export default function IdealPartnerDesktop() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           variants={stagger}
           className="grid grid-cols-3 gap-4 mb-4"
         >
@@ -156,7 +156,7 @@ export default function IdealPartnerDesktop() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           variants={stagger}
           className="w-full"
         >

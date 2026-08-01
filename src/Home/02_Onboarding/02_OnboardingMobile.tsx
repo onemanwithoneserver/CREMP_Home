@@ -144,7 +144,7 @@ export default function Mobile() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ ...springAnim, delay: 0.4 }}
-                    viewport={{ once: true, margin: "-20px" }}
+                    viewport={{ once: false, margin: "-20px" }}
                     className="relative mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#121c33]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
                 >
                     <div
@@ -169,7 +169,7 @@ export default function Mobile() {
                                     opacity: { duration: 1 },
                                     rotate: { repeat: Infinity, duration: 60, ease: "linear" },
                                 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="absolute inset-0 rounded-full border border-dashed border-gray-800/80 dark:border-gray-500/50"
                             />
 
@@ -177,7 +177,7 @@ export default function Mobile() {
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 transition={{ duration: 1, delay: 0.2 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="absolute inset-[12%] rounded-full border border-gray-700/30 dark:border-gray-400/30"
                             />
 
@@ -189,7 +189,7 @@ export default function Mobile() {
                                     opacity: { duration: 1, delay: 0.4 },
                                     rotate: { repeat: Infinity, duration: 30, ease: "linear" },
                                 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="absolute inset-[24%] rounded-full border border-[#121c33] dark:border-gray-600/50"
                             >
                                 <div className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
@@ -202,7 +202,7 @@ export default function Mobile() {
                                 initial={{ scale: 0 }}
                                 whileInView={{ scale: 1 }}
                                 transition={{ type: "spring", duration: 1, delay: 0.6 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="relative z-10 flex h-[35%] w-[35%] flex-col items-center justify-center rounded-full border border-gray-800 dark:border-white bg-[#0a1128] dark:bg-white shadow-[0_0_15px_rgba(246,178,59,0.15)] before:absolute before:inset-[-6px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#0a0f25] dark:before:from-white/50 before:to-transparent"
                             >
                                 <div className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37]/10 opacity-20 duration-[3000ms]" />
@@ -242,7 +242,7 @@ export default function Mobile() {
                                                 duration: 0.6,
                                                 delay: 0.8 + index * 0.1,
                                             }}
-                                            viewport={{ once: true }}
+                                            viewport={{ once: false }}
                                             className="absolute flex flex-col items-center justify-center"
                                             style={{ left: `${x}%`, top: `${y}%` }}
                                         >
@@ -308,7 +308,7 @@ export default function Mobile() {
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ ...springAnim, delay: 0.5 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-800 bg-[#121c33] p-5 shadow-lg"
                 >
                     <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-200">
@@ -322,7 +322,7 @@ export default function Mobile() {
                                 initial={{ opacity: 0, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ ...springAnim, delay: 0.6 + idx * 0.1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 className="flex items-center gap-3"
                             >
                                 <div className="flex-shrink-0 rounded-full border border-gray-700 bg-[#121c33] p-1.5 text-orange-400 shadow-sm">

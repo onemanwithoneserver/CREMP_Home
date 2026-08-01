@@ -27,7 +27,7 @@ export default function MobileWhyInvest() {
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 className="relative z-10 flex flex-col gap-6"
             >
                 <div className="mb-4 flex flex-col items-center text-center">

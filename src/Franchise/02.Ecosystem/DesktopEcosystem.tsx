@@ -71,7 +71,7 @@ export default function DesktopEcosystem() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-[46%] flex-col pt-2"
                     >
                         <motion.div
@@ -136,7 +136,7 @@ export default function DesktopEcosystem() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: "-50px" }}
+                            viewport={{ once: false, margin: "-50px" }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             className="relative flex flex-col items-center"
                         >
@@ -146,7 +146,7 @@ export default function DesktopEcosystem() {
                                         key={idx}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         whileHover={{ y: -8, scale: 1.02 }}
                                         transition={{
                                             delay: 0.1 + idx * 0.15,
@@ -213,7 +213,7 @@ export default function DesktopEcosystem() {
                                         variants={drawLine}
                                         initial="hidden"
                                         whileInView="show"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         d="M 50,0 C 50,45 300,55 300,90"
                                         fill="none"
                                         stroke="url(#gold-line-grad)"
@@ -224,7 +224,7 @@ export default function DesktopEcosystem() {
                                         variants={drawLine}
                                         initial="hidden"
                                         whileInView="show"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         d="M 217,0 C 217,45 300,55 300,90"
                                         fill="none"
                                         stroke="url(#gold-line-grad)"
@@ -235,7 +235,7 @@ export default function DesktopEcosystem() {
                                         variants={drawLine}
                                         initial="hidden"
                                         whileInView="show"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         d="M 383,0 C 383,45 300,55 300,90"
                                         fill="none"
                                         stroke="url(#gold-line-grad)"
@@ -246,7 +246,7 @@ export default function DesktopEcosystem() {
                                         variants={drawLine}
                                         initial="hidden"
                                         whileInView="show"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         d="M 550,0 C 550,45 300,55 300,90"
                                         fill="none"
                                         stroke="url(#gold-line-grad)"
@@ -267,7 +267,7 @@ export default function DesktopEcosystem() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 variants={floatAnimation}
                                 animate="animate"
                                 className="relative z-10 -mt-[14px] flex w-[240px] items-center justify-center gap-5 rounded-[8px] bg-gradient-to-br from-[#0f172a] to-[#020617] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#0a1128]"
@@ -303,7 +303,7 @@ export default function DesktopEcosystem() {
                 <motion.div
                     initial={{ opacity: 0, y: 20, scale: 0.98 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     whileHover={{ y: -4, boxShadow: "0 25px 50px rgba(0,0,0,0.3)" }}
                     transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
                     className="relative flex w-full cursor-pointer items-center gap-4 overflow-hidden rounded-[8px] border border-gray-200 bg-white/60 p-5 shadow-sm backdrop-blur-xl transition-all dark:border-gray-800 dark:bg-[#121c33]/60"

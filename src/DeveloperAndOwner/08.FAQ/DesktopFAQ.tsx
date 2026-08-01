@@ -34,7 +34,7 @@ export default function DesktopFAQ() {
                             variants={staggerContainer}
                             initial="hidden"
                             whileInView="show"
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             className="mb-10"
                         >
                             <motion.div variants={fadeInUp} className="mb-4">
@@ -66,7 +66,7 @@ export default function DesktopFAQ() {
                                         key={idx}
                                         initial={{ opacity: 0, y: 15 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         transition={{ delay: idx * 0.05 }}
                                         className="border-b border-gray-200 dark:border-gray-800"
                                     >
@@ -111,7 +111,7 @@ export default function DesktopFAQ() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{ duration: 0.6 }}
                             className="sticky top-32 flex flex-col items-center justify-center gap-8 rounded-[8px] bg-[#0a1128] p-12 text-center shadow-2xl relative overflow-hidden"
                         >

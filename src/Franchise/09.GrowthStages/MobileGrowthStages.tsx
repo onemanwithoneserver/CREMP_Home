@@ -43,7 +43,7 @@ export default function MobileGrowthStages() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-full flex-col items-center"
                     >
                         <motion.div variants={fadeInUp}>
@@ -79,7 +79,7 @@ export default function MobileGrowthStages() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="grid w-full grid-cols-1 gap-6"
                     >
                         {growthStagesData.stages.map((stage) => {

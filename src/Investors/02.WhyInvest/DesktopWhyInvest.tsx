@@ -37,7 +37,7 @@ export default function DesktopWhyInvest() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: false, margin: "-100px" }}
                     className="mb-16 flex flex-col items-center text-center"
                 >
                     <motion.div variants={fadeInUp} className="mb-4">
@@ -60,7 +60,7 @@ export default function DesktopWhyInvest() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: false, margin: "-100px" }}
                     className="grid grid-cols-12 grid-rows-2 gap-6 h-[500px]"
                 >
                     <motion.div

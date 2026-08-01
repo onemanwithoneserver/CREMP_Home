@@ -40,7 +40,7 @@ export default function MobileFAQ() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className={`group relative overflow-hidden rounded-[4px] border bg-white/60 p-3.5 shadow-sm backdrop-blur-md transition-all dark:bg-gray-900/40 ${isOpen
                         ? "border-[#D4AF37]/40 bg-white dark:border-[#D4AF37]/40 dark:bg-gray-800/80"
                         : "border-gray-200/60 dark:border-gray-800/60"
@@ -122,7 +122,7 @@ export default function MobileFAQ() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     className="mb-8 flex flex-col items-center text-center"
                 >
                     <motion.div
@@ -161,7 +161,7 @@ export default function MobileFAQ() {
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
                     className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-[8px] bg-gradient-to-br from-[#121c33] to-[#0a1128] p-8 shadow-2xl ring-1 ring-white/10 text-center"
                 >

@@ -37,7 +37,7 @@ export default function DesktopOpportunities() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: false, margin: "-100px" }}
                         className="w-1/2"
                     >
                         <motion.div variants={fadeRight} className="mb-4">
@@ -77,7 +77,7 @@ export default function DesktopOpportunities() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.8 }}
                         className="relative w-1/2 flex items-center justify-center"
                     >
@@ -107,7 +107,7 @@ export default function DesktopOpportunities() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     className="grid grid-cols-4 gap-4 mt-12"
                 >
                     {opportunitiesData.showcaseMenu.map((item, idx) => (

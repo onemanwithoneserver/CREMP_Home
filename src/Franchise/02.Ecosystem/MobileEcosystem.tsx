@@ -74,7 +74,7 @@ export default function MobileEcosystem() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: false, margin: "-50px" }}
                         className="flex w-full flex-col items-start"
                     >
                         <motion.div variants={fadeInUp} className="mb-3">
@@ -131,7 +131,7 @@ export default function MobileEcosystem() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{ duration: 0.6 }}
                             className="relative flex w-full flex-col items-center"
                         >
@@ -179,7 +179,7 @@ export default function MobileEcosystem() {
                                             variants={drawLine}
                                             initial="hidden"
                                             whileInView="show"
-                                            viewport={{ once: true }}
+                                            viewport={{ once: false }}
                                             d="M 75,50 C 75,80 135,105 142,108"
                                             fill="none"
                                             stroke="url(#top-lines-grad)"
@@ -191,7 +191,7 @@ export default function MobileEcosystem() {
                                             variants={drawLine}
                                             initial="hidden"
                                             whileInView="show"
-                                            viewport={{ once: true }}
+                                            viewport={{ once: false }}
                                             d="M 225,50 C 225,80 165,105 158,108"
                                             fill="none"
                                             stroke="url(#top-lines-grad)"
@@ -246,7 +246,7 @@ export default function MobileEcosystem() {
                                         variants={drawLine}
                                         initial="hidden"
                                         whileInView="show"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         d="M 75,0 C 75,20 150,25 150,40"
                                         fill="none"
                                         stroke="url(#gold-line-grad-mob)"
@@ -257,7 +257,7 @@ export default function MobileEcosystem() {
                                         variants={drawLine}
                                         initial="hidden"
                                         whileInView="show"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         d="M 225,0 C 225,20 150,25 150,40"
                                         fill="none"
                                         stroke="url(#gold-line-grad-mob)"
@@ -302,7 +302,7 @@ export default function MobileEcosystem() {
                 <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.5 }}
                     className="relative mx-auto mt-10 flex w-full max-w-2xl flex-row items-center justify-start gap-4 overflow-hidden rounded-xl border border-gray-200/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#121c33]/80"
                 >

@@ -31,7 +31,7 @@ export default function DesktopTestimonials() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: false, margin: "-100px" }}
                         className="w-1/2"
                     >
                         <motion.div variants={fadeInUp} className="mb-4">
@@ -90,7 +90,7 @@ export default function DesktopTestimonials() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.6 }}
                         className="w-1/2"
                     >
@@ -110,7 +110,7 @@ export default function DesktopTestimonials() {
                                         key={idx}
                                         initial={{ opacity: 0, x: 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         transition={{ delay: 0.3 + idx * 0.1 }}
                                         className="flex items-center gap-4 rounded-[8px] bg-white p-5 shadow-sm dark:bg-[#0a1128] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                                     >
@@ -141,7 +141,7 @@ export default function DesktopTestimonials() {
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: 0.8 }}
                     className="mt-12 text-center text-[0.8rem] font-medium text-gray-400"
                 >

@@ -46,7 +46,7 @@ export default function IdealPartnerMobile() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           variants={stagger}
           className="flex flex-col gap-3 mt-6 mb-3"
         >
@@ -115,7 +115,7 @@ export default function IdealPartnerMobile() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           variants={stagger}
           className="flex flex-col gap-3 mb-3"
         >
@@ -156,7 +156,7 @@ export default function IdealPartnerMobile() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           variants={stagger}
         >
           <motion.div

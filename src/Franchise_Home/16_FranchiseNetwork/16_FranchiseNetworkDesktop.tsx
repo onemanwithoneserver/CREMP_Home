@@ -60,7 +60,7 @@ export default function FranchiseNetworkDesktop() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className="bg-gray-50/70 dark:bg-gray-800/50 border border-gray-200/70 dark:border-gray-700/60 rounded-[4px] p-5 flex flex-col justify-between hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40 transition-colors shadow-sm"
               >

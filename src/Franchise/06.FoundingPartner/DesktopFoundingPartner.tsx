@@ -57,7 +57,7 @@ export default function DesktopFoundingPartner() {
                         <motion.div
                             initial="hidden"
                             whileInView="show"
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             variants={{ show: { transition: { staggerChildren: 0.15 } } }}
                         >
                             <motion.div
@@ -92,7 +92,7 @@ export default function DesktopFoundingPartner() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{
                                 duration: 0.8,
                                 delay: 0.2,
@@ -156,7 +156,7 @@ export default function DesktopFoundingPartner() {
                                         key={idx}
                                         initial={{ opacity: 0, scale: 0.8 }}
                                         whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         transition={{
                                             duration: 0.5,
                                             delay: 0.6 + idx * 0.1,
@@ -255,7 +255,7 @@ export default function DesktopFoundingPartner() {
                                     key={idx}
                                     initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
+                                    viewport={{ once: false }}
                                     transition={{
                                         duration: 0.5,
                                         delay: 0.3 + idx * 0.1,

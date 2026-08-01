@@ -118,7 +118,7 @@ export default function DesktopStakeHolder1() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="flex items-center gap-2 bg-slate-900 dark:bg-slate-800 text-white text-[11px] font-bold px-4 py-1.5 rounded-[4px] shadow-sm tracking-wider uppercase"
                 >
                     <Users size={14} strokeWidth={2.5} />
@@ -127,7 +127,7 @@ export default function DesktopStakeHolder1() {
                 <motion.h2
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: 0.1, duration: 0.5, ease: smoothEasing }}
                     className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-3xl"
                 >
@@ -136,7 +136,7 @@ export default function DesktopStakeHolder1() {
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: 0.2, duration: 0.5, ease: smoothEasing }}
                     className="text-base text-slate-600 dark:text-slate-400 font-medium max-w-2xl whitespace-pre-line leading-relaxed"
                 >
@@ -152,7 +152,7 @@ export default function DesktopStakeHolder1() {
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, margin: "-20px" }}
+                            viewport={{ once: false, margin: "-20px" }}
                             variants={fadeUpScale}
                             key={card.id}
                             className={`w-full ${theme.cardBg} rounded-[8px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
@@ -180,7 +180,7 @@ export default function DesktopStakeHolder1() {
                                     variants={staggerContainer}
                                     initial="hidden"
                                     whileInView="visible"
-                                    viewport={{ once: true }}
+                                    viewport={{ once: false }}
                                     className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"
                                 >
                                     {card.features.map((feature, fIdx) => (
@@ -223,7 +223,7 @@ export default function DesktopStakeHolder1() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-cyan-600 dark:text-cyan-300 text-[11px] font-bold px-4 py-1.5 rounded-[4px] border border-cyan-200 dark:border-cyan-500/30 uppercase tracking-wider shadow-sm"
                 >
                     <Sparkles size={14} strokeWidth={2.5} />
@@ -232,7 +232,7 @@ export default function DesktopStakeHolder1() {
                 <motion.h2
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: 0.1, duration: 0.5, ease: smoothEasing }}
                     className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-3xl"
                 >
@@ -241,7 +241,7 @@ export default function DesktopStakeHolder1() {
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: 0.2, duration: 0.5, ease: smoothEasing }}
                     className="text-base text-slate-600 dark:text-slate-400 font-medium max-w-2xl"
                 >
@@ -258,7 +258,7 @@ export default function DesktopStakeHolder1() {
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
-                                viewport={{ once: true, margin: "-20px" }}
+                                viewport={{ once: false, margin: "-20px" }}
                                 variants={fadeUpScale}
                                 key={card.id}
                                 className={`w-full ${theme.cardBg} rounded-[8px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
@@ -286,7 +286,7 @@ export default function DesktopStakeHolder1() {
                                         variants={staggerContainer}
                                         initial="hidden"
                                         whileInView="visible"
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"
                                     >
                                         {card.features.map((feature, fIdx) => (
@@ -330,7 +330,7 @@ export default function DesktopStakeHolder1() {
                 variants={fadeUpScale}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-20px" }}
+                viewport={{ once: false, margin: "-20px" }}
                 className="relative w-full rounded-[8px] overflow-hidden bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-900/30 shadow-md flex flex-col lg:flex-row mt-6 transition-colors duration-300"
             >
                 <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center gap-5 z-10 w-full lg:w-3/5 bg-slate-50 dark:bg-slate-900">

@@ -28,7 +28,7 @@ export default function DesktopCategories() {
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="flex flex-col"
                     >
                         <motion.div variants={fadeInUp} className="mb-4">
@@ -55,7 +55,7 @@ export default function DesktopCategories() {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                     >
                         <motion.button
                             whileHover={{ scale: 1.05, paddingRight: "2.5rem" }}
@@ -75,7 +75,7 @@ export default function DesktopCategories() {
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     className="grid grid-cols-5 gap-6"
                 >
                     {categoriesData.categories.map((cat, idx) => (
@@ -111,7 +111,7 @@ export default function DesktopCategories() {
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: 0.6 }}
                     className="mt-8 text-center text-[0.85rem] font-medium text-gray-400"
                 >
