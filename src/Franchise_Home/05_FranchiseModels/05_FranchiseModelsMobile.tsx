@@ -9,6 +9,8 @@ import {
   MousePointerClick,
   Users,
   Wallet,
+  Sparkles,
+  X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -51,7 +53,7 @@ const DonutChart = ({
       <svg
         width={size}
         height={size}
-        className="transform -rotate-90 drop-shadow-md overflow-visible"
+        className="transform -rotate-90 overflow-visible"
       >
         {data.map((item, i) => {
           const rawSegmentLength = (item.percentage / 100) * circumference;
@@ -64,7 +66,7 @@ const DonutChart = ({
             ((offset + segmentLength / 2) / circumference) * 2 * Math.PI;
           const textX = size / 2 + radius * Math.cos(angle);
           const textY = size / 2 + radius * Math.sin(angle);
-          const shouldShowText = item.percentage >= 5;
+          const isSmall = item.percentage < 10;
 
           return (
             <g key={`group-${item.label}`}>
@@ -104,32 +106,39 @@ const DonutChart = ({
                   }
                 }}
               />
-              {shouldShowText && (
-                <motion.foreignObject
-                  x={textX - 40}
-                  y={textY - 40}
-                  width={80}
-                  height={80}
-                  transform={`rotate(90, ${textX}, ${textY})`}
-                  className="pointer-events-none overflow-visible"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.8 + i * 0.05 }}
-                >
-                  <div className="flex flex-col items-center justify-center w-full h-full text-white drop-shadow-md">
-                    <item.icon size={10} className="mb-[1px] opacity-90" />
-                    <span className="text-xs font-semibold leading-tight mt-[1px]">
-                      {item.amount}
-                    </span>
-                  </div>
-                </motion.foreignObject>
-              )}
+              <motion.foreignObject
+                x={textX - 40}
+                y={textY - 40}
+                width={80}
+                height={80}
+                transform={`rotate(90, ${textX}, ${textY})`}
+                className="pointer-events-none overflow-visible"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 + i * 0.05 }}
+              >
+                <div className="flex flex-col items-center justify-center w-full h-full text-white">
+                  <item.icon
+                    size={isSmall ? 9 : 11}
+                    className="mb-[1px] opacity-90"
+                  />
+                  <span
+                    className={clsx(
+                      "font-semibold leading-tight mt-[1px]",
+                      isSmall ? "text-[10px]" : "text-xs",
+                    )}
+                  >
+                    {item.amount}
+                  </span>
+                </div>
+              </motion.foreignObject>
             </g>
           );
         })}
       </svg>
+      
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-transparent rounded-full pointer-events-none"
+        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-gray-800 rounded-full pointer-events-none z-10 shadow-lg border border-gray-100 dark:border-gray-700"
         style={{
           width: size - strokeWidth * 2,
           height: size - strokeWidth * 2,
@@ -138,10 +147,10 @@ const DonutChart = ({
           transform: "translate(-50%, -50%)",
         }}
       >
-        <span className="text-2xl font-semibold text-primary dark:text-white">
+        <span className="text-2xl font-semibold text-[#0b1b42] dark:text-white tracking-tight relative z-10">
           {totalValue}
         </span>
-        <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-widest mt-0.5">
+        <span className="text-[9px] text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-widest mt-0.5 relative z-10">
           AVG. TOTAL
         </span>
       </div>
@@ -149,23 +158,23 @@ const DonutChart = ({
       <AnimatePresence>
         {hoveredItem && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute pointer-events-none bg-gray-900 text-white text-xs font-semibold px-2 py-2 rounded shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap"
+            initial={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
+            animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
+            className="absolute pointer-events-none bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 text-[#0b1b42] dark:text-white px-4 py-3 rounded-2xl shadow-xl z-50 flex flex-col gap-1.5 whitespace-nowrap"
             style={{
               left: hoveredItem.x,
               top: hoveredItem.y - 10,
               transform: "translate(-50%, -100%)",
             }}
           >
-            <span className="flex items-center gap-1.5 text-gray-300">
-              <hoveredItem.item.icon size={12} className="text-gray-400" />
+            <span className="flex items-center gap-2 text-xs font-semibold text-gray-600 dark:text-gray-300">
+              <hoveredItem.item.icon size={14} className="text-[#d4af37]" />
               {hoveredItem.item.label}
             </span>
-            <span className="text-[#d4af37] text-xs">
+            <span className="text-[#0b1b42] dark:text-white font-semibold text-sm">
               {hoveredItem.item.amount}{" "}
-              <span className="text-gray-400 font-medium text-xs ml-1">
+              <span className="text-gray-500 dark:text-gray-400 font-semibold text-[10px] ml-1 uppercase tracking-wider">
                 ({hoveredItem.item.percentage}%)
               </span>
             </span>
@@ -194,23 +203,21 @@ export default function FranchiseModelsMobile() {
   )!;
 
   const getRoiColor = (intent: string) => {
-    if (intent === "primary")
-      return "text-white bg-gradient-to-br from-[#F97316] to-[#C2410C] shadow-md shadow-[#F97316]/30";
+    if (intent === "primary" || intent === "warning")
+      return "bg-[#d97706] text-white";
     if (intent === "success")
-      return "text-white bg-gradient-to-br from-[#10B981] to-[#047857] shadow-md shadow-[#10B981]/30";
+      return "bg-[#059669] text-white";
     if (intent === "info")
-      return "text-white bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] shadow-md shadow-[#0EA5E9]/30";
-    if (intent === "warning")
-      return "text-white bg-gradient-to-br from-[#FBBF24] to-[#D97706] shadow-md shadow-[#FBBF24]/30";
-    return "text-white bg-gray-400";
+      return "bg-[#0284c7] text-white";
+    return "bg-[#7c3aed] text-white";
   };
 
   const getStaffBadgeColor = (idx: number) => {
     const colors = [
-      "text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/20",
-      "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-500/20",
-      "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-500/20",
-      "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-500/20",
+      "text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-900",
+      "text-blue-700 bg-blue-100 dark:text-blue-300 dark:bg-blue-900",
+      "text-orange-700 bg-orange-100 dark:text-orange-300 dark:bg-orange-900",
+      "text-purple-700 bg-purple-100 dark:text-purple-300 dark:bg-purple-900",
     ];
     return colors[idx % colors.length];
   };
@@ -244,32 +251,7 @@ export default function FranchiseModelsMobile() {
   };
 
   return (
-    <section className="w-full px-4 py-2 flex flex-col relative overflow-hidden bg-white dark:bg-gray-900">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[5%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-pulse-soft" />
-        <div
-          className="absolute bottom-[20%] right-[-10%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
-
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <linearGradient
-            id="goldGradient"
-            gradientUnits="userSpaceOnUse"
-            x1="0"
-            y1="0"
-            x2="24"
-            y2="24"
-          >
-            <stop offset="0%" stopColor="#bf953f" />
-            <stop offset="50%" stopColor="#d4af37" />
-            <stop offset="100%" stopColor="#b38728" />
-          </linearGradient>
-        </defs>
-      </svg>
-
+    <section className="w-full px-4 py-8 flex flex-col relative overflow-hidden bg-gray-50 dark:bg-gray-900">
       <SectionHeader
         overline={franchiseModelsData.sectionLabel}
         title={franchiseModelsData.title}
@@ -277,11 +259,11 @@ export default function FranchiseModelsMobile() {
         align="center"
       />
 
-      <div className="relative z-10 w-full overflow-hidden group flex items-center">
+      <div className="relative z-10 w-full overflow-hidden group flex items-center mb-4 mt-2">
         {canScrollLeft && (
           <button
             onClick={() => scrollTabs("left")}
-            className="absolute left-0 z-10 h-full px-1 bg-gradient-to-r from-background via-background to-transparent flex items-center justify-start text-primary dark:text-white"
+            className="absolute left-0 z-10 h-full px-1 bg-gradient-to-r from-white dark:from-gray-900 to-transparent flex items-center justify-start text-[#0b1b42] dark:text-white"
           >
             <ChevronLeft size={20} />
           </button>
@@ -290,7 +272,7 @@ export default function FranchiseModelsMobile() {
         <div
           ref={tabsRef}
           onScroll={checkScroll}
-          className="flex gap-1 w-full overflow-x-auto scrollbar-hide py-1 px-1 scroll-smooth bg-gray-100 dark:bg-gray-800 rounded-[4px] shadow-inner border border-gray-200/60 dark:border-gray-700/60 mt-1"
+          className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700"
         >
           {franchiseModelsData.models.map((model) => {
             const isActive = model.id === activeModel;
@@ -299,25 +281,31 @@ export default function FranchiseModelsMobile() {
               <button
                 key={model.id}
                 onClick={() => setActiveModel(model.id)}
-                className="shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[14px] transition-all duration-300 w-[85px] focus-visible:outline-none"
+                className="shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-xl transition-all duration-300 w-[90px] focus-visible:outline-none"
               >
                 {isActive && (
                   <motion.div
                     layoutId="mobileTabActive"
-                    className="absolute inset-0 bg-[#0b1b42] shadow-[0_4px_12px_rgba(11,27,66,0.25)] rounded-[14px]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    className="absolute inset-0 bg-[#0b1b42] dark:bg-gray-700 rounded-xl shadow-md"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
-                <div
+                <motion.div
                   className={clsx(
-                    "relative z-10 w-7 h-7 rounded-full flex items-center justify-center mb-1 border transition-colors duration-300",
+                    "relative z-10 w-7 h-7 rounded-lg flex items-center justify-center mb-1 transition-colors duration-300",
                     isActive
-                      ? "bg-white/10 border-[#d4af37]/40 text-[#d4af37]"
-                      : "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 shadow-sm",
+                      ? "bg-[#d4af37]/20 text-[#d4af37]"
+                      : "bg-gray-100 dark:bg-gray-800 text-gray-500",
                   )}
+                  animate={
+                    isActive
+                      ? { scale: [1, 1.2, 1], rotate: [0, -10, 10, 0] }
+                      : { scale: 1, rotate: 0 }
+                  }
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                  <Icon size={12} strokeWidth={isActive ? 2.5 : 2} />
-                </div>
+                  <Icon size={13} strokeWidth={isActive ? 2.5 : 2} />
+                </motion.div>
                 <span
                   className={clsx(
                     "relative z-10 font-semibold text-xs mb-0.5 transition-colors duration-300",
@@ -346,7 +334,7 @@ export default function FranchiseModelsMobile() {
         {canScrollRight && (
           <button
             onClick={() => scrollTabs("right")}
-            className="absolute right-0 z-10 h-full px-1 bg-gradient-to-l from-background via-background to-transparent flex items-center justify-end text-primary dark:text-white"
+            className="absolute right-0 z-10 h-full px-1 bg-gradient-to-l from-white dark:from-gray-900 to-transparent flex items-center justify-end text-[#0b1b42] dark:text-white"
           >
             <ChevronRight size={20} />
           </button>
@@ -354,9 +342,9 @@ export default function FranchiseModelsMobile() {
       </div>
 
       <div className="relative z-10 flex flex-col gap-4">
-        <div className=" p-4 flex flex-col items-center justify-center ">
-          <div className="w-full flex justify-center mb-4 z-50">
-            <div className="w-40">
+        <div className="flex flex-col items-center justify-center pt-2">
+          <div className="w-full flex justify-center mb-6 z-50">
+            <div className="w-48">
               <Dropdown
                 options={viewOptions}
                 value={viewType}
@@ -380,11 +368,11 @@ export default function FranchiseModelsMobile() {
                   data={selected.costBreakdown}
                   totalValue={selected.avgTotal}
                 />
-                <div className="flex items-center justify-center gap-1.5 mt-5 animate-bounce">
-                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">
+                <div className="flex items-center justify-center gap-1.5 mt-8 animate-bounce">
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
                     Tap segments for detail
                   </span>
-                  <MousePointerClick size={12} className="text-accent" />
+                  <MousePointerClick size={14} className="text-blue-500" />
                 </div>
               </motion.div>
             ) : (
@@ -412,113 +400,193 @@ export default function FranchiseModelsMobile() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.3 }}
-            className=" rounded border-none p-2 flex flex-col"
+            className="flex flex-col gap-4"
           >
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              {[
-                {
-                  icon: Wallet,
-                  label: "INVESTMENT",
-                  value: selected.investment,
-                },
-                { icon: Maximize2, label: "AREA", value: selected.area },
-                {
-                  icon: Users,
-                  label: "STAFF",
-                  value: `${selected.staffCount} members`,
-                  extra: Info,
-                },
-                { icon: MapPin, label: "LOCATION", value: selected.location },
-              ].map((stat, i) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col items-start gap-2 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700"
-                >
-                  <div className="flex items-center gap-2">
+            <div className="p-2 -pt-4 flex flex-col gap-4 relative overflow-hidden">
+              <div className="flex items-center justify-between pb-1">
+              </div>
+
+              <div className="relative flex flex-col pt-2">
+                <div className="flex flex-col gap-3 relative z-10">
+                  <div className="absolute left-[32px] -translate-x-1/2 top-[32px] bottom-[32px] w-[3px] pointer-events-none z-0">
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
+                    <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
+                    <motion.div
+                      className="absolute -left-[3px] -translate-y-1/2 w-[9px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+                      animate={{
+                        top: ["0%", "100%"],
+                        opacity: [0, 1, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+                  {[
+                    {
+                      icon: Wallet,
+                      label: "INVESTMENT",
+                      value: selected.investment,
+                      color: "bg-[#059669] text-white",
+                    },
+                    {
+                      icon: Maximize2,
+                      label: "AREA",
+                      value: selected.area,
+                      color: "bg-[#7c3aed] text-white",
+                    },
+                    {
+                      icon: Users,
+                      label: "STAFF",
+                      value: `${selected.staffCount} members`,
+                      color: "bg-[#d97706] text-white",
+                      extra: Info,
+                    },
+                    {
+                      icon: MapPin,
+                      label: "LOCATION",
+                      value: selected.location,
+                      color: "bg-[#0284c7] text-white",
+                    },
+                  ].map((stat, i) => (
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 text-white ${
-                        i === 0
-                          ? "bg-gradient-to-br from-[#10B981] to-[#047857] shadow-lg shadow-[#10B981]/30"
-                          : i === 1
-                            ? "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] shadow-lg shadow-[#8B5CF6]/30"
-                            : i === 2
-                              ? "bg-gradient-to-br from-[#F43F5E] to-[#BE123C] shadow-lg shadow-[#F43F5E]/30"
-                              : "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] shadow-lg shadow-[#0EA5E9]/30"
-                      }`}
+                      key={stat.label}
+                      className="rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-3 bg-white dark:bg-gray-800 flex items-center justify-between gap-3 relative z-10"
                     >
-                      <stat.icon size={14} strokeWidth={2.5} />
+                      <div className="flex items-center gap-3">
+                        <motion.div
+                          whileHover={{ scale: 1.15, rotate: 5 }}
+                          className={clsx(
+                            "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm relative z-10",
+                            stat.color,
+                          )}
+                        >
+                          <stat.icon size={16} strokeWidth={2.2} />
+                        </motion.div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            {stat.label}
+                          </span>
+                          <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500">
+                            Milestone 0{i + 1}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-[#0b1b42] dark:text-white tracking-tight">
+                          {stat.value}
+                        </span>
+                        {stat.extra && (
+                          <button
+                            onClick={() =>
+                              stat.label === "STAFF" &&
+                              setIsStaffModalOpen(true)
+                            }
+                            className="w-6 h-6 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                          >
+                            <stat.extra size={14} strokeWidth={2.5} />
+                          </button>
+                        )}
+                      </div>
                     </div>
-                    <span className="text-[12px] uppercase font-semibold text-gray-600 mb-0.5">
-                      {stat.label}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[13px] font-semibold text-[#0b1b42] dark:text-gray-100 leading-tight truncate">
-                      {stat.value}
-                    </span>
-                    {stat.extra && (
-                      <button
-                        onClick={() =>
-                          stat.label === "STAFF" && setIsStaffModalOpen(true)
-                        }
-                        className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary shadow-sm border border-primary/20 shrink-0 hover:bg-primary/20 transition-colors"
-                      >
-                        <stat.extra size={12} strokeWidth={2.5} />
-                      </button>
-                    )}
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        <div className="rounded border-none p-2  flex flex-col gap-4">
-          <div className="flex items-center justify-between pb-1 border-b border-border">
-            <span className="text-xs uppercase font-semibold tracking-widest text-primary dark:text-white font-semibold">
-              {revenueROIData.sectionLabel}
+        <div className="p-2  flex flex-col gap-4 relative overflow-hidden">
+          <div className="flex items-center justify-between">
+            <span className="text-xs uppercase font-semibold tracking-wider text-[#0b1b42] dark:text-white">
+              Break Even & Estimated ROI
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 w-full mt-2">
-            {revenueROIData.revenueCards.map((card: any) => {
-              const Icon = card.icon;
-              return (
-                <div
-                  key={card.year}
-                  className="rounded-[4px] border border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.04)] p-3 bg-white flex flex-col justify-between"
-                >
-                  <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3">
-                    {card.year}
-                  </span>
+          <div className="relative flex flex-col pt-2">
+            <div className="absolute left-[32px] -translate-x-1/2 top-[32px] bottom-[30px] w-[3px] pointer-events-none z-0">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
+              <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
+              <motion.div
+                className="absolute -left-[3px] -translate-y-1/2 w-[9px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+                animate={{
+                  top: ["0%", "100%"],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 2.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
 
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full">
-                    <div
-                      className={clsx(
-                        "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm",
-                        getRoiColor(card.intent),
-                      )}
-                    >
-                      <Icon size={12} strokeWidth={2.5} />
+            <div className="flex flex-col gap-3 relative z-10">
+              {revenueROIData.revenueCards.map((card: any) => {
+                const Icon = card.icon;
+                return (
+                  <div
+                    key={card.year}
+                    className="rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-3 bg-white dark:bg-gray-800 flex items-center justify-between gap-3"
+                  >
+                    <div className="flex items-center gap-3">
+                      <motion.div
+                        whileHover={{ scale: 1.15, rotate: -5 }}
+                        className={clsx(
+                          "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm relative z-10",
+                          getRoiColor(card.intent),
+                        )}
+                      >
+                        <Icon size={16} strokeWidth={2.2} />
+                      </motion.div>
+                      <div className="flex flex-col">
+                        <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                          {card.year}
+                        </span>
+                        <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500">
+                          {card.label || "Projected"}
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-[12px] sm:text-[14px] font-semibold text-[#0b1b42] tracking-tighter">
+
+                    <span className="text-sm font-semibold text-[#0b1b42] dark:text-white tracking-tight">
                       {card.range}
                     </span>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
 
-            <div className="rounded-[4px] border border-[#d4af37]/30 shadow-[0_4px_12px_rgba(212,175,55,0.15)] p-3 bg-[#0b1b42] flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
-              <span className="text-[10px] font-semibold text-gray-300 uppercase tracking-widest mb-3 relative z-10">
-                Breakeven Timeframe
-              </span>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 w-full relative z-10">
-                <span className="text-[12px] sm:text-[14px] font-bold text-[#d4af37] tracking-tighter">
-                  {revenueROIData.paybackPeriod.title}
-                </span>
+            <div className="mt-3 bg-[#0b1b42] dark:bg-gray-900 border border-[#d4af37]/40 rounded-2xl p-4 shadow-md flex items-center justify-between gap-3 relative overflow-hidden z-10">
+              <div className="flex items-center gap-3 relative z-10">
+                <div className="relative shrink-0">
+                  <motion.div
+                    animate={{ rotate: [0, 15, -15, 0] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="w-10 h-10 rounded-xl bg-[#d4af37] text-[#0b1b42] flex items-center justify-center relative z-10 shadow-sm"
+                  >
+                    <Sparkles size={18} strokeWidth={2.2} />
+                  </motion.div>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold text-amber-500 uppercase tracking-widest">
+                    Destination • Breakeven
+                  </span>
+                  <span className="text-[10px] text-gray-400">
+                    Full ROI Recovery
+                  </span>
+                </div>
               </div>
+              <span className="text-base font-semibold text-white tracking-tight relative z-10">
+                {revenueROIData.paybackPeriod.title}
+              </span>
             </div>
           </div>
         </div>
@@ -529,63 +597,65 @@ export default function FranchiseModelsMobile() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+              className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
               onClick={() => setIsStaffModalOpen(false)}
             >
               <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                className="w-full max-w-xs bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-5 relative"
+                initial={{ scale: 0.9, opacity: 0, y: 20, filter: "blur(8px)" }}
+                animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ scale: 0.9, opacity: 0, y: 20, filter: "blur(8px)" }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                  mass: 0.8,
+                }}
+                className="w-full max-w-[90vw] sm:max-w-md bg-white/70 dark:bg-gray-900/70 backdrop-blur-3xl rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-white/50 dark:border-white/10 p-6 relative overflow-hidden flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
-                <button
-                  onClick={() => setIsStaffModalOpen(false)}
-                  className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                      <Users size={16} strokeWidth={2.5} />
+                    </div>
+                    <h5 className="text-sm font-semibold text-[#0b1b42] dark:text-white uppercase tracking-wider">
+                      Staff Requirements
+                    </h5>
+                  </div>
+                  <button
+                    onClick={() => setIsStaffModalOpen(false)}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800/80 dark:hover:bg-red-900/50 transition-colors"
+                    aria-label="Close"
                   >
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </button>
-                <h5 className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4 border-b border-gray-100 dark:border-gray-700 pb-2 text-center">
-                  Staff Requirements
-                </h5>
-                <div className="flex flex-col gap-3 max-h-[80vh] overflow-y-auto pr-2">
+                    <X size={16} strokeWidth={2.5} />
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin">
                   {selected.staffDetails?.map((staff, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border border-gray-100 dark:border-gray-700"
+                      className="flex flex-col bg-white/50 dark:bg-gray-800/50 backdrop-blur-md p-4 rounded-2xl border border-white/60 dark:border-white/5 shadow-sm"
                     >
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[13px] font-bold text-[#0b1b42] dark:text-white">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-semibold text-[#0b1b42] dark:text-white">
                           {staff.name}
                         </span>
                         <span
                           className={clsx(
-                            "text-[10px] font-bold px-2 py-0.5 rounded-full",
+                            "text-[10px] font-semibold px-2.5 py-1 rounded-full",
                             getStaffBadgeColor(idx),
                           )}
                         >
                           {staff.count}x
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 mb-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                      <div className="flex items-center gap-2 mb-1.5 text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                         <span>{staff.type}</span>
                         <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                         <span>{staff.experience}</span>
                       </div>
-                      <p className="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-snug">
+                      <p className="text-xs font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
                         {staff.remarks}
                       </p>
                     </div>
