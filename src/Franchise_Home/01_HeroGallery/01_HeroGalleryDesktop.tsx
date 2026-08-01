@@ -230,7 +230,6 @@ export default function HeroGalleryDesktop() {
                 </motion.a>
               </div>
             </div>
-          </div>
         </motion.div>
 
         <motion.div
