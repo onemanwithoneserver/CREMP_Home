@@ -62,11 +62,11 @@ export default function IdealPartnerMobile() {
                 <div className="flex items-center gap-4 mb-5 pb-4 border-b border-gray-50 dark:border-white/5">
                   <div
                     className={clsx(
-                      "w-12 h-12 rounded flex shrink-0 items-center justify-center shadow-sm",
+                      "w-12 h-12 rounded-xl flex shrink-0 items-center justify-center shadow-md",
                       getIconContainerStyles(item.intent),
                     )}
                   >
-                    <Icon size={20} strokeWidth={2.5} />
+                    <Icon size={20} strokeWidth={2} className="text-white" />
                   </div>
                   <h4 className="text-[#0a1128] dark:text-white font-semibold text-lg tracking-tight">
                     {item.title}
@@ -76,12 +76,10 @@ export default function IdealPartnerMobile() {
                 <div className="flex flex-col gap-4">
                   {item.items.map((subItem, idx) => (
                     <div key={idx} className="flex items-start gap-3">
-                      <div className="mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-gray-50 dark:bg-white/5">
+                      <div className="mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-gray-100 dark:bg-white/10">
                         <Check
                           size={12}
-                          className={clsx(
-                            getBadgeStyles(item.intent).split(" ")[0],
-                          )}
+                          className="text-gray-700 dark:text-gray-200"
                         />
                       </div>
                       <span className="text-gray-600 dark:text-gray-300 font-medium text-[15px] leading-relaxed">
@@ -115,14 +113,14 @@ export default function IdealPartnerMobile() {
               >
                 <div
                   className={clsx(
-                    "w-12 h-12 rounded flex shrink-0 items-center justify-center shadow-sm",
+                    "w-11 h-11 rounded-xl flex shrink-0 items-center justify-center shadow-md",
                     getIconContainerStyles(item.intent),
                   )}
                 >
-                  <Icon size={20} strokeWidth={2} />
+                  <Icon size={20} strokeWidth={2} className="text-white" />
                 </div>
                 <div className="flex flex-col justify-center">
-                  <span className="text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                  <span className="text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-0.5">
                     {item.title}
                   </span>
                   <span className="text-[#0a1128] dark:text-white font-semibold text-sm tracking-tight">
@@ -142,21 +140,21 @@ export default function IdealPartnerMobile() {
         >
           <motion.div
             variants={fadeInUp}
-            className="w-full bg-[#0a1128] rounded-lg p-5 shadow-xl flex flex-col gap-4"
+            className="w-full bg-white dark:bg-[#0b162c] border border-gray-100 dark:border-white/5 rounded-2xl p-5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col gap-4"
           >
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#0b162c] text-white flex items-center justify-center shrink-0 shadow-md shadow-[#0b162c]/20">
                 <idealPartnerData.additionalExpectations.icon
                   size={22}
                   className="text-white"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                 />
               </div>
-              <h4 className="text-white font-semibold text-lg tracking-wide">
+              <h4 className="text-[#0a1128] dark:text-white font-bold text-base tracking-tight">
                 {idealPartnerData.additionalExpectations.title}
               </h4>
             </div>
-            <p className="text-gray-300 font-medium text-[15px] leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 font-normal text-[14px] leading-relaxed">
               {idealPartnerData.additionalExpectations.text}
             </p>
           </motion.div>

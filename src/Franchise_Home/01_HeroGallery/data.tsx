@@ -25,29 +25,25 @@ export const heroData = {
       title: "Proven Business Model",
       description: "Strong unit economics and scalable operations",
       icon: LineChart,
-      colorClass:
-        "bg-gradient-to-br from-[#00F2FE] to-[#4FACFE] text-white shadow-md shadow-[#4FACFE]/30",
+      colorClass: "bg-[#0284c7] text-white shadow-md shadow-[#0284c7]/25",
     },
     {
       title: "End-to-End Support",
       description: "Training, setup, marketing & ongoing operations",
       icon: Users,
-      colorClass:
-        "bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white shadow-md shadow-[#7F00FF]/30",
+      colorClass: "bg-[#7c3aed] text-white shadow-md shadow-[#7c3aed]/25",
     },
     {
       title: "Premium Quality",
       description: "Signature blends and high-quality ethical sourcing",
       icon: Coffee,
-      colorClass:
-        "bg-gradient-to-br from-[#00c6ff] to-[#0072ff] text-white shadow-md shadow-[#0072ff]/30",
+      colorClass: "bg-[#d97706] text-white shadow-md shadow-[#d97706]/25",
     },
     {
       title: "Brand Recall",
       description: "Loved by communities across the nation",
       icon: Heart,
-      colorClass:
-        "bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] text-white shadow-md shadow-[#4F46E5]/30",
+      colorClass: "bg-[#0d9488] text-white shadow-md shadow-[#0d9488]/25",
     },
   ],
 };

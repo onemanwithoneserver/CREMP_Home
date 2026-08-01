@@ -50,7 +50,7 @@ export default function FullCycleSupportDesktop() {
                 return (
                   <div
                     key={`${keyPrefix}-${idx}`}
-                    className="w-[240px] shrink-0 rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-gray-300"
+                    className="w-[240px] shrink-0 rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-gray-300"
                   >
                     <div
                       className={clsx(

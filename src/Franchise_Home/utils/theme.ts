@@ -35,23 +35,23 @@ export const getIconStyles = (intent?: string) => {
 export const getIconContainerStyles = (intent?: string) => {
   switch (intent) {
     case "success":
-      return "bg-emerald-50/50 border border-emerald-100 text-emerald-500 shadow-sm";
+      return "bg-[#059669] text-white shadow-md shadow-[#059669]/25";
     case "info":
-      return "bg-sky-50/50 border border-sky-100 text-sky-500 shadow-sm";
+      return "bg-[#0284c7] text-white shadow-md shadow-[#0284c7]/25";
     case "warning":
-      return "bg-amber-50/50 border border-amber-100 text-amber-500 shadow-sm";
+      return "bg-[#d97706] text-white shadow-md shadow-[#d97706]/25";
     case "danger":
-      return "bg-rose-50/50 border border-rose-100 text-rose-500 shadow-sm";
+      return "bg-[#dc2626] text-white shadow-md shadow-[#dc2626]/25";
     case "primary":
-      return "bg-gradient-to-br from-[#14B8A6]/10 to-[#0F766E]/10 border border-[#14B8A6]/20 text-[#14B8A6] shadow-sm";
+      return "bg-[#0b162c] text-white shadow-md shadow-[#0b162c]/25";
     case "violet":
-      return "bg-gradient-to-br from-[#8B5CF6]/10 to-[#6D28D9]/10 border border-[#8B5CF6]/20 text-[#8B5CF6] shadow-sm";
+      return "bg-[#7c3aed] text-white shadow-md shadow-[#7c3aed]/25";
     case "pink":
-      return "bg-gradient-to-br from-[#F43F5E]/10 to-[#BE123C]/10 border border-[#F43F5E]/20 text-[#F43F5E] shadow-sm";
+      return "bg-[#e11d48] text-white shadow-md shadow-[#e11d48]/25";
     case "orange":
-      return "bg-gradient-to-br from-[#F97316]/10 to-[#C2410C]/10 border border-[#F97316]/20 text-[#F97316] shadow-sm";
+      return "bg-[#ea580c] text-white shadow-md shadow-[#ea580c]/25";
     default:
-      return "bg-gray-50 border border-gray-100 text-gray-500 shadow-sm";
+      return "bg-gray-700 text-white shadow-md";
   }
 };
 

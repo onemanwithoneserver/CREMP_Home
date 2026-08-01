@@ -102,8 +102,8 @@ export default function HeroGalleryDesktop() {
               </div>
             </div>
 
-            <div className="flex flex-row w-full mt-4  rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-              <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4 border-r border-gray-100">
+            <div className="flex flex-row w-full mt-4  rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden">
+              <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
                 <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0">
                   <Calendar size={16} className="text-white" />
                 </div>
@@ -116,7 +116,7 @@ export default function HeroGalleryDesktop() {
                   </span>
                 </div>
               </div>
-              <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4 border-r border-gray-100">
+              <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
                 <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0">
                   <Wallet size={16} className="text-white" />
                 </div>
@@ -129,7 +129,7 @@ export default function HeroGalleryDesktop() {
                   </span>
                 </div>
               </div>
-              <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4 border-r border-gray-100">
+              <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
                 <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0">
                   <TrendingUp size={16} className="text-white" />
                 </div>
@@ -187,9 +187,9 @@ export default function HeroGalleryDesktop() {
                       {isPlaying ? (
                         <motion.div
                           key="pause"
-                          initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                          exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
                           transition={{ duration: 0.2 }}
                         >
                           <Pause
@@ -201,9 +201,9 @@ export default function HeroGalleryDesktop() {
                       ) : (
                         <motion.div
                           key="play"
-                          initial={{ opacity: 0, scale: 0.5, rotate: 90 }}
-                          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                          exit={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
                           transition={{ duration: 0.2 }}
                         >
                           <Play
@@ -284,34 +284,31 @@ export default function HeroGalleryDesktop() {
         >
           <div className="flex flex-col gap-6 relative z-10">
             <div className="flex items-center gap-3">
-              <div className="h-px bg-gradient-to-r from-transparent to-[#c69a54] w-12" />
-              <h3 className="text-sm font-semibold text-[#0b162c] tracking-[0.2em] uppercase">
+              <div className="h-px bg-gradient-to-r from-transparent to-[#c69a54] w-8" />
+              <h3 className="text-sm font-semibold text-[#0b162c] dark:text-white tracking-[0.2em] uppercase">
                 Why Choose Us
               </h3>
-              <div className="h-px bg-gradient-to-l from-transparent to-[#c69a54] w-12" />
+              <div className="h-px bg-gradient-to-l from-transparent to-[#c69a54] flex-1" />
             </div>
 
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 gap-4">
               {heroData.whyChooseUs.map((feature, i) => (
                 <div
                   key={i}
                   className="flex flex-col items-center text-center p-2 transition-all duration-300 group/feature cursor-default"
                 >
                   <div
-                    className={`w-14 h-14 rounded-[8px] flex items-center justify-center mb-4 shadow-[0_4px_15px_rgba(0,0,0,0.1)] relative overflow-hidden transition-transform duration-300 group-hover/feature:scale-110 ${feature.colorClass}`}
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-3 shadow-md relative overflow-hidden transition-transform duration-300 group-hover/feature:scale-110 ${feature.colorClass}`}
                   >
                     <feature.icon
-                      size={22}
+                      size={24}
                       strokeWidth={2}
                       className="relative z-10 text-white"
                     />
                   </div>
-                  <h4 className="text-[15px] font-bold text-[#0b162c] dark:text-white leading-snug mb-1">
+                  <h4 className="text-[14px] font-bold text-[#0b162c] dark:text-white leading-snug">
                     {feature.title}
                   </h4>
-                  <p className="text-[12px] text-gray-500 dark:text-gray-400 leading-relaxed max-w-[200px]">
-                    {feature.description}
-                  </p>
                 </div>
               ))}
             </div>
