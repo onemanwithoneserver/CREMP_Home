@@ -1,46 +1,62 @@
+import { useRef, useState } from "react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame } from "framer-motion";
 import { fullCycleSupportData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 
 export default function FullCycleSupportDesktop() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
+  const x = useRef(0);
+
+  useAnimationFrame((_, delta) => {
+    if (paused || !containerRef.current) return;
+    const speed = 60;
+    x.current -= (speed * delta) / 1000;
+    const totalWidth = containerRef.current.scrollWidth / 2;
+    if (Math.abs(x.current) >= totalWidth) {
+      x.current = 0;
+    }
+    containerRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
+  });
+
   return (
-    <section className="w-full bg-[#FAFAFA] px-6 py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto mb-8 flex items-center justify-center">
+    <section className="w-full bg-white px-6 py-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto mb-8 flex justify-center">
         <SectionHeader
           overline={fullCycleSupportData.sectionLabel}
           title={fullCycleSupportData.title}
           align="center"
         />
       </div>
-
-      <div className="relative w-full">
+      <div className="relative overflow-hidden">
         <motion.div
+          ref={containerRef}
           className="flex w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          {[0, 1].map((keyPrefix) => (
-            <div key={keyPrefix} className="flex gap-6 pr-6">
+          {[...Array(2)].map((_, keyPrefix) => (
+            <div key={keyPrefix} className="flex gap-6 pr-6 shrink-0">
               {fullCycleSupportData.supportItems.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
-                    key={`${keyPrefix}-${item.title}-${idx}`}
-                    className="w-[240px] shrink-0 bg-white dark:bg-white border border-gray-100 rounded-2xl p-6 text-center cursor-default group transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-gray-300 dark:hover:border-gray-600"
+                    key={`${keyPrefix}-${idx}`}
+                    className="w-[240px] shrink-0 rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:border-gray-300"
                   >
                     <div
                       className={clsx(
-                        "w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 transition-colors",
-                        item.colorClass,
+                        "mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full",
+                        item.colorClass
                       )}
                     >
                       <Icon size={24} strokeWidth={1.5} />
                     </div>
-                    <h4 className="text-[#0a1128] dark:text-white font-semibold text-[15px] mb-2">
+                    <h4 className="mb-2 text-[15px] font-semibold text-[#0a1128]">
                       {item.title}
                     </h4>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm leading-snug">
+                    <p className="text-sm leading-snug text-gray-500">
                       {item.description}
                     </p>
                   </div>
@@ -49,9 +65,8 @@ export default function FullCycleSupportDesktop() {
             </div>
           ))}
         </motion.div>
-
-        <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#FAFAFA] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#FAFAFA] to-transparent z-10 pointer-events-none" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#FAFAFA] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#FAFAFA] to-transparent" />
       </div>
     </section>
   );

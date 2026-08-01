@@ -27,7 +27,7 @@ export default function MediaGalleryDesktop() {
   const isVideoTab = activeTab.includes("video");
 
   return (
-    <section className="w-full bg-[#FAFAFA] px-6 py-16">
+    <section className="w-full bg-white px-6 py-16">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           overline={mediaGalleryData.sectionLabel}
