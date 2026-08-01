@@ -1,61 +1,122 @@
-import { BookOpen, FileText, GraduationCap, Image, Video } from "lucide-react";
+export type MediaFormatType = "image" | "video" | "document";
+export type MediaCategoryType = string;
 
 export interface MediaItem {
   id: string;
+  format: MediaFormatType;
+  category: MediaCategoryType;
   src: string;
+  thumbnail?: string;
   title: string;
-  type: "video" | "image";
+  description?: string;
+  fileSize?: string;
 }
 
 export const mediaGalleryData = {
   sectionLabel: "MEDIA GALLERY",
-  tabs: [
-    {
-      id: "brand-videos",
-      label: "Brand Videos",
-      icon: Video,
-      isDefault: true,
-    },
-    { id: "outlet-videos", label: "Outlet Videos", icon: Video },
-    { id: "product-photos", label: "Product Photos", icon: Image },
-    { id: "news-food", label: "News & Food", icon: FileText },
-    { id: "business-stories", label: "Business Stories", icon: BookOpen },
-    {
-      id: "training-videos",
-      label: "Training Videos",
-      icon: GraduationCap,
-    },
+  categories: [
+    "All",
+    "Outlet Photos",
+    "Product Photos",
+    "Hero Video",
+    "Outlet Video",
+    "Brand Video",
+    "Success Stories Video",
+    "Educational Video",
+    "Others Video",
+    "Documents",
   ],
   items: [
     {
-      id: "1",
-      src: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400",
-      title: "The Urban Brew Story",
-      type: "image" as const,
+      id: "img-1",
+      format: "image" as const,
+      category: "Outlet Photos",
+      src: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800",
+      title: "Premium Outlet Interior",
     },
     {
-      id: "2",
-      src: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400",
+      id: "img-2",
+      format: "image" as const,
+      category: "Outlet Photos",
+      src: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800",
+      title: "Cozy Seating Area",
+    },
+    {
+      id: "img-3",
+      format: "image" as const,
+      category: "Product Photos",
+      src: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800",
+      title: "Signature Espresso",
+    },
+    {
+      id: "img-4",
+      format: "image" as const,
+      category: "Product Photos",
+      src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800",
+      title: "Fresh Roasted Beans",
+    },
+    {
+      id: "vid-1",
+      format: "video" as const,
+      category: "Hero Video",
+      src: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800",
+      title: "Brand Anthem",
+    },
+    {
+      id: "vid-2",
+      format: "video" as const,
+      category: "Outlet Video",
+      src: "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=800",
+      title: "Outlet Tour",
+    },
+    {
+      id: "vid-3",
+      format: "video" as const,
+      category: "Brand Video",
+      src: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800",
       title: "Our Coffee Culture",
-      type: "image" as const,
     },
     {
-      id: "3",
-      src: "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=400",
-      title: "From Farm to Cup",
-      type: "image" as const,
+      id: "vid-4",
+      format: "video" as const,
+      category: "Educational Video",
+      src: "https://images.unsplash.com/photo-1481833761820-0509d3217039?w=800",
+      title: "Brewing Guide",
     },
     {
-      id: "4",
-      src: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400",
-      title: "Recent Launch 2024",
-      type: "image" as const,
+      id: "vid-5",
+      format: "video" as const,
+      category: "Success Stories Video",
+      src: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?w=800",
+      title: "Franchisee Interview",
     },
     {
-      id: "5",
-      src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400",
-      title: "Brand Campaign",
-      type: "image" as const,
+      id: "vid-6",
+      format: "video" as const,
+      category: "Others Video",
+      src: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
+      title: "Event Highlights",
+    },
+    {
+      id: "doc-1",
+      format: "document" as const,
+      category: "Documents",
+      src: "#",
+      title: "Franchise Investor Deck",
+    },
+    {
+      id: "doc-2",
+      format: "document" as const,
+      category: "Documents",
+      src: "#",
+      title: "Store Operations Manual",
+    },
+    {
+      id: "doc-3",
+      format: "document" as const,
+      category: "Documents",
+      src: "#",
+      title: "Brand Guidelines",
     },
   ],
 };
