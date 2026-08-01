@@ -39,7 +39,7 @@ export default function HeroGalleryMobile() {
                 </button>
             </motion.div>
 
-            <div className="px-5 -mt-6 relative z-10 flex flex-col gap-6">
+            <div className="px-5 -mt-6 relative z-10 flex flex-col gap-6 ">
                 {/* Brand Info Card */}
                 <motion.div variants={item} className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-gray-100 p-6 flex flex-col gap-6">
                     <div className="flex flex-col gap-4">
@@ -70,7 +70,7 @@ export default function HeroGalleryMobile() {
                     </div>
 
                     {/* Vibrant Animated Contact Info */}
-                    <div className="flex flex-col gap-3 mt-2 pt-6 border-t border-gray-200/60">
+                    <div className="flex flex-col gap-3 mt-2 pt-6 w-5/6 justify-center items-center border-t border-gray-200/60">
                         {[
                             { icon: Mail, label: heroData.contactInfo.email, href: `mailto:${heroData.contactInfo.email}`, colors: "from-blue-50 to-blue-100 text-blue-700 border-blue-200", shadowColor: "rgba(59,130,246," },
                             { icon: Phone, label: heroData.contactInfo.phone, href: `tel:${heroData.contactInfo.phone}`, colors: "from-emerald-50 to-emerald-100 text-emerald-700 border-emerald-200", shadowColor: "rgba(16,185,129," },
