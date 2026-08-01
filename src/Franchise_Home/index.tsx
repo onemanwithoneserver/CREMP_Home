@@ -15,6 +15,7 @@ import FranchiseNetwork from "./16_FranchiseNetwork";
 import FAQ from "./17_FAQ";
 import Footer from "../Home/04_footer";
 import StickyFooter from "./StickyFooter";
+
 interface FranchiseHomeProps {
     isMobile: boolean;
 }

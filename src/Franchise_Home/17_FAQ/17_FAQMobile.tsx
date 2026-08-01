@@ -18,36 +18,16 @@ export default function FAQMobile() {
         <section className="w-full bg-[#FAFAFA] px-4 py-12">
 
             {}
-            <div className="flex flex-col mb-8 text-center items-center">
+            <div className="flex flex-col mb-2 text-center items-center">
                 <SectionHeader 
                     overline={faqData.sectionLabel}
                     title={faqData.title}
                     align="center"
                 />
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="text-gray-600 dark:text-gray-400 text-[13px] leading-relaxed mb-6 px-2"
-                >
-                    {faqData.subtitle}
-                </motion.p>
-
-                <motion.button
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] text-sm font-semibold shadow-[0_2px_8px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_12px_rgba(212,175,55,0.5)] transition-all hover-lift"
-                >
-                    {(() => { const Icon = faqData.ctaButton.icon; return <Icon size={16} />; })()}
-                    {faqData.ctaButton.label}
-                </motion.button>
             </div>
 
             {}
-            <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide mb-4 -mx-4 px-4 snap-x">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide mb-2 -mx-2 px-2 snap-x">
                 {faqData.tabs.map((tab) => (
                     <button
                         key={tab.id}
