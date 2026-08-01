@@ -276,27 +276,27 @@ export default function MobileYourMarkets() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-2 py-5 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#121c33]"
+                        className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-3 py-4 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#121c33]"
                     >
-                        <div className="mb-6 flex flex-col items-center gap-3">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
-                                <Star size={18} className="fill-current" />
+                        <div className="mb-4 flex flex-col items-center gap-2">
+                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
+                                <Star size={16} className="fill-current" />
                             </div>
-                            <h3 className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white">
+                            <h3 className="text-base font-black uppercase tracking-wide text-gray-900 dark:text-white">
                                 {marketData.benefitsTitle}
                             </h3>
                         </div>
 
-                        <div className="flex w-full flex-col gap-3">
+                        <div className="flex w-full flex-col gap-1.5">
                             {marketData.benefits.map((benefit, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex items-center gap-3 rounded-[4px] border border-transparent p-3 text-left transition-all hover:bg-gray-50 dark:hover:bg-gray-900/50"
+                                    className="flex items-center gap-3 rounded-[4px] border border-transparent p-2 text-left transition-all hover:bg-gray-50 dark:hover:bg-gray-900/50"
                                 >
                                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[#D4AF37] dark:bg-gray-800 dark:text-[#D4AF37]">
-                                        <benefit.icon size={14} strokeWidth={2.5} />
+                                        <benefit.icon size={15} strokeWidth={2.5} />
                                     </div>
-                                    <p className="text-[0.95rem] font-bold leading-relaxed text-gray-700 dark:text-gray-300">
+                                    <p className="text-[1rem] font-bold leading-snug text-gray-800 dark:text-gray-200">
                                         {benefit.text}
                                     </p>
                                 </div>

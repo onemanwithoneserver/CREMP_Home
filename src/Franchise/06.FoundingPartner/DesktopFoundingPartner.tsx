@@ -247,7 +247,11 @@ export default function DesktopFoundingPartner() {
                             </h3>
                         </div>
 
-                        <div className="mb-10 flex flex-1 flex-col gap-3">
+                        {/* Thread-Like Benefits Timeline */}
+                        <div className="relative mb-10 flex flex-1 flex-col gap-3">
+                            {/* Continuous Thread Line */}
+                            <div className="pointer-events-none absolute left-[26px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-[#D4AF37]/20" />
+
                             {foundingData.benefits.map((benefit, idx) => (
                                 <motion.div
                                     key={idx}
@@ -260,18 +264,19 @@ export default function DesktopFoundingPartner() {
                                         type: "spring",
                                     }}
                                     whileHover={{ scale: 1.02 }}
-                                    className="group flex w-full cursor-pointer items-center gap-4 rounded-[4px]  p-3.5 px-5 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:hover:bg-[#121c33]/90"
+                                    className="group relative flex w-full cursor-pointer items-center gap-4 rounded-[4px] p-3 px-4 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:hover:bg-[#121c33]/90"
                                 >
-                                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 transition-colors group-hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:group-hover:bg-[#D4AF37]/20">
-                                        <Check
-                                            size={14}
-                                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                                            strokeWidth={3}
-                                        />
+                                    {/* Thread Node with Tick Mark */}
+                                    <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37] group-hover:text-white dark:bg-[#0a1128] dark:group-hover:text-[#0a1128]">
+                                        <Check size={12} strokeWidth={3} />
                                     </div>
-                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 transition-colors group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] dark:border-gray-800 dark:bg-[#111827] dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+
+                                    {/* Benefit Icon */}
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 transition-all duration-300 group-hover:border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] group-hover:shadow-lg dark:border-gray-800 dark:bg-[#111827] dark:group-hover:border-[#D4AF37]/50 dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37]">
                                         <benefit.icon size={18} strokeWidth={1.5} />
                                     </div>
+
+                                    {/* Text */}
                                     <span className="text-[1.05rem] font-bold text-gray-900 transition-colors group-hover:text-[#D4AF37] dark:text-white dark:group-hover:text-[#D4AF37]">
                                         {benefit.text}
                                     </span>

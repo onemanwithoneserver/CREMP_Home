@@ -237,26 +237,39 @@ export default function MobileFoundingPartner() {
                             </h3>
                         </div>
 
-                        <div className="mb-8 flex flex-col gap-3">
+                        {/* Thread-Like Benefits Timeline */}
+                        <div className="relative mb-8 flex flex-col gap-3 text-left">
+                            {/* Continuous Thread Line */}
+                            <div className="pointer-events-none absolute left-[21px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-[#D4AF37]/20" />
+
                             {foundingData.benefits.map((benefit, idx) => (
-                                <div
+                                <motion.div
                                     key={idx}
-                                    className="flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-sm dark:border-gray-800/50 dark:bg-[#121c33]/60"
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: 0.2 + idx * 0.08,
+                                        type: "spring",
+                                    }}
+                                    className="group relative flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-xs dark:border-gray-800/50 dark:bg-[#121c33]/60"
                                 >
-                                    <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10">
-                                        <Check
-                                            size={12}
-                                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                                            strokeWidth={3}
-                                        />
+                                    {/* Thread Node with Tick Mark */}
+                                    <div className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-xs dark:bg-[#0a1128]">
+                                        <Check size={11} strokeWidth={3} />
                                     </div>
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+
+                                    {/* Benefit Icon */}
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827]">
                                         <benefit.icon size={14} strokeWidth={1.5} />
                                     </div>
+
+                                    {/* Text */}
                                     <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">
                                         {benefit.text}
                                     </span>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
 
