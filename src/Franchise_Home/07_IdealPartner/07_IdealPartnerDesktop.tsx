@@ -6,18 +6,18 @@ import {
 } from "../utils/theme";
 import { idealPartnerData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-import { Check } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  hidden: { opacity: 0, y: 15, scale: 0.98 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
       type: "spring" as const,
-      stiffness: 350,
-      damping: 25,
+      stiffness: 400,
+      damping: 30,
       mass: 0.8,
     },
   },
@@ -27,20 +27,13 @@ const stagger = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
   },
 };
 
 export default function IdealPartnerDesktop() {
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden bg-white dark:bg-gray-900">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[20%] left-[0%] w-80 h-80 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl animate-pulse-soft" />
-        <div
-          className="absolute bottom-[20%] right-[0%] w-96 h-96 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
+    <section className="w-full px-6 py-12 relative overflow-hidden bg-gray-50 dark:bg-gray-900">
       <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader
           overline={idealPartnerData.sectionLabel}
@@ -63,39 +56,40 @@ export default function IdealPartnerDesktop() {
                 key={item.title}
                 variants={fadeInUp}
                 className={clsx(
-                  "rounded-lg border border-gray-100 dark:border-white/5 p-5 transition-all duration-500 flex flex-col bg-white dark:bg-[#0b162c] shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 group relative overflow-hidden",
+                  "rounded-2xl border border-gray-200 dark:border-gray-700 p-5 flex flex-col bg-white dark:bg-gray-800 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group",
                   getCardStyles(item.intent),
                 )}
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gray-50 to-transparent dark:from-white/5 dark:to-transparent rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className="flex items-center gap-4 mb-6 relative z-10">
-                  <div
+                <div className="flex items-center gap-3.5 mb-4">
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className={clsx(
-                      "w-12 h-12 rounded-xl flex shrink-0 items-center justify-center shadow-md transition-transform duration-500 group-hover:scale-110",
+                      "w-11 h-11 rounded-xl flex shrink-0 items-center justify-center shadow-sm",
                       getIconContainerStyles(item.intent),
                     )}
                   >
-                    <Icon size={22} strokeWidth={2} className="text-white" />
-                  </div>
-                  <h4 className="text-[#0a1128] dark:text-white font-semibold text-xl tracking-tight leading-tight group-hover:text-primary transition-colors duration-300">
+                    <Icon size={20} strokeWidth={2} className="text-white" />
+                  </motion.div>
+                  <h4 className="text-[#0b1b42] dark:text-white font-bold text-lg tracking-tight leading-tight group-hover:text-[#d4af37] transition-colors duration-300">
                     {item.title}
                   </h4>
                 </div>
 
-                <div className="flex flex-col gap-3.5 flex-1 relative z-10">
+                <div className="flex flex-col gap-3 flex-1">
                   {item.items.map((subItem, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-3 group/item"
+                      className="flex items-start gap-2.5 group/item cursor-default"
                     >
-                      <div className="mt-1 flex items-center justify-center w-5 h-5 rounded-full bg-gray-100 dark:bg-white/10 group-hover/item:bg-primary/10 transition-colors duration-300">
-                        <Check
-                          size={12}
-                          className="text-gray-700 dark:text-gray-200"
+                      <div className="mt-[2px] shrink-0 transition-transform duration-300 group-hover/item:scale-110">
+                        <BadgeCheck
+                          size={16}
+                          className="text-gray-300 dark:text-gray-600 group-hover/item:text-[#d4af37] group-hover/item:drop-shadow-[0_0_6px_rgba(212,175,55,0.3)] transition-all duration-300"
+                          strokeWidth={2}
                         />
                       </div>
-                      <span className="text-gray-600 dark:text-gray-300 font-medium text-[16px] leading-relaxed group-hover/item:text-gray-900 dark:group-hover/item:text-white transition-colors duration-300">
+                      <span className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-snug group-hover/item:text-[#0b1b42] dark:group-hover/item:text-white transition-colors duration-300">
                         {subItem}
                       </span>
                     </div>
@@ -120,23 +114,25 @@ export default function IdealPartnerDesktop() {
                 key={item.title}
                 variants={fadeInUp}
                 className={clsx(
-                  "rounded-lg border border-gray-100 dark:border-white/5 px-5 py-4 transition-all duration-500 flex items-center gap-4 bg-white dark:bg-[#0b162c] shadow-[0_2px_10px_rgb(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1 group",
+                  "rounded-2xl border border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-3.5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group",
                   getCardStyles(item.intent),
                 )}
               >
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: -5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   className={clsx(
-                    "w-11 h-11 rounded-xl flex shrink-0 items-center justify-center shadow-md transition-transform duration-500 group-hover:scale-110",
+                    "w-10 h-10 rounded-xl flex shrink-0 items-center justify-center shadow-sm",
                     getIconContainerStyles(item.intent),
                   )}
                 >
-                  <Icon size={20} strokeWidth={2} className="text-white" />
-                </div>
+                  <Icon size={18} strokeWidth={2} className="text-white" />
+                </motion.div>
                 <div className="flex flex-col justify-center">
-                  <span className="text-gray-400 dark:text-gray-500 text-[11px] font-bold uppercase tracking-widest mb-0.5 group-hover:text-primary/70 transition-colors duration-300">
+                  <span className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-0.5 group-hover:text-[#d4af37] transition-colors duration-300">
                     {item.title}
                   </span>
-                  <span className="text-[#0a1128] dark:text-white font-semibold text-[15px] tracking-tight">
+                  <span className="text-[#0b1b42] dark:text-white font-bold text-sm tracking-tight">
                     {item.value}
                   </span>
                 </div>
@@ -150,24 +146,28 @@ export default function IdealPartnerDesktop() {
           whileInView="show"
           viewport={{ once: true }}
           variants={stagger}
-          className="w-full flex justify-center"
+          className="w-full"
         >
           <motion.div
             variants={fadeInUp}
-            className="w-2/3 bg-white dark:bg-[#0b162c] border border-gray-100 dark:border-white/5 rounded-2xl p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex items-center gap-6 group relative overflow-hidden"
+            className="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 shadow-sm flex items-center gap-5 group"
           >
-            <div className="w-14 h-14 rounded-xl bg-[#0b162c] text-white flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-md shadow-[#0b162c]/20 relative z-10">
+            <motion.div
+              whileHover={{ scale: 1.15, rotate: 10 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="w-12 h-12 rounded-xl bg-[#0b1b42] dark:bg-gray-700 text-white flex items-center justify-center shrink-0 shadow-sm"
+            >
               <idealPartnerData.additionalExpectations.icon
-                size={26}
+                size={22}
                 className="text-white"
                 strokeWidth={2}
               />
-            </div>
-            <div className="flex flex-col relative z-10">
-              <h4 className="text-[#0a1128] dark:text-white font-bold text-lg tracking-tight mb-1">
+            </motion.div>
+            <div className="flex flex-col">
+              <h4 className="text-[#0b1b42] dark:text-white font-bold text-base tracking-tight mb-0.5">
                 {idealPartnerData.additionalExpectations.title}
               </h4>
-              <p className="text-gray-600 dark:text-gray-300 font-normal text-[15px] leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-relaxed">
                 {idealPartnerData.additionalExpectations.text}
               </p>
             </div>

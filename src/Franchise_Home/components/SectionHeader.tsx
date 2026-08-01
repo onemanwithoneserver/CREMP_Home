@@ -10,6 +10,7 @@ interface SectionHeaderProps {
 
 export function SectionHeader({
   title,
+  subtitle,
   overline,
   align = "left",
 }: SectionHeaderProps) {
@@ -37,15 +38,23 @@ export function SectionHeader({
       {title && (
         <>
           {isMobile ? (
-            <h2 className="text-2xl font-semibold text-[#0a1128] tracking-tight mb-4 leading-tight">
+            <h2 className="text-2xl font-semibold text-[#0a1128] dark:text-white tracking-tight mb-3 leading-tight">
               {title}
             </h2>
           ) : (
-            <h2 className="text-4xl lg:text-[42px] font-semibold text-[#0a1128] tracking-tight mb-4 leading-tight">
+            <h2 className="text-4xl lg:text-[42px] font-semibold text-[#0a1128] dark:text-white tracking-tight mb-3 leading-tight">
               {title}
             </h2>
           )}
         </>
+      )}
+
+      {subtitle && (
+        <p
+          className={`text-sm md:text-base text-gray-600 dark:text-gray-400 font-normal leading-relaxed mb-4 ${align === "center" ? "max-w-2xl mx-auto" : "max-w-2xl"}`}
+        >
+          {subtitle}
+        </p>
       )}
     </motion.div>
   );
