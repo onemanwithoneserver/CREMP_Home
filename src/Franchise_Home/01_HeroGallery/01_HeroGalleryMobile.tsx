@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import mainCupImg from "../../assets/main_coffee_cup.png";
 import { heroData } from "./data";
+import AppsIcon from "@mui/icons-material/Apps";
 
 const container = {
   hidden: { opacity: 0 },
@@ -114,13 +115,18 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
 
-            <motion.h1
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-              className="text-4xl tracking-tight font-serif font-black uppercase leading-[1.1] text-[#0b162c]"
-            >
-              {heroData.brandName}
-            </motion.h1>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center p-2.5 bg-[#0b162c] text-white rounded-xl shadow-lg border border-[#c69a54]/20 shrink-0">
+                <AppsIcon style={{ fontSize: 36 }} />
+              </div>
+              <motion.h1
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="text-4xl tracking-tight font-serif font-black uppercase leading-[1.1] text-[#0b162c]"
+              >
+                {heroData.brandName}
+              </motion.h1>
+            </div>
           </div>
 
           <div className="relative pl-5">

@@ -15,6 +15,7 @@ import cafeInteriorImg from "../../assets/cafe_interior.png";
 import coffeeBeansImg from "../../assets/coffee_beans.png";
 import coffeeEquipmentImg from "../../assets/coffee_equipment.png";
 import { heroData } from "./data";
+import AppsIcon from "@mui/icons-material/Apps";
 
 const container = {
   hidden: { opacity: 0 },
@@ -66,15 +67,20 @@ export default function HeroGalleryDesktop() {
                 </div>
               </div>
 
-              <motion.h1
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="text-5xl lg:text-[64px] tracking-tight font-serif font-bold uppercase leading-[1.05] text-[#0b162c]"
-              >
-                {heroData.brandName}
-              </motion.h1>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center p-3 bg-[#0b162c] text-white rounded-2xl shadow-lg border border-[#c69a54]/20 shrink-0">
+                  <AppsIcon style={{ fontSize: 52 }} />
+                </div>
+                <motion.h1
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  className="text-5xl lg:text-[64px] tracking-tight font-serif font-bold uppercase leading-[1.05] text-[#0b162c]"
+                >
+                  {heroData.brandName}
+                </motion.h1>
+              </div>
             </div>
 
             <div className="relative pl-6">
