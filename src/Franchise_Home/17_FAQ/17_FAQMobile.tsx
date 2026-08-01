@@ -47,6 +47,8 @@ export default function FAQMobile() {
                                         : "shadow-sm border border-gray-100"
                                     }`}
                                 >
+                                    <div className={`w-[3px] h-full absolute left-0 top-0 z-20 bg-gradient-to-b from-[#bf953f] to-[#b38728] transition-opacity duration-300 ${expandedId === q.id ? 'opacity-100' : 'opacity-0'}`} />
+                                    
                                     <button
                                         onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
                                         className="w-full flex items-center justify-between p-4 text-left bg-white"
