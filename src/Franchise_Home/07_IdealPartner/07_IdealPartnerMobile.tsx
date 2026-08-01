@@ -30,7 +30,7 @@ export default function IdealPartnerMobile() {
                 whileInView="show"
                 viewport={{ once: true }}
                 variants={stagger}
-                className="flex flex-col gap-5 mt-2 mb-2"
+                className="flex flex-col gap-3 mt-4 mb-3"
             >
                 {idealPartnerData.multiSelects.map((item) => {
                     const Icon = item.icon;
@@ -74,7 +74,7 @@ export default function IdealPartnerMobile() {
                 whileInView="show"
                 viewport={{ once: true }}
                 variants={stagger}
-                className="flex flex-col gap-4 mb-4"
+                className="flex flex-col gap-3 mb-3"
             >
                 {idealPartnerData.singleSelects.map((item) => {
                     const Icon = item.icon;

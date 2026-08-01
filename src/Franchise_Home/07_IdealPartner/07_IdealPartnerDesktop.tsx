@@ -36,7 +36,7 @@ export default function IdealPartnerDesktop() {
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-6 mb-8 mt-10"
+                    className="grid grid-cols-3 gap-4 mt-6 mb-4"
                 >
                     {idealPartnerData.multiSelects.map((item) => {
                         const Icon = item.icon;
@@ -82,7 +82,7 @@ export default function IdealPartnerDesktop() {
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
                     variants={stagger}
-                    className="grid grid-cols-3 gap-6 mb-10"
+                    className="grid grid-cols-3 gap-4 mb-4"
                 >
                     {idealPartnerData.singleSelects.map((item) => {
                         const Icon = item.icon;
