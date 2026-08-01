@@ -37,18 +37,18 @@ function LeaderCard({
 }) {
   return (
     <div
-      className="h-[430px] w-full [perspective:1200px] cursor-pointer group"
+      className="h-[500px] w-full [perspective:1500px] cursor-pointer group"
       onClick={onToggle}
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{
-          duration: 0.65,
+          duration: 0.7,
           type: "spring",
-          stiffness: 220,
-          damping: 22,
+          stiffness: 150,
+          damping: 20,
         }}
-        className="relative w-full h-full [transform-style:preserve-3d] transition-shadow duration-500 rounded-2xl"
+        className="relative w-full h-full [transform-style:preserve-3d] transition-shadow duration-500 rounded-2xl shadow-xl"
       >
         <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] group-hover:shadow-[0_20px_40px_rgba(212,175,55,0.18)] transition-all duration-500 bg-white dark:bg-gray-800 [backface-visibility:hidden]">
           <img
@@ -84,14 +84,14 @@ function LeaderCard({
           </div>
         </div>
 
-        <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden px-4 py-5 bg-[#0a1128] border border-[#d4af37]/40 shadow-[0_20px_50px_rgba(212,175,55,0.2)] flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-          <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#d4af37]/15 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-primary/20 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden px-5 py-6 bg-[#0a1128] border border-[#d4af37]/40 shadow-[0_20px_50px_rgba(212,175,55,0.2)] flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex items-start justify-between gap-3 relative z-10 pb-3 border-b border-white/10">
+          <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
-                <h5 className="font-semibold text-base text-white tracking-tight leading-tight">
+                <h5 className="font-semibold text-lg text-white tracking-tight leading-tight">
                   {member.name}
                 </h5>
                 <span className="text-[#d4af37] text-[13px] font-bold tracking-wider uppercase mt-1">
@@ -105,48 +105,39 @@ function LeaderCard({
                 e.stopPropagation();
                 onToggle();
               }}
-              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+              className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
               title="Flip back"
             >
-              <RotateCw size={13} className="text-[#d4af37]" />
+              <RotateCw size={14} className="text-[#d4af37]" />
             </button>
           </div>
 
-          <div className="relative z-10 my-auto py-2">
+          <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
             <p className="text-[15px] text-gray-200 leading-relaxed font-medium">
               {member.bio}
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-col gap-2.5">
               {member.highlights.map((highlight, idx) => (
-                <span
-                  key={idx}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[13px] font-medium text-gray-100"
-                >
-                  <Sparkles size={12} className="text-[#d4af37]" />
-                  {highlight}
-                </span>
+                <div key={idx} className="flex items-start gap-2.5">
+                  <Sparkles size={14} className="text-[#d4af37] shrink-0 mt-[3px]" />
+                  <span className="text-[14px] font-medium text-gray-100 leading-tight">
+                    {highlight}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
 
           <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col gap-2">
-            <div className="flex items-start gap-2.5 bg-[#d4af37]/10 p-3 rounded-xl border border-[#d4af37]/20">
+            <div className="flex items-start gap-2.5 bg-gradient-to-br from-[#d4af37]/10 to-transparent p-4 rounded-xl border border-[#d4af37]/20">
               <Quote
-                size={16}
-                className="text-[#d4af37] shrink-0 mt-0.5 rotate-180"
+                size={18}
+                className="text-[#d4af37] shrink-0 mt-0.5 rotate-180 opacity-80"
               />
-              <p className="text-[14px] italic text-amber-200/90 leading-relaxed font-semibold">
+              <p className="text-[14px] italic text-amber-100/90 leading-relaxed font-semibold">
                 {member.quote}
               </p>
-            </div>
-
-            <div className="flex items-center justify-between text-[11px] text-gray-400 uppercase tracking-wider pt-1">
-              <span className="flex items-center gap-1.5">
-                <Briefcase size={12} className="text-[#d4af37]" />
-                Leadership Focus
-              </span>
-              <span className="text-gray-400">Click to flip back</span>
             </div>
           </div>
         </div>

@@ -190,7 +190,7 @@ export default function LeadershipMobile() {
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
             ref={scrollContainerRef}
-            className="flex w-full overflow-x-auto snap-x snap-mandatory py-2 [&::-webkit-scrollbar]:hidden"
+            className="flex w-full overflow-x-auto snap-x snap-mandatory px-4 py-2 gap-4 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             onScroll={handleScroll}
           >
