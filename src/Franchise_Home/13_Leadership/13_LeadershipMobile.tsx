@@ -32,7 +32,7 @@ function LeaderCardMobile({
 }) {
   return (
     <div
-      className="h-[420px] w-full [perspective:1500px] cursor-pointer group rounded-[8px]"
+      className="h-[500px] w-full [perspective:1500px] cursor-pointer group rounded-[8px]"
       onClick={onToggle}
     >
       <motion.div
@@ -74,16 +74,20 @@ function LeaderCardMobile({
             <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
           </div>
         </div>
-        <div className="absolute inset-0 rounded-[8px] w-full h-full overflow-hidden px-4 py-6 bg-[#0a1128] border-y border-[#d4af37]/40 flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-          <div className="absolute -top-16 -right-16 w-32 h-32 bg-[#d4af37]/15 rounded-full blur-2xl pointer-events-none" />
-          <div className="flex items-start justify-between gap-2 relative z-10 pb-4 border-b border-white/10">
-            <div className="flex flex-col">
-              <h5 className="font-bold text-lg text-white leading-tight">
-                {member.name}
-              </h5>
-              <span className="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mt-1">
-                {member.role}
-              </span>
+        <div className="absolute inset-0 rounded-[8px] w-full h-full overflow-hidden px-5 py-6 bg-[#0a1128] border border-[#d4af37]/40 shadow-[0_20px_50px_rgba(212,175,55,0.2)] flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
+            <div className="flex items-center gap-3">
+              <div className="flex flex-col">
+                <h5 className="font-semibold text-lg text-white tracking-tight leading-tight">
+                  {member.name}
+                </h5>
+                <span className="text-[#d4af37] text-[13px] font-bold tracking-wider uppercase mt-1">
+                  {member.role}
+                </span>
+              </div>
             </div>
 
             <button
@@ -91,25 +95,23 @@ function LeaderCardMobile({
                 e.stopPropagation();
                 onToggle();
               }}
-              className="p-1.5 rounded-full bg-white/10 text-gray-300 transition-colors shrink-0 hover:bg-white/20 hover:text-white"
+              className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+              title="Flip back"
             >
               <RotateCw size={14} className="text-[#d4af37]" />
             </button>
           </div>
 
-          <div className="relative z-10 flex-1 flex flex-col justify-evenly py-2 overflow-hidden w-full">
-            <p className="text-sm text-gray-200 leading-relaxed font-medium line-clamp-4">
+          <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
+            <p className="text-[15px] text-gray-200 leading-relaxed font-medium">
               {member.bio}
             </p>
 
-            <div className="flex flex-col gap-2 mt-2">
+            <div className="mt-5 flex flex-col gap-2.5">
               {member.highlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-start gap-2">
-                  <Sparkles
-                    size={12}
-                    className="text-[#d4af37] shrink-0 mt-[2px]"
-                  />
-                  <span className="text-xs font-medium text-gray-100 leading-snug">
+                <div key={idx} className="flex items-start gap-2.5">
+                  <Sparkles size={14} className="text-[#d4af37] shrink-0 mt-[3px]" />
+                  <span className="text-[14px] font-medium text-gray-100 leading-tight">
                     {highlight}
                   </span>
                 </div>
@@ -117,13 +119,13 @@ function LeaderCardMobile({
             </div>
           </div>
 
-          <div className="relative z-10 pt-4 border-t border-white/10 w-full">
-            <div className="flex items-start gap-2 bg-gradient-to-br from-[#d4af37]/10 to-transparent p-3 rounded-xl border border-[#d4af37]/20">
+          <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col gap-2">
+            <div className="flex items-start gap-2.5 bg-transparent p-4 rounded-xl border border-white/10">
               <Quote
-                size={14}
+                size={18}
                 className="text-[#d4af37] shrink-0 mt-0.5 rotate-180 opacity-80"
               />
-              <p className="text-xs italic text-amber-100/90 leading-tight font-medium">
+              <p className="text-[14px] italic text-amber-100/90 leading-relaxed font-semibold">
                 "{member.quote}"
               </p>
             </div>
@@ -198,7 +200,7 @@ export default function LeadershipMobile() {
               <motion.div
                 variants={itemVariants}
                 key={member.name}
-                className="w-full shrink-0 snap-center" 
+                className="w-[85vw] max-w-[340px] shrink-0 snap-center" 
               >
                 <LeaderCardMobile
                   member={member}

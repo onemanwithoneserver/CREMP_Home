@@ -130,13 +130,13 @@ function LeaderCard({
           </div>
 
           <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col gap-2">
-            <div className="flex items-start gap-2.5 bg-gradient-to-br from-[#d4af37]/10 to-transparent p-4 rounded-xl border border-[#d4af37]/20">
+            <div className="flex items-start gap-2.5 bg-transparent p-4 rounded-xl border border-white/10">
               <Quote
                 size={18}
                 className="text-[#d4af37] shrink-0 mt-0.5 rotate-180 opacity-80"
               />
               <p className="text-[14px] italic text-amber-100/90 leading-relaxed font-semibold">
-                {member.quote}
+                "{member.quote}"
               </p>
             </div>
           </div>
