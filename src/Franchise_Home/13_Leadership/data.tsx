@@ -21,10 +21,5 @@ export const leadershipData = {
             role: "VP of Culinary Innovation",
             avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300",
         },
-        {
-            name: "Vikram Singh",
-            role: "Head of Expansion",
-            avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300",
-        },
     ],
 };

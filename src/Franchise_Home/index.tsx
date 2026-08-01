@@ -7,8 +7,7 @@ import Leadership from "./13_Leadership";
 import MediaGallery from "./14_MediaGallery";
 import FranchiseNetwork from "./16_FranchiseNetwork";
 import FAQ from "./17_FAQ";
-import Footer from "../Home/04_footer";
-import StickyFooter from "./StickyFooter";
+
 
 interface FranchiseHomeProps {
     isMobile: boolean;
@@ -28,8 +27,6 @@ export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
                 <FranchiseNetwork isMobile={isMobile} />
                 <FAQ isMobile={isMobile} />
             </div>
-            <Footer isMobile={isMobile} hideCTA={true} />
-            <StickyFooter isMobile={isMobile} />
         </div>
     );
 }

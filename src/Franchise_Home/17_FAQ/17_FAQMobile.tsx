@@ -5,96 +5,95 @@ import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 
 export default function FAQMobile() {
-    const [activeTab, setActiveTab] = useState(faqData.tabs[0].id);
     const [expandedId, setExpandedId] = useState<string | null>(
         faqData.questions.find((q) => q.isExpanded)?.id || null
     );
 
-    const filteredQuestions = faqData.questions.filter(
-        (q) => q.category === activeTab
-    );
-
     return (
-        <section className="w-full bg-[#FAFAFA] px-4 py-12">
-            <div className="flex flex-col mb-2 text-center items-center">
-                <SectionHeader 
-                    overline={faqData.sectionLabel}
-                    title={faqData.title}
-                    align="center"
-                />
-            </div>
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide mb-2 -mx-2 px-2 snap-x">
-                {faqData.tabs.map((tab) => (
-                    <button
-                        key={tab.id}
-                        onClick={() => {
-                            setActiveTab(tab.id);
-                            setExpandedId(null);
-                        }}
-                        className={`px-5 py-2.5 rounded-[4px] text-xs font-semibold transition-all duration-300 whitespace-nowrap snap-start shrink-0 ${activeTab === tab.id
-                                ? "bg-primary text-white shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
-                                : "bg-white dark:bg-white border border-gray-100 text-gray-600 dark:text-gray-400 hover:border-primary/50"
-                            }`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
+        <section className="w-full bg-[#FAFAFA] px-4 py-10 relative overflow-hidden">
+            {/* Background Accents */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute -top-[10%] -right-[10%] w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px]" />
             </div>
 
-            <div className="flex flex-col gap-3">
-                <AnimatePresence mode="popLayout">
-                    {filteredQuestions.map((q, index) => (
-                        <motion.div
-                            key={q.id}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ duration: 0.3, delay: index * 0.05 }}
-                            className={`bg-white dark:bg-white border-[0.5px] rounded-[4px] overflow-hidden transition-all duration-300 ${expandedId === q.id ? "border-primary-[2px] dark:border-accent shadow-[0_12px_40px_rgb(0,0,0,0.08)]" : "border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
-                                }`}
+            <div className="relative z-10">
+                <div className="flex flex-col mb-8 text-center items-center">
+                    <SectionHeader 
+                        overline={faqData.sectionLabel}
+                        title={faqData.title}
+                        align="center"
+                    />
+                </div>
+
+                {/* Accordion List */}
+                <div className="flex flex-col gap-3 mt-4">
+                    <AnimatePresence mode="wait">
+                        <motion.div 
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="flex flex-col gap-3"
                         >
-                            <button
-                                onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
-                                className="w-full flex items-center justify-between p-4 text-left"
-                            >
-                                <span className={`text-[13px] font-semibold pr-4 transition-colors leading-snug ${expandedId === q.id ? "text-[#0a1128] dark:text-accent" : "text-[#0a1128] dark:text-white"}`}>
-                                    {q.question}
-                                </span>
-                                <div
-                                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${expandedId === q.id ? "bg-gradient-to-br from-[#bf953f] to-[#b38728] text-white shadow-sm shadow-[#d4af37]/30" : "bg-gray-100 dark:bg-gray-800 text-gray-500"
-                                        }`}
+                            {faqData.questions.map((q, index) => (
+                                <motion.div
+                                    key={q.id}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                                    className={`group bg-white rounded-xl overflow-hidden transition-all duration-300 relative ${
+                                        expandedId === q.id 
+                                        ? "shadow-[0_12px_30px_rgba(0,0,0,0.08)] border-transparent" 
+                                        : "shadow-sm border border-gray-100"
+                                    }`}
                                 >
-                                    {expandedId === q.id ? (
-                                        <Minus size={16} strokeWidth={2.5} />
-                                    ) : (
-                                        <Plus size={16} strokeWidth={2.5} />
-                                    )}
-                                </div>
-                            </button>
-
-                            <AnimatePresence>
-                                {expandedId === q.id && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                                        className="overflow-hidden"
+                                    <button
+                                        onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}
+                                        className="w-full flex items-center justify-between p-4 text-left bg-white"
                                     >
-                                        <div className="px-4 pb-4 pt-1">
-                                            <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">
-                                                {q.answer}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    ))}
-                </AnimatePresence>
-            </div>
+                                        <span className={`text-[15px] font-semibold pr-4 transition-colors leading-snug ${expandedId === q.id ? "text-[#d4af37]" : "text-[#0a1128]"}`}>
+                                            {q.question}
+                                        </span>
+                                        <motion.div
+                                            animate={{ rotate: expandedId === q.id ? 180 : 0 }}
+                                            transition={{ duration: 0.4, type: "spring" }}
+                                            className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                                                expandedId === q.id 
+                                                ? "bg-[#0a1128] text-white" 
+                                                : "bg-gray-50 text-gray-400"
+                                            }`}
+                                        >
+                                            {expandedId === q.id ? (
+                                                <Minus size={16} strokeWidth={2.5} />
+                                            ) : (
+                                                <Plus size={16} strokeWidth={2.5} />
+                                            )}
+                                        </motion.div>
+                                    </button>
 
+                                    <AnimatePresence>
+                                        {expandedId === q.id && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                                className="overflow-hidden bg-gray-50/50"
+                                            >
+                                                <div className="px-4 pb-5 pt-2">
+                                                    <p className="text-gray-600 text-[14px] leading-relaxed pl-3 border-l-2 border-gray-200">
+                                                        {q.answer}
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </div>
         </section>
     );
 }
-

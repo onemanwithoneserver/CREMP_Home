@@ -1,72 +1,74 @@
-import clsx from "clsx";
 import { motion } from "framer-motion";
 import { leadershipData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 
+
 const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    show: { opacity: 1, scale: 1, transition: { type: "spring" as const, stiffness: 300, damping: 25 } },
+    hidden: { opacity: 0, y: 30 },
+    show: { 
+        opacity: 1, 
+        y: 0, 
+        transition: { type: "spring", stiffness: 100, damping: 15 } 
+    },
 };
 
 const staggerContainer = {
     hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
 export default function LeadershipMobile() {
     return (
-        <section className="w-full bg-white dark:bg-[#0b162c] py-12 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/5 rounded-full blur-[80px] pointer-events-none" />
-            
-            <div className="px-4">
-                <SectionHeader 
-                    overline={leadershipData.sectionLabel}
-                    align="center"
-                />
+        <section className="w-full bg-[#FAFAFA] dark:bg-[#0b162c] px-4 py-16 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute -top-[10%] -right-[5%] w-[300px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[80px]" />
+                <div className="absolute -bottom-[10%] -left-[5%] w-[300px] h-[300px] bg-primary/10 rounded-full blur-[80px]" />
             </div>
 
-            <motion.div
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                variants={staggerContainer}
-                className="flex overflow-x-auto snap-x snap-mandatory gap-6 mt-12 pb-8 px-6 hide-scrollbar"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-                {leadershipData.members.map((member) => (
-                    <motion.div
-                        key={member.name}
-                        variants={itemVariants}
-                        className="flex flex-col items-center text-center shrink-0 w-[200px] snap-center group"
-                    >
-                        <div className="relative w-40 h-40 mb-5">
-                            <div className="absolute inset-0 rounded-full border border-gray-100 dark:border-white/5 scale-[1.08]" />
-                            <div className="w-full h-full rounded-full overflow-hidden shadow-lg bg-gray-100">
-                                <img
-                                    src={member.avatar}
-                                    alt={member.name}
-                                    className="w-full h-full object-cover filter grayscale-[10%]"
-                                    draggable={false}
-                                />
-                            </div>
-                        </div>
-
-                        <h4 className="text-[#0a1128] dark:text-white font-semibold text-lg tracking-tight mb-1">
-                            {member.name}
-                        </h4>
-                        <p className="text-gray-500 dark:text-gray-400 text-[11px] font-semibold tracking-wider uppercase">
-                            {member.role}
-                        </p>
-                    </motion.div>
-                ))}
-            </motion.div>
-            
-            <div className="flex justify-center mt-2">
-                <div className="flex gap-1.5">
-                    {leadershipData.members.map((_, i) => (
-                        <div key={i} className={clsx("h-1.5 rounded-full transition-all duration-300", i === 0 ? "w-4 bg-primary" : "w-1.5 bg-gray-200 dark:bg-white/10")} />
-                    ))}
+            <div className="relative z-10 flex flex-col items-center">
+                <div className="mb-8">
+                    <SectionHeader 
+                        overline={leadershipData.sectionLabel}
+                        align="center"
+                    />
                 </div>
+
+                <motion.div
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={staggerContainer}
+                    className="flex flex-col gap-6 w-full"
+                >
+                    {leadershipData.members.map((member) => (
+                        <motion.div
+                            key={member.name}
+                            variants={itemVariants}
+                            className="group relative flex flex-col h-[320px] rounded-2xl overflow-hidden shadow-lg bg-white"
+                        >
+                            <img
+                                src={member.avatar}
+                                alt={member.name}
+                                className="w-full h-full object-cover filter grayscale-[20%]"
+                                draggable={false}
+                            />
+                            
+                            {/* Dark Gradient Overlay always visible on mobile for legibility */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/95 via-[#0a1128]/50 to-transparent opacity-90" />
+                            
+                            <div className="absolute bottom-0 left-0 w-full p-5 flex flex-col justify-end">
+                                <h4 className="text-white font-semibold text-xl tracking-tight mb-1 text-[#d4af37]">
+                                    {member.name}
+                                </h4>
+                                <p className="text-gray-300 text-xs font-semibold tracking-widest uppercase mb-3">
+                                    {member.role}
+                                </p>
+                                
+                                <div className="w-6 h-[2px] bg-[#d4af37] mb-3 rounded-full" />
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );
