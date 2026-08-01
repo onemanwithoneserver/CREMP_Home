@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const revenueROIData = {
-  sectionLabel: "ESTIMATED ROI BY YEAR",
+  sectionLabel: "Break Even & Estimated ROI",
   revenueCards: [
     {
       icon: BarChart3,
