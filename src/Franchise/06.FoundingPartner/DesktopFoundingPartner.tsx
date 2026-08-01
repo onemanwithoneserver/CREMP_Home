@@ -260,7 +260,7 @@ export default function DesktopFoundingPartner() {
                                         type: "spring",
                                     }}
                                     whileHover={{ scale: 1.02 }}
-                                    className="group flex w-full cursor-pointer items-center gap-4 rounded-[4px] border border-gray-200/50 bg-white/80 p-3.5 px-5 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:bg-[#121c33]/60 dark:hover:border-[#D4AF37]/30 dark:hover:bg-[#121c33]/90"
+                                    className="group flex w-full cursor-pointer items-center gap-4 rounded-[4px]  p-3.5 px-5 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:hover:bg-[#121c33]/90"
                                 >
                                     <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 transition-colors group-hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:group-hover:bg-[#D4AF37]/20">
                                         <Check

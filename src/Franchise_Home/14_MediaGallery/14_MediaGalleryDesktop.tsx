@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-import { Play, FileText, Download, ImageIcon, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import { Play, FileText, Download, ImageIcon, ChevronLeft, ChevronRight, ChevronDown, Film, Smartphone, FileCheck2 } from "lucide-react";
 import clsx from "clsx";
 
 const sectionVariants = {
@@ -112,7 +112,7 @@ export default function MediaGalleryDesktop() {
               animate="show"
               exit="exit"
               variants={sectionVariants}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-8"
             >
               {filteredItems.length === 0 && (
                 <div className="text-center py-32 text-gray-400 flex flex-col items-center">
@@ -121,17 +121,55 @@ export default function MediaGalleryDesktop() {
                 </div>
               )}
 
-              {images.length > 0 && <CarouselSection items={images} cols={3} />}
+              {images.length > 0 && (
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
+                    <div className="w-5 h-5 rounded-[2px] bg-amber-500 flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <ImageIcon size={13} />
+                    </div>
+                    <span>Photos & Outlets</span>
+                  </div>
+                  <CarouselSection items={images} cols={4} ratio="aspect-[4/5]" />
+                </div>
+              )}
               
-              {videos.length > 0 && <CarouselSection items={videos} cols={3} />}
+              {videos.length > 0 && (
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
+                    <div className="w-5 h-5 rounded-[2px] bg-rose-500 flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <Film size={13} />
+                    </div>
+                    <span>Videos & Tours</span>
+                  </div>
+                  <CarouselSection items={videos} cols={3} ratio="aspect-[16/10]" />
+                </div>
+              )}
               
-              {shortVideos.length > 0 && <CarouselSection items={shortVideos} cols={5} />}
+              {shortVideos.length > 0 && (
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
+                    <div className="w-5 h-5 rounded-[2px] bg-violet-500 flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <Smartphone size={13} />
+                    </div>
+                    <span>Shorts & Reels</span>
+                  </div>
+                  <CarouselSection items={shortVideos} cols={5} ratio="aspect-[9/16]" />
+                </div>
+              )}
 
               {documents.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
-                  {documents.map((item) => (
-                    <MediaCard key={item.id} item={item} />
-                  ))}
+                <div className="flex flex-col gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
+                  <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
+                    <div className="w-5 h-5 rounded-[2px] bg-emerald-500 flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <FileCheck2 size={13} />
+                    </div>
+                    <span>Investor & Operation Documents</span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {documents.map((item) => (
+                      <MediaCard key={item.id} item={item} />
+                    ))}
+                  </div>
                 </div>
               )}
             </motion.div>
@@ -142,7 +180,7 @@ export default function MediaGalleryDesktop() {
   );
 }
 
-function CarouselSection({ items, cols }: { items: MediaItem[], cols: number }) {
+function CarouselSection({ items, cols, ratio }: { items: MediaItem[]; cols: number; ratio: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -150,8 +188,8 @@ function CarouselSection({ items, cols }: { items: MediaItem[], cols: number }) 
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
+      setCanScrollLeft(scrollLeft > 6);
+      setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth - 6);
     }
   };
 
@@ -163,27 +201,32 @@ function CarouselSection({ items, cols }: { items: MediaItem[], cols: number }) 
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth * 0.75, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth * 0.75, behavior: "smooth" });
     }
   };
 
-  const widthClass = cols === 5 ? "w-[calc((100%-80px)/5)]" : "w-[calc((100%-40px)/3)]";
+  const widthClass =
+    cols === 5
+      ? "w-[calc((100%-64px)/5)] min-w-[200px]"
+      : cols === 4
+      ? "w-[calc((100%-48px)/4)] min-w-[240px]"
+      : "w-[calc((100%-32px)/3)] min-w-[320px]";
 
   return (
     <div className="group/section relative w-full">
       <div
         ref={scrollRef}
         onScroll={checkScroll}
-        className="flex gap-5 overflow-x-auto pb-4 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+        className="flex gap-4 overflow-x-auto pb-4 pt-1 scrollbar-hide snap-x snap-mandatory scroll-smooth"
       >
         {items.map((item) => (
-          <MediaCard key={item.id} item={item} widthClass={widthClass} />
+          <MediaCard key={item.id} item={item} widthClass={widthClass} ratioClass={ratio} />
         ))}
       </div>
 
@@ -194,9 +237,10 @@ function CarouselSection({ items, cols }: { items: MediaItem[], cols: number }) 
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
             onClick={scrollLeft}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-[#d4af37] shadow-lg hover:scale-110 transition-all duration-300 opacity-0 group-hover/section:opacity-100"
+            aria-label="Previous"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white hover:text-[#d4af37] shadow-lg hover:scale-110 transition-all duration-300 opacity-0 group-hover/section:opacity-100"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} />
           </motion.button>
         )}
       </AnimatePresence>
@@ -208,9 +252,10 @@ function CarouselSection({ items, cols }: { items: MediaItem[], cols: number }) 
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             onClick={scrollRight}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-[#d4af37] shadow-lg hover:scale-110 transition-all duration-300 opacity-0 group-hover/section:opacity-100"
+            aria-label="Next"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white hover:text-[#d4af37] shadow-lg hover:scale-110 transition-all duration-300 opacity-0 group-hover/section:opacity-100"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} />
           </motion.button>
         )}
       </AnimatePresence>
@@ -218,9 +263,9 @@ function CarouselSection({ items, cols }: { items: MediaItem[], cols: number }) 
   );
 }
 
-function MediaCard({ item, widthClass }: { item: MediaItem, widthClass?: string }) {
+function MediaCard({ item, widthClass, ratioClass }: { item: MediaItem; widthClass?: string; ratioClass?: string }) {
   if (item.format === "image" || item.format === "video" || item.format === "short_video") {
-    const ratioClass = item.format === "short_video" ? "aspect-[9/16]" : "aspect-[4/3]";
+    const finalRatio = ratioClass || (item.format === "short_video" ? "aspect-[9/16]" : item.format === "video" ? "aspect-[16/10]" : "aspect-[4/5]");
     
     return (
       <motion.div
@@ -228,7 +273,7 @@ function MediaCard({ item, widthClass }: { item: MediaItem, widthClass?: string 
         className={clsx(
           "relative group overflow-hidden rounded-[4px] shadow-md hover:shadow-2xl bg-gray-100 dark:bg-gray-800 shrink-0 snap-start cursor-pointer transition-all duration-500",
           widthClass,
-          ratioClass
+          finalRatio
         )}
       >
         <img
@@ -239,19 +284,19 @@ function MediaCard({ item, widthClass }: { item: MediaItem, widthClass?: string 
         
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-[#0a1128]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
         
-        <div className="absolute inset-0 p-6 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <span className="text-[#d4af37] text-xs font-bold uppercase tracking-widest mb-2 drop-shadow-md">
+        <div className="absolute inset-0 p-5 flex flex-col justify-end transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+          <span className="text-[#d4af37] text-[10px] font-bold uppercase tracking-widest mb-1.5 drop-shadow-md">
             {item.category}
           </span>
-          <h4 className="text-white font-bold text-xl drop-shadow-lg leading-tight">
+          <h4 className="text-white font-bold text-base drop-shadow-lg leading-snug">
             {item.title}
           </h4>
         </div>
 
         {(item.format === "video" || item.format === "short_video") && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
-              <Play size={28} className="ml-1" fill="currentColor" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37]">
+              <Play size={20} className="ml-0.5" fill="currentColor" />
             </div>
           </div>
         )}
@@ -262,23 +307,23 @@ function MediaCard({ item, widthClass }: { item: MediaItem, widthClass?: string 
   return (
     <motion.div
       variants={itemVariants}
-      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 p-5 flex items-center gap-5 cursor-pointer transition-all duration-300 group"
+      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
     >
-      <div className="w-12 h-12 rounded-[4px] bg-gray-50 dark:bg-gray-800/80 flex items-center justify-center shadow-inner shrink-0 group-hover:bg-[#d4af37]/10 border border-gray-100 dark:border-gray-700 transition-colors">
-        <FileText size={24} className="text-[#d4af37]" />
+      <div className="w-11 h-11 rounded-[4px] bg-gray-50 dark:bg-gray-800/80 flex items-center justify-center shadow-inner shrink-0 group-hover:bg-[#d4af37]/10 border border-gray-100 dark:border-gray-700 transition-colors">
+        <FileText size={22} className="text-[#d4af37]" />
       </div>
       
-      <div className="flex-1 flex flex-col justify-center">
-        <h4 className="font-bold text-gray-900 dark:text-white text-base group-hover:text-[#d4af37] transition-colors leading-tight">
+      <div className="flex-1 flex flex-col justify-center min-w-0">
+        <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-[#d4af37] transition-colors leading-tight truncate">
           {item.title}
         </h4>
-        <span className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest block mt-1 opacity-80">
-          {item.category}
+        <span className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest block mt-1 opacity-80 truncate">
+          {item.category} • PDF
         </span>
       </div>
 
-      <div className="w-10 h-10 rounded-[4px] bg-gray-50 dark:bg-gray-800 flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 shrink-0 group-hover:text-[#d4af37] transition-colors">
-        <Download size={18} />
+      <div className="w-9 h-9 rounded-[4px] bg-gray-50 dark:bg-gray-800 flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 shrink-0 group-hover:text-[#d4af37] transition-colors">
+        <Download size={16} />
       </div>
     </motion.div>
   );

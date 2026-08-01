@@ -30,7 +30,7 @@ export default function FAQDesktop() {
   }, [searchQuery]);
 
   return (
-    <section className="w-full py-16 px-6 relative bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section className="w-full py-16 pb-20 px-6 relative bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[15%] right-[5%] w-[500px] h-[500px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[140px] animate-pulse-soft" />
         <div
