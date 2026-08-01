@@ -4,7 +4,6 @@ import {
   RotateCw,
   Sparkles,
   Quote,
-  Briefcase,
 } from "lucide-react";
 import { leadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";

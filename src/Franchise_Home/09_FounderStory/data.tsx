@@ -7,7 +7,7 @@ export const founderStoryData = {
   founder: {
     name: "Arjun Malhotra",
     title: "Founder & CEO",
-    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80",
   },
   stats: [
     { value: "187+", label: "Outlets", intent: "warning" },
