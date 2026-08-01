@@ -41,9 +41,14 @@ export default function HeroGalleryDesktop() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full max-w-[1440px] mx-auto bg-[#FAFAFA] transition-colors duration-300 px-10 py-2 flex flex-col gap-6"
+      className="w-full max-w-[1440px] mx-auto bg-gradient-to-br from-[#FAFAFA] via-white to-[#f4f4f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-10 py-2 flex flex-col gap-6 relative overflow-hidden"
     >
-      <div className="grid grid-cols-12 gap-2 min-h-[520px]">
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDuration: '12s' }} />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-float" style={{ animationDuration: '18s', animationDelay: '2s' }} />
+      </div>
+
+      <div className="relative z-10 grid grid-cols-12 gap-2 min-h-[520px]">
         <motion.div
           variants={item}
           className="col-span-12 lg:col-span-6 flex flex-col justify-between relative overflow-hidden group/main py-2 lg:py-4 h-full"
@@ -55,7 +60,7 @@ export default function HeroGalleryDesktop() {
                   <Utensils size={13} strokeWidth={2.5} />
                   {heroData.category}
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-md text-gray-500 text-[10px] font-bold uppercase tracking-widest shadow-sm border border-gray-100">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-md text-primary text-[10px] font-bold uppercase tracking-widest shadow-sm border border-gray-100">
                   <Coffee size={13} strokeWidth={2.5} />
                   {heroData.subCategory}
                 </div>
@@ -226,7 +231,7 @@ export default function HeroGalleryDesktop() {
 
       <motion.div
         variants={item}
-        className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 p-8 relative overflow-hidden mt-2"
+        className="relative z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 dark:border-gray-700/50 p-8 overflow-hidden mt-2"
       >
         <div className="flex flex-col gap-6 relative z-10">
           <div className="flex items-center gap-3">

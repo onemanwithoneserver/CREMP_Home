@@ -21,8 +21,12 @@ export default function FullCycleSupportMobile() {
   });
 
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 py-12 overflow-hidden">
-      <div className="px-2 flex justify-center">
+    <section className="w-full bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 py-12 overflow-hidden relative">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[30%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float" />
+        <div className="absolute bottom-[30%] right-[-10%] w-64 h-64 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }} />
+      </div>
+      <div className="relative z-10 px-2 flex justify-center">
         <SectionHeader
           overline={fullCycleSupportData.sectionLabel}
           title={fullCycleSupportData.title}
@@ -30,7 +34,7 @@ export default function FullCycleSupportMobile() {
         />
       </div>
 
-      <div className="relative overflow-hidden py-2">
+      <div className="relative z-10 overflow-hidden py-2">
         <motion.div
           ref={marqueeRef}
           className="flex w-max"
@@ -71,8 +75,8 @@ export default function FullCycleSupportMobile() {
           ))}
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10" />
       </div>
     </section>
   );

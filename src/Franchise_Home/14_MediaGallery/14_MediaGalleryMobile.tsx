@@ -18,7 +18,12 @@ export default function MediaGalleryMobile() {
   const isVideoTab = activeTab.includes("video");
 
   return (
-    <section className="w-full bg-[#FAFAFA] px-4 py-12">
+    <section className="w-full bg-gradient-to-tr from-white via-gray-50 to-[#f8f9fa] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] left-[-10%] w-[300px] h-[300px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[80px] animate-pulse-soft" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[300px] h-[300px] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-[80px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="relative z-10 w-full">
       <SectionHeader overline={mediaGalleryData.sectionLabel} align="center" />
       <div className="flex gap-1.5 overflow-x-auto pb-3 scrollbar-hide mb-3">
         {mediaGalleryData.tabs.map((tab) => {
@@ -87,6 +92,7 @@ export default function MediaGalleryMobile() {
             </div>
           ))}
         </motion.div>
+      </div>
       </div>
     </section>
   );

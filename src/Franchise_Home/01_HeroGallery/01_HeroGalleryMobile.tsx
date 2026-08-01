@@ -38,9 +38,14 @@ export default function HeroGalleryMobile() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full bg-[#FAFAFA] flex flex-col pt-0 pb-10"
+      className="w-full bg-gradient-to-br from-[#FAFAFA] via-white to-[#f4f4f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 flex flex-col pt-0 pb-10 relative overflow-hidden"
     >
-      <motion.div variants={item} className="w-full relative h-[350px]">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[-5%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float" style={{ animationDuration: '10s' }} />
+        <div className="absolute bottom-[20%] right-[-10%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float" style={{ animationDuration: '14s', animationDelay: '2s' }} />
+      </div>
+
+      <motion.div variants={item} className="w-full relative h-[350px] z-10">
         <img
           src={mainCupImg}
           alt="Hero Media"
@@ -95,7 +100,7 @@ export default function HeroGalleryMobile() {
       <div className="px-2 -mt-6 relative z-10 flex flex-col gap-6 ">
         <motion.div
           variants={item}
-          className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-gray-100 p-6 flex flex-col gap-6"
+          className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-gray-700/50 p-6 flex flex-col gap-6"
         >
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap gap-2">
@@ -103,7 +108,7 @@ export default function HeroGalleryMobile() {
                 <Utensils size={12} strokeWidth={2.5} />
                 {heroData.category}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-white border border-gray-100 rounded-md text-gray-500 text-[10px] font-bold uppercase tracking-wider shadow-sm">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-white border border-gray-100 rounded-md text-primary text-[10px] font-bold uppercase tracking-wider shadow-sm">
                 <Coffee size={12} strokeWidth={2.5} />
                 {heroData.subCategory}
               </div>
@@ -167,7 +172,7 @@ export default function HeroGalleryMobile() {
 
         <motion.div
           variants={item}
-          className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 p-6 flex flex-col gap-6"
+          className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 dark:border-gray-700/50 p-6 flex flex-col gap-6"
         >
           <div className="flex items-center gap-3">
             <div className="h-px bg-gradient-to-r from-transparent to-[#c69a54] w-8" />

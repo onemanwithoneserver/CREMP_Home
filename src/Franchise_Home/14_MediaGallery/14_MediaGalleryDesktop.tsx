@@ -32,8 +32,12 @@ export default function MediaGalleryDesktop() {
   const isVideoTab = activeTab.includes("video");
 
   return (
-    <section className="w-full bg-white px-6 py-16">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-gradient-to-tr from-white via-gray-50 to-[#f8f9fa] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-6 py-16 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[100px] animate-pulse-soft" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[500px] h-[500px] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader
           overline={mediaGalleryData.sectionLabel}
           align="center"

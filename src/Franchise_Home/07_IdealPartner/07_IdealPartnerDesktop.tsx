@@ -34,8 +34,12 @@ const stagger = {
 
 export default function IdealPartnerDesktop() {
   return (
-    <section className="w-full bg-[#fafafa] dark:bg-surface px-6 py-16">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-gradient-to-br from-[#fafafa] via-[#f8f9fa] to-white dark:from-surface dark:via-[#111827] dark:to-surface bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-6 py-16 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[20%] left-[0%] w-80 h-80 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl animate-pulse-soft" />
+        <div className="absolute bottom-[20%] right-[0%] w-96 h-96 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader
           overline={idealPartnerData.sectionLabel}
           title={idealPartnerData.title}

@@ -7,7 +7,12 @@ import { SectionHeader } from "../components/SectionHeader";
 
 export default function FounderStoryMobile() {
   return (
-    <section className="w-full bg-[#FAFAFA] px-4 py-12">
+    <section className="w-full bg-gradient-to-br from-white via-[#f8f9fa] to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+        <div className="absolute w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-pulse-soft" />
+        <div className="absolute w-64 h-64 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="relative z-10 w-full">
       <SectionHeader overline={founderStoryData.sectionLabel} align="center" />
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -58,6 +63,7 @@ export default function FounderStoryMobile() {
           })}
         </div>
       </motion.div>
+      </div>
     </section>
   );
 }

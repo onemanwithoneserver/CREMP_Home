@@ -178,7 +178,12 @@ export default function FranchiseModelsDesktop() {
 
 
   return (
-    <section className="w-full bg-[#f8f9fa] transition-colors duration-300 px-8 py-16 flex flex-col gap-6 overflow-hidden min-h-screen">
+    <section className="w-full bg-gradient-to-tr from-[#f8f9fa] via-white to-[#f1f5f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-8 py-16 flex flex-col gap-6 overflow-hidden min-h-screen relative">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] left-[0%] w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl animate-pulse-soft" />
+        <div className="absolute bottom-[20%] right-[-5%] w-96 h-96 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient
@@ -203,8 +208,8 @@ export default function FranchiseModelsDesktop() {
         align="center"
       />
 
-      <div className="w-full max-w-7xl mx-auto flex justify-center mb-2">
-        <div className="flex w-full bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex justify-center mb-2">
+        <div className="flex w-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden shadow-sm">
           {franchiseModelsData.models.map((model, _idx) => {
             const isActive = model.id === activeModel;
             const Icon = model.icon;
@@ -256,7 +261,7 @@ export default function FranchiseModelsDesktop() {
         </div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-12 gap-6">
+      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-3 flex flex-col h-full">
           <AnimatePresence mode="wait">
             <motion.div

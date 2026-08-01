@@ -25,7 +25,12 @@ const stagger = {
 
 export default function IdealPartnerMobile() {
   return (
-    <section className="w-full bg-[#fafafa] dark:bg-surface px-4 py-12">
+    <section className="w-full bg-gradient-to-br from-[#fafafa] via-[#f8f9fa] to-white dark:from-surface dark:via-[#111827] dark:to-surface bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[20%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-pulse-soft" />
+        <div className="absolute bottom-[20%] right-[-10%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="relative z-10 w-full">
       <SectionHeader
         overline={idealPartnerData.sectionLabel}
         title={idealPartnerData.title}
@@ -153,6 +158,7 @@ export default function IdealPartnerMobile() {
           </p>
         </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 }

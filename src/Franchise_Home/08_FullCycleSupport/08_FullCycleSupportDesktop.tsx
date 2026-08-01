@@ -21,8 +21,12 @@ export default function FullCycleSupportDesktop() {
   });
 
   return (
-    <section className="w-full bg-white px-6 py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto mb-8 flex justify-center">
+    <section className="w-full bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-6 py-16 overflow-hidden relative">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[30%] left-[-5%] w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-float" />
+        <div className="absolute bottom-[30%] right-[-5%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }} />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto mb-8 flex justify-center">
         <SectionHeader
           overline={fullCycleSupportData.sectionLabel}
           title={fullCycleSupportData.title}
@@ -65,8 +69,8 @@ export default function FullCycleSupportDesktop() {
             </div>
           ))}
         </motion.div>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#FAFAFA] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#FAFAFA] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10" />
       </div>
     </section>
   );

@@ -234,7 +234,12 @@ export default function FranchiseModelsMobile() {
   };
 
   return (
-    <section className="w-full bg-background transition-colors duration-300 px-4 py-2 flex flex-col  ">
+    <section className="w-full bg-gradient-to-tr from-background via-white to-[#f1f5f9] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-[length:200%_200%] animate-gradient-shift transition-colors duration-300 px-4 py-2 flex flex-col relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[5%] left-[-10%] w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-2xl animate-pulse-soft" />
+        <div className="absolute bottom-[20%] right-[-10%] w-72 h-72 bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-2xl animate-pulse-soft" style={{ animationDelay: '2s' }} />
+      </div>
+
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient
@@ -259,7 +264,7 @@ export default function FranchiseModelsMobile() {
         align="center"
       />
 
-      <div className="w-full overflow-hidden relative group flex items-center">
+      <div className="relative z-10 w-full overflow-hidden group flex items-center">
         {canScrollLeft && (
           <button
             onClick={() => scrollTabs("left")}
@@ -335,7 +340,7 @@ export default function FranchiseModelsMobile() {
         )}
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="relative z-10 flex flex-col gap-4">
         <div className=" p-4 flex flex-col items-center justify-center ">
           <div className="w-full flex justify-center mb-4 z-50">
             <div className="w-40">
