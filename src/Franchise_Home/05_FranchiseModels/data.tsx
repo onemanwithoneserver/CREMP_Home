@@ -509,7 +509,7 @@ export const franchiseModelsData = {
 };
 
 export const revenueROIData = {
-  sectionLabel: "Break Even & Estimated ROI",
+  sectionLabel: "Break Even & Est. ROI",
   revenueCards: [
     {
       icon: BarChart3,

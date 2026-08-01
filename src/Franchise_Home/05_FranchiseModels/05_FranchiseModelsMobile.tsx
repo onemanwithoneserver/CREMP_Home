@@ -1,19 +1,24 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  BarChart3,
   ChevronLeft,
   ChevronRight,
+  Info,
+  Maximize2,
+  MapPin,
   MousePointerClick,
   Sparkles,
+  Target,
+  TrendingUp,
   Users,
+  Wallet,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   franchiseModelsData,
   franchiseModelsUI,
-  getModelSpecifications,
-  getRoiColor,
   getStaffBadgeColor,
   revenueROIData,
   viewOptions,
@@ -139,7 +144,7 @@ const DonutChart = ({
       </svg>
 
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white dark:bg-[#0a1128] rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
+        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0a1128]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
         style={{
           width: size - strokeWidth * 2,
           height: size - strokeWidth * 2,
@@ -198,20 +203,85 @@ export default function FranchiseModelsMobile() {
     (m) => m.id === activeModel,
   )!;
 
-  const specifications = useMemo(
-    () => getModelSpecifications(selected),
+  const leftMetrics = useMemo(
+    () => [
+      {
+        icon: Wallet,
+        label: "INVESTMENT",
+        value: selected.investment,
+        color: "bg-[#059669] text-white",
+        badge: "Estimated",
+      },
+      {
+        icon: Maximize2,
+        label: "AREA REQUIRED",
+        value: selected.area,
+        color: "bg-[#7c3aed] text-white",
+        badge: "Carpet",
+      },
+      {
+        icon: Users,
+        label: "STAFF NEEDED",
+        value: `${selected.staffCount} members`,
+        color: "bg-[#d97706] text-white",
+        badge: "Details",
+        hasStaffModal: true,
+        extra: Info,
+      },
+      {
+        icon: MapPin,
+        label: "IDEAL LOCATION",
+        value: selected.location,
+        color: "bg-[#0284c7] text-white",
+        badge: "Prime",
+      },
+    ],
     [selected],
+  );
+
+  const rightMetrics = useMemo(
+    () => [
+      {
+        icon: BarChart3,
+        label: "YEAR 1",
+        value: revenueROIData.revenueCards[0]?.range || "12–18%",
+        color: "bg-[#d97706] text-white",
+        badge: "Projected",
+      },
+      {
+        icon: TrendingUp,
+        label: "YEAR 2",
+        value: revenueROIData.revenueCards[1]?.range || "22–28%",
+        color: "bg-[#059669] text-white",
+        badge: "Projected",
+      },
+      {
+        icon: Target,
+        label: "YEAR 3",
+        value: revenueROIData.revenueCards[2]?.range || "28–34%",
+        color: "bg-[#0284c7] text-white",
+        badge: "Projected",
+      },
+      {
+        icon: Sparkles,
+        label: "PAYBACK PERIOD",
+        value: revenueROIData.paybackPeriod.title || "18–24 Months",
+        color: "bg-[#d4af37] text-[#0a1128]",
+        badge: "Breakeven",
+      },
+    ],
+    [],
   );
 
   const tabsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   const checkScroll = () => {
     if (tabsRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
       setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
     }
   };
 
@@ -223,16 +293,15 @@ export default function FranchiseModelsMobile() {
 
   const scrollTabs = (direction: "left" | "right") => {
     if (tabsRef.current) {
-      const scrollAmount = 150;
       tabsRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+        left: direction === "left" ? -120 : 120,
         behavior: "smooth",
       });
     }
   };
 
   return (
-    <section className="w-full px-4 py-8 flex flex-col relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
+    <section className="w-full px-4 py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
       <SectionHeader
         overline={franchiseModelsData.sectionLabel}
         title={franchiseModelsData.title}
@@ -244,7 +313,7 @@ export default function FranchiseModelsMobile() {
         {canScrollLeft && (
           <button
             onClick={() => scrollTabs("left")}
-            className="absolute left-0 z-10 h-full px-1 bg-gradient-to-r from-white dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white"
+            className="absolute left-0 z-20 h-full px-1.5 bg-gradient-to-r from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white"
           >
             <ChevronLeft size={20} />
           </button>
@@ -253,7 +322,7 @@ export default function FranchiseModelsMobile() {
         <div
           ref={tabsRef}
           onScroll={checkScroll}
-          className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-gray-50 dark:bg-[#121c33] rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800"
+          className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-gray-200/80 dark:border-white/10 relative"
         >
           {franchiseModelsData.models.map((model) => {
             const isActive = model.id === activeModel;
@@ -262,30 +331,48 @@ export default function FranchiseModelsMobile() {
               <button
                 key={model.id}
                 onClick={() => setActiveModel(model.id)}
-                className="shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none"
+                className={clsx(
+                  "shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10",
+                  !isActive && "hover:bg-white/50 dark:hover:bg-white/5",
+                )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="mobileTabActive"
-                    className="absolute inset-0 bg-[#0a1128] dark:bg-[#0a1128] border border-[#d4af37]/40 rounded-[4px] shadow-md"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
+                    className="absolute inset-0 bg-gradient-to-b from-[#0a1128] via-[#121c33] to-[#0a1128] dark:from-[#16254c] dark:via-[#0e1a38] dark:to-[#0a1128] border border-[#d4af37]/60 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 28,
+                      mass: 0.8,
+                    }}
+                  >
+                    <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                  </motion.div>
                 )}
                 <motion.div
                   className={clsx(
-                    "relative z-10 w-7 h-7 rounded-[2px] flex items-center justify-center mb-1 transition-colors duration-300",
+                    "relative z-10 w-7 h-7 rounded-[2px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm",
                     isActive
-                      ? "bg-[#d4af37]/20 text-[#d4af37]"
-                      : "bg-white dark:bg-[#0a1128] text-gray-500",
+                      ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 border border-[#d4af37]/60 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]"
+                      : "bg-white/80 dark:bg-[#0a1128]/80 text-gray-500 border border-transparent shadow-sm",
                   )}
                   animate={
                     isActive
-                      ? { scale: [1, 1.2, 1], rotate: [0, -10, 10, 0] }
+                      ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
                       : { scale: 1, rotate: 0 }
                   }
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                  <Icon size={13} strokeWidth={isActive ? 2.5 : 2} />
+                  <Icon
+                    size={13}
+                    strokeWidth={isActive ? 2.5 : 2}
+                    className={
+                      isActive
+                        ? "text-[#d4af37]"
+                        : "text-gray-500 dark:text-gray-400"
+                    }
+                  />
                 </motion.div>
                 <span
                   className={clsx(
@@ -301,7 +388,7 @@ export default function FranchiseModelsMobile() {
                   className={clsx(
                     "relative z-10 text-[10px] font-semibold tracking-wider transition-colors duration-300",
                     isActive
-                      ? "text-gray-300"
+                      ? "text-amber-200/90 dark:text-[#d4af37]"
                       : "text-gray-500 dark:text-gray-400",
                   )}
                 >
@@ -315,14 +402,14 @@ export default function FranchiseModelsMobile() {
         {canScrollRight && (
           <button
             onClick={() => scrollTabs("right")}
-            className="absolute right-0 z-10 h-full px-1 bg-gradient-to-l from-white dark:from-[#0a1128] to-transparent flex items-center justify-end text-[#0a1128] dark:text-white"
+            className="absolute right-0 z-20 h-full px-1.5 bg-gradient-to-l from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-end text-[#0a1128] dark:text-white"
           >
             <ChevronRight size={20} />
           </button>
         )}
       </div>
 
-      <div className="relative z-10 flex flex-col gap-4">
+      <div className="relative z-10 flex flex-col gap-5">
         <div className="flex flex-col items-center justify-center pt-2">
           <div className="w-full flex justify-center mb-6 z-50">
             <div className="w-48">
@@ -381,35 +468,53 @@ export default function FranchiseModelsMobile() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col gap-4"
+            className="flex flex-col bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm overflow-hidden"
           >
-            <div className="p-2 flex flex-col gap-4 relative overflow-hidden">
-              <div className="relative flex flex-col pt-2">
+            <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[72px]">
+              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
+              <div className="flex items-center gap-3 relative z-10">
+                <motion.div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-[#d4af37]/25 via-white/10 to-[#d4af37]/10 border border-[#d4af37]/50 shadow-[0_0_12px_rgba(212,175,55,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0">
+                  <selected.icon size={18} />
+                </motion.div>
+                <div className="flex flex-col justify-center min-w-0">
+                  <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-widest block leading-none mb-1">
+                    {franchiseModelsUI.specificationLabel}
+                  </span>
+                  <h3 className="text-base font-bold text-white leading-tight truncate">
+                    {selected.name}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 flex flex-col gap-3 relative overflow-hidden">
+              <div className="relative flex flex-col pt-1">
+                <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
+                  <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
+                  <motion.div
+                    className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+                    animate={{
+                      top: ["0%", "100%"],
+                      opacity: [0, 1, 1, 0],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </div>
+
                 <div className="flex flex-col gap-3 relative z-10">
-                  <div className="absolute left-[32px] -translate-x-1/2 top-[24px] bottom-[24px] w-[3px] pointer-events-none z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
-                    <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
-                    <motion.div
-                      className="absolute -left-[3px] -translate-y-1/2 w-[9px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
-                      animate={{
-                        top: ["0%", "100%"],
-                        opacity: [0, 1, 1, 0],
-                      }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  </div>
-                  {specifications.map((stat, i) => (
+                  {leftMetrics.map((stat) => (
                     <div
                       key={stat.label}
-                      className="rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm p-3 bg-white dark:bg-[#121c33] flex items-center justify-between gap-3 relative z-10"
+                      className="rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm p-3 bg-gray-50 dark:bg-[#0a1128] flex items-center justify-between gap-3 relative z-10 min-h-[58px]"
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
                         <motion.div
-                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          whileHover={{ scale: 1.08, rotate: 4 }}
                           className={clsx(
                             "w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10",
                             stat.color,
@@ -417,30 +522,29 @@ export default function FranchiseModelsMobile() {
                         >
                           <stat.icon size={16} strokeWidth={2.2} />
                         </motion.div>
-                        <div className="flex flex-col">
-                          <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                            {stat.mobileLabel || stat.label}
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
+                            {stat.label}
                           </span>
-                          <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500">
-                            Milestone 0{i + 1}
+                          <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight truncate">
+                            {stat.value}
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight">
-                          {stat.value}
-                        </span>
-                        {stat.extra && (
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        {stat.hasStaffModal ? (
                           <button
-                            onClick={() =>
-                              stat.hasStaffModal &&
-                              setIsStaffModalOpen(true)
-                            }
-                            className="w-6 h-6 rounded-[2px] bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                            onClick={() => setIsStaffModalOpen(true)}
+                            className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-[2px] border border-blue-200/60 dark:border-blue-700/50 flex items-center gap-1 hover:bg-blue-100 transition-colors"
                           >
-                            <stat.extra size={14} strokeWidth={2.5} />
+                            <span>Staff</span>
+                            <Info size={11} strokeWidth={2.5} />
                           </button>
+                        ) : (
+                          <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 px-2 py-0.5 rounded-[2px] border border-gray-200 dark:border-gray-700/60">
+                            {stat.badge}
+                          </span>
                         )}
                       </div>
                     </div>
@@ -451,94 +555,84 @@ export default function FranchiseModelsMobile() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="p-2 flex flex-col gap-4 relative overflow-hidden">
-          <div className="flex items-center justify-between">
-            <span className="text-xs uppercase font-bold tracking-wider text-[#0a1128] dark:text-white">
-              {revenueROIData.sectionLabel}
-            </span>
+        <div className="flex flex-col bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm overflow-hidden">
+          <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[72px]">
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
+            <div className="flex items-center gap-3 relative z-10">
+              <motion.div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-[#d4af37]/25 via-white/10 to-[#d4af37]/10 border border-[#d4af37]/50 shadow-[0_0_12px_rgba(212,175,55,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0">
+                <TrendingUp size={18} />
+              </motion.div>
+              <div className="flex flex-col justify-center min-w-0">
+                <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-widest block leading-none mb-1">
+                  FINANCIAL METRICS
+                </span>
+                <h3 className="text-base font-bold text-white leading-tight truncate">
+                  {revenueROIData.sectionLabel}
+                </h3>
+              </div>
+            </div>
           </div>
 
-          <div className="relative flex flex-col pt-2">
-            <div className="absolute left-[32px] -translate-x-1/2 top-[24px] bottom-[24px] w-[3px] pointer-events-none z-0">
-              <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
-              <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
-              <motion.div
-                className="absolute -left-[3px] -translate-y-1/2 w-[9px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
-                animate={{
-                  top: ["0%", "100%"],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 2.6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
+          <div className="p-4 flex flex-col gap-3 relative overflow-hidden">
+            <div className="relative flex flex-col pt-1">
+              <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
+                <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
+                <motion.div
+                  className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+                  animate={{
+                    top: ["0%", "100%"],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 2.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </div>
 
-            <div className="flex flex-col gap-3 relative z-10">
-              {revenueROIData.revenueCards.map((card: any) => {
-                const Icon = card.icon;
-                return (
+              <div className="flex flex-col gap-3 relative z-10">
+                {rightMetrics.map((stat) => (
                   <div
-                    key={card.year}
-                    className="rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm p-3 bg-white dark:bg-[#121c33] flex items-center justify-between gap-3"
+                    key={stat.label}
+                    className="rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm p-3 bg-gray-50 dark:bg-[#0a1128] flex items-center justify-between gap-3 min-h-[58px]"
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <motion.div
-                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        whileHover={{ scale: 1.08, rotate: -4 }}
                         className={clsx(
                           "w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10",
-                          getRoiColor(card.intent),
+                          stat.color,
                         )}
                       >
-                        <Icon size={16} strokeWidth={2.2} />
+                        <stat.icon size={16} strokeWidth={2.2} />
                       </motion.div>
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                          {card.year}
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
+                          {stat.label}
                         </span>
-                        <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500">
-                          {card.label || "Projected"}
+                        <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight truncate">
+                          {stat.value}
                         </span>
                       </div>
                     </div>
 
-                    <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight">
-                      {card.range}
-                    </span>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span
+                        className={clsx(
+                          "text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border",
+                          stat.badge === "Breakeven"
+                            ? "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/40"
+                            : "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60",
+                        )}
+                      >
+                        {stat.badge}
+                      </span>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-3 bg-[#0a1128] border border-[#d4af37]/40 rounded-[4px] p-4 shadow-md flex items-center justify-between gap-3 relative overflow-hidden z-10">
-              <div className="flex items-center gap-3 relative z-10">
-                <div className="relative shrink-0">
-                  <motion.div
-                    animate={{ rotate: [0, 15, -15, 0] }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="w-9 h-9 rounded-[4px] bg-[#d4af37] text-[#0a1128] flex items-center justify-center relative z-10 shadow-sm"
-                  >
-                    <Sparkles size={17} strokeWidth={2.2} />
-                  </motion.div>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest">
-                    {revenueROIData.paybackPeriod.destinationLabel}
-                  </span>
-                  <span className="text-[10px] text-gray-400">
-                    {revenueROIData.paybackPeriod.mobileSubtitle}
-                  </span>
-                </div>
+                ))}
               </div>
-              <span className="text-base font-bold text-white tracking-tight relative z-10">
-                {revenueROIData.paybackPeriod.title}
-              </span>
             </div>
           </div>
         </div>
@@ -553,7 +647,12 @@ export default function FranchiseModelsMobile() {
               onClick={() => setIsStaffModalOpen(false)}
             >
               <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20, filter: "blur(8px)" }}
+                initial={{
+                  scale: 0.9,
+                  opacity: 0,
+                  y: 20,
+                  filter: "blur(8px)",
+                }}
                 animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ scale: 0.9, opacity: 0, y: 20, filter: "blur(8px)" }}
                 transition={{
