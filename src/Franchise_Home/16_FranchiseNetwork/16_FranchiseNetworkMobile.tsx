@@ -1,109 +1,193 @@
+import { useState } from "react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
-import { getCardStyles, getSolidBgStyles, getTextStyles } from "../utils/theme";
-import { franchiseNetworkData } from "./data";
+import { 
+  ChevronRight, 
+  Download, 
+  Globe2, 
+  MapPin 
+} from "lucide-react";
+import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+import mapBg from "../../assets/map_bg.png";
 
 export default function FranchiseNetworkMobile() {
+  const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
+
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-gray-900">
+    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* Ambient background light */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[30%] left-[10%] w-[300px] h-[300px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[80px] animate-pulse-soft" />
-        <div
-          className="absolute bottom-[30%] right-[10%] w-[300px] h-[300px] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-[80px] animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
+        <div className="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-[#d4af37]/10 rounded-full blur-[80px] animate-pulse-soft" />
       </div>
-      <div className="relative z-10 w-full">
-        <SectionHeader
-          overline={franchiseNetworkData.sectionLabel}
-          align="center"
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className={clsx(
-            "overflow-hidden rounded-[4px] border flex flex-col transition-all duration-300",
-            getCardStyles(),
-          )}
-        >
-          <div className="w-full h-[220px] bg-gray-50 dark:bg-white flex items-center justify-center relative border-b border-gray-100">
-            <div className="absolute inset-0 opacity-20">
-              <svg viewBox="0 0 400 500" className="w-full h-full">
-                <path
-                  d="M200,50 C250,80 300,120 310,180 C320,240 280,300 260,340 C240,380 220,420 200,450 C180,420 160,380 140,340 C120,300 80,240 90,180 C100,120 150,80 200,50Z"
-                  fill="none"
-                  stroke="#D4AF37"
-                  strokeWidth="1"
-                  opacity="0.3"
-                />
-                <circle cx="200" cy="180" r="4" fill="#D4AF37" />
-                <circle cx="180" cy="220" r="3" fill="#22c55e" />
-                <circle cx="230" cy="200" r="3" fill="#3b82f6" />
-              </svg>
+
+      <div className="relative z-10 w-full flex flex-col gap-6">
+        <div>
+          <SectionHeader
+            overline={franchiseNetworkData.sectionLabel}
+            title={franchiseNetworkData.title}
+            align="center"
+          />
+          <p className="text-gray-600 dark:text-gray-400 text-xs text-center max-w-md mx-auto mt-1">
+            {franchiseNetworkData.subtitle}
+          </p>
+        </div>
+
+        {/* Quick Stats 2x2 Grid */}
+        <div className="grid grid-cols-2 gap-2.5">
+          {franchiseNetworkData.stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700/60 rounded-[4px] p-3.5 flex flex-col justify-between shadow-sm"
+            >
+              <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                {stat.label}
+              </span>
+              <div className="text-xl font-black text-gray-900 dark:text-white mt-1">
+                {stat.value}
+              </div>
+              <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 mt-0.5">
+                {stat.change}
+              </span>
             </div>
-            <div className="z-10 p-6 text-center">
-              <h3 className="text-[#0a1128] dark:text-white font-semibold text-lg tracking-tight mb-1">
-                {franchiseNetworkData.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">
-                {franchiseNetworkData.outletCount}
-              </p>
+          ))}
+        </div>
+
+        {/* Map Container */}
+        <div className="relative min-h-[360px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-xl p-4 flex flex-col justify-between">
+          <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-luminosity">
+            <img
+              src={mapBg}
+              alt="Expansion Map"
+              className="w-full h-full object-cover scale-125"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-transparent to-[#070d1e]/70" />
+          </div>
+
+          {/* Top Label */}
+          <div className="relative z-20 flex items-center justify-between">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#0a1128]/90 border border-[#d4af37]/30 rounded-[4px]">
+              <Globe2 size={12} className="text-[#d4af37]" />
+              <span className="text-[10px] font-bold text-white uppercase tracking-wider">
+                Pan-India Network
+              </span>
+            </div>
+            <span className="text-[10px] font-semibold text-emerald-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              187+ Outlets Active
+            </span>
+          </div>
+
+          {/* Map Node Pins */}
+          <div className="relative w-full h-[260px] z-20">
+            {franchiseNetworkData.cities.map((city) => {
+              const isSelected = activeCity.id === city.id;
+
+              return (
+                <div
+                  key={city.id}
+                  style={{ top: city.top, left: city.left }}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  onClick={() => setActiveCity(city)}
+                >
+                  <div
+                    className={clsx(
+                      "w-6 h-6 rounded-full flex items-center justify-center border shadow-md transition-transform",
+                      isSelected ? "ring-2 ring-[#d4af37] scale-125 z-30" : "z-10",
+                      city.status === "active" ? "bg-emerald-950 border-emerald-400 text-emerald-300" : "",
+                      city.status === "expansion" ? "bg-amber-950 border-[#d4af37] text-[#d4af37]" : "",
+                      city.status === "available" ? "bg-blue-950 border-blue-400 text-blue-300" : ""
+                    )}
+                  >
+                    <MapPin size={11} />
+                  </div>
+                  {isSelected && (
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 bg-white text-gray-950 text-[9px] font-bold px-1.5 py-0.5 rounded-[2px] shadow whitespace-nowrap border border-[#d4af37]">
+                      {city.name} ({city.outlets})
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Legend Pills */}
+          <div className="relative z-20 flex flex-wrap items-center justify-between gap-1 text-[10px] text-gray-300 border-t border-gray-800/80 pt-2">
+            <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Active</span>
+            <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" /> Expanding</span>
+            <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-blue-500" /> Available</span>
+          </div>
+        </div>
+
+        {/* Selected Hub Details Card */}
+        <div className="bg-gray-50 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-[4px] p-4 flex flex-col gap-3 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className={clsx(
+                "text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[2px] border",
+                activeCity.status === "active"
+                  ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300"
+                  : activeCity.status === "expansion"
+                  ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-[#d4af37]"
+                  : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-300"
+              )}>
+                {activeCity.statusLabel}
+              </span>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mt-1">
+                {activeCity.name}
+              </h4>
+            </div>
+
+            <div className="text-right">
+              <span className="text-lg font-black text-gray-900 dark:text-white">
+                {activeCity.outlets}
+              </span>
+              <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
+                Live Outlets
+              </span>
             </div>
           </div>
 
-          <div className="p-5">
-            <div className="flex flex-wrap gap-6 mb-6">
-              {franchiseNetworkData.legend.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.label} className="flex items-center gap-1.5">
-                    <div
-                      className={clsx(
-                        "w-2 h-2 rounded-full",
-                        getSolidBgStyles(item.intent),
-                      )}
-                    />
-                    {Icon && (
-                      <Icon
-                        size={12}
-                        strokeWidth={1.5}
-                        className={getTextStyles(item.intent)}
-                      />
-                    )}
-                    <span className="text-gray-600 dark:text-gray-400 text-xs font-semibold">
-                      {item.label}
-                    </span>
-                  </div>
-                );
-              })}
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="p-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-[4px]">
+              <span className="text-[10px] text-gray-500 dark:text-gray-400 block">Upcoming Pipeline</span>
+              <span className="font-bold text-[#d4af37]">{activeCity.pipeline} Stores</span>
             </div>
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              {franchiseNetworkData.networkStats.items.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center justify-between py-1.5 border-b border-gray-100"
-                >
-                  <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">
-                    {item.label}
-                  </span>
-                  <span className="text-[#0a1128] dark:text-white text-xs font-semibold">
-                    {item.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="space-y-3">
-              <button className="w-full px-4 py-2.5 bg-primary text-white text-xs font-semibold rounded shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-shadow">
-                {franchiseNetworkData.cta.primary}
-              </button>
-              <button className="w-full px-4 py-2.5 border border-gray-100 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded">
-                {franchiseNetworkData.cta.secondary}
-              </button>
+            <div className="p-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-[4px]">
+              <span className="text-[10px] text-gray-500 dark:text-gray-400 block">Zone Region</span>
+              <span className="font-bold text-gray-900 dark:text-white">{activeCity.zone} Zone</span>
             </div>
           </div>
-        </motion.div>
+
+          {/* Quick Select City Chips */}
+          <div className="flex flex-wrap gap-1 mt-1">
+            {franchiseNetworkData.cities.map((city) => (
+              <button
+                key={city.id}
+                onClick={() => setActiveCity(city)}
+                className={clsx(
+                  "px-2 py-1 text-[11px] rounded-[2px] border",
+                  activeCity.id === city.id
+                    ? "bg-[#0a1128] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 font-bold"
+                    : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700"
+                )}
+              >
+                {city.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Action CTAs */}
+          <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-gray-200 dark:border-gray-700">
+            <button className="w-full py-2.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-sm flex items-center justify-center gap-1.5">
+              <span>{franchiseNetworkData.cta.primary}</span>
+              <ChevronRight size={14} />
+            </button>
+            <button className="w-full py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] flex items-center justify-center gap-1.5">
+              <Download size={13} className="text-[#d4af37]" />
+              <span>{franchiseNetworkData.cta.secondary}</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-export type MediaFormatType = "image" | "video" | "document";
+export type MediaFormatType = "image" | "video" | "short_video" | "document";
 export type MediaCategoryType = string;
 
 export interface MediaItem {
@@ -21,6 +21,7 @@ export const mediaGalleryData = {
     "Hero Video",
     "Outlet Video",
     "Brand Video",
+    "Shorts & Reels",
     "Success Stories Video",
     "Educational Video",
     "Others Video",
@@ -96,6 +97,27 @@ export const mediaGalleryData = {
       category: "Others Video",
       src: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
       title: "Event Highlights",
+    },
+    {
+      id: "short-1",
+      format: "short_video" as const,
+      category: "Shorts & Reels",
+      src: "https://images.unsplash.com/photo-1616423640778-28d1b53229bd?w=800",
+      title: "Barista Skills in 60s",
+    },
+    {
+      id: "short-2",
+      format: "short_video" as const,
+      category: "Shorts & Reels",
+      src: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=800",
+      title: "Latte Art Reveal",
+    },
+    {
+      id: "short-3",
+      format: "short_video" as const,
+      category: "Shorts & Reels",
+      src: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=800",
+      title: "Store Grand Opening Short",
     },
     {
       id: "doc-1",

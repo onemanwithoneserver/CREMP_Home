@@ -1,144 +1,96 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
-import { mediaGalleryData } from "./data";
+import { useState, useEffect } from "react";
+import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-import {
-  Play,
-  FileText,
-  File,
-  Download,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Play, FileText, Download, ChevronDown, Plus } from "lucide-react";
 import clsx from "clsx";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 15 },
+const sectionVariants = {
+  hidden: { opacity: 0, y: 10 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring" as const, stiffness: 400, damping: 30 },
+    transition: { type: "spring" as const, stiffness: 300, damping: 24, staggerChildren: 0.05 },
   },
-  exit: { opacity: 0, y: -15, transition: { duration: 0.2 } },
+  exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
 };
 
-const stagger = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.05 } },
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 };
 
 export default function MediaGalleryMobile() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const videoScrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
 
-  const checkScroll = () => {
-    if (videoScrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = videoScrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
-    }
-  };
-
-  const imageScrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeftImages, setCanScrollLeftImages] = useState(false);
-  const [canScrollRightImages, setCanScrollRightImages] = useState(false);
-
-  const checkScrollImages = () => {
-    if (imageScrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = imageScrollRef.current;
-      setCanScrollLeftImages(scrollLeft > 0);
-      setCanScrollRightImages(
-        Math.ceil(scrollLeft + clientWidth) < scrollWidth,
-      );
-    }
-  };
-
-  const scrollLeft = () => {
-    if (videoScrollRef.current) {
-      videoScrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (videoScrollRef.current) {
-      videoScrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
-    }
-  };
-
-  const scrollLeftImages = () => {
-    if (imageScrollRef.current) {
-      imageScrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
-    }
-  };
-
-  const scrollRightImages = () => {
-    if (imageScrollRef.current) {
-      imageScrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    setVisibleCount(6);
+  }, [activeCategory]);
 
   const filteredItems = mediaGalleryData.items.filter((item) => {
     if (activeCategory === "All") return true;
     return item.category === activeCategory;
   });
 
-  const images = filteredItems.filter((item) => item.format === "image");
-  const videos = filteredItems.filter((item) => item.format === "video");
+  const visualMedia = filteredItems.filter((item) => item.format !== "document");
   const documents = filteredItems.filter((item) => item.format === "document");
-
-  useEffect(() => {
-    setTimeout(() => {
-      checkScroll();
-      checkScrollImages();
-    }, 100);
-    const handleResize = () => {
-      checkScroll();
-      checkScrollImages();
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [activeCategory, videos.length, images.length]);
+  const visibleVisualMedia = visualMedia.slice(0, visibleCount);
+  const hasMoreVisuals = visualMedia.length > visibleCount;
 
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden bg-white dark:bg-gray-900">
+    <section className="w-full px-4 py-8 relative overflow-hidden bg-gray-50 dark:bg-gray-900 min-h-screen">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[5%] left-[-10%] w-[300px] h-[300px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[80px] animate-pulse-soft" />
-        <div
-          className="absolute bottom-[5%] right-[-10%] w-[300px] h-[300px] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-[80px] animate-pulse-soft"
-          style={{ animationDelay: "2s" }}
-        />
+        <div className="absolute top-0 left-[-20%] w-[300px] h-[300px] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative z-10 flex flex-col gap-2">
+      <div className="relative z-10 flex flex-col gap-5">
         <SectionHeader
           overline={mediaGalleryData.sectionLabel}
-          align="center"
+          title="Experience the Brand"
+          subtitle="Explore our gallery of outlets, products, and brand stories."
+          align="left"
         />
 
-        <div className="flex flex-col gap-4">
-          <div className="w-full overflow-x-auto pb-2 scrollbar-hide">
-            <div className="flex items-center gap-2 w-max px-1">
-              {mediaGalleryData.categories.map((cat) => {
-                const isActive = cat === activeCategory;
-                return (
+        <div className="relative z-50">
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-[4px] text-gray-900 dark:text-white font-semibold text-sm shadow-sm active:scale-[0.99] transition-transform"
+          >
+            <span>{activeCategory === "All" ? "Filter by Category" : activeCategory}</span>
+            <ChevronDown size={18} className={clsx("transition-transform duration-300", isFilterOpen && "rotate-180")} />
+          </button>
+          
+          <AnimatePresence>
+            {isFilterOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-[4px] shadow-xl overflow-hidden z-50 max-h-[300px] overflow-y-auto scrollbar-hide"
+              >
+                {mediaGalleryData.categories.map((cat) => (
                   <button
                     key={cat}
-                    onClick={() => setActiveCategory(cat)}
+                    onClick={() => {
+                      setActiveCategory(cat);
+                      setIsFilterOpen(false);
+                    }}
                     className={clsx(
-                      "px-4 py-2 rounded-[4px] text-[12px] font-bold transition-all duration-300 border",
-                      isActive
-                        ? "bg-[#0b162c] text-white border-[#0b162c] shadow-md shadow-[#0b162c]/20"
-                        : "bg-white dark:bg-gray-800 text-gray-500 border-gray-200 dark:border-gray-700 hover:border-gray-300",
+                      "w-full text-left px-4 py-3 text-sm transition-colors border-b border-gray-100 dark:border-gray-700 last:border-0",
+                      activeCategory === cat
+                        ? "bg-gray-50 dark:bg-gray-750 text-[#d4af37] font-bold"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50"
                     )}
                   >
                     {cat}
                   </button>
-                );
-              })}
-            </div>
-          </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <AnimatePresence mode="wait">
@@ -147,191 +99,116 @@ export default function MediaGalleryMobile() {
             initial="hidden"
             animate="show"
             exit="exit"
-            variants={stagger}
-            className="w-full mt-2 flex flex-col gap-2"
+            variants={sectionVariants}
+            className="flex flex-col gap-6"
           >
-            {filteredItems.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-                <File size={40} className="mb-3 opacity-20" />
-                <p className="text-sm">No media found.</p>
+            {filteredItems.length === 0 && (
+              <div className="text-center py-16 text-gray-400 text-sm">No media found.</div>
+            )}
+
+            {visibleVisualMedia.length > 0 && (
+              <div className="flex flex-col gap-4">
+                <div className="grid grid-cols-2 gap-3">
+                  {visibleVisualMedia.map((item, index) => {
+                    const isFullWidth = index % 3 === 0;
+                    return (
+                      <div key={item.id} className={isFullWidth ? "col-span-2" : "col-span-1"}>
+                        <MediaCard item={item} isFullWidth={isFullWidth} />
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {hasMoreVisuals && (
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setVisibleCount((prev) => prev + 6)}
+                    className="w-1/2 flex items-center justify-center gap-2 py-3 mt-2 bg-gradient-to-r from-[#d4af37]/10 to-transparent dark:from-[#d4af37]/20 border border-[#d4af37]/30 text-[#d4af37] rounded-[4px] font-bold text-sm shadow-[0_0_15px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.25)] transition-all duration-300"
+                  >
+                    <Plus size={16} className="text-[#d4af37] animate-pulse" />
+                    <span>Load More</span>
+                  </motion.button>
+                )}
               </div>
-            ) : (
-              <>
-                {images.length > 0 && (
-                  <div className="flex flex-col gap-3">
-                    {activeCategory === "All" && (
-                      <h3 className="text-[15px] font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
-                        Photos
-                      </h3>
-                    )}
-                    <div className="relative group/carousel-images w-full">
-                      <div
-                        ref={imageScrollRef}
-                        onScroll={checkScrollImages}
-                        className="flex gap-3 overflow-x-auto pb-4 pt-1 scrollbar-hide snap-x snap-mandatory focus:outline-none"
-                        tabIndex={0}
-                      >
-                        {images.map((item) => (
-                          <motion.div
-                            key={item.id}
-                            variants={fadeInUp}
-                            className="relative rounded-xl w-[160px] aspect-square shadow-sm overflow-hidden border border-gray-100 shrink-0 snap-start"
-                          >
-                            <img
-                              src={item.src}
-                              alt={item.title}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b162c]/80 to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-3">
-                              <span className="text-[8px] font-bold text-[#c69a54] uppercase tracking-widest block mb-0.5">
-                                {item.category}
-                              </span>
-                              <h4 className="text-white text-[11px] font-semibold leading-tight line-clamp-2">
-                                {item.title}
-                              </h4>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
+            )}
 
-                      {/* Navigation Arrows */}
-                      {canScrollLeftImages && (
-                        <button
-                          onClick={scrollLeftImages}
-                          className="absolute left-[-10px] top-[calc(50%-1.5rem)] z-10 p-1.5 rounded-full bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-[#c69a54] dark:hover:text-[#c69a54] transition-all flex items-center justify-center active:scale-95"
-                          aria-label="Scroll Left Photos"
-                        >
-                          <ChevronLeft size={18} />
-                        </button>
-                      )}
-                      {canScrollRightImages && (
-                        <button
-                          onClick={scrollRightImages}
-                          className="absolute right-[-10px] top-[calc(50%-1.5rem)] z-10 p-1.5 rounded-full bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-[#c69a54] dark:hover:text-[#c69a54] transition-all flex items-center justify-center active:scale-95"
-                          aria-label="Scroll Right Photos"
-                        >
-                          <ChevronRight size={18} />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {videos.length > 0 && (
-                  <div className="flex flex-col gap-3">
-                    {activeCategory === "All" && (
-                      <h3 className="text-[15px] font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
-                        Videos & Shorts
-                      </h3>
-                    )}
-                    <div className="relative group/carousel w-full">
-                      <div
-                        ref={videoScrollRef}
-                        onScroll={checkScroll}
-                        className="flex gap-3 overflow-x-auto pb-4 pt-1 scrollbar-hide snap-x snap-mandatory focus:outline-none"
-                        tabIndex={0}
-                      >
-                        {videos.map((item) => (
-                          <motion.div
-                            key={item.id}
-                            variants={fadeInUp}
-                            className="relative rounded-xl w-[160px] aspect-[9/16] shadow-sm overflow-hidden border border-gray-100 shrink-0 snap-start"
-                          >
-                            <img
-                              src={item.src}
-                              alt={item.title}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/30" />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-md">
-                                <Play
-                                  className="text-white ml-0.5 w-4 h-4"
-                                  fill="currentColor"
-                                />
-                              </div>
-                            </div>
-                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
-                              <span className="text-[8px] font-bold text-[#c69a54] uppercase tracking-widest block mb-0.5">
-                                {item.category}
-                              </span>
-                              <h4 className="text-white text-[11px] font-semibold leading-tight">
-                                {item.title}
-                              </h4>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-
-                      {/* Navigation Arrows */}
-                      {canScrollLeft && (
-                        <button
-                          onClick={scrollLeft}
-                          className="absolute left-[-10px] top-[calc(50%-1.5rem)] z-10 p-1.5 rounded-full bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-[#c69a54] dark:hover:text-[#c69a54] transition-all flex items-center justify-center active:scale-95"
-                          aria-label="Scroll Left"
-                        >
-                          <ChevronLeft size={18} />
-                        </button>
-                      )}
-                      {canScrollRight && (
-                        <button
-                          onClick={scrollRight}
-                          className="absolute right-[-10px] top-[calc(50%-1.5rem)] z-10 p-1.5 rounded-full bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-[#c69a54] dark:hover:text-[#c69a54] transition-all flex items-center justify-center active:scale-95"
-                          aria-label="Scroll Right"
-                        >
-                          <ChevronRight size={18} />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {documents.length > 0 && (
-                  <div className="flex flex-col gap-3">
-                    {activeCategory === "All" && (
-                      <h3 className="text-[15px] font-bold text-[#0b162c] dark:text-white border-b border-gray-200 dark:border-gray-700 pb-1.5">
-                        Documents
-                      </h3>
-                    )}
-                    <div className="flex flex-col gap-3">
-                      {documents.map((item) => (
-                        <div
-                          key={item.id}
-                          className="flex flex-col p-4 bg-gradient-to-r from-[#0b162c] to-[#122345] dark:from-gray-800 dark:to-gray-900 rounded-[4px] shadow-md border border-[#c69a54]/20 hover:border-[#c69a54]/60 transition-all group relative overflow-hidden"
-                        >
-                          <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <div className="flex items-center gap-3.5 mb-3 relative z-10">
-                            <div className="w-10 h-10 rounded-[4px] bg-gradient-to-br from-[#d4af37] to-[#aa8323] flex items-center justify-center shrink-0 shadow-md">
-                              <FileText
-                                size={18}
-                                className="text-white drop-shadow-sm"
-                              />
-                            </div>
-                            <h4 className="text-white font-bold text-[14px] leading-snug flex-1 pr-2">
-                              {item.title}
-                            </h4>
-                          </div>
-                          <div className="mt-auto flex justify-end relative z-10">
-                            <a
-                              href={item.src}
-                              className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-[#c69a54] text-white rounded-[4px] text-[11px] font-bold transition-colors"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <Download size={12} />
-                              Download
-                            </a>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </>
+            {documents.length > 0 && (
+              <div className="flex flex-col gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white px-1">
+                  Documents
+                </h3>
+                {documents.map((item) => (
+                  <MediaCard key={item.id} item={item} />
+                ))}
+              </div>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
     </section>
+  );
+}
+
+function MediaCard({ item, isFullWidth }: { item: MediaItem; isFullWidth?: boolean }) {
+  if (item.format === "image" || item.format === "video" || item.format === "short_video") {
+    return (
+      <motion.div
+        variants={itemVariants}
+        className={clsx(
+          "relative group overflow-hidden rounded-[4px] shadow-sm bg-gray-900 w-full block",
+          isFullWidth ? "aspect-[16/9]" : "aspect-[4/5]"
+        )}
+      >
+        <img
+          src={item.src}
+          alt={item.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        
+        <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
+        
+        <div className="absolute inset-0 p-4 flex flex-col justify-end">
+          <span className="text-[#d4af37] text-[10px] font-bold uppercase tracking-widest mb-1 drop-shadow-md line-clamp-1">
+            {item.category}
+          </span>
+          <h4 className="text-white font-semibold text-sm leading-snug drop-shadow-lg line-clamp-2">
+            {item.title}
+          </h4>
+        </div>
+
+        {(item.format === "video" || item.format === "short_video") && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white shadow-lg">
+              <Play size={20} className="ml-1" fill="currentColor" />
+            </div>
+          </div>
+        )}
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="relative overflow-hidden rounded-[4px] shadow-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 flex items-center gap-3 active:scale-[0.98] transition-transform"
+    >
+      <div className="w-10 h-10 rounded-[4px] bg-gray-50 dark:bg-gray-900 flex items-center justify-center border border-gray-100 dark:border-gray-700 shrink-0">
+        <FileText size={18} className="text-[#d4af37]" />
+      </div>
+      
+      <div className="flex-1 flex flex-col justify-center min-w-0">
+        <h4 className="font-semibold text-gray-900 dark:text-white text-sm leading-tight truncate">
+          {item.title}
+        </h4>
+        <span className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest block mt-0.5 truncate">
+          {item.category}
+        </span>
+      </div>
+
+      <div className="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-300 shrink-0">
+        <Download size={14} />
+      </div>
+    </motion.div>
   );
 }

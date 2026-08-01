@@ -1,28 +1,192 @@
-import { Building2, Lock, MapPin, Target } from "lucide-react";
+import { Building2, CheckCircle2, Lock, MapPin, Sparkles, Target, Zap } from "lucide-react";
+
+export interface CityNode {
+  id: string;
+  name: string;
+  state: string;
+  zone: "South" | "West" | "North" | "East";
+  status: "active" | "expansion" | "available";
+  statusLabel: string;
+  outlets: number;
+  pipeline: number;
+  top: string;
+  left: string;
+  featured?: boolean;
+}
 
 export const franchiseNetworkData = {
   sectionLabel: "EXPANSION MAP",
-  title: "Franchise Network — India",
-  outletCount: "6 active zones • 120 outlets",
-  legend: [
-    { intent: "warning", label: "Existing Outlets", icon: Building2 },
-    { intent: "success", label: "Expansion Cities", icon: MapPin },
-    { intent: "info", label: "Franchise Territories", icon: Target },
-    { intent: "danger", label: "Available Territories", icon: Lock },
+  title: "Franchise Network — Pan India",
+  subtitle: "Explore our rapidly expanding footprint across high-demand metropolitan hubs and Tier-2 growth corridors.",
+  outletCount: "187+ Outlets • 8 States • 25 In Pipeline",
+  
+  stats: [
+    { label: "Active Outlets", value: "187+", change: "+24 this quarter", icon: Building2 },
+    { label: "States Present", value: "8", change: "4 new states pending", icon: MapPin },
+    { label: "In Pipeline", value: "25", change: "Opening in 60 days", icon: Zap },
+    { label: "Territory Allocation", value: "84/90", change: "6 prime zones open", icon: Target },
   ],
-  networkStats: {
-    label: "NATIONAL SUMMARY",
-    items: [
-      { label: "Active Outlets", value: "187+" },
-      { label: "States Present", value: "8" },
-      { label: "In Pipeline", value: "25" },
-      { label: "Tier 1 Cities", value: "6" },
-      { label: "Tier 2 Cities", value: "8" },
-      { label: "Territory Count", value: "84/90" },
-    ],
-  },
+
+  legend: [
+    { status: "active", label: "Existing Outlets (187+)", icon: CheckCircle2, color: "text-emerald-500", bg: "bg-emerald-500", ring: "ring-emerald-400/30" },
+    { status: "expansion", label: "Fast-Track Expansion (25)", icon: Sparkles, color: "text-[#d4af37]", bg: "bg-[#d4af37]", ring: "ring-[#d4af37]/30" },
+    { status: "available", label: "Prime Available Territories (6)", icon: Lock, color: "text-blue-400", bg: "bg-blue-500", ring: "ring-blue-400/30" },
+  ],
+
+  cities: [
+    {
+      id: "hyd",
+      name: "Hyderabad",
+      state: "Telangana",
+      zone: "South",
+      status: "active",
+      statusLabel: "Existing Hub",
+      outlets: 52,
+      pipeline: 6,
+      top: "62%",
+      left: "44%",
+      featured: true,
+    },
+    {
+      id: "blr",
+      name: "Bengaluru",
+      state: "Karnataka",
+      zone: "South",
+      status: "active",
+      statusLabel: "Existing Hub",
+      outlets: 44,
+      pipeline: 5,
+      top: "76%",
+      left: "40%",
+      featured: true,
+    },
+    {
+      id: "bom",
+      name: "Mumbai & MMR",
+      state: "Maharashtra",
+      zone: "West",
+      status: "active",
+      statusLabel: "Existing Hub",
+      outlets: 38,
+      pipeline: 4,
+      top: "56%",
+      left: "24%",
+      featured: true,
+    },
+    {
+      id: "del",
+      name: "Delhi NCR",
+      state: "Delhi / Haryana / UP",
+      zone: "North",
+      status: "expansion",
+      statusLabel: "Fast Expansion",
+      outlets: 28,
+      pipeline: 6,
+      top: "28%",
+      left: "37%",
+      featured: true,
+    },
+    {
+      id: "pun",
+      name: "Pune",
+      state: "Maharashtra",
+      zone: "West",
+      status: "active",
+      statusLabel: "Existing Hub",
+      outlets: 18,
+      pipeline: 2,
+      top: "60%",
+      left: "28%",
+    },
+    {
+      id: "maa",
+      name: "Chennai",
+      state: "Tamil Nadu",
+      zone: "South",
+      status: "expansion",
+      statusLabel: "Fast Expansion",
+      outlets: 14,
+      pipeline: 4,
+      top: "80%",
+      left: "47%",
+    },
+    {
+      id: "ccu",
+      name: "Kolkata",
+      state: "West Bengal",
+      zone: "East",
+      status: "available",
+      statusLabel: "Prime Territory Open",
+      outlets: 0,
+      pipeline: 3,
+      top: "48%",
+      left: "72%",
+      featured: true,
+    },
+    {
+      id: "amd",
+      name: "Ahmedabad",
+      state: "Gujarat",
+      zone: "West",
+      status: "expansion",
+      statusLabel: "Fast Expansion",
+      outlets: 8,
+      pipeline: 3,
+      top: "44%",
+      left: "22%",
+    },
+    {
+      id: "jai",
+      name: "Jaipur",
+      state: "Rajasthan",
+      zone: "North",
+      status: "available",
+      statusLabel: "Prime Territory Open",
+      outlets: 0,
+      pipeline: 2,
+      top: "34%",
+      left: "30%",
+    },
+    {
+      id: "cok",
+      name: "Kochi",
+      state: "Kerala",
+      zone: "South",
+      status: "available",
+      statusLabel: "Prime Territory Open",
+      outlets: 0,
+      pipeline: 2,
+      top: "88%",
+      left: "38%",
+    },
+    {
+      id: "ixc",
+      name: "Chandigarh",
+      state: "Punjab",
+      zone: "North",
+      status: "expansion",
+      statusLabel: "Fast Expansion",
+      outlets: 6,
+      pipeline: 2,
+      top: "22%",
+      left: "34%",
+    },
+    {
+      id: "idr",
+      name: "Indore",
+      state: "Madhya Pradesh",
+      zone: "West",
+      status: "available",
+      statusLabel: "Prime Territory Open",
+      outlets: 0,
+      pipeline: 2,
+      top: "47%",
+      left: "36%",
+    },
+  ] as CityNode[],
+
   cta: {
     primary: "Check Territory Availability",
-    secondary: "Download Territory Map",
+    secondary: "Download Network Dossier",
   },
 };
