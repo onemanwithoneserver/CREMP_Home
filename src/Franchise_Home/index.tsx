@@ -1,5 +1,4 @@
 import HeroGallery from "./01_HeroGallery";
-import HeroBottomDetails from "./02_HeroBottomDetails";
 // import InvestmentSnapshot from "./04_InvestmentSnapshot";
 import FranchiseModels from "./05_FranchiseModels";
 import IdealPartner from "./07_IdealPartner";
@@ -25,7 +24,6 @@ export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
         <div className="w-full min-h-screen flex flex-col bg-background text-gray-900 dark:text-primary transition-colors duration-300">
             <div className="flex-1 flex flex-col">
                 <HeroGallery isMobile={isMobile} />
-                <HeroBottomDetails isMobile={isMobile} />
                 {/* <InvestmentSnapshot isMobile={isMobile} /> */}
                 <FranchiseModels isMobile={isMobile} />
                 <IdealPartner isMobile={isMobile} />

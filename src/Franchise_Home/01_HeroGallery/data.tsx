@@ -1,40 +1,58 @@
 import {
-    BookOpen,
-    Building2,
-    CalendarDays,
-    Download,
-    Store,
+    LineChart,
+    Users,
     Coffee,
+    Heart,
     Utensils,
+    Store,
+    Clock,
+    Banknote,
+    CalendarDays
 } from "lucide-react";
 
-export const heroGalleryData = {
+export const heroData = {
     brandName: "The Third Place",
-    logoText: "THE THIRD PLACE", // Using text for logo if image isn't available
-    tag: {
-        text: "urban favourite Third Place Business",
-        bg: "#ffffff",
-        textColor: "#c69a54",
+    logoText: "THE THIRD PLACE",
+    category: "Food & Beverage",
+    subCategory: "Quick Service Restaurant",
+    yearEstablished: "2024",
+    investmentRange: "₹15L - ₹30L",
+    breakevenTimeframe: "12-18 Months",
+    shortDescription: "The Third place is a fast-growing QSR franchise founded in 2024, specializing in modern, minimalist, and light-roast third wave 100% arabica or cane india. We offer a fully managed franchise model with zero local supply chain, marketing support, and technology-backed operations.",
+    contactInfo: {
+        email: "franchise@thethirdplace.com",
+        phone: "+91 98765 43210",
+        youtube: "TheThirdPlaceOfficial",
+        headquarters: "Mumbai, Maharashtra",
+        website: "www.thethirdplace.com",
+        instagram: "@thethirdplace",
+        linkedin: "the-third-place"
     },
-    logoDescription: "Experience a blended world of coffee with warm and minimalist space, strong youth mindfulness 'The Third Place'.",
-    description:
-        "The Third place is a fast-growing QSR franchise founded in 2024, specializing in modern, minimalist, and light-roast third wave 100% arabica or cane india, we offer a fully managed franchise model with zero local supply chain, marketing support, and technology-backed operations.",
     
-    categories: [
-        { label: "Food & Beverage", icon: Utensils },
-        { label: "Quick Service Restaurant", icon: Store },
-        { label: "Cafe & Snacks", icon: Coffee },
-        { label: "Beverages", icon: Coffee },
+    whyChooseUs: [
+        {
+            title: "Proven Business Model",
+            description: "Strong unit economics and scalable operations",
+            icon: LineChart,
+            colorClass: "bg-gradient-to-br from-[#2E3192] to-[#1BFFFF] text-white shadow-md shadow-[#2E3192]/30"
+        },
+        {
+            title: "End-to-End Support",
+            description: "Training, setup, marketing & ongoing operations",
+            icon: Users,
+            colorClass: "bg-gradient-to-br from-[#662D8C] to-[#ED1E79] text-white shadow-md shadow-[#ED1E79]/30"
+        },
+        {
+            title: "Premium Quality",
+            description: "Signature blends and high-quality ethical sourcing",
+            icon: Coffee,
+            colorClass: "bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-[#d4af37] border border-[#d4af37]/30 shadow-md shadow-[#d4af37]/20"
+        },
+        {
+            title: "Brand Recall",
+            description: "Loved by communities across the nation",
+            icon: Heart,
+            colorClass: "bg-gradient-to-br from-[#FF512F] to-[#DD2476] text-white shadow-md shadow-[#DD2476]/30"
+        },
     ],
-
-    buttons: {
-        primary: {
-            label: "Download Franchise Brochure",
-            icon: Download,
-        },
-        secondary: {
-            label: "Apply Now",
-            icon: BookOpen,
-        },
-    },
 };
