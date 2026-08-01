@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import {
   Play,
+  Pause,
   Coffee,
   Utensils,
   Mail,
@@ -29,6 +31,8 @@ const item = {
 };
 
 export default function HeroGalleryDesktop() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <motion.section
       variants={container}
@@ -238,16 +242,47 @@ export default function HeroGalleryDesktop() {
             className="absolute inset-0 w-full h-full object-cover group-hover/cup:scale-105 transition-transform duration-700 ease-out"
           />
           <button
-            className="absolute inset-0 w-full h-full bg-black/10 group-hover/cup:bg-black/30 flex items-center justify-center transition-all duration-500 focus:outline-none focus:ring-inset focus:ring-2 focus:ring-accent"
-            aria-label="Watch Brand Story Video"
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="absolute inset-0 w-full h-full bg-black/10 hover:bg-black/40 flex items-center justify-center transition-all duration-500 focus:outline-none"
+            aria-label={isPlaying ? "Pause Brand Story Video" : "Watch Brand Story Video"}
           >
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center shadow-2xl border border-white/40 group-hover/cup:scale-110 group-hover/cup:bg-white group-hover/cup:border-white transition-all duration-300 group/btn">
-              <Play
-                size={24}
-                className="text-white group-hover/btn:text-[#0b162c] ml-1 transition-colors"
-                fill="currentColor"
-              />
-            </div>
+            <motion.div 
+                className="w-16 h-16 rounded-full bg-slate-800/80 flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-colors duration-300 hover:bg-slate-900 group/btn"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                  {isPlaying ? (
+                      <motion.div
+                          key="pause"
+                          initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                          exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
+                          transition={{ duration: 0.2 }}
+                      >
+                          <Pause
+                            size={24}
+                            className="text-white transition-colors"
+                            fill="currentColor"
+                          />
+                      </motion.div>
+                  ) : (
+                      <motion.div
+                          key="play"
+                          initial={{ opacity: 0, scale: 0.5, rotate: 90 }}
+                          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                          exit={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                          transition={{ duration: 0.2 }}
+                      >
+                          <Play
+                            size={24}
+                            className="text-white ml-1 transition-colors"
+                            fill="currentColor"
+                          />
+                      </motion.div>
+                  )}
+              </AnimatePresence>
+            </motion.div>
           </button>
         </motion.div>
       </div>
