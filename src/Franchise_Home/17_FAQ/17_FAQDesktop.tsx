@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-import { FranchiseAnimation } from "./components/FranchiseAnimation";
+import { BookACall } from "./components/BookACall";
 
 const pulseGlow: Variants = {
   animate: {
@@ -61,7 +61,7 @@ export default function FAQDesktop() {
             />
           </div>
 
-          <FranchiseAnimation />
+          <BookACall />
         </div>
 
         <div className="flex-1 w-full min-w-0 flex flex-col gap-4">

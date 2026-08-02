@@ -106,7 +106,7 @@ export default function FounderStoryDesktop() {
                   className="text-[#d4af37]/30 -translate-x-2 -translate-y-2 group-hover:text-[#d4af37]/50 transition-colors duration-500"
                 />
                 
-                <div className="flex items-center gap-2">
+               {/*  <div className="flex items-center gap-2">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -143,7 +143,7 @@ export default function FounderStoryDesktop() {
                   >
                     <LinkedinIcon size={18} />
                   </motion.a>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex-1 flex items-center">

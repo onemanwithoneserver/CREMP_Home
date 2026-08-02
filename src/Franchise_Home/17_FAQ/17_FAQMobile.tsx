@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+import { BookACall } from "./components/BookACall";
 
 const pulseGlow: Variants = {
   animate: {
@@ -58,6 +59,8 @@ export default function FAQMobile() {
             align="center"
           />
         </div>
+
+        <BookACall />
 
         <motion.div layout className="flex flex-col gap-3">
           <AnimatePresence mode="popLayout">

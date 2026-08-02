@@ -97,7 +97,7 @@ export default function FounderStoryMobile() {
                   className="text-[#d4af37]/30 -translate-x-1 -translate-y-1"
                 />
                 
-                <div className="flex items-center gap-2">
+             {/*    <div className="flex items-center gap-2">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -131,7 +131,7 @@ export default function FounderStoryMobile() {
                   >
                     <LinkedinIcon size={15} />
                   </motion.a>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex flex-col gap-4">
