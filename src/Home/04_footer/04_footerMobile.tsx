@@ -1,4 +1,4 @@
-
+import { motion } from "framer-motion";
 import CrempTextLogo from "../../components/CrempTextLogo";
 import { footerLinks, socialLinks } from "./data";
 
@@ -35,14 +35,16 @@ export default function Mobile(_props: { hideCTA?: boolean }) {
 
                 <div className="flex items-center gap-4 mt-1">
                     {socialLinks.map((social) => (
-                        <a
+                        <motion.a
+                            initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                            transition={{ duration: 0.3 }}
                             key={social.label}
                             href={social.href}
                             aria-label={social.label}
-                            className={`w-10 h-10 rounded-lg bg-gray-100 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 transition-all duration-300 active:scale-95 ${social.hoverClass || "hover:border-[#D4AF37]/50 dark:hover:border-[#D4AF37]/50 hover:bg-gray-200 dark:hover:bg-[#121c33] hover:text-[#D4AF37] dark:hover:text-[#D4AF37]"}`}
+                            className={`w-10 h-10 rounded-[4px] bg-gray-100 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 transition-colors active:scale-95 ${social.hoverClass || "hover:border-[#D4AF37]/50 dark:hover:border-[#D4AF37]/50 hover:bg-gray-200 dark:hover:bg-[#121c33] hover:text-[#D4AF37] dark:hover:text-[#D4AF37]"}`}
                         >
                             <social.icon className="w-4 h-4" />
-                        </a>
+                        </motion.a>
                     ))}
                 </div>
             </div>
