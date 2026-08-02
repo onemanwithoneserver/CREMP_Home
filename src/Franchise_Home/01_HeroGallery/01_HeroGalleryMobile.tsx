@@ -106,7 +106,7 @@ export default function HeroGalleryMobile() {
         </button>
       </motion.div>
 
-      <div className="px-2 -mt-6 relative z-10 flex flex-col gap-6">
+      <div className="px-2 -mt-6 relative z-10 flex flex-col gap-4">
         <motion.div
           variants={item}
           className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 p-5 flex flex-col gap-5"

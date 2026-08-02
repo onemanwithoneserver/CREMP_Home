@@ -137,13 +137,9 @@ export default function FAQDesktop() {
 
                       <button
                         onClick={() => setExpandedId(isExpanded ? null : q.id)}
-                        className="w-full flex items-start justify-between p-5 text-left relative z-10 gap-4"
+                        className="w-full flex items-start justify-between px-5 pt-3 pb-1  text-left relative z-10 gap-4"
                       >
                         <div className="flex flex-col gap-1 pr-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#d4af37] flex items-center gap-1">
-                            <Sparkles size={10} />
-                            {q.categoryLabel}
-                          </span>
                           <h4 className={clsx(
                             "text-base font-bold transition-colors duration-200 leading-snug",
                             isExpanded
@@ -178,16 +174,6 @@ export default function FAQDesktop() {
                             className="overflow-hidden border-t border-gray-200/50 dark:border-white/10 bg-white/50 dark:bg-black/20"
                           >
                             <div className="p-5 pt-4 flex flex-col gap-4">
-                              {q.highlight && (
-                                <motion.div 
-                                  initial={{ x: -10, opacity: 0 }}
-                                  animate={{ x: 0, opacity: 1 }}
-                                  transition={{ delay: 0.1, duration: 0.3 }}
-                                  className="p-3 bg-[#d4af37]/10 border-l-2 border-[#d4af37] rounded-r-[2px] text-xs font-semibold text-gray-900 dark:text-[#d4af37]"
-                                >
-                                  {q.highlight}
-                                </motion.div>
-                              )}
 
                               <motion.p 
                                 initial={{ y: 10, opacity: 0 }}
@@ -197,25 +183,6 @@ export default function FAQDesktop() {
                               >
                                 {q.answer}
                               </motion.p>
-
-                              {q.points && q.points.length > 0 && (
-                                <motion.div 
-                                  initial={{ y: 10, opacity: 0 }}
-                                  animate={{ y: 0, opacity: 1 }}
-                                  transition={{ delay: 0.2, duration: 0.3 }}
-                                  className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2"
-                                >
-                                  {q.points.map((point, pIdx) => (
-                                    <div
-                                      key={pIdx}
-                                      className="flex items-center gap-2 p-2 rounded-[2px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-[11px] font-medium text-gray-700 dark:text-gray-300"
-                                    >
-                                      <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                                      <span>{point}</span>
-                                    </div>
-                                  ))}
-                                </motion.div>
-                              )}
                             </div>
                           </motion.div>
                         )}

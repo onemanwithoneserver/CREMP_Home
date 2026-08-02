@@ -28,7 +28,7 @@ export default function MobileWhyInvest() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, margin: "-50px" }}
-                className="relative z-10 flex flex-col gap-6"
+                className="relative z-10 flex flex-col gap-4"
             >
                 <div className="mb-4 flex flex-col items-center text-center">
                     <motion.div variants={fadeInUp} className="mb-4">

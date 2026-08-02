@@ -50,37 +50,13 @@ export default function FAQMobile() {
         className="pointer-events-none absolute bottom-[10%] -left-[10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
       />
 
-      <div className="relative z-10 flex flex-col gap-6">
+      <div className="relative z-10 flex flex-col gap-4">
         <div>
           <SectionHeader
             overline={faqData.sectionLabel}
             title={faqData.title}
             align="center"
           />
-        </div>
-
-        <div className="relative w-full">
-          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search questions (cost, royalty, ROI, training)..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-12 py-2.5 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] shadow-sm"
-          />
-          <AnimatePresence>
-            {searchQuery && (
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-gray-400 hover:text-gray-700 dark:hover:text-white"
-              >
-                Clear
-              </motion.button>
-            )}
-          </AnimatePresence>
         </div>
 
         <motion.div layout className="flex flex-col gap-3">
@@ -133,10 +109,6 @@ export default function FAQMobile() {
                       className="w-full flex items-start justify-between p-4 text-left gap-3 relative z-10"
                     >
                       <div className="flex flex-col gap-0.5 pr-2">
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-[#d4af37] flex items-center gap-1">
-                          <Sparkles size={9} />
-                          {q.categoryLabel}
-                        </span>
                         <h4 className={clsx(
                           "text-xs font-bold leading-snug transition-colors duration-200",
                           isExpanded ? "text-gray-950 dark:text-white" : "text-gray-800 dark:text-gray-200"
@@ -168,16 +140,6 @@ export default function FAQMobile() {
                           transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                           className="overflow-hidden border-t border-gray-200/50 dark:border-white/10 bg-white/50 dark:bg-black/20 p-4 flex flex-col gap-3"
                         >
-                          {q.highlight && (
-                            <motion.div
-                              initial={{ x: -10, opacity: 0 }}
-                              animate={{ x: 0, opacity: 1 }}
-                              transition={{ delay: 0.1, duration: 0.3 }}
-                              className="p-2.5 bg-[#d4af37]/10 border-l-2 border-[#d4af37] text-[11px] font-semibold text-gray-900 dark:text-[#d4af37]"
-                            >
-                              {q.highlight}
-                            </motion.div>
-                          )}
 
                           <motion.p
                             initial={{ y: 10, opacity: 0 }}
@@ -187,22 +149,6 @@ export default function FAQMobile() {
                           >
                             {q.answer}
                           </motion.p>
-
-                          {q.points && (
-                            <motion.div
-                              initial={{ y: 10, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              transition={{ delay: 0.2, duration: 0.3 }}
-                              className="flex flex-col gap-1.5 pt-1"
-                            >
-                              {q.points.map((pt, pIdx) => (
-                                <div key={pIdx} className="flex items-center gap-2 text-[11px] text-gray-700 dark:text-gray-300 font-medium">
-                                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
-                                  <span>{pt}</span>
-                                </div>
-                              ))}
-                            </motion.div>
-                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>
