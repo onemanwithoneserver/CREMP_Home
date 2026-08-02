@@ -164,19 +164,20 @@ export default function FranchiseModelsMobile() {
             const isActive = model.id === activeModel;
             const Icon = model.icon;
             return (
-              <button key={model.id} onClick={() => setActiveModel(model.id)} className={clsx("shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10", !isActive && "hover:bg-white/50 dark:hover:bg-white/5")}>
+              <button key={model.id} onClick={() => setActiveModel(model.id)} className={clsx("shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10 border", !isActive ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10" : "border-transparent")}>
                 {isActive && (
-                  <motion.div layoutId="mobileTabActive" className="absolute inset-0 bg-gradient-to-b from-[#0a1128] via-[#121c33] to-[#0a1128] dark:from-[#16254c] dark:via-[#0e1a38] dark:to-[#0a1128] border border-[#d4af37]/60 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md" transition={{ type: "spring", stiffness: 380, damping: 28, mass: 0.8 }}>
+                  <motion.div layoutId="mobileTabActive" className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md" transition={{ type: "spring", stiffness: 380, damping: 28, mass: 0.8 }}>
                     <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
                   </motion.div>
                 )}
-                <motion.div className={clsx("relative z-10 w-7 h-7 rounded-[2px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm", isActive ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 border border-[#d4af37]/60 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]" : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-500 border border-transparent shadow-sm")} animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
-                  <Icon size={13} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-500 dark:text-gray-400"} />
+                <motion.div className={clsx("relative z-10 w-7 h-7 rounded-[4px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm", isActive ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]" : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent shadow-sm")} animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
+                  <Icon size={13} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400"} />
                 </motion.div>
                 <span className={clsx("relative z-10 font-bold text-xs mb-0.5 transition-colors duration-300", isActive ? "text-white" : "text-[#0a1128] dark:text-gray-200")}>
                   {model.name}
                 </span>
-                <span className={clsx("relative z-10 text-[10px] font-semibold tracking-wider transition-colors duration-300", isActive ? "text-amber-200/90 dark:text-[#d4af37]" : "text-gray-500 dark:text-gray-400")}>
+                <span className={clsx("relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300", isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400")}>
                   {model.priceRange}
                 </span>
               </button>
@@ -298,28 +299,50 @@ export default function FranchiseModelsMobile() {
                 <motion.div className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]" animate={{ top: ["0%", "100%"], opacity: [0, 1, 0] }} transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }} />
               </div>
               <div className="flex flex-col gap-3 relative z-10">
-                {rightMetrics.map((stat) => (
-                  <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm flex items-center justify-between gap-3 min-h-[58px]">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <motion.div whileHover={{ scale: 1.08, rotate: -4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>
-                        <stat.icon size={16} strokeWidth={2.2} />
-                      </motion.div>
-                      <div className="flex flex-col min-w-0">
-                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
-                          {stat.label}
-                        </span>
-                        <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight truncate">
-                          {stat.value}
-                        </span>
+                {rightMetrics.map((stat) => {
+                  const isHighlight = stat.badge === "Breakeven";
+                  return (
+                    <motion.div
+                      key={stat.label}
+                      whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+                      animate={isHighlight ? {
+                        borderColor: ["rgba(212,175,55,0.3)", "rgba(212,175,55,0.8)", "rgba(212,175,55,0.3)"],
+                        boxShadow: ["0px 0px 0px rgba(212,175,55,0)", "0px 0px 12px rgba(212,175,55,0.3)", "0px 0px 0px rgba(212,175,55,0)"]
+                      } : {}}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className={clsx(
+                        "group rounded-[4px] backdrop-blur-sm border p-3 flex items-center justify-between gap-3 min-h-[64px] transition-all duration-300",
+                        isHighlight
+                          ? "bg-[#0b1b42] border-[#d4af37]/50 shadow-[0_4px_16px_rgba(212,175,55,0.15)] hover:border-[#d4af37]/80"
+                          : "bg-gray-50/90 dark:bg-[#0b1b42]/90 border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40"
+                      )}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <motion.div
+                          whileHover={{ scale: 1.08, rotate: -4 }}
+                          className={clsx("w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}
+                        >
+                          <stat.icon size={18} strokeWidth={2.2} />
+                        </motion.div>
+                        <div className="flex flex-col min-w-0">
+                          <span className={clsx("text-[10px] font-bold uppercase tracking-wider mb-0.5", isHighlight ? "text-gray-400" : "text-gray-500 dark:text-gray-400")}>
+                            {stat.label}
+                          </span>
+                          <span className={clsx("text-sm font-bold leading-tight truncate transition-colors group-hover:text-[#d4af37]", isHighlight ? "text-white" : "text-[#0a1128] dark:text-white")}>
+                            {stat.value}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <span className={clsx("text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border", stat.badge === "Breakeven" ? "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/40" : "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60")}>
-                        {stat.badge}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        {stat.badge !== "Breakeven" && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60">
+                            {stat.badge}
+                          </span>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
