@@ -6,6 +6,53 @@ import { stakeholdersData } from "../03_StakeHolders/data";
 import bgImage from "./bg.png";
 import { vendorBenefits } from "./data";
 
+const getTheme = (id: string) => {
+    switch (id) {
+        case "developers": return {
+            activeBorder: "border-blue-500 dark:border-blue-500",
+            activeBg: "bg-blue-500 dark:bg-blue-500",
+            activeText: "text-white dark:text-white",
+            activeGlow: "shadow-[0_0_30px_rgba(59,130,246,0.2)] dark:shadow-[0_0_30px_rgba(59,130,246,0.5)]",
+            bgPing: "bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500",
+        };
+        case "franchisors": return {
+            activeBorder: "border-violet-500 dark:border-violet-500",
+            activeBg: "bg-violet-500 dark:bg-violet-500",
+            activeText: "text-white dark:text-white",
+            activeGlow: "shadow-[0_0_30px_rgba(139,92,246,0.2)] dark:shadow-[0_0_30px_rgba(139,92,246,0.5)]",
+            bgPing: "bg-gradient-to-r from-violet-300 via-violet-400 to-violet-500",
+        };
+        case "buyers": return {
+            activeBorder: "border-cyan-500 dark:border-cyan-500",
+            activeBg: "bg-cyan-500 dark:bg-cyan-500",
+            activeText: "text-white dark:text-white",
+            activeGlow: "shadow-[0_0_30px_rgba(6,182,212,0.2)] dark:shadow-[0_0_30px_rgba(6,182,212,0.5)]",
+            bgPing: "bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-500",
+        };
+        case "consultants": return {
+            activeBorder: "border-orange-500 dark:border-orange-500",
+            activeBg: "bg-orange-500 dark:bg-orange-500",
+            activeText: "text-white dark:text-white",
+            activeGlow: "shadow-[0_0_30px_rgba(249,115,22,0.2)] dark:shadow-[0_0_30px_rgba(249,115,22,0.5)]",
+            bgPing: "bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500",
+        };
+        case "investors": return {
+            activeBorder: "border-emerald-500 dark:border-emerald-500",
+            activeBg: "bg-emerald-500 dark:bg-emerald-500",
+            activeText: "text-white dark:text-white",
+            activeGlow: "shadow-[0_0_30px_rgba(16,185,129,0.2)] dark:shadow-[0_0_30px_rgba(16,185,129,0.5)]",
+            bgPing: "bg-gradient-to-r from-emerald-300 via-emerald-400 to-emerald-500",
+        };
+        default: return {
+            activeBorder: "border-[#D4AF37] dark:border-[#D4AF37]",
+            activeBg: "bg-[#D4AF37] dark:bg-[#D4AF37]",
+            activeText: "text-white dark:text-white",
+            activeGlow: "shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]",
+            bgPing: "bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B]",
+        };
+    }
+};
+
 export default function Desktop() {
     const allStakeholders = useMemo(() => {
         const hasInvestors = stakeholdersData.some(
@@ -235,6 +282,7 @@ export default function Desktop() {
                             >
                                 {allStakeholders.map((stakeholder, index) => {
                                     const isActive = activeTab === stakeholder.id;
+                                    const theme = getTheme(stakeholder.id);
 
                                     const angle =
                                         (index / allStakeholders.length) * 2 * Math.PI -
@@ -273,14 +321,15 @@ export default function Desktop() {
                                             >
                                                 <div className="relative">
                                                     {isActive && (
-                                                        <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] opacity-30 duration-1000 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                                                        <div className={`absolute inset-0 animate-ping rounded-full opacity-30 duration-1000 transition-all ${theme.bgPing}`} />
                                                     )}
                                                     <motion.div
-                                                        className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-all duration-500 dark:bg-[#121c33] lg:h-14 lg:w-14 xl:h-16 xl:w-16 ${isActive
-                                                                ? "scale-110 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:text-[#D4AF37] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]"
-                                                                : "border-gray-200 text-gray-400 hover:border-[#D4AF37]/50 hover:text-[#0a1128] dark:border-gray-700 dark:hover:border-[#D4AF37]/50 dark:hover:text-white"
+                                                        className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 lg:h-14 lg:w-14 xl:h-16 xl:w-16 ${isActive
+                                                                ? `scale-110 ${theme.activeBorder} ${theme.activeBg} ${theme.activeText} ${theme.activeGlow}`
+                                                                : "bg-white dark:bg-[#121c33] border-gray-200 text-gray-400 hover:border-gray-400 hover:text-gray-800 dark:border-gray-700 dark:hover:border-gray-500 dark:hover:text-gray-200"
                                                             }`}
-                                                        whileHover={{ scale: 1.05 }}
+                                                        initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                                                        transition={{ duration: 0.3 }}
                                                     >
                                                         <stakeholder.icon
                                                             className="h-5 w-5 lg:h-6 lg:w-6 xl:h-7 xl:w-7"
@@ -289,7 +338,7 @@ export default function Desktop() {
                                                     </motion.div>
                                                 </div>
                                                 <span
-                                                    className={`mt-2 text-center text-[10px] font-bold transition-all duration-500 lg:text-[11px] xl:mt-3 xl:text-sm ${isActive ? "text-[#0a1128] drop-shadow-[0_0_2px_rgba(0,0,0,0.1)] dark:text-white dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" : "text-gray-500"}`}
+                                                    className={`mt-2 text-center text-[10px] tracking-wide transition-all duration-500 lg:text-[11px] xl:mt-3 xl:text-sm ${isActive ? "font-extrabold text-slate-900 drop-shadow-sm dark:text-white" : "font-bold text-slate-500 dark:text-slate-400"}`}
                                                     style={{ whiteSpace: "pre-line" }}
                                                 >
                                                     {stakeholder.label}
@@ -322,8 +371,10 @@ export default function Desktop() {
                                     whileHover={{ y: -2 }}
                                     className="flex items-center gap-2.5"
                                 >
-                                    <div className="rounded-full border border-gray-700 bg-[#121c33] p-1.5 text-[#D4AF37] shadow-sm">
-                                        <benefit.icon className="h-4 w-4" />
+                                    <div className="rounded-[4px] border border-gray-700 bg-[#121c33] p-1.5 text-[#D4AF37] shadow-sm">
+                                        <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }}>
+                                            <benefit.icon className="h-4 w-4" />
+                                        </motion.div>
                                     </div>
                                     <span className="text-sm font-medium text-gray-300">
                                         {benefit.title}

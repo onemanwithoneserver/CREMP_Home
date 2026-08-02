@@ -140,12 +140,12 @@ export default function Mobile() {
                                     />
 
                                     <div className="relative flex h-full w-full items-center justify-center rounded-full border-4 border-gray-50 bg-white shadow-[0_10px_40px_rgba(178,127,28,0.3)] dark:border-[#0a1128] dark:bg-[#121c33] dark:shadow-[0_10px_40px_rgba(246,178,59,0.4)]">
-                                        <div className="flex h-full w-full items-center justify-center rounded-full border border-gray-100 dark:border-gray-800">
+                                        <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-full w-full items-center justify-center rounded-full border border-gray-100 dark:border-gray-800">
                                             <activeStakeholder.icon
                                                 className="h-7 w-7 text-[#D4AF37] dark:text-[#D4AF37]"
                                                 strokeWidth={1.5}
                                             />
-                                        </div>
+                                        </motion.div>
                                     </div>
                                 </motion.div>
                             </AnimatePresence>
@@ -184,14 +184,15 @@ export default function Mobile() {
                                     className="flex w-full items-center justify-between p-5 text-left"
                                 >
                                     <div className="flex items-center gap-4">
-                                        <div
-                                            className={`flex h-12 w-12 items-center justify-center rounded-2xl transition-colors duration-300 ${isOpen
+                                        <motion.div
+                                            initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }}
+                                            className={`flex h-12 w-12 items-center justify-center rounded-[4px] transition-colors duration-300 ${isOpen
                                                     ? "bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128]"
                                                     : "bg-gray-100 text-[#D4AF37] dark:bg-gray-800/80 dark:text-[#D4AF37]"
                                                 }`}
                                         >
                                             <stakeholder.icon className="h-6 w-6" strokeWidth={1.5} />
-                                        </div>
+                                        </motion.div>
                                         <div>
                                             <div className="text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                                                 {stakeholder.id}
@@ -240,12 +241,12 @@ export default function Mobile() {
                                                             key={fIdx}
                                                             className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-gray-50/80 p-4 text-center shadow-sm transition-colors hover:border-[#D4AF37]/20 dark:border-gray-800/60 dark:bg-[#0a1128]/60 dark:hover:border-[#D4AF37]/20 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                                                         >
-                                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white transition-colors group-hover:bg-[#D4AF37]/10 dark:bg-gray-800/80 dark:group-hover:bg-[#D4AF37]/10">
+                                                            <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-white transition-colors group-hover:bg-[#D4AF37]/10 dark:bg-gray-800/80 dark:group-hover:bg-[#D4AF37]/10">
                                                                 <feature.icon
                                                                     className="h-5 w-5 text-[#D4AF37] dark:text-[#D4AF37]"
                                                                     strokeWidth={1.5}
                                                                 />
-                                                            </div>
+                                                            </motion.div>
                                                             <span className="text-[11px] font-semibold text-gray-700 dark:text-gray-300">
                                                                 {feature.title}
                                                             </span>

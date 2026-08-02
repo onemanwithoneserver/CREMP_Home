@@ -63,11 +63,13 @@ export default function MobileFoundingPartner() {
                                 variants={fadeInUp}
                                 className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                             >
-                                <Star
-                                    size={14}
-                                    className="text-[#D4AF37] dark:text-[#D4AF37]"
-                                    fill="currentColor"
-                                />
+                                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                                    <Star
+                                        size={14}
+                                        className="text-[#D4AF37] dark:text-[#D4AF37]"
+                                        fill="currentColor"
+                                    />
+                                </motion.div>
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                                     {foundingData.tag}
                                 </span>
@@ -225,13 +227,13 @@ export default function MobileFoundingPartner() {
 
                     <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#0a1128]/50">
                         <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 shadow-sm dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
+                            <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 shadow-sm dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
                                 <Gem
                                     size={18}
                                     className="text-[#D4AF37] dark:text-[#D4AF37]"
                                     strokeWidth={2}
                                 />
-                            </div>
+                            </motion.div>
                             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                                 {foundingData.benefitsTitle}
                             </h3>
@@ -257,9 +259,9 @@ export default function MobileFoundingPartner() {
                                         <Check size={11} strokeWidth={3} />
                                     </div>
 
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827]">
                                         <benefit.icon size={14} strokeWidth={1.5} />
-                                    </div>
+                                    </motion.div>
 
                                     <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">
                                         {benefit.text}

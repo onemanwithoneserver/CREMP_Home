@@ -3,6 +3,53 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { useRef, useState } from "react";
 import { stakeholdersData } from "./data";
 
+const getTheme = (id: string) => {
+    switch (id) {
+        case "developers": return {
+            activeLine: "to-blue-500 dark:to-blue-500",
+            activeGlow: "shadow-[0_0_20px_rgba(59,130,246,0.2)] dark:shadow-[0_0_20px_rgba(59,130,246,0.15)]",
+            activeBorder: "border-blue-500 dark:border-blue-500",
+            activeText: "text-blue-500 dark:text-blue-500",
+            bgGlowClass: "to-blue-500/15 dark:to-blue-500/10",
+        };
+        case "franchisors": return {
+            activeLine: "to-violet-500 dark:to-violet-500",
+            activeGlow: "shadow-[0_0_20px_rgba(139,92,246,0.2)] dark:shadow-[0_0_20px_rgba(139,92,246,0.15)]",
+            activeBorder: "border-violet-500 dark:border-violet-500",
+            activeText: "text-violet-500 dark:text-violet-500",
+            bgGlowClass: "to-violet-500/15 dark:to-violet-500/10",
+        };
+        case "buyers": return {
+            activeLine: "to-cyan-500 dark:to-cyan-500",
+            activeGlow: "shadow-[0_0_20px_rgba(6,182,212,0.2)] dark:shadow-[0_0_20px_rgba(6,182,212,0.15)]",
+            activeBorder: "border-cyan-500 dark:border-cyan-500",
+            activeText: "text-cyan-500 dark:text-cyan-500",
+            bgGlowClass: "to-cyan-500/15 dark:to-cyan-500/10",
+        };
+        case "consultants": return {
+            activeLine: "to-orange-500 dark:to-orange-500",
+            activeGlow: "shadow-[0_0_20px_rgba(249,115,22,0.2)] dark:shadow-[0_0_20px_rgba(249,115,22,0.15)]",
+            activeBorder: "border-orange-500 dark:border-orange-500",
+            activeText: "text-orange-500 dark:text-orange-500",
+            bgGlowClass: "to-orange-500/15 dark:to-orange-500/10",
+        };
+        case "investors": return {
+            activeLine: "to-emerald-500 dark:to-emerald-500",
+            activeGlow: "shadow-[0_0_20px_rgba(16,185,129,0.2)] dark:shadow-[0_0_20px_rgba(16,185,129,0.15)]",
+            activeBorder: "border-emerald-500 dark:border-emerald-500",
+            activeText: "text-emerald-500 dark:text-emerald-500",
+            bgGlowClass: "to-emerald-500/15 dark:to-emerald-500/10",
+        };
+        default: return {
+            activeLine: "to-[#D4AF37] dark:to-[#D4AF37]",
+            activeGlow: "shadow-[0_0_20px_rgba(178,127,28,0.2)] dark:shadow-[0_0_20px_rgba(246,178,59,0.15)]",
+            activeBorder: "border-[#D4AF37] dark:border-[#D4AF37]",
+            activeText: "text-[#D4AF37] dark:text-[#D4AF37]",
+            bgGlowClass: "to-[#D4AF37]/15 dark:to-[#D4AF37]/10",
+        };
+    }
+};
+
 export default function Desktop() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -79,7 +126,7 @@ export default function Desktop() {
                             className="absolute left-1/2 top-1/2 h-[100vh] w-[100vh] origin-center -translate-x-1/2 -translate-y-1/2"
                         >
                             <div
-                                className="absolute left-1/2 top-1/2 h-full w-[50%] origin-left -translate-y-1/2 bg-gradient-to-r from-transparent to-[#D4AF37]/15 blur-lg dark:to-[#D4AF37]/10"
+                                className={`absolute left-1/2 top-1/2 h-full w-[50%] origin-left -translate-y-1/2 bg-gradient-to-r from-transparent blur-lg transition-colors duration-700 ${getTheme(activeStakeholder.id).bgGlowClass}`}
                                 style={{
                                     clipPath: "polygon(0 45%, 100% 40%, 100% 60%, 0 55%)",
                                 }}
@@ -106,6 +153,7 @@ export default function Desktop() {
                         {stakeholdersData.map((stakeholder, idx) => {
                             const angle = -60 + idx * 30;
                             const isActive = activeIndex === idx;
+                            const theme = getTheme(stakeholder.id);
 
                             return (
                                 <div
@@ -123,13 +171,15 @@ export default function Desktop() {
                                         {isActive && (
                                             <motion.div
                                                 layoutId="active-line"
-                                                className="absolute right-[calc(100%+6px)] h-[1px] w-6 bg-gradient-to-r from-transparent to-[#D4AF37] opacity-60 dark:to-[#D4AF37]"
+                                                className={`absolute right-[calc(100%+6px)] h-[1px] w-6 bg-gradient-to-r from-transparent opacity-60 ${theme.activeLine}`}
                                             />
                                         )}
 
-                                        <div
-                                            className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-[4px] border transition-all duration-400 xl:h-12 xl:w-12 ${isActive
-                                                    ? "scale-105 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_20px_rgba(178,127,28,0.2)] dark:border-[#D4AF37] dark:bg-[#0a0f25] dark:text-[#D4AF37] dark:shadow-[0_0_20px_rgba(246,178,59,0.15)]"
+                                        <motion.div
+                                            initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                                            transition={{ duration: 0.3 }}
+                                            className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-400 xl:h-12 xl:w-12 ${isActive
+                                                    ? `scale-105 bg-white dark:bg-[#0a0f25] ${theme.activeBorder} ${theme.activeText} ${theme.activeGlow}`
                                                     : "scale-95 border-gray-300 bg-gray-50 text-gray-500 opacity-80 transition-transform hover:scale-100 hover:border-gray-400 hover:text-gray-800 hover:opacity-100 dark:border-gray-800 dark:bg-[#0a1128] dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-200"
                                                 }`}
                                         >
@@ -137,12 +187,12 @@ export default function Desktop() {
                                                 className="h-4 w-4 xl:h-5 xl:w-5"
                                                 strokeWidth={isActive ? 2 : 1.5}
                                             />
-                                        </div>
+                                        </motion.div>
 
                                         <div
-                                            className={`absolute left-[calc(100%+16px)] w-32 text-left text-xs font-bold tracking-wide transition-all duration-400 xl:w-40 xl:text-sm ${isActive
-                                                    ? "pointer-events-none opacity-0"
-                                                    : "-translate-x-2 text-gray-600 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 dark:text-gray-400 dark:group-hover:text-gray-200"
+                                            className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-32 text-center text-xs tracking-wide transition-colors duration-400 xl:w-40 xl:text-sm ${isActive
+                                                    ? "font-extrabold text-slate-900 dark:text-white"
+                                                    : "font-bold text-slate-500 dark:text-slate-400"
                                                 }`}
                                         >
                                             {stakeholder.label.replace("\n", "")}
@@ -182,12 +232,12 @@ export default function Desktop() {
                                     <div className="mb-10 grid grid-cols-2 gap-x-6 gap-y-6">
                                         {activeStakeholder.features.map((feature, fIdx) => (
                                             <div key={fIdx} className="flex items-start gap-3">
-                                                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] border border-gray-200 bg-gray-50 text-[#D4AF37] dark:border-gray-800 dark:bg-[#121c33] dark:text-[#D4AF37] xl:h-10 xl:w-10">
+                                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] border border-gray-200 bg-gray-50 text-[#D4AF37] dark:border-gray-800 dark:bg-[#121c33] dark:text-[#D4AF37] xl:h-10 xl:w-10">
                                                     <feature.icon
                                                         className="h-4 w-4 xl:h-5 xl:w-5"
                                                         strokeWidth={1.5}
                                                     />
-                                                </div>
+                                                </motion.div>
                                                 <span className="mt-1 text-xs font-bold leading-relaxed text-gray-700 dark:text-gray-300 xl:text-sm">
                                                     {feature.title}
                                                 </span>
@@ -238,12 +288,12 @@ export default function Desktop() {
                                             {stat.label}
                                         </span>
                                     </div>
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-[4px] bg-[#D4AF37]/10 text-[#D4AF37] transition-transform group-hover:-rotate-12 dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] xl:h-10 xl:w-10">
+                                    <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 items-center justify-center rounded-[4px] bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] xl:h-10 xl:w-10">
                                         <stat.icon
                                             className="h-4 w-4 xl:h-5 xl:w-5"
                                             strokeWidth={2}
                                         />
-                                    </div>
+                                    </motion.div>
                                 </motion.div>
                             ))}
                         </motion.div>

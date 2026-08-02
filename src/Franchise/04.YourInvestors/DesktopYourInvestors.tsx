@@ -130,13 +130,13 @@ export default function DesktopYourInvestors() {
                                     </div>
                                     <div className="flex flex-col pt-1">
                                         <div className="mb-2 flex items-center gap-2">
-                                            <div className="flex items-center justify-center rounded-full bg-[#D4AF37]/10 p-1.5 transition-colors group-hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:group-hover:bg-[#D4AF37]/20">
+                                            <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex items-center justify-center rounded-full bg-[#D4AF37]/10 p-1.5 transition-colors group-hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:group-hover:bg-[#D4AF37]/20">
                                                 <item.icon
                                                     size={18}
                                                     className="text-[#D4AF37] dark:text-[#D4AF37]"
                                                     strokeWidth={2.5}
                                                 />
-                                            </div>
+                                            </motion.div>
                                             <span className="text-lg font-bold text-gray-900 transition-colors group-hover:text-[#D4AF37] dark:text-white dark:group-hover:text-[#D4AF37]">
                                                 {item.title}
                                             </span>

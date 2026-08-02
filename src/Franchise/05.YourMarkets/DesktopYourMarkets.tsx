@@ -106,7 +106,7 @@ export default function DesktopYourMarkets() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="flex h-full w-full flex-col justify-center rounded-[8px] border border-gray-200/50 bg-white p-8 shadow-xl transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#121c33]"
+                        className="flex h-full w-full flex-col justify-center rounded-[8px] p-8  transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#121c33]"
                     >
                         <div className="mb-6 flex items-center gap-3">
                             <motion.div
@@ -128,9 +128,9 @@ export default function DesktopYourMarkets() {
                                     whileHover={{ x: 5, scale: 1.01 }}
                                     className="group flex cursor-pointer items-center gap-3.5 rounded-[4px] border border-transparent px-3 py-2.5 transition-all hover:border-gray-100 hover:bg-gray-50 hover:shadow-xs dark:hover:border-gray-800/60 dark:hover:bg-gray-900/50"
                                 >
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
                                         <benefit.icon size={15} strokeWidth={2.5} />
-                                    </div>
+                                    </motion.div>
                                     <p className="text-base font-semibold leading-snug text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
                                         {benefit.text}
                                     </p>

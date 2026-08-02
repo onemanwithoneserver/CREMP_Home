@@ -38,6 +38,40 @@ const floatAnim: any = {
     },
 };
 
+const b1Themes = [
+    {
+        iconWrapper: "bg-blue-600 dark:bg-blue-500/10 text-white dark:text-blue-400 border border-transparent dark:border-blue-500/20",
+        subtitle: "text-blue-600 dark:text-blue-400",
+        featureBg: "text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-blue-600 active:bg-blue-700 text-white",
+        cardBg: "bg-white dark:bg-[#090b14]",
+    },
+    {
+        iconWrapper: "bg-violet-600 dark:bg-violet-500/10 text-white dark:text-violet-400 border border-transparent dark:border-violet-500/20",
+        subtitle: "text-violet-600 dark:text-violet-400",
+        featureBg: "text-violet-500 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 border border-violet-100 dark:border-violet-500/20 hover:bg-violet-600 hover:text-white dark:hover:bg-violet-600 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-violet-600 active:bg-violet-700 text-white",
+        cardBg: "bg-white dark:bg-[#0a0512]",
+    },
+];
+
+const b2Themes = [
+    {
+        iconWrapper: "bg-cyan-600 dark:bg-cyan-500/10 text-white dark:text-cyan-400 border border-transparent dark:border-cyan-500/20",
+        subtitle: "text-cyan-600 dark:text-cyan-400",
+        featureBg: "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-slate-900/80 border border-cyan-100 dark:border-slate-700/50 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-cyan-600 active:bg-cyan-700 text-white",
+        cardBg: "bg-slate-50 dark:bg-[#051114]",
+    },
+    {
+        iconWrapper: "bg-orange-500 dark:bg-orange-500/10 text-white dark:text-orange-400 border border-transparent dark:border-orange-500/20",
+        subtitle: "text-orange-600 dark:text-orange-400",
+        featureBg: "text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-slate-900/80 border border-orange-100 dark:border-slate-700/50 hover:bg-orange-500 hover:text-white dark:hover:bg-orange-500 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-orange-500 active:bg-orange-600 text-white",
+        cardBg: "bg-slate-50 dark:bg-[#140b05]",
+    },
+];
+
 export default function MobileStakeHolder1() {
     const { block1, block2, block3 } = stakeholderData;
     const navigate = useNavigate();
@@ -72,21 +106,23 @@ export default function MobileStakeHolder1() {
                     </motion.div>
 
                     <div className="flex flex-col gap-4 w-full">
-                        {block1.cards.map((card) => (
+                        {block1.cards.map((card, idx) => {
+                            const theme = b1Themes[idx % b1Themes.length];
+                            return (
                             <motion.div
                                 variants={cardVariants}
                                 key={card.id}
-                                className="bg-white dark:bg-slate-900 rounded-[4px] p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative w-full"
+                                className={`${theme.cardBg} rounded-[4px] p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative w-full`}
                             >
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 shrink-0 rounded-[4px] bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center border border-indigo-100 dark:border-indigo-500/20">
+                                    <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-12 h-12 shrink-0 rounded-[4px] flex items-center justify-center ${theme.iconWrapper}`}>
                                         <card.icon size={22} strokeWidth={1.5} />
-                                    </div>
+                                    </motion.div>
                                     <div className="flex flex-col">
                                         <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
                                             {card.title}
                                         </h3>
-                                        <p className="text-indigo-600 dark:text-indigo-400 font-bold text-xs mt-1 uppercase tracking-wider">
+                                        <p className={`${theme.subtitle} font-bold text-xs mt-1 uppercase tracking-wider`}>
                                             {card.mobileSubtitle}
                                         </p>
                                     </div>
@@ -105,11 +141,11 @@ export default function MobileStakeHolder1() {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3 py-4 border-t border-slate-100 dark:border-slate-800 mb-2">
-                                    {card.features.map((feature, idx) => (
-                                        <div key={idx} className="flex items-center gap-2">
-                                            <div className="text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 p-1.5 rounded-[2px] shrink-0">
+                                    {card.features.map((feature, fIdx) => (
+                                        <div key={fIdx} className="flex items-center gap-2">
+                                            <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`p-1.5 rounded-[4px] shrink-0 ${theme.featureBg}`}>
                                                 <feature.icon size={16} strokeWidth={1.5} />
-                                            </div>
+                                            </motion.div>
                                             <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 leading-tight">
                                                 {feature.labelMobile}
                                             </span>
@@ -119,13 +155,14 @@ export default function MobileStakeHolder1() {
 
                                 <button
                                     onClick={() => navigate(`/${viewMode}${card.route}`)}
-                                    className="w-full bg-indigo-600 active:bg-indigo-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors"
+                                    className={`w-full font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors ${theme.buttonBg}`}
                                 >
                                     {card.buttonText}
                                     <ArrowRight size={16} />
                                 </button>
                             </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </motion.section>
@@ -170,21 +207,23 @@ export default function MobileStakeHolder1() {
                 </div>
 
                 <div className="flex flex-col gap-4 relative z-10 w-full">
-                    {block2.cards.map((card) => (
+                    {block2.cards.map((card, idx) => {
+                        const theme = b2Themes[idx % b2Themes.length];
+                        return (
                         <motion.div
                             variants={cardVariants}
                             key={card.id}
-                            className="bg-slate-50 dark:bg-slate-800/60 rounded-[4px] p-5 shadow-sm border border-slate-200 dark:border-slate-700/50 flex flex-col w-full"
+                            className={`${theme.cardBg} rounded-[4px] p-5 shadow-sm border border-slate-200 dark:border-slate-700/50 flex flex-col w-full`}
                         >
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 shrink-0 rounded-[4px] bg-cyan-100 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center border border-cyan-200 dark:border-cyan-500/20">
+                                <div className={`w-12 h-12 shrink-0 rounded-[4px] flex items-center justify-center ${theme.iconWrapper}`}>
                                     <card.icon size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col">
                                     <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
                                         {card.title}
                                     </h3>
-                                    <p className="text-cyan-600 dark:text-cyan-400 font-bold text-xs mt-1 uppercase tracking-wider">
+                                    <p className={`${theme.subtitle} font-bold text-xs mt-1 uppercase tracking-wider`}>
                                         {card.mobileSubtitle}
                                     </p>
                                 </div>
@@ -203,11 +242,11 @@ export default function MobileStakeHolder1() {
                             </div>
 
                             <div className="grid grid-cols-2 gap-3 py-4 border-t border-slate-200 dark:border-slate-700/50 mb-2">
-                                {card.features.map((feature, idx) => (
-                                    <div key={idx} className="flex items-center gap-2">
-                                        <div className="text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-slate-900/80 border border-cyan-100 dark:border-slate-700/50 p-1.5 rounded-[2px] shrink-0">
+                                {card.features.map((feature, fIdx) => (
+                                    <div key={fIdx} className="flex items-center gap-2">
+                                        <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`p-1.5 rounded-[4px] shrink-0 ${theme.featureBg}`}>
                                             <feature.icon size={16} strokeWidth={1.5} />
-                                        </div>
+                                        </motion.div>
                                         <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 leading-tight">
                                             {feature.labelMobile}
                                         </span>
@@ -217,13 +256,14 @@ export default function MobileStakeHolder1() {
 
                             <button
                                 onClick={() => navigate(`/${viewMode}${card.route}`)}
-                                className="w-full bg-cyan-600 active:bg-cyan-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors"
+                                className={`w-full font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors ${theme.buttonBg}`}
                             >
                                 {card.buttonText}
                                 <ArrowRight size={16} />
                             </button>
                         </motion.div>
-                    ))}
+                        );
+                    })}
                 </div>
             </motion.section>
 
@@ -257,9 +297,9 @@ export default function MobileStakeHolder1() {
                                 key={idx}
                                 className="bg-white dark:bg-slate-900 rounded-[4px] p-4 flex flex-col items-center justify-center text-center gap-2 shadow-sm border border-emerald-100 dark:border-slate-800"
                             >
-                                <div className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/50 rounded-[2px] p-2">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/50 rounded-[4px] p-2">
                                     <category.icon size={22} strokeWidth={1.5} />
-                                </div>
+                                </motion.div>
                                 <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                                     {category.label}
                                 </span>
@@ -297,9 +337,9 @@ export default function MobileStakeHolder1() {
                                 transition={{ delay: 0.2 + idx * 0.15, duration: 0.5, ease: smoothEasing }}
                                 className="bg-white dark:bg-slate-800 rounded-[4px] p-2.5 shadow-md border border-emerald-100 dark:border-slate-700 flex items-center gap-3 w-full"
                             >
-                                <div className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-700 border border-emerald-100 dark:border-slate-600 p-1.5 rounded-[2px] shrink-0">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-700 border border-emerald-100 dark:border-slate-600 p-1.5 rounded-[4px] shrink-0">
                                     <floater.icon size={16} strokeWidth={2} />
-                                </div>
+                                </motion.div>
                                 <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">
                                     {floater.labelMobile}
                                 </span>

@@ -16,7 +16,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
   const [hoveredItem, setHoveredItem] = useState<{ item: CostBreakdownItem; x: number; y: number; } | null>(null);
   let currentOffset = 0;
   return (
-    <div ref={containerRef} className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div ref={containerRef} className="relative flex items-center justify-center overflow-visible" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="transform -rotate-90 overflow-visible">
         {data.map((item, i) => {
           const rawSegmentLength = (item.percentage / 100) * circumference;
@@ -28,13 +28,24 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
           const textY = size / 2 + radius * Math.sin(angle);
           const isSmall = item.percentage < 10;
           return (
-            <g key={`group-${item.label}`}>
+              <motion.g
+                key={`group-${item.label}`}
+                animate={{
+                  x: hoveredItem?.item.label === item.label ? Math.cos(angle) * 12 : 0,
+                  y: hoveredItem?.item.label === item.label ? Math.sin(angle) * 12 : 0,
+                  scale: hoveredItem?.item.label === item.label ? 1.03 : 1,
+                  rotate: hoveredItem?.item.label === item.label ? [0, -3, 3, 0] : 0,
+                  filter: hoveredItem?.item.label === item.label ? "drop-shadow(0 8px 16px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))" : "drop-shadow(0 0px 0px rgba(0,0,0,0))"
+                }}
+                style={{ transformOrigin: `${size / 2}px ${size / 2}px` }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
               <motion.circle
                 key={item.label}
                 cx={size / 2}
                 cy={size / 2}
                 r={radius}
-                fill="transparent"
+                fill="none"
                 stroke={item.color}
                 strokeWidth={strokeWidth}
                 strokeDasharray={`0 ${circumference}`}
@@ -72,7 +83,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                   </span>
                 </div>
               </motion.foreignObject>
-            </g>
+              </motion.g>
           );
         })}
       </svg>
@@ -93,8 +104,8 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             initial={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
-            className="absolute pointer-events-none bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap"
-            style={{ left: hoveredItem.x, top: hoveredItem.y - 10, transform: "translate(-50%, -100%)" }}
+            className="absolute pointer-events-none bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-[9999] flex flex-col gap-1"
+            style={{ left: Math.max(10, Math.min(hoveredItem.x, size - 10)), top: hoveredItem.y - 10, transform: "translate(-50%, -100%)", maxWidth: size - 20 }}
           >
             <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300">
               <hoveredItem.item.icon size={13} className="text-[#d4af37]" />
@@ -228,9 +239,9 @@ export default function FranchiseModelsMobile() {
                   <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
                   <motion.div className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]" animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
                 </div>
-                <div className="flex flex-col gap-3 relative z-10">
+                <div className="flex flex-col gap-3 relative z-10 group">
                   {leftMetrics.map((stat) => (
-                    <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px]">
+                    <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px] group">
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div whileHover={{ scale: 1.08, rotate: 4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>
                           <stat.icon size={16} strokeWidth={2.2} />
@@ -239,7 +250,7 @@ export default function FranchiseModelsMobile() {
                           <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
                             {stat.label}
                           </span>
-                          <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight truncate">
+                          <span className="text-sm font-bold text-[#0a1128] dark:text-white tracking-tight truncate group-hover:whitespace-normal group-hover:overflow-visible">
                             {stat.value}
                           </span>
                         </div>

@@ -37,19 +37,19 @@ const buttonHover = {
 
 const b1Themes = [
     {
-        mainBorder: "border-indigo-100 dark:border-indigo-900/30",
+        mainBorder: "border-blue-100 dark:border-blue-900/30",
         mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-indigo-600 text-white shadow-sm group-hover:bg-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300 dark:border dark:border-indigo-400/30 dark:group-hover:bg-indigo-500 dark:group-hover:text-white",
-        titleText: "text-indigo-950 dark:text-white",
-        titleHover: "group-hover:text-indigo-800 dark:group-hover:text-indigo-100",
-        subtitle: "text-indigo-600 dark:text-indigo-400",
+        iconWrapper: "bg-blue-600 text-white shadow-sm group-hover:bg-blue-700 dark:bg-blue-500/10 dark:text-blue-300 dark:border dark:border-blue-400/30 dark:group-hover:bg-blue-500 dark:group-hover:text-white",
+        titleText: "text-blue-950 dark:text-white",
+        titleHover: "group-hover:text-blue-800 dark:group-hover:text-blue-100",
+        subtitle: "text-blue-600 dark:text-blue-400",
         descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-[#060b14]",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-indigo-50 group-hover/feature:border-indigo-200 dark:bg-slate-900/50 dark:border-slate-800 dark:group-hover/feature:bg-indigo-500/15 dark:group-hover/feature:border-indigo-400/40",
-        featureIcon: "text-slate-500 group-hover/feature:text-indigo-600 dark:text-slate-400 dark:group-hover/feature:text-indigo-400",
-        featureText: "text-slate-700 group-hover/feature:text-indigo-900 dark:text-slate-300 dark:group-hover/feature:text-indigo-100",
-        buttonBg: "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm dark:border dark:border-indigo-500/50 dark:hover:border-transparent",
-        imageBg: "bg-indigo-50/40 dark:bg-slate-900",
+        cardBg: "bg-white dark:bg-[#090b14]",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-blue-600 group-hover/feature:border-transparent dark:bg-slate-900/50 dark:border-slate-800 dark:group-hover/feature:bg-blue-600 dark:group-hover/feature:border-transparent transition-all",
+        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
+        featureText: "text-slate-700 group-hover/feature:text-blue-900 dark:text-slate-300 dark:group-hover/feature:text-blue-100 transition-colors",
+        buttonBg: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm dark:border dark:border-blue-500/50 dark:hover:border-transparent",
+        imageBg: "bg-blue-50/40 dark:bg-[#090b14]",
         imageGlow: "hidden",
     },
     {
@@ -61,11 +61,11 @@ const b1Themes = [
         subtitle: "text-violet-600 dark:text-violet-400",
         descText: "text-slate-600 dark:text-slate-400",
         cardBg: "bg-white dark:bg-[#0a0512]",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-violet-50 group-hover/feature:border-violet-200 dark:bg-slate-900/50 dark:border-slate-800 dark:group-hover/feature:bg-violet-500/15 dark:group-hover/feature:border-violet-400/40",
-        featureIcon: "text-slate-500 group-hover/feature:text-violet-600 dark:text-slate-400 dark:group-hover/feature:text-violet-400",
-        featureText: "text-slate-700 group-hover/feature:text-violet-900 dark:text-slate-300 dark:group-hover/feature:text-violet-100",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-violet-600 group-hover/feature:border-transparent dark:bg-slate-900/50 dark:border-slate-800 dark:group-hover/feature:bg-violet-600 dark:group-hover/feature:border-transparent transition-all",
+        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
+        featureText: "text-slate-700 group-hover/feature:text-violet-900 dark:text-slate-300 dark:group-hover/feature:text-violet-100 transition-colors",
         buttonBg: "bg-violet-600 hover:bg-violet-700 text-white shadow-sm dark:border dark:border-violet-500/50 dark:hover:border-transparent",
-        imageBg: "bg-violet-50/40 dark:bg-slate-900",
+        imageBg: "bg-violet-50/40 dark:bg-[#0a0512]",
         imageGlow: "hidden",
     },
 ];
@@ -74,33 +74,33 @@ const b2Themes = [
     {
         mainBorder: "border-cyan-100 dark:border-cyan-900/30",
         mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-cyan-100 text-cyan-600 border border-cyan-200 group-hover:bg-cyan-600 group-hover:text-white dark:bg-cyan-500/10 dark:text-cyan-300 dark:border dark:border-cyan-400/30 dark:group-hover:bg-cyan-500 dark:group-hover:text-white",
+        iconWrapper: "bg-cyan-600 text-white border border-transparent shadow-sm group-hover:bg-cyan-700 dark:bg-cyan-500/10 dark:text-cyan-300 dark:border dark:border-cyan-400/30 dark:group-hover:bg-cyan-500 dark:group-hover:text-white",
         titleText: "text-slate-900 dark:text-white",
         titleHover: "group-hover:text-cyan-800 dark:group-hover:text-cyan-100",
         subtitle: "text-cyan-600 dark:text-cyan-400",
         descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-slate-900",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-cyan-50 group-hover/feature:border-cyan-300 dark:bg-slate-800/50 dark:border-slate-700 dark:group-hover/feature:bg-cyan-500/15 dark:group-hover/feature:border-cyan-400/40",
-        featureIcon: "text-slate-500 group-hover/feature:text-cyan-600 dark:text-slate-400 dark:group-hover/feature:text-cyan-400",
-        featureText: "text-slate-700 group-hover/feature:text-cyan-900 dark:text-slate-300 dark:group-hover/feature:text-cyan-100",
+        cardBg: "bg-white dark:bg-[#051114]",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-cyan-600 group-hover/feature:border-transparent dark:bg-slate-800/50 dark:border-slate-700 dark:group-hover/feature:bg-cyan-600 dark:group-hover/feature:border-transparent transition-all",
+        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
+        featureText: "text-slate-700 group-hover/feature:text-cyan-900 dark:text-slate-300 dark:group-hover/feature:text-cyan-100 transition-colors",
         buttonBg: "bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm border border-transparent dark:border-cyan-500/50 dark:hover:border-transparent",
-        imageBg: "bg-cyan-50 dark:bg-slate-800",
+        imageBg: "bg-cyan-50 dark:bg-[#051114]",
         imageGlow: "hidden",
     },
     {
-        mainBorder: "border-amber-100 dark:border-amber-900/30",
+        mainBorder: "border-orange-100 dark:border-orange-900/30",
         mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-amber-100 text-amber-600 border border-amber-200 group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-500/10 dark:text-amber-300 dark:border dark:border-amber-400/30 dark:group-hover:bg-amber-500 dark:group-hover:text-white",
+        iconWrapper: "bg-orange-500 text-white border border-transparent shadow-sm group-hover:bg-orange-600 dark:bg-orange-500/10 dark:text-orange-300 dark:border dark:border-orange-400/30 dark:group-hover:bg-orange-500 dark:group-hover:text-white",
         titleText: "text-slate-900 dark:text-white",
-        titleHover: "group-hover:text-amber-800 dark:group-hover:text-amber-100",
-        subtitle: "text-amber-600 dark:text-amber-400",
+        titleHover: "group-hover:text-orange-800 dark:group-hover:text-orange-100",
+        subtitle: "text-orange-600 dark:text-orange-400",
         descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-slate-900",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-amber-50 group-hover/feature:border-amber-300 dark:bg-slate-800/50 dark:border-slate-700 dark:group-hover/feature:bg-amber-500/15 dark:group-hover/feature:border-amber-400/40",
-        featureIcon: "text-slate-500 group-hover/feature:text-amber-600 dark:text-slate-400 dark:group-hover/feature:text-amber-400",
-        featureText: "text-slate-700 group-hover/feature:text-amber-900 dark:text-slate-300 dark:group-hover/feature:text-amber-100",
-        buttonBg: "bg-amber-500 hover:bg-amber-600 text-white shadow-sm border border-transparent dark:border-amber-500/50 dark:hover:border-transparent",
-        imageBg: "bg-amber-50 dark:bg-slate-800",
+        cardBg: "bg-white dark:bg-[#140b05]",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-orange-500 group-hover/feature:border-transparent dark:bg-slate-800/50 dark:border-slate-700 dark:group-hover/feature:bg-orange-500 dark:group-hover/feature:border-transparent transition-all",
+        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
+        featureText: "text-slate-700 group-hover/feature:text-orange-900 dark:text-slate-300 dark:group-hover/feature:text-orange-100 transition-colors",
+        buttonBg: "bg-orange-500 hover:bg-orange-600 text-white shadow-sm border border-transparent dark:border-orange-500/50 dark:hover:border-transparent",
+        imageBg: "bg-orange-50 dark:bg-[#140b05]",
         imageGlow: "hidden",
     },
 ];
@@ -155,13 +155,13 @@ export default function DesktopStakeHolder1() {
                             viewport={{ once: false, margin: "-20px" }}
                             variants={fadeUpScale}
                             key={card.id}
-                            className={`w-full ${theme.cardBg} rounded-[8px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
+                            className={`w-full ${theme.cardBg} rounded-[4px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
                         >
                             <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center relative z-10 w-full lg:w-1/2">
                                 <div className="flex flex-col items-start gap-3 mb-4">
-                                    <div className={`w-12 h-12 shrink-0 rounded-[6px] flex items-center justify-center transition-colors duration-300 ${theme.iconWrapper}`}>
+                                    <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-12 h-12 shrink-0 rounded-[4px] flex items-center justify-center transition-colors duration-300 ${theme.iconWrapper}`}>
                                         <card.icon size={22} strokeWidth={1.5} />
-                                    </div>
+                                    </motion.div>
                                     <div>
                                         <h3 className={`text-2xl font-bold leading-tight transition-colors duration-300 ${theme.titleText} ${theme.titleHover}`}>
                                             {card.title}
@@ -185,9 +185,9 @@ export default function DesktopStakeHolder1() {
                                 >
                                     {card.features.map((feature, fIdx) => (
                                         <motion.div variants={fadeUpItem} key={fIdx} className="flex flex-col items-center text-center gap-2 group/feature">
-                                            <div className={`w-10 h-10 flex items-center justify-center rounded-[6px] border transition-colors duration-300 ${theme.featureBg}`}>
+                                            <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-10 h-10 flex items-center justify-center rounded-[4px] border transition-colors duration-300 ${theme.featureBg}`}>
                                                 <feature.icon size={18} strokeWidth={1.5} className={theme.featureIcon} />
-                                            </div>
+                                            </motion.div>
                                             <span className={`text-[12px] font-semibold leading-snug transition-colors duration-300 ${theme.featureText}`}>
                                                 {feature.labelDesktop}
                                             </span>
@@ -261,7 +261,7 @@ export default function DesktopStakeHolder1() {
                                 viewport={{ once: false, margin: "-20px" }}
                                 variants={fadeUpScale}
                                 key={card.id}
-                                className={`w-full ${theme.cardBg} rounded-[8px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
+                                className={`w-full ${theme.cardBg} rounded-[4px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
                             >
                                 <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center relative z-10 w-full lg:w-1/2">
                                     <div className="flex flex-col items-start gap-3 mb-4">
@@ -331,7 +331,7 @@ export default function DesktopStakeHolder1() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, margin: "-20px" }}
-                className="relative w-full rounded-[8px] overflow-hidden bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-900/30 shadow-md flex flex-col lg:flex-row mt-6 transition-colors duration-300"
+                className="relative w-full rounded-[4px] overflow-hidden bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-900/30 shadow-md flex flex-col lg:flex-row mt-6 transition-colors duration-300"
             >
                 <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center gap-5 z-10 w-full lg:w-3/5 bg-slate-50 dark:bg-slate-900">
                     <div className="flex flex-col gap-3">
@@ -358,9 +358,9 @@ export default function DesktopStakeHolder1() {
                                 whileTap={{ scale: 0.98 }}
                                 className="group bg-white dark:bg-slate-800 rounded-[6px] p-3 flex items-center gap-3 shadow-sm border border-emerald-50 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-700/50 transition-colors duration-200 cursor-pointer"
                             >
-                                <div className="w-10 h-10 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-100 dark:border-slate-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-200 group-hover:border-transparent">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-10 h-10 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-100 dark:border-slate-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-200 group-hover:border-transparent">
                                     <category.icon size={20} strokeWidth={1.5} />
-                                </div>
+                                </motion.div>
                                 <span className="text-[13px] font-bold text-slate-800 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300 transition-colors">
                                     {category.label}
                                 </span>
@@ -402,9 +402,9 @@ export default function DesktopStakeHolder1() {
                                 whileHover={{ x: -2 }}
                                 className="group bg-white dark:bg-slate-800 rounded-[6px] p-2.5 pr-5 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-emerald-300 flex items-center gap-3 w-52 cursor-pointer transition-colors duration-200"
                             >
-                                <div className="w-8 h-8 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-sm border border-emerald-100 dark:border-slate-600 transition-colors duration-200">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-sm border border-emerald-100 dark:border-slate-600 transition-colors duration-200">
                                     <floater.icon size={16} strokeWidth={2} />
-                                </div>
+                                </motion.div>
                                 <span className="text-[12px] font-bold text-slate-800 dark:text-slate-200 transition-colors">
                                     {floater.labelDesktop}
                                 </span>

@@ -47,12 +47,12 @@ export default function MobileGrowthStages() {
                         className="flex w-full flex-col items-center"
                     >
                         <motion.div variants={fadeInUp}>
-                            <div className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="mb-4 flex w-fit cursor-pointer items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
                                 <Sparkles size={14} className="text-[#D4AF37]" />
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37]">
                                     {growthStagesData.tag}
                                 </span>
-                            </div>
+                            </motion.div>
                         </motion.div>
 
                         <motion.h2
@@ -92,8 +92,10 @@ export default function MobileGrowthStages() {
                                     variants={fadeInUp}
                                     className="flex flex-col items-start overflow-hidden rounded-[8px] border border-gray-200/50 bg-white p-6 shadow-xl text-left dark:border-gray-800/50 dark:bg-[#121c33]"
                                 >
-                                    <div
-                                        className={`mb-6 flex h-12 w-12 items-center justify-center rounded-full shadow-sm ${isGold
+                                    <motion.div
+                                        whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                                        transition={{ duration: 0.3 }}
+                                        className={`mb-6 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-sm ${isGold
                                                 ? "bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10"
                                                 : isBlue
                                                     ? "bg-blue-500/10 text-blue-500 dark:bg-blue-500/20"
@@ -101,7 +103,7 @@ export default function MobileGrowthStages() {
                                             }`}
                                     >
                                         <stage.icon size={20} strokeWidth={2.5} />
-                                    </div>
+                                    </motion.div>
 
                                     <h3 className="mb-2 text-xl font-black tracking-tight text-gray-900 dark:text-white">
                                         {stage.title}

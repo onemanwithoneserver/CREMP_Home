@@ -33,7 +33,7 @@ export const CostBreakdownTable = ({
                   <Icon size={16} strokeWidth={2.5} />
                 </div>
                 <span
-                  className="text-[12px] font-semibold text-[#0a1128] dark:text-gray-200 truncate pr-2 group-hover:text-[#d4af37] transition-colors"
+                  className="text-[12px] font-semibold text-[#0a1128] dark:text-gray-200 truncate group-hover:whitespace-normal group-hover:overflow-visible pr-2 group-hover:text-[#d4af37] transition-colors"
                   title={item.label}
                 >
                   {item.label}

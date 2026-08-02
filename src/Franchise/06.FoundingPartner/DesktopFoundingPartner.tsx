@@ -52,7 +52,7 @@ export default function DesktopFoundingPartner() {
             />
 
             <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
-                <div className="relative flex w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#121c33] lg:flex-row lg:items-stretch lg:p-4">
+                <div className="relative flex w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-lg dark:border-gray-800/80 dark:bg-[#121c33] lg:flex-row lg:items-stretch lg:p-4">
                     <div className="relative flex w-full flex-col p-8 pt-10 lg:w-[48%] lg:px-10 lg:py-12">
                         <motion.div
                             initial="hidden"
@@ -64,11 +64,13 @@ export default function DesktopFoundingPartner() {
                                 variants={fadeInUp}
                                 className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                             >
-                                <Star
-                                    size={14}
-                                    className="text-[#D4AF37] dark:text-[#D4AF37]"
-                                    fill="currentColor"
-                                />
+                                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                                    <Star
+                                        size={14}
+                                        className="text-[#D4AF37] dark:text-[#D4AF37]"
+                                        fill="currentColor"
+                                    />
+                                </motion.div>
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                                     {foundingData.tag}
                                 </span>
@@ -268,9 +270,9 @@ export default function DesktopFoundingPartner() {
                                         <Check size={12} strokeWidth={3} />
                                     </div>
 
-                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 transition-all duration-300 group-hover:border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] group-hover:shadow-lg dark:border-gray-800 dark:bg-[#111827] dark:group-hover:border-[#D4AF37]/50 dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 transition-all duration-300 group-hover:border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] group-hover:shadow-lg dark:border-gray-800 dark:bg-[#111827] dark:group-hover:border-[#D4AF37]/50 dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37]">
                                         <benefit.icon size={18} strokeWidth={1.5} />
-                                    </div>
+                                    </motion.div>
 
                                     <span className="text-[1.05rem] font-bold text-gray-900 transition-colors group-hover:text-[#D4AF37] dark:text-white dark:group-hover:text-[#D4AF37]">
                                         {benefit.text}

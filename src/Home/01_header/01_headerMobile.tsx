@@ -57,8 +57,10 @@ export default function Mobile() {
             <div className="flex items-center gap-3">
                 <motion.button
                     onClick={toggleTheme}
+                    initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
                     whileTap={{ scale: 0.88, rotate: 20 }}
-                    className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${theme === "dark"
+                    transition={{ duration: 0.3 }}
+                    className={`flex h-9 w-9 items-center justify-center rounded-[4px] border transition-all duration-300 ${theme === "dark"
                             ? "border-amber-500/20 bg-amber-500/10 text-amber-400 active:bg-amber-500/25"
                             : "border-gray-200 bg-white text-[#0a1128] active:bg-gray-100"
                         }`}
@@ -83,7 +85,7 @@ export default function Mobile() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4, duration: 0.35 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative flex items-center justify-center gap-1.5 overflow-hidden rounded-lg bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-3.5 py-1.5 text-xs font-semibold text-black transition-all active:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
+                    className="group relative flex items-center justify-center gap-1.5 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-3.5 py-1.5 text-xs font-semibold text-black transition-all active:shadow-lg duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
                 >
                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 ease-out group-active:translate-x-full" />
                     <span className="relative">Get Started</span>

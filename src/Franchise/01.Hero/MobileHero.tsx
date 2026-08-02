@@ -102,11 +102,13 @@ export default function MobileHero() {
                                 whileTap={{ scale: 0.95 }}
                                 className="group flex w-full items-center justify-center gap-2 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-5 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)]"
                             >
-                                <Btn1Icon
-                                    size={18}
-                                    strokeWidth={2.5}
-                                    className="shrink-0 transition-transform group-hover:rotate-12 group-hover:scale-110"
-                                />
+                                <motion.div whileHover={{ scale: 1.2, rotate: 12 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                                    <Btn1Icon
+                                        size={18}
+                                        strokeWidth={2.5}
+                                        className="shrink-0"
+                                    />
+                                </motion.div>
                                 <span className="whitespace-nowrap">
                                     {heroData.buttons[0].text}
                                 </span>
@@ -117,11 +119,13 @@ export default function MobileHero() {
                                 whileTap={{ scale: 0.95 }}
                                 className="group flex w-full items-center justify-center gap-2 rounded-[4px] border border-gray-200 bg-white/80 px-5 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all dark:border-gray-800 dark:bg-gray-900/50 dark:text-white"
                             >
-                                <Btn2Icon
-                                    size={18}
-                                    strokeWidth={2.5}
-                                    className="shrink-0 text-gray-500 transition-transform group-hover:-rotate-12 group-hover:scale-110 dark:text-gray-400 group-hover:dark:text-[#D4AF37]"
-                                />
+                                <motion.div whileHover={{ scale: 1.2, rotate: -12 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                                    <Btn2Icon
+                                        size={18}
+                                        strokeWidth={2.5}
+                                        className="shrink-0 text-gray-500 dark:text-gray-400 group-hover:dark:text-[#D4AF37]"
+                                    />
+                                </motion.div>
                                 <span className="whitespace-nowrap">
                                     {heroData.buttons[1].text}
                                 </span>
@@ -137,9 +141,9 @@ export default function MobileHero() {
                                     key={idx}
                                     className="flex items-center gap-3 rounded-[4px] bg-white/50 p-2 dark:bg-gray-800/30"
                                 >
-                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm dark:border-gray-700 dark:bg-[#121c33] dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm dark:border-gray-700 dark:bg-[#121c33] dark:text-[#D4AF37] hover:shadow-lg hover:border-[#D4AF37]/50 pointer-events-auto">
                                         <feature.icon size={16} strokeWidth={2} />
-                                    </div>
+                                    </motion.div>
                                     <span className="text-left text-[0.8rem] font-bold leading-snug text-gray-700 dark:text-gray-300">
                                         {feature.text}
                                     </span>

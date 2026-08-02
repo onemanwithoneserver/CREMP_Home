@@ -59,9 +59,10 @@ export default function Desktop() {
                 <div className="flex items-center gap-4">
                     <motion.button
                         onClick={toggleTheme}
-                        whileHover={{ scale: 1.08 }}
+                        initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
                         whileTap={{ scale: 0.92, rotate: 15 }}
-                        className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${theme === "dark"
+                        transition={{ duration: 0.3 }}
+                        className={`flex h-10 w-10 items-center justify-center rounded-[4px] border transition-all duration-300 ${theme === "dark"
                                 ? "border-amber-500/20 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 hover:shadow-[0_0_18px_rgba(245,158,11,0.3)]"
                                 : "border-gray-200 bg-white text-[#0a1128] hover:bg-gray-50 hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
                             }`}
@@ -88,7 +89,7 @@ export default function Desktop() {
                         transition={{ delay: 0.6, duration: 0.4, ease: "easeOut" }}
                         whileHover={{ scale: 1.03, y: -1 }}
                         whileTap={{ scale: 0.97 }}
-                        className="group relative flex items-center gap-2 overflow-hidden rounded-lg bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-6 py-2.5 text-sm font-semibold text-black transition-all hover:shadow-[0_6px_20px_rgba(246,178,59,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
+                        className="group relative flex items-center gap-2 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-6 py-2.5 text-sm font-semibold text-black transition-all hover:shadow-[0_6px_20px_rgba(246,178,59,0.4)] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
                     >
                         <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
                         <span className="relative">Get Started</span>

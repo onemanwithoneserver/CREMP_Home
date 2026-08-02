@@ -106,9 +106,9 @@ export default function MobileEcosystem() {
                         >
                             {ecosystemData.issues.map((issue, idx) => (
                                 <div key={idx} className="flex items-center gap-3">
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-inner dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-inner dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37] cursor-pointer">
                                         <issue.icon size={14} />
-                                    </div>
+                                    </motion.div>
                                     <span className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-300">
                                         {issue.text}
                                     </span>
@@ -207,21 +207,21 @@ export default function MobileEcosystem() {
                                         key={idx}
                                         className="relative z-20 flex min-h-[90px] w-full flex-col items-center justify-center rounded-xl border border-gray-200/80 bg-white/95 p-3 text-center shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#121c33]/95"
                                     >
-                                        <div className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-sm ring-1 ring-[#D4AF37]/20 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/20">
+                                        <motion.div whileHover={{ scale: 1.25, rotate: [0, 180, 360] }} transition={{ duration: 0.5 }} className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-sm ring-1 ring-[#D4AF37]/20 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/20 cursor-pointer pointer-events-auto">
                                             <item.icon
                                                 size={16}
                                                 className="text-[#D4AF37] dark:text-[#D4AF37]"
                                             />
-                                        </div>
+                                        </motion.div>
                                         <span className="text-[0.7rem] font-bold leading-tight text-gray-800 sm:text-[0.75rem] dark:text-gray-200">
                                             {item.text}
                                         </span>
                                     </div>
                                 ))}
 
-                                <div className="absolute left-1/2 top-1/2 z-30 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128]">
+                                <motion.div whileHover={{ scale: 1.2, rotate: 90 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className="absolute left-1/2 top-1/2 z-30 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128] cursor-pointer pointer-events-auto">
                                     <Plus size={14} strokeWidth={3} />
-                                </div>
+                                </motion.div>
                             </div>
 
                             <div className="relative z-0 -mt-[10px] h-[40px] w-full px-4">
