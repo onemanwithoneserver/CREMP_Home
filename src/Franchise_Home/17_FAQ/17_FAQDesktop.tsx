@@ -65,29 +65,6 @@ export default function FAQDesktop() {
         </div>
 
         <div className="flex-1 w-full min-w-0 flex flex-col gap-4">
-          <div className="relative w-full">
-            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search frequently asked questions (e.g. investment, setup, royalty, territory)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-14 py-3 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] dark:focus:border-[#d4af37] transition-all shadow-sm focus:shadow-md"
-            />
-            <AnimatePresence>
-              {searchQuery && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[11px] font-semibold text-gray-400 hover:text-gray-700 dark:hover:text-white"
-                >
-                  Clear
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </div>
 
           <motion.div layout className="flex flex-col gap-4">
             <AnimatePresence mode="popLayout">

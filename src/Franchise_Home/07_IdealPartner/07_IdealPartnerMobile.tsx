@@ -188,7 +188,7 @@ export default function IdealPartnerMobile() {
         >
           <motion.div
             variants={fadeSlideUp}
-            className="w-full bg-gradient-to-br from-[#0b1b42] to-[#060d20] border border-[#d4af37]/40 rounded-[4px] p-6 shadow-[0_12px_40px_rgba(10,17,40,0.4)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.15)] flex flex-col gap-4 group relative overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_rgba(212,175,55,0.25)] hover:border-[#d4af37]/60"
+            className="w-full bg-[#0b1b42] border border-[#d4af37]/40 rounded-[4px] p-6 shadow-[0_12px_40px_rgba(10,17,40,0.4)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.15)] flex flex-col gap-4 group relative overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_rgba(212,175,55,0.25)] hover:border-[#d4af37]/60"
           >
             <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#d4af37]/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute top-4 right-4 text-[#d4af37]/40 group-hover:text-[#d4af37] group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">

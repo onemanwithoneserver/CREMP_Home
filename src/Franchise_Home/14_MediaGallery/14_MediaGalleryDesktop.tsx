@@ -44,6 +44,14 @@ const itemVariants = {
   show: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 };
 
+const docsContainerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+  },
+};
+
 export default function MediaGalleryDesktop() {
   const filteredItems = mediaGalleryData.items;
   const [isDocsExpanded, setIsDocsExpanded] = useState(false);
@@ -56,7 +64,7 @@ export default function MediaGalleryDesktop() {
   const documents = filteredItems.filter((item) => item.format === "document");
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px]  backdrop-blur-sm transition-colors duration-700 dark:bg-[#050b14]/40 dark:shadow-none min-h-screen ">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#050b14]/40 dark:shadow-none min-h-screen ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -144,23 +152,33 @@ export default function MediaGalleryDesktop() {
               )}
 
               {documents.length > 0 && (
-                <div className="flex flex-col gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  <button 
+                <div className="flex flex-col gap-4 pt-6 border-t border-gray-200/50 dark:border-white/5">
+                  <motion.button 
                     onClick={() => setIsDocsExpanded(!isDocsExpanded)}
-                    className="flex items-center justify-between w-full text-left focus-visible:outline-none group"
+                    whileHover={{ scale: 1.005 }}
+                    whileTap={{ scale: 0.995 }}
+                    className="flex items-center justify-between w-full p-4 md:p-5 rounded-2xl bg-white/40 dark:bg-[#0b1b42]/30 backdrop-blur-xl border border-gray-200/60 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-300 group shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-lg overflow-hidden relative"
                   >
-                    <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
-                      <div className="w-5 h-5 rounded-[2px] bg-emerald-500 flex items-center justify-center text-white shrink-0 shadow-xs">
-                        <FileCheck2 size={13} />
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="flex items-center gap-4 text-base font-bold text-gray-900 dark:text-white relative z-10">
+                      <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20 group-hover:scale-110 group-hover:-rotate-[10deg] transition-transform duration-500 shadow-sm">
+                        <FileCheck2 size={22} strokeWidth={2.5} />
                       </div>
-                      <span>Investor & Operation Documents</span>
+                      <div className="flex flex-col items-start">
+                        <span className="text-lg group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">Investor & Operation Documents</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Download key materials and PDF resources</span>
+                      </div>
                     </div>
-                    <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                      <motion.div animate={{ rotate: isDocsExpanded ? 180 : 0 }}>
-                        <ChevronDown size={14} />
+                    
+                    <div className="w-10 h-10 rounded-full bg-white dark:bg-gray-800/80 flex items-center justify-center text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-white/5 group-hover:bg-emerald-500 group-hover:text-white group-hover:border-emerald-500 transition-all duration-300 shadow-sm relative z-10">
+                      <motion.div animate={{ rotate: isDocsExpanded ? 180 : 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+                        <ChevronDown size={20} strokeWidth={2.5} />
                       </motion.div>
                     </div>
-                  </button>
+                  </motion.button>
+
                   <AnimatePresence initial={false}>
                     {isDocsExpanded && (
                       <motion.div 
@@ -168,14 +186,19 @@ export default function MediaGalleryDesktop() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                         className="overflow-hidden"
                       >
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2 pb-2">
+                        <motion.div 
+                          variants={docsContainerVariants}
+                          initial="hidden"
+                          animate="show"
+                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2"
+                        >
                           {documents.map((item) => (
                             <MediaCard key={item.id} item={item} />
                           ))}
-                        </div>
+                        </motion.div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -350,16 +373,22 @@ function MediaCard({
     );
   }
 
+  // Document Card Fallback (Redesigned)
   return (
     <motion.div
-      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
+      variants={itemVariants}
+      whileHover={{ y: -4, scale: 1.02 }}
+      className="relative overflow-hidden rounded-xl bg-white/50 dark:bg-[#0b1b42]/40 backdrop-blur-xl border border-gray-200/80 dark:border-white/5 p-4 flex items-center gap-4 shadow-[0_4px_15px_rgb(0,0,0,0.02)] dark:shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_30px_rgba(16,185,129,0.12)] transition-all duration-300 group cursor-pointer"
     >
-      <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-11 h-11 rounded-[4px] bg-gray-50 dark:bg-gray-800/80 flex items-center justify-center shadow-inner shrink-0 group-hover:bg-[#d4af37]/10 border border-gray-100 dark:border-gray-700 transition-colors">
-        <FileText size={22} className="text-[#d4af37]" />
-      </motion.div>
+      {/* Subtle hover gradient sweep */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <div className="flex-1 flex flex-col justify-center min-w-0">
-        <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-[#d4af37] transition-colors leading-tight truncate">
+      <div className="w-12 h-12 rounded-[10px] bg-white dark:bg-gray-800/80 flex items-center justify-center shadow-sm shrink-0 group-hover:bg-emerald-500/10 border border-gray-100 dark:border-gray-700/50 group-hover:border-emerald-500/30 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 relative z-10">
+        <FileText size={24} className="text-gray-400 dark:text-gray-500 group-hover:text-emerald-500 transition-colors duration-300" />
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center min-w-0 relative z-10">
+        <h4 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300 leading-tight truncate">
           {item.title}
         </h4>
         <span className="text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest block mt-1 opacity-80 truncate">
@@ -367,9 +396,9 @@ function MediaCard({
         </span>
       </div>
 
-      <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gray-50 dark:bg-gray-800 flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 shrink-0 group-hover:text-[#d4af37] transition-colors cursor-pointer">
-        <Download size={16} />
-      </motion.div>
+      <button className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 shrink-0 group-hover:bg-emerald-500 group-hover:text-white group-hover:border-emerald-500 transition-all duration-300 relative z-10 active:scale-95 hover:shadow-lg">
+        <Download size={18} strokeWidth={2.5} />
+      </button>
     </motion.div>
   );
 }

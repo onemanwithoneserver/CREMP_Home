@@ -60,8 +60,6 @@ export default function FAQMobile() {
           />
         </div>
 
-        <BookACall />
-
         <motion.div layout className="flex flex-col gap-3">
           <AnimatePresence mode="popLayout">
             {filteredQuestions.length === 0 ? (
@@ -161,6 +159,9 @@ export default function FAQMobile() {
             )}
           </AnimatePresence>
         </motion.div>
+
+          <BookACall />
+
       </div>
     </section>
   );
