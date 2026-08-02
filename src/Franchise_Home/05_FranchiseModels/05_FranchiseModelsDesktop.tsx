@@ -65,7 +65,7 @@ const DonutChartWithLegend = ({
                   cx={size / 2}
                   cy={size / 2}
                   r={radius}
-                  fill="transparent"
+                  fill="none"
                   stroke={item.color}
                   strokeWidth={isHovered ? strokeWidth + 6 : strokeWidth}
                   strokeDashoffset={-item.offset}
@@ -304,7 +304,7 @@ export default function FranchiseModelsDesktop() {
                                   animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }}
                                   exit={{ opacity: 0, scale: 0.5, y: 20, filter: "blur(15px)", borderRadius: "50px" }}
                                   transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
-                                  className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 z-[99999] p-5 pointer-events-auto cursor-default text-left"
+                                  className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 z-[99999] py-4 px-3 pointer-events-auto cursor-default text-left"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800 relative z-10">
@@ -366,7 +366,7 @@ export default function FranchiseModelsDesktop() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="col-span-12 lg:col-span-6 rounded-[4px] p-2 flex flex-col justify-center relative overflow-hidden h-full">
+        <div className="col-span-12 lg:col-span-6 rounded-[4px] p-0 flex flex-col justify-center relative overflow-visible h-full ">
           <div className="flex-1 flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div key={`chart-${selected.id}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.4 }} className="w-full">

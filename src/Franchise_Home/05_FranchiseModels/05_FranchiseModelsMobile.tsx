@@ -16,7 +16,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
   const [hoveredItem, setHoveredItem] = useState<{ item: CostBreakdownItem; x: number; y: number; } | null>(null);
   let currentOffset = 0;
   return (
-    <div ref={containerRef} className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div ref={containerRef} className="relative flex items-center justify-center overflow-visible" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="transform -rotate-90 overflow-visible">
         {data.map((item, i) => {
           const rawSegmentLength = (item.percentage / 100) * circumference;
@@ -45,7 +45,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                 cx={size / 2}
                 cy={size / 2}
                 r={radius}
-                fill="transparent"
+                fill="none"
                 stroke={item.color}
                 strokeWidth={strokeWidth}
                 strokeDasharray={`0 ${circumference}`}
@@ -104,8 +104,8 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             initial={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
-            className="absolute pointer-events-none bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-50 flex flex-col gap-1 whitespace-nowrap"
-            style={{ left: hoveredItem.x, top: hoveredItem.y - 10, transform: "translate(-50%, -100%)" }}
+            className="absolute pointer-events-none bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-[9999] flex flex-col gap-1"
+            style={{ left: Math.max(10, Math.min(hoveredItem.x, size - 10)), top: hoveredItem.y - 10, transform: "translate(-50%, -100%)", maxWidth: size - 20 }}
           >
             <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300">
               <hoveredItem.item.icon size={13} className="text-[#d4af37]" />
