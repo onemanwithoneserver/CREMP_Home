@@ -94,12 +94,12 @@ export default function MobileYourInvestors() {
                         className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-gray-50 p-6 text-center shadow-md dark:border-gray-800/50 dark:bg-[#121c33]"
                     >
                         <div className="mb-8 flex flex-col items-center gap-4">
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-200/80 dark:bg-gray-900 dark:ring-gray-800">
+                            <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-200/80 dark:bg-gray-900 dark:ring-gray-800">
                                 <Activity
                                     size={20}
                                     className="text-[#D4AF37] dark:text-[#D4AF37]"
                                 />
-                            </div>
+                            </motion.div>
                             <h3 className="text-xl font-black text-gray-900 dark:text-white">
                                 {investorData.expectationsTitle}
                             </h3>
@@ -116,11 +116,13 @@ export default function MobileYourInvestors() {
                                     </div>
                                     <div className="flex flex-col items-center">
                                         <div className="mb-2 flex items-center justify-center gap-2">
-                                            <item.icon
-                                                size={16}
-                                                className="text-[#D4AF37] dark:text-[#D4AF37]"
-                                                strokeWidth={2.5}
-                                            />
+                                            <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                                                <item.icon
+                                                    size={16}
+                                                    className="text-[#D4AF37] dark:text-[#D4AF37]"
+                                                    strokeWidth={2.5}
+                                                />
+                                            </motion.div>
                                             <span className="text-[0.95rem] font-bold text-gray-900 dark:text-white">
                                                 {item.title}
                                             </span>
@@ -176,13 +178,13 @@ export default function MobileYourInvestors() {
                                 className="absolute h-[50%] w-[50%] rounded-full border border-[#D4AF37]/90 dark:border-[#D4AF37]/90"
                             />
 
-                            <div className="relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-[#D4AF37] to-[#b38728] shadow-[0_0_30px_rgba(178,127,28,0.6)] dark:from-[#D4AF37] dark:to-[#f9d08b]">
+                            <motion.div whileHover={{ scale: 1.1, rotate: 90 }} transition={{ type: "spring", stiffness: 300 }} className="relative z-20 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-gradient-to-tr from-[#D4AF37] to-[#b38728] shadow-[0_0_30px_rgba(178,127,28,0.6)] dark:from-[#D4AF37] dark:to-[#f9d08b]">
                                 <Target
                                     size={24}
                                     className="text-white dark:text-gray-900"
                                     strokeWidth={2.5}
                                 />
-                            </div>
+                            </motion.div>
 
                             <motion.div
                                 animate={{ y: [-3, 3, -3], rotate: [0, 10, -10, 0] }}

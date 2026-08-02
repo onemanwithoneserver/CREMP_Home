@@ -261,9 +261,9 @@ function MobileMediaSwipeSection({
 function DocumentCard({ item }: { item: MediaItem }) {
   return (
     <div className="relative overflow-hidden rounded-[4px] bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-2.5 flex items-center gap-2.5 shadow-sm active:scale-[0.99] transition-transform">
-      <div className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 dark:bg-[#d4af37]/20 flex items-center justify-center border border-[#d4af37]/30 shrink-0">
+      <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 dark:bg-[#d4af37]/20 flex items-center justify-center border border-[#d4af37]/30 shrink-0 cursor-pointer">
         <FileText size={15} className="text-[#d4af37]" />
-      </div>
+      </motion.div>
 
       <div className="flex-1 flex flex-col justify-center min-w-0">
         <h4 className="font-semibold text-gray-900 dark:text-white text-xs leading-tight truncate">
@@ -274,12 +274,13 @@ function DocumentCard({ item }: { item: MediaItem }) {
         </span>
       </div>
 
-      <button
+      <motion.button
+        whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }}
         aria-label="Download Document"
         className="w-7 h-7 rounded-[2px] bg-gray-50 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 shrink-0"
       >
         <Download size={13} />
-      </button>
+      </motion.button>
     </div>
   );
 }

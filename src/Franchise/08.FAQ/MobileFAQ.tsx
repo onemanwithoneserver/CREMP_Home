@@ -56,11 +56,13 @@ export default function MobileFAQ() {
                                 : "border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[#D4AF37] dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37]"
                             }`}
                     >
-                        <faq.icon
-                            size={16}
-                            strokeWidth={isOpen ? 2.5 : 1.5}
-                            className="transition-all duration-200 group-hover:-translate-y-0.5 group-hover:scale-110"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <faq.icon
+                                size={16}
+                                strokeWidth={isOpen ? 2.5 : 1.5}
+                                className="transition-all duration-200"
+                            />
+                        </motion.div>
                     </div>
 
                     <div className="flex flex-1 flex-col pt-1">
@@ -129,11 +131,13 @@ export default function MobileFAQ() {
                         variants={fadeInUp}
                         className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10"
                     >
-                        <Sparkles
-                            size={12}
-                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                            fill="currentColor"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <Sparkles
+                                size={12}
+                                className="text-[#D4AF37] dark:text-[#D4AF37]"
+                                fill="currentColor"
+                            />
+                        </motion.div>
                         <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                             {faqData.tag}
                         </span>
@@ -190,14 +194,14 @@ export default function MobileFAQ() {
                     </div>
 
                     <div className="relative z-10 mb-8 flex flex-col items-center gap-6">
-                        <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-xl backdrop-blur-xl">
+                        <motion.div whileHover={{ rotate: 360, scale: 1.1 }} transition={{ duration: 0.8, type: "spring" }} className="relative flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-xl backdrop-blur-xl">
                             <div className="absolute -top-2 right-1 h-3 w-3 rotate-45 rounded-[2px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_rgba(178,127,28,0.6)] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:shadow-[0_0_10px_rgba(246,178,59,0.6)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
                             <faqData.banner.icon
                                 size={28}
                                 strokeWidth={1.5}
                                 className="text-[#D4AF37] dark:text-[#D4AF37]"
                             />
-                        </div>
+                        </motion.div>
                         <div className="flex flex-col">
                             <h3 className="mb-3 whitespace-pre-line text-2xl font-black leading-tight text-white">
                                 {faqData.banner.title}

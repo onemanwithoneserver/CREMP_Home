@@ -45,11 +45,20 @@ const DonutChartWithLegend = ({
             const isSmall = item.percentage < 10;
             const isHovered = hoveredIdx === i;
             return (
-              <g
+              <motion.g
                 key={`group-${item.label}`}
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
                 className="cursor-pointer"
+                animate={{
+                  x: isHovered ? Math.cos(angle) * 12 : 0,
+                  y: isHovered ? Math.sin(angle) * 12 : 0,
+                  scale: isHovered ? 1.03 : 1,
+                  rotate: isHovered ? [0, -3, 3, 0] : 0,
+                  filter: isHovered ? "drop-shadow(0 8px 16px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))" : "drop-shadow(0 0px 0px rgba(0,0,0,0))"
+                }}
+                style={{ transformOrigin: `${size / 2}px ${size / 2}px` }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 <motion.circle
                   key={item.label}
@@ -87,7 +96,7 @@ const DonutChartWithLegend = ({
                     </span>
                   </div>
                 </motion.foreignObject>
-              </g>
+              </motion.g>
             );
           })}
         </svg>
@@ -265,7 +274,7 @@ export default function FranchiseModelsDesktop() {
                           <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
                             {stat.label}
                           </span>
-                          <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate">
+                          <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate group-hover:whitespace-normal group-hover:overflow-visible">
                             {stat.value}
                           </span>
                         </div>
@@ -427,7 +436,7 @@ export default function FranchiseModelsDesktop() {
                         <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
                           {stat.label}
                         </span>
-                        <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate">
+                        <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate group-hover:whitespace-normal group-hover:overflow-visible">
                           {stat.value}
                         </span>
                       </div>

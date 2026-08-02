@@ -142,9 +142,9 @@ export default function HeroGalleryMobile() {
 
           <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0a1128] rounded-[4px] p-3 w-full mx-auto">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0">
+              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0 cursor-pointer">
                 <Calendar size={16} className="text-white" />
-              </div>
+              </motion.div>
               <div className="flex flex-col overflow-hidden">
                 <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Since
@@ -155,9 +155,9 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0">
+              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0 cursor-pointer">
                 <Wallet size={16} className="text-white" />
-              </div>
+              </motion.div>
               <div className="flex flex-col overflow-hidden">
                 <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Starts From
@@ -168,9 +168,9 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0">
+              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0 cursor-pointer">
                 <TrendingUp size={16} className="text-white" />
-              </div>
+              </motion.div>
               <div className="flex flex-col overflow-hidden">
                 <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Break-Even
@@ -181,9 +181,9 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0">
+              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0 cursor-pointer">
                 <MapPin size={16} className="text-white" />
-              </div>
+              </motion.div>
               <div className="flex flex-col overflow-hidden">
                 <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase">
                   Head Quarters
@@ -214,15 +214,13 @@ export default function HeroGalleryMobile() {
                 key={i}
                 className="flex flex-col items-center text-center p-3 bg-gray-50 dark:bg-[#0a1128] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
               >
-                <div
-                  className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-2 shadow-sm ${feature.colorClass}`}
-                >
+                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-2 shadow-sm cursor-pointer ${feature.colorClass}`}>
                   <feature.icon
                     size={18}
                     strokeWidth={2}
                     className="text-white"
                   />
-                </div>
+                </motion.div>
                 <h4 className="text-xs font-bold text-[#0a1128] dark:text-white leading-tight">
                   {feature.title}
                 </h4>

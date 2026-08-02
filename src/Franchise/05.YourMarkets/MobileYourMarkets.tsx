@@ -66,7 +66,7 @@ export default function MobileYourMarkets() {
                             variants={fadeInUp}
                             className="mb-4 flex items-center justify-center gap-3"
                         >
-                            <div className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                                 <Globe
                                     size={14}
                                     className="mr-2 text-[#D4AF37] dark:text-[#D4AF37]"
@@ -74,7 +74,7 @@ export default function MobileYourMarkets() {
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                                     {marketData.tag}
                                 </span>
-                            </div>
+                            </motion.div>
                         </motion.div>
 
                         <motion.h2
@@ -279,9 +279,9 @@ export default function MobileYourMarkets() {
                         className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-3 py-4 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#121c33]"
                     >
                         <div className="mb-4 flex flex-col items-center gap-2">
-                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
+                            <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
                                 <Star size={16} className="fill-current" />
-                            </div>
+                            </motion.div>
                             <h3 className="text-base font-black uppercase tracking-wide text-gray-900 dark:text-white">
                                 {marketData.benefitsTitle}
                             </h3>
@@ -293,9 +293,9 @@ export default function MobileYourMarkets() {
                                     key={idx}
                                     className="flex items-center gap-3 rounded-[4px] border border-transparent p-2 text-left transition-all hover:bg-gray-50 dark:hover:bg-gray-900/50"
                                 >
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[#D4AF37] dark:bg-gray-800 dark:text-[#D4AF37]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-100 text-[#D4AF37] dark:bg-gray-800 dark:text-[#D4AF37]">
                                         <benefit.icon size={15} strokeWidth={2.5} />
-                                    </div>
+                                    </motion.div>
                                     <p className="text-[1rem] font-bold leading-snug text-gray-800 dark:text-gray-200">
                                         {benefit.text}
                                     </p>

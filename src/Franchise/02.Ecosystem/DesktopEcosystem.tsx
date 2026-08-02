@@ -111,9 +111,9 @@ export default function DesktopEcosystem() {
                                     whileHover={{ x: 5 }}
                                     className="group flex cursor-pointer items-center gap-3"
                                 >
-                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-sm transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-sm dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37]">
                                         <issue.icon size={16} />
-                                    </div>
+                                    </motion.div>
                                     <span className="text-[0.85rem] font-bold text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-300 dark:group-hover:text-[#D4AF37]">
                                         {issue.text}
                                     </span>
@@ -157,24 +157,24 @@ export default function DesktopEcosystem() {
                                         className="relative z-20 flex cursor-pointer items-center"
                                     >
                                         <div className="group flex h-32 w-[105px] flex-col items-center justify-center rounded-[4px] border border-gray-100/80 bg-white/90 p-3 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-md transition-all hover:shadow-[0_15px_40px_rgba(178,127,28,0.2)] dark:border-gray-800/80 dark:bg-[#121c33]/90 dark:hover:shadow-[0_15px_40px_rgba(246,178,59,0.2)] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                                            <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-inner ring-1 ring-[#D4AF37]/10 transition-transform duration-500 group-hover:rotate-[360deg] group-hover:scale-110 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/10 dark:shadow-none">
+                                            <motion.div whileHover={{ scale: 1.25, rotate: [0, 180, 360] }} transition={{ duration: 0.5 }} className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-inner ring-1 ring-[#D4AF37]/10 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/10 dark:shadow-none pointer-events-auto cursor-pointer">
                                                 <item.icon
                                                     size={26}
                                                     className="text-[#D4AF37] drop-shadow-sm transition-colors group-hover:text-[#b38728] dark:text-[#D4AF37]"
                                                 />
-                                            </div>
+                                            </motion.div>
                                             <span className="whitespace-pre-line text-[0.65rem] font-bold leading-tight text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
                                                 {item.text}
                                             </span>
                                         </div>
                                         {idx < ecosystemData.flowItems.length - 1 && (
-                                            <div className="absolute right-[-14px] top-1/2 z-30 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128]">
+                                            <motion.div whileHover={{ scale: 1.2, rotate: 90 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className="absolute right-[-14px] top-1/2 z-30 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128] pointer-events-auto cursor-pointer">
                                                 <Plus
                                                     size={14}
                                                     strokeWidth={3}
                                                     className="animate-pulse"
                                                 />
-                                            </div>
+                                            </motion.div>
                                         )}
                                     </motion.div>
                                 ))}

@@ -74,10 +74,12 @@ export default function DesktopCategories() {
                         variants={fadeInUp}
                         className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5"
                     >
-                        <Sparkles
-                            size={14}
-                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <Sparkles
+                                size={14}
+                                className="text-[#D4AF37] dark:text-[#D4AF37]"
+                            />
+                        </motion.div>
                         <span className="text-[0.7rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                             {categoriesData.tag}
                         </span>
@@ -174,10 +176,12 @@ export default function DesktopCategories() {
                     </motion.button>
 
                     <div className="flex items-center gap-2 rounded-[2px] border border-gray-100 bg-gray-50 px-4 py-2 transition-colors hover:bg-gray-100 dark:border-gray-800/60 dark:bg-gray-900/50 dark:hover:bg-gray-800/60 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                        <ShieldCheck
-                            size={16}
-                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <ShieldCheck
+                                size={16}
+                                className="text-[#D4AF37] dark:text-[#D4AF37]"
+                            />
+                        </motion.div>
                         <span className="text-[0.75rem] font-bold text-gray-500 dark:text-gray-400">
                             {categoriesData.bottomDisclaimer}
                         </span>

@@ -71,10 +71,12 @@ export default function MobileCategories() {
                         variants={fadeInUp}
                         className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5"
                     >
-                        <Sparkles
-                            size={12}
-                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <Sparkles
+                                size={12}
+                                className="text-[#D4AF37] dark:text-[#D4AF37]"
+                            />
+                        </motion.div>
                         <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                             {categoriesData.tag}
                         </span>
@@ -113,6 +115,7 @@ export default function MobileCategories() {
 
                             <motion.div
                                 animate={{ y: [0, -4, 0] }}
+                                whileHover={{ scale: 1.15, rotate: [0, -5, 5, -5, 0] }}
                                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.15 }}
                                 className={`relative z-10 mb-3 flex h-12 w-12 items-center justify-center rounded-full shadow-sm ring-1 ${iconColors[idx % iconColors.length]}`}
                             >
@@ -135,12 +138,12 @@ export default function MobileCategories() {
                 >
                     <div className="flex w-full items-center gap-4">
                         <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-200 dark:to-gray-800" />
-                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-50 ring-1 ring-gray-200 dark:bg-[#121c33] dark:ring-gray-800">
+                        <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-50 ring-1 ring-gray-200 dark:bg-[#121c33] dark:ring-gray-800">
                             <Sparkles
                                 size={12}
                                 className="text-[#D4AF37] dark:text-[#D4AF37]"
                             />
-                        </div>
+                        </motion.div>
                         <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-200 dark:to-gray-800" />
                     </div>
 
@@ -158,10 +161,12 @@ export default function MobileCategories() {
                     </motion.button>
 
                     <div className="flex w-full items-center justify-center gap-2 rounded-[2px] border border-gray-100 bg-gray-50 px-3 py-2 dark:border-gray-800/60 dark:bg-gray-900/50 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
-                        <ShieldCheck
-                            size={14}
-                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <ShieldCheck
+                                size={14}
+                                className="text-[#D4AF37] dark:text-[#D4AF37]"
+                            />
+                        </motion.div>
                         <span className="text-[0.65rem] font-bold text-gray-500 dark:text-gray-400">
                             {categoriesData.bottomDisclaimer}
                         </span>

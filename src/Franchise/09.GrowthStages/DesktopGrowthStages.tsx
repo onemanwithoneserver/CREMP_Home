@@ -50,12 +50,12 @@ export default function DesktopGrowthStages() {
                             variants={fadeInUp}
                             className="mb-6 flex items-center justify-center gap-3"
                         >
-                            <div className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                                 <Sparkles size={14} className="mr-2 text-[#D4AF37]" />
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37]">
                                     {growthStagesData.tag}
                                 </span>
-                            </div>
+                            </motion.div>
                         </motion.div>
 
                         <motion.h2
@@ -107,8 +107,10 @@ export default function DesktopGrowthStages() {
                                 />
 
                                 <div className="relative z-10 flex flex-col items-start text-left">
-                                    <div
-                                        className={`mb-8 flex h-14 w-14 items-center justify-center rounded-full shadow-md transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 ${isGold
+                                    <motion.div
+                                        whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                                        transition={{ duration: 0.3 }}
+                                        className={`mb-8 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full shadow-md transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 ${isGold
                                                 ? "bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10"
                                                 : isBlue
                                                     ? "bg-blue-500/10 text-blue-500 dark:bg-blue-500/20"
@@ -116,7 +118,7 @@ export default function DesktopGrowthStages() {
                                             }`}
                                     >
                                         <stage.icon size={24} strokeWidth={2} />
-                                    </div>
+                                    </motion.div>
 
                                     <h3 className="mb-3 text-2xl font-black tracking-tight text-gray-900 dark:text-white transition-colors group-hover:text-[#D4AF37]">
                                         {stage.title}

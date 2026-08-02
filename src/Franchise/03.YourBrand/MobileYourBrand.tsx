@@ -96,10 +96,12 @@ export default function MobileYourBrand() {
                     >
                         <motion.div variants={fadeInUp}>
                             <div className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
-                                <Sparkles
-                                    size={14}
-                                    className="text-[#D4AF37] dark:text-[#D4AF37]"
-                                />
+                                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                                    <Sparkles
+                                        size={14}
+                                        className="text-[#D4AF37] dark:text-[#D4AF37]"
+                                    />
+                                </motion.div>
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                                     Unify Your Workspace
                                 </span>
@@ -230,7 +232,9 @@ export default function MobileYourBrand() {
                                                     }}
                                                     className="absolute right-2 top-2 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-colors hover:bg-red-500"
                                                 >
-                                                    <X size={16} />
+                                                    <motion.div whileHover={{ scale: 1.2, rotate: 90 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                                                        <X size={16} />
+                                                    </motion.div>
                                                 </button>
                                             </div>
                                         ) : (
@@ -263,16 +267,20 @@ export default function MobileYourBrand() {
                                                         className={`flex items-center justify-center rounded-full bg-black/40 backdrop-blur-sm transition-transform hover:scale-110 ${item.active ? "h-14 w-14 cursor-pointer" : "h-10 w-10 cursor-default"
                                                             }`}
                                                     >
-                                                        <Play
-                                                            className="ml-1 fill-white text-white"
-                                                            size={item.active ? 24 : 16}
-                                                        />
+                                                        <motion.div whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                                                            <Play
+                                                                className="ml-1 fill-white text-white"
+                                                                size={item.active ? 24 : 16}
+                                                            />
+                                                        </motion.div>
                                                     </button>
                                                 </div>
 
                                                 <div className="absolute bottom-0 left-0 flex items-center gap-2 p-4 pointer-events-none">
                                                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-                                                        <Play size={10} className="ml-0.5 fill-white text-white" />
+                                                        <motion.div whileHover={{ scale: 1.2, rotate: 15 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className="cursor-pointer pointer-events-auto">
+                                                            <Play size={10} className="ml-0.5 fill-white text-white" />
+                                                        </motion.div>
                                                     </div>
                                                     <span className="text-xs font-bold text-white drop-shadow-md">
                                                         {item.views}
@@ -291,9 +299,13 @@ export default function MobileYourBrand() {
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg backdrop-blur-md transition-all hover:bg-gray-50 hover:shadow-xl dark:border-gray-800/50 dark:bg-black/60 dark:hover:bg-black"
                             >
                                 {isCarouselPlaying ? (
-                                    <Pause size={16} className="text-gray-900 transition-transform group-hover:scale-110 dark:text-white" />
+                                    <motion.div whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                                        <Pause size={16} className="text-gray-900 dark:text-white" />
+                                    </motion.div>
                                 ) : (
-                                    <Play size={16} className="ml-0.5 text-gray-900 transition-transform group-hover:scale-110 dark:text-white" />
+                                    <motion.div whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                                        <Play size={16} className="ml-0.5 text-gray-900 dark:text-white" />
+                                    </motion.div>
                                 )}
                             </button>
                         </div>

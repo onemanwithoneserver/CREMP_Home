@@ -65,11 +65,13 @@ export default function DesktopFAQ() {
                                 : "border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[#D4AF37] dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37] group-hover:bg-[#D4AF37]/10 dark:group-hover:bg-[#D4AF37]/10"
                             }`}
                     >
-                        <faq.icon
-                            size={18}
-                            strokeWidth={isOpen ? 2.5 : 1.5}
-                            className="transition-all duration-200 group-hover:-translate-y-0.5 group-hover:scale-110"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <faq.icon
+                                size={18}
+                                strokeWidth={isOpen ? 2.5 : 1.5}
+                                className="transition-all duration-200"
+                            />
+                        </motion.div>
                     </div>
 
                     <div className="flex flex-1 flex-col pt-1">
@@ -143,11 +145,13 @@ export default function DesktopFAQ() {
                         variants={fadeInUp}
                         className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10"
                     >
-                        <Sparkles
-                            size={14}
-                            className="text-[#D4AF37] dark:text-[#D4AF37]"
-                            fill="currentColor"
-                        />
+                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
+                            <Sparkles
+                                size={14}
+                                className="text-[#D4AF37] dark:text-[#D4AF37]"
+                                fill="currentColor"
+                            />
+                        </motion.div>
                         <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                             {faqData.tag}
                         </span>
