@@ -86,7 +86,7 @@ export default function FounderStoryMobile() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-            className="relative rounded-[8px] overflow-hidden group shadow-lg w-full"
+            className="relative rounded-[4px] overflow-hidden group shadow-lg w-full"
           >
             <div className="absolute inset-0 bg-[#0a1128] border border-white/5" />
 

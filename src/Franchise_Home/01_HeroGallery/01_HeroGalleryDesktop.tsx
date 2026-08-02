@@ -267,7 +267,7 @@ export default function HeroGalleryDesktop() {
 
         <motion.div
           variants={item}
-          className="relative z-10 bg-white/90 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 p-3 overflow-hidden mt-2"
+          className="relative z-10 bg-white/90 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-100 dark:border-gray-800 p-3 overflow-hidden mt-2"
         >
           <div className="flex flex-col gap-4 relative z-10">
             <div className="flex items-center gap-3">
