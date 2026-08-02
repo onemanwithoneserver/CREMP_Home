@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Rocket, TrendingUp } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import crempLogo from "../../Logo/CREMP_Light.png";
 import { stakeholdersData } from "../03_StakeHolders/data";
