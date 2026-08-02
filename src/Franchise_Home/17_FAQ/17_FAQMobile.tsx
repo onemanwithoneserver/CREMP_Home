@@ -2,12 +2,9 @@ import { useState, useMemo } from "react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import clsx from "clsx";
 import { 
-  CheckCircle2, 
   HelpCircle, 
   Minus, 
-  Plus, 
-  Search,
-  Sparkles
+  Plus,
 } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";

@@ -4,10 +4,7 @@ import clsx from "clsx";
 import { 
   HelpCircle, 
   Minus, 
-  Plus, 
-  Search, 
-  Sparkles, 
-  CheckCircle2
+  Plus,
 } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";

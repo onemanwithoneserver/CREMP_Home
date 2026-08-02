@@ -232,7 +232,7 @@ export default function FranchiseModelsMobile() {
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.2}
-            onDragEnd={(e, info) => {
+            onDragEnd={(_e, info) => {
               const currentIndex = sectionsList.indexOf(activeSection);
               if (info.offset.x < -40 && currentIndex < sectionsList.length - 1) {
                 setActiveSection(sectionsList[currentIndex + 1]);

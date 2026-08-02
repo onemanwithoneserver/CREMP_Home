@@ -391,7 +391,7 @@ export function BookACall() {
                         <span className="text-[11px] font-bold">No slots available.</span>
                       </div>
                     ) : (
-                      selectedDateObj?.slots.map((slot, i) => {
+                      selectedDateObj?.slots.map((slot) => {
                         const isSelected = selectedSlot === slot;
                         return (
                           <button
