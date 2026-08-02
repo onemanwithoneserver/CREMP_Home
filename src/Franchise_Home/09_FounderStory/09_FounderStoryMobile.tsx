@@ -88,7 +88,7 @@ export default function FounderStoryMobile() {
             transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
             className="relative rounded-[4px] overflow-hidden group shadow-lg w-full"
           >
-            <div className="absolute inset-0 bg-[#0a1128] border border-white/5" />
+            <div className="absolute inset-0 bg-[#0b1b42] border border-white/5" />
 
             <div className="relative z-10 p-6 flex flex-col gap-6">
               <div className="flex items-start justify-between">
@@ -174,7 +174,7 @@ export default function FounderStoryMobile() {
                   }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   key={stat.label}
-                  className="bg-[#0a1128] border border-white/5 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-sm relative overflow-hidden hover:border-white/10 hover:shadow-md transition-all duration-300"
+                  className="bg-[#0b1b42] border border-white/5 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-sm relative overflow-hidden hover:border-white/10 hover:shadow-md transition-all duration-300"
                 >
                   <div className="absolute -right-4 -top-4 w-12 h-12 bg-white/5 rounded-full blur-xl" />
                   

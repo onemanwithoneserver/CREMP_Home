@@ -21,7 +21,7 @@ const fadeInUp: Variants = {
 
 export default function DesktopCategories() {
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
                 <div className="mb-10 flex items-end justify-between">
                     <motion.div
@@ -88,7 +88,7 @@ export default function DesktopCategories() {
                             <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] to-[#b38728] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#2d2008] dark:to-[#121c33]" />
 
                             <div className="relative z-10 flex justify-between items-start mb-8">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gray-50 text-[#D4AF37] transition-all group-hover:bg-white/10 group-hover:text-white dark:bg-[#0a1128] dark:text-[#D4AF37]">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gray-50 text-[#D4AF37] transition-all group-hover:bg-white/10 group-hover:text-white dark:bg-[#0b1b42] dark:text-[#D4AF37]">
                                     <cat.icon size={24} />
                                 </div>
                                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1 dark:border-gray-700 dark:bg-gray-800">

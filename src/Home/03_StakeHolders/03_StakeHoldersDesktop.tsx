@@ -109,7 +109,7 @@ export default function Desktop() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full bg-[#FAFAFA] transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#0a1128]"
+            className="relative w-full bg-[#FAFAFA] transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#0b1b42]"
         >
             <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
                 <motion.div
@@ -180,7 +180,7 @@ export default function Desktop() {
                                             transition={{ duration: 0.3 }}
                                             className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-400 xl:h-12 xl:w-12 ${isActive
                                                     ? `scale-105 bg-white dark:bg-[#0a0f25] ${theme.activeBorder} ${theme.activeText} ${theme.activeGlow}`
-                                                    : "scale-95 border-gray-300 bg-gray-50 text-gray-500 opacity-80 transition-transform hover:scale-100 hover:border-gray-400 hover:text-gray-800 hover:opacity-100 dark:border-gray-800 dark:bg-[#0a1128] dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-200"
+                                                    : "scale-95 border-gray-300 bg-gray-50 text-gray-500 opacity-80 transition-transform hover:scale-100 hover:border-gray-400 hover:text-gray-800 hover:opacity-100 dark:border-gray-800 dark:bg-[#0b1b42] dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-200"
                                                 }`}
                                         >
                                             <stakeholder.icon

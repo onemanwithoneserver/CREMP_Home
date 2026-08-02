@@ -30,7 +30,7 @@ const pulseRing: Variants = {
 
 export default function MobileYourInvestors() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-4 shadow-xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
             <motion.div
                 animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
                 transition={{ duration: 8, repeat: Infinity }}
@@ -109,7 +109,7 @@ export default function MobileYourInvestors() {
                             {investorData.expectations.map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex flex-col items-center gap-3 rounded-[4px] bg-white p-4 shadow-sm dark:bg-[#0a1128]/50 text-center border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                                    className="flex flex-col items-center gap-3 rounded-[4px] bg-white p-4 shadow-sm dark:bg-[#0b1b42]/50 text-center border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                                 >
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 text-sm font-black text-gray-900 ring-1 ring-gray-200 dark:bg-gray-900 dark:text-white dark:ring-gray-800">
                                         {idx + 1}

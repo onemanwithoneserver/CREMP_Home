@@ -112,7 +112,7 @@ export default function DesktopStakeHolder1() {
     const viewMode = window.location.pathname.startsWith("/mobile") ? "mobile" : "desktop";
 
     return (
-        <div ref={containerRef} className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-[#0a1128]">
+        <div ref={containerRef} className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-[#0b1b42]">
 
             <div className="flex flex-col items-center text-center gap-3 mt-2">
                 <motion.div

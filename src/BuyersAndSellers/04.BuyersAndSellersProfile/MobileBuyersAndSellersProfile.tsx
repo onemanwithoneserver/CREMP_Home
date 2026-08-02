@@ -23,7 +23,7 @@ export default function MobileBuyersAndSellersProfile() {
     const [activeIdx, setActiveIdx] = useState<number | null>(0);
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"
@@ -95,7 +95,7 @@ export default function MobileBuyersAndSellersProfile() {
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: "auto", opacity: 1 }}
                                             exit={{ height: 0, opacity: 0 }}
-                                            className="bg-gray-50 dark:bg-[#0a1128]"
+                                            className="bg-gray-50 dark:bg-[#0b1b42]"
                                         >
                                             <div className="p-4 flex flex-col gap-4">
                                                 <div className="flex items-center gap-2 mb-2">

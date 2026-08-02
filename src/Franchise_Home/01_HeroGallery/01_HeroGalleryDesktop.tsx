@@ -42,7 +42,7 @@ export default function HeroGalleryDesktop() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full px-10 py-2 relative overflow-hidden bg-white dark:bg-[#0a1128]"
+      className="w-full px-10 py-2 relative overflow-hidden bg-white dark:bg-[#0b1b42]"
     >
       <div className="max-w-7xl mx-auto flex flex-col gap-6 relative">
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -75,7 +75,7 @@ export default function HeroGalleryDesktop() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center p-3 bg-[#0a1128] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
+                  <div className="flex items-center justify-center p-3 bg-[#0b1b42] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
                     <AppsIcon style={{ fontSize: 52 }} />
                   </div>
                   <h1 className="text-5xl lg:text-[64px] tracking-tight font-bold uppercase leading-[1.05] text-[#0a1128] dark:text-white">
@@ -169,7 +169,7 @@ export default function HeroGalleryDesktop() {
                   }
                 >
                   <motion.div
-                    className="w-16 h-16 rounded-full bg-[#0a1128]/80 backdrop-blur-md flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-colors duration-300 hover:bg-[#0a1128] border border-white/20 group/btn"
+                    className="w-16 h-16 rounded-full bg-[#0b1b42]/80 backdrop-blur-md flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-colors duration-300 hover:bg-[#0b1b42] border border-white/20 group/btn"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -216,7 +216,7 @@ export default function HeroGalleryDesktop() {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
                   />
                   <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                    <motion.div whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }} className="w-12 h-12 rounded-full bg-[#0a1128]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <motion.div whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }} className="w-12 h-12 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Play
                         size={20}
                         className="text-white ml-1"
@@ -234,7 +234,7 @@ export default function HeroGalleryDesktop() {
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
                     />
                     <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                      <motion.div whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }} className="w-10 h-10 rounded-full bg-[#0a1128]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <motion.div whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }} className="w-10 h-10 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <Play
                           size={16}
                           className="text-white ml-0.5"
@@ -250,7 +250,7 @@ export default function HeroGalleryDesktop() {
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
                     />
                     <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                      <div className="w-10 h-10 rounded-full bg-[#0a1128]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-10 h-10 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <Play
                           size={16}
                           className="text-white ml-0.5"

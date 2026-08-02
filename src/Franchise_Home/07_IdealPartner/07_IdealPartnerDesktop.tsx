@@ -80,7 +80,7 @@ export default function IdealPartnerDesktop() {
                   transition: { type: "spring", stiffness: 400, damping: 25 },
                 }}
                 className={clsx(
-                  "rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 p-5 flex flex-col bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 group",
+                  "rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 p-5 flex flex-col bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 group",
                   getCardStyles(item.intent),
                 )}
               >
@@ -154,7 +154,7 @@ export default function IdealPartnerDesktop() {
                   transition: { type: "spring", stiffness: 400, damping: 25 },
                 }}
                 className={clsx(
-                  "rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 px-4 py-3 flex items-center gap-3.5 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 group relative overflow-hidden",
+                  "rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 px-4 py-3 flex items-center gap-3.5 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 group relative overflow-hidden",
                   getCardStyles(item.intent),
                 )}
               >
@@ -195,13 +195,13 @@ export default function IdealPartnerDesktop() {
               scale: 1.01,
               transition: { type: "spring", stiffness: 400, damping: 25 },
             }}
-            className="w-full bg-[#0a1128] border border-[#d4af37]/40 rounded-[4px] p-6 shadow-[0_8px_30px_rgba(10,17,40,0.3)] dark:shadow-[0_8px_30px_rgba(212,175,55,0.1)] flex items-center gap-5 group relative overflow-hidden"
+            className="w-full bg-[#0b1b42] border border-[#d4af37]/40 rounded-[4px] p-6 shadow-[0_8px_30px_rgba(10,17,40,0.3)] dark:shadow-[0_8px_30px_rgba(212,175,55,0.1)] flex items-center gap-5 group relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#d4af37]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
             <motion.div
               whileHover={{ scale: 1.1, rotate: 10 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="w-12 h-12 rounded-[4px] bg-[#0a1128] border border-[#d4af37]/50 text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.3)] relative z-10"
+              className="w-12 h-12 rounded-[4px] bg-[#0b1b42] border border-[#d4af37]/50 text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.3)] relative z-10"
             >
               <idealPartnerData.additionalExpectations.icon
                 size={20}

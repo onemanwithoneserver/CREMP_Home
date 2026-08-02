@@ -17,7 +17,7 @@ interface FranchiseProps {
 
 export default function Franchise({ isMobile }: FranchiseProps) {
     return (
-        <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#0a1128] text-gray-900 dark:text-white transition-colors duration-300">
+        <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#0b1b42] text-gray-900 dark:text-white transition-colors duration-300">
             <Header isMobile={isMobile} />
 
             <div className="flex-1 flex flex-col">

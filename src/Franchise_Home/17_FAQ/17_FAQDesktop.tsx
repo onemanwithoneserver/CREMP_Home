@@ -72,7 +72,7 @@ export default function FAQDesktop() {
               placeholder="Search frequently asked questions (e.g. investment, setup, royalty, territory)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-14 py-3 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] dark:focus:border-[#d4af37] transition-all shadow-sm focus:shadow-md"
+              className="w-full pl-11 pr-14 py-3 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] dark:focus:border-[#d4af37] transition-all shadow-sm focus:shadow-md"
             />
             <AnimatePresence>
               {searchQuery && (
@@ -97,14 +97,14 @@ export default function FAQDesktop() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="text-center py-16 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px]"
+                  className="text-center py-16 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px]"
                 >
                   <HelpCircle size={36} className="mx-auto text-gray-400 mb-2 opacity-50" />
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">No matching questions found.</p>
                   <p className="text-xs text-gray-400 mt-1">Try searching for keywords like investment, royalty, territory or training.</p>
                   <button
                     onClick={() => setSearchQuery("")}
-                    className="mt-4 px-4 py-1.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[4px] transition-transform active:scale-95"
+                    className="mt-4 px-4 py-1.5 bg-[#0b1b42] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[4px] transition-transform active:scale-95"
                   >
                     Show All Questions
                   </button>
@@ -124,8 +124,8 @@ export default function FAQDesktop() {
                       className={clsx(
                         "group rounded-[4px] transition-all duration-300 relative border overflow-hidden backdrop-blur-xl",
                         isExpanded
-                          ? "bg-white/90 dark:bg-[#0a1128]/90 shadow-md border-[#d4af37]/50 dark:border-[#d4af37]/40 ring-1 ring-[#d4af37]/20"
-                          : "bg-white/70 dark:bg-[#0a1128]/70 shadow-sm border-gray-200/60 dark:border-[#d4af37]/20 hover:border-gray-300 dark:hover:border-[#d4af37]/40 hover:shadow-md"
+                          ? "bg-white/90 dark:bg-[#0b1b42]/90 shadow-md border-[#d4af37]/50 dark:border-[#d4af37]/40 ring-1 ring-[#d4af37]/20"
+                          : "bg-white/70 dark:bg-[#0b1b42]/70 shadow-sm border-gray-200/60 dark:border-[#d4af37]/20 hover:border-gray-300 dark:hover:border-[#d4af37]/40 hover:shadow-md"
                       )}
                     >
                       <div
@@ -160,7 +160,7 @@ export default function FAQDesktop() {
                           className={clsx(
                             "w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 shadow-sm mt-0.5",
                             isExpanded
-                              ? "bg-[#0a1128] text-white dark:bg-[#d4af37] dark:text-gray-950"
+                              ? "bg-[#0b1b42] text-white dark:bg-[#d4af37] dark:text-gray-950"
                               : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 group-hover:bg-[#d4af37]/20 group-hover:text-[#d4af37]"
                           )}
                         >

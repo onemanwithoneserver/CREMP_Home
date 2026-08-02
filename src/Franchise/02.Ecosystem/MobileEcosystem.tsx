@@ -56,7 +56,7 @@ const floatAnimation: Variants = {
 
 export default function MobileEcosystem() {
     return (
-        <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none ">
+        <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none ">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -308,7 +308,7 @@ export default function MobileEcosystem() {
                 >
                     <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#D4AF37] to-[#b38728] dark:from-[#D4AF37] dark:to-[#b38728]" />
 
-                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-[#0b1b42] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                         <Target
                             size={18}
                             className="text-[#D4AF37] dark:text-[#D4AF37]"

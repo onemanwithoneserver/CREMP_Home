@@ -88,7 +88,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
         })}
       </svg>
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0a1128]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
+        className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
         style={{ width: size - strokeWidth * 2, height: size - strokeWidth * 2, left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
       >
         <span className="text-2xl font-bold text-[#0a1128] dark:text-white tracking-tight relative z-10">
@@ -104,7 +104,7 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             initial={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
-            className="absolute pointer-events-none bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-[9999] flex flex-col gap-1"
+            className="absolute pointer-events-none bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-[9999] flex flex-col gap-1"
             style={{ left: Math.max(10, Math.min(hoveredItem.x, size - 10)), top: hoveredItem.y - 10, transform: "translate(-50%, -100%)", maxWidth: size - 20 }}
           >
             <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300">
@@ -151,7 +151,7 @@ export default function FranchiseModelsMobile() {
     }
   };
   return (
-    <section className="w-full px-4 py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
+    <section className="w-full px-4 py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300">
       <SectionHeader overline={franchiseModelsData.sectionLabel} title={franchiseModelsData.title} subtitle={franchiseModelsData.subtitle} align="center" />
       <div className="relative z-10 w-full overflow-hidden group flex items-center mb-4 mt-2">
         {canScrollLeft && (
@@ -170,7 +170,7 @@ export default function FranchiseModelsMobile() {
                     <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
                   </motion.div>
                 )}
-                <motion.div className={clsx("relative z-10 w-7 h-7 rounded-[2px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm", isActive ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 border border-[#d4af37]/60 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]" : "bg-white/80 dark:bg-[#0a1128]/80 text-gray-500 border border-transparent shadow-sm")} animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
+                <motion.div className={clsx("relative z-10 w-7 h-7 rounded-[2px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm", isActive ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 border border-[#d4af37]/60 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]" : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-500 border border-transparent shadow-sm")} animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
                   <Icon size={13} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-500 dark:text-gray-400"} />
                 </motion.div>
                 <span className={clsx("relative z-10 font-bold text-xs mb-0.5 transition-colors duration-300", isActive ? "text-white" : "text-[#0a1128] dark:text-gray-200")}>
@@ -241,7 +241,7 @@ export default function FranchiseModelsMobile() {
                 </div>
                 <div className="flex flex-col gap-3 relative z-10 group">
                   {leftMetrics.map((stat) => (
-                    <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px] group">
+                    <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px] group">
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div whileHover={{ scale: 1.08, rotate: 4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>
                           <stat.icon size={16} strokeWidth={2.2} />
@@ -299,7 +299,7 @@ export default function FranchiseModelsMobile() {
               </div>
               <div className="flex flex-col gap-3 relative z-10">
                 {rightMetrics.map((stat) => (
-                  <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 min-h-[58px]">
+                  <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm flex items-center justify-between gap-3 min-h-[58px]">
                     <div className="flex items-center gap-3 min-w-0">
                       <motion.div whileHover={{ scale: 1.08, rotate: -4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>
                         <stat.icon size={16} strokeWidth={2.2} />
@@ -327,7 +327,7 @@ export default function FranchiseModelsMobile() {
         <AnimatePresence>
           {isStaffModalOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" onClick={() => setIsStaffModalOpen(false)}>
-              <motion.div initial={{ scale: 0.3, opacity: 0, y: 40, filter: "blur(20px)", borderRadius: "100px" }} animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }} exit={{ scale: 0.5, opacity: 0, y: 20, filter: "blur(15px)", borderRadius: "50px" }} transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }} className="w-full max-w-[90vw] sm:max-w-md bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-5 relative overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <motion.div initial={{ scale: 0.3, opacity: 0, y: 40, filter: "blur(20px)", borderRadius: "100px" }} animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }} exit={{ scale: 0.5, opacity: 0, y: 20, filter: "blur(15px)", borderRadius: "50px" }} transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }} className="w-full max-w-[90vw] sm:max-w-md bg-white/80 dark:bg-[#0b1b42]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-5 relative overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800">
                   <div className="flex items-center gap-2.5">
                     <div className="w-7 h-7 rounded-[2px] bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">

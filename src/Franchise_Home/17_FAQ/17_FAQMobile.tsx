@@ -66,7 +66,7 @@ export default function FAQMobile() {
             placeholder="Search questions (cost, royalty, ROI, training)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-12 py-2.5 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] shadow-sm"
+            className="w-full pl-10 pr-12 py-2.5 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] shadow-sm"
           />
           <AnimatePresence>
             {searchQuery && (
@@ -91,13 +91,13 @@ export default function FAQMobile() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="text-center py-12 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl rounded-[4px] border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 p-4"
+                className="text-center py-12 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl rounded-[4px] border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 p-4"
               >
                 <HelpCircle size={28} className="mx-auto text-gray-400 mb-1 opacity-50" />
                 <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">No questions found</p>
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="mt-3 px-3 py-1 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[2px] transition-transform active:scale-95"
+                  className="mt-3 px-3 py-1 bg-[#0b1b42] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[2px] transition-transform active:scale-95"
                 >
                   Reset Search
                 </button>
@@ -117,8 +117,8 @@ export default function FAQMobile() {
                     className={clsx(
                       "rounded-[4px] border transition-all relative overflow-hidden backdrop-blur-xl",
                       isExpanded
-                        ? "bg-white/90 dark:bg-[#0a1128]/90 shadow-md border-[#d4af37]/50"
-                        : "bg-white/70 dark:bg-[#0a1128]/70 border-gray-200/60 dark:border-[#d4af37]/20"
+                        ? "bg-white/90 dark:bg-[#0b1b42]/90 shadow-md border-[#d4af37]/50"
+                        : "bg-white/70 dark:bg-[#0b1b42]/70 border-gray-200/60 dark:border-[#d4af37]/20"
                     )}
                   >
                     <div
@@ -151,7 +151,7 @@ export default function FAQMobile() {
                         className={clsx(
                           "w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors mt-0.5",
                           isExpanded
-                            ? "bg-[#0a1128] text-white dark:bg-[#d4af37] dark:text-gray-950"
+                            ? "bg-[#0b1b42] text-white dark:bg-[#d4af37] dark:text-gray-950"
                             : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300"
                         )}
                       >

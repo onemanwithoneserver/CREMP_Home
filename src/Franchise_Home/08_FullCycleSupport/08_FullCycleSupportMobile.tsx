@@ -65,7 +65,7 @@ export default function FullCycleSupportMobile() {
                   <motion.div
                     key={`${copy}-${idx}`}
                     whileHover={{ scale: 1.02 }}
-                    className="group relative hover:z-10 w-[160px] shrink-0 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300"
+                    className="group relative hover:z-10 w-[160px] shrink-0 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300"
                   >
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}

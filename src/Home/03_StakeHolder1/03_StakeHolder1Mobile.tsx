@@ -78,7 +78,7 @@ export default function MobileStakeHolder1() {
     const viewMode = window.location.pathname.startsWith("/mobile") ? "mobile" : "desktop";
 
     return (
-        <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-[#0a1128] ">
+        <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-[#0b1b42] ">
             <motion.section
                 variants={sectionVariants}
                 initial="hidden"

@@ -53,7 +53,7 @@ function LeaderCardMobile({
         }}
         className="relative w-full h-full [transform-style:preserve-3d] shadow-xl"
       >
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 [backface-visibility:hidden] shadow-sm">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 [backface-visibility:hidden] shadow-sm">
           <img
             src={member.avatar}
             alt={member.name}
@@ -82,7 +82,7 @@ function LeaderCardMobile({
             <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
           </div>
         </div>
-        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0a1128]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
 

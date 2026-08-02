@@ -4,7 +4,7 @@ import { howItWorksData } from "./data";
 
 export default function DesktopHowItWorks() {
     return (
-        <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
                 <div className="mb-20 flex flex-col items-center text-center">
                     <motion.div

@@ -30,7 +30,7 @@ const popCard: Variants = {
 
 export default function DesktopOpportunities() {
     return (
-        <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
                 <div className="flex items-center justify-between gap-12 mb-16">
                     <motion.div
@@ -118,7 +118,7 @@ export default function DesktopOpportunities() {
                             className="group cursor-pointer rounded-[8px] bg-gray-50 p-6 transition-all hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:bg-[#121c33] dark:hover:bg-gradient-to-br dark:hover:from-[#121c33] dark:hover:to-[#D4AF37]/20 dark:border dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
                         >
                             <div className="flex justify-between items-start mb-12">
-                                <div className="flex h-14 w-14 items-center justify-center rounded-[8px] bg-white text-[#D4AF37] shadow-sm transition-all group-hover:scale-110 dark:bg-[#0a1128] dark:text-[#D4AF37]">
+                                <div className="flex h-14 w-14 items-center justify-center rounded-[8px] bg-white text-[#D4AF37] shadow-sm transition-all group-hover:scale-110 dark:bg-[#0b1b42] dark:text-[#D4AF37]">
                                     <item.icon size={26} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1 dark:border-gray-700 dark:bg-gray-800">

@@ -39,7 +39,7 @@ export default function HeroGalleryMobile() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full flex flex-col pt-0 pb-10 relative overflow-hidden bg-white dark:bg-[#0a1128]"
+      className="w-full flex flex-col pt-0 pb-10 relative overflow-hidden bg-white dark:bg-[#0b1b42]"
     >
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div
@@ -68,7 +68,7 @@ export default function HeroGalleryMobile() {
           }
         >
           <motion.div
-            className="w-16 h-16 rounded-full bg-[#0a1128]/80 flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/20 active:scale-95 transition-colors duration-300 hover:bg-[#0a1128]"
+            className="w-16 h-16 rounded-full bg-[#0b1b42]/80 flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/20 active:scale-95 transition-colors duration-300 hover:bg-[#0b1b42]"
             whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -113,18 +113,18 @@ export default function HeroGalleryMobile() {
         >
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap gap-2">
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 rounded-[2px] text-[#c69a54] text-[10px] font-bold uppercase tracking-wider shadow-sm">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 rounded-[2px] text-[#c69a54] text-[10px] font-bold uppercase tracking-wider shadow-sm">
                 <Utensils size={12} strokeWidth={2.5} />
                 {heroData.category}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 rounded-[2px] text-[#0a1128] dark:text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 rounded-[2px] text-[#0a1128] dark:text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
                 <Coffee size={12} strokeWidth={2.5} />
                 {heroData.subCategory}
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center p-2.5 bg-[#0a1128] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
+              <div className="flex items-center justify-center p-2.5 bg-[#0b1b42] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
                 <AppsIcon style={{ fontSize: 36 }} />
               </div>
               <h1 className="text-3xl tracking-tight font-black uppercase leading-[1.1] text-[#0a1128] dark:text-white">
@@ -140,7 +140,7 @@ export default function HeroGalleryMobile() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0a1128] rounded-[4px] p-3 w-full mx-auto">
+          <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] p-3 w-full mx-auto">
             <div className="flex items-center gap-2.5">
               <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0 cursor-pointer">
                 <Calendar size={16} className="text-white" />
@@ -212,7 +212,7 @@ export default function HeroGalleryMobile() {
             {heroData.whyChooseUs.map((feature, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center text-center p-3 bg-gray-50 dark:bg-[#0a1128] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
+                className="flex flex-col items-center text-center p-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
               >
                 <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-2 shadow-sm cursor-pointer ${feature.colorClass}`}>
                   <feature.icon

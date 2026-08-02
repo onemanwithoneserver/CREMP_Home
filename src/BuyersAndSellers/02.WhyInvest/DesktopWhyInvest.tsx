@@ -29,7 +29,7 @@ const scaleIn: Variants = {
 
 export default function DesktopWhyInvest() {
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
@@ -120,7 +120,7 @@ export default function DesktopWhyInvest() {
                                     key={idx}
                                     className="flex flex-col items-center group/item cursor-pointer"
                                 >
-                                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] border border-gray-100 bg-gray-50 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md dark:border-gray-800 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] border border-gray-100 bg-gray-50 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md dark:border-gray-800 dark:bg-[#0b1b42] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                                         <item.icon
                                             size={24}
                                             className="text-gray-400 transition-colors group-hover/item:text-[#D4AF37] dark:text-gray-500 dark:group-hover/item:text-[#D4AF37]"

@@ -30,7 +30,7 @@ const pulseGlow: Variants = {
 
 export default function MobileGrowthStages() {
     return (
-        <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0a1128]">
+        <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"

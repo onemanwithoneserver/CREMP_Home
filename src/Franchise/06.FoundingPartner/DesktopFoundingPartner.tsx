@@ -39,7 +39,7 @@ export default function DesktopFoundingPartner() {
     const Btn1Icon = foundingData.buttons[0].icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -231,7 +231,7 @@ export default function DesktopFoundingPartner() {
                         </motion.div>
                     </div>
 
-                    <div className="relative z-10 flex w-full flex-col rounded-[8px] bg-gray-50/50 p-8 shadow-[inset_1px_0_0_rgba(0,0,0,0.05)] dark:bg-[#0a1128]/50 dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.05)] lg:w-[52%] lg:p-12">
+                    <div className="relative z-10 flex w-full flex-col rounded-[8px] bg-gray-50/50 p-8 shadow-[inset_1px_0_0_rgba(0,0,0,0.05)] dark:bg-[#0b1b42]/50 dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.05)] lg:w-[52%] lg:p-12">
                         <div className="mb-8 flex items-center gap-4 border-b border-gray-200/60 pb-6 dark:border-gray-800/60">
                             <motion.div
                                 whileHover={{ rotate: 180 }}
@@ -266,7 +266,7 @@ export default function DesktopFoundingPartner() {
                                     whileHover={{ scale: 1.02 }}
                                     className="group relative flex w-full cursor-pointer items-center gap-4 rounded-[4px] p-3 px-4 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:hover:bg-[#121c33]/90"
                                 >
-                                    <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37] group-hover:text-white dark:bg-[#0a1128] dark:group-hover:text-[#0a1128]">
+                                    <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37] group-hover:text-white dark:bg-[#0b1b42] dark:group-hover:text-[#0a1128]">
                                         <Check size={12} strokeWidth={3} />
                                     </div>
 

@@ -24,7 +24,7 @@ export default function DesktopTestimonials() {
     const Btn2Icon = testimonialsData.buttons[1].icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
                 <div className="flex items-center justify-between gap-16">
                     <motion.div
@@ -112,7 +112,7 @@ export default function DesktopTestimonials() {
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: false }}
                                         transition={{ delay: 0.3 + idx * 0.1 }}
-                                        className="flex items-center gap-4 rounded-[8px] bg-white p-5 shadow-sm dark:bg-[#0a1128] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                                        className="flex items-center gap-4 rounded-[8px] bg-white p-5 shadow-sm dark:bg-[#0b1b42] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                                     >
                                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
                                             <svg

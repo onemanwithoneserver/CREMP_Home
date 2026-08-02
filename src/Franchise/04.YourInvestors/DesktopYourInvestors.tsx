@@ -30,7 +30,7 @@ const pulseRing: Variants = {
 
 export default function DesktopYourInvestors() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-12 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-12 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
             <motion.div
                 animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.05, 1] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}

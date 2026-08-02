@@ -101,7 +101,7 @@ const DonutChartWithLegend = ({
           })}
         </svg>
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0a1128]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
           style={{ width: size - strokeWidth * 2, height: size - strokeWidth * 2, left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
         >
           <span className="text-3xl font-bold text-[#0a1128] dark:text-white tracking-tight relative z-10">
@@ -161,7 +161,7 @@ export default function FranchiseModelsDesktop() {
   const leftMetrics = useMemo(() => getModelSpecifications(selected), [selected]);
   const rightMetrics = useMemo(() => getRightMetrics(), []);
   return (
-    <section className="w-full px-8 py-16 flex flex-col gap-6 relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
+    <section className="w-full px-8 py-16 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300">
       <SectionHeader overline={franchiseModelsData.sectionLabel} title={franchiseModelsData.title} subtitle={franchiseModelsData.subtitle} align="center" />
       <div className="relative z-10 w-full max-w-7xl mx-auto flex justify-center mb-6">
         <div className="flex w-full bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] relative gap-1.5 overflow-hidden">
@@ -194,7 +194,7 @@ export default function FranchiseModelsDesktop() {
                       "w-7 h-7 rounded-[2px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
                       isActive
                         ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]"
-                        : "bg-white/80 dark:bg-[#0a1128]/80 text-gray-500 group-hover:border-gray-200 dark:group-hover:border-gray-700 shadow-sm"
+                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-500 group-hover:border-gray-200 dark:group-hover:border-gray-700 shadow-sm"
                     )}
                     animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -224,7 +224,7 @@ export default function FranchiseModelsDesktop() {
               transition={{ duration: 0.3 }}
               className="flex flex-col h-full bg-white dark:bg-[#121c33] rounded-[4px] relative overflow-visible"
             >
-              <div className="bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
+              <div className="bg-white/60 dark:bg-[#0b1b42]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
                 <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
                 <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
                 <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -261,7 +261,7 @@ export default function FranchiseModelsDesktop() {
                     <motion.div
                       key={stat.label}
                       whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                      className="p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px]"
+                      className="p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px]"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div
@@ -304,7 +304,7 @@ export default function FranchiseModelsDesktop() {
                                   animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }}
                                   exit={{ opacity: 0, scale: 0.5, y: 20, filter: "blur(15px)", borderRadius: "50px" }}
                                   transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
-                                  className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 z-[99999] py-4 px-3 pointer-events-auto cursor-default text-left"
+                                  className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/80 dark:bg-[#0b1b42]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 z-[99999] py-4 px-3 pointer-events-auto cursor-default text-left"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800 relative z-10">
@@ -376,7 +376,7 @@ export default function FranchiseModelsDesktop() {
           </div>
         </div>
         <div className="col-span-12 lg:col-span-3 bg-white dark:bg-[#121c33] rounded-[4px] flex flex-col h-full relative overflow-hidden">
-          <div className="bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
+          <div className="bg-white/60 dark:bg-[#0b1b42]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
             <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -421,7 +421,7 @@ export default function FranchiseModelsDesktop() {
                     } : {}}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     className={clsx(
-                      "p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm border hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 min-h-[64px]",
+                      "p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm border hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 min-h-[64px]",
                       isHighlight ? "border-[#d4af37]/40" : "border-gray-200/80 dark:border-gray-800"
                     )}
                   >

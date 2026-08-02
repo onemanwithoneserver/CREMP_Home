@@ -26,7 +26,7 @@ export default function DesktopFAQ() {
     const Btn2Icon = faqData.banner.btn2.icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
                 <div className="flex gap-16">
                     <div className="w-[55%]">
@@ -113,7 +113,7 @@ export default function DesktopFAQ() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: false }}
                             transition={{ duration: 0.6 }}
-                            className="sticky top-32 flex flex-col items-center justify-center gap-8 rounded-[8px] bg-[#0a1128] p-12 text-center shadow-2xl relative overflow-hidden"
+                            className="sticky top-32 flex flex-col items-center justify-center gap-8 rounded-[8px] bg-[#0b1b42] p-12 text-center shadow-2xl relative overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay"></div>
                             <div className="absolute -top-[20%] -left-[20%] h-[300px] w-[300px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[100px] pointer-events-none opacity-40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></div>

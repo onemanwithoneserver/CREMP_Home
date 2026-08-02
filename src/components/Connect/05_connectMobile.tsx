@@ -41,7 +41,7 @@ export default function Mobile() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setIsOpen(false)}
-                        className="fixed inset-0 z-[90] bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-sm"
+                        className="fixed inset-0 z-[90] bg-white/60 dark:bg-[#0b1b42]/60 backdrop-blur-sm"
                     />
                 )}
             </AnimatePresence>

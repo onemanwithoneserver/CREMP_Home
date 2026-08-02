@@ -53,7 +53,7 @@ const floatAnimation: Variants = {
 
 export default function DesktopEcosystem() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-16 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-16 shadow-xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -309,7 +309,7 @@ export default function DesktopEcosystem() {
                     className="relative flex w-full cursor-pointer items-center gap-4 overflow-hidden rounded-[8px] border border-gray-200 bg-white/60 p-5 shadow-sm backdrop-blur-xl transition-all dark:border-gray-800 dark:bg-[#121c33]/60"
                 >
                     <div className="absolute left-0 top-0 h-full w-[4px] bg-gradient-to-b from-[#D4AF37] to-[#b38728] dark:from-[#D4AF37] dark:to-[#b38728]" />
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm transition-transform duration-500 hover:rotate-180 hover:scale-110 dark:border-gray-800 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm transition-transform duration-500 hover:rotate-180 hover:scale-110 dark:border-gray-800 dark:bg-[#0b1b42] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                         <Target
                             size={22}
                             className="text-[#D4AF37] dark:text-[#D4AF37]"

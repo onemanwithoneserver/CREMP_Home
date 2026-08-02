@@ -42,7 +42,7 @@ export default function MobileFoundingPartner() {
     const Btn1Icon = foundingData.buttons[0].icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -225,7 +225,7 @@ export default function MobileFoundingPartner() {
                         </motion.div>
                     </div>
 
-                    <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#0a1128]/50">
+                    <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#0b1b42]/50">
                         <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
                             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 shadow-sm dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
                                 <Gem
@@ -255,7 +255,7 @@ export default function MobileFoundingPartner() {
                                     }}
                                     className="group relative flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-xs dark:border-gray-800/50 dark:bg-[#121c33]/60"
                                 >
-                                    <div className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-xs dark:bg-[#0a1128]">
+                                    <div className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-xs dark:bg-[#0b1b42]">
                                         <Check size={11} strokeWidth={3} />
                                     </div>
 

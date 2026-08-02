@@ -328,7 +328,7 @@ function MediaCard({
   return (
     <motion.div
       variants={itemVariants}
-      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
+      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
     >
       <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-11 h-11 rounded-[4px] bg-gray-50 dark:bg-gray-800/80 flex items-center justify-center shadow-inner shrink-0 group-hover:bg-[#d4af37]/10 border border-gray-100 dark:border-gray-700 transition-colors">
         <FileText size={22} className="text-[#d4af37]" />

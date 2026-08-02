@@ -9,7 +9,7 @@ export const getBadgeStyles = (intent?: string) => {
     case "danger":
       return "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-100 dark:border-rose-800/60 shadow-sm rounded-[2px] px-3 py-1";
     case "primary":
-      return "bg-[#0a1128]/5 dark:bg-[#d4af37]/10 text-[#0a1128] dark:text-[#d4af37] border border-[#0a1128]/10 dark:border-[#d4af37]/30 shadow-sm rounded-[2px] px-3 py-1";
+      return "bg-[#0b1b42]/5 dark:bg-[#d4af37]/10 text-[#0a1128] dark:text-[#d4af37] border border-[#0a1128]/10 dark:border-[#d4af37]/30 shadow-sm rounded-[2px] px-3 py-1";
     default:
       return "bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-100 dark:border-gray-700 shadow-sm rounded-[2px] px-3 py-1";
   }
@@ -43,7 +43,7 @@ export const getIconContainerStyles = (intent?: string) => {
     case "danger":
       return "bg-[#dc2626] text-white shadow-md shadow-[#dc2626]/25";
     case "primary":
-      return "bg-[#0a1128] text-white shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30";
+      return "bg-[#0b1b42] text-white shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30";
     case "violet":
       return "bg-[#7c3aed] text-white shadow-md shadow-[#7c3aed]/25";
     case "pink":
@@ -91,7 +91,7 @@ export const getSolidBgStyles = (intent?: string) => {
     case "danger":
       return "bg-rose-500 text-white shadow-lg shadow-rose-500/20";
     case "primary":
-      return "bg-[#0a1128] text-white shadow-md border border-[#d4af37]/30";
+      return "bg-[#0b1b42] text-white shadow-md border border-[#d4af37]/30";
     default:
       return "bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow-sm";
   }

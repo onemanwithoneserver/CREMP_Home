@@ -53,7 +53,7 @@ function LeaderCard({
         }}
         className="relative w-full h-full [transform-style:preserve-3d] transition-shadow duration-500 rounded-[4px] shadow-xl"
       >
-        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden shadow-sm group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-500 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl [backface-visibility:hidden] border border-gray-200/60 dark:border-[#d4af37]/20">
+        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden shadow-sm group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-500 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl [backface-visibility:hidden] border border-gray-200/60 dark:border-[#d4af37]/20">
           <img
             src={member.avatar}
             alt={member.name}
@@ -87,7 +87,7 @@ function LeaderCard({
           </div>
         </div>
 
-        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden px-5 py-6 bg-[#0a1128]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden px-5 py-6 bg-[#0b1b42]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
 

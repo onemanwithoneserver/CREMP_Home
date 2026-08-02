@@ -8,7 +8,7 @@ export default function DesktopBuyersAndSellersProfile() {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
             <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
                 <div className="mb-16 text-center">
                     <motion.div
@@ -109,7 +109,7 @@ export default function DesktopBuyersAndSellersProfile() {
                                 {BuyersAndSellersProfileData.expectations.map((exp, idx) => (
                                     <div
                                         key={idx}
-                                        className="flex flex-col gap-3 rounded-[8px] border border-gray-100 bg-gray-50 p-6 dark:border-gray-800 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                                        className="flex flex-col gap-3 rounded-[8px] border border-gray-100 bg-gray-50 p-6 dark:border-gray-800 dark:bg-[#0b1b42] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                                     >
                                         <exp.icon
                                             size={24}

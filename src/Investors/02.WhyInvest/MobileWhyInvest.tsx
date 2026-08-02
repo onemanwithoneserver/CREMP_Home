@@ -20,7 +20,7 @@ const fadeInUp: Variants = {
 
 export default function MobileWhyInvest() {
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
 
             <motion.div
@@ -60,7 +60,7 @@ export default function MobileWhyInvest() {
                                 key={idx}
                                 className="flex items-center gap-3 rounded-[8px] border border-gray-100 bg-gray-50/50 p-3 dark:border-gray-800/50 dark:bg-gray-800/20 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                             >
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-white border border-gray-100 text-[#D4AF37] shadow-sm dark:bg-[#0a1128] dark:border-gray-700 dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-white border border-gray-100 text-[#D4AF37] shadow-sm dark:bg-[#0b1b42] dark:border-gray-700 dark:text-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                                     <issue.icon size={18} />
                                 </div>
                                 <span className="text-[0.8rem] font-medium leading-tight text-gray-600 dark:text-gray-400">
@@ -98,7 +98,7 @@ export default function MobileWhyInvest() {
                         {whyInvestData.flowItems.map((item, idx) => (
                             <div
                                 key={idx}
-                                className="flex flex-col items-center justify-center gap-2 rounded-[8px] border border-gray-100 bg-gray-50 p-4 dark:border-gray-800 dark:bg-[#0a1128] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                                className="flex flex-col items-center justify-center gap-2 rounded-[8px] border border-gray-100 bg-gray-50 p-4 dark:border-gray-800 dark:bg-[#0b1b42] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                             >
                                 <item.icon
                                     size={20}

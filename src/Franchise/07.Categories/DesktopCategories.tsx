@@ -48,7 +48,7 @@ const pulseGlow: Variants = {
 
 export default function DesktopCategories() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-8 shadow-2xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-8 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
             <div
                 className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]"
                 style={{

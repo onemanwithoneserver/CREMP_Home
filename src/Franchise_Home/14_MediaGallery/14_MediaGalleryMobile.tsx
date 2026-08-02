@@ -61,14 +61,14 @@ export default function MediaGalleryMobile() {
 
         <div className="flex flex-col gap-5">
           {filteredItems.length === 0 && (
-            <div className="text-center py-14 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl rounded-[4px] border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 p-6 flex flex-col items-center">
+            <div className="text-center py-14 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl rounded-[4px] border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 p-6 flex flex-col items-center">
               <ImageIcon size={32} className="text-gray-400 opacity-40 mb-2" />
               <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">
                 No media found for this category.
               </p>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="mt-3 px-3 py-1.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[2px]"
+                className="mt-3 px-3 py-1.5 bg-[#0b1b42] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[2px]"
               >
                 Back to Top
               </button>
@@ -260,7 +260,7 @@ function MobileMediaSwipeSection({
 
 function DocumentCard({ item }: { item: MediaItem }) {
   return (
-    <div className="relative overflow-hidden rounded-[4px] bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-2.5 flex items-center gap-2.5 shadow-sm active:scale-[0.99] transition-transform">
+    <div className="relative overflow-hidden rounded-[4px] bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-2.5 flex items-center gap-2.5 shadow-sm active:scale-[0.99] transition-transform">
       <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 dark:bg-[#d4af37]/20 flex items-center justify-center border border-[#d4af37]/30 shrink-0 cursor-pointer">
         <FileText size={15} className="text-[#d4af37]" />
       </motion.div>

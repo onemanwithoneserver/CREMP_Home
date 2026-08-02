@@ -53,7 +53,7 @@ export default function FranchiseNetworkDesktop() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-[#0a1128]/70 rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 backdrop-blur-md self-start md:self-auto shrink-0 shadow-sm">
+          <div className="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-[#0b1b42]/70 rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 backdrop-blur-md self-start md:self-auto shrink-0 shadow-sm">
             <Sparkles size={14} className="text-[#d4af37]" />
             <span className="text-xs font-bold text-gray-800 dark:text-gray-200">
               {franchiseNetworkData.outletCount}
@@ -71,7 +71,7 @@ export default function FranchiseNetworkDesktop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="group bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 flex flex-col justify-between hover:border-gray-300 hover:shadow-md dark:hover:border-[#d4af37]/40 dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 shadow-sm"
+                className="group bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 flex flex-col justify-between hover:border-gray-300 hover:shadow-md dark:hover:border-[#d4af37]/40 dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
@@ -151,7 +151,7 @@ export default function FranchiseNetworkDesktop() {
             </svg>
 
             <div className="relative z-20 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0a1128]/80 backdrop-blur-md border border-[#d4af37]/30 rounded-[4px]">
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0b1b42]/80 backdrop-blur-md border border-[#d4af37]/30 rounded-[4px]">
                 <Globe2 size={14} className="text-[#d4af37] animate-spin-slow" />
                 <span className="text-[11px] font-bold text-white uppercase tracking-wider">
                   Live National Network
@@ -159,7 +159,7 @@ export default function FranchiseNetworkDesktop() {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-1" />
               </div>
 
-              <div className="flex items-center gap-2 bg-[#0a1128]/90 backdrop-blur-md px-3 py-1.5 rounded-[4px] border border-gray-700/60">
+              <div className="flex items-center gap-2 bg-[#0b1b42]/90 backdrop-blur-md px-3 py-1.5 rounded-[4px] border border-gray-700/60">
                 {franchiseNetworkData.legend.map((l) => (
                   <div key={l.status} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-medium">
                     <span className={clsx("w-2 h-2 rounded-full", l.bg)} />
@@ -267,7 +267,7 @@ export default function FranchiseNetworkDesktop() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px]">
+                <div className="p-3 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px]">
                   <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 block">
                     Operating Stores
                   </span>
@@ -276,7 +276,7 @@ export default function FranchiseNetworkDesktop() {
                   </span>
                 </div>
 
-                <div className="p-3 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px]">
+                <div className="p-3 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px]">
                   <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 block">
                     In Pipeline
                   </span>
@@ -315,8 +315,8 @@ export default function FranchiseNetworkDesktop() {
                       className={clsx(
                         "px-2.5 py-1 text-xs rounded-[2px] border transition-all",
                         activeCity.id === city.id
-                          ? "bg-[#0a1128] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 dark:border-[#d4af37] font-bold"
-                          : "bg-white dark:bg-[#0a1128] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-[#d4af37]"
+                          ? "bg-[#0b1b42] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 dark:border-[#d4af37] font-bold"
+                          : "bg-white dark:bg-[#0b1b42] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-[#d4af37]"
                       )}
                     >
                       {city.name}
@@ -327,12 +327,12 @@ export default function FranchiseNetworkDesktop() {
             </div>
 
             <div className="flex flex-col gap-2.5 pt-5 border-t border-gray-200 dark:border-gray-800 mt-4">
-              <button className="w-full py-3 px-4 bg-[#0a1128] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
+              <button className="w-full py-3 px-4 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
                 <ChevronRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </button>
 
-              <button className="w-full py-2.5 px-4 bg-white dark:bg-[#0a1128] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] transition-all flex items-center justify-center gap-2">
+              <button className="w-full py-2.5 px-4 bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] transition-all flex items-center justify-center gap-2">
                 <Download size={14} className="text-[#d4af37]" />
                 <span>{franchiseNetworkData.cta.secondary}</span>
               </button>

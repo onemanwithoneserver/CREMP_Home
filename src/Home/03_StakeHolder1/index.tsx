@@ -7,7 +7,7 @@ export default function StakeHolder1({ isMobile }: { isMobile: boolean }) {
     return (
         <Suspense
             fallback={
-                <div className="min-h-screen w-full bg-gray-50 dark:bg-[#0a1128]" />
+                <div className="min-h-screen w-full bg-gray-50 dark:bg-[#0b1b42]" />
             }
         >
             {isMobile ? <Mobile /> : <Desktop />}

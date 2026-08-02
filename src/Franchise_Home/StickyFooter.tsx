@@ -18,7 +18,7 @@ const Tooltip = ({
   return (
     <div className="relative flex items-center justify-center group">
       {children}
-      <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#0a1128] text-white text-[11px] font-semibold rounded-[4px] opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-xl border border-white/10 scale-95 group-hover:scale-100 group-active:scale-100 z-50">
+      <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#0b1b42] text-white text-[11px] font-semibold rounded-[4px] opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-xl border border-white/10 scale-95 group-hover:scale-100 group-active:scale-100 z-50">
         {text}
         <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-[5px] border-transparent border-t-[#0a1128]" />
       </div>
@@ -30,7 +30,7 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
   const [isSaved, setIsSaved] = useState(false);
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 bg-[#0a1128]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
+    <div className="fixed bottom-0 left-0 w-full z-50 bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
 
       <div className="max-w-[1440px] w-full flex items-center justify-between gap-2 md:gap-4 relative z-10">

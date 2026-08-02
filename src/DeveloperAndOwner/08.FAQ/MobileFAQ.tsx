@@ -25,7 +25,7 @@ export default function MobileFAQ() {
     const Btn2Icon = faqData.banner.btn2.icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"
@@ -104,7 +104,7 @@ export default function MobileFAQ() {
 
                 <motion.div
                     variants={fadeInUp}
-                    className="flex flex-col items-center justify-center gap-6 rounded-[8px] bg-[#0a1128] p-8 text-center shadow-xl relative overflow-hidden"
+                    className="flex flex-col items-center justify-center gap-6 rounded-[8px] bg-[#0b1b42] p-8 text-center shadow-xl relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay"></div>
                     <div className="absolute -top-[20%] -left-[20%] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[80px] pointer-events-none opacity-40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></div>

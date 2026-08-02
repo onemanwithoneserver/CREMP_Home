@@ -23,7 +23,7 @@ export default function MobileTestimonials() {
     const Btn2Icon = testimonialsData.buttons[1].icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"
@@ -81,7 +81,7 @@ export default function MobileTestimonials() {
                         {testimonialsData.benefits.map((benefit, idx) => (
                             <div
                                 key={idx}
-                                className="flex items-center gap-3 rounded-[8px] bg-white p-4 shadow-sm dark:bg-[#0a1128] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                                className="flex items-center gap-3 rounded-[8px] bg-white p-4 shadow-sm dark:bg-[#0b1b42] border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                             >
                                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
                                     <svg

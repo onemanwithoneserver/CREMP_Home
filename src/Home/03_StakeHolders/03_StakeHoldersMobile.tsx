@@ -61,7 +61,7 @@ export default function Mobile() {
     };
 
     return (
-        <div className="relative min-h-screen w-full overflow-hidden bg-gray-50 text-gray-900 transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#0a1128] dark:text-white">
+        <div className="relative min-h-screen w-full overflow-hidden bg-gray-50 text-gray-900 transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#0b1b42] dark:text-white">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.15),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.1),transparent_70%)]" />
             <div className="pointer-events-none absolute top-1/4 -left-20 h-64 w-64 rounded-full bg-[#D4AF37]/5 blur-3xl dark:bg-[#D4AF37]/5" />
             <div className="pointer-events-none absolute top-3/4 -right-20 h-64 w-64 rounded-full bg-[#D4AF37]/5 blur-3xl dark:bg-[#D4AF37]/5" />
@@ -239,7 +239,7 @@ export default function Mobile() {
                                                     {stakeholder.features.map((feature, fIdx) => (
                                                         <div
                                                             key={fIdx}
-                                                            className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-gray-50/80 p-4 text-center shadow-sm transition-colors hover:border-[#D4AF37]/20 dark:border-gray-800/60 dark:bg-[#0a1128]/60 dark:hover:border-[#D4AF37]/20 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                                                            className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-gray-50/80 p-4 text-center shadow-sm transition-colors hover:border-[#D4AF37]/20 dark:border-gray-800/60 dark:bg-[#0b1b42]/60 dark:hover:border-[#D4AF37]/20 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                                                         >
                                                             <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 items-center justify-center rounded-[4px] bg-white transition-colors group-hover:bg-[#D4AF37]/10 dark:bg-gray-800/80 dark:group-hover:bg-[#D4AF37]/10">
                                                                 <feature.icon

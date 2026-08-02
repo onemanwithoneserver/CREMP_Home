@@ -20,7 +20,7 @@ const fadeInUp: Variants = {
 
 export default function MobileOpportunities() {
     return (
-        <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"
@@ -80,7 +80,7 @@ export default function MobileOpportunities() {
                             className="group flex flex-col justify-between rounded-[8px] bg-gray-50 p-4 border border-gray-100 dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                         >
                             <div className="flex items-center justify-between mb-8">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-white text-[#D4AF37] shadow-sm dark:bg-[#0a1128] dark:text-[#D4AF37]">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-white text-[#D4AF37] shadow-sm dark:bg-[#0b1b42] dark:text-[#D4AF37]">
                                     <item.icon size={20} strokeWidth={1.5} />
                                 </div>
                             </div>

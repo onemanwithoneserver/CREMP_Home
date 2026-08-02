@@ -11,7 +11,7 @@ export default function Mobile(_props: { hideCTA?: boolean }) {
 
             }
 
-            <div className="w-full bg-white dark:bg-[#0a1128] border-t border-gray-200 dark:border-gray-800 py-8 px-6 flex flex-col items-center text-center gap-7">
+            <div className="w-full bg-white dark:bg-[#0b1b42] border-t border-gray-200 dark:border-gray-800 py-8 px-6 flex flex-col items-center text-center gap-7">
                 <div className="flex flex-col items-center gap-3">
                     <div className="flex items-center">
                         <CrempTextLogo className="h-[16px] w-auto text-[#0a1128] dark:text-white" />

@@ -19,7 +19,7 @@ const fadeInUp: Variants = {
 
 export default function MobileHowItWorks() {
     return (
-        <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0a1128]">
+        <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"

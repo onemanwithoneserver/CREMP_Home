@@ -21,8 +21,8 @@ export default function Mobile() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className={`fixed top-0 z-50 flex w-full items-center justify-between px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${scrolled
-                    ? "bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0a1128]/85 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-                    : "bg-white dark:bg-[#0a1128] border-b border-transparent"
+                    ? "bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0b1b42]/85 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+                    : "bg-white dark:bg-[#0b1b42] border-b border-transparent"
                 }`}
         >
             <motion.a

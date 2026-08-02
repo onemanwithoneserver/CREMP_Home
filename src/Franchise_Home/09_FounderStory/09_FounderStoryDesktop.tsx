@@ -97,7 +97,7 @@ export default function FounderStoryDesktop() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, margin: "-50px" }}
-            className="lg:col-span-3 relative rounded-[8px] overflow-hidden group shadow-xl bg-[#0a1128] border border-white/5 h-full hover:shadow-2xl transition-shadow duration-300"
+            className="lg:col-span-3 relative rounded-[8px] overflow-hidden group shadow-xl bg-[#0b1b42] border border-white/5 h-full hover:shadow-2xl transition-shadow duration-300"
           >
             <div className="relative z-10 p-10 flex flex-col gap-6 h-full min-h-[400px]">
               <div className="flex items-start justify-between">
@@ -186,7 +186,7 @@ export default function FounderStoryDesktop() {
                   }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   key={stat.label}
-                  className="flex-1 bg-[#0a1128] border border-white/5 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-lg group hover:border-white/10 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  className="flex-1 bg-[#0b1b42] border border-white/5 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-lg group hover:border-white/10 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-[#d4af37]/10 transition-colors duration-500" />
                   

@@ -82,7 +82,7 @@ export default function FullCycleSupportDesktop() {
                         damping: 20,
                       },
                     }}
-                    className="group relative w-[240px] shrink-0 rounded-[4px] border border-gray-200/60 bg-white/70 backdrop-blur-xl p-6 text-center shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] dark:border-[#d4af37]/20 dark:bg-[#0a1128]/70 dark:hover:border-[#d4af37]/40"
+                    className="group relative w-[240px] shrink-0 rounded-[4px] border border-gray-200/60 bg-white/70 backdrop-blur-xl p-6 text-center shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] dark:border-[#d4af37]/20 dark:bg-[#0b1b42]/70 dark:hover:border-[#d4af37]/40"
                   >
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
