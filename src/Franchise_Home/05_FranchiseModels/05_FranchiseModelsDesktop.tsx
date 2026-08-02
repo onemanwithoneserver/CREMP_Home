@@ -340,7 +340,7 @@ export default function FranchiseModelsDesktop() {
 
               <div className="p-4 sm:p-5 flex-1 relative flex flex-col justify-between">
                 <div className="flex flex-col gap-3.5 relative z-10">
-                  <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
+                  <div className="absolute left-[32px] -translate-x-1/2 -top-[16px] bottom-[24px] w-[2px] pointer-events-none z-0 origin-top">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                     <motion.div
                       className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
@@ -356,10 +356,19 @@ export default function FranchiseModelsDesktop() {
                     />
                   </div>
 
-                  {leftMetrics.map((stat) => (
-                    <div
+                  {leftMetrics.map((stat, index) => (
+                    <motion.div
                       key={stat.label}
-                      className="p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0a1128] border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px]"
+                      whileHover={{
+                        scale: 1.02,
+                        x: 4,
+                        transition: {
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 25,
+                        },
+                      }}
+                      className="p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px]"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div
@@ -408,29 +417,32 @@ export default function FranchiseModelsDesktop() {
                                 <motion.div
                                   initial={{
                                     opacity: 0,
-                                    scale: 0.9,
-                                    y: 20,
-                                    filter: "blur(8px)",
+                                    scale: 0.3,
+                                    y: 40,
+                                    filter: "blur(20px)",
+                                    borderRadius: "100px",
                                   }}
                                   animate={{
                                     opacity: 1,
                                     scale: 1,
                                     y: 0,
                                     filter: "blur(0px)",
+                                    borderRadius: "4px",
                                   }}
                                   exit={{
                                     opacity: 0,
-                                    scale: 0.9,
+                                    scale: 0.5,
                                     y: 20,
-                                    filter: "blur(8px)",
+                                    filter: "blur(15px)",
+                                    borderRadius: "50px",
                                   }}
                                   transition={{
                                     type: "spring",
-                                    stiffness: 400,
-                                    damping: 30,
-                                    mass: 0.8,
+                                    stiffness: 300,
+                                    damping: 15,
+                                    mass: 1.5,
                                   }}
-                                  className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white dark:bg-[#0a1128] backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200 dark:border-gray-700 z-[99999] p-5 pointer-events-auto cursor-default text-left"
+                                  className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 z-[99999] p-5 pointer-events-auto cursor-default text-left"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800 relative z-10">
@@ -459,7 +471,7 @@ export default function FranchiseModelsDesktop() {
                                       (staff, idx) => (
                                         <div
                                           key={idx}
-                                          className="flex flex-col bg-gray-50 dark:bg-[#121c33] rounded-[4px] p-3 border border-gray-200 dark:border-gray-800 shadow-sm"
+                                          className="flex flex-col bg-white/50 dark:bg-[#121c33]/50 rounded-[4px] p-3 border border-gray-200 dark:border-gray-800 shadow-sm"
                                         >
                                           <div className="flex justify-between items-center mb-1">
                                             <span className="text-xs font-bold text-[#0a1128] dark:text-white">
@@ -496,7 +508,7 @@ export default function FranchiseModelsDesktop() {
                           </span>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -552,7 +564,7 @@ export default function FranchiseModelsDesktop() {
 
           <div className="p-4 sm:p-5 flex-1 relative flex flex-col justify-between">
             <div className="flex flex-col gap-3.5 relative z-10">
-              <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
+              <div className="absolute left-[32px] -translate-x-1/2 -top-[16px] bottom-[24px] w-[2px] pointer-events-none z-0 origin-top">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                 <motion.div
                   className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
@@ -568,11 +580,20 @@ export default function FranchiseModelsDesktop() {
                 />
               </div>
 
-              {rightMetrics.map((stat) => {
+              {rightMetrics.map((stat, index) => {
                 const isHighlight = stat.badge === "Breakeven";
                 return (
                   <motion.div
                     key={stat.label}
+                    whileHover={{
+                      scale: 1.02,
+                      x: 4,
+                      transition: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      },
+                    }}
                     animate={
                       isHighlight
                         ? {
@@ -595,10 +616,10 @@ export default function FranchiseModelsDesktop() {
                       ease: "easeInOut",
                     }}
                     className={clsx(
-                      "p-3 sm:p-3.5 rounded-[4px] transition-all duration-300 flex items-center justify-between gap-3 group cursor-default relative z-10 min-h-[64px]",
+                      "p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm border hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 min-h-[64px]",
                       isHighlight
-                        ? "bg-gradient-to-r from-[#d4af37]/10 to-transparent border border-[#d4af37]/50 dark:from-[#d4af37]/15 dark:to-[#0a1128]"
-                        : "bg-gray-50/90 dark:bg-[#0a1128] border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 shadow-sm",
+                        ? "border-[#d4af37]/40"
+                        : "border-gray-200/80 dark:border-gray-800",
                     )}
                   >
                     <div className="flex items-center gap-3 min-w-0">

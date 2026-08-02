@@ -199,7 +199,10 @@ export default function FranchiseModelsMobile() {
     (m) => m.id === activeModel,
   )!;
 
-  const leftMetrics = useMemo(() => getModelSpecifications(selected), [selected]);
+  const leftMetrics = useMemo(
+    () => getModelSpecifications(selected),
+    [selected],
+  );
   const rightMetrics = useMemo(() => getRightMetrics(), []);
 
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -397,7 +400,7 @@ export default function FranchiseModelsMobile() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm overflow-hidden"
+            className="flex flex-col bg-white dark:bg-[#121c33] rounded-[4px] overflow-hidden"
           >
             <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[72px]">
               <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
@@ -418,7 +421,7 @@ export default function FranchiseModelsMobile() {
 
             <div className="p-4 flex flex-col gap-3 relative overflow-hidden">
               <div className="relative flex flex-col pt-1">
-                <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
+                <div className="absolute left-[32px] -translate-x-1/2 -top-[16px] bottom-[24px] w-[2px] pointer-events-none z-0 origin-top">
                   <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                   <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
                   <motion.div
@@ -436,10 +439,19 @@ export default function FranchiseModelsMobile() {
                 </div>
 
                 <div className="flex flex-col gap-3 relative z-10">
-                  {leftMetrics.map((stat) => (
-                    <div
+                  {leftMetrics.map((stat, index) => (
+                    <motion.div
                       key={stat.label}
-                      className="rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm p-3 bg-gray-50 dark:bg-[#0a1128] flex items-center justify-between gap-3 relative z-10 min-h-[58px]"
+                      whileHover={{
+                        scale: 1.02,
+                        x: 4,
+                        transition: {
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 25,
+                        },
+                      }}
+                      className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px]"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div
@@ -476,7 +488,7 @@ export default function FranchiseModelsMobile() {
                           </span>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -484,7 +496,7 @@ export default function FranchiseModelsMobile() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="flex flex-col bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm overflow-hidden">
+        <div className="flex flex-col bg-white dark:bg-[#121c33] rounded-[4px] overflow-hidden">
           <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[72px]">
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
             <div className="flex items-center gap-3 relative z-10">
@@ -504,9 +516,8 @@ export default function FranchiseModelsMobile() {
 
           <div className="p-4 flex flex-col gap-3 relative overflow-hidden">
             <div className="relative flex flex-col pt-1">
-              <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
+              <div className="absolute left-[32px] -translate-x-1/2 -top-[16px] bottom-[24px] w-[2px] pointer-events-none z-0 origin-top">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
-                <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
                 <motion.div
                   className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
                   animate={{
@@ -522,10 +533,19 @@ export default function FranchiseModelsMobile() {
               </div>
 
               <div className="flex flex-col gap-3 relative z-10">
-                {rightMetrics.map((stat) => (
-                  <div
+                {rightMetrics.map((stat, index) => (
+                  <motion.div
                     key={stat.label}
-                    className="rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm p-3 bg-gray-50 dark:bg-[#0a1128] flex items-center justify-between gap-3 min-h-[58px]"
+                    whileHover={{
+                      scale: 1.02,
+                      x: 4,
+                      transition: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      },
+                    }}
+                    className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 min-h-[58px]"
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <motion.div
@@ -559,7 +579,7 @@ export default function FranchiseModelsMobile() {
                         {stat.badge}
                       </span>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -577,20 +597,33 @@ export default function FranchiseModelsMobile() {
             >
               <motion.div
                 initial={{
-                  scale: 0.9,
+                  scale: 0.3,
+                  opacity: 0,
+                  y: 40,
+                  filter: "blur(20px)",
+                  borderRadius: "100px",
+                }}
+                animate={{
+                  scale: 1,
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  borderRadius: "4px",
+                }}
+                exit={{
+                  scale: 0.5,
                   opacity: 0,
                   y: 20,
-                  filter: "blur(8px)",
+                  filter: "blur(15px)",
+                  borderRadius: "50px",
                 }}
-                animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ scale: 0.9, opacity: 0, y: 20, filter: "blur(8px)" }}
                 transition={{
                   type: "spring",
-                  stiffness: 400,
-                  damping: 30,
-                  mass: 0.8,
+                  stiffness: 300,
+                  damping: 15,
+                  mass: 1.5,
                 }}
-                className="w-full max-w-[90vw] sm:max-w-md bg-white dark:bg-[#0a1128] rounded-[4px] shadow-2xl border border-gray-200 dark:border-gray-700 p-5 relative overflow-hidden flex flex-col"
+                className="w-full max-w-[90vw] sm:max-w-md bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-5 relative overflow-hidden flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800">
