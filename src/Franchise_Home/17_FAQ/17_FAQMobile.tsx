@@ -154,10 +154,11 @@ export default function FAQMobile() {
                 );
               })
             )}
+            <BookACall />
           </AnimatePresence>
         </motion.div>
 
-          <BookACall />
+          
 
       </div>
     </section>
