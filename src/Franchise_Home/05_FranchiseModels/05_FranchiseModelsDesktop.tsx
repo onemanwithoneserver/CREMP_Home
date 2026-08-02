@@ -248,7 +248,7 @@ export default function FranchiseModelsDesktop() {
                       transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     />
                   </div>
-                  {leftMetrics.map((stat, index) => (
+                  {leftMetrics.map((stat) => (
                     <motion.div
                       key={stat.label}
                       whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
@@ -400,7 +400,7 @@ export default function FranchiseModelsDesktop() {
                   transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
                 />
               </div>
-              {rightMetrics.map((stat, index) => {
+              {rightMetrics.map((stat) => {
                 const isHighlight = stat.badge === "Breakeven";
                 return (
                   <motion.div

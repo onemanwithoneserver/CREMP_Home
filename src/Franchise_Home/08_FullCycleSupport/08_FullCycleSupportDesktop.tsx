@@ -37,7 +37,7 @@ export default function FullCycleSupportDesktop() {
   });
 
   return (
-    <section className="relative w-full rounded-[8px] bg-gray-50 px-6 py-16 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="relative w-full rounded-[8px] bg-white/40 px-6 py-16 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -82,11 +82,13 @@ export default function FullCycleSupportDesktop() {
                         damping: 20,
                       },
                     }}
-                    className="relative w-[240px] shrink-0 rounded-[4px] border border-gray-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:border-[#d4af37]/40 hover:shadow-xl dark:border-gray-800 dark:bg-[#121c33] dark:hover:border-[#d4af37]/40"
+                    className="group relative w-[240px] shrink-0 rounded-[4px] border border-gray-200/60 bg-white/70 backdrop-blur-xl p-6 text-center shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] dark:border-[#d4af37]/20 dark:bg-[#0a1128]/70 dark:hover:border-[#d4af37]/40"
                   >
-                    <div
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
                       className={clsx(
-                        "mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-[4px] shadow-sm",
+                        "mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-[4px] shadow-sm relative z-10",
                         item.colorClass
                       )}
                     >
@@ -95,7 +97,7 @@ export default function FullCycleSupportDesktop() {
                         strokeWidth={2}
                         className="text-white"
                       />
-                    </div>
+                    </motion.div>
 
                     <h4 className="mb-2 text-[15px] font-bold text-[#0a1128] dark:text-white">
                       {item.title}
@@ -111,8 +113,8 @@ export default function FullCycleSupportDesktop() {
           ))}
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-white to-transparent dark:from-[#0a1128]" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-white to-transparent dark:from-[#0a1128]" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-[#f9fafb]/80 to-transparent dark:from-[#050b14]/80" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-[#f9fafb]/80 to-transparent dark:from-[#050b14]/80" />
       </div>
     </section>
   );

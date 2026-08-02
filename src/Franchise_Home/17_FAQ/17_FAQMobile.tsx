@@ -38,7 +38,7 @@ export default function FAQMobile() {
   }, [searchQuery]);
 
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-4 py-12 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -66,7 +66,7 @@ export default function FAQMobile() {
             placeholder="Search questions (cost, royalty, ROI, training)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-12 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37]"
+            className="w-full pl-10 pr-12 py-2.5 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] shadow-sm"
           />
           <AnimatePresence>
             {searchQuery && (
@@ -91,7 +91,7 @@ export default function FAQMobile() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="text-center py-12 bg-gray-50 dark:bg-gray-800/40 rounded-[4px] border border-dashed border-gray-200 dark:border-gray-700 p-4"
+                className="text-center py-12 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl rounded-[4px] border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 p-4"
               >
                 <HelpCircle size={28} className="mx-auto text-gray-400 mb-1 opacity-50" />
                 <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">No questions found</p>
@@ -115,10 +115,10 @@ export default function FAQMobile() {
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3), ease: [0.04, 0.62, 0.23, 0.98] }}
                     className={clsx(
-                      "rounded-[4px] border transition-all relative overflow-hidden",
+                      "rounded-[4px] border transition-all relative overflow-hidden backdrop-blur-xl",
                       isExpanded
-                        ? "bg-white dark:bg-[#0a1128] shadow-md border-[#d4af37]/50"
-                        : "bg-white dark:bg-gray-800/80 border-gray-200 dark:border-gray-700"
+                        ? "bg-white/90 dark:bg-[#0a1128]/90 shadow-md border-[#d4af37]/50"
+                        : "bg-white/70 dark:bg-[#0a1128]/70 border-gray-200/60 dark:border-[#d4af37]/20"
                     )}
                   >
                     <div
@@ -166,7 +166,7 @@ export default function FAQMobile() {
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                          className="overflow-hidden border-t border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/70 p-4 flex flex-col gap-3"
+                          className="overflow-hidden border-t border-gray-200/50 dark:border-white/10 bg-white/50 dark:bg-black/20 p-4 flex flex-col gap-3"
                         >
                           {q.highlight && (
                             <motion.div

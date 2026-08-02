@@ -39,7 +39,7 @@ export default function FAQDesktop() {
   }, [searchQuery]);
 
   return (
-    <section className="w-full py-16 pb-20 px-6 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full py-16 pb-20 px-6 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -72,7 +72,7 @@ export default function FAQDesktop() {
               placeholder="Search frequently asked questions (e.g. investment, setup, royalty, territory)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-14 py-3 bg-gray-50/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] dark:focus:border-[#d4af37] transition-colors shadow-sm"
+              className="w-full pl-11 pr-14 py-3 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] text-xs font-medium text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#d4af37] dark:focus:border-[#d4af37] transition-all shadow-sm focus:shadow-md"
             />
             <AnimatePresence>
               {searchQuery && (
@@ -97,7 +97,7 @@ export default function FAQDesktop() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="text-center py-16 bg-gray-50 dark:bg-gray-800/40 border border-dashed border-gray-200 dark:border-gray-700 rounded-[4px]"
+                  className="text-center py-16 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px]"
                 >
                   <HelpCircle size={36} className="mx-auto text-gray-400 mb-2 opacity-50" />
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">No matching questions found.</p>
@@ -122,10 +122,10 @@ export default function FAQDesktop() {
                       exit={{ opacity: 0, y: -15 }}
                       transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3), ease: [0.04, 0.62, 0.23, 0.98] }}
                       className={clsx(
-                        "group rounded-[4px] transition-colors duration-300 relative border overflow-hidden",
+                        "group rounded-[4px] transition-all duration-300 relative border overflow-hidden backdrop-blur-xl",
                         isExpanded
-                          ? "bg-white dark:bg-[#0a1128] shadow-lg border-[#d4af37]/50 dark:border-[#d4af37]/40 ring-1 ring-[#d4af37]/20"
-                          : "bg-white dark:bg-gray-800/80 shadow-sm border-gray-200 dark:border-gray-700/80 hover:border-gray-300 dark:hover:border-gray-600"
+                          ? "bg-white/90 dark:bg-[#0a1128]/90 shadow-md border-[#d4af37]/50 dark:border-[#d4af37]/40 ring-1 ring-[#d4af37]/20"
+                          : "bg-white/70 dark:bg-[#0a1128]/70 shadow-sm border-gray-200/60 dark:border-[#d4af37]/20 hover:border-gray-300 dark:hover:border-[#d4af37]/40 hover:shadow-md"
                       )}
                     >
                       <div
@@ -175,7 +175,7 @@ export default function FAQDesktop() {
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                            className="overflow-hidden border-t border-gray-100 dark:border-gray-800 bg-gray-50/60 dark:bg-gray-900/60"
+                            className="overflow-hidden border-t border-gray-200/50 dark:border-white/10 bg-white/50 dark:bg-black/20"
                           >
                             <div className="p-5 pt-4 flex flex-col gap-4">
                               {q.highlight && (

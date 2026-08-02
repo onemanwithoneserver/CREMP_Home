@@ -58,7 +58,7 @@ const getIconBgColor = (idx: number) => {
 
 export default function FounderStoryMobile() {
   return (
-    <section className="w-full px-4 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-4 py-16 relative overflow-hidden rounded-[8px] bg-[#050b14] border border-white/5 shadow-xl">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -80,7 +80,7 @@ export default function FounderStoryMobile() {
           />
         </div>
 
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4 dark">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export default function FounderStoryMobile() {
             transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
             className="relative rounded-[8px] overflow-hidden group shadow-lg w-full"
           >
-            <div className="absolute inset-0 bg-[#0a1128]" />
+            <div className="absolute inset-0 bg-[#0a1128] border border-white/5" />
 
             <div className="relative z-10 p-6 flex flex-col gap-6">
               <div className="flex items-start justify-between">
@@ -135,7 +135,7 @@ export default function FounderStoryMobile() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <p className="text-white text-[15px] leading-relaxed tracking-wide font-medium italic">
+                <p className="text-gray-900 dark:text-white text-[15px] leading-relaxed tracking-wide font-medium italic">
                   "{founderStoryData.quote}"
                 </p>
 
@@ -146,7 +146,7 @@ export default function FounderStoryMobile() {
                     className="w-11 h-11 rounded-full object-cover border-2 border-[#d4af37]/60 shadow-md shrink-0"
                   />
                   <div>
-                    <h4 className="text-white font-bold text-lg tracking-tight">
+                    <h4 className="text-gray-900 dark:text-white font-bold text-lg tracking-tight">
                       {founderStoryData.founder.name}
                     </h4>
                     <p className="text-[#d4af37] text-[10px] font-bold uppercase tracking-widest mt-0.5">
@@ -174,7 +174,7 @@ export default function FounderStoryMobile() {
                   }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   key={stat.label}
-                  className="bg-[#0a1128] border border-white/10 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-md relative overflow-hidden hover:border-[#d4af37]/40 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-300"
+                  className="bg-[#0a1128] border border-white/5 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-sm relative overflow-hidden hover:border-white/10 hover:shadow-md transition-all duration-300"
                 >
                   <div className="absolute -right-4 -top-4 w-12 h-12 bg-white/5 rounded-full blur-xl" />
                   
@@ -192,14 +192,16 @@ export default function FounderStoryMobile() {
                     </p>
                   </div>
                   
-                  <div 
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className={clsx(
                       "w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md shrink-0 z-10",
                       getIconBgColor(idx)
                     )}
                   >
                     {getStatIcon(stat.label)}
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}

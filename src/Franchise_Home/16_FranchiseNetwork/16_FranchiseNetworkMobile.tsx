@@ -24,7 +24,7 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
 
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-4 py-12 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -52,7 +52,7 @@ export default function FranchiseNetworkMobile() {
           {franchiseNetworkData.stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-3.5 flex flex-col justify-between shadow-sm"
+              className="group bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-3.5 flex flex-col justify-between shadow-sm transition-all duration-300"
             >
               <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                 {stat.label}
@@ -129,7 +129,7 @@ export default function FranchiseNetworkMobile() {
           </div>
         </div>
 
-        <div className="bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-4 flex flex-col gap-3 shadow-sm">
+        <div className="bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-4 flex flex-col gap-3 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <span className={clsx(
@@ -186,14 +186,14 @@ export default function FranchiseNetworkMobile() {
           </div>
 
           <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-gray-200 dark:border-gray-800">
-            <button className="w-full py-2.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-sm flex items-center justify-center gap-1.5">
+            <motion.button whileTap={{ scale: 0.95 }} className="w-full py-2.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-sm flex items-center justify-center gap-1.5">
               <span>{franchiseNetworkData.cta.primary}</span>
               <ChevronRight size={14} />
-            </button>
-            <button className="w-full py-2 bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] flex items-center justify-center gap-1.5">
+            </motion.button>
+            <motion.button whileTap={{ scale: 0.95 }} className="w-full py-2 bg-white/50 dark:bg-[#0a1128]/50 backdrop-blur-sm border border-gray-200/60 dark:border-gray-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] flex items-center justify-center gap-1.5">
               <Download size={13} className="text-[#d4af37]" />
               <span>{franchiseNetworkData.cta.secondary}</span>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

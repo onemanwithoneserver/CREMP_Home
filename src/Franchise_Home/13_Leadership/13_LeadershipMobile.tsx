@@ -53,7 +53,7 @@ function LeaderCardMobile({
         }}
         className="relative w-full h-full [transform-style:preserve-3d] shadow-xl"
       >
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white dark:bg-[#121c33] rounded-[4px] border border-gray-200 dark:border-gray-800 [backface-visibility:hidden]">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 [backface-visibility:hidden] shadow-sm">
           <img
             src={member.avatar}
             alt={member.name}
@@ -63,10 +63,10 @@ function LeaderCardMobile({
 
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/40 to-transparent opacity-95" />
           <div className="absolute top-4 right-4 z-20">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60">
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60">
               <span>View Bio</span>
               <RotateCw size={12} className="text-[#d4af37]" />
-            </div>
+            </motion.div>
           </div>
           <div className="absolute bottom-0 left-0 w-full px-4 pb-6 pt-4 flex flex-col justify-end z-10">
             <span className="inline-block px-2 py-0.5 rounded-[2px] text-[#d4af37] text-[9px] font-bold uppercase tracking-wider mb-2 w-max border border-[#d4af37]/30 bg-[#d4af37]/10 backdrop-blur-sm">
@@ -82,7 +82,7 @@ function LeaderCardMobile({
             <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
           </div>
         </div>
-        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0a1128] border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0a1128]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -98,7 +98,9 @@ function LeaderCardMobile({
               </div>
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: [0, -20, 20, 0] }}
+              transition={{ duration: 0.4 }}
               onClick={(e) => {
                 e.stopPropagation();
                 onToggle();
@@ -107,7 +109,7 @@ function LeaderCardMobile({
               title="Flip back"
             >
               <RotateCw size={14} className="text-[#d4af37]" />
-            </button>
+            </motion.button>
           </div>
 
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
@@ -168,7 +170,7 @@ export default function LeadershipMobile() {
   };
 
   return (
-    <section className="w-full py-6 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full py-6 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"

@@ -28,7 +28,7 @@ export default function FranchiseNetworkDesktop() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -53,7 +53,7 @@ export default function FranchiseNetworkDesktop() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-3.5 py-2 bg-gray-50 dark:bg-[#121c33] rounded-[4px] border border-gray-200 dark:border-gray-800 backdrop-blur-sm self-start md:self-auto shrink-0">
+          <div className="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-[#0a1128]/70 rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 backdrop-blur-md self-start md:self-auto shrink-0 shadow-sm">
             <Sparkles size={14} className="text-[#d4af37]" />
             <span className="text-xs font-bold text-gray-800 dark:text-gray-200">
               {franchiseNetworkData.outletCount}
@@ -71,15 +71,15 @@ export default function FranchiseNetworkDesktop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="bg-gray-50/70 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 flex flex-col justify-between hover:border-[#d4af37]/40 dark:hover:border-[#d4af37]/40 transition-colors shadow-sm"
+                className="group bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 flex flex-col justify-between hover:border-gray-300 hover:shadow-md dark:hover:border-[#d4af37]/40 dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     {stat.label}
                   </span>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37]">
+                  <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] shadow-sm">
                     <Icon size={16} />
-                  </div>
+                  </motion.div>
                 </div>
                 <div>
                   <div className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white tracking-tight">

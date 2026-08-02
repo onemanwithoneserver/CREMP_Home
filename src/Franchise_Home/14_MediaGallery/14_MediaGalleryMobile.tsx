@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -6,7 +6,6 @@ import {
   Play,
   FileText,
   Download,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ImageIcon,
@@ -35,7 +34,7 @@ export default function MediaGalleryMobile() {
   const documents = filteredItems.filter((item) => item.format === "document");
 
   return (
-    <section className="w-full px-4 py-8 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-4 py-8 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -62,16 +61,16 @@ export default function MediaGalleryMobile() {
 
         <div className="flex flex-col gap-5">
           {filteredItems.length === 0 && (
-            <div className="text-center py-14 bg-gray-50 dark:bg-gray-800/40 rounded-[4px] border border-dashed border-gray-200 dark:border-gray-700 p-6 flex flex-col items-center">
+            <div className="text-center py-14 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl rounded-[4px] border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 p-6 flex flex-col items-center">
               <ImageIcon size={32} className="text-gray-400 opacity-40 mb-2" />
               <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">
                 No media found for this category.
               </p>
               <button
-                onClick={() => setActiveCategory("All")}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="mt-3 px-3 py-1.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[2px]"
               >
-                View All Media
+                Back to Top
               </button>
             </div>
           )}
@@ -222,13 +221,13 @@ function MobileMediaSwipeSection({
 
               {(item.format === "video" || item.format === "short_video") && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg">
+                  <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg">
                     <Play
                       size={13}
                       className="ml-0.5 text-[#d4af37]"
                       fill="currentColor"
                     />
-                  </div>
+                  </motion.div>
                 </div>
               )}
             </div>
@@ -261,7 +260,7 @@ function MobileMediaSwipeSection({
 
 function DocumentCard({ item }: { item: MediaItem }) {
   return (
-    <div className="relative overflow-hidden rounded-[4px] bg-white dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700/80 p-2.5 flex items-center gap-2.5 shadow-sm active:scale-[0.99] transition-transform">
+    <div className="relative overflow-hidden rounded-[4px] bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-2.5 flex items-center gap-2.5 shadow-sm active:scale-[0.99] transition-transform">
       <div className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 dark:bg-[#d4af37]/20 flex items-center justify-center border border-[#d4af37]/30 shrink-0">
         <FileText size={15} className="text-[#d4af37]" />
       </div>

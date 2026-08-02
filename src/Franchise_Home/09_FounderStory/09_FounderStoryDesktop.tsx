@@ -69,7 +69,7 @@ const getIconBgColor = (idx: number) => {
 
 export default function FounderStoryDesktop() {
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] dark:bg-[#050b14] bg-white">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -91,13 +91,13 @@ export default function FounderStoryDesktop() {
           />
         </div>
 
-        <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch dark">
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, margin: "-50px" }}
-            className="lg:col-span-3 relative rounded-[8px] overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-[#0a1128] h-full"
+            className="lg:col-span-3 relative rounded-[8px] overflow-hidden group shadow-xl bg-[#0a1128] border border-white/5 h-full hover:shadow-2xl transition-shadow duration-300"
           >
             <div className="relative z-10 p-10 flex flex-col gap-6 h-full min-h-[400px]">
               <div className="flex items-start justify-between">
@@ -147,19 +147,19 @@ export default function FounderStoryDesktop() {
               </div>
 
               <div className="flex-1 flex items-center">
-                <p className="text-white text-xl md:text-2xl leading-relaxed tracking-wide font-medium italic">
+                <p className="text-gray-900 dark:text-white text-xl md:text-2xl leading-relaxed tracking-wide font-medium italic">
                   "{founderStoryData.quote}"
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 pt-4 border-t border-white/10 mt-auto">
+              <div className="flex items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-white/10 mt-auto">
                 <img
                   src={founderStoryData.founder.avatar}
                   alt={founderStoryData.founder.name}
                   className="w-14 h-14 rounded-full object-cover border-2 border-[#d4af37]/60 shadow-lg shrink-0"
                 />
                 <div>
-                  <h4 className="text-white font-bold text-xl tracking-tight">
+                  <h4 className="text-gray-900 dark:text-white font-bold text-xl tracking-tight">
                     {founderStoryData.founder.name}
                   </h4>
                   <p className="text-[#d4af37] text-sm font-bold uppercase tracking-widest mt-0.5">
@@ -186,7 +186,7 @@ export default function FounderStoryDesktop() {
                   }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   key={stat.label}
-                  className="flex-1 bg-[#0a1128] border border-white/10 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-[0_8px_30px_rgb(0,0,0,0.08)] group hover:border-[#d4af37]/40 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-300 relative overflow-hidden"
+                  className="flex-1 bg-[#0a1128] border border-white/5 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-lg group hover:border-white/10 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-[#d4af37]/10 transition-colors duration-500" />
                   
@@ -205,14 +205,16 @@ export default function FounderStoryDesktop() {
                       </p>
                     </div>
 
-                    <div 
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
                       className={clsx(
                         "w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-white shadow-lg shrink-0",
                         getIconBgColor(idx)
                       )}
                     >
                       {getStatIcon(stat.label)}
-                    </div>
+                    </motion.div>
                   </div>
                 </motion.div>
               );

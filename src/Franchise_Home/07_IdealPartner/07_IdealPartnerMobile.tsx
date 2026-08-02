@@ -42,7 +42,7 @@ const stagger = {
 
 export default function IdealPartnerMobile() {
   return (
-    <section className="w-full px-4 py-10 relative overflow-hidden rounded-[8px] bg-white/40 dark:bg-[#050b14]/40 backdrop-blur-sm shadow-xl transition-colors duration-700 dark:shadow-none border border-gray-200/50 dark:border-white/5">
+    <section className="w-full px-4 py-10 relative overflow-hidden rounded-[8px] ">
       <motion.div
         variants={pulseGlow}
         animate="animate"

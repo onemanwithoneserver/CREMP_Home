@@ -53,7 +53,7 @@ function LeaderCard({
         }}
         className="relative w-full h-full [transform-style:preserve-3d] transition-shadow duration-500 rounded-[4px] shadow-xl"
       >
-        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-500 bg-white dark:bg-[#121c33] [backface-visibility:hidden] border border-gray-200 dark:border-gray-800">
+        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden shadow-sm group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-500 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl [backface-visibility:hidden] border border-gray-200/60 dark:border-[#d4af37]/20">
           <img
             src={member.avatar}
             alt={member.name}
@@ -64,10 +64,10 @@ function LeaderCard({
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/95 via-[#0a1128]/45 to-transparent opacity-85 group-hover:opacity-90 transition-opacity duration-500" />
 
           <div className="absolute top-4 right-4 z-20">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 shadow-lg">
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 shadow-lg">
               <span>View Profile</span>
               <RotateCw size={12} className="text-[#d4af37]" />
-            </div>
+            </motion.div>
           </div>
 
           <div className="absolute bottom-0 left-0 w-full p-6 flex flex-col justify-end z-10">
@@ -87,7 +87,7 @@ function LeaderCard({
           </div>
         </div>
 
-        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden px-5 py-6 bg-[#0a1128] border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 w-full h-full rounded-[4px] overflow-hidden px-5 py-6 bg-[#0a1128]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -103,7 +103,9 @@ function LeaderCard({
               </div>
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: [0, -20, 20, 0] }}
+              transition={{ duration: 0.4 }}
               onClick={(e) => {
                 e.stopPropagation();
                 onToggle();
@@ -112,7 +114,7 @@ function LeaderCard({
               title="Flip back"
             >
               <RotateCw size={14} className="text-[#d4af37]" />
-            </button>
+            </motion.button>
           </div>
 
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
@@ -153,7 +155,7 @@ export default function LeadershipDesktop() {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] ">
       <motion.div
         variants={pulseGlow}
         animate="animate"

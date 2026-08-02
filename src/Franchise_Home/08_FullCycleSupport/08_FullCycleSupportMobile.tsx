@@ -29,7 +29,7 @@ export default function FullCycleSupportMobile() {
   });
 
   return (
-    <section className="w-full py-12 overflow-hidden relative rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full py-12 overflow-hidden relative rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -62,18 +62,21 @@ export default function FullCycleSupportMobile() {
                 const Icon = item.icon;
 
                 return (
-                  <div
+                  <motion.div
                     key={`${copy}-${idx}`}
-                    className="relative hover:z-10 w-[160px] shrink-0 bg-white/95 dark:bg-[#121c33] backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 text-center flex flex-col items-center justify-center shadow-sm"
+                    whileHover={{ scale: 1.02 }}
+                    className="group relative hover:z-10 w-[160px] shrink-0 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300"
                   >
-                    <div
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
                       className={clsx(
-                        "w-12 h-12 rounded-[4px] flex items-center justify-center mb-3 shadow-sm",
+                        "w-12 h-12 rounded-[4px] flex items-center justify-center mb-3 shadow-sm relative z-10",
                         item.colorClass,
                       )}
                     >
                       <Icon size={20} strokeWidth={2} className="text-white" />
-                    </div>
+                    </motion.div>
 
                     <h4 className="text-[#0a1128] dark:text-white font-bold text-[14px] mb-1.5 whitespace-nowrap tracking-tight">
                       {item.title}
@@ -82,15 +85,15 @@ export default function FullCycleSupportMobile() {
                     <p className="text-gray-600 dark:text-gray-300 text-[12px] font-medium leading-snug line-clamp-2">
                       {item.description}
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
           ))}
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white dark:from-[#0a1128] to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white dark:from-[#0a1128] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#f9fafb]/80 dark:from-[#050b14]/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#f9fafb]/80 dark:from-[#050b14]/80 to-transparent z-10" />
       </div>
     </section>
   );

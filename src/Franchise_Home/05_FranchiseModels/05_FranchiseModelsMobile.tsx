@@ -229,7 +229,7 @@ export default function FranchiseModelsMobile() {
                   <motion.div className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]" animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
                 </div>
                 <div className="flex flex-col gap-3 relative z-10">
-                  {leftMetrics.map((stat, index) => (
+                  {leftMetrics.map((stat) => (
                     <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px]">
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div whileHover={{ scale: 1.08, rotate: 4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>
@@ -287,7 +287,7 @@ export default function FranchiseModelsMobile() {
                 <motion.div className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]" animate={{ top: ["0%", "100%"], opacity: [0, 1, 0] }} transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }} />
               </div>
               <div className="flex flex-col gap-3 relative z-10">
-                {rightMetrics.map((stat, index) => (
+                {rightMetrics.map((stat) => (
                   <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0a1128]/90 backdrop-blur-sm flex items-center justify-between gap-3 min-h-[58px]">
                     <div className="flex items-center gap-3 min-w-0">
                       <motion.div whileHover={{ scale: 1.08, rotate: -4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>

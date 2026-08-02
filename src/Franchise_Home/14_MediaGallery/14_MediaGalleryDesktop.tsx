@@ -9,7 +9,6 @@ import {
   ImageIcon,
   ChevronLeft,
   ChevronRight,
-  ChevronDown,
   Film,
   Smartphone,
   FileCheck2,
@@ -55,7 +54,7 @@ export default function MediaGalleryDesktop() {
   const documents = filteredItems.filter((item) => item.format === "document");
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none min-h-screen">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px]  backdrop-blur-sm transition-colors duration-700 dark:bg-[#050b14]/40 dark:shadow-none min-h-screen ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -317,9 +316,9 @@ function MediaCard({
 
         {(item.format === "video" || item.format === "short_video") && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37]">
+            <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-all duration-500 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] pointer-events-auto">
               <Play size={20} className="ml-0.5" fill="currentColor" />
-            </div>
+            </motion.div>
           </div>
         )}
       </motion.div>
@@ -329,7 +328,7 @@ function MediaCard({
   return (
     <motion.div
       variants={itemVariants}
-      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-gray-700 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
+      className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
     >
       <div className="w-11 h-11 rounded-[4px] bg-gray-50 dark:bg-gray-800/80 flex items-center justify-center shadow-inner shrink-0 group-hover:bg-[#d4af37]/10 border border-gray-100 dark:border-gray-700 transition-colors">
         <FileText size={22} className="text-[#d4af37]" />

@@ -56,7 +56,7 @@ const floatAnimation: Variants = {
 
 export default function MobileEcosystem() {
     return (
-        <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none border border-gray-200/50 dark:border-white/5">
+        <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none ">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
