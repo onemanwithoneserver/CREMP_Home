@@ -222,9 +222,9 @@ export default function FranchiseModelsDesktop() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col h-full bg-white dark:bg-[#121c33] rounded-[4px] relative overflow-visible"
+              className="flex flex-col h-full rounded-[4px] relative overflow-visible"
             >
-              <div className="bg-white/60 dark:bg-[#0b1b42]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
+              <div className="bg-[#0b1b42] p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-[#d4af37]/20 shadow-[0_4px_12px_rgba(0,0,0,0.1)] min-h-[82px]">
                 <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
                 <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
                 <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -233,7 +233,7 @@ export default function FranchiseModelsDesktop() {
                     initial={{ rotate: -90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
                     transition={{ type: "spring", delay: 0.1 }}
-                    className="w-10 h-10 rounded-[4px] bg-white/80 dark:bg-white/5 border border-[#d4af37]/30 shadow-sm backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
+                    className="w-10 h-10 rounded-[4px] bg-white/5 border border-[#d4af37]/60 shadow-[0_0_12px_rgba(212,175,55,0.3)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
                   >
                     <selected.icon size={20} />
                   </motion.div>
@@ -241,7 +241,7 @@ export default function FranchiseModelsDesktop() {
                     <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest block leading-none mb-1">
                       {franchiseModelsUI.specificationLabel}
                     </span>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight truncate">
+                    <h3 className="text-lg font-bold text-white leading-tight truncate">
                       {selected.name}
                     </h3>
                   </div>
@@ -375,8 +375,8 @@ export default function FranchiseModelsDesktop() {
             </AnimatePresence>
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-3 bg-white dark:bg-[#121c33] rounded-[4px] flex flex-col h-full relative overflow-hidden">
-          <div className="bg-white/60 dark:bg-[#0b1b42]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
+        <div className="col-span-12 lg:col-span-3 rounded-[4px] flex flex-col h-full relative overflow-hidden">
+          <div className="bg-[#0b1b42] p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-[#d4af37]/20 shadow-[0_4px_12px_rgba(0,0,0,0.1)] min-h-[82px]">
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
             <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -385,7 +385,7 @@ export default function FranchiseModelsDesktop() {
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 transition={{ type: "spring", delay: 0.1 }}
-                className="w-10 h-10 rounded-[4px] bg-white/80 dark:bg-white/5 border border-[#d4af37]/30 shadow-sm backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
+                className="w-10 h-10 rounded-[4px] bg-white/5 border border-[#d4af37]/60 shadow-[0_0_12px_rgba(212,175,55,0.3)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
               >
                 <TrendingUp size={20} />
               </motion.div>
@@ -393,7 +393,7 @@ export default function FranchiseModelsDesktop() {
                 <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest block leading-none mb-1">
                   FINANCIAL METRICS
                 </span>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight truncate">
+                <h3 className="text-lg font-bold text-white leading-tight truncate">
                   {revenueROIData.sectionLabel}
                 </h3>
               </div>
