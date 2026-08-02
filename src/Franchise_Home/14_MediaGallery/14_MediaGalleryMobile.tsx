@@ -1,4 +1,4 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -12,6 +12,7 @@ import {
   Film,
   Smartphone,
   FileCheck2,
+  ChevronDown,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -25,6 +26,7 @@ const pulseGlow: Variants = {
 
 export default function MediaGalleryMobile() {
   const filteredItems = mediaGalleryData.items;
+  const [isDocsExpanded, setIsDocsExpanded] = useState(false);
 
   const images = filteredItems.filter((item) => item.format === "image");
   const videos = filteredItems.filter((item) => item.format === "video");
@@ -110,17 +112,38 @@ export default function MediaGalleryMobile() {
 
           {documents.length > 0 && (
             <div className="flex flex-col gap-2.5 pt-1">
-              <div className="flex items-center gap-2 text-xs font-bold text-gray-900 dark:text-white px-0.5">
-                <div className="w-5 h-5 rounded-[2px] bg-emerald-500 flex items-center justify-center text-white shrink-0 shadow-xs">
-                  <FileCheck2 size={12} />
+              <button 
+                onClick={() => setIsDocsExpanded(!isDocsExpanded)}
+                className="flex items-center justify-between w-full text-left focus-visible:outline-none"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold text-gray-900 dark:text-white px-0.5">
+                  <div className="w-5 h-5 rounded-[2px] bg-emerald-500 flex items-center justify-center text-white shrink-0 shadow-xs">
+                    <FileCheck2 size={12} />
+                  </div>
+                  <span>Investor & Operation Documents</span>
                 </div>
-                <span>Investor & Operation Documents</span>
-              </div>
-              <div className="flex flex-col gap-2">
-                {documents.map((item) => (
-                  <DocumentCard key={item.id} item={item} />
-                ))}
-              </div>
+                <motion.div animate={{ rotate: isDocsExpanded ? 180 : 0 }}>
+                  <ChevronDown size={14} className="text-gray-500 dark:text-gray-400" />
+                </motion.div>
+              </button>
+              <AnimatePresence initial={false}>
+                {isDocsExpanded && (
+                  <motion.div
+                    key="docs-content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="flex flex-col gap-2 pt-1 pb-1">
+                      {documents.map((item) => (
+                        <DocumentCard key={item.id} item={item} />
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </div>

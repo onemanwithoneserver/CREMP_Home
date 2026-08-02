@@ -12,6 +12,7 @@ import {
   Film,
   Smartphone,
   FileCheck2,
+  ChevronDown,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -45,6 +46,7 @@ const itemVariants = {
 
 export default function MediaGalleryDesktop() {
   const filteredItems = mediaGalleryData.items;
+  const [isDocsExpanded, setIsDocsExpanded] = useState(false);
 
   const images = filteredItems.filter((item) => item.format === "image");
   const videos = filteredItems.filter((item) => item.format === "video");
@@ -143,17 +145,40 @@ export default function MediaGalleryDesktop() {
 
               {documents.length > 0 && (
                 <div className="flex flex-col gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
-                    <div className="w-5 h-5 rounded-[2px] bg-emerald-500 flex items-center justify-center text-white shrink-0 shadow-xs">
-                      <FileCheck2 size={13} />
+                  <button 
+                    onClick={() => setIsDocsExpanded(!isDocsExpanded)}
+                    className="flex items-center justify-between w-full text-left focus-visible:outline-none group"
+                  >
+                    <div className="flex items-center gap-2 text-base font-bold text-gray-900 dark:text-white">
+                      <div className="w-5 h-5 rounded-[2px] bg-emerald-500 flex items-center justify-center text-white shrink-0 shadow-xs">
+                        <FileCheck2 size={13} />
+                      </div>
+                      <span>Investor & Operation Documents</span>
                     </div>
-                    <span>Investor & Operation Documents</span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {documents.map((item) => (
-                      <MediaCard key={item.id} item={item} />
-                    ))}
-                  </div>
+                    <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
+                      <motion.div animate={{ rotate: isDocsExpanded ? 180 : 0 }}>
+                        <ChevronDown size={14} />
+                      </motion.div>
+                    </div>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isDocsExpanded && (
+                      <motion.div 
+                        key="docs-content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2 pb-2">
+                          {documents.map((item) => (
+                            <MediaCard key={item.id} item={item} />
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               )}
             </motion.div>
@@ -327,7 +352,6 @@ function MediaCard({
 
   return (
     <motion.div
-      variants={itemVariants}
       className="relative overflow-hidden rounded-[4px] shadow-md hover:shadow-xl bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
     >
       <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-11 h-11 rounded-[4px] bg-gray-50 dark:bg-gray-800/80 flex items-center justify-center shadow-inner shrink-0 group-hover:bg-[#d4af37]/10 border border-gray-100 dark:border-gray-700 transition-colors">
