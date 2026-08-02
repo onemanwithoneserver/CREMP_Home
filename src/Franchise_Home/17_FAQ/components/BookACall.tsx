@@ -496,16 +496,16 @@ export function BookACall() {
                     initial={{ scale: 0 }}
                     animate={{ scale: [0, 1.1, 1] }}
                     transition={{ duration: 0.4 }}
-                    className="w-16 h-16 rounded-[8px] bg-[#0b1b42] dark:bg-[#d4af37] flex items-center justify-center text-white dark:text-[#0b1b42] shadow-[0_8px_20px_rgba(11,27,66,0.3)] dark:shadow-[0_8px_20px_rgba(212,175,55,0.3)] mb-2 relative overflow-hidden"
+                    className="w-16 h-16 rounded-full bg-emerald-500 dark:bg-emerald-500 flex items-center justify-center text-white shadow-[0_8px_20px_rgba(16,185,129,0.4)] mb-2 relative overflow-hidden"
                   >
                     <div className="absolute top-0 inset-x-0 h-[1px] bg-white/40" />
                     <CheckCircle2 size={32} strokeWidth={2.5} />
                   </motion.div>
                   
-                  <motion.div animate={{ y: [-10, -20], opacity: [0, 1, 0], scale: [0, 1, 0] }} transition={{ duration: 1.2, delay: 0.1 }} className="absolute -top-3 -right-3 text-[#0b1b42] dark:text-white">
+                  <motion.div animate={{ y: [-10, -20], opacity: [0, 1, 0], scale: [0, 1, 0] }} transition={{ duration: 1.2, delay: 0.1 }} className="absolute -top-3 -right-3 text-[#d4af37]">
                     <Sparkles size={16} fill="currentColor" />
                   </motion.div>
-                  <motion.div animate={{ y: [10, 20], opacity: [0, 1, 0], scale: [0, 1, 0] }} transition={{ duration: 1.2, delay: 0.2 }} className="absolute -bottom-1 -left-4 text-[#1c4ed8] dark:text-[#d4af37]">
+                  <motion.div animate={{ y: [10, 20], opacity: [0, 1, 0], scale: [0, 1, 0] }} transition={{ duration: 1.2, delay: 0.2 }} className="absolute -bottom-1 -left-4 text-[#d4af37]">
                     <Sparkles size={12} fill="currentColor" />
                   </motion.div>
                 </div>
@@ -515,7 +515,7 @@ export function BookACall() {
                     Booking Confirmed!
                   </h4>
                   <p className="text-[11px] text-gray-600 dark:text-gray-300 font-medium leading-relaxed max-w-[220px] mt-1">
-                    You're scheduled for <span className="text-[#0b1b42] dark:text-[#d4af37] font-black">{selectedDateObj?.dayStr} at {selectedSlot}</span>. Check your inbox for the calendar invite.
+                    You're scheduled for <span className="text-[#d4af37] font-black">{selectedDateObj?.dayStr} at {selectedSlot}</span>. Check your inbox for the calendar invite.
                   </p>
                 </div>
               </motion.div>
