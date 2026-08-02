@@ -12,6 +12,7 @@ import {
   Tag,
   Zap,
   Award,
+  Sparkles,
   BarChart3,
   Clock,
   FileCheck,
@@ -49,6 +50,7 @@ export interface ModelSpecificationItem {
   color: string;
   extra?: LucideIcon;
   hasStaffModal?: boolean;
+  badge?: string;
 }
 
 export interface RevenueCardItem {
@@ -563,6 +565,7 @@ export const getModelSpecifications = (
     mobileLabel: "INVESTMENT",
     value: model.investment,
     color: "bg-[#059669] text-white",
+    badge: "Estimated",
   },
   {
     icon: Maximize2,
@@ -570,6 +573,7 @@ export const getModelSpecifications = (
     mobileLabel: "AREA",
     value: model.area,
     color: "bg-[#7c3aed] text-white",
+    badge: "Carpet",
   },
   {
     icon: Users,
@@ -579,6 +583,7 @@ export const getModelSpecifications = (
     color: "bg-[#d97706] text-white",
     extra: Info,
     hasStaffModal: true,
+    badge: "Details",
   },
   {
     icon: MapPin,
@@ -586,6 +591,38 @@ export const getModelSpecifications = (
     mobileLabel: "LOCATION",
     value: model.location,
     color: "bg-[#0284c7] text-white",
+    badge: "Prime",
+  },
+];
+
+export const getRightMetrics = () => [
+  {
+    icon: BarChart3,
+    label: "YEAR 1",
+    value: revenueROIData.revenueCards[0]?.range || "12–18%",
+    color: "bg-[#d97706] text-white",
+    badge: "Projected",
+  },
+  {
+    icon: TrendingUp,
+    label: "YEAR 2",
+    value: revenueROIData.revenueCards[1]?.range || "22–28%",
+    color: "bg-[#059669] text-white",
+    badge: "Projected",
+  },
+  {
+    icon: Target,
+    label: "YEAR 3",
+    value: revenueROIData.revenueCards[2]?.range || "28–34%",
+    color: "bg-[#0284c7] text-white",
+    badge: "Projected",
+  },
+  {
+    icon: Sparkles,
+    label: "PAYBACK PERIOD",
+    value: revenueROIData.paybackPeriod.title || "18–24 Months",
+    color: "bg-[#d4af37] text-[#0a1128]",
+    badge: "Breakeven",
   },
 ];
 

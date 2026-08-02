@@ -1,18 +1,12 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  BarChart3,
   ChevronLeft,
   ChevronRight,
   Info,
-  Maximize2,
-  MapPin,
   MousePointerClick,
-  Sparkles,
-  Target,
   TrendingUp,
   Users,
-  Wallet,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -22,6 +16,8 @@ import {
   getStaffBadgeColor,
   revenueROIData,
   viewOptions,
+  getModelSpecifications,
+  getRightMetrics,
   type CostBreakdownItem,
 } from "./data";
 import Dropdown from "../../components/commonfiles/Dropdown";
@@ -203,75 +199,8 @@ export default function FranchiseModelsMobile() {
     (m) => m.id === activeModel,
   )!;
 
-  const leftMetrics = useMemo(
-    () => [
-      {
-        icon: Wallet,
-        label: "INVESTMENT",
-        value: selected.investment,
-        color: "bg-[#059669] text-white",
-        badge: "Estimated",
-      },
-      {
-        icon: Maximize2,
-        label: "AREA REQUIRED",
-        value: selected.area,
-        color: "bg-[#7c3aed] text-white",
-        badge: "Carpet",
-      },
-      {
-        icon: Users,
-        label: "STAFF NEEDED",
-        value: `${selected.staffCount} members`,
-        color: "bg-[#d97706] text-white",
-        badge: "Details",
-        hasStaffModal: true,
-        extra: Info,
-      },
-      {
-        icon: MapPin,
-        label: "IDEAL LOCATION",
-        value: selected.location,
-        color: "bg-[#0284c7] text-white",
-        badge: "Prime",
-      },
-    ],
-    [selected],
-  );
-
-  const rightMetrics = useMemo(
-    () => [
-      {
-        icon: BarChart3,
-        label: "YEAR 1",
-        value: revenueROIData.revenueCards[0]?.range || "12–18%",
-        color: "bg-[#d97706] text-white",
-        badge: "Projected",
-      },
-      {
-        icon: TrendingUp,
-        label: "YEAR 2",
-        value: revenueROIData.revenueCards[1]?.range || "22–28%",
-        color: "bg-[#059669] text-white",
-        badge: "Projected",
-      },
-      {
-        icon: Target,
-        label: "YEAR 3",
-        value: revenueROIData.revenueCards[2]?.range || "28–34%",
-        color: "bg-[#0284c7] text-white",
-        badge: "Projected",
-      },
-      {
-        icon: Sparkles,
-        label: "PAYBACK PERIOD",
-        value: revenueROIData.paybackPeriod.title || "18–24 Months",
-        color: "bg-[#d4af37] text-[#0a1128]",
-        badge: "Breakeven",
-      },
-    ],
-    [],
-  );
+  const leftMetrics = useMemo(() => getModelSpecifications(selected), [selected]);
+  const rightMetrics = useMemo(() => getRightMetrics(), []);
 
   const tabsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);

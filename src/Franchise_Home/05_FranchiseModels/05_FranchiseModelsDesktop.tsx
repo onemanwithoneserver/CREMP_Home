@@ -1,23 +1,14 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  BarChart3,
-  Info,
-  Maximize2,
-  MapPin,
-  Sparkles,
-  Target,
-  TrendingUp,
-  Users,
-  Wallet,
-  X,
-} from "lucide-react";
+import { Info, TrendingUp, Users, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   franchiseModelsData,
   franchiseModelsUI,
   getStaffBadgeColor,
   revenueROIData,
+  getModelSpecifications,
+  getRightMetrics,
   type CostBreakdownItem,
 } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -168,10 +159,10 @@ const DonutChartWithLegend = ({
               whileHover={{ x: 4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={clsx(
-                "flex items-center justify-between p-2.5 px-3.5 rounded-[4px] transition-all duration-300 cursor-pointer border",
+                "flex items-center justify-between p-2.5 px-3.5 rounded-[4px] bg-white dark:bg-[#121c33] transition-all duration-300 cursor-pointer border",
                 isHovered
                   ? "bg-white dark:bg-[#121c33] shadow-md border-gray-300 dark:border-[#d4af37]/40 scale-[1.02]"
-                  : "bg-gray-50 dark:bg-[#0a1128] border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700",
+                  : "border-transparent",
               )}
             >
               <div className="flex items-center gap-3">
@@ -212,74 +203,10 @@ export default function FranchiseModelsDesktop() {
   )!;
 
   const leftMetrics = useMemo(
-    () => [
-      {
-        icon: Wallet,
-        label: "INVESTMENT",
-        value: selected.investment,
-        color: "bg-[#059669] text-white",
-        badge: "Estimated",
-      },
-      {
-        icon: Maximize2,
-        label: "AREA REQUIRED",
-        value: selected.area,
-        color: "bg-[#7c3aed] text-white",
-        badge: "Carpet",
-      },
-      {
-        icon: Users,
-        label: "STAFF NEEDED",
-        value: `${selected.staffCount} members`,
-        color: "bg-[#d97706] text-white",
-        badge: "Details",
-        hasStaffModal: true,
-        extra: Info,
-      },
-      {
-        icon: MapPin,
-        label: "IDEAL LOCATION",
-        value: selected.location,
-        color: "bg-[#0284c7] text-white",
-        badge: "Prime",
-      },
-    ],
+    () => getModelSpecifications(selected),
     [selected],
   );
-
-  const rightMetrics = useMemo(
-    () => [
-      {
-        icon: BarChart3,
-        label: "YEAR 1",
-        value: revenueROIData.revenueCards[0]?.range || "12–18%",
-        color: "bg-[#d97706] text-white",
-        badge: "Projected",
-      },
-      {
-        icon: TrendingUp,
-        label: "YEAR 2",
-        value: revenueROIData.revenueCards[1]?.range || "22–28%",
-        color: "bg-[#059669] text-white",
-        badge: "Projected",
-      },
-      {
-        icon: Target,
-        label: "YEAR 3",
-        value: revenueROIData.revenueCards[2]?.range || "28–34%",
-        color: "bg-[#0284c7] text-white",
-        badge: "Projected",
-      },
-      {
-        icon: Sparkles,
-        label: "PAYBACK PERIOD",
-        value: revenueROIData.paybackPeriod.title || "18–24 Months",
-        color: "bg-[#d4af37] text-[#0a1128]",
-        badge: "Breakeven",
-      },
-    ],
-    [],
-  );
+  const rightMetrics = useMemo(() => getRightMetrics(), []);
 
   return (
     <section className="w-full px-8 py-16 flex flex-col gap-6 relative bg-white dark:bg-[#0a1128] transition-colors duration-300">
@@ -328,8 +255,8 @@ export default function FranchiseModelsDesktop() {
                     className={clsx(
                       "w-7 h-7 rounded-[2px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
                       isActive
-                        ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 border border-[#d4af37]/60 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]"
-                        : "bg-white/80 dark:bg-[#0a1128]/80 text-gray-500 border border-transparent group-hover:border-gray-200 dark:group-hover:border-gray-700 shadow-sm",
+                        ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10  text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]"
+                        : "bg-white/80 dark:bg-[#0a1128]/80 text-gray-500  group-hover:border-gray-200 dark:group-hover:border-gray-700 shadow-sm",
                     )}
                     animate={
                       isActive
@@ -384,19 +311,19 @@ export default function FranchiseModelsDesktop() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col h-full bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm relative overflow-visible"
+              className="flex flex-col h-full bg-white dark:bg-[#121c33] rounded-[4px] relative overflow-visible"
             >
-              <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[82px]">
-                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
-                <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/15 rounded-full blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-blue-500/15 rounded-full blur-2xl pointer-events-none" />
+              <div className="bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
+                <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
 
                 <div className="flex items-center gap-3 relative z-10">
                   <motion.div
                     initial={{ rotate: -90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
                     transition={{ type: "spring", delay: 0.1 }}
-                    className="w-10 h-10 rounded-[4px] bg-gradient-to-br from-[#d4af37]/25 via-white/10 to-[#d4af37]/10 border border-[#d4af37]/50 shadow-[0_0_16px_rgba(212,175,55,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
+                    className="w-10 h-10 rounded-[4px] bg-white/80 dark:bg-white/5 border border-[#d4af37]/30 shadow-sm backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
                   >
                     <selected.icon size={20} />
                   </motion.div>
@@ -404,7 +331,7 @@ export default function FranchiseModelsDesktop() {
                     <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest block leading-none mb-1">
                       {franchiseModelsUI.specificationLabel}
                     </span>
-                    <h3 className="text-lg font-bold text-white leading-tight truncate">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight truncate">
                       {selected.name}
                     </h3>
                   </div>
@@ -415,7 +342,6 @@ export default function FranchiseModelsDesktop() {
                 <div className="flex flex-col gap-3.5 relative z-10">
                   <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
-                    <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
                     <motion.div
                       className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
                       animate={{
@@ -598,18 +524,18 @@ export default function FranchiseModelsDesktop() {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-3 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] shadow-sm flex flex-col h-full relative overflow-hidden">
-          <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[82px]">
-            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
-            <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/15 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-emerald-500/15 rounded-full blur-2xl pointer-events-none" />
+        <div className="col-span-12 lg:col-span-3 bg-white dark:bg-[#121c33] rounded-[4px] flex flex-col h-full relative overflow-hidden">
+          <div className="bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl p-4 sm:p-5 flex items-center justify-between shrink-0 relative overflow-hidden rounded-t-[4px] border-b border-gray-200/80 dark:border-[#d4af37]/20 shadow-sm min-h-[82px]">
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
+            <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
 
             <div className="flex items-center gap-3 relative z-10">
               <motion.div
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 transition={{ type: "spring", delay: 0.1 }}
-                className="w-10 h-10 rounded-[4px] bg-gradient-to-br from-[#d4af37]/25 via-white/10 to-[#d4af37]/10 border border-[#d4af37]/50 shadow-[0_0_16px_rgba(212,175,55,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
+                className="w-10 h-10 rounded-[4px] bg-white/80 dark:bg-white/5 border border-[#d4af37]/30 shadow-sm backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
               >
                 <TrendingUp size={20} />
               </motion.div>
@@ -617,7 +543,7 @@ export default function FranchiseModelsDesktop() {
                 <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest block leading-none mb-1">
                   FINANCIAL METRICS
                 </span>
-                <h3 className="text-lg font-bold text-white leading-tight truncate">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight truncate">
                   {revenueROIData.sectionLabel}
                 </h3>
               </div>
@@ -628,7 +554,6 @@ export default function FranchiseModelsDesktop() {
             <div className="flex flex-col gap-3.5 relative z-10">
               <div className="absolute left-[36px] -translate-x-1/2 top-[24px] bottom-[24px] w-[2px] pointer-events-none z-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
-                <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
                 <motion.div
                   className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
                   animate={{
@@ -643,46 +568,75 @@ export default function FranchiseModelsDesktop() {
                 />
               </div>
 
-              {rightMetrics.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0a1128] border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px]"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <motion.div
-                      whileHover={{ scale: 1.08, rotate: -4 }}
-                      className={clsx(
-                        "w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm",
-                        stat.color,
-                      )}
-                    >
-                      <stat.icon size={18} strokeWidth={2.2} />
-                    </motion.div>
+              {rightMetrics.map((stat) => {
+                const isHighlight = stat.badge === "Breakeven";
+                return (
+                  <motion.div
+                    key={stat.label}
+                    animate={
+                      isHighlight
+                        ? {
+                            borderColor: [
+                              "rgba(212,175,55,0.3)",
+                              "rgba(212,175,55,0.8)",
+                              "rgba(212,175,55,0.3)",
+                            ],
+                            boxShadow: [
+                              "0px 0px 0px rgba(212,175,55,0)",
+                              "0px 0px 12px rgba(212,175,55,0.3)",
+                              "0px 0px 0px rgba(212,175,55,0)",
+                            ],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className={clsx(
+                      "p-3 sm:p-3.5 rounded-[4px] transition-all duration-300 flex items-center justify-between gap-3 group cursor-default relative z-10 min-h-[64px]",
+                      isHighlight
+                        ? "bg-gradient-to-r from-[#d4af37]/10 to-transparent border border-[#d4af37]/50 dark:from-[#d4af37]/15 dark:to-[#0a1128]"
+                        : "bg-gray-50/90 dark:bg-[#0a1128] border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 shadow-sm",
+                    )}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <motion.div
+                        whileHover={{ scale: 1.08, rotate: -4 }}
+                        className={clsx(
+                          "w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm",
+                          stat.color,
+                        )}
+                      >
+                        <stat.icon size={18} strokeWidth={2.2} />
+                      </motion.div>
 
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
-                        {stat.label}
-                      </span>
-                      <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate">
-                        {stat.value}
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
+                          {stat.label}
+                        </span>
+                        <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate">
+                          {stat.value}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span
+                        className={clsx(
+                          "text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border",
+                          stat.badge === "Breakeven"
+                            ? "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/40"
+                            : "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60",
+                        )}
+                      >
+                        {stat.badge}
                       </span>
                     </div>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <span
-                      className={clsx(
-                        "text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border",
-                        stat.badge === "Breakeven"
-                          ? "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/40"
-                          : "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60",
-                      )}
-                    >
-                      {stat.badge}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
