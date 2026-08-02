@@ -42,7 +42,7 @@ const stagger = {
 
 export default function IdealPartnerDesktop() {
   return (
-    <section className="w-full px-6 py-12 relative overflow-hidden rounded-[8px] bg-gray-50 shadow-xl transition-colors duration-700 dark:bg-[#0a1128] dark:shadow-none">
+    <section className="w-full px-6 py-12 relative overflow-hidden rounded-[8px] bg-white/40 dark:bg-[#050b14]/40 backdrop-blur-sm shadow-xl transition-colors duration-700 dark:shadow-none border border-gray-200/50 dark:border-white/5">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -74,8 +74,13 @@ export default function IdealPartnerDesktop() {
               <motion.div
                 key={item.title}
                 variants={fadeInUp}
+                whileHover={{
+                  scale: 1.02,
+                  y: -4,
+                  transition: { type: "spring", stiffness: 400, damping: 25 },
+                }}
                 className={clsx(
-                  "rounded-[4px] border border-gray-200 dark:border-gray-800 p-5 flex flex-col bg-white dark:bg-[#121c33] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group",
+                  "rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 p-5 flex flex-col bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 group",
                   getCardStyles(item.intent),
                 )}
               >
@@ -143,11 +148,17 @@ export default function IdealPartnerDesktop() {
               <motion.div
                 key={item.title}
                 variants={fadeInUp}
+                whileHover={{
+                  scale: 1.03,
+                  y: -2,
+                  transition: { type: "spring", stiffness: 400, damping: 25 },
+                }}
                 className={clsx(
-                  "rounded-[4px] border border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center gap-3.5 bg-white dark:bg-[#121c33] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group",
+                  "rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 px-4 py-3 flex items-center gap-3.5 bg-white/70 dark:bg-[#0a1128]/70 backdrop-blur-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 group relative overflow-hidden",
                   getCardStyles(item.intent),
                 )}
               >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent dark:via-white/5 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -180,12 +191,17 @@ export default function IdealPartnerDesktop() {
         >
           <motion.div
             variants={fadeInUp}
-            className="w-full bg-white dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 shadow-sm flex items-center gap-5 group"
+            whileHover={{
+              scale: 1.01,
+              transition: { type: "spring", stiffness: 400, damping: 25 },
+            }}
+            className="w-full bg-[#0a1128] border border-[#d4af37]/40 rounded-[4px] p-6 shadow-[0_8px_30px_rgba(10,17,40,0.3)] dark:shadow-[0_8px_30px_rgba(212,175,55,0.1)] flex items-center gap-5 group relative overflow-hidden"
           >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#d4af37]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
             <motion.div
               whileHover={{ scale: 1.1, rotate: 10 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="w-11 h-11 rounded-[4px] bg-[#0a1128] border border-[#d4af37]/30 text-white flex items-center justify-center shrink-0 shadow-sm"
+              className="w-12 h-12 rounded-[4px] bg-[#0a1128] border border-[#d4af37]/50 text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.3)] relative z-10"
             >
               <idealPartnerData.additionalExpectations.icon
                 size={20}
@@ -193,11 +209,11 @@ export default function IdealPartnerDesktop() {
                 strokeWidth={2}
               />
             </motion.div>
-            <div className="flex flex-col">
-              <h4 className="text-[#0a1128] dark:text-white font-bold text-base tracking-tight mb-0.5">
+            <div className="flex flex-col relative z-10">
+              <h4 className="text-white font-bold text-base tracking-tight mb-1 group-hover:text-[#d4af37] transition-colors duration-300">
                 {idealPartnerData.additionalExpectations.title}
               </h4>
-              <p className="text-gray-600 dark:text-gray-300 font-medium text-[13.5px] leading-relaxed">
+              <p className="text-gray-300 font-medium text-[13.5px] leading-relaxed">
                 {idealPartnerData.additionalExpectations.text}
               </p>
             </div>

@@ -2,17 +2,17 @@ import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { mediaGalleryData, type MediaItem } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-import { 
-  Play, 
-  FileText, 
-  Download, 
-  ChevronDown, 
-  ChevronLeft, 
-  ChevronRight, 
-  ImageIcon, 
-  Film, 
-  Smartphone, 
-  FileCheck2 
+import {
+  Play,
+  FileText,
+  Download,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ImageIcon,
+  Film,
+  Smartphone,
+  FileCheck2,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -24,30 +24,14 @@ const pulseGlow: Variants = {
   },
 };
 
-
 export default function MediaGalleryMobile() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const filterRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
-        setIsFilterOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const filteredItems = mediaGalleryData.items.filter((item) => {
-    if (activeCategory === "All") return true;
-    return item.category === activeCategory;
-  });
+  const filteredItems = mediaGalleryData.items;
 
   const images = filteredItems.filter((item) => item.format === "image");
   const videos = filteredItems.filter((item) => item.format === "video");
-  const shortVideos = filteredItems.filter((item) => item.format === "short_video");
+  const shortVideos = filteredItems.filter(
+    (item) => item.format === "short_video",
+  );
   const documents = filteredItems.filter((item) => item.format === "document");
 
   return (
@@ -64,66 +48,25 @@ export default function MediaGalleryMobile() {
       />
 
       <div className="relative z-10 flex flex-col gap-5">
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1.5 items-center text-center">
           <SectionHeader
             overline={mediaGalleryData.sectionLabel}
             title="Experience the Brand"
-            align="left"
+            align="center"
           />
-          <p className="text-xs text-gray-600 dark:text-gray-400">
-            Explore our curated gallery of outlets, signature products, videos, and reels.
+          <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
+            Explore our curated gallery of outlets, signature products, videos,
+            and reels.
           </p>
-        </div>
-
-        <div className="relative z-40" ref={filterRef}>
-          <button
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="w-full flex items-center justify-between px-3.5 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-[4px] text-gray-900 dark:text-white font-semibold text-xs shadow-sm active:scale-[0.99] transition-transform"
-          >
-            <span className="truncate">
-              {activeCategory === "All" ? "Filter by Category" : activeCategory}
-            </span>
-            <ChevronDown
-              size={16}
-              className={clsx("transition-transform duration-300 text-gray-500", isFilterOpen && "rotate-180")}
-            />
-          </button>
-
-          <AnimatePresence>
-            {isFilterOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                className="absolute top-full left-0 right-0 mt-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-[4px] shadow-xl overflow-hidden z-50 max-h-[260px] overflow-y-auto scrollbar-hide"
-              >
-                {mediaGalleryData.categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => {
-                      setActiveCategory(cat);
-                      setIsFilterOpen(false);
-                    }}
-                    className={clsx(
-                      "w-full text-left px-4 py-2.5 text-xs transition-colors border-b border-gray-100 dark:border-gray-700/60 last:border-0",
-                      activeCategory === cat
-                        ? "bg-gray-100 dark:bg-gray-700/80 text-[#d4af37] font-bold"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/40"
-                    )}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
 
         <div className="flex flex-col gap-5">
           {filteredItems.length === 0 && (
             <div className="text-center py-14 bg-gray-50 dark:bg-gray-800/40 rounded-[4px] border border-dashed border-gray-200 dark:border-gray-700 p-6 flex flex-col items-center">
               <ImageIcon size={32} className="text-gray-400 opacity-40 mb-2" />
-              <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">No media found for this category.</p>
+              <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                No media found for this category.
+              </p>
               <button
                 onClick={() => setActiveCategory("All")}
                 className="mt-3 px-3 py-1.5 bg-[#0a1128] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold rounded-[2px]"
@@ -233,7 +176,12 @@ function MobileMediaSwipeSection({
   return (
     <div className="flex flex-col gap-2 relative">
       <div className="flex items-center gap-2 text-xs font-bold text-gray-900 dark:text-white px-0.5">
-        <div className={clsx("w-5 h-5 rounded-[2px] flex items-center justify-center text-white shrink-0 shadow-xs", iconBg)}>
+        <div
+          className={clsx(
+            "w-5 h-5 rounded-[2px] flex items-center justify-center text-white shrink-0 shadow-xs",
+            iconBg,
+          )}
+        >
           <Icon size={12} />
         </div>
         <span>{title}</span>
@@ -251,7 +199,7 @@ function MobileMediaSwipeSection({
               className={clsx(
                 "relative shrink-0 snap-start overflow-hidden rounded-[4px] shadow-sm bg-gray-900 border border-gray-800/40 select-none",
                 cardWidth,
-                aspectRatio
+                aspectRatio,
               )}
             >
               <img
@@ -275,7 +223,11 @@ function MobileMediaSwipeSection({
               {(item.format === "video" || item.format === "short_video") && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg">
-                    <Play size={13} className="ml-0.5 text-[#d4af37]" fill="currentColor" />
+                    <Play
+                      size={13}
+                      className="ml-0.5 text-[#d4af37]"
+                      fill="currentColor"
+                    />
                   </div>
                 </div>
               )}
@@ -323,7 +275,7 @@ function DocumentCard({ item }: { item: MediaItem }) {
         </span>
       </div>
 
-      <button 
+      <button
         aria-label="Download Document"
         className="w-7 h-7 rounded-[2px] bg-gray-50 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 shrink-0"
       >
