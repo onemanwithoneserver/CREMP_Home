@@ -91,9 +91,6 @@ const DonutChartWithLegend = ({
                     <span className={clsx("font-semibold leading-tight", isSmall ? "text-xs" : "text-sm")}>
                       {item.amount}
                     </span>
-                    <span className={clsx("font-semibold leading-tight opacity-90", isSmall ? "text-[9px]" : "text-[10px]")}>
-                      {Math.round(item.percentage)}%
-                    </span>
                   </div>
                 </motion.foreignObject>
               </motion.g>
@@ -141,9 +138,6 @@ const DonutChartWithLegend = ({
                 <span className="text-sm font-bold text-[#0a1128] dark:text-white">
                   {item.amount}
                 </span>
-                <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-[2px]">
-                  {item.percentage}%
-                </span>
               </div>
             </motion.div>
           );
@@ -174,38 +168,39 @@ export default function FranchiseModelsDesktop() {
                 key={model.id}
                 onClick={() => setActiveModel(model.id)}
                 className={clsx(
-                  "flex-1 relative flex flex-col items-center justify-center py-3 px-3 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none",
-                  !isActive && "hover:bg-white/50 dark:hover:bg-white/5 hover:backdrop-blur-sm"
+                  "flex-1 relative flex flex-col items-center justify-center py-3 px-3 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border",
+                  !isActive ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10" : "border-transparent"
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeModelIndicator"
-                    className="absolute inset-0 bg-gradient-to-b from-[#0a1128] via-[#121c33] to-[#0a1128] dark:from-[#16254c] dark:via-[#0e1a38] dark:to-[#0a1128] border border-[#d4af37]/60 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
                     transition={{ type: "spring", stiffness: 380, damping: 28, mass: 0.8 }}
                   >
                     <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
                 <div className="flex items-center gap-2 mb-1 relative z-10">
                   <motion.div
                     className={clsx(
-                      "w-7 h-7 rounded-[2px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
+                      "w-7 h-7 rounded-[4px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
                       isActive
-                        ? "bg-gradient-to-br from-[#d4af37]/30 to-[#d4af37]/10 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]"
-                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-500 group-hover:border-gray-200 dark:group-hover:border-gray-700 shadow-sm"
+                        ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 shadow-sm"
                     )}
                     animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                   >
-                    <Icon size={14} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-500 dark:text-gray-400"} />
+                    <Icon size={14} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400"} />
                   </motion.div>
                   <span className={clsx("font-bold text-sm whitespace-nowrap transition-colors duration-300", isActive ? "text-white" : "text-[#0a1128] dark:text-gray-200")}>
                     {model.name}
                   </span>
                 </div>
-                <span className={clsx("text-xs font-semibold tracking-tight transition-colors duration-300 relative z-10", isActive ? "text-amber-200/90 dark:text-[#d4af37]" : "text-gray-500 dark:text-gray-400")}>
+                <span className={clsx("text-xs font-bold tracking-tight transition-colors duration-300 relative z-10", isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400")}>
                   {model.priceRange}
                 </span>
               </button>
@@ -421,8 +416,10 @@ export default function FranchiseModelsDesktop() {
                     } : {}}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     className={clsx(
-                      "p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm border hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 min-h-[64px]",
-                      isHighlight ? "border-[#d4af37]/40" : "border-gray-200/80 dark:border-gray-800"
+                      "p-3 sm:p-3.5 rounded-[4px] backdrop-blur-sm border transition-all duration-300 flex items-center justify-between gap-3 min-h-[64px]",
+                      isHighlight
+                        ? "bg-[#0b1b42] border-[#d4af37]/50 shadow-[0_4px_16px_rgba(212,175,55,0.15)] hover:border-[#d4af37]/80"
+                        : "bg-gray-50/90 dark:bg-[#0b1b42]/90 hover:border-gray-300 dark:hover:border-[#d4af37]/40 border-gray-200/80 dark:border-gray-800"
                     )}
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -433,18 +430,25 @@ export default function FranchiseModelsDesktop() {
                         <stat.icon size={18} strokeWidth={2.2} />
                       </motion.div>
                       <div className="flex flex-col min-w-0">
-                        <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">
+                        <span className={clsx("text-[10px] font-bold uppercase tracking-wider mb-0.5", isHighlight ? "text-gray-400" : "text-gray-500 dark:text-gray-400")}>
                           {stat.label}
                         </span>
-                        <span className="text-sm sm:text-base font-bold text-[#0a1128] dark:text-white leading-tight group-hover:text-[#d4af37] transition-colors truncate group-hover:whitespace-normal group-hover:overflow-visible">
+                        <span className={clsx("text-sm sm:text-base font-bold leading-tight group-hover:text-[#d4af37] transition-colors truncate group-hover:whitespace-normal group-hover:overflow-visible", isHighlight ? "text-white" : "text-[#0a1128] dark:text-white")}>
                           {stat.value}
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1.5 shrink-0">
-                      <span className={clsx("text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border", stat.badge === "Breakeven" ? "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/40" : "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60")}>
+                     {stat.badge !== "Breakeven" && (
+                      <span
+                        className={clsx(
+                          "text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border",
+                          "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60"
+                        )}
+                      >
                         {stat.badge}
                       </span>
+                    )}
                     </div>
                   </motion.div>
                 );

@@ -208,25 +208,23 @@ export default function HeroGalleryMobile() {
             <div className="h-px bg-gradient-to-l from-transparent to-[#d4af37] flex-1" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {heroData.whyChooseUs.map((feature, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center text-center p-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
-              >
-                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-10 h-10 rounded-[4px] flex items-center justify-center mb-2 shadow-sm cursor-pointer ${feature.colorClass}`}>
-                  <feature.icon
-                    size={18}
-                    strokeWidth={2}
-                    className="text-white"
-                  />
-                </motion.div>
-                <h4 className="text-xs font-bold text-[#0a1128] dark:text-white leading-tight">
-                  {feature.title}
-                </h4>
-              </div>
-            ))}
-          </div>
+            <div className="flex flex-col gap-3">
+              {heroData.whyChooseUs.map((feature, i) => (
+                <div
+                  key={i}
+                  className="flex items-center text-left p-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
+                >
+                  <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm cursor-pointer mr-3 ${feature.colorClass}`}>
+                    <span className="text-white font-bold text-base">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </motion.div>
+                  <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 leading-snug">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
         </motion.div>
       </div>
     </motion.section>

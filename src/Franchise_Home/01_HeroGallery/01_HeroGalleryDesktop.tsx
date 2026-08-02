@@ -287,15 +287,13 @@ export default function HeroGalleryDesktop() {
                   <div
                     className={`w-12 h-12 rounded-[4px] flex items-center justify-center mb-2.5 shadow-md relative overflow-hidden transition-transform duration-300 group-hover/feature:scale-105 ${feature.colorClass}`}
                   >
-                    <feature.icon
-                      size={22}
-                      strokeWidth={2}
-                      className="relative z-10 text-white"
-                    />
+                    <span className="relative z-10 text-white font-bold text-lg">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
-                  <h4 className="text-xs font-bold text-[#0a1128] dark:text-white leading-snug">
-                    {feature.title}
-                  </h4>
+                  <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 leading-snug">
+                    {feature.description}
+                  </p>
                 </div>
               ))}
             </div>

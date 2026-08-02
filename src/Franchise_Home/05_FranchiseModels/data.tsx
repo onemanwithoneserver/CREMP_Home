@@ -511,7 +511,7 @@ export const franchiseModelsData = {
 };
 
 export const revenueROIData = {
-  sectionLabel: "Break Even & Est. ROI",
+  sectionLabel: "Est. ROI",
   revenueCards: [
     {
       icon: BarChart3,
@@ -619,7 +619,7 @@ export const getRightMetrics = () => [
   },
   {
     icon: Sparkles,
-    label: "PAYBACK PERIOD",
+    label: "Break Even Timeline",
     value: revenueROIData.paybackPeriod.title || "18–24 Months",
     color: "bg-[#d4af37] text-[#0a1128]",
     badge: "Breakeven",
