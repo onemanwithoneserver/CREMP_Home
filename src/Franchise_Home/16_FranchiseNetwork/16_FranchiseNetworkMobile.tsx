@@ -24,7 +24,7 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
 
   return (
-    <section className="w-full px-4 py-12 relative overflow-hidden rounded-[8px] bg-white/40 ">
+    <section className="w-full px-4 py-12 pb-20 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"

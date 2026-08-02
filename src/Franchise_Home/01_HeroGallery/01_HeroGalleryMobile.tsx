@@ -140,7 +140,7 @@ export default function HeroGalleryMobile() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0a1128] border border-gray-200 dark:border-gray-800 rounded-[4px] p-3 w-full mx-auto">
+          <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0a1128] rounded-[4px] p-3 w-full mx-auto">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0">
                 <Calendar size={16} className="text-white" />
@@ -198,7 +198,7 @@ export default function HeroGalleryMobile() {
 
         <motion.div
           variants={item}
-          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 p-5 flex flex-col gap-4"
+          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-5 flex flex-col gap-4"
         >
           <div className="flex items-center gap-3">
             <div className="h-px bg-gradient-to-r from-transparent to-[#d4af37] w-8" />

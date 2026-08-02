@@ -58,7 +58,7 @@ const getIconBgColor = (idx: number) => {
 
 export default function FounderStoryMobile() {
   return (
-    <section className="w-full px-4 py-16 relative overflow-hidden rounded-[8px] bg-[#050b14] border border-white/5 shadow-xl">
+    <section className="w-full px-4 py-16 relative overflow-hidden rounded-[8px] dark:bg-[#050b14] bg-white">
       <motion.div
         variants={pulseGlow}
         animate="animate"
