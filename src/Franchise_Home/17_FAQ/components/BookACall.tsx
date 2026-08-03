@@ -91,7 +91,10 @@ const FEATURES = [
 export function BookACall() {
   const [currentStep, setCurrentStep] = useState<"intro" | "schedule">("intro");
   
-  const defaultDate = SCHEDULE_DATA.find(d => !d.isPast && d.slots.length > 0) || SCHEDULE_DATA[1];
+  const todayDateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+  const defaultDate = SCHEDULE_DATA.find(d => d.date === todayDateStr) 
+    || SCHEDULE_DATA.find(d => !d.isPast && d.slots.length > 0) 
+    || SCHEDULE_DATA[1];
   
   const [selectedDateId, setSelectedDateId] = useState<string>(defaultDate.id);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
@@ -153,7 +156,6 @@ export function BookACall() {
   return (
     <div className="w-full relative flex flex-col p-4 sm:p-5 bg-white/40 dark:bg-[#0b1b42]/30 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-[8px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden transition-all duration-500 min-h-[320px] justify-center group/container">
       
-      {/* Liquid Glass Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[8px] z-0">
         <motion.div 
           animate={{ x: [-20, 20, -20], y: [-20, 30, -20], scale: [1, 1.2, 1] }} 
@@ -167,7 +169,6 @@ export function BookACall() {
         />
       </div>
 
-      {/* Glossy Top Highlight */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent z-10" />
 
       <AnimatePresence mode="wait">
@@ -210,8 +211,8 @@ export function BookACall() {
             
             <div className="flex flex-col gap-1.5">
               <h3 className="text-[24px] sm:text-[28px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
-                Let's discuss <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">your future.</span>
+                Let's get to know <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">each other.</span>
               </h3>
               <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium max-w-[260px] mx-auto leading-relaxed">
                 Schedule a 1-on-1 discovery call with our franchise specialists today.

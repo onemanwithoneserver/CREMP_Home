@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import clsx from "clsx";
 import { motion, useAnimationFrame, type Variants } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fullCycleSupportData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 
@@ -15,8 +16,8 @@ const pulseGlow: Variants = {
 export default function FullCycleSupportMobile() {
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
-
   const x = useRef(0);
+
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
     const speed = 45;
@@ -27,6 +28,27 @@ export default function FullCycleSupportMobile() {
     }
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   });
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (!marqueeRef.current) return;
+    
+    const scrollAmount = 176; // 160px card width + 16px gap
+    const loopWidth = marqueeRef.current.scrollWidth / 2;
+
+    if (direction === "left") {
+      x.current += scrollAmount;
+      if (x.current > 0) {
+        x.current -= loopWidth;
+      }
+    } else {
+      x.current -= scrollAmount;
+      if (Math.abs(x.current) >= loopWidth) {
+        x.current += loopWidth;
+      }
+    }
+    
+    marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
+  };
 
   return (
     <section className="w-full py-12 overflow-hidden relative rounded-[8px] bg-white/40 ">
@@ -48,7 +70,7 @@ export default function FullCycleSupportMobile() {
         />
       </div>
 
-      <div className="relative z-10 overflow-hidden py-2">
+      <div className="relative z-10 overflow-hidden py-2 group">
         <motion.div
           ref={marqueeRef}
           className="flex w-max"
@@ -94,6 +116,26 @@ export default function FullCycleSupportMobile() {
 
         <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#f9fafb]/80 dark:from-[#050b14]/80 to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#f9fafb]/80 dark:from-[#050b14]/80 to-transparent z-10" />
+
+        <button
+          onClick={() => handleScroll("left")}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+          className="absolute left-1 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-700 shadow-md backdrop-blur-md transition-all active:scale-95 dark:border-white/10 dark:bg-[#121c33]/90 dark:text-[#d4af37]"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft size={18} strokeWidth={2.5} />
+        </button>
+
+        <button
+          onClick={() => handleScroll("right")}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+          className="absolute right-1 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-700 shadow-md backdrop-blur-md transition-all active:scale-95 dark:border-white/10 dark:bg-[#121c33]/90 dark:text-[#d4af37]"
+          aria-label="Scroll right"
+        >
+          <ChevronRight size={18} strokeWidth={2.5} />
+        </button>
       </div>
     </section>
   );
