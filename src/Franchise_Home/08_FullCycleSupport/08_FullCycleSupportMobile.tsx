@@ -18,7 +18,7 @@ export default function FullCycleSupportMobile() {
   const [paused, setPaused] = useState(false);
   const x = useRef(0);
 
-  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
