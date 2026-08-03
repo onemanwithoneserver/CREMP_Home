@@ -18,6 +18,8 @@ export default function FullCycleSupportMobile() {
   const [paused, setPaused] = useState(false);
   const x = useRef(0);
 
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
     const speed = 45;
@@ -29,10 +31,23 @@ export default function FullCycleSupportMobile() {
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   });
 
+  const handlePause = () => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    setPaused(true);
+  };
+
+  const handleResume = () => {
+    resumeTimeoutRef.current = setTimeout(() => {
+      setPaused(false);
+    }, 300);
+  };
+
   const handleScroll = (direction: "left" | "right") => {
     if (!marqueeRef.current) return;
     
-    const scrollAmount = 176; // 160px card width + 16px gap
+    handlePause(); 
+    
+    const scrollAmount = 176; 
     const loopWidth = marqueeRef.current.scrollWidth / 2;
 
     if (direction === "left") {
@@ -48,6 +63,7 @@ export default function FullCycleSupportMobile() {
     }
     
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
+    handleResume(); 
   };
 
   return (
@@ -74,9 +90,10 @@ export default function FullCycleSupportMobile() {
         <motion.div
           ref={marqueeRef}
           className="flex w-max"
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
-          onTouchCancel={() => setPaused(false)}
+          onPointerEnter={handlePause}
+          onPointerLeave={handleResume}
+          onPointerDown={handlePause}
+          onPointerUp={handleResume}
         >
           {[0, 1].map((copy) => (
             <div key={copy} className="flex gap-4 pr-4 shrink-0">
@@ -119,8 +136,10 @@ export default function FullCycleSupportMobile() {
 
         <button
           onClick={() => handleScroll("left")}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
+          onPointerEnter={handlePause}
+          onPointerLeave={handleResume}
+          onPointerDown={handlePause}
+          onPointerUp={handleResume}
           className="absolute left-1 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-700 shadow-md backdrop-blur-md transition-all active:scale-95 dark:border-white/10 dark:bg-[#121c33]/90 dark:text-[#d4af37]"
           aria-label="Scroll left"
         >
@@ -129,8 +148,10 @@ export default function FullCycleSupportMobile() {
 
         <button
           onClick={() => handleScroll("right")}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
+          onPointerEnter={handlePause}
+          onPointerLeave={handleResume}
+          onPointerDown={handlePause}
+          onPointerUp={handleResume}
           className="absolute right-1 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-700 shadow-md backdrop-blur-md transition-all active:scale-95 dark:border-white/10 dark:bg-[#121c33]/90 dark:text-[#d4af37]"
           aria-label="Scroll right"
         >
