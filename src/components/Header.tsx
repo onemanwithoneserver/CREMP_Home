@@ -10,7 +10,8 @@ export type Page =
     | "franchise-home"
     | "investors"
     | "buyers-and-sellers"
-    | "developer-and-owner";
+    | "developer-and-owner"
+    | "filters";
 export type ViewMode = "desktop" | "mobile";
 
 export interface HeaderProps {
@@ -27,6 +28,7 @@ const PAGE_LABELS: Record<Page, string> = {
     investors: "Investors Page",
     "buyers-and-sellers": "Buyers & Sellers",
     "developer-and-owner": "Developer & Owner",
+    filters: "Filters",
 };
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[]).map((p) => ({
@@ -57,7 +59,9 @@ export default function Header({
                     ? "buyers-and-sellers"
                     : location.pathname.includes("developer-and-owner")
                         ? "developer-and-owner"
-                        : "home";
+                        : location.pathname.includes("filters")
+                            ? "filters"
+                            : "home";
 
     const handleNavigate = useCallback(
         (page: string) => {

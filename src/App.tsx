@@ -12,6 +12,7 @@ import MobileViewport from "./components/commonfiles/MobileViewport";
 import Header, { type ViewMode } from "./components/Header";
 import { PageTransition } from "./components/layout";
 import DeveloperAndOwner from "./DeveloperAndOwner";
+import Filters from "./Filters";
 import Franchise from "./Franchise";
 import FranchiseHome from "./Franchise_Home";
 import Home from "./Home";
@@ -83,6 +84,10 @@ function App() {
                             <Route
                                 path="/:viewMode/franchise-home"
                                 element={<FranchiseHome isMobile={isMobile} />}
+                            />
+                            <Route
+                                path="/:viewMode/filters"
+                                element={<Filters isMobile={isMobile} />}
                             />
                             <Route
                                 path="*"
