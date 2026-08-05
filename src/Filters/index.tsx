@@ -1,8 +1,6 @@
 import { useState } from "react";
 import TopHeader from "./components/TopHeader";
 import FilterBar from "./components/FilterBar";
-import MapView from "./components/MapView";
-import BottomNavBar from "./components/BottomNavBar";
 import AdvancedFilterModal, {
   DEFAULT_ADVANCED_FILTERS,
 } from "./components/AdvancedFilterModal";
@@ -21,7 +19,6 @@ interface FiltersProps {
 
 export default function Filters({ isMobile: _isMobile = false }: FiltersProps) {
   const [activeTab, setActiveTab] = useState<"commercial" | "business">("commercial");
-  const [selectedCity, setSelectedCity] = useState("Hyderabad");
   const [searchQuery, setSearchQuery] = useState("");
   const [radiusKm, setRadiusKm] = useState(5);
 
@@ -67,14 +64,12 @@ export default function Filters({ isMobile: _isMobile = false }: FiltersProps) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-white flex flex-col justify-between overflow-x-hidden font-sans">
-      <div className="w-full flex-1 flex flex-col">
-        {/* Top Header with City selector, Login, and Category Tabs */}
+    <div className="w-full min-h-screen bg-white flex flex-col justify-start overflow-x-hidden font-sans">
+      <div className="w-full flex flex-col">
+        {/* Category Tabs */}
         <TopHeader
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          selectedCity={selectedCity}
-          onCityChange={setSelectedCity}
         />
 
         {/* Filter Bar with Search, Radius, Filter Button, and Quick Pills */}
@@ -103,16 +98,7 @@ export default function Filters({ isMobile: _isMobile = false }: FiltersProps) {
           onOpenIndustry={() => setIsIndustryOpen(true)}
           onOpenInvestmentBudget={() => setIsInvestmentBudgetOpen(true)}
         />
-
-        {/* Interactive Map View */}
-        <MapView
-          selectedCity={selectedCity}
-          listingsCount={activeTab === "commercial" ? 30 : 356}
-        />
       </div>
-
-      {/* Bottom Floating Navigation */}
-      <BottomNavBar />
 
       {/* Advanced Filters Full Modal */}
       <AdvancedFilterModal
