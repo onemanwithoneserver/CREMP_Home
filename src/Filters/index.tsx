@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Briefcase,
   Maximize2,
+  ListFilter,
 } from "lucide-react";
 import TopHeader from "./components/TopHeader";
 import AdvancedFilterModal, {
@@ -35,6 +36,16 @@ import AdvancedFilterModal, {
   BUSINESS_TAGS,
 } from "./components/AdvancedFilterModal";
 import type { FilterState } from "./components/AdvancedFilterModal";
+
+const CHIP_ICON_COLORS = [
+  "bg-gradient-to-br from-blue-500 to-indigo-600",
+  "bg-gradient-to-br from-orange-400 to-red-500",
+  "bg-gradient-to-br from-emerald-400 to-teal-500",
+  "bg-gradient-to-br from-violet-500 to-purple-600",
+  "bg-gradient-to-br from-cyan-400 to-blue-500",
+  "bg-gradient-to-br from-pink-500 to-rose-600",
+  "bg-gradient-to-br from-amber-400 to-orange-500",
+];
 
 interface FiltersProps {
   isMobile?: boolean;
@@ -164,13 +175,42 @@ export default function Filters(_props: FiltersProps) {
 
   const activeChips = activeTab === "commercial" ? commercialChips : businessChips;
 
-  return (
-    <div className="w-full min-h-full flex-1 flex flex-col bg-[#f0f2f8] text-slate-900 font-sans select-none relative overflow-visible">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4af37]/[0.04] rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#6366f1]/[0.04] rounded-full blur-3xl" />
-      </div>
+  const dropdownLabel: Record<string, string> = {
+    property: "Property Type",
+    budget: "Budget",
+    size: "Size (Sq.Ft)",
+    fitout: "Fit-Out Status",
+    status: "Project Status",
+    tags: "Property Tags",
+    deal: "Deal Preference",
+    industry: "Industry",
+    "inv-budget": "Investment Range",
+    model: "Business Model",
+    payback: "Payback Period",
+    "biz-tags": "Business Tags",
+  };
 
+  const singleSelectBtn = (isSelected: boolean) =>
+    `flex items-center justify-between px-3.5 py-2.5 rounded-[4px] border text-xs font-bold transition-all duration-200 ${
+      isSelected
+        ? "bg-[#0b1b42] border-[#0b1b42] text-white shadow-[0_4px_12px_rgba(11,27,66,0.15)]"
+        : "bg-gray-50/90 border-gray-200/80 hover:border-gray-300 text-[#0a1128] hover:bg-white"
+    }`;
+
+  const multiSelectBtn = (isSelected: boolean) =>
+    `flex items-center justify-between px-3.5 py-2.5 rounded-[4px] border text-xs font-bold transition-all duration-200 ${
+      isSelected
+        ? "bg-[#0b1b42] border-[#0b1b42] text-white shadow-[0_4px_12px_rgba(11,27,66,0.15)]"
+        : "bg-gray-50/90 border-gray-200/80 hover:border-gray-300 text-[#0a1128] hover:bg-white"
+    }`;
+
+  const checkBox = (isSelected: boolean) =>
+    `w-4 h-4 rounded-[2px] border flex items-center justify-center transition-all ${
+      isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-gray-300 bg-white"
+    }`;
+
+  return (
+    <div className="w-full min-h-full flex-1 flex flex-col bg-white text-[#0a1128] font-sans select-none relative overflow-visible transition-colors duration-300">
       <TopHeader
         activeTab={activeTab}
         onTabChange={(tab) => {
@@ -181,9 +221,9 @@ export default function Filters(_props: FiltersProps) {
         businessCount={356}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2 shrink-0 flex flex-col gap-4 relative z-50">
-        <div className="w-full bg-white backdrop-blur-md rounded-2xl px-5 py-3.5 shadow-sm border border-slate-200 flex items-center gap-3 focus-within:border-[#0b1b42] focus-within:ring-4 focus-within:ring-[#0b1b42]/5 transition-all duration-300">
-          <Search className="w-5 h-5 text-slate-400 shrink-0" />
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-3 pb-1.5 shrink-0 flex flex-col gap-3 relative z-50">
+        <div className="w-full bg-white/70 backdrop-blur-xl rounded-[4px] px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-200/80 flex items-center gap-3 focus-within:border-[#d4af37]/40 focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.08)] transition-all duration-300">
+          <Search className="w-4.5 h-4.5 text-gray-400 shrink-0" />
           <input
             type="text"
             value={searchQuery}
@@ -193,7 +233,7 @@ export default function Filters(_props: FiltersProps) {
                 ? "Search micro-market, building, or road..."
                 : "Search brand, industry, or franchise concept..."
             }
-            className="w-full bg-transparent border-none outline-none text-[15px] text-slate-800 placeholder:text-slate-400 font-medium"
+            className="w-full bg-transparent border-none outline-none text-sm text-[#0a1128] placeholder:text-gray-400 font-medium"
           />
           <AnimatePresence>
             {searchQuery && (
@@ -203,31 +243,60 @@ export default function Filters(_props: FiltersProps) {
                 exit={{ scale: 0, opacity: 0 }}
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all"
+                className="w-6 h-6 rounded-[2px] flex items-center justify-center bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </motion.button>
             )}
           </AnimatePresence>
         </div>
 
         <div className="relative w-full">
-          <div className="w-full overflow-x-auto flex items-center gap-3 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="relative flex bg-white p-1 rounded-full border border-slate-200 shadow-sm shrink-0 h-10">
+          <div className="w-full overflow-x-auto flex items-center gap-2 pb-1.5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={() => {
+                if (hasActiveFilters) {
+                  handleClearAll();
+                }
+              }}
+              className={`group relative flex items-center justify-center w-9 h-9 rounded-[4px] border shrink-0 transition-all duration-300 ${
+                hasActiveFilters
+                  ? "bg-red-50 border-red-200 hover:bg-red-100"
+                  : "bg-white/30 border-gray-200/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)]"
+              }`}
+              title={hasActiveFilters ? "Clear all filters" : "Filters"}
+            >
+              {hasActiveFilters ? (
+                <FilterX className="w-4 h-4 text-red-500" />
+              ) : (
+                <ListFilter className="w-4 h-4 text-gray-500" />
+              )}
+              {hasActiveFilters && (
+                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-[8px] font-bold text-white leading-none">!</span>
+                </span>
+              )}
+            </motion.button>
+
+            <div className="h-5 w-px bg-gray-200 shrink-0" />
+
+            <div className="relative flex bg-white/30 backdrop-blur-md p-1 rounded-[4px] border border-gray-200/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)] shrink-0 h-9">
               <motion.div
-                className="absolute top-1 bottom-1 rounded-full bg-[#0b1b42]"
+                className="absolute top-1 bottom-1 rounded-[3px] bg-[#0b1b42]"
                 layoutId="buyLeaseIndicator"
                 style={{
                   width: "calc(50% - 4px)",
                   left: buyOrLease === "Buy" ? 4 : "calc(50%)",
                 }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                transition={{ type: "spring", stiffness: 380, damping: 28 }}
               />
               <button
                 type="button"
                 onClick={() => setBuyOrLease("Buy")}
-                className={`relative z-10 px-5 rounded-full text-[13px] font-bold transition-colors duration-200 flex items-center ${
-                  buyOrLease === "Buy" ? "text-white" : "text-slate-600 hover:text-slate-900"
+                className={`relative z-10 px-4 rounded-[3px] text-xs font-bold transition-colors duration-200 flex items-center ${
+                  buyOrLease === "Buy" ? "text-white" : "text-gray-600 hover:text-[#0a1128]"
                 }`}
               >
                 Buy
@@ -235,72 +304,74 @@ export default function Filters(_props: FiltersProps) {
               <button
                 type="button"
                 onClick={() => setBuyOrLease("Lease")}
-                className={`relative z-10 px-5 rounded-full text-[13px] font-bold transition-colors duration-200 flex items-center ${
-                  buyOrLease === "Lease" ? "text-white" : "text-slate-600 hover:text-slate-900"
+                className={`relative z-10 px-4 rounded-[3px] text-xs font-bold transition-colors duration-200 flex items-center ${
+                  buyOrLease === "Lease" ? "text-white" : "text-gray-600 hover:text-[#0a1128]"
                 }`}
               >
                 Lease
               </button>
             </div>
 
-            <div className="h-5 w-px bg-slate-300 shrink-0 mx-0.5" />
+            <div className="h-5 w-px bg-gray-200 shrink-0" />
 
-            {activeChips.map((chip) => {
+            {activeChips.map((chip, idx) => {
               const isOpen = activeDropdown === chip.id;
+              const colorClass = CHIP_ICON_COLORS[idx % CHIP_ICON_COLORS.length];
               return (
                 <motion.button
                   key={chip.id}
                   whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileTap={{ scale: 0.97 }}
                   onClick={() => toggleDropdown(chip.id)}
-                  className={`group flex items-center gap-2 px-4 h-10 rounded-full border transition-all shrink-0 whitespace-nowrap shadow-sm ${
+                  className={`group flex items-center gap-2 px-2.5 h-9 rounded-[4px] border transition-all duration-300 shrink-0 whitespace-nowrap ${
                     chip.isActive || isOpen
-                      ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                      : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                      ? "bg-[#0b1b42] border-[#d4af37]/50 text-white shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
+                      : "bg-white/30 backdrop-blur-md border-gray-200/80 hover:bg-white/50 text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.05)]"
                   }`}
                 >
-                  <chip.icon
-                    className={`w-4 h-4 ${
-                      chip.isActive || isOpen ? "text-white" : "text-slate-400 group-hover:text-slate-600"
+                  <motion.div
+                    whileHover={{ scale: 1.08, rotate: 4 }}
+                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                      chip.isActive || isOpen
+                        ? "bg-black/30 border border-[#d4af37]/40 shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                        : `${colorClass} shadow-sm`
                     }`}
-                  />
-                  <span className="text-[13px] font-bold tracking-tight">{chip.label}</span>
+                  >
+                    <chip.icon
+                      className={`w-3.5 h-3.5 ${
+                        chip.isActive || isOpen ? "text-[#d4af37]" : "text-white"
+                      }`}
+                      strokeWidth={chip.isActive || isOpen ? 2.5 : 2}
+                    />
+                  </motion.div>
+                  <span className="text-xs font-bold tracking-tight">{chip.label}</span>
                   <ChevronDown
-                    className={`w-3.5 h-3.5 ml-1 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 text-white" : chip.isActive ? "text-white/70" : "text-slate-400 group-hover:text-slate-600"
+                    className={`w-3 h-3 transition-transform duration-200 ${
+                      isOpen ? "rotate-180" : ""
+                    } ${
+                      chip.isActive || isOpen ? "text-[#d4af37]" : "text-gray-400 group-hover:text-gray-600"
                     }`}
                   />
                 </motion.button>
               );
             })}
 
-            <AnimatePresence>
-              {hasActiveFilters && (
-                <motion.button
-                  initial={{ scale: 0, opacity: 0, width: 0, marginLeft: 0 }}
-                  animate={{ scale: 1, opacity: 1, width: "auto", marginLeft: 4 }}
-                  exit={{ scale: 0, opacity: 0, width: 0, marginLeft: 0 }}
-                  type="button"
-                  onClick={handleClearAll}
-                  className="group flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 hover:bg-slate-300 border border-slate-300 transition-colors shrink-0 overflow-hidden"
-                  title="Clear all filters"
-                >
-                  <FilterX className="w-4 h-4 text-slate-600 group-hover:text-slate-900 group-hover:scale-110 transition-transform" />
-                </motion.button>
-              )}
-            </AnimatePresence>
-
             <motion.button
               whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => {
                 setActiveDropdown(null);
                 setIsBottomSheetOpen(true);
               }}
-              className="group flex items-center gap-2 px-5 h-10 rounded-full bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50 transition-all shadow-sm shrink-0 whitespace-nowrap ml-auto"
+              className="group flex items-center gap-2 px-3 h-9 rounded-[4px] bg-white/30 backdrop-blur-md border border-gray-200/80 hover:bg-white/50 text-[#0a1128] transition-all shadow-[0_4px_12px_rgba(0,0,0,0.05)] shrink-0 whitespace-nowrap ml-auto"
             >
-              <SlidersHorizontal className="w-4 h-4 text-slate-500 group-hover:text-slate-700" />
-              <span className="text-[13px] font-bold tracking-tight">Advanced Filters</span>
+              <motion.div
+                whileHover={{ scale: 1.08, rotate: 4 }}
+                className="w-7 h-7 rounded-[4px] bg-white/80 border border-transparent group-hover:border-gray-300 shadow-sm flex items-center justify-center text-gray-600 transition-all"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+              </motion.div>
+              <span className="text-xs font-bold tracking-tight">Advanced Filters</span>
             </motion.button>
           </div>
 
@@ -312,64 +383,61 @@ export default function Filters(_props: FiltersProps) {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onClick={() => setActiveDropdown(null)}
-                  className="fixed inset-0 z-[60] bg-black/15 backdrop-blur-[1px]"
+                  className="fixed inset-0 z-[60]"
                 />
 
                 <motion.div
-                  initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="absolute left-0 sm:left-2 top-full mt-2.5 w-[calc(100vw-32px)] sm:w-[440px] max-w-[calc(100vw-32px)] bg-white border border-slate-200 shadow-[0_25px_70px_rgba(11,27,66,0.22)] rounded-2xl z-[70] p-4 sm:p-5 max-h-[75vh] overflow-y-auto"
+                  initial={{ opacity: 0, scale: 0.3, y: 40, filter: "blur(20px)", borderRadius: "100px" }}
+                  animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }}
+                  exit={{ opacity: 0, scale: 0.5, y: 20, filter: "blur(15px)", borderRadius: "50px" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
+                  className="absolute left-0 sm:left-2 top-full mt-2 w-[calc(100vw-32px)] sm:w-[420px] max-w-[calc(100vw-32px)] bg-white/80 backdrop-blur-2xl border border-gray-200/50 shadow-2xl z-[70] p-4 max-h-[75vh] overflow-y-auto"
                 >
-                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
-                      {activeDropdown === "property" && "Property Type"}
-                      {activeDropdown === "budget" && "Budget"}
-                      {activeDropdown === "size" && "Size (Sq.Ft)"}
-                      {activeDropdown === "fitout" && "Fit-Out Status"}
-                      {activeDropdown === "status" && "Project Status"}
-                      {activeDropdown === "tags" && "Property Tags"}
-                      {activeDropdown === "deal" && "Deal Preference"}
-                      {activeDropdown === "industry" && "Industry"}
-                      {activeDropdown === "inv-budget" && "Investment Range"}
-                      {activeDropdown === "model" && "Business Model"}
-                      {activeDropdown === "payback" && "Payback Period"}
-                      {activeDropdown === "biz-tags" && "Business Tags"}
-                    </span>
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-[2px] bg-[#0b1b42]/10 flex items-center justify-center text-[#0b1b42]">
+                        <ListFilter className="w-4 h-4" strokeWidth={2.5} />
+                      </div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#0a1128]">
+                        {activeDropdown && dropdownLabel[activeDropdown]}
+                      </span>
+                    </div>
                     <button
                       type="button"
                       onClick={() => setActiveDropdown(null)}
-                      className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+                      className="w-6 h-6 rounded-[2px] flex items-center justify-center bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors"
                     >
-                      <X className="w-4 h-4" />
+                      <X className="w-3.5 h-3.5" strokeWidth={2.5} />
                     </button>
                   </div>
 
                   {activeDropdown === "property" && (
                     <div className="grid grid-cols-2 gap-2">
-                      {PROPERTY_TYPES.map((opt) => (
-                        <button
-                          key={opt.id}
-                          type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, propertyType: opt.id });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center gap-2.5 p-3 rounded-xl border transition-all text-left ${
-                            filters.propertyType === opt.id
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
-                        >
-                          <opt.icon
-                            className={`w-4 h-4 shrink-0 ${
-                              filters.propertyType === opt.id ? "text-[#d4af37]" : "text-slate-400"
+                      {PROPERTY_TYPES.map((opt) => {
+                        const sel = filters.propertyType === opt.id;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => {
+                              setFilters({ ...filters, propertyType: opt.id });
+                              setActiveDropdown(null);
+                            }}
+                            className={`flex items-center gap-2.5 p-3 rounded-[4px] border transition-all text-left ${
+                              sel
+                                ? "bg-[#0b1b42] border-[#d4af37]/50 text-white shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
+                                : "bg-gray-50/90 border-gray-200/80 hover:border-gray-300 text-[#0a1128] hover:bg-white"
                             }`}
-                          />
-                          <span className="text-xs font-bold">{opt.label}</span>
-                        </button>
-                      ))}
+                          >
+                            <div className={`w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 ${
+                              sel ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-blue-500 to-indigo-600"
+                            }`}>
+                              <opt.icon className={`w-3.5 h-3.5 ${sel ? "text-[#d4af37]" : "text-white"}`} />
+                            </div>
+                            <span className="text-xs font-bold">{opt.label}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   )}
 
@@ -379,15 +447,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, budget: opt });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.budget === opt
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, budget: opt }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.budget === opt)}
                         >
                           <span>{opt}</span>
                           {filters.budget === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -402,15 +463,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, size: opt });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.size === opt
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, size: opt }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.size === opt)}
                         >
                           <span>{opt}</span>
                           {filters.size === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -421,31 +475,25 @@ export default function Filters(_props: FiltersProps) {
 
                   {activeDropdown === "fitout" && (
                     <div className="flex flex-col gap-1.5">
-                      {FIT_OUT_OPTIONS.map((opt) => (
-                        <button
-                          key={opt.id}
-                          type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, fitOut: opt.id });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.fitOut === opt.id
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2.5">
-                            <opt.icon
-                              className={`w-4 h-4 ${
-                                filters.fitOut === opt.id ? "text-[#d4af37]" : "text-slate-400"
-                              }`}
-                            />
-                            <span>{opt.label}</span>
-                          </div>
-                          {filters.fitOut === opt.id && <Check className="w-4 h-4 text-[#d4af37]" />}
-                        </button>
-                      ))}
+                      {FIT_OUT_OPTIONS.map((opt) => {
+                        const sel = filters.fitOut === opt.id;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => { setFilters({ ...filters, fitOut: opt.id }); setActiveDropdown(null); }}
+                            className={singleSelectBtn(sel)}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center ${sel ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-violet-500 to-purple-600"}`}>
+                                <opt.icon className={`w-3 h-3 ${sel ? "text-[#d4af37]" : "text-white"}`} />
+                              </div>
+                              <span>{opt.label}</span>
+                            </div>
+                            {sel && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          </button>
+                        );
+                      })}
                     </div>
                   )}
 
@@ -458,19 +506,11 @@ export default function Filters(_props: FiltersProps) {
                             key={opt}
                             type="button"
                             onClick={() => toggleArrayItem("status", opt)}
-                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                              isSelected
-                                ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                                : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                            }`}
+                            className={multiSelectBtn(isSelected)}
                           >
                             <span>{opt}</span>
-                            <div
-                              className={`w-4 h-4 rounded border flex items-center justify-center ${
-                                isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-slate-300 bg-white"
-                              }`}
-                            >
-                              {isSelected && <Check className="w-3 h-3 text-slate-900 stroke-[3]" />}
+                            <div className={checkBox(isSelected)}>
+                              {isSelected && <Check className="w-3 h-3 text-[#0a1128] stroke-[3]" />}
                             </div>
                           </button>
                         );
@@ -478,7 +518,7 @@ export default function Filters(_props: FiltersProps) {
                       <button
                         type="button"
                         onClick={() => setActiveDropdown(null)}
-                        className="mt-2 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-xl"
+                        className="mt-1.5 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-[4px] shadow-[0_4px_12px_rgba(11,27,66,0.2)] hover:shadow-[0_8px_24px_rgba(11,27,66,0.3)] transition-shadow"
                       >
                         Done
                       </button>
@@ -494,24 +534,16 @@ export default function Filters(_props: FiltersProps) {
                             key={opt.id}
                             type="button"
                             onClick={() => toggleArrayItem("commercialTags", opt.id)}
-                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                              isSelected
-                                ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                                : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                            }`}
+                            className={multiSelectBtn(isSelected)}
                           >
                             <div className="flex items-center gap-2.5">
-                              <opt.icon
-                                className={`w-4 h-4 ${isSelected ? "text-[#d4af37]" : "text-slate-400"}`}
-                              />
+                              <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center ${isSelected ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-emerald-400 to-teal-500"}`}>
+                                <opt.icon className={`w-3 h-3 ${isSelected ? "text-[#d4af37]" : "text-white"}`} />
+                              </div>
                               <span>{opt.label}</span>
                             </div>
-                            <div
-                              className={`w-4 h-4 rounded border flex items-center justify-center ${
-                                isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-slate-300 bg-white"
-                              }`}
-                            >
-                              {isSelected && <Check className="w-3 h-3 text-slate-900 stroke-[3]" />}
+                            <div className={checkBox(isSelected)}>
+                              {isSelected && <Check className="w-3 h-3 text-[#0a1128] stroke-[3]" />}
                             </div>
                           </button>
                         );
@@ -519,7 +551,7 @@ export default function Filters(_props: FiltersProps) {
                       <button
                         type="button"
                         onClick={() => setActiveDropdown(null)}
-                        className="mt-2 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-xl"
+                        className="mt-1.5 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-[4px] shadow-[0_4px_12px_rgba(11,27,66,0.2)] hover:shadow-[0_8px_24px_rgba(11,27,66,0.3)] transition-shadow"
                       >
                         Done
                       </button>
@@ -532,15 +564,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, dealPref: opt });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.dealPref === opt
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, dealPref: opt }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.dealPref === opt)}
                         >
                           <span>{opt}</span>
                           {filters.dealPref === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -555,15 +580,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt.id}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, industry: opt.id });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.industry === opt.id
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, industry: opt.id }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.industry === opt.id)}
                         >
                           <span>{opt.label}</span>
                           {filters.industry === opt.id && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -578,15 +596,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, invBudget: opt });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.invBudget === opt
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, invBudget: opt }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.invBudget === opt)}
                         >
                           <span>{opt}</span>
                           {filters.invBudget === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -601,15 +612,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, model: opt });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.model === opt
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, model: opt }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.model === opt)}
                         >
                           <span>{opt}</span>
                           {filters.model === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -624,15 +628,8 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => {
-                            setFilters({ ...filters, payback: opt });
-                            setActiveDropdown(null);
-                          }}
-                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                            filters.payback === opt
-                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                          }`}
+                          onClick={() => { setFilters({ ...filters, payback: opt }); setActiveDropdown(null); }}
+                          className={singleSelectBtn(filters.payback === opt)}
                         >
                           <span>{opt}</span>
                           {filters.payback === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
@@ -650,24 +647,16 @@ export default function Filters(_props: FiltersProps) {
                             key={opt.id}
                             type="button"
                             onClick={() => toggleArrayItem("businessTags", opt.id)}
-                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                              isSelected
-                                ? "bg-[#0b1b42] border-[#0b1b42] text-white"
-                                : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
-                            }`}
+                            className={multiSelectBtn(isSelected)}
                           >
                             <div className="flex items-center gap-2.5">
-                              <opt.icon
-                                className={`w-4 h-4 ${isSelected ? "text-[#d4af37]" : "text-slate-400"}`}
-                              />
+                              <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center ${isSelected ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-pink-500 to-rose-600"}`}>
+                                <opt.icon className={`w-3 h-3 ${isSelected ? "text-[#d4af37]" : "text-white"}`} />
+                              </div>
                               <span>{opt.label}</span>
                             </div>
-                            <div
-                              className={`w-4 h-4 rounded border flex items-center justify-center ${
-                                isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-slate-300 bg-white"
-                              }`}
-                            >
-                              {isSelected && <Check className="w-3 h-3 text-slate-900 stroke-[3]" />}
+                            <div className={checkBox(isSelected)}>
+                              {isSelected && <Check className="w-3 h-3 text-[#0a1128] stroke-[3]" />}
                             </div>
                           </button>
                         );
@@ -675,7 +664,7 @@ export default function Filters(_props: FiltersProps) {
                       <button
                         type="button"
                         onClick={() => setActiveDropdown(null)}
-                        className="mt-2 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-xl"
+                        className="mt-1.5 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-[4px] shadow-[0_4px_12px_rgba(11,27,66,0.2)] hover:shadow-[0_8px_24px_rgba(11,27,66,0.3)] transition-shadow"
                       >
                         Done
                       </button>
