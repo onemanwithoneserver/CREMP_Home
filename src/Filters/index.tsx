@@ -1,123 +1,189 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MapPin,
-  Crosshair,
-  ArrowRight,
   X,
-  Bookmark,
-  Check,
+  Search,
+  SlidersHorizontal,
+  ChevronDown,
   Building2,
-  Coins,
-  Maximize2,
+  Store,
+  Building,
+  Armchair,
+  FilterX,
+  Factory,
+  Banknote,
+  Tags,
+  Check,
   TrendingUp,
-  ShieldCheck,
   Briefcase,
+  Maximize2,
 } from "lucide-react";
 import TopHeader from "./components/TopHeader";
-import CommercialFilterPanel from "./components/CommercialFilterPanel";
-import BusinessFilterPanel from "./components/BusinessFilterPanel";
 import AdvancedFilterModal, {
-  DEFAULT_ADVANCED_FILTERS,
+  DEFAULT_FILTERS,
+  PROPERTY_TYPES,
+  BUDGET_OPTIONS,
+  SIZE_OPTIONS,
+  FIT_OUT_OPTIONS,
+  COMMERCIAL_TAGS,
+  STATUS_OPTIONS,
+  DEAL_PREF,
+  INDUSTRY_OPTIONS,
+  INV_BUDGET,
+  MODEL_OPTIONS,
+  PAYBACK_OPTIONS,
+  BUSINESS_TAGS,
 } from "./components/AdvancedFilterModal";
-import type { AdvancedFilterState } from "./components/AdvancedFilterModal";
+import type { FilterState } from "./components/AdvancedFilterModal";
 
 interface FiltersProps {
   isMobile?: boolean;
 }
 
-export default function Filters({ isMobile = false }: FiltersProps) {
+export default function Filters(_props: FiltersProps) {
   const [activeTab, setActiveTab] = useState<"commercial" | "business">("commercial");
   const [searchQuery, setSearchQuery] = useState("");
-
   const [buyOrLease, setBuyOrLease] = useState<"Buy" | "Lease">("Buy");
-  const [selectedPropertyType, setSelectedPropertyType] = useState("office-space");
-  const [selectedBudget, setSelectedBudget] = useState("1 - 3 Cr");
-  const [selectedFitOut, setSelectedFitOut] = useState("Any");
-  const [selectedCommercialTags, setSelectedCommercialTags] = useState<string[]>([
-    "Pre-Leased",
-    "Verified",
-  ]);
-  const [minSize, setMinSize] = useState(1500);
-  const [maxSize, setMaxSize] = useState(4000);
-  const [otherFilters, setOtherFilters] = useState({
-    readyToMove: false,
-    underConstruction: false,
-    reraRegistered: false,
-  });
-  const [dealPreference, setDealPreference] = useState<"any" | "owner" | "channel">("any");
+  const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
 
-  const [selectedIndustry, setSelectedIndustry] = useState("food-beverage");
-  const [selectedInvestmentBudget, setSelectedInvestmentBudget] = useState("₹ 25 L - ₹ 50 L");
-  const [selectedModel, setSelectedModel] = useState("all");
-  const [selectedBusinessTags, setSelectedBusinessTags] = useState<string[]>([
-    "High ROI",
-    "Turnkey",
-  ]);
-  const [selectedPayback, setSelectedPayback] = useState("Any ROI");
-
-  const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilterState>(
-    DEFAULT_ADVANCED_FILTERS
-  );
-  const [isAdvancedFilterOpen, setIsAdvancedFilterOpen] = useState(false);
-
-  const toggleCommercialTag = (tag: string) => {
-    setSelectedCommercialTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
-
-  const toggleOtherFilter = (key: "readyToMove" | "underConstruction" | "reraRegistered") => {
-    setOtherFilters((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const toggleBusinessTag = (tag: string) => {
-    setSelectedBusinessTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const handleClearAll = () => {
-    setAdvancedFilters(DEFAULT_ADVANCED_FILTERS);
+    setFilters(DEFAULT_FILTERS);
     setSearchQuery("");
-    if (activeTab === "commercial") {
-      setBuyOrLease("Buy");
-      setSelectedPropertyType("office-space");
-      setSelectedBudget("1 - 3 Cr");
-      setSelectedFitOut("Any");
-      setSelectedCommercialTags([]);
-      setMinSize(500);
-      setMaxSize(10000);
-      setOtherFilters({ readyToMove: false, underConstruction: false, reraRegistered: false });
-      setDealPreference("any");
-    } else {
-      setSelectedIndustry("food-beverage");
-      setSelectedInvestmentBudget("₹ 25 L - ₹ 50 L");
-      setSelectedModel("all");
-      setSelectedBusinessTags([]);
-      setSelectedPayback("Any ROI");
-    }
+    setActiveDropdown(null);
   };
 
-  const resultsCount = activeTab === "commercial" ? 30 : 356;
+  const toggleDropdown = (id: string) => {
+    setActiveDropdown((prev) => (prev === id ? null : id));
+  };
+
+  const toggleArrayItem = (key: "status" | "commercialTags" | "businessTags", val: string) => {
+    setFilters((prev) => {
+      const arr = prev[key];
+      return {
+        ...prev,
+        [key]: arr.includes(val) ? arr.filter((x) => x !== val) : [...arr, val],
+      };
+    });
+  };
+
+  const hasActiveFilters =
+    activeTab === "commercial"
+      ? filters.propertyType !== "office-space" ||
+        filters.budget !== "Any" ||
+        filters.fitOut !== "Any" ||
+        filters.size !== "Any" ||
+        filters.commercialTags.length > 0 ||
+        filters.status.length > 0 ||
+        filters.dealPref !== "Any"
+      : filters.industry !== "food-beverage" ||
+        filters.invBudget !== "Any" ||
+        filters.model !== "Any" ||
+        filters.businessTags.length > 0 ||
+        filters.payback !== "Any ROI";
+
+  const commercialChips = [
+    {
+      id: "property",
+      icon: Building2,
+      label: PROPERTY_TYPES.find((p) => p.id === filters.propertyType)?.label || "Property Type",
+      isActive: filters.propertyType !== "office-space",
+    },
+    {
+      id: "budget",
+      icon: Banknote,
+      label: filters.budget !== "Any" ? filters.budget : "Budget",
+      isActive: filters.budget !== "Any",
+    },
+    {
+      id: "size",
+      icon: Maximize2,
+      label: filters.size !== "Any" ? filters.size : "Size",
+      isActive: filters.size !== "Any",
+    },
+    {
+      id: "fitout",
+      icon: Armchair,
+      label: filters.fitOut !== "Any" ? filters.fitOut : "Fit-Out",
+      isActive: filters.fitOut !== "Any",
+    },
+    {
+      id: "status",
+      icon: Building,
+      label: filters.status.length > 0 ? `${filters.status.length} Status` : "Project Status",
+      isActive: filters.status.length > 0,
+    },
+    {
+      id: "tags",
+      icon: Tags,
+      label: filters.commercialTags.length > 0 ? `${filters.commercialTags.length} Tags` : "Tags",
+      isActive: filters.commercialTags.length > 0,
+    },
+    {
+      id: "deal",
+      icon: Briefcase,
+      label: filters.dealPref !== "Any" ? filters.dealPref : "Deal By",
+      isActive: filters.dealPref !== "Any",
+    },
+  ];
+
+  const businessChips = [
+    {
+      id: "industry",
+      icon: Factory,
+      label: INDUSTRY_OPTIONS.find((p) => p.id === filters.industry)?.label || "Industry",
+      isActive: filters.industry !== "food-beverage",
+    },
+    {
+      id: "inv-budget",
+      icon: Banknote,
+      label: filters.invBudget !== "Any" ? filters.invBudget : "Investment",
+      isActive: filters.invBudget !== "Any",
+    },
+    {
+      id: "model",
+      icon: Store,
+      label: filters.model !== "Any" ? filters.model : "Model",
+      isActive: filters.model !== "Any",
+    },
+    {
+      id: "payback",
+      icon: TrendingUp,
+      label: filters.payback !== "Any ROI" ? filters.payback : "Payback",
+      isActive: filters.payback !== "Any ROI",
+    },
+    {
+      id: "biz-tags",
+      icon: Tags,
+      label: filters.businessTags.length > 0 ? `${filters.businessTags.length} Tags` : "Tags",
+      isActive: filters.businessTags.length > 0,
+    },
+  ];
+
+  const activeChips = activeTab === "commercial" ? commercialChips : businessChips;
 
   return (
-    <div className="w-full h-full flex flex-col justify-between bg-[#f4f6fa] text-slate-900 overflow-hidden font-sans select-none relative">
-      {/* Top Header matching reference */}
+    <div className="w-full min-h-full flex-1 flex flex-col bg-[#f0f2f8] text-slate-900 font-sans select-none relative overflow-visible">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4af37]/[0.04] rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#6366f1]/[0.04] rounded-full blur-3xl" />
+      </div>
+
       <TopHeader
         activeTab={activeTab}
-        onTabChange={setActiveTab}
-        onOpenAdvanced={() => setIsAdvancedFilterOpen(true)}
+        onTabChange={(tab) => {
+          setActiveTab(tab);
+          setActiveDropdown(null);
+        }}
         commercialCount={30}
         businessCount={356}
-        isMobile={isMobile}
       />
 
-      {/* Search Bar & Active Filter Row Section */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2 shrink-0 flex flex-col gap-3">
-        {/* Full width Search Box with Crosshair GPS */}
-        <div className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-2.5 shadow-xs flex items-center gap-3 focus-within:border-purple-600 focus-within:ring-2 focus-within:ring-purple-500/10 transition-all">
-          <MapPin className="w-5 h-5 text-slate-400 shrink-0" />
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2 shrink-0 flex flex-col gap-4 relative z-50">
+        <div className="w-full bg-white backdrop-blur-md rounded-2xl px-5 py-3.5 shadow-sm border border-slate-200 flex items-center gap-3 focus-within:border-[#0b1b42] focus-within:ring-4 focus-within:ring-[#0b1b42]/5 transition-all duration-300">
+          <Search className="w-5 h-5 text-slate-400 shrink-0" />
           <input
             type="text"
             value={searchQuery}
@@ -127,293 +193,510 @@ export default function Filters({ isMobile = false }: FiltersProps) {
                 ? "Search micro-market, building, or road..."
                 : "Search brand, industry, or franchise concept..."
             }
-            className="w-full bg-transparent border-none outline-none text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 font-medium"
+            className="w-full bg-transparent border-none outline-none text-[15px] text-slate-800 placeholder:text-slate-400 font-medium"
           />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery("")}
-              className="p-1 rounded-full text-slate-400 hover:text-slate-600"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          )}
-          <button
-            type="button"
-            className="p-1.5 rounded-xl text-slate-400 hover:text-purple-600 hover:bg-purple-50 transition-colors shrink-0"
-            title="Use current location"
-          >
-            <Crosshair className="w-5 h-5" />
-          </button>
+          <AnimatePresence>
+            {searchQuery && (
+              <motion.button
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all"
+              >
+                <X className="w-4 h-4" />
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Transaction Intent Segmented Control + Active Filter Chips + Clear All */}
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2.5">
-            {/* Buy / Lease Toggle */}
-            <div className="flex bg-white p-1 rounded-xl border border-slate-200 shadow-xs shrink-0">
+        <div className="relative w-full">
+          <div className="w-full overflow-x-auto flex items-center gap-3 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="relative flex bg-white p-1 rounded-full border border-slate-200 shadow-sm shrink-0 h-10">
+              <motion.div
+                className="absolute top-1 bottom-1 rounded-full bg-[#0b1b42]"
+                layoutId="buyLeaseIndicator"
+                style={{
+                  width: "calc(50% - 4px)",
+                  left: buyOrLease === "Buy" ? 4 : "calc(50%)",
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
               <button
                 type="button"
                 onClick={() => setBuyOrLease("Buy")}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  buyOrLease === "Buy"
-                    ? "bg-[#08122a] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
+                className={`relative z-10 px-5 rounded-full text-[13px] font-bold transition-colors duration-200 flex items-center ${
+                  buyOrLease === "Buy" ? "text-white" : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                Buy Property
+                Buy
               </button>
               <button
                 type="button"
                 onClick={() => setBuyOrLease("Lease")}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  buyOrLease === "Lease"
-                    ? "bg-[#08122a] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
+                className={`relative z-10 px-5 rounded-full text-[13px] font-bold transition-colors duration-200 flex items-center ${
+                  buyOrLease === "Lease" ? "text-white" : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                Lease / Rent
+                Lease
               </button>
             </div>
 
-            {/* Active Selected Chips */}
-            <div className="flex flex-wrap items-center gap-2">
-              {activeTab === "commercial" ? (
-                <>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 text-xs font-bold text-purple-900 shadow-2xs">
-                    <Building2 className="w-3.5 h-3.5 text-purple-600" />
-                    <span>
-                      {selectedPropertyType === "office-space"
-                        ? "Office Space"
-                        : selectedPropertyType === "retail-space"
-                        ? "Retail Space"
-                        : selectedPropertyType === "commercial-plot"
-                        ? "Commercial Plot"
-                        : selectedPropertyType === "full-building"
-                        ? "Full Building"
-                        : "Co-Working"}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedPropertyType("office-space")}
-                      className="ml-1 text-purple-400 hover:text-purple-700"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
+            <div className="h-5 w-px bg-slate-300 shrink-0 mx-0.5" />
 
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 shadow-2xs">
-                    <Coins className="w-3.5 h-3.5 text-amber-600" />
-                    <span>₹ {selectedBudget}</span>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedBudget("1 - 3 Cr")}
-                      className="ml-1 text-amber-400 hover:text-amber-700"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
+            {activeChips.map((chip) => {
+              const isOpen = activeDropdown === chip.id;
+              return (
+                <motion.button
+                  key={chip.id}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => toggleDropdown(chip.id)}
+                  className={`group flex items-center gap-2 px-4 h-10 rounded-full border transition-all shrink-0 whitespace-nowrap shadow-sm ${
+                    chip.isActive || isOpen
+                      ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                      : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                  }`}
+                >
+                  <chip.icon
+                    className={`w-4 h-4 ${
+                      chip.isActive || isOpen ? "text-white" : "text-slate-400 group-hover:text-slate-600"
+                    }`}
+                  />
+                  <span className="text-[13px] font-bold tracking-tight">{chip.label}</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 ml-1 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-white" : chip.isActive ? "text-white/70" : "text-slate-400 group-hover:text-slate-600"
+                    }`}
+                  />
+                </motion.button>
+              );
+            })}
 
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-900 shadow-2xs">
-                    <Maximize2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>
-                      {minSize} - {maxSize >= 10000 ? "10000+" : maxSize} sq.ft.
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMinSize(500);
-                        setMaxSize(10000);
-                      }}
-                      className="ml-1 text-emerald-400 hover:text-emerald-700"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-
-                  {selectedCommercialTags.includes("Pre-Leased") && (
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 text-xs font-bold text-blue-900 shadow-2xs">
-                      <TrendingUp className="w-3.5 h-3.5 text-blue-600" />
-                      <span>Pre-Leased (High Yield)</span>
-                      <button
-                        type="button"
-                        onClick={() => toggleCommercialTag("Pre-Leased")}
-                        className="ml-1 text-blue-400 hover:text-blue-700"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  )}
-
-                  {selectedCommercialTags.includes("Verified") && (
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-50 border border-teal-200 text-xs font-bold text-teal-900 shadow-2xs">
-                      <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
-                      <span>Verified</span>
-                      <button
-                        type="button"
-                        onClick={() => toggleCommercialTag("Verified")}
-                        className="ml-1 text-teal-400 hover:text-teal-700"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 text-xs font-bold text-purple-900 shadow-2xs">
-                    <Briefcase className="w-3.5 h-3.5 text-purple-600" />
-                    <span className="capitalize">{selectedIndustry.replace("-", " ")}</span>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedIndustry("food-beverage")}
-                      className="ml-1 text-purple-400 hover:text-purple-700"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 shadow-2xs">
-                    <Coins className="w-3.5 h-3.5 text-amber-600" />
-                    <span>{selectedInvestmentBudget}</span>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedInvestmentBudget("₹ 25 L - ₹ 50 L")}
-                      className="ml-1 text-amber-400 hover:text-amber-700"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-                </>
+            <AnimatePresence>
+              {hasActiveFilters && (
+                <motion.button
+                  initial={{ scale: 0, opacity: 0, width: 0, marginLeft: 0 }}
+                  animate={{ scale: 1, opacity: 1, width: "auto", marginLeft: 4 }}
+                  exit={{ scale: 0, opacity: 0, width: 0, marginLeft: 0 }}
+                  type="button"
+                  onClick={handleClearAll}
+                  className="group flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 hover:bg-slate-300 border border-slate-300 transition-colors shrink-0 overflow-hidden"
+                  title="Clear all filters"
+                >
+                  <FilterX className="w-4 h-4 text-slate-600 group-hover:text-slate-900 group-hover:scale-110 transition-transform" />
+                </motion.button>
               )}
-            </div>
+            </AnimatePresence>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                setActiveDropdown(null);
+                setIsBottomSheetOpen(true);
+              }}
+              className="group flex items-center gap-2 px-5 h-10 rounded-full bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50 transition-all shadow-sm shrink-0 whitespace-nowrap ml-auto"
+            >
+              <SlidersHorizontal className="w-4 h-4 text-slate-500 group-hover:text-slate-700" />
+              <span className="text-[13px] font-bold tracking-tight">Advanced Filters</span>
+            </motion.button>
           </div>
 
-          {/* Clear All Button */}
-          <button
-            type="button"
-            onClick={handleClearAll}
-            className="flex items-center gap-1 text-xs font-bold text-slate-600 hover:text-slate-900 ml-auto shrink-0 transition-colors"
-          >
-            <span>Clear All</span>
-            <X className="w-3.5 h-3.5" />
-          </button>
+          <AnimatePresence>
+            {activeDropdown && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setActiveDropdown(null)}
+                  className="fixed inset-0 z-[60] bg-black/15 backdrop-blur-[1px]"
+                />
+
+                <motion.div
+                  initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute left-0 sm:left-2 top-full mt-2.5 w-[calc(100vw-32px)] sm:w-[440px] max-w-[calc(100vw-32px)] bg-white border border-slate-200 shadow-[0_25px_70px_rgba(11,27,66,0.22)] rounded-2xl z-[70] p-4 sm:p-5 max-h-[75vh] overflow-y-auto"
+                >
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                      {activeDropdown === "property" && "Property Type"}
+                      {activeDropdown === "budget" && "Budget"}
+                      {activeDropdown === "size" && "Size (Sq.Ft)"}
+                      {activeDropdown === "fitout" && "Fit-Out Status"}
+                      {activeDropdown === "status" && "Project Status"}
+                      {activeDropdown === "tags" && "Property Tags"}
+                      {activeDropdown === "deal" && "Deal Preference"}
+                      {activeDropdown === "industry" && "Industry"}
+                      {activeDropdown === "inv-budget" && "Investment Range"}
+                      {activeDropdown === "model" && "Business Model"}
+                      {activeDropdown === "payback" && "Payback Period"}
+                      {activeDropdown === "biz-tags" && "Business Tags"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setActiveDropdown(null)}
+                      className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {activeDropdown === "property" && (
+                    <div className="grid grid-cols-2 gap-2">
+                      {PROPERTY_TYPES.map((opt) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, propertyType: opt.id });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center gap-2.5 p-3 rounded-xl border transition-all text-left ${
+                            filters.propertyType === opt.id
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <opt.icon
+                            className={`w-4 h-4 shrink-0 ${
+                              filters.propertyType === opt.id ? "text-[#d4af37]" : "text-slate-400"
+                            }`}
+                          />
+                          <span className="text-xs font-bold">{opt.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "budget" && (
+                    <div className="flex flex-col gap-1.5">
+                      {BUDGET_OPTIONS.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, budget: opt });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.budget === opt
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {filters.budget === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "size" && (
+                    <div className="flex flex-col gap-1.5">
+                      {SIZE_OPTIONS.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, size: opt });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.size === opt
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {filters.size === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "fitout" && (
+                    <div className="flex flex-col gap-1.5">
+                      {FIT_OUT_OPTIONS.map((opt) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, fitOut: opt.id });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.fitOut === opt.id
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <opt.icon
+                              className={`w-4 h-4 ${
+                                filters.fitOut === opt.id ? "text-[#d4af37]" : "text-slate-400"
+                              }`}
+                            />
+                            <span>{opt.label}</span>
+                          </div>
+                          {filters.fitOut === opt.id && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "status" && (
+                    <div className="flex flex-col gap-2">
+                      {STATUS_OPTIONS.map((opt) => {
+                        const isSelected = filters.status.includes(opt);
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => toggleArrayItem("status", opt)}
+                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                              isSelected
+                                ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                                : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                            }`}
+                          >
+                            <span>{opt}</span>
+                            <div
+                              className={`w-4 h-4 rounded border flex items-center justify-center ${
+                                isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-slate-300 bg-white"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3 h-3 text-slate-900 stroke-[3]" />}
+                            </div>
+                          </button>
+                        );
+                      })}
+                      <button
+                        type="button"
+                        onClick={() => setActiveDropdown(null)}
+                        className="mt-2 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-xl"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  )}
+
+                  {activeDropdown === "tags" && (
+                    <div className="flex flex-col gap-2">
+                      {COMMERCIAL_TAGS.map((opt) => {
+                        const isSelected = filters.commercialTags.includes(opt.id);
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => toggleArrayItem("commercialTags", opt.id)}
+                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                              isSelected
+                                ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                                : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <opt.icon
+                                className={`w-4 h-4 ${isSelected ? "text-[#d4af37]" : "text-slate-400"}`}
+                              />
+                              <span>{opt.label}</span>
+                            </div>
+                            <div
+                              className={`w-4 h-4 rounded border flex items-center justify-center ${
+                                isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-slate-300 bg-white"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3 h-3 text-slate-900 stroke-[3]" />}
+                            </div>
+                          </button>
+                        );
+                      })}
+                      <button
+                        type="button"
+                        onClick={() => setActiveDropdown(null)}
+                        className="mt-2 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-xl"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  )}
+
+                  {activeDropdown === "deal" && (
+                    <div className="flex flex-col gap-1.5">
+                      {DEAL_PREF.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, dealPref: opt });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.dealPref === opt
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {filters.dealPref === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "industry" && (
+                    <div className="flex flex-col gap-1.5">
+                      {INDUSTRY_OPTIONS.map((opt) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, industry: opt.id });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.industry === opt.id
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt.label}</span>
+                          {filters.industry === opt.id && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "inv-budget" && (
+                    <div className="flex flex-col gap-1.5">
+                      {INV_BUDGET.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, invBudget: opt });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.invBudget === opt
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {filters.invBudget === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "model" && (
+                    <div className="flex flex-col gap-1.5">
+                      {MODEL_OPTIONS.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, model: opt });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.model === opt
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {filters.model === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "payback" && (
+                    <div className="flex flex-col gap-1.5">
+                      {PAYBACK_OPTIONS.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFilters({ ...filters, payback: opt });
+                            setActiveDropdown(null);
+                          }}
+                          className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                            filters.payback === opt
+                              ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {filters.payback === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeDropdown === "biz-tags" && (
+                    <div className="flex flex-col gap-2">
+                      {BUSINESS_TAGS.map((opt) => {
+                        const isSelected = filters.businessTags.includes(opt.id);
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => toggleArrayItem("businessTags", opt.id)}
+                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                              isSelected
+                                ? "bg-[#0b1b42] border-[#0b1b42] text-white"
+                                : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <opt.icon
+                                className={`w-4 h-4 ${isSelected ? "text-[#d4af37]" : "text-slate-400"}`}
+                              />
+                              <span>{opt.label}</span>
+                            </div>
+                            <div
+                              className={`w-4 h-4 rounded border flex items-center justify-center ${
+                                isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-slate-300 bg-white"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3 h-3 text-slate-900 stroke-[3]" />}
+                            </div>
+                          </button>
+                        );
+                      })}
+                      <button
+                        type="button"
+                        onClick={() => setActiveDropdown(null)}
+                        className="mt-2 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-xl"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  )}
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Main Scrollable Filter Canvas */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 overflow-y-auto relative z-10">
-        <AnimatePresence mode="wait">
-          {activeTab === "commercial" ? (
-            <motion.div
-              key="commercial"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.15 }}
-              className="w-full"
-            >
-              <CommercialFilterPanel
-                buyOrLease={buyOrLease}
-                onChangeBuyOrLease={setBuyOrLease}
-                selectedPropertyType={selectedPropertyType}
-                onChangePropertyType={setSelectedPropertyType}
-                selectedBudget={selectedBudget}
-                onChangeBudget={setSelectedBudget}
-                selectedFitOut={selectedFitOut}
-                onChangeFitOut={setSelectedFitOut}
-                selectedCommercialTags={selectedCommercialTags}
-                onToggleCommercialTag={toggleCommercialTag}
-                minSize={minSize}
-                maxSize={maxSize}
-                onChangeSizeRange={(min, max) => {
-                  setMinSize(min);
-                  setMaxSize(max);
-                }}
-                otherFilters={otherFilters}
-                onToggleOtherFilter={toggleOtherFilter}
-                dealPreference={dealPreference}
-                onChangeDealPreference={setDealPreference}
-                isMobile={isMobile}
-              />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="business"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.15 }}
-              className="w-full"
-            >
-              <BusinessFilterPanel
-                selectedIndustry={selectedIndustry}
-                onChangeIndustry={setSelectedIndustry}
-                selectedInvestmentBudget={selectedInvestmentBudget}
-                onChangeInvestmentBudget={setSelectedInvestmentBudget}
-                selectedModel={selectedModel}
-                onChangeModel={setSelectedModel}
-                selectedBusinessTags={selectedBusinessTags}
-                onToggleBusinessTag={toggleBusinessTag}
-                selectedPayback={selectedPayback}
-                onChangePayback={setSelectedPayback}
-                isMobile={isMobile}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
+      <div className="flex-1" />
 
-      {/* Sticky Bottom Bar Matching Mockup */}
-      <footer className="w-full bg-[#08122a] border-t border-white/10 px-4 sm:px-6 py-3 relative z-30 shadow-2xl shrink-0">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          {/* Left Results Count */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-black text-sm shadow-md shadow-emerald-500/20 shrink-0">
-              <Check className="w-5 h-5 stroke-[3.5]" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-base font-black text-white">{resultsCount}</span>
-                <span className="text-base font-black text-white">Properties Found</span>
-              </div>
-              <p className="text-[11px] text-slate-400 font-medium">
-                Showing best matches for your filters
-              </p>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-            <button
-              type="button"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0d1c3e] hover:bg-[#12244f] border border-white/20 text-white text-xs sm:text-sm font-bold transition-all shadow-xs"
-            >
-              <Bookmark className="w-4 h-4 text-slate-300" />
-              <span>Save Search</span>
-            </button>
-
-            <button
-              type="button"
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 rounded-xl bg-gradient-to-r from-[#f59e0b] to-[#d97706] hover:from-[#d97706] hover:to-[#b45309] text-[#08122a] text-xs sm:text-sm font-black shadow-lg shadow-amber-500/25 transition-all active:scale-[0.98]"
-            >
-              <span>
-                Explore {resultsCount} {activeTab === "commercial" ? "Properties" : "Opportunities"}
-              </span>
-              <ArrowRight className="w-4 h-4 stroke-[3]" />
-            </button>
-          </div>
-        </div>
-      </footer>
-
-      {/* Advanced Filter Modal */}
       <AdvancedFilterModal
-        isOpen={isAdvancedFilterOpen}
-        onClose={() => setIsAdvancedFilterOpen(false)}
-        filters={advancedFilters}
-        onApply={(updated) => setAdvancedFilters(updated)}
-        onReset={handleClearAll}
-        listingsCount={resultsCount}
+        isOpen={isBottomSheetOpen}
+        onClose={() => setIsBottomSheetOpen(false)}
+        activeTab={activeTab}
+        filters={filters}
+        onApply={(updatedFilters) => setFilters(updatedFilters)}
+        onReset={() => setFilters(DEFAULT_FILTERS)}
       />
     </div>
   );
