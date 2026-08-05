@@ -1,79 +1,165 @@
-import { motion } from "framer-motion";
-import { Search } from "lucide-react";
 import { useState } from "react";
-import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
+import TopHeader from "./components/TopHeader";
+import FilterBar from "./components/FilterBar";
+import MapView from "./components/MapView";
+import BottomNavBar from "./components/BottomNavBar";
+import AdvancedFilterModal, {
+  DEFAULT_ADVANCED_FILTERS,
+} from "./components/AdvancedFilterModal";
+import type { AdvancedFilterState } from "./components/AdvancedFilterModal";
+import {
+  BuyLeaseModal,
+  PropertyTypeModal,
+  BudgetModal,
+  IndustryModal,
+  InvestmentBudgetModal,
+} from "./components/StepModals";
 
 interface FiltersProps {
   isMobile?: boolean;
 }
 
-export default function Filters({ isMobile = false }: FiltersProps) {
+export default function Filters({ isMobile: _isMobile = false }: FiltersProps) {
+  const [activeTab, setActiveTab] = useState<"commercial" | "business">("commercial");
+  const [selectedCity, setSelectedCity] = useState("Hyderabad");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
+  const [radiusKm, setRadiusKm] = useState(5);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Commercial Quick States
+  const [buyOrLease, setBuyOrLease] = useState<"Buy" | "Lease">("Buy");
+  const [selectedPropertyType, setSelectedPropertyType] = useState("office-space");
+  const [selectedBudget, setSelectedBudget] = useState("1 - 3 Cr");
+  const [selectedCommercialTags, setSelectedCommercialTags] = useState<string[]>(["Pre-Leased"]);
+
+  // Business Quick States
+  const [selectedIndustry, setSelectedIndustry] = useState("food-beverage");
+  const [selectedInvestmentBudget, setSelectedInvestmentBudget] = useState("₹ 25 L - ₹ 50 L");
+  const [selectedBusinessTags, setSelectedBusinessTags] = useState<string[]>(["New Franchise"]);
+
+  // Advanced Filters State
+  const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilterState>(DEFAULT_ADVANCED_FILTERS);
+
+  // Modal Open States
+  const [isAdvancedFilterOpen, setIsAdvancedFilterOpen] = useState(false);
+  const [isBuyLeaseOpen, setIsBuyLeaseOpen] = useState(false);
+  const [isPropertyTypeOpen, setIsPropertyTypeOpen] = useState(false);
+  const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+  const [isIndustryOpen, setIsIndustryOpen] = useState(false);
+  const [isInvestmentBudgetOpen, setIsInvestmentBudgetOpen] = useState(false);
+
+  const toggleCommercialTag = (tag: string) => {
+    setSelectedCommercialTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const toggleBusinessTag = (tag: string) => {
+    setSelectedBusinessTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const handleResetAllFilters = () => {
+    setAdvancedFilters(DEFAULT_ADVANCED_FILTERS);
+    setSelectedCommercialTags([]);
+    setSelectedBusinessTags([]);
+    setSearchQuery("");
   };
 
   return (
-    <div className={`w-full min-h-screen bg-white text-[#0a1128] flex flex-col items-center justify-start ${isMobile ? "pt-4 px-3" : "pt-8 sm:pt-10 px-4"} select-none`}>
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
-        className="w-full max-w-[450px]"
-      >
-        <form
-          onSubmit={handleSearch}
-          className={`w-full bg-white rounded-[6px] border transition-all duration-300 shadow-[0_2px_12px_rgba(11,27,66,0.06)] p-1.5 flex items-center gap-2 ${
-            isFocused
-              ? "border-[#0b1b42]/40 shadow-[0_4px_16px_rgba(11,27,66,0.1)]"
-              : "border-gray-200 hover:border-gray-300"
-          }`}
-        >
-          <div
-            className="w-8 h-8 rounded-[4px] border border-gray-200 bg-gray-50 flex items-center justify-center text-[#0b1b42] shrink-0 shadow-xs"
-            aria-hidden="true"
-          >
-            <div className="w-3.5 h-3.5 border-[1.8px] border-[#0b1b42] rounded-[2.5px] rotate-45" />
-          </div>
+    <div className="w-full min-h-screen bg-white flex flex-col justify-between overflow-x-hidden font-sans">
+      <div className="w-full flex-1 flex flex-col">
+        {/* Top Header with City selector, Login, and Category Tabs */}
+        <TopHeader
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          selectedCity={selectedCity}
+          onCityChange={setSelectedCity}
+        />
 
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            placeholder="Search locations, projects, or builders"
-            className="flex-1 bg-transparent text-[13px] font-normal text-[#0a1128] placeholder:text-gray-400 placeholder:font-light outline-none border-none px-1"
-          />
+        {/* Filter Bar with Search, Radius, Filter Button, and Quick Pills */}
+        <FilterBar
+          activeTab={activeTab}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          radiusKm={radiusKm}
+          onRadiusChange={setRadiusKm}
+          // Commercial
+          buyOrLease={buyOrLease}
+          selectedPropertyType={selectedPropertyType}
+          selectedBudget={selectedBudget}
+          selectedCommercialTags={selectedCommercialTags}
+          onToggleCommercialTag={toggleCommercialTag}
+          // Business
+          selectedIndustry={selectedIndustry}
+          selectedInvestmentBudget={selectedInvestmentBudget}
+          selectedBusinessTags={selectedBusinessTags}
+          onToggleBusinessTag={toggleBusinessTag}
+          // Modal Triggers
+          onOpenAdvancedFilters={() => setIsAdvancedFilterOpen(true)}
+          onOpenBuyLease={() => setIsBuyLeaseOpen(true)}
+          onOpenPropertyType={() => setIsPropertyTypeOpen(true)}
+          onOpenBudget={() => setIsBudgetOpen(true)}
+          onOpenIndustry={() => setIsIndustryOpen(true)}
+          onOpenInvestmentBudget={() => setIsInvestmentBudgetOpen(true)}
+        />
 
-          <div className="flex items-center gap-1.5 shrink-0">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              aria-label="Filters"
-              className="w-8 h-8 rounded-[4px] bg-[#ea580c] hover:bg-[#c2410c] text-white flex items-center justify-center shadow-xs transition-colors cursor-pointer shrink-0"
-            >
-              <TuneRoundedIcon sx={{ fontSize: 18 }} />
-            </motion.button>
+        {/* Interactive Map View */}
+        <MapView
+          selectedCity={selectedCity}
+          listingsCount={activeTab === "commercial" ? 30 : 356}
+        />
+      </div>
 
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              aria-label="Search"
-              className="w-8 h-8 rounded-[4px] bg-[#0b1b42] hover:bg-[#07132e] text-white flex items-center justify-center shadow-xs transition-colors cursor-pointer shrink-0 border border-[#d4af37]/20"
-            >
-              <Search
-                className="w-4 h-4 text-white"
-                strokeWidth={2.2}
-              />
-            </motion.button>
-          </div>
-        </form>
-      </motion.div>
+      {/* Bottom Floating Navigation */}
+      <BottomNavBar />
+
+      {/* Advanced Filters Full Modal */}
+      <AdvancedFilterModal
+        isOpen={isAdvancedFilterOpen}
+        onClose={() => setIsAdvancedFilterOpen(false)}
+        filters={advancedFilters}
+        onApply={(updated) => setAdvancedFilters(updated)}
+        onReset={handleResetAllFilters}
+        listingsCount={activeTab === "commercial" ? 30 : 356}
+      />
+
+      {/* Commercial Step Modals */}
+      <BuyLeaseModal
+        isOpen={isBuyLeaseOpen}
+        onClose={() => setIsBuyLeaseOpen(false)}
+        selectedType={buyOrLease}
+        onSelect={(type) => setBuyOrLease(type)}
+      />
+
+      <PropertyTypeModal
+        isOpen={isPropertyTypeOpen}
+        onClose={() => setIsPropertyTypeOpen(false)}
+        selectedType={selectedPropertyType}
+        onSelect={(typeId) => setSelectedPropertyType(typeId)}
+      />
+
+      <BudgetModal
+        isOpen={isBudgetOpen}
+        onClose={() => setIsBudgetOpen(false)}
+        selectedPreset={selectedBudget}
+        onSelectPreset={(preset) => setSelectedBudget(preset)}
+      />
+
+      {/* Business Opportunity Step Modals */}
+      <IndustryModal
+        isOpen={isIndustryOpen}
+        onClose={() => setIsIndustryOpen(false)}
+        selectedIndustry={selectedIndustry}
+        onSelect={(indId) => setSelectedIndustry(indId)}
+      />
+
+      <InvestmentBudgetModal
+        isOpen={isInvestmentBudgetOpen}
+        onClose={() => setIsInvestmentBudgetOpen(false)}
+        selectedPreset={selectedInvestmentBudget}
+        onSelectPreset={(preset) => setSelectedInvestmentBudget(preset)}
+      />
     </div>
   );
 }
