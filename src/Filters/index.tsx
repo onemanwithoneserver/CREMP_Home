@@ -102,6 +102,27 @@ export default function Filters(_props: FiltersProps) {
     });
   };
 
+  const toggleSingleValue = (
+    key:
+      | "propertyType"
+      | "budget"
+      | "size"
+      | "fitOut"
+      | "dealPref"
+      | "industry"
+      | "invBudget"
+      | "model"
+      | "payback",
+    value: string,
+    defaultValue: string,
+  ) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: prev[key] === value ? defaultValue : value,
+    }));
+    setActiveDropdown(null);
+  };
+
   const hasActiveFilters =
     activeTab === "commercial"
       ? filters.propertyType !== "office-space" ||
@@ -256,7 +277,7 @@ export default function Filters(_props: FiltersProps) {
         </div>
 
         <div ref={toolbarRef} className="relative w-full">
-          <div className="w-full overflow-x-auto flex items-center gap-2 pb-1.5 scrollbar-hide">
+          <div className="w-full flex flex-wrap items-center gap-2 pb-1.5">
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
@@ -325,7 +346,7 @@ export default function Filters(_props: FiltersProps) {
                   onClick={() => toggleDropdown(chip.id)}
                   aria-haspopup="true"
                   aria-expanded={isOpen}
-                  className={`group flex items-center gap-2 px-2.5 h-9 rounded border transition-all duration-300 shrink-0 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
+                  className={`group flex items-center gap-2 px-2.5 h-9 rounded border transition-all duration-300 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
                     chip.isActive || isOpen
                       ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
                       : "bg-cremp-surface-alt/60 backdrop-blur-md border-cremp-border hover:bg-cremp-surface text-cremp-text-primary shadow-elevation-1"
@@ -365,7 +386,7 @@ export default function Filters(_props: FiltersProps) {
                 setActiveDropdown(null);
                 setIsBottomSheetOpen(true);
               }}
-              className="group flex items-center gap-2 px-3 h-9 rounded bg-cremp-surface-alt/60 backdrop-blur-md border border-cremp-border hover:bg-cremp-surface text-cremp-text-primary transition-all duration-300 shadow-elevation-1 shrink-0 whitespace-nowrap ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50"
+              className="group flex items-center gap-2 px-3 h-9 rounded bg-cremp-surface-alt/60 backdrop-blur-md border border-cremp-border hover:bg-cremp-surface text-cremp-text-primary transition-all duration-300 shadow-elevation-1 whitespace-nowrap ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50"
             >
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 4 }}
@@ -403,7 +424,10 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setBuyOrLease(opt); setActiveDropdown(null); }}
+                          onClick={() => {
+                            setBuyOrLease((prev) => (prev === opt ? "Buy" : opt));
+                            setActiveDropdown(null);
+                          }}
                           className={singleSelectBtn(buyOrLease === opt)}
                         >
                           <span>{opt}</span>
@@ -421,10 +445,7 @@ export default function Filters(_props: FiltersProps) {
                           <button
                             key={opt.id}
                             type="button"
-                            onClick={() => {
-                              setFilters({ ...filters, propertyType: opt.id });
-                              setActiveDropdown(null);
-                            }}
+                            onClick={() => toggleSingleValue("propertyType", opt.id, "office-space")}
                             className={`flex items-center gap-2.5 p-3 rounded border transition-all duration-200 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
                               sel
                                 ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
@@ -449,7 +470,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, budget: opt }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("budget", opt, "Any")}
                           className={singleSelectBtn(filters.budget === opt)}
                         >
                           <span>{opt}</span>
@@ -465,7 +486,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, size: opt }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("size", opt, "Any")}
                           className={singleSelectBtn(filters.size === opt)}
                         >
                           <span>{opt}</span>
@@ -483,7 +504,7 @@ export default function Filters(_props: FiltersProps) {
                           <button
                             key={opt.id}
                             type="button"
-                            onClick={() => { setFilters({ ...filters, fitOut: opt.id }); setActiveDropdown(null); }}
+                            onClick={() => toggleSingleValue("fitOut", opt.id, "Any")}
                             className={singleSelectBtn(sel)}
                           >
                             <div className="flex items-center gap-2.5">
@@ -552,7 +573,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, dealPref: opt }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("dealPref", opt, "Any")}
                           className={singleSelectBtn(filters.dealPref === opt)}
                         >
                           <span>{opt}</span>
@@ -568,7 +589,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt.id}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, industry: opt.id }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("industry", opt.id, "food-beverage")}
                           className={singleSelectBtn(filters.industry === opt.id)}
                         >
                           <span>{opt.label}</span>
@@ -584,7 +605,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, invBudget: opt }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("invBudget", opt, "Any")}
                           className={singleSelectBtn(filters.invBudget === opt)}
                         >
                           <span>{opt}</span>
@@ -600,7 +621,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, model: opt }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("model", opt, "Any")}
                           className={singleSelectBtn(filters.model === opt)}
                         >
                           <span>{opt}</span>
@@ -616,7 +637,7 @@ export default function Filters(_props: FiltersProps) {
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => { setFilters({ ...filters, payback: opt }); setActiveDropdown(null); }}
+                          onClick={() => toggleSingleValue("payback", opt, "Any ROI")}
                           className={singleSelectBtn(filters.payback === opt)}
                         >
                           <span>{opt}</span>
