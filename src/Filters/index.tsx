@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -37,15 +37,20 @@ import AdvancedFilterModal, {
 } from "./components/AdvancedFilterModal";
 import type { FilterState } from "./components/AdvancedFilterModal";
 
-const CHIP_ICON_COLORS = [
-  "bg-gradient-to-br from-blue-500 to-indigo-600",
-  "bg-gradient-to-br from-orange-400 to-red-500",
-  "bg-gradient-to-br from-emerald-400 to-teal-500",
-  "bg-gradient-to-br from-violet-500 to-purple-600",
-  "bg-gradient-to-br from-cyan-400 to-blue-500",
-  "bg-gradient-to-br from-pink-500 to-rose-600",
-  "bg-gradient-to-br from-amber-400 to-orange-500",
-];
+const CATEGORY_ICON_BG: Record<string, string> = {
+  property: "bg-[#8B5CF6]",
+  industry: "bg-[#8B5CF6]",
+  budget: "bg-[#F97316]",
+  "inv-budget": "bg-[#F97316]",
+  size: "bg-[#0EA5E9]",
+  fitout: "bg-[#14B8A6]",
+  model: "bg-[#14B8A6]",
+  status: "bg-[#10B981]",
+  tags: "bg-[#D946EF]",
+  "biz-tags": "bg-[#D946EF]",
+  deal: "bg-cremp-accent",
+  payback: "bg-cremp-accent",
+};
 
 interface FiltersProps {
   isMobile?: boolean;
@@ -58,7 +63,11 @@ export default function Filters(_props: FiltersProps) {
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [dropdownLeft, setDropdownLeft] = useState<number | null>(null);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+  const toolbarRef = useRef<HTMLDivElement>(null);
+  const chipRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   const handleClearAll = () => {
     setFilters(DEFAULT_FILTERS);
@@ -67,7 +76,20 @@ export default function Filters(_props: FiltersProps) {
   };
 
   const toggleDropdown = (id: string) => {
-    setActiveDropdown((prev) => (prev === id ? null : id));
+    setActiveDropdown((prev) => {
+      const next = prev === id ? null : id;
+      const btn = chipRefs.current[id];
+      const container = toolbarRef.current;
+      if (next && btn && container && window.innerWidth >= 640) {
+        const btnRect = btn.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const maxLeft = Math.max(0, containerRect.width - 288);
+        setDropdownLeft(Math.max(0, Math.min(btnRect.left - containerRect.left, maxLeft)));
+      } else {
+        setDropdownLeft(null);
+      }
+      return next;
+    });
   };
 
   const toggleArrayItem = (key: "status" | "commercialTags" | "businessTags", val: string) => {
@@ -175,42 +197,22 @@ export default function Filters(_props: FiltersProps) {
 
   const activeChips = activeTab === "commercial" ? commercialChips : businessChips;
 
-  const dropdownLabel: Record<string, string> = {
-    property: "Property Type",
-    budget: "Budget",
-    size: "Size (Sq.Ft)",
-    fitout: "Fit-Out Status",
-    status: "Project Status",
-    tags: "Property Tags",
-    deal: "Deal Preference",
-    industry: "Industry",
-    "inv-budget": "Investment Range",
-    model: "Business Model",
-    payback: "Payback Period",
-    "biz-tags": "Business Tags",
-  };
-
   const singleSelectBtn = (isSelected: boolean) =>
-    `flex items-center justify-between px-3.5 py-2.5 rounded-[4px] border text-xs font-bold transition-all duration-200 ${
+    `flex items-center justify-between px-3.5 py-2.5 rounded border text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
       isSelected
-        ? "bg-[#0b1b42] border-[#0b1b42] text-white shadow-[0_4px_12px_rgba(11,27,66,0.15)]"
-        : "bg-gray-50/90 border-gray-200/80 hover:border-gray-300 text-[#0a1128] hover:bg-white"
+        ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
+        : "bg-cremp-surface-alt/60 border-cremp-border hover:border-cremp-text-muted/40 hover:bg-cremp-surface text-cremp-text-primary"
     }`;
 
-  const multiSelectBtn = (isSelected: boolean) =>
-    `flex items-center justify-between px-3.5 py-2.5 rounded-[4px] border text-xs font-bold transition-all duration-200 ${
-      isSelected
-        ? "bg-[#0b1b42] border-[#0b1b42] text-white shadow-[0_4px_12px_rgba(11,27,66,0.15)]"
-        : "bg-gray-50/90 border-gray-200/80 hover:border-gray-300 text-[#0a1128] hover:bg-white"
-    }`;
+  const multiSelectBtn = singleSelectBtn;
 
   const checkBox = (isSelected: boolean) =>
-    `w-4 h-4 rounded-[2px] border flex items-center justify-center transition-all ${
-      isSelected ? "bg-[#d4af37] border-[#d4af37]" : "border-gray-300 bg-white"
+    `w-4 h-4 rounded-sm border flex items-center justify-center transition-colors duration-200 ${
+      isSelected ? "bg-cremp-accent border-cremp-accent" : "border-cremp-border bg-cremp-surface"
     }`;
 
   return (
-    <div className="w-full min-h-full flex-1 flex flex-col bg-white text-[#0a1128] font-sans select-none relative overflow-visible transition-colors duration-300">
+    <div className="w-full min-h-full flex-1 flex flex-col bg-cremp-background text-cremp-text-primary font-sans select-none relative overflow-visible transition-colors duration-300">
       <TopHeader
         activeTab={activeTab}
         onTabChange={(tab) => {
@@ -221,9 +223,9 @@ export default function Filters(_props: FiltersProps) {
         businessCount={356}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-3 pb-1.5 shrink-0 flex flex-col gap-3 relative z-50">
-        <div className="w-full bg-white/70 backdrop-blur-xl rounded-[4px] px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-200/80 flex items-center gap-3 focus-within:border-[#d4af37]/40 focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.08)] transition-all duration-300">
-          <Search className="w-4.5 h-4.5 text-gray-400 shrink-0" />
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2 shrink-0 flex flex-col gap-3 relative z-50">
+        <div className="w-full bg-cremp-surface/90 backdrop-blur-xl rounded px-4 py-2.5 shadow-elevation-2 border border-cremp-border flex items-center gap-3 focus-within:border-cremp-accent/50 focus-within:shadow-glow-accent transition-all duration-300">
+          <Search className="w-4.5 h-4.5 text-cremp-text-muted shrink-0" />
           <input
             type="text"
             value={searchQuery}
@@ -233,7 +235,8 @@ export default function Filters(_props: FiltersProps) {
                 ? "Search micro-market, building, or road..."
                 : "Search brand, industry, or franchise concept..."
             }
-            className="w-full bg-transparent border-none outline-none text-sm text-[#0a1128] placeholder:text-gray-400 font-medium"
+            aria-label="Search listings"
+            className="w-full bg-transparent border-none outline-none text-sm text-cremp-text-primary placeholder:text-cremp-text-muted font-medium"
           />
           <AnimatePresence>
             {searchQuery && (
@@ -243,7 +246,8 @@ export default function Filters(_props: FiltersProps) {
                 exit={{ scale: 0, opacity: 0 }}
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="w-6 h-6 rounded-[2px] flex items-center justify-center bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors"
+                aria-label="Clear search"
+                className="w-6 h-6 rounded-sm flex items-center justify-center bg-cremp-surface-alt hover:bg-error-surface text-cremp-text-muted hover:text-error transition-colors duration-200"
               >
                 <X className="w-3.5 h-3.5" />
               </motion.button>
@@ -251,8 +255,8 @@ export default function Filters(_props: FiltersProps) {
           </AnimatePresence>
         </div>
 
-        <div className="relative w-full">
-          <div className="w-full overflow-x-auto flex items-center gap-2 pb-1.5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div ref={toolbarRef} className="relative w-full">
+          <div className="w-full overflow-x-auto flex items-center gap-2 pb-1.5 scrollbar-hide">
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
@@ -261,85 +265,83 @@ export default function Filters(_props: FiltersProps) {
                   handleClearAll();
                 }
               }}
-              className={`group relative flex items-center justify-center w-9 h-9 rounded-[4px] border shrink-0 transition-all duration-300 ${
+              className={`group flex items-center justify-center w-9 h-9 rounded border shrink-0 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
                 hasActiveFilters
-                  ? "bg-red-50 border-red-200 hover:bg-red-100"
-                  : "bg-white/30 border-gray-200/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)]"
+                  ? "bg-error-surface border-error-light hover:bg-error-light"
+                  : "bg-cremp-surface-alt/60 backdrop-blur-md border-cremp-border hover:bg-cremp-surface text-cremp-text-primary shadow-elevation-1"
               }`}
               title={hasActiveFilters ? "Clear all filters" : "Filters"}
+              aria-label={hasActiveFilters ? "Clear all filters" : "Filters"}
             >
               {hasActiveFilters ? (
-                <FilterX className="w-4 h-4 text-red-500" />
+                <FilterX className="w-4 h-4 text-error" />
               ) : (
-                <ListFilter className="w-4 h-4 text-gray-500" />
-              )}
-              {hasActiveFilters && (
-                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-[8px] font-bold text-white leading-none">!</span>
-                </span>
+                <ListFilter className="w-4 h-4 text-cremp-text-secondary" />
               )}
             </motion.button>
 
-            <div className="h-5 w-px bg-gray-200 shrink-0" />
+            {activeTab === "commercial" && (
+              <>
+                <div className="h-5 w-px bg-cremp-border shrink-0" />
 
-            <div className="relative flex bg-white/30 backdrop-blur-md p-1 rounded-[4px] border border-gray-200/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)] shrink-0 h-9">
-              <motion.div
-                className="absolute top-1 bottom-1 rounded-[3px] bg-[#0b1b42]"
-                layoutId="buyLeaseIndicator"
-                style={{
-                  width: "calc(50% - 4px)",
-                  left: buyOrLease === "Buy" ? 4 : "calc(50%)",
-                }}
-                transition={{ type: "spring", stiffness: 380, damping: 28 }}
-              />
-              <button
-                type="button"
-                onClick={() => setBuyOrLease("Buy")}
-                className={`relative z-10 px-4 rounded-[3px] text-xs font-bold transition-colors duration-200 flex items-center ${
-                  buyOrLease === "Buy" ? "text-white" : "text-gray-600 hover:text-[#0a1128]"
-                }`}
-              >
-                Buy
-              </button>
-              <button
-                type="button"
-                onClick={() => setBuyOrLease("Lease")}
-                className={`relative z-10 px-4 rounded-[3px] text-xs font-bold transition-colors duration-200 flex items-center ${
-                  buyOrLease === "Lease" ? "text-white" : "text-gray-600 hover:text-[#0a1128]"
-                }`}
-              >
-                Lease
-              </button>
-            </div>
+                <motion.button
+                  ref={(el) => {
+                    chipRefs.current["buyOrLease"] = el;
+                  }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => toggleDropdown("buyOrLease")}
+                  aria-haspopup="true"
+                  aria-expanded={activeDropdown === "buyOrLease"}
+                  className={`group flex items-center gap-2 px-3 h-9 rounded border shrink-0 whitespace-nowrap transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
+                    activeDropdown === "buyOrLease"
+                      ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
+                      : "bg-cremp-surface-alt/60 backdrop-blur-md border-cremp-border hover:bg-cremp-surface text-cremp-text-primary shadow-elevation-1"
+                  }`}
+                >
+                  <span className="text-xs font-bold tracking-tight">{buyOrLease}</span>
+                  <ChevronDown
+                    className={`w-3 h-3 transition-transform duration-200 ${
+                      activeDropdown === "buyOrLease" ? "rotate-180 text-cremp-accent" : "text-cremp-text-muted"
+                    }`}
+                  />
+                </motion.button>
 
-            <div className="h-5 w-px bg-gray-200 shrink-0" />
+                <div className="h-5 w-px bg-cremp-border shrink-0" />
+              </>
+            )}
 
-            {activeChips.map((chip, idx) => {
+            {activeChips.map((chip) => {
               const isOpen = activeDropdown === chip.id;
-              const colorClass = CHIP_ICON_COLORS[idx % CHIP_ICON_COLORS.length];
+              const iconBg = CATEGORY_ICON_BG[chip.id] ?? "bg-cremp-primary";
               return (
                 <motion.button
                   key={chip.id}
+                  ref={(el) => {
+                    chipRefs.current[chip.id] = el;
+                  }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => toggleDropdown(chip.id)}
-                  className={`group flex items-center gap-2 px-2.5 h-9 rounded-[4px] border transition-all duration-300 shrink-0 whitespace-nowrap ${
+                  aria-haspopup="true"
+                  aria-expanded={isOpen}
+                  className={`group flex items-center gap-2 px-2.5 h-9 rounded border transition-all duration-300 shrink-0 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
                     chip.isActive || isOpen
-                      ? "bg-[#0b1b42] border-[#d4af37]/50 text-white shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
-                      : "bg-white/30 backdrop-blur-md border-gray-200/80 hover:bg-white/50 text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.05)]"
+                      ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
+                      : "bg-cremp-surface-alt/60 backdrop-blur-md border-cremp-border hover:bg-cremp-surface text-cremp-text-primary shadow-elevation-1"
                   }`}
                 >
                   <motion.div
                     whileHover={{ scale: 1.08, rotate: 4 }}
-                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    className={`w-7 h-7 rounded flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
                       chip.isActive || isOpen
-                        ? "bg-black/30 border border-[#d4af37]/40 shadow-[0_0_12px_rgba(212,175,55,0.3)]"
-                        : `${colorClass} shadow-sm`
+                        ? "bg-black/25 border border-cremp-accent/40 shadow-glow-accent"
+                        : `${iconBg} shadow-sm`
                     }`}
                   >
                     <chip.icon
                       className={`w-3.5 h-3.5 ${
-                        chip.isActive || isOpen ? "text-[#d4af37]" : "text-white"
+                        chip.isActive || isOpen ? "text-cremp-accent" : "text-white"
                       }`}
                       strokeWidth={chip.isActive || isOpen ? 2.5 : 2}
                     />
@@ -349,7 +351,7 @@ export default function Filters(_props: FiltersProps) {
                     className={`w-3 h-3 transition-transform duration-200 ${
                       isOpen ? "rotate-180" : ""
                     } ${
-                      chip.isActive || isOpen ? "text-[#d4af37]" : "text-gray-400 group-hover:text-gray-600"
+                      chip.isActive || isOpen ? "text-cremp-accent" : "text-cremp-text-muted group-hover:text-cremp-text-secondary"
                     }`}
                   />
                 </motion.button>
@@ -363,11 +365,11 @@ export default function Filters(_props: FiltersProps) {
                 setActiveDropdown(null);
                 setIsBottomSheetOpen(true);
               }}
-              className="group flex items-center gap-2 px-3 h-9 rounded-[4px] bg-white/30 backdrop-blur-md border border-gray-200/80 hover:bg-white/50 text-[#0a1128] transition-all shadow-[0_4px_12px_rgba(0,0,0,0.05)] shrink-0 whitespace-nowrap ml-auto"
+              className="group flex items-center gap-2 px-3 h-9 rounded bg-cremp-surface-alt/60 backdrop-blur-md border border-cremp-border hover:bg-cremp-surface text-cremp-text-primary transition-all duration-300 shadow-elevation-1 shrink-0 whitespace-nowrap ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50"
             >
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 4 }}
-                className="w-7 h-7 rounded-[4px] bg-white/80 border border-transparent group-hover:border-gray-300 shadow-sm flex items-center justify-center text-gray-600 transition-all"
+                className="w-7 h-7 rounded bg-cremp-surface border border-transparent group-hover:border-cremp-border shadow-sm flex items-center justify-center text-cremp-text-secondary transition-all duration-300"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
               </motion.div>
@@ -387,29 +389,29 @@ export default function Filters(_props: FiltersProps) {
                 />
 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.3, y: 40, filter: "blur(20px)", borderRadius: "100px" }}
-                  animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }}
-                  exit={{ opacity: 0, scale: 0.5, y: 20, filter: "blur(15px)", borderRadius: "50px" }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
-                  className="absolute left-0 sm:left-2 top-full mt-2 w-[calc(100vw-32px)] sm:w-[420px] max-w-[calc(100vw-32px)] bg-white/80 backdrop-blur-2xl border border-gray-200/50 shadow-2xl z-[70] p-4 max-h-[75vh] overflow-y-auto"
+                  initial={{ opacity: 0, scale: 0.96, y: 6 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.97, y: 4 }}
+                  transition={{ duration: 0.16, ease: [0.2, 0.8, 0.2, 1] }}
+                  role="menu"
+                  style={dropdownLeft !== null ? { left: dropdownLeft } : undefined}
+                  className="absolute left-0 top-full mt-2 w-[calc(100vw-32px)] sm:w-max sm:min-w-[220px] sm:max-w-[288px] max-w-[calc(100vw-32px)] bg-cremp-surface rounded shadow-elevation-4 border border-cremp-border z-[99999] py-4 px-3 pointer-events-auto cursor-default text-left max-h-[75vh] overflow-y-auto scrollbar-thin"
                 >
-                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-[2px] bg-[#0b1b42]/10 flex items-center justify-center text-[#0b1b42]">
-                        <ListFilter className="w-4 h-4" strokeWidth={2.5} />
-                      </div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#0a1128]">
-                        {activeDropdown && dropdownLabel[activeDropdown]}
-                      </span>
+                  {activeDropdown === "buyOrLease" && (
+                    <div className="flex flex-col gap-1.5">
+                      {(["Buy", "Lease"] as const).map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => { setBuyOrLease(opt); setActiveDropdown(null); }}
+                          className={singleSelectBtn(buyOrLease === opt)}
+                        >
+                          <span>{opt}</span>
+                          {buyOrLease === opt && <Check className="w-4 h-4 text-cremp-accent" />}
+                        </button>
+                      ))}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => setActiveDropdown(null)}
-                      className="w-6 h-6 rounded-[2px] flex items-center justify-center bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors"
-                    >
-                      <X className="w-3.5 h-3.5" strokeWidth={2.5} />
-                    </button>
-                  </div>
+                  )}
 
                   {activeDropdown === "property" && (
                     <div className="grid grid-cols-2 gap-2">
@@ -423,16 +425,16 @@ export default function Filters(_props: FiltersProps) {
                               setFilters({ ...filters, propertyType: opt.id });
                               setActiveDropdown(null);
                             }}
-                            className={`flex items-center gap-2.5 p-3 rounded-[4px] border transition-all text-left ${
+                            className={`flex items-center gap-2.5 p-3 rounded border transition-all duration-200 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
                               sel
-                                ? "bg-[#0b1b42] border-[#d4af37]/50 text-white shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
-                                : "bg-gray-50/90 border-gray-200/80 hover:border-gray-300 text-[#0a1128] hover:bg-white"
+                                ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
+                                : "bg-cremp-surface-alt/70 border-cremp-border hover:border-cremp-text-muted/40 text-cremp-text-primary hover:bg-cremp-surface"
                             }`}
                           >
-                            <div className={`w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 ${
-                              sel ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-blue-500 to-indigo-600"
+                            <div className={`w-7 h-7 rounded flex items-center justify-center shrink-0 ${
+                              sel ? "bg-black/25 border border-cremp-accent/40" : "bg-[#8B5CF6]"
                             }`}>
-                              <opt.icon className={`w-3.5 h-3.5 ${sel ? "text-[#d4af37]" : "text-white"}`} />
+                              <opt.icon className={`w-3.5 h-3.5 ${sel ? "text-cremp-accent" : "text-white"}`} />
                             </div>
                             <span className="text-xs font-bold">{opt.label}</span>
                           </button>
@@ -451,7 +453,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.budget === opt)}
                         >
                           <span>{opt}</span>
-                          {filters.budget === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.budget === opt && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -467,7 +469,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.size === opt)}
                         >
                           <span>{opt}</span>
-                          {filters.size === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.size === opt && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -485,12 +487,12 @@ export default function Filters(_props: FiltersProps) {
                             className={singleSelectBtn(sel)}
                           >
                             <div className="flex items-center gap-2.5">
-                              <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center ${sel ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-violet-500 to-purple-600"}`}>
-                                <opt.icon className={`w-3 h-3 ${sel ? "text-[#d4af37]" : "text-white"}`} />
+                              <div className={`w-6 h-6 rounded flex items-center justify-center ${sel ? "bg-black/25 border border-cremp-accent/40" : "bg-[#14B8A6]"}`}>
+                                <opt.icon className={`w-3 h-3 ${sel ? "text-cremp-accent" : "text-white"}`} />
                               </div>
                               <span>{opt.label}</span>
                             </div>
-                            {sel && <Check className="w-4 h-4 text-[#d4af37]" />}
+                            {sel && <Check className="w-4 h-4 text-cremp-accent" />}
                           </button>
                         );
                       })}
@@ -510,18 +512,11 @@ export default function Filters(_props: FiltersProps) {
                           >
                             <span>{opt}</span>
                             <div className={checkBox(isSelected)}>
-                              {isSelected && <Check className="w-3 h-3 text-[#0a1128] stroke-[3]" />}
+                              {isSelected && <Check className="w-3 h-3 text-[#0b1b42] stroke-[3]" />}
                             </div>
                           </button>
                         );
                       })}
-                      <button
-                        type="button"
-                        onClick={() => setActiveDropdown(null)}
-                        className="mt-1.5 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-[4px] shadow-[0_4px_12px_rgba(11,27,66,0.2)] hover:shadow-[0_8px_24px_rgba(11,27,66,0.3)] transition-shadow"
-                      >
-                        Done
-                      </button>
                     </div>
                   )}
 
@@ -537,24 +532,17 @@ export default function Filters(_props: FiltersProps) {
                             className={multiSelectBtn(isSelected)}
                           >
                             <div className="flex items-center gap-2.5">
-                              <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center ${isSelected ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-emerald-400 to-teal-500"}`}>
-                                <opt.icon className={`w-3 h-3 ${isSelected ? "text-[#d4af37]" : "text-white"}`} />
+                              <div className={`w-6 h-6 rounded flex items-center justify-center ${isSelected ? "bg-black/25 border border-cremp-accent/40" : "bg-[#D946EF]"}`}>
+                                <opt.icon className={`w-3 h-3 ${isSelected ? "text-cremp-accent" : "text-white"}`} />
                               </div>
                               <span>{opt.label}</span>
                             </div>
                             <div className={checkBox(isSelected)}>
-                              {isSelected && <Check className="w-3 h-3 text-[#0a1128] stroke-[3]" />}
+                              {isSelected && <Check className="w-3 h-3 text-[#0b1b42] stroke-[3]" />}
                             </div>
                           </button>
                         );
                       })}
-                      <button
-                        type="button"
-                        onClick={() => setActiveDropdown(null)}
-                        className="mt-1.5 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-[4px] shadow-[0_4px_12px_rgba(11,27,66,0.2)] hover:shadow-[0_8px_24px_rgba(11,27,66,0.3)] transition-shadow"
-                      >
-                        Done
-                      </button>
                     </div>
                   )}
 
@@ -568,7 +556,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.dealPref === opt)}
                         >
                           <span>{opt}</span>
-                          {filters.dealPref === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.dealPref === opt && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -584,7 +572,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.industry === opt.id)}
                         >
                           <span>{opt.label}</span>
-                          {filters.industry === opt.id && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.industry === opt.id && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -600,7 +588,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.invBudget === opt)}
                         >
                           <span>{opt}</span>
-                          {filters.invBudget === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.invBudget === opt && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -616,7 +604,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.model === opt)}
                         >
                           <span>{opt}</span>
-                          {filters.model === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.model === opt && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -632,7 +620,7 @@ export default function Filters(_props: FiltersProps) {
                           className={singleSelectBtn(filters.payback === opt)}
                         >
                           <span>{opt}</span>
-                          {filters.payback === opt && <Check className="w-4 h-4 text-[#d4af37]" />}
+                          {filters.payback === opt && <Check className="w-4 h-4 text-cremp-accent" />}
                         </button>
                       ))}
                     </div>
@@ -650,24 +638,17 @@ export default function Filters(_props: FiltersProps) {
                             className={multiSelectBtn(isSelected)}
                           >
                             <div className="flex items-center gap-2.5">
-                              <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center ${isSelected ? "bg-black/30 border border-[#d4af37]/40" : "bg-gradient-to-br from-pink-500 to-rose-600"}`}>
-                                <opt.icon className={`w-3 h-3 ${isSelected ? "text-[#d4af37]" : "text-white"}`} />
+                              <div className={`w-6 h-6 rounded flex items-center justify-center ${isSelected ? "bg-black/25 border border-cremp-accent/40" : "bg-[#D946EF]"}`}>
+                                <opt.icon className={`w-3 h-3 ${isSelected ? "text-cremp-accent" : "text-white"}`} />
                               </div>
                               <span>{opt.label}</span>
                             </div>
                             <div className={checkBox(isSelected)}>
-                              {isSelected && <Check className="w-3 h-3 text-[#0a1128] stroke-[3]" />}
+                              {isSelected && <Check className="w-3 h-3 text-[#0b1b42] stroke-[3]" />}
                             </div>
                           </button>
                         );
                       })}
-                      <button
-                        type="button"
-                        onClick={() => setActiveDropdown(null)}
-                        className="mt-1.5 w-full py-2 bg-[#0b1b42] text-white text-xs font-bold rounded-[4px] shadow-[0_4px_12px_rgba(11,27,66,0.2)] hover:shadow-[0_8px_24px_rgba(11,27,66,0.3)] transition-shadow"
-                      >
-                        Done
-                      </button>
                     </div>
                   )}
                 </motion.div>
