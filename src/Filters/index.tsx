@@ -277,7 +277,7 @@ export default function Filters(_props: FiltersProps) {
         </div>
 
         <div ref={toolbarRef} className="relative w-full">
-          <div className="w-full flex flex-wrap items-center gap-2 pb-1.5">
+          <div className="w-full min-w-max flex flex-nowrap items-center gap-2 pb-1.5 overflow-x-auto scrollbar-hide touch-pan-x overscroll-x-contain">
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
@@ -346,7 +346,7 @@ export default function Filters(_props: FiltersProps) {
                   onClick={() => toggleDropdown(chip.id)}
                   aria-haspopup="true"
                   aria-expanded={isOpen}
-                  className={`group flex items-center gap-2 px-2.5 h-9 rounded border transition-all duration-300 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
+                  className={`group flex items-center gap-2 px-2.5 h-9 rounded border shrink-0 transition-all duration-300 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50 ${
                     chip.isActive || isOpen
                       ? "bg-[#0b1b42] border-cremp-accent/50 text-white shadow-glow-accent"
                       : "bg-cremp-surface-alt/60 backdrop-blur-md border-cremp-border hover:bg-cremp-surface text-cremp-text-primary shadow-elevation-1"
@@ -386,7 +386,7 @@ export default function Filters(_props: FiltersProps) {
                 setActiveDropdown(null);
                 setIsBottomSheetOpen(true);
               }}
-              className="group flex items-center gap-2 px-3 h-9 rounded bg-cremp-surface-alt/60 backdrop-blur-md border border-cremp-border hover:bg-cremp-surface text-cremp-text-primary transition-all duration-300 shadow-elevation-1 whitespace-nowrap ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50"
+              className="group flex items-center gap-2 px-3 h-9 rounded bg-cremp-surface-alt/60 backdrop-blur-md border border-cremp-border hover:bg-cremp-surface text-cremp-text-primary transition-all duration-300 shadow-elevation-1 shrink-0 whitespace-nowrap sm:ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-accent/50"
             >
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 4 }}
