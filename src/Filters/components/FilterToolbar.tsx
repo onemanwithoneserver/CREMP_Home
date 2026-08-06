@@ -5,6 +5,7 @@ import type { FilterChip } from "./chipHelpers";
 import { useDragToScroll } from "./useDragToScroll";
 
 interface FilterToolbarProps {
+  isMobile?: boolean;
   activeTab: "commercial" | "business";
   buyOrLease: "Buy" | "Lease";
   activeChips: FilterChip[];
@@ -17,6 +18,7 @@ interface FilterToolbarProps {
 }
 
 export default function FilterToolbar({
+  isMobile,
   activeTab,
   buyOrLease,
   activeChips,
@@ -27,18 +29,13 @@ export default function FilterToolbar({
   onOpenAdvanced,
   chipRefs,
 }: FilterToolbarProps) {
-  const { ref: scrollRef, isDragging, onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onPointerLeave } =
-    useDragToScroll<HTMLDivElement>();
+  const { ref: scrollRef, isDragging, onPointerDown } = useDragToScroll<HTMLDivElement>();
 
   return (
     <div
       ref={scrollRef}
       onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerCancel}
-      onPointerLeave={onPointerLeave}
-      className={`w-full min-w-max flex flex-nowrap items-center gap-2 pb-2 overflow-x-auto overflow-y-hidden scrollbar-thin overscroll-x-contain scroll-smooth cursor-grab ${
+      className={`w-full flex flex-nowrap items-center gap-2 pb-2 overflow-x-auto overflow-y-hidden ${isMobile ? "scrollbar-hide" : "scrollbar-thin"} overscroll-x-contain scroll-smooth cursor-grab ${
         isDragging ? "cursor-grabbing select-none" : ""
       }`}
       style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}

@@ -119,7 +119,7 @@ export default function AdvancedFilterModal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center select-none" role="dialog" aria-modal="true" aria-label="Advanced filters">
+        <div className="fixed inset-0 z-[999999] flex items-end justify-center select-none" role="dialog" aria-modal="true" aria-label="Advanced filters">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

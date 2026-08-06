@@ -12,7 +12,7 @@ interface FiltersProps {
   isMobile?: boolean;
 }
 
-export default function Filters(_props: FiltersProps) {
+export default function Filters({ isMobile = false }: FiltersProps) {
   const [activeTab, setActiveTab] = useState<"commercial" | "business">("commercial");
   const [searchQuery, setSearchQuery] = useState("");
   const [buyOrLease, setBuyOrLease] = useState<"Buy" | "Lease">("Buy");
@@ -100,11 +100,12 @@ export default function Filters(_props: FiltersProps) {
         businessCount={356}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2 shrink-0 flex flex-col gap-3 relative z-50">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2 shrink-0 flex flex-col gap-3 relative z-[99999]">
         <SearchBar activeTab={activeTab} searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
         <div ref={toolbarRef} className="relative w-full">
           <FilterToolbar
+            isMobile={isMobile}
             activeTab={activeTab}
             buyOrLease={buyOrLease}
             activeChips={activeChips}
