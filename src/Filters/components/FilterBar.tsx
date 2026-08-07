@@ -49,21 +49,20 @@ export default function FilterBar({
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search anything..."
-          className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg leading-5 bg-white/70 backdrop-blur-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition-all text-sm shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
+          className="block w-full pl-10 pr-3 py-3 border border-gray-200/90 rounded-[4px] leading-5 bg-white/80 backdrop-blur-sm placeholder-gray-400 hover:border-[#d4af37]/60 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/40 focus:border-[#d4af37] transition-all text-sm shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
         />
       </div>
-
-
 
       <motion.button
         type="button"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.02 }}
         className={clsx(
           "flex items-center justify-center transition-all duration-200 cursor-pointer",
           isDropdownOpen
-            ? "p-3 bg-transparent text-red-500 hover:text-red-600 border-none shadow-none"
-            : "gap-2 px-4 py-3 rounded-lg border border-transparent bg-[#0b1b42] text-white hover:bg-[#121c33] shadow-sm text-sm font-bold"
+            ? "px-3.5 py-3 rounded-[4px] bg-red-50 hover:bg-red-100/80 text-red-500 hover:text-red-600 border border-red-200/60 shadow-xs"
+            : "gap-2 px-4 py-3 rounded-[4px] border border-[#d4af37]/40 bg-[#0b1b42] text-white hover:bg-[#121c33] hover:border-[#d4af37] shadow-[0_4px_14px_rgba(11,27,66,0.25)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] text-sm font-bold"
         )}
         aria-label={isDropdownOpen ? "Close filters" : "Open filters"}
       >
@@ -78,7 +77,7 @@ export default function FilterBar({
           </motion.div>
         ) : (
           <>
-            <div className="flex items-center justify-center text-white">
+            <div className="flex items-center justify-center text-[#d4af37]">
               <Filter className="w-4 h-4" />
             </div>
             <span className="hidden sm:inline">Filters</span>

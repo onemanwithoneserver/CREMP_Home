@@ -82,16 +82,16 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
   };
 
   const commercialAdvancedCategories: CategoryDef[] = [
-    { key: "fitOut", title: "Fit Out", subtitle: "Fit Out", icon: Filter, iconBg: "bg-[#7c3aed]", options: FIT_OUT_OPTIONS.filter(o => o.id !== "Any").map(o => ({ id: o.id, label: o.label })) },
-    { key: "occupancy", title: "Occupancy", subtitle: "Occupancy", icon: Users, iconBg: "bg-[#059669]", options: mapStringsToOptions(OCCUPANCY_OPTIONS) },
-    { key: "constructionStage", title: "Construction Stage", subtitle: "Construction Stage", icon: Construction, iconBg: "bg-[#d97706]", options: mapStringsToOptions(CONSTRUCTION_STAGE_OPTIONS) },
-    { key: "status", title: "Status", subtitle: "Status", icon: Layers, iconBg: "bg-[#0b1b42]", options: mapStringsToOptions(STATUS_OPTIONS), isMulti: true },
-    { key: "dealPref", title: "Deal Preference", subtitle: "Deal Preference", icon: Handshake, iconBg: "bg-[#D946EF]", options: mapStringsToOptions(DEAL_PREF.filter(o => o !== "Any")) },
-    { key: "commercialTags", title: "Commercial Tags", subtitle: "Commercial Tags", icon: Tag, iconBg: "bg-[#0d9488]", options: COMMERCIAL_TAGS.map(t => ({ id: t.id, label: t.label })), isMulti: true },
+    { key: "fitOut", title: "Fit Out", subtitle: "Fit Out", icon: Filter, iconBg: "bg-[#7c3aed] text-white", options: FIT_OUT_OPTIONS.filter(o => o.id !== "Any").map(o => ({ id: o.id, label: o.label })) },
+    { key: "occupancy", title: "Occupancy", subtitle: "Occupancy", icon: Users, iconBg: "bg-[#059669] text-white", options: mapStringsToOptions(OCCUPANCY_OPTIONS) },
+    { key: "constructionStage", title: "Construction Stage", subtitle: "Construction Stage", icon: Construction, iconBg: "bg-[#d97706] text-white", options: mapStringsToOptions(CONSTRUCTION_STAGE_OPTIONS) },
+    { key: "status", title: "Status", subtitle: "Status", icon: Layers, iconBg: "bg-[#4f46e5] text-white", options: mapStringsToOptions(STATUS_OPTIONS), isMulti: true },
+    { key: "dealPref", title: "Deal Preference", subtitle: "Deal Preference", icon: Handshake, iconBg: "bg-[#d946ef] text-white", options: mapStringsToOptions(DEAL_PREF.filter(o => o !== "Any")) },
+    { key: "commercialTags", title: "Commercial Tags", subtitle: "Commercial Tags", icon: Tag, iconBg: "bg-[#0d9488] text-white", options: COMMERCIAL_TAGS.map(t => ({ id: t.id, label: t.label })), isMulti: true },
   ];
 
   const businessAdvancedCategories: CategoryDef[] = [
-    { key: "businessOption", title: "Business Options", subtitle: "Business Options", icon: Briefcase, iconBg: "bg-[#7c3aed]", options: BUSINESS_OPTIONS.map(o => ({ id: o.id, label: o.label })) },
+    { key: "businessOption", title: "Business Options", subtitle: "Business Options", icon: Briefcase, iconBg: "bg-[#7c3aed] text-white", options: BUSINESS_OPTIONS.map(o => ({ id: o.id, label: o.label })) },
   ];
 
   const activeCategories = activeTab === "commercial" ? commercialAdvancedCategories : businessAdvancedCategories;
@@ -116,25 +116,27 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -10, scale: 0.96 }}
       transition={{ type: "spring", damping: 26, stiffness: 360 }}
-      className="absolute top-[calc(100%+8px)] right-0 bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.18)] border border-gray-100 overflow-hidden z-[9999] flex flex-col w-full max-w-[440px]"
+      className="absolute top-[calc(100%+8px)] right-0 bg-white rounded-[4px] shadow-[0_20px_60px_rgba(11,27,66,0.18)] border border-[#d4af37]/35 overflow-hidden z-[9999] flex flex-col w-full max-w-[440px] backdrop-blur-xl"
     >
-      <div className="px-4 pt-4 pb-2 shrink-0 flex items-center justify-between">
+      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-90 pointer-events-none" />
+
+      <div className="px-4 pt-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-100/90 bg-gradient-to-b from-[#0b1b42]/[0.03] to-transparent">
         <div>
-          <h2 className="text-[18px] font-extrabold text-[#0a1128] tracking-tight">Filters</h2>
+          <h2 className="text-[17px] font-extrabold text-[#0a1128] tracking-tight">Filters</h2>
         </div>
         <motion.button
           type="button"
           whileHover={{ scale: 1.06, rotate: -4 }}
           whileTap={{ scale: 0.94 }}
           onClick={handleReset}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold text-gray-500 hover:text-[#d4af37] hover:bg-[#0b1b42]/5 transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-[2px] text-[11px] font-bold text-gray-500 hover:text-[#0b1b42] hover:bg-[#0b1b42]/5 border border-transparent hover:border-[#d4af37]/40 transition-all cursor-pointer"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset</span>
         </motion.button>
       </div>
 
-      <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-8 space-y-4 max-h-[calc(100vh-200px)]">
+      <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pt-3 pb-8 space-y-3.5 max-h-[calc(100vh-200px)]">
         
         <div className="relative z-40">
           <CustomSelect
@@ -147,17 +149,22 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
         </div>
 
         {activeTab === "commercial" ? (
-          <div className="space-y-2">
-            <div className="bg-gray-50/80 border border-gray-200/70 shadow-xs rounded-xl overflow-hidden">
+          <div className="space-y-2.5">
+            <div className={clsx(
+              "rounded-[4px] transition-all duration-200 overflow-hidden border",
+              expandedCategoryKey === "transaction"
+                ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
+                : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs"
+            )}>
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.99 }}
                 onClick={() => setExpandedCategoryKey(expandedCategoryKey === "transaction" ? null : "transaction")}
-                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer hover:bg-gray-100/50 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0b1b42] border border-[#d4af37]/30 shadow-xs">
-                    <Handshake className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#e11d48] shadow-xs text-white">
+                    <Handshake className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="text-[13px] font-extrabold text-[#0a1128]">Transaction Type</span>
                 </div>
@@ -184,10 +191,10 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             whileTap={{ scale: 0.97 }}
                             onClick={() => handleUpdate("transactionType", type)}
                             className={clsx(
-                              "relative py-2.5 rounded-xl border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer",
+                              "relative py-2.5 rounded-[4px] border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer",
                               isSelected
-                                ? "bg-[#0b1b42] border-[#d4af37]/60 text-white shadow-[0_4px_14px_rgba(11,27,66,0.22)]"
-                                : "bg-white border-gray-200 shadow-xs text-gray-700 hover:bg-gray-50 hover:border-gray-300"
+                                ? "bg-[#0b1b42] border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                : "bg-white border-gray-200 shadow-xs text-[#0a1128] hover:border-[#d4af37]/60 hover:bg-amber-50/30 hover:text-[#0b1b42] hover:shadow-[0_2px_8px_rgba(212,175,55,0.12)]"
                             )}
                           >
                             <span>{type}</span>
@@ -210,16 +217,21 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
               </AnimatePresence>
             </div>
 
-            <div className="bg-gray-50/80 border border-gray-200/70 shadow-xs rounded-xl overflow-hidden">
+            <div className={clsx(
+              "rounded-[4px] transition-all duration-200 overflow-hidden border",
+              expandedCategoryKey === "property"
+                ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
+                : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs"
+            )}>
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.99 }}
                 onClick={() => setExpandedCategoryKey(expandedCategoryKey === "property" ? null : "property")}
-                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer hover:bg-gray-100/50 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0b1b42] border border-[#d4af37]/30 shadow-xs">
-                    <Building2 className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#d4af37] text-[#0b1b42] shadow-xs">
+                    <Building2 className="w-3.5 h-3.5 text-[#0b1b42]" />
                   </div>
                   <span className="text-[13px] font-extrabold text-[#0a1128]">Property Type</span>
                 </div>
@@ -246,14 +258,14 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             whileTap={{ scale: 0.96 }}
                             onClick={() => handleUpdate("propertyType", filters.propertyType === pt.id ? "Any" : pt.id)}
                             className={clsx(
-                              "flex flex-col items-center justify-center p-2 rounded-xl border transition-all h-[68px] gap-1 cursor-pointer group",
+                              "flex flex-col items-center justify-center p-2 rounded-[4px] border transition-all h-[68px] gap-1 cursor-pointer group",
                               isSelected
-                                ? "bg-[#0b1b42] border-[#d4af37]/60 shadow-[0_6px_18px_rgba(11,27,66,0.25)]"
-                                : "bg-white border-gray-200 shadow-xs hover:border-gray-300 hover:bg-gray-50/50"
+                                ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                : "bg-white border-gray-200 shadow-xs hover:border-[#d4af37]/60 hover:bg-amber-50/30 hover:shadow-[0_2px_10px_rgba(212,175,55,0.12)]"
                             )}
                           >
-                            <pt.icon className={clsx("w-4 h-4 transition-transform group-hover:scale-110", isSelected ? "text-[#d4af37]" : "text-gray-500")} strokeWidth={1.5} />
-                            <span className={clsx("text-[10px] font-bold text-center leading-tight", isSelected ? "text-white" : "text-gray-600")}>{pt.label}</span>
+                            <pt.icon className={clsx("w-4 h-4 transition-transform group-hover:scale-110", isSelected ? "text-[#d4af37]" : "text-gray-500 group-hover:text-[#d4af37]")} strokeWidth={1.5} />
+                            <span className={clsx("text-[10px] font-bold text-center leading-tight transition-colors", isSelected ? "text-white" : "text-gray-700 group-hover:text-[#0b1b42]")}>{pt.label}</span>
                           </motion.button>
                         );
                       })}
@@ -263,16 +275,21 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
               </AnimatePresence>
             </div>
 
-            <div className={clsx("bg-gray-50/80 border border-gray-200/70 shadow-xs rounded-xl transition-all", expandedCategoryKey === "budget" ? "overflow-visible z-30 relative" : "overflow-hidden")}>
+            <div className={clsx(
+              "rounded-[4px] transition-all duration-200 border",
+              expandedCategoryKey === "budget"
+                ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20 overflow-visible z-30 relative"
+                : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs overflow-hidden"
+            )}>
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.99 }}
                 onClick={() => setExpandedCategoryKey(expandedCategoryKey === "budget" ? null : "budget")}
-                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer hover:bg-gray-100/50 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0b1b42] border border-[#d4af37]/30 shadow-xs">
-                    <IndianRupee className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#059669] text-white shadow-xs">
+                    <IndianRupee className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="text-[13px] font-extrabold text-[#0a1128]">Budget Range</span>
                 </div>
@@ -314,17 +331,22 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             </div>
           </div>
         ) : (
-          <div className="space-y-2">
-            <div className="bg-gray-50/80 border border-gray-200/70 shadow-xs rounded-xl overflow-hidden">
+          <div className="space-y-2.5">
+            <div className={clsx(
+              "rounded-[4px] transition-all duration-200 overflow-hidden border",
+              expandedCategoryKey === "industry"
+                ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
+                : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs"
+            )}>
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.99 }}
                 onClick={() => setExpandedCategoryKey(expandedCategoryKey === "industry" ? null : "industry")}
-                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer hover:bg-gray-100/50 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0b1b42] border border-[#d4af37]/30 shadow-xs">
-                    <Store className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#0891b2] text-white shadow-xs">
+                    <Store className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="text-[13px] font-extrabold text-[#0a1128]">Select Industry</span>
                 </div>
@@ -351,14 +373,14 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             whileTap={{ scale: 0.96 }}
                             onClick={() => handleUpdate("industry", filters.industry === ind.id ? "Any" : ind.id)}
                             className={clsx(
-                              "flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all h-[76px] gap-1.5 cursor-pointer group",
+                              "flex flex-col items-center justify-center p-2.5 rounded-[4px] border transition-all h-[76px] gap-1.5 cursor-pointer group",
                               isSelected
-                                ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_18px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
-                                : "bg-white border-gray-200 shadow-xs hover:border-gray-300 hover:bg-gray-50/50"
+                                ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                : "bg-white border-gray-200 shadow-xs hover:border-[#d4af37]/60 hover:bg-amber-50/30 hover:shadow-[0_2px_10px_rgba(212,175,55,0.12)]"
                             )}
                           >
                             <ind.icon className={clsx("w-5 h-5 transition-transform group-hover:scale-110", isSelected ? "text-[#d4af37]" : ind.color)} />
-                            <span className={clsx("text-[11px] font-bold text-center leading-tight", isSelected ? "text-white" : "text-gray-600")}>{ind.label}</span>
+                            <span className={clsx("text-[11px] font-bold text-center leading-tight transition-colors", isSelected ? "text-white" : "text-gray-700 group-hover:text-[#0b1b42]")}>{ind.label}</span>
                           </motion.button>
                         );
                       })}
@@ -377,26 +399,26 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             whileTap={{ scale: 0.99 }}
             onClick={() => setAdvancedOpen(!advancedOpen)}
             className={clsx(
-              "w-full flex items-center justify-between p-2.5 rounded-xl border transition-all duration-200 cursor-pointer text-left group",
+              "w-full flex items-center justify-between p-2.5 rounded-[4px] border transition-all duration-200 cursor-pointer text-left group",
               advancedOpen
-                ? "bg-gradient-to-r from-gray-50 via-white to-gray-50 border-[#0b1b42]/30 shadow-xs ring-1 ring-[#0b1b42]/10"
-                : "bg-white hover:bg-gray-50/80 border-gray-200/90 shadow-xs hover:border-gray-300"
+                ? "bg-gradient-to-r from-amber-50/40 via-white to-amber-50/40 border-[#d4af37]/60 shadow-[0_4px_14px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
+                : "bg-white hover:bg-amber-50/20 border-gray-200/90 shadow-xs hover:border-[#d4af37]/60 hover:shadow-[0_2px_10px_rgba(212,175,55,0.12)]"
             )}
           >
             <div className="flex items-center gap-2.5">
               <div
                 className={clsx(
-                  "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 shadow-xs shrink-0",
+                  "w-8 h-8 rounded-[4px] flex items-center justify-center transition-all duration-300 shadow-xs shrink-0",
                   advancedOpen
-                    ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/40"
-                    : "bg-gray-100 text-gray-700 group-hover:bg-[#0b1b42] group-hover:text-[#d4af37]"
+                    ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/50 shadow-[0_0_10px_rgba(212,175,55,0.25)]"
+                    : "bg-gray-100 text-gray-700 group-hover:bg-[#0b1b42] group-hover:text-[#d4af37] group-hover:border group-hover:border-[#d4af37]/40"
                 )}
               >
                 <SlidersHorizontal className="w-4 h-4" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[13px] font-extrabold text-[#0a1128] tracking-tight">
+                  <span className="text-[13px] font-extrabold text-[#0a1128] tracking-tight group-hover:text-[#0b1b42] transition-colors">
                     Advanced Filters
                   </span>
                   {activeAdvancedCount > 0 && (
@@ -414,8 +436,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             <div className="flex items-center gap-1.5 pl-2">
               <div
                 className={clsx(
-                  "w-6 h-6 rounded-md flex items-center justify-center transition-all duration-200",
-                  advancedOpen ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/40 shadow-xs" : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
+                  "w-6 h-6 rounded-[2px] flex items-center justify-center transition-all duration-200",
+                  advancedOpen ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/40 shadow-xs" : "bg-gray-100 text-gray-600 group-hover:bg-amber-100/60 group-hover:text-[#0b1b42]"
                 )}
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -454,7 +476,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                 transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 className={clsx(advancedOpen ? "overflow-visible" : "overflow-hidden")}
               >
-                <div className={clsx("mt-2 pt-1 space-y-1", advancedOpen ? "overflow-visible" : "overflow-hidden")}>
+                <div className={clsx("mt-2 pt-1 space-y-1.5", advancedOpen ? "overflow-visible" : "overflow-hidden")}>
                   
                   {activeTab === "commercial" && (
                     <div className={clsx("flex flex-col", expandedCategoryKey === "size" ? "overflow-visible z-30 relative" : "overflow-hidden")}>
@@ -464,16 +486,18 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                         whileTap={{ scale: 0.99 }}
                         onClick={() => toggleCategory("size")}
                         className={clsx(
-                          "w-full flex items-center justify-between px-2.5 py-2 rounded-lg transition-colors cursor-pointer",
-                          expandedCategoryKey === "size" ? "bg-gray-50" : "hover:bg-gray-50"
+                          "w-full flex items-center justify-between px-2.5 py-2 rounded-[4px] transition-all cursor-pointer border",
+                          expandedCategoryKey === "size"
+                            ? "bg-amber-50/30 border-[#d4af37]/40 shadow-xs"
+                            : "bg-transparent border-transparent hover:border-[#d4af37]/35 hover:bg-amber-50/20"
                         )}
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-[#0284c7]">
-                            <Maximize className="w-[16px] h-[16px] text-white" strokeWidth={2.5} />
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 bg-[#0284c7] text-white shadow-xs">
+                            <Maximize className="w-[14px] h-[14px]" strokeWidth={2.5} />
                           </div>
                           <div className="text-left">
-                            <span className="text-[14px] font-bold text-[#0a1128]">Size</span>
+                            <span className="text-[13px] font-extrabold text-[#0a1128]">Size</span>
                           </div>
                         </div>
                         <motion.div animate={{ rotate: expandedCategoryKey === "size" ? 180 : 0 }} transition={{ type: "spring", stiffness: 350, damping: 25 }}>
@@ -489,10 +513,10 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                             className={clsx(expandedCategoryKey === "size" ? "overflow-visible" : "overflow-hidden")}
                           >
-                            <div className="ml-[48px] mr-2 py-2 space-y-2 mb-1">
+                            <div className="ml-[38px] mr-1.5 py-2 space-y-2 mb-1">
                               <div className="flex gap-2">
                                 <div className="flex-1 relative z-30">
-                                  <label className="block text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Min</label>
+                                  <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Min</label>
                                   <CustomSelect
                                     options={SIZE_MIN_OPTIONS}
                                     value={filters.sizeMin}
@@ -500,7 +524,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                   />
                                 </div>
                                 <div className="flex-1 relative z-20">
-                                  <label className="block text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Max</label>
+                                  <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Max</label>
                                   <CustomSelect
                                     options={SIZE_MAX_OPTIONS}
                                     value={filters.sizeMax}
@@ -509,7 +533,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                 </div>
                               </div>
                               <div className="relative z-10">
-                                <label className="block text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Unit</label>
+                                <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Unit</label>
                                 <CustomSelect
                                   options={SIZE_UNITS}
                                   value={filters.sizeUnit}
@@ -538,13 +562,15 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                           whileTap={{ scale: 0.99 }}
                           onClick={() => toggleCategory(cat.key)}
                           className={clsx(
-                            "w-full flex items-center justify-between px-2.5 py-2 rounded-lg transition-colors cursor-pointer",
-                            isExpanded ? "bg-gray-50" : "hover:bg-gray-50"
+                            "w-full flex items-center justify-between px-2.5 py-2 rounded-[4px] transition-all cursor-pointer border",
+                            isExpanded
+                              ? "bg-amber-50/30 border-[#d4af37]/40 shadow-xs"
+                              : "bg-transparent border-transparent hover:border-[#d4af37]/35 hover:bg-amber-50/20"
                           )}
                         >
                           <div className="flex items-center gap-2.5">
-                            <div className={clsx("w-7 h-7 rounded-md flex items-center justify-center shrink-0 shadow-xs", cat.iconBg)}>
-                              <cat.icon className="w-[14px] h-[14px] text-white" strokeWidth={2.5} />
+                            <div className={clsx("w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-xs", cat.iconBg || "bg-[#0b1b42] text-[#d4af37]")}>
+                              <cat.icon className="w-[14px] h-[14px]" strokeWidth={2.5} />
                             </div>
                             <div className="flex flex-col text-left">
                               <span className="text-[13px] font-extrabold text-[#0a1128]">{cat.title}</span>
@@ -572,7 +598,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                               className="overflow-hidden"
                             >
-                              <div className="ml-[40px] mr-1.5 py-1.5 space-y-1">
+                              <div className="ml-[38px] mr-1.5 py-1.5 space-y-1">
                                 {cat.isMulti ? (
                                   cat.options.map((opt) => {
                                     const isSelected = ((currentValue as string[]) || []).includes(opt.id);
@@ -584,18 +610,18 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => handleOptionToggle(cat, opt.id)}
                                         className={clsx(
-                                          "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-left transition-colors group cursor-pointer",
+                                          "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                           isSelected
-                                            ? "bg-[#0b1b42]/[0.05] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
-                                            : "text-gray-600 hover:bg-gray-50/80 font-medium"
+                                            ? "bg-[#0b1b42]/[0.06] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
+                                            : "text-gray-700 hover:bg-amber-50/40 hover:text-[#0b1b42] font-medium"
                                         )}
                                       >
                                         <div
                                           className={clsx(
-                                            "w-4 h-4 rounded-[4px] border flex items-center justify-center shrink-0 transition-all",
+                                            "w-4 h-4 rounded-[2px] border flex items-center justify-center shrink-0 transition-all",
                                             isSelected
-                                              ? "bg-[#0b1b42] border-[#d4af37]/80 text-[#d4af37]"
-                                              : "bg-white border-gray-300 group-hover:border-gray-400"
+                                              ? "bg-[#0b1b42] border-[#d4af37] text-[#d4af37] shadow-xs"
+                                              : "bg-white border-gray-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37]/30"
                                           )}
                                         >
                                           {isSelected && (
@@ -623,18 +649,18 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                         onFilterChange(newFilters);
                                       }}
                                       className={clsx(
-                                        "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-left transition-colors group cursor-pointer",
+                                        "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                         (!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key])
-                                          ? "bg-[#0b1b42]/[0.05] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
-                                          : "text-gray-600 hover:bg-gray-50/80 font-medium"
+                                          ? "bg-[#0b1b42]/[0.06] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
+                                          : "text-gray-700 hover:bg-amber-50/40 hover:text-[#0b1b42] font-medium"
                                       )}
                                     >
                                       <div
                                         className={clsx(
                                           "w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all",
                                           (!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key])
-                                            ? "border-[#d4af37] bg-white ring-2 ring-[#d4af37]/20"
-                                            : "bg-white border-gray-300 group-hover:border-gray-400"
+                                            ? "border-[#d4af37] bg-white ring-2 ring-[#d4af37]/30 shadow-xs"
+                                            : "bg-white border-gray-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37]/30"
                                         )}
                                       >
                                         {(!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key]) && (
@@ -658,18 +684,18 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                           whileTap={{ scale: 0.98 }}
                                           onClick={() => handleOptionToggle(cat, opt.id)}
                                           className={clsx(
-                                            "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-left transition-colors group cursor-pointer",
+                                            "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                             isSelected
-                                              ? "bg-[#0b1b42]/[0.05] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
-                                              : "text-gray-600 hover:bg-gray-50/80 font-medium"
+                                              ? "bg-[#0b1b42]/[0.06] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
+                                              : "text-gray-700 hover:bg-amber-50/40 hover:text-[#0b1b42] font-medium"
                                           )}
                                         >
                                           <div
                                             className={clsx(
                                               "w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all",
                                               isSelected
-                                                ? "border-[#d4af37] bg-white ring-2 ring-[#d4af37]/20"
-                                                : "bg-white border-gray-300 group-hover:border-gray-400"
+                                                ? "border-[#d4af37] bg-white ring-2 ring-[#d4af37]/30 shadow-xs"
+                                                : "bg-white border-gray-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37]/30"
                                             )}
                                           >
                                             {isSelected && (
@@ -701,13 +727,13 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
         </div>
       </div>
 
-      <div className="px-4 py-3 border-t border-gray-100 bg-white shrink-0 rounded-b-2xl">
+      <div className="px-4 py-3 border-t border-gray-100 bg-white shrink-0 rounded-b-[4px]">
         <motion.button
           type="button"
           whileHover={{ scale: 1.02, y: -1, boxShadow: "0 8px 24px rgba(212,175,55,0.4)" }}
           whileTap={{ scale: 0.98 }}
           onClick={onClose}
-          className="w-full py-2.5 text-[12.5px] font-bold text-white bg-[#0b1b42] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-xl transition-all shadow-[0_4px_16px_rgba(11,27,66,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group"
+          className="w-1/2 mx-auto py-2.5 text-[12.5px] font-bold text-white bg-[#0b1b42] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-[4px] transition-all shadow-[0_4px_16px_rgba(11,27,66,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group"
         >
           <span>Apply Filters</span>
           <span className="text-[9.5px] font-semibold text-[#d4af37] group-hover:text-amber-300 transition-colors">0 Listings</span>
