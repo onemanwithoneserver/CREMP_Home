@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { ChevronDown, MapPin, SlidersHorizontal, Filter, Layers, Tag, Handshake, Users, Construction, Briefcase, CheckCircle2, Maximize } from "lucide-react";
+import { ChevronDown, MapPin, SlidersHorizontal, Filter, Layers, Tag, Handshake, Users, Construction, Briefcase, CheckCircle2, Maximize, CircleDollarSign, Building2, Store, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { FilterState } from "./data";
 import { DEFAULT_FILTERS, PROPERTY_TYPES, BUDGET_OPTIONS, FIT_OUT_OPTIONS, COMMERCIAL_TAGS, STATUS_OPTIONS, DEAL_PREF, OCCUPANCY_OPTIONS, CONSTRUCTION_STAGE_OPTIONS, BOP_INDUSTRIES, BUSINESS_OPTIONS, SIZE_MIN_OPTIONS, SIZE_MAX_OPTIONS, SIZE_UNITS } from "./data";
+import { CustomSelect } from "./CustomSelect";
 import clsx from "clsx";
 
 interface FilterDropdownProps {
@@ -82,116 +83,173 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
   };
 
   const commercialAdvancedCategories: CategoryDef[] = [
-    { key: "fitOut", title: "Fit Out", subtitle: "Across Fit Out", icon: Filter, iconBg: "bg-[#7c3aed]", options: FIT_OUT_OPTIONS.filter(o => o.id !== "Any").map(o => ({ id: o.id, label: o.label })) },
-    { key: "occupancy", title: "Occupancy", subtitle: "Across Occupancy", icon: Users, iconBg: "bg-[#059669]", options: mapStringsToOptions(OCCUPANCY_OPTIONS) },
-    { key: "constructionStage", title: "Construction Stage", subtitle: "Across Construction Stage", icon: Construction, iconBg: "bg-[#d97706]", options: mapStringsToOptions(CONSTRUCTION_STAGE_OPTIONS) },
-    { key: "status", title: "Status", subtitle: "Across Status", icon: Layers, iconBg: "bg-[#0284c7]", options: mapStringsToOptions(STATUS_OPTIONS), isMulti: true },
-    { key: "dealPref", title: "Deal Preference", subtitle: "Across Deal Preference", icon: Handshake, iconBg: "bg-[#D946EF]", options: mapStringsToOptions(DEAL_PREF.filter(o => o !== "Any")) },
-    { key: "commercialTags", title: "Commercial Tags", subtitle: "Across Commercial Tags", icon: Tag, iconBg: "bg-[#14B8A6]", options: COMMERCIAL_TAGS.map(t => ({ id: t.id, label: t.label })), isMulti: true },
+    { key: "fitOut", title: "Fit Out", subtitle: "Fit Out", icon: Filter, iconBg: "bg-[#7c3aed]", options: FIT_OUT_OPTIONS.filter(o => o.id !== "Any").map(o => ({ id: o.id, label: o.label })) },
+    { key: "occupancy", title: "Occupancy", subtitle: "Occupancy", icon: Users, iconBg: "bg-[#059669]", options: mapStringsToOptions(OCCUPANCY_OPTIONS) },
+    { key: "constructionStage", title: "Construction Stage", subtitle: "Construction Stage", icon: Construction, iconBg: "bg-[#d97706]", options: mapStringsToOptions(CONSTRUCTION_STAGE_OPTIONS) },
+    { key: "status", title: "Status", subtitle: "Status", icon: Layers, iconBg: "bg-[#0284c7]", options: mapStringsToOptions(STATUS_OPTIONS), isMulti: true },
+    { key: "dealPref", title: "Deal Preference", subtitle: "Deal Preference", icon: Handshake, iconBg: "bg-[#D946EF]", options: mapStringsToOptions(DEAL_PREF.filter(o => o !== "Any")) },
+    { key: "commercialTags", title: "Commercial Tags", subtitle: "Commercial Tags", icon: Tag, iconBg: "bg-[#14B8A6]", options: COMMERCIAL_TAGS.map(t => ({ id: t.id, label: t.label })), isMulti: true },
   ];
 
   const businessAdvancedCategories: CategoryDef[] = [
-    { key: "businessOption", title: "Business Options", subtitle: "Across Business Options", icon: Briefcase, iconBg: "bg-[#7c3aed]", options: BUSINESS_OPTIONS.map(o => ({ id: o.id, label: o.label })) },
+    { key: "businessOption", title: "Business Options", subtitle: "Business Options", icon: Briefcase, iconBg: "bg-[#7c3aed]", options: BUSINESS_OPTIONS.map(o => ({ id: o.id, label: o.label })) },
   ];
 
   const advancedCategories = activeTab === "commercial" ? commercialAdvancedCategories : businessAdvancedCategories;
 
   return (
     <>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="fixed inset-0 bg-black/40 z-[99998] sm:hidden backdrop-blur-sm" />
+      <div className="fixed inset-0 bg-[#0a1128]/20 backdrop-blur-sm z-[9998]" onClick={onClose} />
       
-      <motion.div initial={{ y: "100%", opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: "100%", opacity: 0 }} transition={{ type: "spring", damping: 25, stiffness: 200 }} className="fixed bottom-4 left-4 right-4 bg-white/70 backdrop-blur-xl border border-white/40 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[99999] flex flex-col sm:hidden max-h-[90vh] overflow-hidden">
-        <div className="flex justify-center w-full pt-3 pb-2 shrink-0">
+      <motion.div initial={{ y: "100%", opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: "100%", opacity: 0 }} transition={{ type: "spring", damping: 25, stiffness: 200 }} className="fixed bottom-4 left-4 right-4 bg-white/70 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 z-[9999] flex flex-col max-h-[85vh] overflow-hidden">
+        
+        <div className="flex justify-center pt-3 pb-1 shrink-0">
           <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
 
-        <div className="px-4 pb-2 shrink-0">
-          <h2 className="text-[20px] font-extrabold text-[#0a1128] tracking-tight">Filters</h2>
-          <p className="text-[12px] text-gray-500 font-medium mt-0.5">Refine your {activeTab === "commercial" ? "property" : "business"} search</p>
+        <div className="px-4 pb-2 shrink-0 flex items-center justify-between">
+          <div>
+            <h2 className="text-[20px] font-extrabold text-[#0a1128] tracking-tight">Filters</h2>
+            <p className="text-[12px] text-gray-500 font-medium mt-0.5">Refine your {activeTab === "commercial" ? "property" : "business"} search</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button type="button" onClick={handleReset} className="text-[12px] font-bold text-[#0a1128] hover:text-[#d4af37] transition-colors underline underline-offset-2">
+              Reset
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1 text-red-500 hover:text-red-600 transition-colors bg-transparent border-none cursor-pointer flex items-center justify-center active:scale-95"
+              aria-label="Close filters"
+            >
+              <X className="w-5 h-5 text-red-500" strokeWidth={2.5} />
+            </button>
+          </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-4">
+        <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-4 space-y-4">
           
-          <div className="relative">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-              <MapPin className="w-[16px] h-[16px] text-gray-400" />
-            </div>
-            <select 
-              className="w-full pl-9 pr-8 py-2.5 bg-white/60 border border-white/50 shadow-sm rounded-xl text-[14px] font-semibold text-gray-700 appearance-none outline-none focus:border-[#0b1b42] focus:ring-2 focus:ring-[#0b1b42]/10 transition-all"
-              value={filters.city || ""}
-              onChange={(e) => handleUpdate("city", e.target.value)}
-            >
-              <option value="" disabled>Select City</option>
-              <option value="Hyderabad">Hyderabad</option>
-              <option value="Bangalore">Bangalore</option>
-              <option value="Mumbai">Mumbai</option>
-            </select>
-            <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-              <ChevronDown className="w-5 h-5 text-gray-400" />
-            </div>
-          </div>
+          <CustomSelect
+            options={["Hyderabad", "Bangalore", "Mumbai"]}
+            value={filters.city || ""}
+            onChange={(val) => handleUpdate("city", val)}
+            placeholder="Select City"
+            icon={<MapPin className="w-[16px] h-[16px] text-[#0a1128]" />}
+          />
 
           {activeTab === "commercial" ? (
-            <>
-              <div>
-                <h3 className="text-[14px] font-extrabold text-[#0a1128] mb-2 tracking-tight">Transaction Type</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {["Buy", "Lease"].map((type) => {
-                    const isSelected = filters.transactionType === type;
-                    return (
-                      <button key={type} onClick={() => handleUpdate("transactionType", type)} className={clsx("relative py-2.5 rounded-xl border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-2", isSelected ? "bg-white border-[#d4af37] text-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.15)]" : "bg-white/60 border-white/50 shadow-sm text-gray-600 hover:bg-white/80")}>
-                        {type}
-                        {isSelected && <div className="absolute right-2"><CheckCircle2 className="w-4 h-4 fill-[#d4af37] text-white" /></div>}
-                      </button>
-                    );
-                  })}
-                </div>
+            <div className="space-y-2">
+              <div className="bg-white/40 border border-white/50 shadow-sm rounded-xl overflow-hidden">
+                <button type="button" onClick={() => setExpandedCategoryKey(expandedCategoryKey === "transaction" ? null : "transaction")} className="w-full flex items-center justify-between px-3 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0b1b42]">
+                      <Handshake className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-[13px] font-extrabold text-[#0a1128]">Transaction Type</span>
+                  </div>
+                  <ChevronDown className={clsx("w-4 h-4 text-gray-500 transition-transform", expandedCategoryKey === "transaction" ? "rotate-180" : "")} />
+                </button>
+                <AnimatePresence>
+                  {expandedCategoryKey === "transaction" && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="px-3 pb-3 grid grid-cols-2 gap-2">
+                        {["Buy", "Lease"].map((type) => {
+                          const isSelected = filters.transactionType === type;
+                          return (
+                            <button key={type} onClick={() => handleUpdate("transactionType", type)} className={clsx("relative py-2.5 rounded-xl border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-2", isSelected ? "bg-white border-[#d4af37] text-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.15)]" : "bg-white/60 border-white/50 shadow-sm text-gray-600 hover:bg-white/80")}>
+                              {type}
+                              {isSelected && <div className="absolute right-2"><CheckCircle2 className="w-4 h-4 fill-[#d4af37] text-white" /></div>}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              <div>
-                <h3 className="text-[14px] font-extrabold text-[#0a1128] mb-2 tracking-tight">Property Type</h3>
-                <div className="grid grid-cols-3 gap-2">
-                  {PROPERTY_TYPES.map((pt) => {
-                    const isSelected = filters.propertyType === pt.id;
-                    return (
-                      <button key={pt.id} onClick={() => handleUpdate("propertyType", filters.propertyType === pt.id ? "Any" : pt.id)} className={clsx("flex flex-col items-center justify-center p-2 rounded-xl border transition-all h-[70px] gap-1.5", isSelected ? "bg-[#0a1128] border-[#0a1128] shadow-[0_4px_12px_rgba(10,17,40,0.2)]" : "bg-white/60 border-white/50 shadow-sm hover:border-gray-200")}>
-                        <pt.icon className={clsx("w-5 h-5", isSelected ? "text-white" : "text-gray-500")} strokeWidth={1.5} />
-                        <span className={clsx("text-[11px] font-bold text-center leading-tight", isSelected ? "text-white" : "text-gray-600")}>{pt.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="bg-white/40 border border-white/50 shadow-sm rounded-xl overflow-hidden">
+                <button type="button" onClick={() => setExpandedCategoryKey(expandedCategoryKey === "property" ? null : "property")} className="w-full flex items-center justify-between px-3 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#d4af37]">
+                      <Building2 className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-[13px] font-extrabold text-[#0a1128]">Property Type</span>
+                  </div>
+                  <ChevronDown className={clsx("w-4 h-4 text-gray-500 transition-transform", expandedCategoryKey === "property" ? "rotate-180" : "")} />
+                </button>
+                <AnimatePresence>
+                  {expandedCategoryKey === "property" && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="px-3 pb-3 grid grid-cols-3 gap-2">
+                        {PROPERTY_TYPES.map((pt) => {
+                          const isSelected = filters.propertyType === pt.id;
+                          return (
+                            <button key={pt.id} onClick={() => handleUpdate("propertyType", filters.propertyType === pt.id ? "Any" : pt.id)} className={clsx("flex flex-col items-center justify-center p-2 rounded-xl border transition-all h-[70px] gap-1.5", isSelected ? "bg-[#0a1128] border-[#0a1128] shadow-[0_4px_12px_rgba(10,17,40,0.2)]" : "bg-white/60 border-white/50 shadow-sm hover:border-gray-200")}>
+                              <pt.icon className={clsx("w-5 h-5", isSelected ? "text-white" : "text-gray-500")} strokeWidth={1.5} />
+                              <span className={clsx("text-[11px] font-bold text-center leading-tight", isSelected ? "text-white" : "text-gray-600")}>{pt.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              <div>
-                <h3 className="text-[14px] font-extrabold text-[#0a1128] mb-2 tracking-tight">Budget Range</h3>
-                <div className="flex items-end gap-2">
-                  <div className="flex-1">
-                    <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Min</label>
-                    <div className="relative">
-                      <select className="w-full px-2.5 py-2.5 bg-white/60 border border-white/50 shadow-sm rounded-lg text-[12px] font-semibold text-gray-700 appearance-none outline-none focus:border-[#0b1b42] focus:ring-2 focus:ring-[#0b1b42]/10 transition-all" value={filters.budgetMin} onChange={(e) => handleUpdate("budgetMin", e.target.value)}>
-                        {BUDGET_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
-                      </select>
-                      <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <div className="bg-white/40 border border-white/50 shadow-sm rounded-xl overflow-hidden">
+                <button type="button" onClick={() => setExpandedCategoryKey(expandedCategoryKey === "budget" ? null : "budget")} className="w-full flex items-center justify-between px-3 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#059669]">
+                      <CircleDollarSign className="w-3.5 h-3.5 text-white" />
                     </div>
+                    <span className="text-[13px] font-extrabold text-[#0a1128]">Budget Range</span>
                   </div>
-                  <div className="w-3 h-[1px] bg-gray-300 mb-3.5 shrink-0" />
-                  <div className="flex-1">
-                    <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Max</label>
-                    <div className="relative">
-                      <select className="w-full px-2.5 py-2.5 bg-white/60 border border-white/50 shadow-sm rounded-lg text-[12px] font-semibold text-gray-700 appearance-none outline-none focus:border-[#0b1b42] focus:ring-2 focus:ring-[#0b1b42]/10 transition-all" value={filters.budgetMax} onChange={(e) => handleUpdate("budgetMax", e.target.value)}>
-                        {BUDGET_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
-                      </select>
-                      <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
+                  <ChevronDown className={clsx("w-4 h-4 text-gray-500 transition-transform", expandedCategoryKey === "budget" ? "rotate-180" : "")} />
+                </button>
+                <AnimatePresence>
+                  {expandedCategoryKey === "budget" && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="px-3 pb-3 flex items-end gap-2">
+                        <div className="flex-1">
+                          <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Min</label>
+                          <CustomSelect
+                            options={BUDGET_OPTIONS}
+                            value={filters.budgetMin}
+                            onChange={(val) => handleUpdate("budgetMin", val)}
+                          />
+                        </div>
+                        <div className="w-3 h-[1px] bg-gray-300 mb-3.5 shrink-0" />
+                        <div className="flex-1">
+                          <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">Max</label>
+                          <CustomSelect
+                            options={BUDGET_OPTIONS}
+                            value={filters.budgetMax}
+                            onChange={(val) => handleUpdate("budgetMax", val)}
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </>
+            </div>
           ) : (
-            <div>
-              <h3 className="text-[14px] font-extrabold text-[#0a1128] mb-2 tracking-tight">Select Industry</h3>
-              <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-2">
+              <div className="bg-white/40 border border-white/50 shadow-sm rounded-xl overflow-hidden">
+                <button type="button" onClick={() => setExpandedCategoryKey(expandedCategoryKey === "industry" ? null : "industry")} className="w-full flex items-center justify-between px-3 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#7c3aed]">
+                      <Store className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-[13px] font-extrabold text-[#0a1128]">Select Industry</span>
+                  </div>
+                  <ChevronDown className={clsx("w-4 h-4 text-gray-500 transition-transform", expandedCategoryKey === "industry" ? "rotate-180" : "")} />
+                </button>
+                <AnimatePresence>
+                  {expandedCategoryKey === "industry" && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="px-3 pb-3 grid grid-cols-2 gap-2">
                 {BOP_INDUSTRIES.map((ind) => {
                   const isSelected = filters.industry === ind.id;
                   return (
@@ -201,6 +259,10 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                     </button>
                   );
                 })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           )}
@@ -228,7 +290,6 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                             </div>
                             <div className="text-left">
                               <div className="text-[14px] font-bold text-[#0a1128] leading-tight">Size</div>
-                              <div className="text-[11px] text-gray-400 font-medium">Built-up Area</div>
                             </div>
                           </div>
                           <motion.div animate={{ rotate: expandedCategoryKey === "size" ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -242,22 +303,28 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                 <div className="flex gap-2">
                                   <div className="flex-1">
                                     <label className="block text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Min</label>
-                                    <select className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-[13px] font-bold text-gray-700 outline-none focus:border-[#0b1b42]" value={filters.sizeMin} onChange={(e) => handleUpdate("sizeMin", e.target.value)}>
-                                      {SIZE_MIN_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                                    </select>
+                                    <CustomSelect
+                                      options={SIZE_MIN_OPTIONS}
+                                      value={filters.sizeMin}
+                                      onChange={(val) => handleUpdate("sizeMin", val)}
+                                    />
                                   </div>
                                   <div className="flex-1">
                                     <label className="block text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Max</label>
-                                    <select className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-[13px] font-bold text-gray-700 outline-none focus:border-[#0b1b42]" value={filters.sizeMax} onChange={(e) => handleUpdate("sizeMax", e.target.value)}>
-                                      {SIZE_MAX_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                                    </select>
+                                    <CustomSelect
+                                      options={SIZE_MAX_OPTIONS}
+                                      value={filters.sizeMax}
+                                      onChange={(val) => handleUpdate("sizeMax", val)}
+                                    />
                                   </div>
                                 </div>
                                 <div>
                                   <label className="block text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Unit</label>
-                                  <select className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-[13px] font-bold text-gray-700 outline-none focus:border-[#0b1b42]" value={filters.sizeUnit} onChange={(e) => handleUpdate("sizeUnit", e.target.value)}>
-                                    {SIZE_UNITS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                                  </select>
+                                  <CustomSelect
+                                    options={SIZE_UNITS}
+                                    value={filters.sizeUnit}
+                                    onChange={(val) => handleUpdate("sizeUnit", val)}
+                                  />
                                 </div>
                               </div>
                             </motion.div>
@@ -278,9 +345,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                               <div className={clsx("w-8 h-8 rounded-lg flex items-center justify-center shrink-0", cat.iconBg)}>
                                 <cat.icon className="w-[14px] h-[14px] text-white" strokeWidth={2.5} />
                               </div>
-                              <div className="text-left">
-                                <div className="text-[13px] font-bold text-[#0a1128] leading-tight">{cat.title}</div>
-                                <div className="text-[10px] text-gray-400 font-medium">{cat.subtitle}</div>
+                              <div className="flex flex-col">
+                                <span className="text-[14px] font-extrabold text-[#0a1128]">{cat.title}</span>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
@@ -328,11 +394,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
           </div>
         </div>
 
-        <div className="px-4 py-3 border-t border-white/50 bg-white/50 flex items-center gap-3 shrink-0 pb-safe">
-          <button type="button" onClick={handleReset} className="flex-[1] py-3 text-[13px] font-bold text-[#0a1128] bg-white/80 rounded-xl border border-white hover:bg-white transition-colors text-center shadow-sm">
-            Reset All
-          </button>
-          <button type="button" onClick={onClose} className="flex-[2] py-3 text-[13px] font-bold text-white bg-[#d4af37] rounded-xl hover:bg-[#c19b2e] transition-colors shadow-[0_4px_12px_rgba(212,175,55,0.4)] text-center flex flex-col items-center leading-tight">
+        <div className="px-4 py-3 border-t border-white/50 bg-white/50 shrink-0 pb-safe">
+          <button type="button" onClick={onClose} className="w-full py-3 text-[13px] font-bold text-white bg-[#d4af37] rounded-xl hover:bg-[#c19b2e] transition-colors shadow-[0_4px_12px_rgba(212,175,55,0.4)] text-center flex flex-col items-center leading-tight">
             <span>Apply Filters</span>
             <span className="text-[10px] font-medium text-white/70">0 Listings</span>
           </button>

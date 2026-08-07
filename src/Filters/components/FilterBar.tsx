@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Search, Filter, ChevronDown } from "lucide-react";
+import { Search, Filter, ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FilterDropdown from "./FilterDropdown";
 import type { FilterState } from "./data";
@@ -58,40 +58,33 @@ export default function FilterBar({
       <motion.button
         type="button"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        whileTap={{ scale: 0.97 }}
+        whileTap={{ scale: 0.95 }}
         className={clsx(
-          "flex items-center gap-2 px-4 py-3 rounded-lg border transition-all duration-300 text-sm font-bold shadow-sm relative overflow-hidden",
+          "flex items-center justify-center transition-all duration-200 cursor-pointer",
           isDropdownOpen
-            ? "bg-[#0b1b42] border-[#d4af37]/50 text-white shadow-[0_4px_20px_rgba(212,175,55,0.3)]"
-            : "bg-[#0b1b42] text-white hover:bg-[#121c33] border-transparent"
+            ? "p-3 bg-transparent text-red-500 hover:text-red-600 border-none shadow-none"
+            : "gap-2 px-4 py-3 rounded-lg border border-transparent bg-[#0b1b42] text-white hover:bg-[#121c33] shadow-sm text-sm font-bold"
         )}
+        aria-label={isDropdownOpen ? "Close filters" : "Open filters"}
       >
-        {isDropdownOpen && (
+        {isDropdownOpen ? (
+          <motion.div
+            initial={{ scale: 0.5, rotate: -90 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center justify-center"
+          >
+            <X className="w-5 h-5 text-red-500 hover:text-red-600" strokeWidth={2.5} />
+          </motion.div>
+        ) : (
           <>
-            <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
-            <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
+            <div className="flex items-center justify-center text-white">
+              <Filter className="w-4 h-4" />
+            </div>
+            <span className="hidden sm:inline">Filters</span>
+            <ChevronDown className="w-4 h-4 opacity-70" />
           </>
         )}
-        <motion.div
-          animate={isDropdownOpen ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : {}}
-          transition={{ duration: 0.4 }}
-          className={clsx(
-            "flex items-center justify-center transition-colors",
-            isDropdownOpen ? "text-[#d4af37]" : "text-white"
-          )}
-        >
-          <Filter className="w-4 h-4" />
-        </motion.div>
-        
-        <span className="hidden sm:inline">Across Filter</span>
-        
-        <motion.div
-          animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <ChevronDown className={clsx("w-4 h-4", isDropdownOpen ? "text-[#d4af37]" : "opacity-70")} />
-        </motion.div>
       </motion.button>
 
       <AnimatePresence>

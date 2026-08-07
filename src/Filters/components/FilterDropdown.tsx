@@ -1,6 +1,5 @@
 import type { FilterState } from "./data";
 import FilterDropdownDesktop from "./FilterDropdownDesktop";
-import FilterDropdownMobile from "./FilterDropdownMobile";
 
 interface FilterDropdownProps {
   activeTab: "commercial" | "business";
@@ -10,14 +9,5 @@ interface FilterDropdownProps {
 }
 
 export default function FilterDropdown(props: FilterDropdownProps) {
-  return (
-    <>
-      <div className="hidden sm:block">
-        <FilterDropdownDesktop {...props} />
-      </div>
-      <div className="block sm:hidden">
-        <FilterDropdownMobile {...props} />
-      </div>
-    </>
-  );
+  return <FilterDropdownDesktop {...props} />;
 }
