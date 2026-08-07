@@ -100,3 +100,5 @@ export const COMMERCIAL_TAGS = [
 
 export const STATUS_OPTIONS = ["Ready to Move", "Under Construction", "RERA Registered"];
 export const DEAL_PREF = ["Any", "Direct Owner", "Channel Partner"];
+export const OCCUPANCY_OPTIONS = ["Pre-Leased", "Vacant", "Fractional"];
+export const CONSTRUCTION_STAGE_OPTIONS = ["Ready to Move", "Under Construction", "Planned"];
