@@ -1,66 +1,85 @@
 import {
-  Building2,
-  Store,
-  MapPin,
-  Building,
-  Users,
   Armchair,
   Layers,
   Briefcase,
   TrendingUp,
   ShieldCheck,
-  Zap,
+  Grid,
+  Store,
+  Building2,
+  Package,
+  MonitorPlay,
+  Factory,
+  Building,
 } from "lucide-react";
 
 export interface FilterState {
+  transactionType: string;
   propertyType: string;
-  budget: string;
+  budgetMin: string;
+  budgetMax: string;
   size: string;
   fitOut: string;
   status: string[];
   commercialTags: string[];
   dealPref: string;
   industry: string;
-  invBudget: string;
-  model: string;
-  payback: string;
-  businessTags: string[];
+  
+  // Advanced Filter Additions
+  sizeMin: string;
+  sizeMax: string;
+  sizeUnit: string;
+  occupancy: string;
+  constructionStage: string;
+  
+  // Business Opportunities Additions
+  city: string;
+  businessOption: string;
 }
 
 export type SingleSelectFilterKey =
+  | "transactionType"
   | "propertyType"
-  | "budget"
+  | "budgetMin"
+  | "budgetMax"
   | "size"
   | "fitOut"
   | "dealPref"
-  | "industry"
-  | "invBudget"
-  | "model"
-  | "payback";
+  | "industry";
 
-export type ArrayFilterKey = "status" | "commercialTags" | "businessTags";
+export type ArrayFilterKey = "status" | "commercialTags";
 
 export const DEFAULT_FILTERS: FilterState = {
-  propertyType: "office-space",
-  budget: "Any",
+  transactionType: "Buy",
+  propertyType: "Office",
+  budgetMin: "Any",
+  budgetMax: "Any",
   size: "Any",
   fitOut: "Any",
   status: [],
   commercialTags: [],
   dealPref: "Any",
   industry: "food-beverage",
-  invBudget: "Any",
-  model: "Any",
-  payback: "Any ROI",
-  businessTags: [],
+
+  // Advanced Filter Default Values
+  sizeMin: "Any",
+  sizeMax: "Any",
+  sizeUnit: "Sq Ft",
+  occupancy: "Any",
+  constructionStage: "Any",
+
+  // Business Opportunities Default Values
+  city: "",
+  businessOption: "Any",
 };
 
 export const PROPERTY_TYPES = [
-  { id: "office-space", label: "Office Space", icon: Building2 },
-  { id: "retail-space", label: "Retail Space", icon: Store },
-  { id: "commercial-plot", label: "Commercial Plot", icon: MapPin },
-  { id: "full-building", label: "Full Building", icon: Building },
-  { id: "co-working", label: "Co-Working", icon: Users },
+  { id: "Plot", label: "Plot", icon: Grid },
+  { id: "Retail", label: "Retail", icon: Store },
+  { id: "Office", label: "Office", icon: Building2 },
+  { id: "Warehouse", label: "Warehouse", icon: Package },
+  { id: "Showroom", label: "Showroom", icon: MonitorPlay },
+  { id: "Industrial", label: "Industrial", icon: Factory },
 ];
 
 export const BUDGET_OPTIONS = ["Any", "Under 50L", "50L - 1 Cr", "1 - 3 Cr", "3 - 5 Cr", "5 Cr+"];
@@ -81,36 +100,3 @@ export const COMMERCIAL_TAGS = [
 
 export const STATUS_OPTIONS = ["Ready to Move", "Under Construction", "RERA Registered"];
 export const DEAL_PREF = ["Any", "Direct Owner", "Channel Partner"];
-
-export const INDUSTRY_OPTIONS = [
-  { id: "food-beverage", label: "Food & Beverage" },
-  { id: "retail", label: "Retail" },
-  { id: "education", label: "Education" },
-  { id: "healthcare", label: "Healthcare" },
-];
-
-export const INV_BUDGET = ["Any", "Under ₹ 10 L", "₹ 10 L - ₹ 25 L", "₹ 25 L - ₹ 50 L", "₹ 50 L - ₹ 1 Cr", "₹ 1 Cr+"];
-export const MODEL_OPTIONS = ["Any", "FOCO", "FOFO", "COCO", "Master Franchise"];
-export const PAYBACK_OPTIONS = ["Any ROI", "< 1 Year", "1-2 Years", "2-3 Years", "3+ Years"];
-
-export const BUSINESS_TAGS = [
-  { id: "High ROI", label: "High ROI", icon: TrendingUp },
-  { id: "Turnkey", label: "Turnkey Setup", icon: Zap },
-  { id: "Premium", label: "Premium Brand", icon: ShieldCheck },
-];
-
-// Semantic categorical icon colors keyed by filter id, keeps hues stable across tabs.
-export const CATEGORY_ICON_BG: Record<string, string> = {
-  property: "bg-[#8B5CF6]",
-  industry: "bg-[#8B5CF6]",
-  budget: "bg-[#F97316]",
-  "inv-budget": "bg-[#F97316]",
-  size: "bg-[#0EA5E9]",
-  fitout: "bg-[#14B8A6]",
-  model: "bg-[#14B8A6]",
-  status: "bg-[#10B981]",
-  tags: "bg-[#D946EF]",
-  "biz-tags": "bg-[#D946EF]",
-  deal: "bg-cremp-accent",
-  payback: "bg-cremp-accent",
-};
