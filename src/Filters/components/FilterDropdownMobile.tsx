@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, MapPin, SlidersHorizontal, Filter, Layers, Tag, Handshake, Users, Construction, Briefcase, CheckCircle2, Maximize, CircleDollarSign, Building2, Store, X } from "lucide-react";
+import { ChevronDown, MapPin, SlidersHorizontal, Filter, Layers, Tag, Handshake, Users, Construction, Briefcase, CheckCircle2, Maximize, IndianRupee, Building2, Store, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { FilterState } from "./data";
 import { DEFAULT_FILTERS, PROPERTY_TYPES, BUDGET_OPTIONS, FIT_OUT_OPTIONS, COMMERCIAL_TAGS, STATUS_OPTIONS, DEAL_PREF, OCCUPANCY_OPTIONS, CONSTRUCTION_STAGE_OPTIONS, BOP_INDUSTRIES, BUSINESS_OPTIONS, SIZE_MIN_OPTIONS, SIZE_MAX_OPTIONS, SIZE_UNITS } from "./data";
@@ -200,8 +200,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className="bg-white/40 border border-white/50 shadow-sm rounded-xl overflow-hidden">
                 <button type="button" onClick={() => setExpandedCategoryKey(expandedCategoryKey === "budget" ? null : "budget")} className="w-full flex items-center justify-between px-3 py-2.5">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#059669]">
-                      <CircleDollarSign className="w-3.5 h-3.5 text-white" />
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0b1b42] border border-[#d4af37]/30 shadow-xs">
+                      <IndianRupee className="w-3.5 h-3.5 text-[#d4af37]" />
                     </div>
                     <span className="text-[13px] font-extrabold text-[#0a1128]">Budget Range</span>
                   </div>
@@ -395,9 +395,9 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
         </div>
 
         <div className="px-4 py-3 border-t border-white/50 bg-white/50 shrink-0 pb-safe">
-          <button type="button" onClick={onClose} className="w-full py-3 text-[13px] font-bold text-white bg-[#d4af37] rounded-xl hover:bg-[#c19b2e] transition-colors shadow-[0_4px_12px_rgba(212,175,55,0.4)] text-center flex flex-col items-center leading-tight">
+          <button type="button" onClick={onClose} className="w-full py-2.5 text-[12.5px] font-bold text-white bg-[#0b1b42] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-xl transition-all shadow-[0_4px_16px_rgba(11,27,66,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group">
             <span>Apply Filters</span>
-            <span className="text-[10px] font-medium text-white/70">0 Listings</span>
+            <span className="text-[9.5px] font-semibold text-[#d4af37] group-hover:text-amber-300 transition-colors">0 Listings</span>
           </button>
         </div>
       </motion.div>

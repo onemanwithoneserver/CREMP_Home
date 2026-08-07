@@ -93,7 +93,7 @@ export const PROPERTY_TYPES = [
   { id: "Industrial", label: "Industrial", icon: Factory },
 ];
 
-export const BUDGET_OPTIONS = ["Any", "Under 50L", "50L - 1 Cr", "1 - 3 Cr", "3 - 5 Cr", "5 Cr+"];
+export const BUDGET_OPTIONS = ["Any", "Under ₹50L", "₹50L - ₹1 Cr", "₹1 - ₹3 Cr", "₹3 - ₹5 Cr", "₹5 Cr+"];
 export const SIZE_OPTIONS = ["Any", "Under 500 sq.ft", "500 - 1500 sq.ft", "1500 - 3000 sq.ft", "3000 - 5000 sq.ft", "5000+ sq.ft"];
 
 export const FIT_OUT_OPTIONS = [
