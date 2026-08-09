@@ -161,7 +161,7 @@ export default function DesktopYourInvestors() {
                             damping: 25,
                             delay: 0.2,
                         }}
-                        className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-black/60 to-black/80 p-10 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:from-black/40 dark:to-black/60 dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
+                        className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#17274C] p-10 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:bg-[#17274C] dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
                     >
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30" />
 

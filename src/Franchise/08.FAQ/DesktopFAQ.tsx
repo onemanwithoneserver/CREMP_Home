@@ -77,7 +77,7 @@ export default function DesktopFAQ() {
                     <div className="flex flex-1 flex-col pt-1">
                         <div className="flex items-center justify-between gap-4">
                             <h4
-                                className={`text-[1.05rem] font-bold leading-tight transition-colors duration-300 ${isOpen
+                                className={`text-[1.05rem] font-semibold leading-tight transition-colors duration-300 ${isOpen
                                         ? "text-[#D4AF37] dark:text-[#D4AF37]"
                                         : "text-gray-900 dark:text-white"
                                     }`}
@@ -151,14 +151,14 @@ export default function DesktopFAQ() {
                                 fill="currentColor"
                             />
                         </motion.div>
-                        <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
+                        <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                             {faqData.tag}
                         </span>
                     </motion.div>
 
                     <motion.h2
                         variants={fadeInUp}
-                        className="mb-6 text-[3rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white sm:text-[3.5rem] lg:text-[4rem]"
+                        className="mb-6 text-[3rem] font-semibold leading-[1.05] tracking-tight text-gray-900 dark:text-white sm:text-[3.5rem] lg:text-[4rem]"
                     >
                         {faqData.title}
                     </motion.h2>
@@ -237,7 +237,7 @@ export default function DesktopFAQ() {
                             />
                         </motion.div>
                         <div className="flex flex-col">
-                            <h3 className="mb-2 whitespace-pre-line text-2xl font-black leading-tight text-white lg:mb-3 lg:text-3xl">
+                            <h3 className="mb-2 whitespace-pre-line text-2xl font-semibold leading-tight text-white lg:mb-3 lg:text-3xl">
                                 {faqData.banner.title}
                             </h3>
                             <p className="text-[1rem] font-medium text-gray-400 lg:text-[1.05rem]">
@@ -250,7 +250,7 @@ export default function DesktopFAQ() {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="group relative flex items-center justify-center gap-3 whitespace-nowrap overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-8 py-4 text-[1.05rem] font-bold text-gray-900 shadow-xl transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#f9d08b] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+                            className="group relative flex items-center justify-center gap-3 whitespace-nowrap overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-8 py-4 text-[1.05rem] font-semibold text-gray-900 shadow-xl transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#f9d08b] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
                         >
                             <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] bg-[position:200%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:-200%_0,0_0] hover:duration-[1500ms]" />
                             <faqData.banner.btn1.icon

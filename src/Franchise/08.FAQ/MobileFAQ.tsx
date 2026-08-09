@@ -68,7 +68,7 @@ export default function MobileFAQ() {
                     <div className="flex flex-1 flex-col pt-1">
                         <div className="flex items-center justify-between gap-3">
                             <h4
-                                className={`text-[0.95rem] font-bold leading-tight transition-colors duration-300 ${isOpen
+                                className={`text-[0.95rem] font-semibold leading-tight transition-colors duration-300 ${isOpen
                                         ? "text-[#D4AF37] dark:text-[#D4AF37]"
                                         : "text-gray-900 dark:text-white"
                                     }`}
@@ -137,14 +137,14 @@ export default function MobileFAQ() {
                                 fill="currentColor"
                             />
                         </motion.div>
-                        <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
+                        <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                             {faqData.tag}
                         </span>
                     </motion.div>
 
                     <motion.h2
                         variants={fadeInUp}
-                        className="mb-4 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
+                        className="mb-4 text-[2.5rem] font-semibold leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
                     >
                         {faqData.title}
                     </motion.h2>
@@ -202,7 +202,7 @@ export default function MobileFAQ() {
                             />
                         </motion.div>
                         <div className="flex flex-col">
-                            <h3 className="mb-3 whitespace-pre-line text-2xl font-black leading-tight text-white">
+                            <h3 className="mb-3 whitespace-pre-line text-2xl font-semibold leading-tight text-white">
                                 {faqData.banner.title}
                             </h3>
                             <p className="text-[0.95rem] font-medium text-gray-400">
@@ -215,7 +215,7 @@ export default function MobileFAQ() {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-4 text-[1rem] font-bold text-gray-900 shadow-md dark:from-[#D4AF37] dark:to-[#f9d08b]"
+                            className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-4 text-[1rem] font-semibold text-gray-900 shadow-md dark:from-[#D4AF37] dark:to-[#f9d08b]"
                         >
                             <faqData.banner.btn1.icon
                                 size={18}

@@ -146,7 +146,7 @@ export default function MobileYourInvestors() {
                             damping: 25,
                             delay: 0.2,
                         }}
-                        className="relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-black/60 to-black/80 p-8 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl dark:from-black/40 dark:to-black/60"
+                        className="relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#17274C] p-8 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl dark:bg-[#17274C]"
                     >
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30" />
 
