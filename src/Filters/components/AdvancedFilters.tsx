@@ -201,7 +201,7 @@ export default function AdvancedFilters({
           "w-12 h-12 flex items-center justify-center rounded-lg border transition-all duration-300 cursor-pointer shadow-sm relative backdrop-blur-md",
           isOpen
             ? "bg-red-500/90 border-red-500 text-white shadow-[0_4px_16px_rgba(239,68,68,0.25)]"
-            : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 text-[#0b1b42] dark:text-white hover:bg-white/50 dark:hover:bg-black/40 hover:border-[#d4af37]/40 hover:text-[#d4af37] dark:hover:text-[#d4af37]"
+            : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 text-[#17274C] dark:text-white hover:bg-white/50 dark:hover:bg-black/40 hover:border-[#d4af37]/40 hover:text-[#d4af37] dark:hover:text-[#d4af37]"
         )}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -232,7 +232,7 @@ export default function AdvancedFilters({
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#d4af37] text-[#0b1b42] text-[10px] font-extrabold flex items-center justify-center shadow-sm"
+            className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#d4af37] text-[#17274C] text-[10px] font-extrabold flex items-center justify-center shadow-sm"
           >
             {activeCount}
           </motion.span>
@@ -246,12 +246,12 @@ export default function AdvancedFilters({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ type: "spring", damping: 28, stiffness: 400 }}
-            className="absolute top-[calc(100%+8px)] right-0 w-[320px] sm:w-[360px] bg-white/70 backdrop-blur-xl rounded-xl border border-white/40 shadow-[0_16px_48px_rgba(11,27,66,0.14)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-black/60 dark:border-white/10 dark:shadow-[0_16px_48px_rgba(0,0,0,0.4)]"
+            className="absolute top-[calc(100%+8px)] right-0 w-[320px] sm:w-[360px] bg-white/60 backdrop-blur-2xl rounded-xl border border-white/50 shadow-[0_16px_48px_rgba(23,39,76,0.14)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-[#17274C]/80 dark:border-white/20 dark:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
           >
             <div className="flex items-center justify-between p-2 shrink-0">
               <div className="flex items-center gap-2">
                 {activeCount > 0 && (
-                  <span className="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#d4af37] text-[#0b1b42]">
+                  <span className="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#d4af37] text-[#17274C]">
                     {activeCount} active
                   </span>
                 )}
@@ -274,8 +274,8 @@ export default function AdvancedFilters({
                   className={clsx(
                     " transition-all duration-200",
                     expandedKey === "size"
-                      ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm overflow-visible relative z-30 backdrop-blur-md"
-                      : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 overflow-hidden hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                      ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm overflow-visible relative z-30 backdrop-blur-md"
+                      : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 overflow-hidden hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
                   )}
                 >
                   <motion.button
@@ -383,8 +383,8 @@ export default function AdvancedFilters({
                     className={clsx(
                       " transition-all duration-200",
                       isExpanded
-                        ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                        : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                        ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                        : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
                     )}
                   >
                     <motion.button
@@ -463,15 +463,15 @@ export default function AdvancedFilters({
                                       className={clsx(
                                         "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-all cursor-pointer group",
                                         isSelected
-                                          ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                          ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                       )}
                                     >
                                       <div
                                         className={clsx(
                                           "w-4 h-4 rounded flex items-center justify-center shrink-0 border transition-all",
                                           isSelected
-                                            ? "bg-[#0b1b42] border-[#d4af37] text-[#d4af37]"
+                                            ? "bg-[#17274C] border-[#d4af37] text-[#d4af37]"
                                             : "bg-white border-gray-300 group-hover:border-[#d4af37]"
                                         )}
                                       >
@@ -531,8 +531,8 @@ export default function AdvancedFilters({
                                       className={clsx(
                                         "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-all cursor-pointer group",
                                         isSelected
-                                          ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                          ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                       )}
                                     >
                                       <div
@@ -552,7 +552,7 @@ export default function AdvancedFilters({
                                               stiffness: 600,
                                               damping: 22,
                                             }}
-                                            className="w-2 h-2 rounded-full bg-[#0b1b42]"
+                                            className="w-2 h-2 rounded-full bg-[#17274C]"
                                           />
                                         )}
                                       </div>

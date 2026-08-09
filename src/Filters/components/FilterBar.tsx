@@ -42,7 +42,7 @@ export default function FilterBar({
     <div className="w-full flex gap-3 relative" ref={containerRef}>
       <div className="flex-1 relative group">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400 group-focus-within:text-[#0b1b42] transition-colors" />
+          <Search className="h-5 w-5 text-gray-400 group-focus-within:text-[#17274C] transition-colors" />
         </div>
         <input
           type="text"
@@ -62,7 +62,7 @@ export default function FilterBar({
           "flex items-center justify-center transition-all duration-200 cursor-pointer",
           isDropdownOpen
             ? "px-3.5 py-3 rounded-[4px] bg-red-50 hover:bg-red-100/80 text-red-500 hover:text-red-600 border border-red-200/60 shadow-xs"
-            : "gap-2 px-4 py-3 rounded-[4px] border border-[#d4af37]/40 bg-[#0b1b42] text-white hover:bg-[#121c33] hover:border-[#d4af37] shadow-[0_4px_14px_rgba(11,27,66,0.25)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] text-sm font-bold"
+            : "gap-2 px-4 py-3 rounded-[4px] border border-[#d4af37]/40 bg-[#17274C] text-white hover:bg-[#121c33] hover:border-[#d4af37] shadow-[0_4px_14px_rgba(23,39,76,0.25)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] text-sm font-bold"
         )}
         aria-label={isDropdownOpen ? "Close filters" : "Open filters"}
       >

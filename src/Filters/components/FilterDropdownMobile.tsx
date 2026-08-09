@@ -119,7 +119,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: "100%", opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 220 }}
-        className="fixed bottom-3 left-3 right-3 bg-white rounded-[4px] shadow-[0_20px_60px_rgba(11,27,66,0.25)] border border-[#d4af37]/35 z-[9999] flex flex-col max-h-[85vh] overflow-hidden"
+        className="fixed bottom-3 left-3 right-3 bg-white rounded-[4px] shadow-[0_20px_60px_rgba(23,39,76,0.25)] border border-[#d4af37]/35 z-[9999] flex flex-col max-h-[85vh] overflow-hidden"
       >
         <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-90 pointer-events-none" />
 
@@ -127,7 +127,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
           <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
 
-        <div className="px-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-100/90 bg-gradient-to-b from-[#0b1b42]/[0.03] to-transparent">
+        <div className="px-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-100/90 bg-gradient-to-b from-[#17274C]/[0.03] to-transparent">
           <div>
             <h2 className="text-[18px] font-extrabold text-[#0a1128] tracking-tight">Filters</h2>
           </div>
@@ -135,7 +135,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
             <button
               type="button"
               onClick={handleReset}
-              className="flex items-center gap-1 px-2 py-1 rounded-[2px] text-[11px] font-bold text-gray-500 hover:text-[#0b1b42] hover:bg-[#0b1b42]/5 border border-transparent hover:border-[#d4af37]/40 transition-all cursor-pointer"
+              className="flex items-center gap-1 px-2 py-1 rounded-[2px] text-[11px] font-bold text-gray-500 hover:text-[#17274C] hover:bg-[#17274C]/5 border border-transparent hover:border-[#d4af37]/40 transition-all cursor-pointer"
             >
               Reset
             </button>
@@ -167,8 +167,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
                 expandedCategoryKey === "transaction"
-                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                  ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                  : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
               )}>
                 <button
                   type="button"
@@ -202,14 +202,14 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                               className={clsx(
                                 "relative py-2.5 rounded-[4px] border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer",
                                 isSelected
-                                  ? "bg-[#0b1b42]/80 dark:bg-white/20 border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30 backdrop-blur-md"
+                                  ? "bg-[#17274C]/80 dark:bg-white/20 border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(23,39,76,0.25)] ring-1 ring-[#d4af37]/30 backdrop-blur-md"
                                   : "bg-white border-gray-200 shadow-xs text-[#0a1128] hover:border-[#d4af37]/60 hover:bg-amber-50/30"
                               )}
                             >
                               <span>{type}</span>
                               {isSelected && (
                                 <div className="absolute right-2.5">
-                                  <CheckCircle2 className="w-3.5 h-3.5 fill-[#d4af37] text-[#0b1b42]" />
+                                  <CheckCircle2 className="w-3.5 h-3.5 fill-[#d4af37] text-[#17274C]" />
                                 </div>
                               )}
                             </button>
@@ -224,8 +224,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
                 expandedCategoryKey === "property"
-                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                  ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                  : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
               )}>
                 <button
                   type="button"
@@ -233,8 +233,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                   className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#d4af37] text-[#0b1b42] shadow-xs">
-                      <Building2 className="w-3.5 h-3.5 text-[#0b1b42]" />
+                    <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#d4af37] text-[#17274C] shadow-xs">
+                      <Building2 className="w-3.5 h-3.5 text-[#17274C]" />
                     </div>
                     <span className="text-[13px] font-extrabold text-[#0a1128]">Property Type</span>
                   </div>
@@ -259,7 +259,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                               className={clsx(
                                 "flex flex-col items-center justify-center p-2 rounded-[4px] border transition-all h-[68px] gap-1 cursor-pointer group",
                                 isSelected
-                                  ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                  ? "bg-[#17274C] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(23,39,76,0.25)] ring-1 ring-[#d4af37]/30"
                                   : "bg-white border-gray-200 shadow-xs hover:border-[#d4af37]/60 hover:bg-amber-50/30"
                               )}
                             >
@@ -277,8 +277,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 border",
                 expandedCategoryKey === "budget"
-                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md overflow-visible z-30 relative"
-                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md overflow-hidden"
+                  ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md overflow-visible z-30 relative"
+                  : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md overflow-hidden"
               )}>
                 <button
                   type="button"
@@ -331,8 +331,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
                 expandedCategoryKey === "industry"
-                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                  ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                  : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
               )}>
                 <button
                   type="button"
@@ -366,7 +366,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                               className={clsx(
                                 "flex flex-col items-center justify-center p-2.5 rounded-[4px] border transition-all h-[76px] gap-1.5 cursor-pointer group",
                                 isSelected
-                                  ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                  ? "bg-[#17274C] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(23,39,76,0.25)] ring-1 ring-[#d4af37]/30"
                                   : "bg-white border-gray-200 shadow-xs hover:border-[#d4af37]/60 hover:bg-amber-50/30"
                               )}
                             >
@@ -398,7 +398,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                   className={clsx(
                     "w-8 h-8 rounded-[4px] flex items-center justify-center transition-all duration-300 shadow-xs shrink-0",
                     advancedOpen
-                      ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/50 shadow-[0_0_10px_rgba(212,175,55,0.25)]"
+                      ? "bg-[#17274C] text-[#d4af37] border border-[#d4af37]/50 shadow-[0_0_10px_rgba(212,175,55,0.25)]"
                       : "bg-gray-100 text-gray-700"
                   )}
                 >
@@ -410,7 +410,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                       Advanced Filters
                     </span>
                     {activeAdvancedCount > 0 && (
-                      <span className="px-1.5 py-0.5 rounded-full text-[9.5px] font-extrabold bg-[#d4af37] text-[#0b1b42] shadow-xs">
+                      <span className="px-1.5 py-0.5 rounded-full text-[9.5px] font-extrabold bg-[#d4af37] text-[#17274C] shadow-xs">
                         {activeAdvancedCount} active
                       </span>
                     )}
@@ -425,7 +425,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                 <div
                   className={clsx(
                     "w-6 h-6 rounded-[2px] flex items-center justify-center transition-all duration-200",
-                    advancedOpen ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/40 shadow-xs" : "bg-gray-100 text-gray-600"
+                    advancedOpen ? "bg-[#17274C] text-[#d4af37] border border-[#d4af37]/40 shadow-xs" : "bg-gray-100 text-gray-600"
                   )}
                 >
                   {advancedOpen ? <Minus className="w-3.5 h-3.5 stroke-[2.5]" /> : <Plus className="w-3.5 h-3.5 stroke-[2.5]" />}
@@ -527,7 +527,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                             )}
                           >
                             <div className="flex items-center gap-2.5">
-                              <div className={clsx("w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-xs", cat.iconBg || "bg-[#0b1b42] text-[#d4af37]")}>
+                              <div className={clsx("w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-xs", cat.iconBg || "bg-[#17274C] text-[#d4af37]")}>
                                 <cat.icon className="w-[14px] h-[14px]" strokeWidth={2.5} />
                               </div>
                               <div className="flex flex-col text-left">
@@ -560,15 +560,15 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                           className={clsx(
                                             "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                             isSelected
-                                              ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                              : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                              ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                              : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                           )}
                                         >
                                           <div
                                             className={clsx(
                                               "w-4 h-4 rounded-[2px] border flex items-center justify-center shrink-0 transition-all",
                                               isSelected
-                                                ? "bg-[#0b1b42] border-[#d4af37] text-[#d4af37] shadow-xs"
+                                                ? "bg-[#17274C] border-[#d4af37] text-[#d4af37] shadow-xs"
                                                 : "bg-white border-gray-300 group-hover:border-[#d4af37]"
                                             )}
                                           >
@@ -589,8 +589,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                         className={clsx(
                                           "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                           (!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key])
-                                            ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                            : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                            ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                            : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                         )}
                                       >
                                         <div
@@ -602,7 +602,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                           )}
                                         >
                                           {(!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key]) && (
-                                            <div className="w-2 h-2 rounded-full bg-[#0b1b42]" />
+                                            <div className="w-2 h-2 rounded-full bg-[#17274C]" />
                                           )}
                                         </div>
                                         <span className="text-[12.5px] leading-tight">Any</span>
@@ -617,8 +617,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                             className={clsx(
                                               "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                               isSelected
-                                                ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                                : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                                ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                                : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                             )}
                                           >
                                             <div
@@ -630,7 +630,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                               )}
                                             >
                                               {isSelected && (
-                                                <div className="w-2 h-2 rounded-full bg-[#0b1b42]" />
+                                                <div className="w-2 h-2 rounded-full bg-[#17274C]" />
                                               )}
                                             </div>
                                             <span className="text-[12.5px] leading-tight">{opt.label}</span>
@@ -657,7 +657,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
           <button
             type="button"
             onClick={onClose}
-            className="w-1/2 mx-auto py-2.5 text-[12.5px] font-bold text-white bg-[#0b1b42] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-[4px] transition-all shadow-[0_4px_16px_rgba(11,27,66,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group"
+            className="w-1/2 mx-auto py-2.5 text-[12.5px] font-bold text-white bg-[#17274C] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-[4px] transition-all shadow-[0_4px_16px_rgba(23,39,76,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group"
           >
             <span>Apply Filters</span>
             <span className="text-[9.5px] font-semibold text-[#d4af37] group-hover:text-amber-300 transition-colors">0 Listings</span>

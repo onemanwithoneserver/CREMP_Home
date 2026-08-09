@@ -43,10 +43,10 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
         className={clsx(
           "w-full sm:w-auto flex items-center justify-between sm:justify-start gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-bold border transition-all duration-200 cursor-pointer whitespace-normal",
           isOpen
-            ? "bg-white/60 dark:bg-[#0b1b42]/60 text-[#0b1b42] dark:text-white border-[#d4af37]/70 shadow-[0_4px_16px_rgba(11,27,66,0.2)] backdrop-blur-md"
+            ? "bg-white/50 dark:bg-[#17274C]/60 text-[#17274C] dark:text-white border-[#d4af37]/70 shadow-[0_4px_16px_rgba(23,39,76,0.3)] backdrop-blur-lg"
             : hasValue || isActive
-            ? "bg-white/50 dark:bg-[#0b1b42]/60 text-[#0b1b42] dark:text-white border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-            : "bg-white/30 dark:bg-black/20 text-[#0a1128] dark:text-white border-white/40 dark:border-white/10 hover:border-[#d4af37]/50 hover:bg-white/50 dark:hover:bg-black/40 shadow-xs backdrop-blur-md"
+            ? "bg-white/30 dark:bg-[#17274C]/40 text-[#17274C] dark:text-white border-[#d4af37]/50 shadow-sm backdrop-blur-lg"
+            : "bg-white/20 dark:bg-white/5 text-[#0a1128] dark:text-white border-white/40 dark:border-white/10 hover:border-[#d4af37]/50 hover:bg-white/40 dark:hover:bg-white/10 shadow-xs backdrop-blur-md"
         )}
       >
         <span>{displayLabel}</span>
@@ -70,7 +70,7 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.97 }}
             transition={{ type: "spring", damping: 28, stiffness: 450 }}
-            className="absolute left-0 top-[calc(100%+6px)] w-full sm:min-w-[160px] bg-white/70 backdrop-blur-xl rounded-lg border border-white/40 shadow-[0_12px_36px_rgba(11,27,66,0.14)] overflow-hidden z-50 dark:bg-black/60 dark:border-white/10 dark:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
+            className="absolute left-0 top-[calc(100%+6px)] w-full sm:min-w-[160px] bg-white/70 backdrop-blur-xl rounded-lg border border-white/40 shadow-[0_12px_36px_rgba(23,39,76,0.14)] overflow-hidden z-50 dark:bg-black/60 dark:border-white/10 dark:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
           >
             <div className="h-[1.5px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60" />
             <div className="py-1.5 max-h-[220px] overflow-y-auto scrollbar-hide">
@@ -89,8 +89,8 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
                     className={clsx(
                       "w-full text-left px-3.5 py-2 text-[12.5px] transition-all duration-150 flex items-center justify-between cursor-pointer",
                       isSelected
-                        ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-extrabold border-l-2 border-[#d4af37]"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                        ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-extrabold border-l-2 border-[#d4af37]"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                     )}
                   >
                     <span>{opt.label}</span>
@@ -176,9 +176,9 @@ export default function BasicFilters({
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2 pb-1">
         {/* Filter label */}
         <div className="hidden sm:flex shrink-0 items-center gap-1.5 pr-2 border-r border-gray-200/60 mr-1">
-          <div className="w-6 h-6 rounded-md bg-[#0b1b42]/[0.06] flex items-center justify-center">
+          <div className="w-6 h-6 rounded-md bg-[#17274C]/[0.06] flex items-center justify-center">
             <svg
-              className="w-3.5 h-3.5 text-[#0b1b42]"
+              className="w-3.5 h-3.5 text-[#17274C]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

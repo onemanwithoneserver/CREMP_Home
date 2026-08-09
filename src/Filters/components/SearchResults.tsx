@@ -76,7 +76,7 @@ export default function SearchResults({
               className={clsx(
                 "relative group w-full flex items-center gap-3.5 p-3.5 transition-all duration-200 cursor-pointer text-left",
                 "bg-gray-50/60 border-gray-100",
-                "hover:bg-white hover:border-[#d4af37]/40 hover:shadow-[0_4px_16px_rgba(11,27,66,0.06)]"
+                "hover:bg-white hover:border-[#d4af37]/40 hover:shadow-[0_4px_16px_rgba(23,39,76,0.06)]"
               )}
             >
               {/* Icon */}
@@ -119,7 +119,7 @@ export default function SearchResults({
                     listings
                   </span>
                 </div>
-                <div className="w-7 h-7 rounded-md bg-gray-100 group-hover:bg-[#0b1b42] flex items-center justify-center transition-all duration-200">
+                <div className="w-7 h-7 rounded-md bg-gray-100 group-hover:bg-[#17274C] flex items-center justify-center transition-all duration-200">
                   <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#d4af37] transition-colors" />
                 </div>
               </div>

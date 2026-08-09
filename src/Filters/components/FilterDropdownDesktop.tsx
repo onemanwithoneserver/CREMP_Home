@@ -116,11 +116,11 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -10, scale: 0.96 }}
       transition={{ type: "spring", damping: 26, stiffness: 360 }}
-      className="absolute top-[calc(100%+8px)] right-0 bg-white/70 backdrop-blur-xl rounded-[4px] shadow-[0_20px_60px_rgba(11,27,66,0.18)] border border-white/40 overflow-hidden z-[9999] flex flex-col w-full max-w-[440px] dark:bg-black/60 dark:border-white/10 dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+      className="absolute top-[calc(100%+8px)] right-0 bg-white/60 backdrop-blur-2xl rounded-[4px] shadow-[0_20px_60px_rgba(23,39,76,0.18)] border border-white/50 overflow-hidden z-[9999] flex flex-col w-full max-w-[440px] dark:bg-[#17274C]/80 dark:border-white/20 dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
     >
       <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-90 pointer-events-none" />
 
-      <div className="px-4 pt-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-200/50 dark:border-white/10 bg-gradient-to-b from-[#0b1b42]/[0.03] dark:from-white/[0.03] to-transparent">
+      <div className="px-4 pt-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-200/50 dark:border-white/10 bg-gradient-to-b from-[#17274C]/[0.03] dark:from-white/[0.03] to-transparent">
         <div>
           <h2 className="text-[17px] font-extrabold text-[#0a1128] dark:text-white tracking-tight">Filters</h2>
         </div>
@@ -129,7 +129,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
           whileHover={{ scale: 1.06, rotate: -4 }}
           whileTap={{ scale: 0.94 }}
           onClick={handleReset}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-[2px] text-[11px] font-bold text-gray-500 hover:text-[#0b1b42] hover:bg-[#0b1b42]/5 border border-transparent hover:border-[#d4af37]/40 transition-all cursor-pointer"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-[2px] text-[11px] font-bold text-gray-500 hover:text-[#17274C] hover:bg-[#17274C]/5 border border-transparent hover:border-[#d4af37]/40 transition-all cursor-pointer"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset</span>
@@ -153,8 +153,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             <div className={clsx(
               "rounded-[4px] transition-all duration-200 overflow-hidden border",
               expandedCategoryKey === "transaction"
-                ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
             )}>
               <motion.button
                 type="button"
@@ -193,8 +193,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             className={clsx(
                               "relative py-2.5 rounded-[4px] border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer",
                               isSelected
-                                ? "bg-[#0b1b42]/80 dark:bg-white/20 border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30 backdrop-blur-md"
-                                : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 shadow-xs text-[#0a1128] dark:text-white hover:border-[#d4af37]/60 hover:bg-white/50 dark:hover:bg-black/40 hover:text-[#0b1b42] dark:hover:text-[#d4af37] backdrop-blur-md"
+                                ? "bg-[#17274C]/80 dark:bg-white/20 border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(23,39,76,0.25)] ring-1 ring-[#d4af37]/30 backdrop-blur-md"
+                                : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 shadow-xs text-[#0a1128] dark:text-white hover:border-[#d4af37]/60 hover:bg-white/50 dark:hover:bg-black/40 hover:text-[#17274C] dark:hover:text-[#d4af37] backdrop-blur-md"
                             )}
                           >
                             <span>{type}</span>
@@ -205,7 +205,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                 transition={{ type: "spring", stiffness: 500, damping: 25 }}
                                 className="absolute right-2.5"
                               >
-                                <CheckCircle2 className="w-3.5 h-3.5 fill-[#d4af37] text-[#0b1b42]" />
+                                <CheckCircle2 className="w-3.5 h-3.5 fill-[#d4af37] text-[#17274C]" />
                               </motion.div>
                             )}
                           </motion.button>
@@ -220,8 +220,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             <div className={clsx(
               "rounded-[4px] transition-all duration-200 overflow-hidden border",
               expandedCategoryKey === "property"
-                ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
             )}>
               <motion.button
                 type="button"
@@ -230,8 +230,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                 className="w-full flex items-center justify-between px-3 py-2.5 cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#d4af37] text-[#0b1b42] shadow-xs">
-                    <Building2 className="w-3.5 h-3.5 text-[#0b1b42]" />
+                  <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#d4af37] text-[#17274C] shadow-xs">
+                    <Building2 className="w-3.5 h-3.5 text-[#17274C]" />
                   </div>
                   <span className="text-[13px] font-extrabold text-[#0a1128]">Property Type</span>
                 </div>
@@ -260,12 +260,12 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             className={clsx(
                               "flex flex-col items-center justify-center p-2 rounded-[4px] border transition-all h-[68px] gap-1 cursor-pointer group",
                               isSelected
-                                ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                ? "bg-[#17274C] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(23,39,76,0.25)] ring-1 ring-[#d4af37]/30"
                                 : "bg-white border-gray-200 shadow-xs hover:border-[#d4af37]/60 hover:bg-amber-50/30 hover:shadow-[0_2px_10px_rgba(212,175,55,0.12)]"
                             )}
                           >
                             <pt.icon className={clsx("w-4 h-4 transition-transform group-hover:scale-110", isSelected ? "text-[#d4af37]" : "text-gray-500 group-hover:text-[#d4af37]")} strokeWidth={1.5} />
-                            <span className={clsx("text-[10px] font-bold text-center leading-tight transition-colors", isSelected ? "text-white" : "text-gray-700 group-hover:text-[#0b1b42]")}>{pt.label}</span>
+                            <span className={clsx("text-[10px] font-bold text-center leading-tight transition-colors", isSelected ? "text-white" : "text-gray-700 group-hover:text-[#17274C]")}>{pt.label}</span>
                           </motion.button>
                         );
                       })}
@@ -278,8 +278,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             <div className={clsx(
               "rounded-[4px] transition-all duration-200 border",
               expandedCategoryKey === "budget"
-                ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md overflow-visible z-30 relative"
-                : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md overflow-hidden"
+                ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md overflow-visible z-30 relative"
+                : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md overflow-hidden"
             )}>
               <motion.button
                 type="button"
@@ -335,8 +335,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
             <div className={clsx(
               "rounded-[4px] transition-all duration-200 overflow-hidden border",
               expandedCategoryKey === "industry"
-                ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
             )}>
               <motion.button
                 type="button"
@@ -375,12 +375,12 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                             className={clsx(
                               "flex flex-col items-center justify-center p-2.5 rounded-[4px] border transition-all h-[76px] gap-1.5 cursor-pointer group",
                               isSelected
-                                ? "bg-[#0b1b42] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                ? "bg-[#17274C] border-[#d4af37]/70 shadow-[0_6px_20px_rgba(23,39,76,0.25)] ring-1 ring-[#d4af37]/30"
                                 : "bg-white border-gray-200 shadow-xs hover:border-[#d4af37]/60 hover:bg-amber-50/30 hover:shadow-[0_2px_10px_rgba(212,175,55,0.12)]"
                             )}
                           >
                             <ind.icon className={clsx("w-5 h-5 transition-transform group-hover:scale-110", isSelected ? "text-[#d4af37]" : ind.color)} />
-                            <span className={clsx("text-[11px] font-bold text-center leading-tight transition-colors", isSelected ? "text-white" : "text-gray-700 group-hover:text-[#0b1b42]")}>{ind.label}</span>
+                            <span className={clsx("text-[11px] font-bold text-center leading-tight transition-colors", isSelected ? "text-white" : "text-gray-700 group-hover:text-[#17274C]")}>{ind.label}</span>
                           </motion.button>
                         );
                       })}
@@ -410,19 +410,19 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                 className={clsx(
                   "w-8 h-8 rounded-[4px] flex items-center justify-center transition-all duration-300 shadow-xs shrink-0",
                   advancedOpen
-                    ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/50 shadow-[0_0_10px_rgba(212,175,55,0.25)]"
-                    : "bg-gray-100 text-gray-700 group-hover:bg-[#0b1b42] group-hover:text-[#d4af37] group-hover:border group-hover:border-[#d4af37]/40"
+                    ? "bg-[#17274C] text-[#d4af37] border border-[#d4af37]/50 shadow-[0_0_10px_rgba(212,175,55,0.25)]"
+                    : "bg-gray-100 text-gray-700 group-hover:bg-[#17274C] group-hover:text-[#d4af37] group-hover:border group-hover:border-[#d4af37]/40"
                 )}
               >
                 <SlidersHorizontal className="w-4 h-4" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[13px] font-extrabold text-[#0a1128] tracking-tight group-hover:text-[#0b1b42] transition-colors">
+                  <span className="text-[13px] font-extrabold text-[#0a1128] tracking-tight group-hover:text-[#17274C] transition-colors">
                     Advanced Filters
                   </span>
                   {activeAdvancedCount > 0 && (
-                    <span className="px-1.5 py-0.5 rounded-full text-[9.5px] font-extrabold bg-[#d4af37] text-[#0b1b42] shadow-xs">
+                    <span className="px-1.5 py-0.5 rounded-full text-[9.5px] font-extrabold bg-[#d4af37] text-[#17274C] shadow-xs">
                       {activeAdvancedCount} active
                     </span>
                   )}
@@ -437,7 +437,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
               <div
                 className={clsx(
                   "w-6 h-6 rounded-[2px] flex items-center justify-center transition-all duration-200",
-                  advancedOpen ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/40 shadow-xs" : "bg-gray-100 text-gray-600 group-hover:bg-amber-100/60 group-hover:text-[#0b1b42]"
+                  advancedOpen ? "bg-[#17274C] text-[#d4af37] border border-[#d4af37]/40 shadow-xs" : "bg-gray-100 text-gray-600 group-hover:bg-amber-100/60 group-hover:text-[#17274C]"
                 )}
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -569,7 +569,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                           )}
                         >
                           <div className="flex items-center gap-2.5">
-                            <div className={clsx("w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-xs", cat.iconBg || "bg-[#0b1b42] text-[#d4af37]")}>
+                            <div className={clsx("w-7 h-7 rounded-[4px] flex items-center justify-center shrink-0 shadow-xs", cat.iconBg || "bg-[#17274C] text-[#d4af37]")}>
                               <cat.icon className="w-[14px] h-[14px]" strokeWidth={2.5} />
                             </div>
                             <div className="flex flex-col text-left">
@@ -612,15 +612,15 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                         className={clsx(
                                           "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                           isSelected
-                                            ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                            : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                            ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                            : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                         )}
                                       >
                                         <div
                                           className={clsx(
                                             "w-4 h-4 rounded-[2px] border flex items-center justify-center shrink-0 transition-all",
                                             isSelected
-                                              ? "bg-[#0b1b42] border-[#d4af37] text-[#d4af37] shadow-xs"
+                                              ? "bg-[#17274C] border-[#d4af37] text-[#d4af37] shadow-xs"
                                               : "bg-white border-gray-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37]/30"
                                           )}
                                         >
@@ -651,8 +651,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                       className={clsx(
                                         "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                         (!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key])
-                                          ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                          ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                       )}
                                     >
                                       <div
@@ -668,7 +668,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
                                             transition={{ type: "spring", stiffness: 600, damping: 22 }}
-                                            className="w-2 h-2 rounded-full bg-[#0b1b42]"
+                                            className="w-2 h-2 rounded-full bg-[#17274C]"
                                           />
                                         )}
                                       </div>
@@ -686,8 +686,8 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                           className={clsx(
                                             "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                             isSelected
-                                              ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                              : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
+                                              ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                              : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
                                           )}
                                         >
                                           <div
@@ -703,7 +703,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                                                 initial={{ scale: 0 }}
                                                 animate={{ scale: 1 }}
                                                 transition={{ type: "spring", stiffness: 600, damping: 22 }}
-                                                className="w-2 h-2 rounded-full bg-[#0b1b42]"
+                                                className="w-2 h-2 rounded-full bg-[#17274C]"
                                               />
                                             )}
                                           </div>
@@ -733,7 +733,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
           whileHover={{ scale: 1.02, y: -1, boxShadow: "0 8px 24px rgba(212,175,55,0.4)" }}
           whileTap={{ scale: 0.98 }}
           onClick={onClose}
-          className="w-1/2 mx-auto py-2.5 text-[12.5px] font-bold text-white bg-[#0b1b42] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-[4px] transition-all shadow-[0_4px_16px_rgba(11,27,66,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group"
+          className="w-1/2 mx-auto py-2.5 text-[12.5px] font-bold text-white bg-[#17274C] hover:bg-[#121c33] border border-[#d4af37]/50 rounded-[4px] transition-all shadow-[0_4px_16px_rgba(23,39,76,0.3)] text-center flex flex-col items-center leading-tight cursor-pointer group"
         >
           <span>Apply Filters</span>
           <span className="text-[9.5px] font-semibold text-[#d4af37] group-hover:text-amber-300 transition-colors">0 Listings</span>

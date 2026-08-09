@@ -18,7 +18,7 @@ export default function TopHeader({
   onTabChange,
 }: TopHeaderProps) {
   return (
-    <header className="w-full bg-white/40 backdrop-blur-xl border-b border-white/40 text-gray-900 select-none relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:bg-[#0b1b42]/60 dark:text-white dark:border-white/10 dark:shadow-[0_4px_20px_rgba(11,27,66,0.3)]">
+    <header className="w-full bg-white/20 backdrop-blur-2xl border-b border-white/30 text-gray-900 select-none relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:bg-white/5 dark:text-white dark:border-white/10 dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
       {/* Top accent line */}
       <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
 
@@ -43,14 +43,14 @@ export default function TopHeader({
                 onClick={() => onTabChange(id)}
                 className={`flex-1 relative flex items-center justify-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-1 sm:px-3 rounded-md font-bold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 cursor-pointer ${
                   isActive
-                    ? "text-[#0b1b42] dark:text-white"
+                    ? "text-[#17274C] dark:text-white"
                     : "text-gray-500 hover:text-gray-800 dark:text-white/45 dark:hover:text-white/75"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="headerCategoryPill"
-                    className="absolute inset-0 bg-white/80 dark:bg-gradient-to-b dark:from-[#0b1b42] dark:to-[#0f2254] border border-[#d4af37]/50 rounded-md -z-10 shadow-[0_0_16px_rgba(212,175,55,0.15)]"
+                    className="absolute inset-0 bg-white/70 dark:bg-white/10 backdrop-blur-md border border-[#d4af37]/50 rounded-md -z-10 shadow-[0_0_16px_rgba(212,175,55,0.15)]"
                     transition={{
                       type: "spring",
                       stiffness: 380,
