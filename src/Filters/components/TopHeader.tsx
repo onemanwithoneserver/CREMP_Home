@@ -29,7 +29,7 @@ export default function TopHeader({
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-1 py-3 flex items-center justify-between gap-4 relative">
         <div
           role="tablist"
           aria-label="Listing category"
@@ -46,7 +46,7 @@ export default function TopHeader({
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => onTabChange(id)}
-                className={`flex-1 relative flex items-center justify-center gap-2 py-2 px-3 rounded-md text-xs sm:text-sm font-bold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 cursor-pointer ${
+                className={`flex-1 relative flex items-center justify-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-1 sm:px-3 rounded-md font-bold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 cursor-pointer ${
                   isActive
                     ? "text-white"
                     : "text-white/45 hover:text-white/75"
@@ -74,37 +74,22 @@ export default function TopHeader({
                     stiffness: 400,
                     damping: 20,
                   }}
-                  className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 transition-all duration-300 ${
+                  className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center shrink-0 transition-all duration-300 ${
                     isActive
                       ? "bg-black/25 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.2)]"
                       : "bg-white/[0.05] text-white/45 border border-transparent"
                   }`}
                 >
                   <Icon
-                    className="w-3.5 h-3.5"
+                    className="w-3 h-3 sm:w-3.5 sm:h-3.5"
                     strokeWidth={isActive ? 2.5 : 2}
                   />
                 </motion.div>
 
-                <span className="font-bold whitespace-nowrap leading-tight">
+                <span className="font-bold sm:whitespace-nowrap leading-[1.1] text-center text-[10px] sm:text-[12px]">
                   {label}
                 </span>
 
-                {isActive && count !== undefined && (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 25,
-                      delay: 0.1,
-                    }}
-                    className="ml-1 px-1.5 py-0.5 rounded-full text-[9px] font-extrabold bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/30"
-                  >
-                    {count}
-                  </motion.span>
-                )}
               </button>
             );
           })}

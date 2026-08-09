@@ -41,7 +41,7 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
         whileTap={{ scale: 0.96 }}
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-bold border transition-all duration-200 cursor-pointer whitespace-nowrap",
+          "w-full sm:w-auto flex items-center justify-between sm:justify-start gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-bold border transition-all duration-200 cursor-pointer whitespace-nowrap",
           isOpen
             ? "bg-[#0b1b42] text-white border-[#d4af37]/70 shadow-[0_4px_16px_rgba(11,27,66,0.2)]"
             : hasValue || isActive
@@ -70,7 +70,7 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.97 }}
             transition={{ type: "spring", damping: 28, stiffness: 450 }}
-            className="absolute left-0 top-[calc(100%+6px)] min-w-[160px] bg-white rounded-lg border border-gray-200/80 shadow-[0_12px_36px_rgba(11,27,66,0.14)] overflow-hidden z-50"
+            className="absolute left-0 top-[calc(100%+6px)] w-full sm:min-w-[160px] bg-white rounded-lg border border-gray-200/80 shadow-[0_12px_36px_rgba(11,27,66,0.14)] overflow-hidden z-50"
           >
             <div className="h-[1.5px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60" />
             <div className="py-1.5 max-h-[220px] overflow-y-auto scrollbar-hide">
@@ -173,9 +173,9 @@ export default function BasicFilters({
 
   return (
     <div className="w-full relative z-50">
-      <div className="flex flex-wrap items-center gap-2 pb-1">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2 pb-1">
         {/* Filter label */}
-        <div className="shrink-0 flex items-center gap-1.5 pr-2 border-r border-gray-200/60 mr-1">
+        <div className="hidden sm:flex shrink-0 items-center gap-1.5 pr-2 border-r border-gray-200/60 mr-1">
           <div className="w-6 h-6 rounded-md bg-[#0b1b42]/[0.06] flex items-center justify-center">
             <svg
               className="w-3.5 h-3.5 text-[#0b1b42]"
@@ -191,8 +191,14 @@ export default function BasicFilters({
               />
             </svg>
           </div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 whitespace-nowrap hidden sm:inline">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 whitespace-nowrap">
             Filters
+          </span>
+        </div>
+
+        <div className="flex sm:hidden items-center gap-1.5 px-1 pb-0.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+            Basic Filters
           </span>
         </div>
 
