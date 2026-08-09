@@ -30,7 +30,7 @@ const pulseBackground: Variants = {
 
 export default function DesktopGrowthStages() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-24 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-24 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseBackground}
                 animate="animate"
@@ -50,7 +50,7 @@ export default function DesktopGrowthStages() {
                             variants={fadeInUp}
                             className="mb-6 flex items-center justify-center gap-3"
                         >
-                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 backdrop-blur-xl transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                                 <Sparkles size={14} className="mr-2 text-[#D4AF37]" />
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37]">
                                     {growthStagesData.tag}
@@ -95,7 +95,7 @@ export default function DesktopGrowthStages() {
                                 key={stage.id}
                                 variants={fadeInUp}
                                 whileHover={{ y: -10 }}
-                                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[8px] border border-gray-200/50 bg-gray-50/50 p-10 shadow-lg transition-all duration-300 hover:shadow-2xl dark:border-gray-800/50 dark:bg-gray-900/30"
+                                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-white/40 bg-white/30 p-10 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-300 hover:border-[#D4AF37]/50 hover:bg-white/50 hover:shadow-xl dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/40"
                             >
                                 <div
                                     className={`absolute inset-0 bg-gradient-to-b opacity-0 transition-opacity duration-500 group-hover:opacity-10 pointer-events-none ${isGold

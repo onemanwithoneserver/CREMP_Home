@@ -41,9 +41,9 @@ export default function MobileFAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
-                className={`group relative overflow-hidden rounded-[4px] border bg-white/60 p-3.5 shadow-sm backdrop-blur-md transition-all dark:bg-gray-900/40 ${isOpen
-                        ? "border-[#D4AF37]/40 bg-white dark:border-[#D4AF37]/40 dark:bg-gray-800/80"
-                        : "border-gray-200/60 dark:border-gray-800/60"
+                className={`group relative overflow-hidden rounded-[4px] border bg-white/30 p-3.5 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all dark:bg-black/20 ${isOpen
+                        ? "border-[#D4AF37]/50 bg-white/50 dark:border-[#D4AF37]/50 dark:bg-black/40"
+                        : "border-white/40 dark:border-white/10"
                     }`}
             >
                 <div
@@ -76,7 +76,7 @@ export default function MobileFAQ() {
                                 {faq.q}
                             </h4>
                             <div
-                                className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? "bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10 text-[#D4AF37] dark:text-[#D4AF37] shadow-inner" : "bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500"}`}
+                                className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? "bg-[#D4AF37]/20 border border-[#D4AF37]/30 text-[#D4AF37] shadow-inner" : "bg-white/50 border border-white/50 text-gray-400 dark:bg-black/40 dark:border-white/10"}`}
                             >
                                 <Plus
                                     size={14}
@@ -112,7 +112,7 @@ export default function MobileFAQ() {
     };
 
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -128,9 +128,7 @@ export default function MobileFAQ() {
                     className="mb-8 flex flex-col items-center text-center"
                 >
                     <motion.div
-                        variants={fadeInUp}
-                        className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10"
-                    >
+                        className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={12}
@@ -167,7 +165,7 @@ export default function MobileFAQ() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-[8px] bg-gradient-to-br from-[#121c33] to-[#0a1128] p-8 shadow-2xl ring-1 ring-white/10 text-center"
+                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl text-center dark:from-black/60 dark:to-black/40"
                 >
                     <div className="absolute right-0 top-0 h-full w-full opacity-[0.03]">
                         <svg

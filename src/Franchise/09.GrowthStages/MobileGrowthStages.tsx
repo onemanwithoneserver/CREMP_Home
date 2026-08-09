@@ -30,7 +30,7 @@ const pulseGlow: Variants = {
 
 export default function MobileGrowthStages() {
     return (
-        <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0b1b42]">
+        <section className="relative w-full overflow-hidden rounded-xl bg-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -47,7 +47,7 @@ export default function MobileGrowthStages() {
                         className="flex w-full flex-col items-center"
                     >
                         <motion.div variants={fadeInUp}>
-                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="mb-4 flex w-fit cursor-pointer items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="mb-4 flex w-fit cursor-pointer items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10">
                                 <Sparkles size={14} className="text-[#D4AF37]" />
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37]">
                                     {growthStagesData.tag}
@@ -90,7 +90,7 @@ export default function MobileGrowthStages() {
                                 <motion.div
                                     key={stage.id}
                                     variants={fadeInUp}
-                                    className="flex flex-col items-start overflow-hidden rounded-[8px] border border-gray-200/50 bg-white p-6 shadow-xl text-left dark:border-gray-800/50 dark:bg-[#121c33]"
+                                    className="flex flex-col items-start overflow-hidden rounded-xl border border-white/40 bg-white/30 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md text-left dark:border-white/10 dark:bg-black/20"
                                 >
                                     <motion.div
                                         whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}

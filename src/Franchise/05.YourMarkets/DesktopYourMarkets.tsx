@@ -41,7 +41,7 @@ const pulseBackground: Variants = {
 
 export default function DesktopYourMarkets() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-12 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseBackground}
                 animate="animate"
@@ -66,7 +66,7 @@ export default function DesktopYourMarkets() {
                             variants={fadeInUp}
                             className="mb-6 flex items-center justify-center gap-3"
                         >
-                            <div className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
+                            <div className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 backdrop-blur-md transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                                 <Globe
                                     size={14}
                                     className="mr-2 text-[#D4AF37] dark:text-[#D4AF37]"
@@ -106,7 +106,7 @@ export default function DesktopYourMarkets() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="flex h-full w-full flex-col justify-center rounded-[8px] p-8  transition-shadow hover:shadow-2xl dark:border-gray-800/50 dark:bg-[#121c33]"
+                        className="flex h-full w-full flex-col justify-center rounded-xl border border-white/40 bg-white/30 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl transition-all hover:bg-white/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
                     >
                         <div className="mb-6 flex items-center gap-3">
                             <motion.div
@@ -128,7 +128,7 @@ export default function DesktopYourMarkets() {
                                     whileHover={{ x: 5, scale: 1.01 }}
                                     className="group flex cursor-pointer items-center gap-3.5 rounded-[4px] border border-transparent px-3 py-2.5 transition-all hover:border-gray-100 hover:bg-gray-50 hover:shadow-xs dark:hover:border-gray-800/60 dark:hover:bg-gray-900/50"
                                 >
-                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/50 text-gray-500 shadow-sm backdrop-blur-md transition-all duration-300 group-hover:border-transparent group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] group-hover:text-white group-hover:shadow-md dark:border-white/10 dark:bg-black/40 dark:text-gray-400 dark:group-hover:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:group-hover:text-gray-900 transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
                                         <benefit.icon size={15} strokeWidth={2.5} />
                                     </motion.div>
                                     <p className="text-base font-semibold leading-snug text-gray-800 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
@@ -145,7 +145,7 @@ export default function DesktopYourMarkets() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: false }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative h-full w-full overflow-hidden rounded-[8px] bg-[#0A0F1C] shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
+                            className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-black/60 to-black/80 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-shadow hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)] dark:from-black/40 dark:to-black/60"
                         >
                             <motion.img
                                 whileHover={{ scale: 1.05 }}

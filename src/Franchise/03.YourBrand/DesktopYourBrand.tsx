@@ -87,7 +87,7 @@ export default function DashboardShowcase() {
         return () => clearInterval(interval);
     }, [isCarouselPlaying, playingVideoId]);
     return (
-        <section className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0b1b42]">
+        <section className="relative w-full overflow-hidden bg-white/40 backdrop-blur-xl border-y border-white/40 py-12 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -109,7 +109,7 @@ export default function DashboardShowcase() {
                         className="flex w-full flex-col justify-center lg:w-[45%]"
                     >
                         <motion.div variants={fadeInUp}>
-                            <div className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5">
+                            <div className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-white/60 px-4 py-1.5 shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10">
                                 <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                                     <Sparkles
                                         size={14}
@@ -159,7 +159,7 @@ export default function DashboardShowcase() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-2 rounded-[4px] border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-900 shadow-sm transition-all hover:border-[#D4AF37]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-gray-800"
+                                className="flex items-center gap-2 rounded-[4px] border border-white/40 bg-white/30 px-7 py-3.5 text-sm font-bold text-gray-900 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all hover:border-[#D4AF37]/50 hover:bg-white/50 dark:border-white/10 dark:bg-black/30 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-white/10"
                             >
                                 View Live Demo
                             </motion.button>
@@ -227,7 +227,7 @@ export default function DashboardShowcase() {
                                 return (
                                     <div
                                         key={item.id}
-                                        className={`absolute aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-[4px] border border-gray-200/20 bg-gray-900 shadow-2xl transition-all duration-500 dark:border-gray-800/80 ${transformClasses} ${zIndexClass} ${opacityClass}`}
+                                        className={`absolute aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-xl border border-white/40 bg-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 dark:border-white/20 dark:bg-black/40 ${transformClasses} ${zIndexClass} ${opacityClass}`}
                                     >
                                         {playingVideoId === item.id ? (
                                             <div className="relative h-full w-full bg-black">
@@ -308,7 +308,7 @@ export default function DashboardShowcase() {
                         <div className="absolute bottom-0 right-4 z-40 flex items-center justify-center lg:bottom-4 lg:right-4">
                             <button
                                 onClick={() => setIsCarouselPlaying(!isCarouselPlaying)}
-                                className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg backdrop-blur-md transition-all hover:bg-gray-50 hover:shadow-xl dark:border-gray-800/50 dark:bg-black/60 dark:hover:bg-black"
+                                className="group flex h-12 w-12 items-center justify-center rounded-full border border-white/50 bg-white/50 shadow-lg backdrop-blur-md transition-all hover:bg-white/70 hover:shadow-xl dark:border-white/10 dark:bg-black/40 dark:hover:bg-black/60"
                             >
                                 {isCarouselPlaying ? (
                                     <motion.div whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>

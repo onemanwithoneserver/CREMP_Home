@@ -41,7 +41,7 @@ const pulseBackground: Variants = {
 
 export default function MobileYourMarkets() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 py-4 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseBackground}
                 animate="animate"
@@ -66,7 +66,7 @@ export default function MobileYourMarkets() {
                             variants={fadeInUp}
                             className="mb-4 flex items-center justify-center gap-3"
                         >
-                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
+                            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="flex h-8 cursor-pointer items-center justify-center rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 backdrop-blur-md transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                                 <Globe
                                     size={14}
                                     className="mr-2 text-[#D4AF37] dark:text-[#D4AF37]"
@@ -109,7 +109,7 @@ export default function MobileYourMarkets() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: false }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative h-full w-full overflow-hidden rounded-[8px] bg-[#0A0F1C] shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
+                            className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-black/60 to-black/80 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-shadow hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)] dark:from-black/40 dark:to-black/60"
                         >
                             <motion.img
                                 whileHover={{ scale: 1.05 }}
@@ -276,7 +276,7 @@ export default function MobileYourMarkets() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="flex flex-col items-center rounded-[8px] border border-gray-200/50 bg-white px-3 py-4 text-center shadow-xl dark:border-gray-800/50 dark:bg-[#121c33]"
+                        className="flex flex-col items-center rounded-xl border border-white/40 bg-white/30 px-3 py-4 text-center shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20"
                     >
                         <div className="mb-4 flex flex-col items-center gap-2">
                             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
@@ -293,7 +293,7 @@ export default function MobileYourMarkets() {
                                     key={idx}
                                     className="flex items-center gap-3 rounded-[4px] border border-transparent p-2 text-left transition-all hover:bg-gray-50 dark:hover:bg-gray-900/50"
                                 >
-                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-100 text-[#D4AF37] dark:bg-gray-800 dark:text-[#D4AF37]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/50 text-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40">
                                         <benefit.icon size={15} strokeWidth={2.5} />
                                     </motion.div>
                                     <p className="text-[1rem] font-bold leading-snug text-gray-800 dark:text-gray-200">

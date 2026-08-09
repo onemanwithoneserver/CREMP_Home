@@ -50,9 +50,9 @@ export default function DesktopFAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 whileHover={{ y: -2 }}
-                className={`group relative overflow-hidden rounded-[4px] border bg-white/60 px-5 py-4 shadow-sm backdrop-blur-md transition-all hover:shadow-lg dark:bg-gray-900/40 ${isOpen
-                        ? "border-[#D4AF37]/40 bg-white dark:border-[#D4AF37]/40 dark:bg-gray-800/80"
-                        : "border-gray-200/60 dark:border-gray-800/60 hover:border-[#D4AF37]/30 dark:hover:border-[#D4AF37]/30"
+                className={`group relative overflow-hidden rounded-[4px] border bg-white/30 px-5 py-4 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all hover:bg-white/50 hover:shadow-lg dark:bg-black/20 ${isOpen
+                        ? "border-[#D4AF37]/50 bg-white/50 dark:border-[#D4AF37]/50 dark:bg-black/40"
+                        : "border-white/40 dark:border-white/10 hover:border-[#D4AF37]/30 dark:hover:border-[#D4AF37]/30"
                     }`}
             >
                 <div
@@ -85,7 +85,7 @@ export default function DesktopFAQ() {
                                 {faq.q}
                             </h4>
                             <div
-                                className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? "bg-[#D4AF37]/10 dark:bg-[#D4AF37]/10 text-[#D4AF37] dark:text-[#D4AF37] shadow-inner" : "bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 group-hover:bg-gray-100 dark:group-hover:bg-gray-800"}`}
+                                className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? "bg-[#D4AF37]/20 border border-[#D4AF37]/30 text-[#D4AF37] shadow-inner" : "bg-white/50 border border-white/50 text-gray-400 dark:bg-black/40 dark:border-white/10 group-hover:bg-white/80 dark:group-hover:bg-black/60"}`}
                             >
                                 <Plus
                                     size={16}
@@ -121,7 +121,7 @@ export default function DesktopFAQ() {
     };
 
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-4 py-4 transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-xl bg-white/40 pt-4 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -142,9 +142,7 @@ export default function DesktopFAQ() {
                     className="mb-12 flex max-w-3xl flex-col items-center text-center"
                 >
                     <motion.div
-                        variants={fadeInUp}
-                        className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10"
-                    >
+                        className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={14}
@@ -187,7 +185,7 @@ export default function DesktopFAQ() {
                     viewport={{ once: false }}
                     whileHover={{ y: -4, boxShadow: "0 25px 50px rgba(0,0,0,0.3)" }}
                     transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-[8px] bg-gradient-to-br from-[#121c33] to-[#0a1128] p-8 shadow-2xl ring-1 ring-white/10 transition-shadow lg:flex-row lg:px-12 lg:py-10"
+                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-shadow lg:flex-row lg:px-12 lg:py-10 dark:from-black/60 dark:to-black/40"
                 >
                     <motion.div
                         animate={{ rotate: 360 }}

@@ -39,7 +39,7 @@ export default function DesktopFoundingPartner() {
     const Btn1Icon = foundingData.buttons[0].icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-12 transition-colors duration-700 dark:bg-[#0b1b42]">
+        <div className="relative w-full overflow-hidden bg-white/40 backdrop-blur-xl border-y border-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -52,7 +52,7 @@ export default function DesktopFoundingPartner() {
             />
 
             <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
-                <div className="relative flex w-full flex-col overflow-hidden rounded-[8px] border border-gray-200/80 bg-white shadow-lg dark:border-gray-800/80 dark:bg-[#121c33] lg:flex-row lg:items-stretch lg:p-4">
+                <div className="relative flex w-full flex-col overflow-hidden rounded-xl border border-white/40 bg-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20 lg:flex-row lg:items-stretch lg:p-4">
                     <div className="relative flex w-full flex-col p-8 pt-10 lg:w-[48%] lg:px-10 lg:py-12">
                         <motion.div
                             initial="hidden"
@@ -62,7 +62,7 @@ export default function DesktopFoundingPartner() {
                         >
                             <motion.div
                                 variants={fadeInUp}
-                                className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
+                                className="mb-6 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                             >
                                 <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                                     <Star
@@ -114,8 +114,8 @@ export default function DesktopFoundingPartner() {
 
                                 <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#D4AF37]/40 bg-gray-50 dark:border-[#D4AF37]/40 dark:bg-[#111827]" />
 
-                                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-gray-700/80 dark:from-[#121c33] dark:to-[#121c33]">
-                                    <div className="h-[60%] w-[60%] rounded-[100%] border border-gray-300/50 dark:border-gray-600/30" />
+                                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-white/50 bg-gradient-to-b from-white/60 to-white/30 backdrop-blur-md shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-white/10 dark:from-black/40 dark:to-black/20">
+                                    <div className="h-[60%] w-[60%] rounded-[100%] border border-white/50 dark:border-white/20" />
                                 </div>
                             </div>
 
@@ -231,7 +231,7 @@ export default function DesktopFoundingPartner() {
                         </motion.div>
                     </div>
 
-                    <div className="relative z-10 flex w-full flex-col rounded-[8px] bg-gray-50/50 p-8 shadow-[inset_1px_0_0_rgba(0,0,0,0.05)] dark:bg-[#0b1b42]/50 dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.05)] lg:w-[52%] lg:p-12">
+                    <div className="relative z-10 flex w-full flex-col rounded-xl border border-white/40 bg-white/40 p-8 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/30 lg:w-[52%] lg:p-12">
                         <div className="mb-8 flex items-center gap-4 border-b border-gray-200/60 pb-6 dark:border-gray-800/60">
                             <motion.div
                                 whileHover={{ rotate: 180 }}
@@ -264,13 +264,13 @@ export default function DesktopFoundingPartner() {
                                         type: "spring",
                                     }}
                                     whileHover={{ scale: 1.02 }}
-                                    className="group relative flex w-full cursor-pointer items-center gap-4 rounded-[4px] p-3 px-4 transition-all hover:border-[#D4AF37]/30 hover:bg-white hover:shadow-md dark:border-gray-800/50 dark:hover:bg-[#121c33]/90"
+                                    className="group relative flex w-full cursor-pointer items-center gap-4 rounded-lg p-3 px-4 transition-all hover:border hover:border-[#D4AF37]/50 hover:bg-white/50 hover:shadow-lg dark:hover:border-[#D4AF37]/30 dark:hover:bg-black/40"
                                 >
                                     <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37] group-hover:text-white dark:bg-[#0b1b42] dark:group-hover:text-[#0a1128]">
                                         <Check size={12} strokeWidth={3} />
                                     </div>
 
-                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 transition-all duration-300 group-hover:border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] group-hover:shadow-lg dark:border-gray-800 dark:bg-[#111827] dark:group-hover:border-[#D4AF37]/50 dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/50 text-gray-400 shadow-sm backdrop-blur-md transition-all duration-300 group-hover:border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/20 group-hover:text-[#D4AF37] group-hover:shadow-lg dark:border-white/10 dark:bg-black/40 dark:group-hover:border-[#D4AF37]/30 dark:group-hover:bg-[#D4AF37]/10 dark:group-hover:text-[#D4AF37]">
                                         <benefit.icon size={18} strokeWidth={1.5} />
                                     </motion.div>
 

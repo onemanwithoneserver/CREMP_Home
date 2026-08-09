@@ -48,7 +48,7 @@ const pulseGlow: Variants = {
 
 export default function DesktopCategories() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-8 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-8 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <div
                 className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-[0.03] dark:opacity-[0.05]"
                 style={{
@@ -71,9 +71,7 @@ export default function DesktopCategories() {
                     className="mb-20 flex max-w-4xl flex-col items-center text-center"
                 >
                     <motion.div
-                        variants={fadeInUp}
-                        className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5"
-                    >
+                        className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={14}
@@ -112,7 +110,7 @@ export default function DesktopCategories() {
                             key={idx}
                             variants={cardVariant}
                             whileHover={{ y: -8, scale: 1.02 }}
-                            className="group relative flex h-48 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border border-gray-200/60 bg-gray-50/50 p-6 text-center shadow-sm transition-colors hover:border-[#D4AF37]/40 hover:bg-white hover:shadow-2xl dark:border-gray-800/60 dark:bg-[#121c33]/50 dark:hover:border-[#D4AF37]/40 dark:hover:bg-[#121c33]"
+                            className="group relative flex h-48 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl border border-white/40 bg-white/30 p-6 text-center shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all hover:border-[#D4AF37]/50 hover:bg-white/50 hover:shadow-xl dark:border-white/10 dark:bg-black/20 dark:hover:border-[#D4AF37]/30 dark:hover:bg-black/40"
                         >
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#D4AF37]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:to-[#D4AF37]/10" />
 
@@ -175,7 +173,7 @@ export default function DesktopCategories() {
                         />
                     </motion.button>
 
-                    <div className="flex items-center gap-2 rounded-[2px] border border-gray-100 bg-gray-50 px-4 py-2 transition-colors hover:bg-gray-100 dark:border-gray-800/60 dark:bg-gray-900/50 dark:hover:bg-gray-800/60 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                    <div className="flex items-center gap-2 rounded-[2px] border border-white/50 bg-white/30 px-4 py-2 backdrop-blur-md transition-all duration-300 hover:border-[#D4AF37]/50 hover:bg-white/50 hover:shadow-lg dark:border-white/10 dark:bg-black/30 dark:hover:bg-black/40">
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <ShieldCheck
                                 size={16}

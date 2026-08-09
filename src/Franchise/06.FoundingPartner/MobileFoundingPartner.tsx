@@ -42,7 +42,7 @@ export default function MobileFoundingPartner() {
     const Btn1Icon = foundingData.buttons[0].icon;
 
     return (
-        <div className="relative w-full overflow-hidden bg-gray-50 py-4 transition-colors duration-700 dark:bg-[#0b1b42]">
+        <div className="relative w-full overflow-hidden bg-white/40 backdrop-blur-xl border-y border-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -50,7 +50,7 @@ export default function MobileFoundingPartner() {
             />
 
             <div className="relative z-10 w-full">
-                <div className="relative flex w-full flex-col overflow-hidden border-y border-gray-200/80 bg-white shadow-2xl dark:border-gray-800/80 dark:bg-[#121c33]">
+                <div className="relative flex w-full flex-col overflow-hidden border border-white/40 bg-white/30 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20 mx-4 w-[calc(100%-32px)]">
                     <div className="relative flex w-full flex-col items-center p-6 pt-6 text-center">
                         <motion.div
                             initial="hidden"
@@ -61,7 +61,7 @@ export default function MobileFoundingPartner() {
                         >
                             <motion.div
                                 variants={fadeInUp}
-                                className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
+                                className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
                             >
                                 <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                                     <Star
@@ -110,8 +110,8 @@ export default function MobileFoundingPartner() {
                                     </span>
                                 </div>
                                 <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#D4AF37]/40 bg-gray-50 dark:border-[#D4AF37]/40 dark:bg-[#111827]" />
-                                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-gray-700/80 dark:from-[#121c33] dark:to-[#121c33]">
-                                    <div className="h-[60%] w-[60%] rounded-[100%] border border-gray-300/50 dark:border-gray-600/30" />
+                                <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-white/50 bg-gradient-to-b from-white/60 to-white/30 backdrop-blur-md shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-white/10 dark:from-black/40 dark:to-black/20">
+                                    <div className="h-[60%] w-[60%] rounded-[100%] border border-white/50 dark:border-white/20" />
                                 </div>
                             </div>
 
@@ -225,7 +225,7 @@ export default function MobileFoundingPartner() {
                         </motion.div>
                     </div>
 
-                    <div className="relative z-10 flex w-full flex-col bg-gray-50/50 p-6 shadow-inner dark:bg-[#0b1b42]/50">
+                    <div className="relative z-10 flex w-full flex-col bg-white/20 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-md dark:bg-black/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
                         <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
                             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 shadow-sm dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
                                 <Gem
@@ -253,13 +253,13 @@ export default function MobileFoundingPartner() {
                                         delay: 0.2 + idx * 0.08,
                                         type: "spring",
                                     }}
-                                    className="group relative flex w-full items-center gap-3 rounded-[4px] border border-gray-200/50 bg-white/80 p-3 shadow-xs dark:border-gray-800/50 dark:bg-[#121c33]/60"
+                                    className="group relative flex w-full items-center gap-3 rounded-lg border border-white/40 bg-white/40 p-3 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-black/30"
                                 >
                                     <div className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-xs dark:bg-[#0b1b42]">
                                         <Check size={11} strokeWidth={3} />
                                     </div>
 
-                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 dark:border-gray-800 dark:bg-[#111827]">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/50 text-gray-400 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-black/40">
                                         <benefit.icon size={14} strokeWidth={1.5} />
                                     </motion.div>
 

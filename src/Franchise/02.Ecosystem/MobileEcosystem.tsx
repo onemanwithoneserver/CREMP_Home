@@ -56,7 +56,7 @@ const floatAnimation: Variants = {
 
 export default function MobileEcosystem() {
     return (
-        <div className="relative w-full overflow-hidden rounded-xl bg-gray-50 py-8 shadow-lg transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none ">
+        <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-8 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] ">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -106,7 +106,7 @@ export default function MobileEcosystem() {
                         >
                             {ecosystemData.issues.map((issue, idx) => (
                                 <div key={idx} className="flex items-center gap-3">
-                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/10 bg-gradient-to-br from-[#fdf6ea] to-white text-[#D4AF37] shadow-inner dark:border-gray-800 dark:from-[#121c33] dark:to-[#121c33] dark:text-[#D4AF37] cursor-pointer">
+                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/50 text-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40 dark:text-[#D4AF37] cursor-pointer">
                                         <issue.icon size={14} />
                                     </motion.div>
                                     <span className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-300">
@@ -205,9 +205,9 @@ export default function MobileEcosystem() {
                                 {ecosystemData.flowItems.map((item, idx) => (
                                     <div
                                         key={idx}
-                                        className="relative z-20 flex min-h-[90px] w-full flex-col items-center justify-center rounded-xl border border-gray-200/80 bg-white/95 p-3 text-center shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#121c33]/95"
+                                        className="relative z-20 flex min-h-[90px] w-full flex-col items-center justify-center rounded-xl border border-white/40 bg-white/40 p-3 text-center shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20"
                                     >
-                                        <motion.div whileHover={{ scale: 1.25, rotate: [0, 180, 360] }} transition={{ duration: 0.5 }} className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#fdf6ea] to-white shadow-sm ring-1 ring-[#D4AF37]/20 dark:from-[#121c33] dark:to-[#0a1128] dark:ring-[#D4AF37]/20 cursor-pointer pointer-events-auto">
+                                        <motion.div whileHover={{ scale: 1.25, rotate: [0, 180, 360] }} transition={{ duration: 0.5 }} className="mb-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/60 shadow-inner backdrop-blur-sm border border-white/50 dark:bg-black/50 dark:border-white/10 cursor-pointer pointer-events-auto">
                                             <item.icon
                                                 size={16}
                                                 className="text-[#D4AF37] dark:text-[#D4AF37]"
@@ -304,11 +304,11 @@ export default function MobileEcosystem() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ duration: 0.5 }}
-                    className="relative mx-auto mt-10 flex w-full max-w-2xl flex-row items-center justify-start gap-4 overflow-hidden rounded-xl border border-gray-200/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur-md dark:border-gray-700/80 dark:bg-[#121c33]/80"
+                    className="relative mx-auto mt-10 flex w-full max-w-2xl flex-row items-center justify-start gap-4 overflow-hidden rounded-xl border border-white/40 bg-white/40 p-4 text-left shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20"
                 >
                     <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#D4AF37] to-[#b38728] dark:from-[#D4AF37] dark:to-[#b38728]" />
 
-                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-sm dark:border-gray-700 dark:bg-[#0b1b42] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/50 backdrop-blur-md shadow-sm dark:border-white/10 dark:bg-black/40 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
                         <Target
                             size={18}
                             className="text-[#D4AF37] dark:text-[#D4AF37]"

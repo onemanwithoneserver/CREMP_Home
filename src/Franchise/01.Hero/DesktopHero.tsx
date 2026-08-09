@@ -55,7 +55,7 @@ export default function DesktopHero() {
     const Btn2Icon = heroData.buttons[1].icon;
 
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-gray-50 pt-24 pb-4 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 pt-24 pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 variants={pulseGlow}
                 animate="animate"
@@ -128,7 +128,7 @@ export default function DesktopHero() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group flex items-center justify-center gap-3 rounded-[4px] border border-gray-200 bg-white/80 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-sm backdrop-blur-md transition-all hover:border-[#D4AF37]/50 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-gray-800/80"
+                                className="group flex items-center justify-center gap-3 rounded-[4px] border border-white/40 bg-white/30 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-lg transition-all hover:border-[#D4AF37]/50 hover:bg-white/50 dark:border-white/10 dark:bg-black/30 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-white/10"
                             >
                                 <motion.div whileHover={{ scale: 1.2, rotate: -12 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                                     <Btn2Icon
@@ -146,9 +146,9 @@ export default function DesktopHero() {
                                 <motion.div
                                     key={idx}
                                     whileHover={{ y: -5 }}
-                                    className="group flex cursor-pointer items-center gap-3 rounded-[4px] p-2 transition-colors hover:bg-white/50 dark:hover:bg-gray-800/50"
+                                    className="group flex cursor-pointer items-center gap-3 rounded-lg border border-transparent p-2 transition-all hover:border-white/40 hover:bg-white/30 hover:backdrop-blur-md dark:hover:border-white/10 dark:hover:bg-white/5"
                                 >
-                                    <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white text-[#D4AF37] shadow-sm dark:border-gray-800 dark:bg-[#121c33] dark:text-[#D4AF37] hover:shadow-lg hover:border-[#D4AF37]/50 pointer-events-auto">
+                                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/40 text-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40 dark:text-[#D4AF37] hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:border-[#D4AF37]/50 pointer-events-auto transition-all">
                                         <feature.icon size={18} strokeWidth={2} />
                                     </motion.div>
                                     <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">

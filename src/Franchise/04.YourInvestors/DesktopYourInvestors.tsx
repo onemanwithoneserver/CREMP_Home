@@ -30,7 +30,7 @@ const pulseRing: Variants = {
 
 export default function DesktopYourInvestors() {
     return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white py-12 shadow-2xl transition-colors duration-700 dark:bg-[#0b1b42] dark:shadow-none">
+        <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <motion.div
                 animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.05, 1] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -55,7 +55,7 @@ export default function DesktopYourInvestors() {
                             variants={fadeInUp}
                             className="mb-6 flex items-center justify-center gap-3"
                         >
-                            <div className="flex h-8 items-center justify-center rounded-[4px] bg-[#D4AF37]/10 px-4 transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
+                            <div className="flex h-8 items-center justify-center rounded-[4px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 backdrop-blur-md transition-colors hover:bg-[#D4AF37]/20 dark:bg-[#D4AF37]/10 dark:hover:bg-[#D4AF37]/20">
                                 <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] dark:text-[#D4AF37]">
                                     {investorData.tag}
                                 </span>
@@ -95,13 +95,13 @@ export default function DesktopYourInvestors() {
                         viewport={{ once: false }}
                         whileHover={{ y: -5 }}
                         transition={{ type: "spring", stiffness: 250, damping: 25 }}
-                        className="col-span-1 flex flex-col overflow-hidden rounded-[8px] border border-gray-200/50 bg-gray-50 p-10 shadow-lg transition-shadow hover:shadow-xl dark:border-gray-800/50 dark:bg-[#121c33] lg:col-span-2"
+                        className="col-span-1 flex flex-col overflow-hidden rounded-xl border border-white/40 bg-white/30 p-10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl transition-all hover:bg-white/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 lg:col-span-2"
                     >
                         <div className="mb-10 flex items-center gap-4">
                             <motion.div
                                 whileHover={{ rotate: 180, scale: 1.1 }}
                                 transition={{ duration: 0.5 }}
-                                className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-200/80 dark:bg-gray-900 dark:ring-gray-800"
+                                className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/50 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40"
                             >
                                 <Activity
                                     size={20}
@@ -161,7 +161,7 @@ export default function DesktopYourInvestors() {
                             damping: 25,
                             delay: 0.2,
                         }}
-                        className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#0f172a] to-[#0a1128] p-10 text-center shadow-2xl ring-1 ring-white/10 transition-shadow hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:from-[#121c33] dark:to-[#121c33] dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
+                        className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-black/60 to-black/80 p-10 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:from-black/40 dark:to-black/60 dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
                     >
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30" />
 
