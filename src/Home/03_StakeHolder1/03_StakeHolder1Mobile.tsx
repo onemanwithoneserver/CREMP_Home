@@ -84,14 +84,14 @@ export default function MobileStakeHolder1() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, margin: "-50px" }}
-                className="rounded-[4px] bg-slate-50 dark:bg-slate-900/40 relative shadow-sm border border-slate-200 dark:border-slate-800 w-full flex flex-col overflow-hidden"
+                className="rounded-[4px] bg-slate-50 dark:bg-slate-900/40 relative  w-full flex flex-col overflow-hidden"
             >
                 <div className="absolute top-0 right-0 w-full h-48 pointer-events-none opacity-40 dark:opacity-20">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/80 to-slate-50 dark:via-slate-900/80 dark:to-slate-900 z-10"></div>
                     <img src={block1.bgImage} alt="Background" className="w-full h-full object-cover" />
                 </div>
 
-                <div className="relative z-10 p-5 flex flex-col gap-6 w-full mt-2">
+                <div className="relative z-10 p-2 flex flex-col gap-6 w-full mt-2">
                     <motion.div variants={fadeUpText} className="flex flex-col gap-3">
                         <div className="flex items-center gap-1.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-3 py-1.5 rounded-[2px] w-fit tracking-wider uppercase border border-indigo-200 dark:border-indigo-700/50">
                             <Users size={14} strokeWidth={2.5} />
@@ -172,7 +172,7 @@ export default function MobileStakeHolder1() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, margin: "-50px" }}
-                className="rounded-[4px] bg-white dark:bg-slate-900 overflow-hidden p-5 flex flex-col gap-6 relative shadow-sm border border-cyan-100 dark:border-slate-800 w-full"
+                className="rounded-[4px] bg-white dark:bg-slate-900 overflow-hidden p-5 flex flex-col gap-6 relative w-full"
             >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.05),transparent_60%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.15),transparent_60%)] pointer-events-none"></div>
 
