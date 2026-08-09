@@ -276,7 +276,7 @@ export default function MobileYourMarkets() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="flex flex-col items-center rounded-xl border border-white/40 bg-white/30 px-3 py-4 text-center shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20"
+                        className="flex flex-col items-center px-3 py-4 text-center "
                     >
                         <div className="mb-4 flex flex-col items-center gap-2">
                             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">

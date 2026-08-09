@@ -91,7 +91,7 @@ export default function MobileYourInvestors() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 250, damping: 25 }}
-                        className="flex flex-col items-center rounded-xl border border-white/40 bg-white/30 p-6 text-center shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20"
+                        className="flex flex-col items-center p-3 text-center "
                     >
                         <div className="mb-8 flex flex-col items-center gap-4">
                             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/50 shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40">

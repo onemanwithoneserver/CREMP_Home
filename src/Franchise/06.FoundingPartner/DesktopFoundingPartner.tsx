@@ -52,7 +52,7 @@ export default function DesktopFoundingPartner() {
             />
 
             <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
-                <div className="relative flex w-full flex-col overflow-hidden rounded-xl border border-white/40 bg-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20 lg:flex-row lg:items-stretch lg:p-4">
+                <div className="relative flex w-full flex-col overflow-hidden backdrop-blur-xl lg:flex-row lg:items-stretch lg:p-4">
                     <div className="relative flex w-full flex-col p-8 pt-10 lg:w-[48%] lg:px-10 lg:py-12">
                         <motion.div
                             initial="hidden"

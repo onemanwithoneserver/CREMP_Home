@@ -95,7 +95,7 @@ export default function DesktopYourInvestors() {
                         viewport={{ once: false }}
                         whileHover={{ y: -5 }}
                         transition={{ type: "spring", stiffness: 250, damping: 25 }}
-                        className="col-span-1 flex flex-col overflow-hidden rounded-xl border border-white/40 bg-white/30 p-10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl transition-all hover:bg-white/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 lg:col-span-2"
+                        className="col-span-1 flex flex-col overflow-hidden   p-10  backdrop-blur-xl transition-all  lg:col-span-2"
                     >
                         <div className="mb-10 flex items-center gap-4">
                             <motion.div

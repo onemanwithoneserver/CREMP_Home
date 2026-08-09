@@ -16,13 +16,9 @@ const TABS = [
 export default function TopHeader({
   activeTab,
   onTabChange,
-  commercialCount = 30,
-  businessCount = 356,
 }: TopHeaderProps) {
-  const counts = { commercial: commercialCount, business: businessCount };
-
   return (
-    <header className="w-full bg-[#0b1b42] text-white select-none relative z-30 shadow-[0_4px_20px_rgba(11,27,66,0.3)]">
+    <header className="w-full bg-white/40 backdrop-blur-xl border-b border-white/40 text-gray-900 select-none relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:bg-[#0b1b42]/60 dark:text-white dark:border-white/10 dark:shadow-[0_4px_20px_rgba(11,27,66,0.3)]">
       {/* Top accent line */}
       <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
 
@@ -33,11 +29,10 @@ export default function TopHeader({
         <div
           role="tablist"
           aria-label="Listing category"
-          className="flex items-center bg-white/[0.06] backdrop-blur-md p-1 rounded-lg border border-white/[0.08] w-full justify-center gap-1.5"
+          className="flex items-center bg-white/30 backdrop-blur-md p-1 rounded-lg border border-white/40 w-full justify-center gap-1.5 dark:bg-black/20 dark:border-white/10"
         >
           {TABS.map(({ id, label, icon: Icon }) => {
             const isActive = activeTab === id;
-            const count = counts[id];
 
             return (
               <button
@@ -48,14 +43,14 @@ export default function TopHeader({
                 onClick={() => onTabChange(id)}
                 className={`flex-1 relative flex items-center justify-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-1 sm:px-3 rounded-md font-bold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 cursor-pointer ${
                   isActive
-                    ? "text-white"
-                    : "text-white/45 hover:text-white/75"
+                    ? "text-[#0b1b42] dark:text-white"
+                    : "text-gray-500 hover:text-gray-800 dark:text-white/45 dark:hover:text-white/75"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="headerCategoryPill"
-                    className="absolute inset-0 bg-gradient-to-b from-[#0b1b42] to-[#0f2254] border border-[#d4af37]/50 rounded-md -z-10 shadow-[0_0_16px_rgba(212,175,55,0.15)]"
+                    className="absolute inset-0 bg-white/80 dark:bg-gradient-to-b dark:from-[#0b1b42] dark:to-[#0f2254] border border-[#d4af37]/50 rounded-md -z-10 shadow-[0_0_16px_rgba(212,175,55,0.15)]"
                     transition={{
                       type: "spring",
                       stiffness: 380,
@@ -76,8 +71,8 @@ export default function TopHeader({
                   }}
                   className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center shrink-0 transition-all duration-300 ${
                     isActive
-                      ? "bg-black/25 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.2)]"
-                      : "bg-white/[0.05] text-white/45 border border-transparent"
+                      ? "bg-white/90 dark:bg-black/25 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.2)]"
+                      : "bg-black/5 dark:bg-white/[0.05] text-gray-400 dark:text-white/45 border border-transparent"
                   }`}
                 >
                   <Icon

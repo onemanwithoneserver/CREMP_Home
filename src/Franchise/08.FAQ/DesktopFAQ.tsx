@@ -143,6 +143,7 @@ export default function DesktopFAQ() {
                 >
                     <motion.div
                         className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
+                    >
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={14}
@@ -185,7 +186,7 @@ export default function DesktopFAQ() {
                     viewport={{ once: false }}
                     whileHover={{ y: -4, boxShadow: "0 25px 50px rgba(0,0,0,0.3)" }}
                     transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-shadow lg:flex-row lg:px-12 lg:py-10 dark:from-black/60 dark:to-black/40"
+                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-[#17274C] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-shadow lg:flex-row lg:px-12 lg:py-10 dark:bg-[#17274C]"
                 >
                     <motion.div
                         animate={{ rotate: 360 }}

@@ -129,6 +129,7 @@ export default function MobileFAQ() {
                 >
                     <motion.div
                         className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
+                    >
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={12}
@@ -165,7 +166,7 @@ export default function MobileFAQ() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl text-center dark:from-black/60 dark:to-black/40"
+                    className="relative flex w-full flex-col items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-[#17274C] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl text-center dark:bg-[#17274C]"
                 >
                     <div className="absolute right-0 top-0 h-full w-full opacity-[0.03]">
                         <svg

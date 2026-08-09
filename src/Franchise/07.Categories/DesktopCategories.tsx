@@ -71,7 +71,9 @@ export default function DesktopCategories() {
                     className="mb-20 flex max-w-4xl flex-col items-center text-center"
                 >
                     <motion.div
+                        variants={fadeInUp}
                         className="mb-6 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
+                    >
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={14}

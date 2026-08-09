@@ -167,8 +167,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
                 expandedCategoryKey === "transaction"
-                  ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
-                  : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs"
+                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
               )}>
                 <button
                   type="button"
@@ -202,7 +202,7 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                               className={clsx(
                                 "relative py-2.5 rounded-[4px] border text-[13px] font-bold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer",
                                 isSelected
-                                  ? "bg-[#0b1b42] border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30"
+                                  ? "bg-[#0b1b42]/80 dark:bg-white/20 border-[#d4af37]/70 text-white shadow-[0_4px_16px_rgba(11,27,66,0.25)] ring-1 ring-[#d4af37]/30 backdrop-blur-md"
                                   : "bg-white border-gray-200 shadow-xs text-[#0a1128] hover:border-[#d4af37]/60 hover:bg-amber-50/30"
                               )}
                             >
@@ -224,8 +224,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
                 expandedCategoryKey === "property"
-                  ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
-                  : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs"
+                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
               )}>
                 <button
                   type="button"
@@ -277,8 +277,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 border",
                 expandedCategoryKey === "budget"
-                  ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20 overflow-visible z-30 relative"
-                  : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs overflow-hidden"
+                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md overflow-visible z-30 relative"
+                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md overflow-hidden"
               )}>
                 <button
                   type="button"
@@ -331,8 +331,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
               <div className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
                 expandedCategoryKey === "industry"
-                  ? "bg-white border-[#d4af37]/60 shadow-[0_4px_16px_rgba(212,175,55,0.12)] ring-1 ring-[#d4af37]/20"
-                  : "bg-gray-50/70 border-gray-200/80 hover:border-[#d4af37]/50 hover:bg-amber-50/20 shadow-xs"
+                  ? "bg-white/60 dark:bg-black/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                  : "bg-white/30 dark:bg-black/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
               )}>
                 <button
                   type="button"
@@ -560,8 +560,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                           className={clsx(
                                             "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                             isSelected
-                                              ? "bg-[#0b1b42]/[0.06] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
-                                              : "text-gray-700 hover:bg-amber-50/40 hover:text-[#0b1b42] font-medium"
+                                              ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                              : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
                                           )}
                                         >
                                           <div
@@ -589,8 +589,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                         className={clsx(
                                           "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                           (!currentValue || currentValue === "Any" || currentValue === DEFAULT_FILTERS[cat.key])
-                                            ? "bg-[#0b1b42]/[0.06] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
-                                            : "text-gray-700 hover:bg-amber-50/40 hover:text-[#0b1b42] font-medium"
+                                            ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                            : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
                                         )}
                                       >
                                         <div
@@ -617,8 +617,8 @@ export default function FilterDropdownMobile({ activeTab, filters, onFilterChang
                                             className={clsx(
                                               "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-[2px] text-left transition-all group cursor-pointer",
                                               isSelected
-                                                ? "bg-[#0b1b42]/[0.06] text-[#0a1128] font-bold border-l-2 border-[#d4af37]"
-                                                : "text-gray-700 hover:bg-amber-50/40 hover:text-[#0b1b42] font-medium"
+                                                ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
+                                                : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#0b1b42] dark:hover:text-white font-medium"
                                             )}
                                           >
                                             <div

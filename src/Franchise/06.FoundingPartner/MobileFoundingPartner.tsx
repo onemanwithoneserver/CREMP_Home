@@ -50,7 +50,7 @@ export default function MobileFoundingPartner() {
             />
 
             <div className="relative z-10 w-full">
-                <div className="relative flex w-full flex-col overflow-hidden border border-white/40 bg-white/30 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20 mx-4 w-[calc(100%-32px)]">
+                <div className="relative flex w-full flex-col overflow-hidden  backdrop-blur-xl mx-4 w-[calc(100%-32px)]">
                     <div className="relative flex w-full flex-col items-center p-6 pt-6 text-center">
                         <motion.div
                             initial="hidden"
@@ -225,7 +225,7 @@ export default function MobileFoundingPartner() {
                         </motion.div>
                     </div>
 
-                    <div className="relative z-10 flex w-full flex-col bg-white/20 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-md dark:bg-black/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                    <div className="relative z-10 flex w-full flex-col  p-6  backdrop-blur-md ">
                         <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
                             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ duration: 0.5 }} className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 shadow-sm dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/10">
                                 <Gem

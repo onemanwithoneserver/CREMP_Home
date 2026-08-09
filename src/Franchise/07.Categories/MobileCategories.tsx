@@ -68,7 +68,9 @@ export default function MobileCategories() {
                     className="mb-8 flex flex-col items-center text-center"
                 >
                     <motion.div
+                        variants={fadeInUp}
                         className="mb-4 flex items-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-1.5 backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10"
+                    >
                         <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="cursor-pointer">
                             <Sparkles
                                 size={12}

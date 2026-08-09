@@ -106,7 +106,7 @@ export default function DesktopYourMarkets() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="flex h-full w-full flex-col justify-center rounded-xl border border-white/40 bg-white/30 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl transition-all hover:bg-white/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
+                        className="flex h-full w-full flex-col justify-center p-4 transition-all"
                     >
                         <div className="mb-6 flex items-center gap-3">
                             <motion.div

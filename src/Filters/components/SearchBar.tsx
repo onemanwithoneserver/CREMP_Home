@@ -85,11 +85,11 @@ export default function SearchBar({
           placeholder="Search KPHB, Kukatpally, Madhapur..."
           className={clsx(
             "block w-full pl-11 pr-10 py-3.5 text-sm font-medium leading-5",
-            "bg-white border border-gray-200/80",
-            "placeholder-gray-400 text-[#0a1128]",
+            "bg-white/30 backdrop-blur-md border border-white/40 dark:bg-black/20 dark:border-white/10",
+            "placeholder-gray-500 text-[#0a1128] dark:text-white dark:placeholder-gray-400",
             "focus:outline-none transition-all duration-200",
             "rounded-lg",
-            isFocused && "border-[#d4af37]/60 bg-white"
+            isFocused && "border-[#d4af37]/60 bg-white/50 dark:bg-black/40"
           )}
           id="search-location-input"
           autoComplete="off"
@@ -122,7 +122,7 @@ export default function SearchBar({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ type: "spring", damping: 28, stiffness: 400 }}
-            className="absolute top-[calc(100%+6px)] left-0 right-0 bg-white rounded-xl border border-gray-200/80 shadow-[0_16px_48px_rgba(11,27,66,0.14)] z-50"
+            className="absolute top-[calc(100%+6px)] left-0 right-0 bg-white/70 backdrop-blur-xl rounded-xl border border-white/40 shadow-[0_16px_48px_rgba(11,27,66,0.14)] z-50 dark:bg-black/60 dark:border-white/10 dark:shadow-[0_16px_48px_rgba(0,0,0,0.4)]"
           >
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
