@@ -9,8 +9,8 @@ interface TopHeaderProps {
 }
 
 const TABS = [
-  { id: "commercial" as const, label: "Commercial", icon: Building2 },
-  { id: "business" as const, label: "Business", icon: Briefcase },
+  { id: "commercial" as const, label: "Commercial Properties", icon: Building2 },
+  { id: "business" as const, label: "Business Opportunities", icon: Briefcase },
 ];
 
 export default function TopHeader({
@@ -28,7 +28,7 @@ export default function TopHeader({
         <div
           role="tablist"
           aria-label="Listing category"
-          className="flex items-center bg-white/5 backdrop-blur-md p-1 rounded border border-white/10 max-w-sm sm:max-w-md w-full justify-center gap-1.5"
+          className="flex items-center bg-white/5 backdrop-blur-md p-1 rounded border border-white/10 w-full justify-center gap-1.5"
         >
           {TABS.map(({ id, label, icon: Icon }) => {
             const isActive = activeTab === id;
@@ -63,14 +63,8 @@ export default function TopHeader({
                 >
                   <Icon className="w-3.5 h-3.5" strokeWidth={isActive ? 2.5 : 2} />
                 </motion.div>
-                <span className="font-bold">{label}</span>
-                <span
-                  className={`text-[11px] px-2 py-0.5 rounded-sm font-mono font-extrabold shrink-0 transition-colors duration-300 ${
-                    isActive ? "bg-cremp-accent text-[#0b1b42]" : "bg-white/10 text-white/50"
-                  }`}
-                >
-                  {counts[id]}
-                </span>
+                <span className="font-bold whitespace-normal break-words text-center leading-tight">{label}</span>
+
               </button>
             );
           })}

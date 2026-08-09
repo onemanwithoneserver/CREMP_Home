@@ -59,25 +59,25 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
       ...filters,
       ...(activeTab === "commercial"
         ? {
-            transactionType: DEFAULT_FILTERS.transactionType,
-            propertyType: DEFAULT_FILTERS.propertyType,
-            budgetMin: DEFAULT_FILTERS.budgetMin,
-            budgetMax: DEFAULT_FILTERS.budgetMax,
-            sizeMin: DEFAULT_FILTERS.sizeMin,
-            sizeMax: DEFAULT_FILTERS.sizeMax,
-            sizeUnit: DEFAULT_FILTERS.sizeUnit,
-            fitOut: DEFAULT_FILTERS.fitOut,
-            status: DEFAULT_FILTERS.status,
-            dealPref: DEFAULT_FILTERS.dealPref,
-            commercialTags: DEFAULT_FILTERS.commercialTags,
-            occupancy: DEFAULT_FILTERS.occupancy,
-            constructionStage: DEFAULT_FILTERS.constructionStage,
-          }
+          transactionType: DEFAULT_FILTERS.transactionType,
+          propertyType: DEFAULT_FILTERS.propertyType,
+          budgetMin: DEFAULT_FILTERS.budgetMin,
+          budgetMax: DEFAULT_FILTERS.budgetMax,
+          sizeMin: DEFAULT_FILTERS.sizeMin,
+          sizeMax: DEFAULT_FILTERS.sizeMax,
+          sizeUnit: DEFAULT_FILTERS.sizeUnit,
+          fitOut: DEFAULT_FILTERS.fitOut,
+          status: DEFAULT_FILTERS.status,
+          dealPref: DEFAULT_FILTERS.dealPref,
+          commercialTags: DEFAULT_FILTERS.commercialTags,
+          occupancy: DEFAULT_FILTERS.occupancy,
+          constructionStage: DEFAULT_FILTERS.constructionStage,
+        }
         : {
-            industry: DEFAULT_FILTERS.industry,
-            city: "",
-            businessOption: DEFAULT_FILTERS.businessOption,
-          }),
+          industry: DEFAULT_FILTERS.industry,
+          city: "",
+          businessOption: DEFAULT_FILTERS.businessOption,
+        }),
     });
   };
 
@@ -98,17 +98,17 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
 
   const activeAdvancedCount = activeTab === "commercial"
     ? [
-        (filters.sizeMin && filters.sizeMin !== DEFAULT_FILTERS.sizeMin) || (filters.sizeMax && filters.sizeMax !== DEFAULT_FILTERS.sizeMax),
-        filters.fitOut && filters.fitOut !== "Any" && filters.fitOut !== DEFAULT_FILTERS.fitOut,
-        filters.occupancy && filters.occupancy !== "Any" && filters.occupancy !== DEFAULT_FILTERS.occupancy,
-        filters.constructionStage && filters.constructionStage !== "Any" && filters.constructionStage !== DEFAULT_FILTERS.constructionStage,
-        filters.status && filters.status.length > 0,
-        filters.dealPref && filters.dealPref !== "Any" && filters.dealPref !== DEFAULT_FILTERS.dealPref,
-        filters.commercialTags && filters.commercialTags.length > 0,
-      ].filter(Boolean).length
+      (filters.sizeMin && filters.sizeMin !== DEFAULT_FILTERS.sizeMin) || (filters.sizeMax && filters.sizeMax !== DEFAULT_FILTERS.sizeMax),
+      filters.fitOut && filters.fitOut !== "Any" && filters.fitOut !== DEFAULT_FILTERS.fitOut,
+      filters.occupancy && filters.occupancy !== "Any" && filters.occupancy !== DEFAULT_FILTERS.occupancy,
+      filters.constructionStage && filters.constructionStage !== "Any" && filters.constructionStage !== DEFAULT_FILTERS.constructionStage,
+      filters.status && filters.status.length > 0,
+      filters.dealPref && filters.dealPref !== "Any" && filters.dealPref !== DEFAULT_FILTERS.dealPref,
+      filters.commercialTags && filters.commercialTags.length > 0,
+    ].filter(Boolean).length
     : [
-        filters.businessOption && filters.businessOption.length > 0,
-      ].filter(Boolean).length;
+      filters.businessOption && filters.businessOption.length > 0,
+    ].filter(Boolean).length;
 
   return (
     <motion.div
@@ -137,7 +137,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
       </div>
 
       <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pt-3 pb-8 space-y-3.5 max-h-[calc(100vh-200px)]">
-        
+
         <div className="relative z-40">
           <CustomSelect
             options={["Hyderabad", "Bangalore", "Mumbai"]}
@@ -477,7 +477,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                 className={clsx(advancedOpen ? "overflow-visible" : "overflow-hidden")}
               >
                 <div className={clsx("mt-2 pt-1 space-y-1.5", advancedOpen ? "overflow-visible" : "overflow-hidden")}>
-                  
+
                   {activeTab === "commercial" && (
                     <div className={clsx("flex flex-col", expandedCategoryKey === "size" ? "overflow-visible z-30 relative" : "overflow-hidden")}>
                       <motion.button
@@ -553,7 +553,7 @@ export default function FilterDropdownDesktop({ activeTab, filters, onFilterChan
                     const hasActiveFilter = cat.isMulti
                       ? ((currentValue as string[]) || []).length > 0
                       : (currentValue !== "Any" && currentValue !== DEFAULT_FILTERS[cat.key]);
-                    
+
                     return (
                       <div key={cat.key} className="flex flex-col">
                         <motion.button

@@ -57,7 +57,7 @@ export function CustomSelect({ options, value, onChange, placeholder = "Select..
             {icon}
           </div>
         )}
-        <span className={clsx("font-semibold text-[13px] truncate", !value && "text-gray-400")}>
+        <span className={clsx("font-semibold text-[13px] whitespace-normal text-left break-words", !value && "text-gray-400")}>
           {selectedLabel}
         </span>
         <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ type: "spring", stiffness: 350, damping: 25 }}>
@@ -72,7 +72,7 @@ export function CustomSelect({ options, value, onChange, placeholder = "Select..
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.97 }}
             transition={{ type: "spring", damping: 26, stiffness: 450 }}
-            className="absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-[#d4af37]/40 shadow-[0_12px_32px_rgba(11,27,66,0.18)] rounded-[4px] overflow-hidden z-[100] py-1"
+            className="absolute left-0 min-w-full top-[calc(100%+4px)] bg-white border border-[#d4af37]/40 shadow-[0_12px_32px_rgba(11,27,66,0.18)] rounded-[4px] overflow-hidden z-[100] py-1"
           >
             <div className="max-h-[200px] overflow-y-auto scrollbar-hide py-0.5">
               {formattedOptions.map((opt) => {
@@ -94,7 +94,7 @@ export function CustomSelect({ options, value, onChange, placeholder = "Select..
                         : "text-gray-700 hover:bg-amber-50/50 hover:text-[#0b1b42] hover:border-l-2 hover:border-[#d4af37]/40 font-medium"
                     )}
                   >
-                    <span>{opt.label}</span>
+                    <span className="whitespace-normal break-words pr-2">{opt.label}</span>
                     {isSelected && (
                       <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 500, damping: 25 }}>
                         <Check className="w-3.5 h-3.5 text-[#d4af37]" strokeWidth={2.8} />
