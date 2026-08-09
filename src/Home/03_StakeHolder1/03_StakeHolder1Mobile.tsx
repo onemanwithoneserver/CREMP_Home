@@ -178,7 +178,7 @@ export default function MobileStakeHolder1() {
 
                 <div className="flex justify-between items-start gap-4 relative z-10 w-full mb-2">
                     <motion.div variants={fadeUpText} className="flex flex-col gap-3 flex-1 min-w-0">
-                        <div className="bg-cyan-50 dark:bg-cyan-950/50 border border-cyan-200 dark:border-cyan-800/50 text-cyan-700 dark:text-cyan-300 text-xs font-bold px-3 py-1.5 rounded-[2px] w-fit uppercase tracking-wider flex items-center gap-1.5">
+                        <div className="bg-cyan-50 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 text-xs font-bold px-3 py-1.5 rounded-[2px] w-fit uppercase tracking-wider flex items-center gap-1.5">
                             <Sparkles size={14} strokeWidth={2.5} />
                             {block2.tag}
                         </div>
@@ -233,7 +233,7 @@ export default function MobileStakeHolder1() {
                                 {card.description}
                             </p>
 
-                            <div className="w-full aspect-video shrink-0 rounded-[4px] overflow-hidden border border-slate-200 dark:border-slate-700/50 shadow-sm relative mb-5 bg-slate-100 dark:bg-slate-900">
+                            <div className="w-full aspect-video shrink-0 rounded-[4px] overflow-hidden shadow-sm relative mb-5 bg-slate-100 dark:bg-slate-900">
                                 <img
                                     src={card.image}
                                     alt={card.title}
@@ -241,7 +241,7 @@ export default function MobileStakeHolder1() {
                                 />
                             </div>
 
-                            <div className="grid grid-cols-2 gap-3 py-4 border-t border-slate-200 dark:border-slate-700/50 mb-2">
+                            <div className="grid grid-cols-2 gap-3 py-4 mb-2">
                                 {card.features.map((feature, fIdx) => (
                                     <div key={fIdx} className="flex items-center gap-2">
                                         <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`p-1.5 rounded-[4px] shrink-0 ${theme.featureBg}`}>
@@ -276,7 +276,7 @@ export default function MobileStakeHolder1() {
             >
                 <div className="p-5 flex flex-col gap-6 z-10 w-full">
                     <motion.div variants={fadeUpText} className="flex flex-col gap-3">
-                        <div className="bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-3 py-1.5 rounded-[2px] w-fit uppercase tracking-wider flex items-center gap-1.5">
+                        <div className="bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-xs font-semibold px-3 py-1.5 rounded-[2px] w-fit uppercase tracking-wider flex items-center gap-1.5 backdrop-blur-md">
                             <ShieldCheck size={14} strokeWidth={2.5} />
                             {block3.tag}
                         </div>
@@ -295,7 +295,7 @@ export default function MobileStakeHolder1() {
                         {block3.categories.map((category, idx) => (
                             <div
                                 key={idx}
-                                className="bg-white dark:bg-slate-900 rounded-[4px] p-4 flex flex-col items-center justify-center text-center gap-2 shadow-sm border border-emerald-100 dark:border-slate-800"
+                                className="bg-white dark:bg-slate-900 rounded-[4px] p-4 flex flex-col items-center justify-center text-center gap-2 shadow-sm"
                             >
                                 <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/50 rounded-[4px] p-2">
                                     <category.icon size={22} strokeWidth={1.5} />
@@ -335,9 +335,9 @@ export default function MobileStakeHolder1() {
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.2 + idx * 0.15, duration: 0.5, ease: smoothEasing }}
-                                className="bg-white dark:bg-slate-800 rounded-[4px] p-2.5 shadow-md border border-emerald-100 dark:border-slate-700 flex items-center gap-3 w-full"
+                                className="bg-white dark:bg-slate-800 rounded-[4px] p-2.5 shadow-md flex items-center gap-3 w-full"
                             >
-                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-700 border border-emerald-100 dark:border-slate-600 p-1.5 rounded-[4px] shrink-0">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-700 p-1.5 rounded-[4px] shrink-0">
                                     <floater.icon size={16} strokeWidth={2} />
                                 </motion.div>
                                 <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">

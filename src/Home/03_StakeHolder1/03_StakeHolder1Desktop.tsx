@@ -47,7 +47,7 @@ const b1Themes = [
         cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
         featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-blue-500 group-hover/feature:to-blue-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-blue-400 dark:group-hover/feature:to-blue-600 transition-all",
         featureIcon: "text-blue-500 group-hover/feature:text-white dark:text-blue-400 dark:group-hover/feature:text-[#17274C] transition-colors",
-        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-blue-600 dark:text-slate-300 dark:group-hover/feature:text-blue-400 transition-colors",
         buttonBg: "bg-gradient-to-r from-blue-500 to-blue-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#17274C]",
         imageBg: "bg-blue-50/40 dark:bg-transparent",
         imageGlow: "hidden",
@@ -63,7 +63,7 @@ const b1Themes = [
         cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
         featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-violet-500 group-hover/feature:to-violet-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-violet-400 dark:group-hover/feature:to-violet-600 transition-all",
         featureIcon: "text-violet-500 group-hover/feature:text-white dark:text-violet-400 dark:group-hover/feature:text-[#17274C] transition-colors",
-        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-violet-600 dark:text-slate-300 dark:group-hover/feature:text-violet-400 transition-colors",
         buttonBg: "bg-gradient-to-r from-violet-500 to-violet-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#17274C]",
         imageBg: "bg-violet-50/40 dark:bg-transparent",
         imageGlow: "hidden",
@@ -82,7 +82,7 @@ const b2Themes = [
         cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
         featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-cyan-500 group-hover/feature:to-cyan-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-cyan-400 dark:group-hover/feature:to-cyan-600 transition-all",
         featureIcon: "text-cyan-600 group-hover/feature:text-white dark:text-cyan-400 dark:group-hover/feature:text-[#17274C] transition-colors",
-        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-cyan-600 dark:text-slate-300 dark:group-hover/feature:text-cyan-400 transition-colors",
         buttonBg: "bg-gradient-to-r from-cyan-500 to-cyan-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#17274C]",
         imageBg: "bg-cyan-50 dark:bg-transparent",
         imageGlow: "hidden",
@@ -98,7 +98,7 @@ const b2Themes = [
         cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
         featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-orange-400 group-hover/feature:to-orange-600 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-orange-400 dark:group-hover/feature:to-orange-500 transition-all",
         featureIcon: "text-orange-500 group-hover/feature:text-white dark:text-orange-400 dark:group-hover/feature:text-[#17274C] transition-colors",
-        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-orange-600 dark:text-slate-300 dark:group-hover/feature:text-orange-400 transition-colors",
         buttonBg: "bg-gradient-to-r from-orange-400 to-orange-600 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#17274C]",
         imageBg: "bg-orange-50 dark:bg-transparent",
         imageGlow: "hidden",
@@ -224,7 +224,7 @@ export default function DesktopStakeHolder1() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: false }}
-                    className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-cyan-600 dark:text-cyan-300 text-[11px] font-bold px-4 py-1.5 rounded-[4px] border border-cyan-200 dark:border-cyan-500/30 uppercase tracking-wider shadow-sm"
+                    className="flex items-center gap-2 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] uppercase tracking-wider shadow-sm backdrop-blur-md"
                 >
                     <Sparkles size={14} strokeWidth={2.5} />
                     {block2.tag}
@@ -291,7 +291,7 @@ export default function DesktopStakeHolder1() {
                                     >
                                         {card.features.map((feature, fIdx) => (
                                             <motion.div variants={fadeUpItem} key={fIdx} className="flex flex-col items-center text-center gap-2 group/feature">
-                                                <div className={`w-10 h-10 flex items-center justify-center rounded-[6px] border transition-colors duration-300 ${theme.featureBg}`}>
+                                                <div className={`w-10 h-10 flex items-center justify-center rounded-[6px] transition-colors duration-300 ${theme.featureBg}`}>
                                                     <feature.icon size={18} strokeWidth={1.5} className={theme.featureIcon} />
                                                 </div>
                                                 <span className={`text-[12px] font-semibold leading-snug transition-colors duration-300 ${theme.featureText}`}>
@@ -335,7 +335,7 @@ export default function DesktopStakeHolder1() {
             >
                 <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center gap-5 z-10 w-full lg:w-3/5 bg-slate-50 dark:bg-slate-900">
                     <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-[11px] font-bold px-4 py-1.5 rounded-[4px] w-fit tracking-widest uppercase border border-emerald-200 dark:border-emerald-700/50 shadow-sm">
+                        <div className="flex items-center gap-2 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] w-fit tracking-widest uppercase shadow-sm backdrop-blur-md">
                             <ShieldCheck size={14} strokeWidth={2.5} />
                             {block3.tag}
                         </div>
@@ -356,9 +356,9 @@ export default function DesktopStakeHolder1() {
                                 key={idx}
                                 whileHover={{ y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="group bg-white dark:bg-slate-800 rounded-[6px] p-3 flex items-center gap-3 shadow-sm border border-emerald-50 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-700/50 transition-colors duration-200 cursor-pointer"
+                                className="group bg-white dark:bg-slate-800 rounded-[6px] p-3 flex items-center gap-3 shadow-sm transition-colors duration-200 cursor-pointer"
                             >
-                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-10 h-10 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-100 dark:border-slate-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-200 group-hover:border-transparent">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-10 h-10 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-200">
                                     <category.icon size={20} strokeWidth={1.5} />
                                 </motion.div>
                                 <span className="text-[13px] font-bold text-slate-800 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300 transition-colors">
@@ -400,9 +400,9 @@ export default function DesktopStakeHolder1() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.1 + idx * 0.1, duration: 0.4 }}
                                 whileHover={{ x: -2 }}
-                                className="group bg-white dark:bg-slate-800 rounded-[6px] p-2.5 pr-5 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-emerald-300 flex items-center gap-3 w-52 cursor-pointer transition-colors duration-200"
+                                className="group bg-white dark:bg-slate-800 rounded-[6px] p-2.5 pr-5 shadow-sm flex items-center gap-3 w-52 cursor-pointer transition-colors duration-200"
                             >
-                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-sm border border-emerald-100 dark:border-slate-600 transition-colors duration-200">
+                                <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 rounded-[4px] bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-sm transition-colors duration-200">
                                     <floater.icon size={16} strokeWidth={2} />
                                 </motion.div>
                                 <span className="text-[12px] font-bold text-slate-800 dark:text-slate-200 transition-colors">
