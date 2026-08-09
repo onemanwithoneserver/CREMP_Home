@@ -25,8 +25,8 @@ export default function Desktop() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 z-50 flex w-full items-center justify-center px-6 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white lg:px-12 ${
         scrolled
-          ? "bg-white/70 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0b1b42]/80 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-          : "bg-white dark:bg-[#0b1b42] border-b border-transparent"
+          ? "bg-white/70 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#17274C]/80 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          : "bg-white dark:bg-[#17274C] border-b border-transparent"
       }`}
     >
       <div className="relative flex w-full max-w-7xl items-center justify-between">

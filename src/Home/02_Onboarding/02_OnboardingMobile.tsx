@@ -121,8 +121,18 @@ export default function Mobile() {
   }, [allStakeholders]);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#0b1b42] px-5 pb-10 pt-20 text-[#0a1128] dark:text-white">
-      <div className="absolute inset-0 bg-gray-50 dark:bg-[#0b1b42] z-0" />
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#17274C] px-5 pb-10 pt-20 text-[#0a1128] dark:text-white">
+      <div className="absolute inset-0 bg-gray-50 dark:bg-[#17274C] z-0" />
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="pointer-events-none absolute -left-16 -top-16 z-0 h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[80px]"
+      />
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="pointer-events-none absolute -bottom-16 -right-16 z-0 h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[80px]"
+      />
       <motion.div
         className="absolute inset-0 z-0 opacity-15 dark:opacity-30 bg-cover bg-center bg-no-repeat mix-blend-multiply dark:mix-blend-screen"
         style={{ backgroundImage: `url(${bgImage})` }}
@@ -130,30 +140,7 @@ export default function Mobile() {
         animate={{ scale: 1, opacity: 0.15 }}
         transition={{ duration: 2, ease: "easeOut" }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#0a1128]/90 dark:via-[#0a1128]/95 dark:to-[#0a1128] pointer-events-none" />
-
-      {[0, 1, 2].map((i) => (
-        <motion.div
-          key={i}
-          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#D4AF37]/30 dark:block"
-          style={{
-            left: `${15 + i * 30}%`,
-            top: `${20 + i * 20}%`,
-            width: 3 + i,
-            height: 3 + i,
-          }}
-          animate={{
-            y: [-8, 8, -8],
-            opacity: [0, 0.6, 0],
-          }}
-          transition={{
-            duration: 4 + i,
-            repeat: Infinity,
-            delay: i * 0.8,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#17274C]/90 dark:via-[#17274C]/95 dark:to-[#17274C] pointer-events-none" />
 
       <div className="relative z-10 flex w-full flex-col gap-8">
         <div className="flex flex-col z-10">
@@ -190,11 +177,11 @@ export default function Mobile() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[#D4AF37]">•</span>
-              <span>Franchise Expansion</span>
+              <span>Franchise Models</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[#D4AF37]">•</span>
-              <span>Retail Business Opportunities</span>
+              <span>Investments</span>
             </div>
           </motion.div>
 

@@ -37,70 +37,70 @@ const buttonHover = {
 
 const b1Themes = [
     {
-        mainBorder: "border-blue-100 dark:border-blue-900/30",
-        mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-blue-600 text-white shadow-sm group-hover:bg-blue-700 dark:bg-blue-500/10 dark:text-blue-300 dark:border dark:border-blue-400/30 dark:group-hover:bg-blue-500 dark:group-hover:text-white",
+        mainBorder: "border-blue-100 dark:border-white/10",
+        mainShadow: "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
+        iconWrapper: "bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#17274C]",
         titleText: "text-blue-950 dark:text-white",
-        titleHover: "group-hover:text-blue-800 dark:group-hover:text-blue-100",
+        titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
         subtitle: "text-blue-600 dark:text-blue-400",
-        descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-[#090b14]",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-blue-600 group-hover/feature:border-transparent dark:bg-slate-900/50 dark:border-slate-800 dark:group-hover/feature:bg-blue-600 dark:group-hover/feature:border-transparent transition-all",
-        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
-        featureText: "text-slate-700 group-hover/feature:text-blue-900 dark:text-slate-300 dark:group-hover/feature:text-blue-100 transition-colors",
-        buttonBg: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm dark:border dark:border-blue-500/50 dark:hover:border-transparent",
-        imageBg: "bg-blue-50/40 dark:bg-[#090b14]",
+        descText: "text-slate-600 dark:text-slate-400 font-medium",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-blue-500 group-hover/feature:to-blue-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-blue-400 dark:group-hover/feature:to-blue-600 transition-all",
+        featureIcon: "text-blue-500 group-hover/feature:text-white dark:text-blue-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        buttonBg: "bg-gradient-to-r from-blue-500 to-blue-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#17274C]",
+        imageBg: "bg-blue-50/40 dark:bg-transparent",
         imageGlow: "hidden",
     },
     {
-        mainBorder: "border-violet-100 dark:border-violet-900/30",
-        mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-violet-600 text-white shadow-sm group-hover:bg-violet-700 dark:bg-violet-500/10 dark:text-violet-300 dark:border dark:border-violet-400/30 dark:group-hover:bg-violet-500 dark:group-hover:text-white",
+        mainBorder: "border-violet-100 dark:border-white/10",
+        mainShadow: "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
+        iconWrapper: "bg-gradient-to-br from-violet-500 to-violet-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#17274C]",
         titleText: "text-violet-950 dark:text-white",
-        titleHover: "group-hover:text-violet-800 dark:group-hover:text-violet-100",
+        titleHover: "group-hover:text-violet-600 dark:group-hover:text-violet-400",
         subtitle: "text-violet-600 dark:text-violet-400",
-        descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-[#0a0512]",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-violet-600 group-hover/feature:border-transparent dark:bg-slate-900/50 dark:border-slate-800 dark:group-hover/feature:bg-violet-600 dark:group-hover/feature:border-transparent transition-all",
-        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
-        featureText: "text-slate-700 group-hover/feature:text-violet-900 dark:text-slate-300 dark:group-hover/feature:text-violet-100 transition-colors",
-        buttonBg: "bg-violet-600 hover:bg-violet-700 text-white shadow-sm dark:border dark:border-violet-500/50 dark:hover:border-transparent",
-        imageBg: "bg-violet-50/40 dark:bg-[#0a0512]",
+        descText: "text-slate-600 dark:text-slate-400 font-medium",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-violet-500 group-hover/feature:to-violet-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-violet-400 dark:group-hover/feature:to-violet-600 transition-all",
+        featureIcon: "text-violet-500 group-hover/feature:text-white dark:text-violet-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        buttonBg: "bg-gradient-to-r from-violet-500 to-violet-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#17274C]",
+        imageBg: "bg-violet-50/40 dark:bg-transparent",
         imageGlow: "hidden",
     },
 ];
 
 const b2Themes = [
     {
-        mainBorder: "border-cyan-100 dark:border-cyan-900/30",
-        mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-cyan-600 text-white border border-transparent shadow-sm group-hover:bg-cyan-700 dark:bg-cyan-500/10 dark:text-cyan-300 dark:border dark:border-cyan-400/30 dark:group-hover:bg-cyan-500 dark:group-hover:text-white",
+        mainBorder: "border-cyan-100 dark:border-white/10",
+        mainShadow: "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
+        iconWrapper: "bg-gradient-to-br from-cyan-500 to-cyan-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#17274C]",
         titleText: "text-slate-900 dark:text-white",
-        titleHover: "group-hover:text-cyan-800 dark:group-hover:text-cyan-100",
+        titleHover: "group-hover:text-cyan-600 dark:group-hover:text-cyan-400",
         subtitle: "text-cyan-600 dark:text-cyan-400",
-        descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-[#051114]",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-cyan-600 group-hover/feature:border-transparent dark:bg-slate-800/50 dark:border-slate-700 dark:group-hover/feature:bg-cyan-600 dark:group-hover/feature:border-transparent transition-all",
-        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
-        featureText: "text-slate-700 group-hover/feature:text-cyan-900 dark:text-slate-300 dark:group-hover/feature:text-cyan-100 transition-colors",
-        buttonBg: "bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm border border-transparent dark:border-cyan-500/50 dark:hover:border-transparent",
-        imageBg: "bg-cyan-50 dark:bg-[#051114]",
+        descText: "text-slate-600 dark:text-slate-400 font-medium",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-cyan-500 group-hover/feature:to-cyan-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-cyan-400 dark:group-hover/feature:to-cyan-600 transition-all",
+        featureIcon: "text-cyan-600 group-hover/feature:text-white dark:text-cyan-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        buttonBg: "bg-gradient-to-r from-cyan-500 to-cyan-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#17274C]",
+        imageBg: "bg-cyan-50 dark:bg-transparent",
         imageGlow: "hidden",
     },
     {
-        mainBorder: "border-orange-100 dark:border-orange-900/30",
-        mainShadow: "shadow-sm hover:shadow-md dark:shadow-none",
-        iconWrapper: "bg-orange-500 text-white border border-transparent shadow-sm group-hover:bg-orange-600 dark:bg-orange-500/10 dark:text-orange-300 dark:border dark:border-orange-400/30 dark:group-hover:bg-orange-500 dark:group-hover:text-white",
+        mainBorder: "border-orange-100 dark:border-white/10",
+        mainShadow: "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
+        iconWrapper: "bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#17274C]",
         titleText: "text-slate-900 dark:text-white",
-        titleHover: "group-hover:text-orange-800 dark:group-hover:text-orange-100",
+        titleHover: "group-hover:text-orange-500 dark:group-hover:text-orange-400",
         subtitle: "text-orange-600 dark:text-orange-400",
-        descText: "text-slate-600 dark:text-slate-400",
-        cardBg: "bg-white dark:bg-[#140b05]",
-        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-orange-500 group-hover/feature:border-transparent dark:bg-slate-800/50 dark:border-slate-700 dark:group-hover/feature:bg-orange-500 dark:group-hover/feature:border-transparent transition-all",
-        featureIcon: "text-slate-500 group-hover/feature:text-white dark:text-slate-400 dark:group-hover/feature:text-white transition-colors",
-        featureText: "text-slate-700 group-hover/feature:text-orange-900 dark:text-slate-300 dark:group-hover/feature:text-orange-100 transition-colors",
-        buttonBg: "bg-orange-500 hover:bg-orange-600 text-white shadow-sm border border-transparent dark:border-orange-500/50 dark:hover:border-transparent",
-        imageBg: "bg-orange-50 dark:bg-[#140b05]",
+        descText: "text-slate-600 dark:text-slate-400 font-medium",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
+        featureBg: "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-orange-400 group-hover/feature:to-orange-600 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-orange-400 dark:group-hover/feature:to-orange-500 transition-all",
+        featureIcon: "text-orange-500 group-hover/feature:text-white dark:text-orange-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+        featureText: "text-slate-700 font-semibold group-hover/feature:text-white dark:text-slate-300 dark:group-hover/feature:text-[#17274C] transition-colors",
+        buttonBg: "bg-gradient-to-r from-orange-400 to-orange-600 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#17274C]",
+        imageBg: "bg-orange-50 dark:bg-transparent",
         imageGlow: "hidden",
     },
 ];
@@ -112,14 +112,14 @@ export default function DesktopStakeHolder1() {
     const viewMode = window.location.pathname.startsWith("/mobile") ? "mobile" : "desktop";
 
     return (
-        <div ref={containerRef} className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-[#0b1b42]">
+        <div ref={containerRef} className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-[#17274C]">
 
             <div className="flex flex-col items-center text-center gap-3 mt-2">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: false }}
-                    className="flex items-center gap-2 bg-slate-900 dark:bg-slate-800 text-white text-[11px] font-bold px-4 py-1.5 rounded-[4px] shadow-sm tracking-wider uppercase"
+                    className="flex items-center gap-2 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] shadow-sm tracking-wider uppercase border border-transparent dark:border-white/20 backdrop-blur-md"
                 >
                     <Users size={14} strokeWidth={2.5} />
                     {block1.tag}
@@ -129,7 +129,7 @@ export default function DesktopStakeHolder1() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ delay: 0.1, duration: 0.5, ease: smoothEasing }}
-                    className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-3xl"
+                    className="text-3xl lg:text-4xl font-semibold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-3xl"
                 >
                     {block1.title}
                 </motion.h2>
@@ -155,7 +155,7 @@ export default function DesktopStakeHolder1() {
                             viewport={{ once: false, margin: "-20px" }}
                             variants={fadeUpScale}
                             key={card.id}
-                            className={`w-full ${theme.cardBg} rounded-[4px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
+                            className={`w-full ${theme.cardBg} overflow-hidden ${theme.mainShadow} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
                         >
                             <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center relative z-10 w-full lg:w-1/2">
                                 <div className="flex flex-col items-start gap-3 mb-4">
@@ -261,7 +261,7 @@ export default function DesktopStakeHolder1() {
                                 viewport={{ once: false, margin: "-20px" }}
                                 variants={fadeUpScale}
                                 key={card.id}
-                                className={`w-full ${theme.cardBg} rounded-[4px] overflow-hidden ${theme.mainShadow} border ${theme.mainBorder} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
+                                className={`w-full ${theme.cardBg} overflow-hidden ${theme.mainShadow} flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} relative group transition-colors duration-300`}
                             >
                                 <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center relative z-10 w-full lg:w-1/2">
                                     <div className="flex flex-col items-start gap-3 mb-4">
@@ -331,7 +331,7 @@ export default function DesktopStakeHolder1() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, margin: "-20px" }}
-                className="relative w-full rounded-[4px] overflow-hidden bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-900/30 shadow-md flex flex-col lg:flex-row mt-6 transition-colors duration-300"
+                className="relative w-full overflow-hidden bg-white dark:bg-slate-900 shadow-md flex flex-col lg:flex-row mt-6 transition-colors duration-300"
             >
                 <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center gap-5 z-10 w-full lg:w-3/5 bg-slate-50 dark:bg-slate-900">
                     <div className="flex flex-col gap-3">

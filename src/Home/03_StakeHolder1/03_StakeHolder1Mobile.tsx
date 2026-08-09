@@ -40,35 +40,35 @@ const floatAnim: any = {
 
 const b1Themes = [
     {
-        iconWrapper: "bg-blue-600 dark:bg-blue-500/10 text-white dark:text-blue-400 border border-transparent dark:border-blue-500/20",
+        iconWrapper: "bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600 text-white dark:text-[#17274C] border border-transparent dark:border-white/10 shadow-md",
         subtitle: "text-blue-600 dark:text-blue-400",
-        featureBg: "text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
-        buttonBg: "bg-blue-600 active:bg-blue-700 text-white",
-        cardBg: "bg-white dark:bg-[#090b14]",
+        featureBg: "text-blue-600 dark:text-blue-400 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-400 dark:hover:text-[#17274C] hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-gradient-to-r from-blue-500 to-blue-700 active:scale-95 text-white dark:from-blue-400 dark:to-blue-600 dark:text-[#17274C]",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
     },
     {
-        iconWrapper: "bg-violet-600 dark:bg-violet-500/10 text-white dark:text-violet-400 border border-transparent dark:border-violet-500/20",
+        iconWrapper: "bg-gradient-to-br from-violet-500 to-violet-700 dark:from-violet-400 dark:to-violet-600 text-white dark:text-[#17274C] border border-transparent dark:border-white/10 shadow-md",
         subtitle: "text-violet-600 dark:text-violet-400",
-        featureBg: "text-violet-500 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 border border-violet-100 dark:border-violet-500/20 hover:bg-violet-600 hover:text-white dark:hover:bg-violet-600 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
-        buttonBg: "bg-violet-600 active:bg-violet-700 text-white",
-        cardBg: "bg-white dark:bg-[#0a0512]",
+        featureBg: "text-violet-600 dark:text-violet-400 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-violet-500 hover:text-white dark:hover:bg-violet-400 dark:hover:text-[#17274C] hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-gradient-to-r from-violet-500 to-violet-700 active:scale-95 text-white dark:from-violet-400 dark:to-violet-600 dark:text-[#17274C]",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
     },
 ];
 
 const b2Themes = [
     {
-        iconWrapper: "bg-cyan-600 dark:bg-cyan-500/10 text-white dark:text-cyan-400 border border-transparent dark:border-cyan-500/20",
+        iconWrapper: "bg-gradient-to-br from-cyan-500 to-cyan-700 dark:from-cyan-400 dark:to-cyan-600 text-white dark:text-[#17274C] border border-transparent dark:border-white/10 shadow-md",
         subtitle: "text-cyan-600 dark:text-cyan-400",
-        featureBg: "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-slate-900/80 border border-cyan-100 dark:border-slate-700/50 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-600 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
-        buttonBg: "bg-cyan-600 active:bg-cyan-700 text-white",
-        cardBg: "bg-slate-50 dark:bg-[#051114]",
+        featureBg: "text-cyan-600 dark:text-cyan-400 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-cyan-500 hover:text-white dark:hover:bg-cyan-400 dark:hover:text-[#17274C] hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-gradient-to-r from-cyan-500 to-cyan-700 active:scale-95 text-white dark:from-cyan-400 dark:to-cyan-600 dark:text-[#17274C]",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
     },
     {
-        iconWrapper: "bg-orange-500 dark:bg-orange-500/10 text-white dark:text-orange-400 border border-transparent dark:border-orange-500/20",
+        iconWrapper: "bg-gradient-to-br from-orange-400 to-orange-600 dark:from-orange-400 dark:to-orange-500 text-white dark:text-[#17274C] border border-transparent dark:border-white/10 shadow-md",
         subtitle: "text-orange-600 dark:text-orange-400",
-        featureBg: "text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-slate-900/80 border border-orange-100 dark:border-slate-700/50 hover:bg-orange-500 hover:text-white dark:hover:bg-orange-500 dark:hover:text-white hover:border-transparent dark:hover:border-transparent transition-colors",
-        buttonBg: "bg-orange-500 active:bg-orange-600 text-white",
-        cardBg: "bg-slate-50 dark:bg-[#140b05]",
+        featureBg: "text-orange-600 dark:text-orange-400 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-orange-500 hover:text-white dark:hover:bg-orange-400 dark:hover:text-[#17274C] hover:border-transparent dark:hover:border-transparent transition-colors",
+        buttonBg: "bg-gradient-to-r from-orange-400 to-orange-600 active:scale-95 text-white dark:from-orange-400 dark:to-orange-500 dark:text-[#17274C]",
+        cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
     },
 ];
 
@@ -78,7 +78,7 @@ export default function MobileStakeHolder1() {
     const viewMode = window.location.pathname.startsWith("/mobile") ? "mobile" : "desktop";
 
     return (
-        <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-[#0b1b42] ">
+        <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-[#17274C] ">
             <motion.section
                 variants={sectionVariants}
                 initial="hidden"
@@ -93,11 +93,11 @@ export default function MobileStakeHolder1() {
 
                 <div className="relative z-10 p-2 flex flex-col gap-6 w-full mt-2">
                     <motion.div variants={fadeUpText} className="flex flex-col gap-3">
-                        <div className="flex items-center gap-1.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-3 py-1.5 rounded-[2px] w-fit tracking-wider uppercase border border-indigo-200 dark:border-indigo-700/50">
+                        <div className="flex items-center gap-1.5 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-xs font-semibold px-3 py-1.5 rounded-[2px] w-fit tracking-wider uppercase border border-transparent dark:border-white/20 backdrop-blur-md">
                             <Users size={14} strokeWidth={2.5} />
                             {block1.tag}
                         </div>
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15]">
+                        <h2 className="text-3xl font-semibold text-slate-900 dark:text-white tracking-tight leading-[1.15]">
                             {block1.title}
                         </h2>
                         <p className="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed whitespace-pre-line">
@@ -112,17 +112,17 @@ export default function MobileStakeHolder1() {
                             <motion.div
                                 variants={cardVariants}
                                 key={card.id}
-                                className={`${theme.cardBg} rounded-[4px] p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative w-full`}
+                                className={`${theme.cardBg} p-5 shadow-sm flex flex-col relative w-full`}
                             >
                                 <div className="flex items-center gap-3 mb-4">
                                     <motion.div initial={{ scale: 1, rotate: 0 }} animate={{ scale: 1, rotate: 0 }} whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-12 h-12 shrink-0 rounded-[4px] flex items-center justify-center ${theme.iconWrapper}`}>
                                         <card.icon size={22} strokeWidth={1.5} />
                                     </motion.div>
                                     <div className="flex flex-col">
-                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white leading-tight">
                                             {card.title}
                                         </h3>
-                                        <p className={`${theme.subtitle} font-bold text-xs mt-1 uppercase tracking-wider`}>
+                                        <p className={`${theme.subtitle} font-semibold text-xs mt-1 uppercase tracking-wider`}>
                                             {card.mobileSubtitle}
                                         </p>
                                     </div>
@@ -213,7 +213,7 @@ export default function MobileStakeHolder1() {
                         <motion.div
                             variants={cardVariants}
                             key={card.id}
-                            className={`${theme.cardBg} rounded-[4px] p-5 shadow-sm border border-slate-200 dark:border-slate-700/50 flex flex-col w-full`}
+                            className={`${theme.cardBg} p-5 shadow-sm flex flex-col w-full`}
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <div className={`w-12 h-12 shrink-0 rounded-[4px] flex items-center justify-center ${theme.iconWrapper}`}>
@@ -272,7 +272,7 @@ export default function MobileStakeHolder1() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, margin: "-50px" }}
-                className="rounded-[4px] bg-emerald-50 dark:bg-emerald-950/20 overflow-hidden flex flex-col relative shadow-sm border border-emerald-100 dark:border-emerald-900/30 w-full"
+                className="bg-emerald-50 dark:bg-emerald-950/20 overflow-hidden flex flex-col relative shadow-sm w-full"
             >
                 <div className="p-5 flex flex-col gap-6 z-10 w-full">
                     <motion.div variants={fadeUpText} className="flex flex-col gap-3">

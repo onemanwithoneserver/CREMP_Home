@@ -128,20 +128,22 @@ export default function Desktop() {
 
   const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
 
-  const floatingParticles = Array.from({ length: 5 }, (_, i) => ({
-    id: i,
-    x: 20 + Math.random() * 60,
-    y: 15 + Math.random() * 70,
-    size: 2 + Math.random() * 3,
-    delay: Math.random() * 4,
-    duration: 4 + Math.random() * 4,
-  }));
 
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-8 pt-28 text-[#0a1128] dark:bg-[#0b1b42] dark:text-white lg:pt-28 xl:pt-32"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-8 pt-28 text-[#0a1128] dark:bg-[#17274C] dark:text-white lg:pt-28 xl:pt-32"
     >
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="pointer-events-none absolute -left-32 -top-32 z-0 h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[100px]"
+      />
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="pointer-events-none absolute -bottom-32 -right-32 z-0 h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[100px]"
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.8 }}
@@ -164,27 +166,7 @@ export default function Desktop() {
         />
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#0a1128] dark:via-[#0a1128]/95 lg:via-gray-50/80 dark:lg:via-[#0a1128]/80" />
-
-      {floatingParticles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="pointer-events-none absolute z-0 hidden rounded-full bg-[#D4AF37]/30 dark:block"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-          }}
-          animate={{ y: [-10, 10, -10], opacity: [0, 0.6, 0] }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#17274C] dark:via-[#17274C]/95 lg:via-gray-50/80 dark:lg:via-[#17274C]/80" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
@@ -214,9 +196,9 @@ export default function Desktop() {
             >
               <span>Commercial Properties</span>
               <span className="text-[#D4AF37]">•</span>
-              <span>Franchise Expansion</span>
+              <span>Franchise Models</span>
               <span className="text-[#D4AF37]">•</span>
-              <span>Retail Business</span>
+              <span>Investments</span>
             </motion.div>
 
             <motion.p
