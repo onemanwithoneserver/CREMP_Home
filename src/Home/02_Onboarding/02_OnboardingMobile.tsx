@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Rocket, TrendingUp } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ArrowRight, TrendingUp } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useAnnouncement } from "../context/AnnouncementContext";
+import { InlineAnnouncement } from "./StickyAnnouncementBanner";
 import crempLogo from "../../Logo/CREMP_Light.png";
 import { stakeholdersData } from "../03_StakeHolders/data";
 import bgImage from "./bg.png";
@@ -72,6 +74,24 @@ export default function Mobile() {
     }, []);
 
     const [activeTab, setActiveTab] = useState(allStakeholders[0].id);
+    const { showSticky, setShowSticky } = useAnnouncement();
+
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const sentinelRef = useCallback((node: HTMLDivElement | null) => {
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+            observerRef.current = null;
+        }
+        if (!node) return;
+
+        observerRef.current = new IntersectionObserver(
+            ([entry]) => {
+                setShowSticky(!entry.isIntersecting);
+            },
+            { threshold: 0, rootMargin: "-1px 0px 0px 0px" },
+        );
+        observerRef.current.observe(node);
+    }, [setShowSticky]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -121,22 +141,11 @@ export default function Mobile() {
 
             <div className="relative z-10 flex w-full flex-col gap-8">
                 <div className="flex flex-col z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={springAnim}
-                        className="mb-3 flex flex-col items-start gap-2 rounded-[4px] border border-[#D4AF37]/20 dark:border-[#D4AF37]/20 bg-gradient-to-br from-[#D4AF37]/10 to-transparent dark:from-[#D4AF37]/10 p-3 shadow-sm backdrop-blur-sm"
-                    >
-                        <div className="flex items-center gap-2 text-xs font-bold text-[#0a1128] dark:text-white">
-                            <Rocket className="h-3.5 w-3.5 text-[#D4AF37] dark:text-[#D4AF37]" />
-                            <span className="uppercase tracking-wide">
-                                Vendor Onboarding Open
-                            </span>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold text-[#D4AF37] dark:text-[#D4AF37]">
-                            <span className="uppercase">Early Access</span>
-                        </div>
-                    </motion.div>
+                    <InlineAnnouncement
+                        ref={sentinelRef}
+                        isMobile
+                        hiddenVisually={showSticky}
+                    />
 
                     <motion.h1
                         initial={{ opacity: 0, y: 15 }}

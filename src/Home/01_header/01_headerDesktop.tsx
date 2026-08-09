@@ -2,12 +2,15 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowRight, Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import CrempTextLogo from "../../components/CrempTextLogo";
+import HeaderStickyBanner from "../02_Onboarding/StickyAnnouncementBanner";
+import { useAnnouncement } from "../context/AnnouncementContext";
 import logo from "../../Logo/CREMP.png";
 import logoLight from "../../Logo/CREMP_Light.png";
 import { useTheme } from "../ThemeContext";
 
 export default function Desktop() {
     const { theme, toggleTheme } = useTheme();
+    const { showSticky } = useAnnouncement();
     const { scrollY } = useScroll();
     const [scrolled, setScrolled] = useState(false);
 
@@ -55,6 +58,8 @@ export default function Desktop() {
                         <CrempTextLogo className="h-6 w-auto text-[#0a1128] dark:text-white sm:h-9" />
                     </div>
                 </motion.a>
+
+                <HeaderStickyBanner isVisible={showSticky} />
 
                 <div className="flex items-center gap-4">
                     <motion.button

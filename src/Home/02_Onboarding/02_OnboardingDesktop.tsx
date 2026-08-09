@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Rocket, TrendingUp } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { TrendingUp } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useAnnouncement } from "../context/AnnouncementContext";
+import { InlineAnnouncement } from "./StickyAnnouncementBanner";
 import crempLogo from "../../Logo/CREMP_Light.png";
 import { stakeholdersData } from "../03_StakeHolders/data";
 import bgImage from "./bg.png";
@@ -69,7 +71,25 @@ export default function Desktop() {
     }, []);
 
     const [activeTab, setActiveTab] = useState(allStakeholders[0].id);
+    const { showSticky, setShowSticky } = useAnnouncement();
     const sectionRef = useRef<HTMLDivElement>(null);
+
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const sentinelRef = useCallback((node: HTMLDivElement | null) => {
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+            observerRef.current = null;
+        }
+        if (!node) return;
+
+        observerRef.current = new IntersectionObserver(
+            ([entry]) => {
+                setShowSticky(!entry.isIntersecting);
+            },
+            { threshold: 0, rootMargin: "-1px 0px 0px 0px" },
+        );
+        observerRef.current.observe(node);
+    }, [setShowSticky]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -153,28 +173,10 @@ export default function Desktop() {
             <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
                 <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
                     <div className="z-10 flex w-full flex-col lg:w-[50%] xl:w-[55%]">
-                        <motion.div
-                            initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={springAnim}
-                            className="mb-4 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#D4AF37]/20 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#D4AF37]/20 dark:from-[#D4AF37]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
-                        >
-                            <div className="flex items-center gap-1.5 font-bold text-[#0a1128] sm:gap-2 dark:text-white">
-                                <Rocket className="h-3.5 w-3.5 text-[#D4AF37] sm:h-4 sm:w-4 dark:text-[#D4AF37]" />
-                                <span className="uppercase tracking-wide">
-                                    Vendor Onboarding Open
-                                </span>
-                            </div>
-                            <div className="hidden h-3.5 w-[1px] bg-gray-300 sm:block dark:bg-gray-700"></div>
-                            <div className="flex items-center gap-1.5 font-semibold text-[#D4AF37] sm:gap-2 dark:text-[#D4AF37]">
-                                <span className="rounded bg-[#D4AF37]/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#D4AF37] sm:px-2 sm:text-xs dark:bg-[#D4AF37]/20 dark:text-[#D4AF37]">
-                                    Phase 1
-                                </span>
-                                <span className="uppercase tracking-wide">
-                                    Launching in Telangana
-                                </span>
-                            </div>
-                        </motion.div>
+                        <InlineAnnouncement
+                            ref={sentinelRef}
+                            hiddenVisually={showSticky}
+                        />
 
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
