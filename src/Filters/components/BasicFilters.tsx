@@ -74,7 +74,7 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
             transition={{ type: "spring", damping: 26, stiffness: 420 }}
             className="absolute left-0 top-[calc(100%+8px)] w-full sm:min-w-[180px] z-[9999] bg-white/80 backdrop-blur-2xl rounded-xl border border-gray-200/60 shadow-[0_16px_48px_rgba(11,27,66,0.18),0_4px_12px_rgba(0,0,0,0.06)] overflow-hidden dark:bg-[#0e172f]/90 dark:border-white/15 dark:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
           >
-            {/* Gold accent line */}
+            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="py-1.5 max-h-[240px] overflow-y-auto scrollbar-hide">
@@ -187,7 +187,7 @@ export default function BasicFilters({
   return (
     <div className="w-full relative z-40">
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2.5 pb-1">
-        {/* Filter label */}
+        
         <div className="hidden sm:flex shrink-0 items-center gap-2 pr-3 border-r border-gray-200/50 dark:border-white/10 mr-1">
           <div className="w-6 h-6 rounded-md bg-[#0b1b42]/[0.08] dark:bg-white/[0.06] flex items-center justify-center">
             <svg
@@ -215,7 +215,7 @@ export default function BasicFilters({
           </span>
         </div>
 
-        {/* Filter chips */}
+        
         {activeFilters.map((filter) => (
           <FilterChip
             key={filter.key}

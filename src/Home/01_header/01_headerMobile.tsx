@@ -102,7 +102,7 @@ export default function Mobile() {
         </div>
       </div>
 
-      {/* Banner Row */}
+      
       <div className="flex w-full justify-center">
         <HeaderStickyBanner isVisible={showSticky} isMobile />
       </div>

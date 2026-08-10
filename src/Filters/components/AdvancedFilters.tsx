@@ -249,7 +249,7 @@ export default function AdvancedFilters({
             transition={{ type: "spring", damping: 26, stiffness: 380 }}
             className="absolute top-[calc(100%+10px)] right-0 w-[320px] sm:w-[360px] bg-white/70 backdrop-blur-2xl rounded-xl border border-gray-200/50 shadow-[0_20px_56px_rgba(11,27,66,0.16),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-[#0e172f]/85 dark:border-white/15 dark:shadow-[0_20px_56px_rgba(0,0,0,0.5)]"
           >
-            {/* Gold top accent */}
+            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="flex items-center justify-between p-2.5 shrink-0">
@@ -386,7 +386,7 @@ export default function AdvancedFilters({
                 </div>
               )}
 
-              {/* Category filters */}
+              
               {activeCategories.map((cat, catIndex) => {
                 const isExpanded = expandedKey === cat.key;
                 const currentValue = filters[cat.key as keyof FilterState];

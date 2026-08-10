@@ -77,7 +77,7 @@ export default function MediaGalleryMobile() {
 
   return (
     <section className="w-full px-3 py-6 relative overflow-hidden rounded-[4px] bg-gray-50/50 dark:bg-[#060d20]">
-      {/* Ambient Backgrounds */}
+      
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         
@@ -141,10 +141,10 @@ export default function MediaGalleryMobile() {
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
                         />
                         
-                        {/* Gradient Overlay for Text */}
+                        
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-                        {/* Title Overlay */}
+                        
                         <div className="absolute inset-0 p-2 flex flex-col justify-end pointer-events-none translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
                           <span className="text-[#d4af37] text-[8px] font-black uppercase tracking-widest mb-0.5 drop-shadow-md line-clamp-1">
                             {item.category}
@@ -154,7 +154,7 @@ export default function MediaGalleryMobile() {
                           </h4>
                         </div>
 
-                        {/* Play Icon for Videos */}
+                        
                         {isVideo && (
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-xl group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] transition-all duration-300 group-hover:scale-110">
@@ -172,7 +172,7 @@ export default function MediaGalleryMobile() {
                 </AnimatePresence>
               </motion.div>
 
-              {/* Gradient Load More Button */}
+              
               <AnimatePresence>
                 {hasMore && (
                   <motion.div
@@ -186,12 +186,12 @@ export default function MediaGalleryMobile() {
                       disabled={isLoadingMore}
                       className="relative flex items-center justify-center w-32 h-9 rounded-[2px] bg-[#0a1128] border border-white/10 shadow-md overflow-hidden group active:scale-[0.98] transition-all duration-300"
                     >
-                      {/* Gradient Hover Effect Base */}
+                      
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                       
                       {isLoadingMore ? (
                         <>
-                          {/* Animated Gradient Spinner Background */}
+                          
                           <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,#0a1128_0%,#d4af37_50%,#0a1128_100%)] animate-spin" />
                           <div className="absolute inset-[1.5px] rounded-[1px] bg-[#0a1128] z-0" />
                           <Loader2 size={14} className="text-[#d4af37] animate-spin relative z-10" />
@@ -208,7 +208,7 @@ export default function MediaGalleryMobile() {
             </>
           )}
 
-          {/* DOCUMENTS SECTION */}
+          
           {documents.length > 0 && (
             <div className="flex flex-col gap-2 mt-2">
               <button 
@@ -262,7 +262,7 @@ function DocumentCard({ item }: { item: MediaItem }) {
       animate="show"
       className="relative overflow-hidden rounded-[4px] bg-white/60 dark:bg-[#0b1b42]/40 backdrop-blur-xl border border-gray-200/60 dark:border-white/5 p-2.5 flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow group cursor-pointer"
     >
-      {/* Subtle hover gradient background */}
+      
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center border border-emerald-100 dark:border-emerald-500/20 shrink-0 relative z-10 group-hover:-rotate-12 transition-transform duration-300">

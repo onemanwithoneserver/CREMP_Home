@@ -85,11 +85,11 @@ export function FranchiseAnimation() {
       <div className="relative z-10 flex items-center justify-between border-b border-gray-800/80 pb-3 mb-2">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
+          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
             Ecosystem Online
           </span>
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-[2px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[10px] font-mono text-[#d4af37]">
+        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-[2px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[10px] text-[#d4af37]">
           <Cpu size={11} className="animate-spin-slow" />
           <span>v4.2 PRO ENGINE</span>
         </div>
@@ -155,7 +155,7 @@ export function FranchiseAnimation() {
           <span className="text-[9px] font-black text-white tracking-widest uppercase mt-1">
             CREMP
           </span>
-          <span className="text-[7px] font-mono text-[#d4af37] font-bold">
+          <span className="text-[7px] text-[#d4af37] font-bold">
             HUB 360°
           </span>
         </motion.div>
@@ -204,7 +204,7 @@ export function FranchiseAnimation() {
       </div>
 
       <div className="relative z-10 bg-gray-950/70 border border-gray-800/80 rounded-[4px] p-3 flex flex-col gap-2 mt-1">
-        <div className="flex items-center justify-between text-[10px] text-gray-400 font-mono">
+        <div className="flex items-center justify-between text-[10px] text-gray-400">
           <span className="flex items-center gap-1.5 text-gray-300 font-bold">
             <Activity size={12} className="text-[#d4af37] animate-pulse" />
             TELEMETRY STREAM
@@ -229,7 +229,7 @@ export function FranchiseAnimation() {
           })}
         </div>
 
-        <div className="text-[10px] font-mono text-gray-400 flex items-center justify-between border-t border-gray-800/60 pt-1.5">
+        <div className="text-[10px] text-gray-400 flex items-center justify-between border-t border-gray-800/60 pt-1.5">
           <span className="truncate flex items-center gap-1">
             <Sparkles size={10} className="text-[#d4af37]" />
             Active Module: <strong className="text-white">{orbitingSatellites[activeNode].title}</strong>

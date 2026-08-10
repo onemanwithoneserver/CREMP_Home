@@ -129,7 +129,7 @@ export default function SearchBar({
             transition={{ type: "spring", damping: 26, stiffness: 380 }}
             className="absolute z-50 w-full mt-2.5 bg-white/70 dark:bg-[#0e172f]/85 backdrop-blur-2xl border border-gray-200/50 dark:border-white/10 rounded-xl shadow-[0_12px_40px_rgba(11,27,66,0.14),0_4px_12px_rgba(0,0,0,0.05)] overflow-visible"
           >
-            {/* Gold top accent */}
+            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="px-3 pt-2.5 pb-1">

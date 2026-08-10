@@ -138,7 +138,7 @@ export default function IdealPartnerMobile() {
           })}
         </motion.div>
 
-        {/* 3 Div Row - Spans full width smoothly and polished */}
+        
         <motion.div
           initial="hidden"
           whileInView="show"

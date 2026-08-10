@@ -87,7 +87,7 @@ export function CustomSelect({ options, value, onChange, placeholder = "Select..
             transition={{ type: "spring", damping: 24, stiffness: 420 }}
             className="absolute left-0 min-w-full top-[calc(100%+6px)] bg-white/90 dark:bg-[#0e172f]/95 backdrop-blur-2xl border border-gray-200/60 dark:border-white/15 shadow-[0_16px_40px_rgba(11,27,66,0.16),0_4px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.4)] rounded-lg overflow-hidden z-[200] py-0.5"
           >
-            {/* Gold accent line */}
+            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60" />
 
             <div className="max-h-[220px] overflow-y-auto scrollbar-hide py-1">

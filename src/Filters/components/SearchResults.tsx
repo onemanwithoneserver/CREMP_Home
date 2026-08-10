@@ -79,7 +79,7 @@ export default function SearchResults({
                 "hover:bg-white hover:border-[#d4af37]/40 hover:shadow-[0_4px_16px_rgba(23,39,76,0.06)]"
               )}
             >
-              {/* Icon */}
+              
               <div
                 className={clsx(
                   "w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200",
@@ -89,7 +89,7 @@ export default function SearchResults({
                 <Icon className="w-[18px] h-[18px]" strokeWidth={2} />
               </div>
 
-              {/* Info */}
+              
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <h4 className="text-[14px] font-extrabold text-[#0a1128] truncate">
@@ -109,7 +109,7 @@ export default function SearchResults({
                 </p>
               </div>
 
-              {/* Right side: count + arrow */}
+              
               <div className="shrink-0 flex items-center gap-3">
                 <div className="text-right">
                   <span className="text-[14px] font-extrabold text-[#d4af37] block leading-tight">

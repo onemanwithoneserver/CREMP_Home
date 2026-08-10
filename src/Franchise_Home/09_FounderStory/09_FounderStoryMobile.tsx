@@ -100,41 +100,7 @@ export default function FounderStoryMobile() {
                   className="text-[#d4af37]/30 -translate-x-1 -translate-y-1"
                 />
                 
-             {/*    <div className="flex items-center gap-2">
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={founderStoryData.founder.socials.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-full bg-red-500/80 text-white transition-all duration-300"
-                    title="YouTube"
-                  >
-                    <YoutubeIcon size={15} />
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={founderStoryData.founder.socials.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-full bg-pink-500/80 text-white transition-all duration-300"
-                    title="Instagram"
-                  >
-                    <InstagramIcon size={15} />
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={founderStoryData.founder.socials.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-full bg-blue-600/80 text-white transition-all duration-300"
-                    title="LinkedIn"
-                  >
-                    <LinkedinIcon size={15} />
-                  </motion.a>
-                </div> */}
+             
               </div>
 
               <div className="flex flex-col gap-4">

@@ -163,7 +163,7 @@ export default function FranchiseModelsMobile() {
     <section className="w-full py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300 overflow-hidden">
       <SectionHeader overline={franchiseModelsData.sectionLabel} title={franchiseModelsData.title} subtitle={franchiseModelsData.subtitle} align="center" />
       
-      {/* Main Model Tabs */}
+      
       <div className="relative z-10 w-full overflow-hidden group flex items-center mb-2 mt-2">
         {canScrollLeft && (
           <button onClick={() => scrollTabs("left")} className="absolute left-0 z-20 h-full px-1.5 bg-gradient-to-r from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white">
@@ -202,7 +202,7 @@ export default function FranchiseModelsMobile() {
         )}
       </div>
 
-      {/* Row Navigation for Sub Sections */}
+      
       <div className="relative z-10 flex w-full bg-gray-100/80 dark:bg-[#0e172f]/80 p-1 rounded-[4px] border border-gray-200/80 dark:border-white/10 shadow-sm backdrop-blur-sm">
         {[{id: 'piechart', label: 'Piechart'}, {id: 'outlet', label: 'Outlet'}, {id: 'roi', label: 'ROI'}].map((tab) => (
           <button
@@ -220,7 +220,7 @@ export default function FranchiseModelsMobile() {
         ))}
       </div>
 
-      {/* Swipeable Content Area */}
+      
       <div className="relative z-10 w-full overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div

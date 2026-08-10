@@ -19,14 +19,14 @@ export default function TopHeader({
 }: TopHeaderProps) {
   return (
     <header className="w-full bg-white/20 backdrop-blur-2xl border-b border-white/30 text-gray-900 select-none relative z-30 shadow-[0_4px_24px_rgba(11,27,66,0.06)] dark:bg-white/5 dark:text-white dark:border-white/10 dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
-      {/* Top accent line with subtle pulse */}
+      
       <motion.div
         className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"
         animate={{ opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Subtle background gradient */}
+      
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-1 py-3 flex items-center justify-between gap-4 relative">
@@ -64,7 +64,7 @@ export default function TopHeader({
                   >
                     <div className="absolute top-0 inset-x-3 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
                     <div className="absolute bottom-0 inset-x-3 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-25" />
-                    {/* Ambient glow */}
+                    
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#d4af37]/15 rounded-full blur-xl pointer-events-none" />
                   </motion.div>
                 )}

@@ -109,44 +109,7 @@ export default function FounderStoryDesktop() {
                   className="text-[#d4af37]/30 -translate-x-2 -translate-y-2 group-hover:text-[#d4af37]/50 transition-colors duration-500"
                 />
                 
-               {/*  <div className="flex items-center gap-2">
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={founderStoryData.founder.socials.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="p-2 rounded-full bg-white/10 hover:bg-red-500/80 border border-white/20 hover:border-red-400 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
-                    title="YouTube"
-                  >
-                    <YoutubeIcon size={18} />
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={founderStoryData.founder.socials.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="p-2 rounded-full bg-white/10 hover:bg-pink-500/80 border border-white/20 hover:border-pink-400 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
-                    title="Instagram"
-                  >
-                    <InstagramIcon size={18} />
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={founderStoryData.founder.socials.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="p-2 rounded-full bg-white/10 hover:bg-blue-600/80 border border-white/20 hover:border-blue-400 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
-                    title="LinkedIn"
-                  >
-                    <LinkedinIcon size={18} />
-                  </motion.a>
-                </div> */}
+               
               </div>
 
               <div className="flex-1 flex items-center">
