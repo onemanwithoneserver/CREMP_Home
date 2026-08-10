@@ -1,0 +1,89 @@
+import { FileText, Building, TrendingUp, Calendar, Tag, Users, Store, CheckCircle2, Maximize, BarChart2 } from "lucide-react";
+
+export const commercialData = {
+    tabs: ["Lease / Rent", "Sale", "Pre-Leased", "Fractional"],
+    tabData: {
+        "Lease / Rent": {
+            title: "Commercial Terms",
+            headerIcon: Tag,
+            headerIconBg: "bg-indigo-500",
+            primaryAmountLabel: "MONTHLY RENT",
+            primaryAmount: "₹1.2L",
+            primaryAmountColor: "text-gray-900 dark:text-white",
+            primaryDesc: "/mo",
+            primarySub: "₹100/sq.ft · Fixed Amount",
+            secondaryCard: {
+                label: "DEPOSIT",
+                value: "₹3.6L",
+                desc: "3 months"
+            },
+            details: [
+                { label: "Lease Type", value: "Full Lease", icon: FileText },
+                { label: "Maintenance", value: "₹8,000/mo", icon: Building },
+                { label: "Escalation", value: "5% pa", icon: TrendingUp },
+                { label: "Escalation Cycle", value: "36 Months", icon: Calendar },
+            ],
+            footer: { type: "tag-text", text: "Single unit available", tag: "KEY METRICS" }
+        },
+        "Sale": {
+            title: "Sale Overview",
+            headerIcon: Tag,
+            headerIconBg: "bg-red-500",
+            primaryAmountLabel: "SALE PRICE",
+            primaryAmount: "₹1.85Cr",
+            primaryAmountColor: "text-[#0a1128] dark:text-white",
+            primaryDesc: "",
+            primarySub: "₹15,417/sq.ft",
+            secondaryBadge: { text: "Vacant Space", color: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-500 dark:border-amber-700/50" },
+            details: [
+                { label: "Est. Rental Yield", value: "7.8% pa", icon: TrendingUp, valueColor: "text-amber-600 dark:text-amber-500" },
+                { label: "Price / sq.ft", value: "₹15,417", icon: Tag },
+            ],
+            footer: { type: "split", left: "Additional Charges", right: "Stamp duty & registration charges extra" }
+        },
+        "Pre-Leased": {
+            title: "Investment Summary",
+            headerIcon: TrendingUp,
+            headerIconBg: "bg-amber-500",
+            primaryAmountLabel: "EXISTING RENT",
+            primaryAmount: "₹1.1L",
+            primaryAmountColor: "text-emerald-500",
+            primaryDesc: "/mo",
+            primarySub: "",
+            secondaryDarkCard: {
+                label: "RENTAL YIELD",
+                value: "7.8%",
+                valueColor: "text-amber-500",
+                desc: "per annum"
+            },
+            details: [
+                { label: "Existing Tenant", value: "FabIndia Ltd.", icon: Users },
+                { label: "Tenant Category", value: "Fashion Retail", icon: Store },
+                { label: "Remaining Tenure", value: "18 Months", icon: Calendar, valueColor: "text-cyan-500" },
+                { label: "Rent Escalation", value: "5% / 36 Months", icon: TrendingUp },
+                { label: "Sale Price", value: "₹1.85Cr", icon: Tag },
+            ]
+        },
+        "Fractional": {
+            title: "Fractional Investment",
+            headerIcon: BarChart2,
+            headerIconBg: "bg-purple-500",
+            primaryAmountLabel: "ASSURED MONTHLY RENT",
+            primaryAmount: "₹30,000",
+            primaryAmountColor: "text-[#0a1128] dark:text-white",
+            primaryDesc: "/mo",
+            primarySub: "Min. 300 sq.ft ownership",
+            secondaryDarkCard: {
+                label: "ANNUAL YIELD",
+                value: "9.2%",
+                valueColor: "text-amber-500"
+            },
+            details: [
+                { label: "Pre-Leased", value: "✓ Yes", icon: CheckCircle2, valueColor: "text-emerald-500" },
+                { label: "Min. Investment", value: "300 sq.ft", icon: Maximize },
+                { label: "Assured Returns", value: "Yes — Monthly", icon: TrendingUp },
+            ],
+            footer: { type: "text-only", text: "Ideal for passive income investors seeking assured returns." }
+        }
+    }
+} as const;

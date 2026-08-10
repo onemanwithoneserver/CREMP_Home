@@ -97,7 +97,7 @@ function App() {
                             />
                             <Route
                                 path="/mobile/building-box"
-                                element={<BuildingBox isMobile={true} />}
+                                element={<BuildingBox />}
                             />
                             <Route
                                 path="*"
