@@ -194,34 +194,34 @@ export default function AdvancedFilters({
     <div className="relative">
       <motion.button
         type="button"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.06, y: -1 }}
+        whileTap={{ scale: 0.94 }}
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          "w-12 h-12 flex items-center justify-center rounded-lg border transition-all duration-300 cursor-pointer shadow-sm relative backdrop-blur-md",
+          "w-12 h-12 flex items-center justify-center rounded-lg border transition-all duration-300 cursor-pointer shadow-sm relative",
           isOpen
-            ? "bg-red-500/90 border-red-500 text-white shadow-[0_4px_16px_rgba(239,68,68,0.25)]"
-            : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 text-[#17274C] dark:text-white hover:bg-white/50 dark:hover:bg-black/40 hover:border-[#d4af37]/40 hover:text-[#d4af37] dark:hover:text-[#d4af37]"
+            ? "bg-red-500/90 border-red-400 text-white shadow-[0_4px_20px_rgba(239,68,68,0.3)]"
+            : "bg-[#0b1b42] border-[#0b1b42] text-[#d4af37] hover:border-[#d4af37]/60 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2)] shadow-[0_4px_16px_rgba(11,27,66,0.3)]"
         )}
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
             <motion.div
               key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+              animate={{ rotate: 0, opacity: 1, scale: 1 }}
+              exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </motion.div>
           ) : (
             <motion.div
               key="filter"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+              animate={{ rotate: 0, opacity: 1, scale: 1 }}
+              exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
             >
               <SlidersHorizontal className="w-5 h-5 stroke-[2.5]" />
             </motion.div>
@@ -232,7 +232,8 @@ export default function AdvancedFilters({
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#d4af37] text-[#17274C] text-[10px] font-extrabold flex items-center justify-center shadow-sm"
+            transition={{ type: "spring", stiffness: 500, damping: 20 }}
+            className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#d4af37] text-[#0b1b42] text-[10px] font-extrabold flex items-center justify-center shadow-[0_2px_8px_rgba(212,175,55,0.4)] border-2 border-white dark:border-[#0b1b42]"
           >
             {activeCount}
           </motion.span>
@@ -242,29 +243,39 @@ export default function AdvancedFilters({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            transition={{ type: "spring", damping: 28, stiffness: 400 }}
-            className="absolute top-[calc(100%+8px)] right-0 w-[320px] sm:w-[360px] bg-white/60 backdrop-blur-2xl rounded-xl border border-white/50 shadow-[0_16px_48px_rgba(23,39,76,0.14)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-[#17274C]/80 dark:border-white/20 dark:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+            initial={{ opacity: 0, y: -10, scale: 0.96, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -8, scale: 0.97, filter: "blur(3px)" }}
+            transition={{ type: "spring", damping: 26, stiffness: 380 }}
+            className="absolute top-[calc(100%+10px)] right-0 w-[320px] sm:w-[360px] bg-white/70 backdrop-blur-2xl rounded-xl border border-gray-200/50 shadow-[0_20px_56px_rgba(11,27,66,0.16),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-[#0e172f]/85 dark:border-white/15 dark:shadow-[0_20px_56px_rgba(0,0,0,0.5)]"
           >
-            <div className="flex items-center justify-between p-2 shrink-0">
+            {/* Gold top accent */}
+            <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
+
+            <div className="flex items-center justify-between p-2.5 shrink-0">
               <div className="flex items-center gap-2">
                 {activeCount > 0 && (
-                  <span className="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#d4af37] text-[#17274C]">
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                    className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#d4af37] text-[#0b1b42] shadow-[0_2px_6px_rgba(212,175,55,0.3)]"
+                  >
                     {activeCount} active
-                  </span>
+                  </motion.span>
                 )}
               </div>
               {activeCount > 0 && (
-                <button
+                <motion.button
                   type="button"
                   onClick={handleReset}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-1 text-[11px] font-bold text-gray-500 hover:text-red-500 transition-colors cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset</span>
-                </button>
+                </motion.button>
               )}
             </div>
 
@@ -272,10 +283,10 @@ export default function AdvancedFilters({
               {activeTab === "commercial" && (
                 <div
                   className={clsx(
-                    " transition-all duration-200",
+                    "rounded-lg transition-all duration-300",
                     expandedKey === "size"
-                      ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm overflow-visible relative z-30 backdrop-blur-md"
-                      : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 overflow-hidden hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                      ? "bg-white/60 dark:bg-[#0b1b42]/30 border border-[#d4af37]/40 shadow-sm overflow-visible relative z-30 backdrop-blur-md"
+                      : "bg-white/30 dark:bg-white/5 border border-white/40 dark:border-white/10 overflow-hidden hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-md"
                   )}
                 >
                   <motion.button
@@ -287,23 +298,30 @@ export default function AdvancedFilters({
                     className="w-full flex items-center justify-between px-3.5 py-2.5 cursor-pointer"
                   >
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0284c7] text-white shadow-xs shrink-0">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 4 }}
+                        className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0284c7] text-white shadow-sm shrink-0"
+                      >
                         <Maximize
                           className="w-[14px] h-[14px]"
                           strokeWidth={2.5}
                         />
-                      </div>
-                      <span className="text-[13px] font-extrabold text-[#0a1128]">
+                      </motion.div>
+                      <span className="text-[13px] font-extrabold text-[#0a1128] dark:text-gray-100">
                         Size
                       </span>
                     </div>
-                    <div className="text-gray-400 transition-colors">
+                    <motion.div
+                      className="text-gray-400 transition-colors"
+                      animate={{ rotate: expandedKey === "size" ? 180 : 0 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                    >
                       {expandedKey === "size" ? (
                         <Minus className="w-4 h-4" />
                       ) : (
                         <Plus className="w-4 h-4" />
                       )}
-                    </div>
+                    </motion.div>
                   </motion.button>
 
                   <AnimatePresence>
@@ -313,7 +331,7 @@ export default function AdvancedFilters({
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{
-                          duration: 0.25,
+                          duration: 0.3,
                           ease: [0.16, 1, 0.3, 1],
                         }}
                         className={clsx(
@@ -325,7 +343,7 @@ export default function AdvancedFilters({
                         <div className="px-3.5 pb-3 space-y-2.5">
                           <div className="flex gap-2">
                             <div className="flex-1 relative z-30">
-                              <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">
+                              <label className="block text-[10px] text-gray-500 dark:text-gray-400 font-bold mb-1 uppercase tracking-wider">
                                 Min
                               </label>
                               <CustomSelect
@@ -337,7 +355,7 @@ export default function AdvancedFilters({
                               />
                             </div>
                             <div className="flex-1 relative z-20">
-                              <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">
+                              <label className="block text-[10px] text-gray-500 dark:text-gray-400 font-bold mb-1 uppercase tracking-wider">
                                 Max
                               </label>
                               <CustomSelect
@@ -350,7 +368,7 @@ export default function AdvancedFilters({
                             </div>
                           </div>
                           <div className="relative z-10">
-                            <label className="block text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-wider">
+                            <label className="block text-[10px] text-gray-500 dark:text-gray-400 font-bold mb-1 uppercase tracking-wider">
                               Unit
                             </label>
                             <CustomSelect
@@ -369,7 +387,7 @@ export default function AdvancedFilters({
               )}
 
               {/* Category filters */}
-              {activeCategories.map((cat) => {
+              {activeCategories.map((cat, catIndex) => {
                 const isExpanded = expandedKey === cat.key;
                 const currentValue = filters[cat.key as keyof FilterState];
                 const hasActive = cat.isMulti
@@ -378,13 +396,16 @@ export default function AdvancedFilters({
                     currentValue !== DEFAULT_FILTERS[cat.key];
 
                 return (
-                  <div
+                  <motion.div
                     key={cat.key}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: catIndex * 0.05, duration: 0.25 }}
                     className={clsx(
-                      " transition-all duration-200",
+                      "rounded-lg transition-all duration-300",
                       isExpanded
-                        ? "bg-white/60 dark:bg-[#17274C]/30 border-[#d4af37]/50 shadow-sm backdrop-blur-md"
-                        : "bg-white/30 dark:bg-[#17274C]/20 border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-black/40 backdrop-blur-md"
+                        ? "bg-white/60 dark:bg-[#0b1b42]/30 border border-[#d4af37]/40 shadow-sm backdrop-blur-md"
+                        : "bg-white/30 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-md"
                     )}
                   >
                     <motion.button
@@ -396,9 +417,10 @@ export default function AdvancedFilters({
                       className="w-full flex items-center justify-between px-3.5 py-2.5 cursor-pointer"
                     >
                       <div className="flex items-center gap-2.5">
-                        <div
+                        <motion.div
+                          whileHover={{ scale: 1.1, rotate: 4 }}
                           className={clsx(
-                            "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 shadow-xs",
+                            "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 shadow-sm",
                             cat.iconBg
                           )}
                         >
@@ -406,30 +428,34 @@ export default function AdvancedFilters({
                             className="w-[14px] h-[14px]"
                             strokeWidth={2.5}
                           />
-                        </div>
-                        <span className="text-[13px] font-extrabold text-[#0a1128]">
+                        </motion.div>
+                        <span className="text-[13px] font-extrabold text-[#0a1128] dark:text-gray-100">
                           {cat.title}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
                         {hasActive && !isExpanded && (
                           <motion.div
-                            animate={{ scale: [1, 1.3, 1] }}
+                            animate={{ scale: [1, 1.4, 1] }}
                             transition={{
                               repeat: Infinity,
                               duration: 2,
                               ease: "easeInOut",
                             }}
-                            className="w-2 h-2 rounded-full bg-[#d4af37]"
+                            className="w-2 h-2 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.5)]"
                           />
                         )}
-                        <div className="text-gray-400 transition-colors">
+                        <motion.div
+                          className="text-gray-400 transition-colors"
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                        >
                           {isExpanded ? (
                             <Minus className="w-4 h-4" />
                           ) : (
                             <Plus className="w-4 h-4" />
                           )}
-                        </div>
+                        </motion.div>
                       </div>
                     </motion.button>
 
@@ -440,14 +466,14 @@ export default function AdvancedFilters({
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{
-                            duration: 0.25,
+                            duration: 0.3,
                             ease: [0.16, 1, 0.3, 1],
                           }}
                           className="overflow-hidden"
                         >
                           <div className="px-3.5 pb-3 space-y-1">
                             {cat.isMulti
-                              ? cat.options.map((opt) => {
+                              ? cat.options.map((opt, optIndex) => {
                                   const isSelected = (
                                     (currentValue as string[]) || []
                                   ).includes(opt.id);
@@ -455,7 +481,10 @@ export default function AdvancedFilters({
                                     <motion.button
                                       key={opt.id}
                                       type="button"
-                                      whileHover={{ x: 3 }}
+                                      initial={{ opacity: 0, x: -8 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: optIndex * 0.04, duration: 0.2 }}
+                                      whileHover={{ x: 3, backgroundColor: "rgba(212,175,55,0.04)" }}
                                       whileTap={{ scale: 0.98 }}
                                       onClick={() =>
                                         handleOptionToggle(cat, opt.id)
@@ -463,16 +492,16 @@ export default function AdvancedFilters({
                                       className={clsx(
                                         "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-all cursor-pointer group",
                                         isSelected
-                                          ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
+                                          ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-[3px] border-[#d4af37]"
+                                          : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent"
                                       )}
                                     >
                                       <div
                                         className={clsx(
-                                          "w-4 h-4 rounded flex items-center justify-center shrink-0 border transition-all",
+                                          "w-4 h-4 rounded flex items-center justify-center shrink-0 border transition-all duration-200",
                                           isSelected
-                                            ? "bg-[#17274C] border-[#d4af37] text-[#d4af37]"
-                                            : "bg-white border-gray-300 group-hover:border-[#d4af37]"
+                                            ? "bg-[#0b1b42] border-[#d4af37] text-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.3)]"
+                                            : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 group-hover:border-[#d4af37]"
                                         )}
                                       >
                                         {isSelected && (
@@ -502,7 +531,7 @@ export default function AdvancedFilters({
                                 [
                                   { id: "Any", label: "Any" },
                                   ...cat.options,
-                                ].map((opt) => {
+                                ].map((opt, optIndex) => {
                                   const isSelected =
                                     opt.id === "Any"
                                       ? !currentValue ||
@@ -515,7 +544,10 @@ export default function AdvancedFilters({
                                     <motion.button
                                       key={opt.id}
                                       type="button"
-                                      whileHover={{ x: 3 }}
+                                      initial={{ opacity: 0, x: -8 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: optIndex * 0.04, duration: 0.2 }}
+                                      whileHover={{ x: 3, backgroundColor: "rgba(212,175,55,0.04)" }}
                                       whileTap={{ scale: 0.98 }}
                                       onClick={() => {
                                         if (opt.id === "Any") {
@@ -531,16 +563,16 @@ export default function AdvancedFilters({
                                       className={clsx(
                                         "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-all cursor-pointer group",
                                         isSelected
-                                          ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-2 border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
+                                          ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-[3px] border-[#d4af37]"
+                                          : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent"
                                       )}
                                     >
                                       <div
                                         className={clsx(
-                                          "w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all",
+                                          "w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all duration-200",
                                           isSelected
-                                            ? "border-[#d4af37] bg-white ring-2 ring-[#d4af37]/30"
-                                            : "bg-white border-gray-300 group-hover:border-[#d4af37]"
+                                            ? "border-[#d4af37] bg-white dark:bg-[#0b1b42] ring-2 ring-[#d4af37]/30"
+                                            : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 group-hover:border-[#d4af37]"
                                         )}
                                       >
                                         {isSelected && (
@@ -552,7 +584,7 @@ export default function AdvancedFilters({
                                               stiffness: 600,
                                               damping: 22,
                                             }}
-                                            className="w-2 h-2 rounded-full bg-[#17274C]"
+                                            className="w-2 h-2 rounded-full bg-[#0b1b42] dark:bg-[#d4af37]"
                                           />
                                         )}
                                       </div>
@@ -566,7 +598,7 @@ export default function AdvancedFilters({
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>

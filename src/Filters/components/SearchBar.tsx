@@ -64,17 +64,22 @@ export default function SearchBar({
         className={clsx(
           "relative flex items-center transition-all duration-300 rounded-lg overflow-hidden",
           isFocused
-            ? "ring-2 ring-[#d4af37]/50 shadow-[0_4px_24px_rgba(212,175,55,0.15)]"
-            : "shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+            ? "ring-2 ring-[#d4af37]/50 shadow-[0_4px_24px_rgba(212,175,55,0.18)]"
+            : "shadow-[0_2px_10px_rgba(11,27,66,0.06)]"
         )}
       >
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-          <Search
-            className={clsx(
-              "h-[18px] w-[18px] transition-colors duration-200",
-              isFocused ? "text-[#d4af37]" : "text-gray-400"
-            )}
-          />
+          <motion.div
+            animate={isFocused ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <Search
+              className={clsx(
+                "h-[18px] w-[18px] transition-colors duration-300",
+                isFocused ? "text-[#d4af37]" : "text-gray-400"
+              )}
+            />
+          </motion.div>
         </div>
         <input
           ref={inputRef}
@@ -85,11 +90,11 @@ export default function SearchBar({
           placeholder="Search KPHB, Kukatpally, Madhapur..."
           className={clsx(
             "block w-full pl-11 pr-10 py-3.5 text-sm font-medium leading-5",
-            "bg-white/20 backdrop-blur-lg border border-white/40 shadow-sm dark:bg-white/5 dark:border-white/10",
+            "bg-white/25 backdrop-blur-lg border border-white/40 shadow-sm dark:bg-white/5 dark:border-white/10",
             "placeholder-gray-500 text-[#0a1128] dark:text-white dark:placeholder-gray-400",
-            "focus:outline-none transition-all duration-200",
+            "focus:outline-none transition-all duration-300",
             "rounded-lg",
-            isFocused && "border-[#d4af37]/60 bg-white/30 dark:bg-white/10 shadow-[0_0_20px_rgba(212,175,55,0.15)]"
+            isFocused && "border-[#d4af37]/60 bg-white/35 dark:bg-white/10 shadow-[0_0_24px_rgba(212,175,55,0.12)]"
           )}
           id="search-location-input"
           autoComplete="off"
@@ -97,16 +102,16 @@ export default function SearchBar({
         <AnimatePresence>
           {searchQuery && (
             <motion.button
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.15 }}
+              initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
+              transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
               type="button"
               onClick={() => {
                 onSearchChange("");
                 inputRef.current?.focus();
               }}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-red-400 transition-colors cursor-pointer"
               aria-label="Clear search"
             >
               <X className="h-4 w-4" />
@@ -118,16 +123,17 @@ export default function SearchBar({
       <AnimatePresence>
         {showDropdown && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            initial={{ opacity: 0, y: -10, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            transition={{ type: "spring", damping: 28, stiffness: 400 }}
-            className="absolute z-50 w-full mt-2 bg-white/60 dark:bg-[#17274C]/80 backdrop-blur-2xl border border-white/40 dark:border-white/10 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden"
+            exit={{ opacity: 0, y: -8, scale: 0.97 }}
+            transition={{ type: "spring", damping: 26, stiffness: 380 }}
+            className="absolute z-50 w-full mt-2.5 bg-white/70 dark:bg-[#0e172f]/85 backdrop-blur-2xl border border-gray-200/50 dark:border-white/10 rounded-xl shadow-[0_12px_40px_rgba(11,27,66,0.14),0_4px_12px_rgba(0,0,0,0.05)] overflow-visible"
           >
+            {/* Gold top accent */}
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="px-3 pt-2.5 pb-1">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-1">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-1">
                 {searchQuery ? "Search Results" : "Popular Locations"}
               </p>
             </div>
@@ -140,12 +146,12 @@ export default function SearchBar({
                     <motion.button
                       key={result.id}
                       type="button"
-                      initial={{ opacity: 0, x: -8 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.04, duration: 0.2 }}
+                      transition={{ delay: index * 0.04, duration: 0.22, ease: "easeOut" }}
                       whileHover={{
                         x: 4,
-                        backgroundColor: "rgba(212,175,55,0.06)",
+                        backgroundColor: "rgba(212,175,55,0.05)",
                       }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => {
@@ -154,19 +160,21 @@ export default function SearchBar({
                       }}
                       className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all cursor-pointer group"
                     >
-                      <div
+                      <motion.div
+                        whileHover={{ scale: 1.08, rotate: 4 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
                         className={clsx(
-                          "w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200",
-                          "bg-[#17274C]/[0.06] text-[#17274C] group-hover:bg-[#17274C] group-hover:text-[#d4af37]"
+                          "w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300",
+                          "bg-[#0b1b42]/[0.06] dark:bg-white/[0.06] text-[#0b1b42] dark:text-gray-300 group-hover:bg-[#0b1b42] group-hover:text-[#d4af37] dark:group-hover:bg-[#0b1b42] dark:group-hover:text-[#d4af37]"
                         )}
                       >
                         <Icon className="w-4 h-4" strokeWidth={2} />
-                      </div>
+                      </motion.div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[13px] font-bold text-[#0a1128] truncate group-hover:text-[#17274C]">
+                        <p className="text-[13px] font-bold text-[#0a1128] dark:text-gray-100 truncate group-hover:text-[#0b1b42] dark:group-hover:text-white transition-colors">
                           {result.name}
                         </p>
-                        <p className="text-[11px] text-gray-500 font-medium truncate">
+                        <p className="text-[11px] text-gray-500 dark:text-gray-400 font-medium truncate">
                           {result.area} · {result.city}
                         </p>
                       </div>
@@ -174,7 +182,7 @@ export default function SearchBar({
                         <span className="text-[11px] font-bold text-[#d4af37]">
                           {result.listings}
                         </span>
-                        <span className="text-[9px] text-gray-400 font-medium">
+                        <span className="text-[9px] text-gray-400 dark:text-gray-500 font-medium">
                           listings
                         </span>
                       </div>
@@ -186,16 +194,16 @@ export default function SearchBar({
                   <p className="text-sm text-gray-400 font-medium">
                     No locations found
                   </p>
-                  <p className="text-xs text-gray-300 mt-1">
+                  <p className="text-xs text-gray-300 dark:text-gray-500 mt-1">
                     Try searching for a different area
                   </p>
                 </div>
               )}
             </div>
 
-            <div className="mx-3 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+            <div className="mx-3 h-px bg-gradient-to-r from-transparent via-gray-200/60 dark:via-white/10 to-transparent" />
 
-            <div className="px-3 py-3">
+            <div className="px-3 py-3 relative z-[100] overflow-visible">
               <BasicFilters
                 activeTab={activeTab}
                 filters={filters}

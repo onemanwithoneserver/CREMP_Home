@@ -22,7 +22,10 @@ export default function Filters(_props: FiltersProps) {
   }, []);
 
   return (
-    <div className="w-full min-h-full flex-1 flex flex-col bg-white/30 backdrop-blur-2xl border-t border-white/20 text-[#0a1128] font-sans select-none relative transition-colors duration-300 dark:bg-[#17274C]/50 dark:border-white/10 shadow-[0_-8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_-8px_32px_rgba(0,0,0,0.2)]">
+    <div className="w-full min-h-full flex-1 flex flex-col bg-white/30 backdrop-blur-2xl border-t border-white/20 text-[#0a1128] font-sans select-none relative transition-colors duration-300 dark:bg-[#0b1b42]/50 dark:border-white/10 shadow-[0_-8px_32px_rgba(11,27,66,0.05)] dark:shadow-[0_-8px_32px_rgba(0,0,0,0.25)]">
+      {/* Subtle ambient gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-[#d4af37]/[0.02] pointer-events-none" />
+
       <TopHeader
         activeTab={activeTab}
         onTabChange={(tab) => setActiveTab(tab)}
@@ -30,7 +33,7 @@ export default function Filters(_props: FiltersProps) {
         businessCount={356}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-8 flex flex-col gap-5">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-8 flex flex-col gap-5 relative z-10">
         <section className="relative z-40 flex items-start gap-3 w-full max-w-4xl mx-auto">
           <div className="flex-1">
             <SearchBar

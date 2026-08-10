@@ -35,29 +35,31 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
   const hasValue = value && value !== "Any" && value !== "";
 
   return (
-    <div className="relative shrink-0" ref={chipRef}>
+    <div className={clsx("relative shrink-0", isOpen ? "z-[200]" : "z-10")} ref={chipRef}>
       <motion.button
         type="button"
+        whileHover={{ scale: 1.04, y: -1 }}
         whileTap={{ scale: 0.96 }}
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          "w-full sm:w-auto flex items-center justify-between sm:justify-start gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-bold border transition-all duration-200 cursor-pointer whitespace-normal",
+          "w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2 px-4 py-2 text-[12.5px] font-bold border transition-all duration-300 cursor-pointer whitespace-normal select-none",
+          "rounded-full",
           isOpen
-            ? "bg-white/50 dark:bg-[#17274C]/60 text-[#17274C] dark:text-white border-[#d4af37]/70 shadow-[0_4px_16px_rgba(23,39,76,0.3)] backdrop-blur-lg"
+            ? "bg-[#0b1b42] text-white border-[#d4af37] shadow-[0_4px_20px_rgba(212,175,55,0.3),0_0_0_2px_rgba(212,175,55,0.2)]"
             : hasValue || isActive
-            ? "bg-white/30 dark:bg-[#17274C]/40 text-[#17274C] dark:text-white border-[#d4af37]/50 shadow-sm backdrop-blur-lg"
-            : "bg-white/20 dark:bg-white/5 text-[#0a1128] dark:text-white border-white/40 dark:border-white/10 hover:border-[#d4af37]/50 hover:bg-white/40 dark:hover:bg-white/10 shadow-xs backdrop-blur-md"
+            ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_16px_rgba(11,27,66,0.35)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:border-[#d4af37]/60"
+            : "bg-white/60 dark:bg-white/10 text-gray-600 dark:text-gray-300 border-gray-200/80 dark:border-white/15 hover:border-[#d4af37]/50 hover:bg-white/80 dark:hover:bg-white/15 shadow-sm backdrop-blur-md"
         )}
       >
-        <span>{displayLabel}</span>
+        <span className={clsx(hasValue || isActive || isOpen ? "text-white" : "")}>{displayLabel}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          transition={{ type: "spring", stiffness: 400, damping: 22 }}
         >
           <ChevronDown
             className={clsx(
-              "w-3.5 h-3.5",
-              isOpen || hasValue ? "text-[#d4af37]" : "text-gray-400"
+              "w-3.5 h-3.5 transition-colors duration-200",
+              isOpen || hasValue || isActive ? "text-[#d4af37]" : "text-gray-400"
             )}
           />
         </motion.div>
@@ -66,39 +68,50 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -4, scale: 0.97 }}
-            transition={{ type: "spring", damping: 28, stiffness: 450 }}
-            className="absolute left-0 top-[calc(100%+6px)] w-full sm:min-w-[160px] bg-white/70 backdrop-blur-xl rounded-lg border border-white/40 shadow-[0_12px_36px_rgba(23,39,76,0.14)] overflow-hidden z-50 dark:bg-black/60 dark:border-white/10 dark:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ type: "spring", damping: 26, stiffness: 420 }}
+            className="absolute left-0 top-[calc(100%+8px)] w-full sm:min-w-[180px] z-[9999] bg-white/80 backdrop-blur-2xl rounded-xl border border-gray-200/60 shadow-[0_16px_48px_rgba(11,27,66,0.18),0_4px_12px_rgba(0,0,0,0.06)] overflow-hidden dark:bg-[#0e172f]/90 dark:border-white/15 dark:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
           >
-            <div className="h-[1.5px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60" />
-            <div className="py-1.5 max-h-[220px] overflow-y-auto scrollbar-hide">
-              {options.map((opt) => {
+            {/* Gold accent line */}
+            <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
+
+            <div className="py-1.5 max-h-[240px] overflow-y-auto scrollbar-hide">
+              {options.map((opt, index) => {
                 const isSelected = value === opt.id;
                 return (
                   <motion.button
                     key={opt.id}
                     type="button"
-                    whileHover={{ x: 3 }}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.04, duration: 0.2, ease: "easeOut" }}
+                    whileHover={{ x: 4, backgroundColor: "rgba(212,175,55,0.06)" }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       onChange(opt.id);
                       setIsOpen(false);
                     }}
                     className={clsx(
-                      "w-full text-left px-3.5 py-2 text-[12.5px] transition-all duration-150 flex items-center justify-between cursor-pointer",
+                      "w-full text-left px-4 py-2.5 text-[12.5px] transition-all duration-150 flex items-center justify-between cursor-pointer group",
                       isSelected
-                        ? "bg-[#17274C]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-extrabold border-l-2 border-[#d4af37]"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/40 dark:hover:bg-white/5 hover:text-[#17274C] dark:hover:text-white font-medium"
+                        ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-extrabold border-l-[3px] border-[#d4af37]"
+                        : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent"
                     )}
                   >
                     <span>{opt.label}</span>
                     {isSelected && (
-                      <Check
-                        className="w-3.5 h-3.5 text-[#d4af37]"
-                        strokeWidth={2.8}
-                      />
+                      <motion.div
+                        initial={{ scale: 0, rotate: -45 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 22 }}
+                      >
+                        <Check
+                          className="w-3.5 h-3.5 text-[#d4af37]"
+                          strokeWidth={2.8}
+                        />
+                      </motion.div>
                     )}
                   </motion.button>
                 );
@@ -172,17 +185,17 @@ export default function BasicFilters({
     activeTab === "commercial" ? commercialFilters : businessFilters;
 
   return (
-    <div className="w-full relative z-50">
-      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2 pb-1">
+    <div className="w-full relative z-40">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2.5 pb-1">
         {/* Filter label */}
-        <div className="hidden sm:flex shrink-0 items-center gap-1.5 pr-2 border-r border-gray-200/60 mr-1">
-          <div className="w-6 h-6 rounded-md bg-[#17274C]/[0.06] flex items-center justify-center">
+        <div className="hidden sm:flex shrink-0 items-center gap-2 pr-3 border-r border-gray-200/50 dark:border-white/10 mr-1">
+          <div className="w-6 h-6 rounded-md bg-[#0b1b42]/[0.08] dark:bg-white/[0.06] flex items-center justify-center">
             <svg
-              className="w-3.5 h-3.5 text-[#17274C]"
+              className="w-3.5 h-3.5 text-[#0b1b42] dark:text-[#d4af37]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth={2}
+              strokeWidth={2.2}
             >
               <path
                 strokeLinecap="round"
@@ -191,7 +204,7 @@ export default function BasicFilters({
               />
             </svg>
           </div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 whitespace-nowrap">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 whitespace-nowrap">
             Filters
           </span>
         </div>
