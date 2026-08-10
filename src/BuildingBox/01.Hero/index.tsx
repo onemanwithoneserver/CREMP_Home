@@ -109,7 +109,7 @@ export default function MobileHero() {
                 transition={{ delay: 0.6, type: "spring", stiffness: 280, damping: 20 }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.92 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[4.5rem] h-[4.5rem] rounded-full bg-[#0a1128]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg transition-all duration-300 group hover:bg-[#0a1128]/90 hover:border-white/40"
+                className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[4.5rem] h-[4.5rem] rounded-full bg-[#0a1128]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg transition-all duration-300 group hover:bg-[#0a1128]/90 hover:border-white/40"
             >
                 <div className="absolute inset-0 rounded-full animate-ping bg-white opacity-[0.03]" />
                 <Play size={26} className="ml-1.5 transition-transform group-hover:scale-110" fill="currentColor" />
