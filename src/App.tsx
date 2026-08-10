@@ -17,6 +17,7 @@ import Franchise from "./Franchise";
 import FranchiseHome from "./Franchise_Home";
 import Home from "./Home";
 import Investors from "./Investors";
+import BuildingBox from "./BuildingBox";
 
 function App() {
     const location = useLocation();
@@ -54,6 +55,7 @@ function App() {
                     viewMode={viewMode}
                     onViewModeChange={handleViewModeChange}
                     onClose={handleClose}
+                    showViewControls={pathParts[1] !== "building-box"}
                 />
             )}
 
@@ -88,6 +90,14 @@ function App() {
                             <Route
                                 path="/:viewMode/filters"
                                 element={<Filters isMobile={isMobile} />}
+                            />
+                            <Route
+                                path="/desktop/building-box"
+                                element={<Navigate to="/mobile/building-box" replace />}
+                            />
+                            <Route
+                                path="/mobile/building-box"
+                                element={<BuildingBox isMobile={true} />}
                             />
                             <Route
                                 path="*"
