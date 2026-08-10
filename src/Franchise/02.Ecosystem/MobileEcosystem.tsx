@@ -224,7 +224,7 @@ export default function MobileEcosystem() {
                                 </motion.div>
                             </div>
 
-                            <div className="relative z-0 -mt-[10px] h-[40px] w-full px-4">
+                            <div className="relative z-0 -mt-[10px] h-[40px] w-full">
                                 <svg
                                     className="absolute inset-0 h-full w-full"
                                     viewBox="0 0 300 40"

@@ -160,7 +160,7 @@ export default function FranchiseModelsMobile() {
   const sectionsList = ["piechart", "outlet", "roi"] as const;
 
   return (
-    <section className="w-full px-4 py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300 overflow-hidden">
+    <section className="w-full py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300 overflow-hidden">
       <SectionHeader overline={franchiseModelsData.sectionLabel} title={franchiseModelsData.title} subtitle={franchiseModelsData.subtitle} align="center" />
       
       {/* Main Model Tabs */}

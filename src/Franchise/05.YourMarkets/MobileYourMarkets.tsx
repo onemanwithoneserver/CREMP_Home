@@ -53,7 +53,7 @@ export default function MobileYourMarkets() {
                 className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 translate-y-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10"
             />
 
-            <Container className="relative z-10 mx-auto w-full px-4">
+            <Container className="relative z-10 mx-auto w-full">
                 <div className="mb-8 flex flex-col items-center gap-6 text-center">
                     <motion.div
                         variants={staggerContainer}

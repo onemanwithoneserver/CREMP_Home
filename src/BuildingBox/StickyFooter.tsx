@@ -14,35 +14,43 @@ export default function StickyFooter() {
             <div className="w-full flex items-center justify-between gap-2 relative z-10">
                 <div className="flex items-center gap-1.5 shrink-0">
                     <motion.button
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.92 }}
                         onClick={() => setIsSaved(!isSaved)}
-                        className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 text-white"
+                        className={clsx(
+                            "w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 border shrink-0",
+                            isSaved
+                                ? "bg-rose-500/20 border-rose-500/50 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.2)]"
+                                : "bg-white/5 hover:bg-rose-500/10 border-white/10 hover:border-rose-400/50 text-white hover:text-rose-400 hover:shadow-[0_0_15px_rgba(244,63,94,0.15)]"
+                        )}
                     >
                         <Heart
-                            size={18}
+                            size={17}
                             strokeWidth={isSaved ? 0 : 2}
                             className={clsx(
                                 "transition-all duration-300",
                                 isSaved ? "fill-rose-500 text-rose-500 scale-110" : "fill-transparent"
                             )}
                         />
-                        <span className="text-[0.6rem]">Save</span>
+                        <span className="text-[0.55rem] font-semibold">{isSaved ? "Saved" : "Save"}</span>
                     </motion.button>
 
                     <motion.button
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.92 }}
-                        className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 text-white"
+                        className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 bg-white/5 hover:bg-emerald-500/10 border border-white/10 hover:border-emerald-400/50 text-white hover:text-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.15)] shrink-0"
                     >
-                        <Share2 size={18} strokeWidth={2} />
-                        <span className="text-[0.6rem]">Share</span>
+                        <Share2 size={17} strokeWidth={2} />
+                        <span className="text-[0.55rem] font-semibold">Share</span>
                     </motion.button>
 
                     <motion.button
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.92 }}
-                        className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 text-white"
+                        className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 bg-white/5 hover:bg-blue-500/10 border border-white/10 hover:border-blue-400/50 text-white hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] shrink-0"
                     >
-                        <OpenInNewIcon style={{ fontSize: 18 }} />
-                        <span className="text-[0.6rem]">Web</span>
+                        <OpenInNewIcon style={{ fontSize: 17 }} />
+                        <span className="text-[0.55rem] font-semibold">Web</span>
                     </motion.button>
                 </div>
 
@@ -50,18 +58,18 @@ export default function StickyFooter() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.92 }}
-                        className="h-11 flex-1 max-w-[120px] flex items-center justify-center gap-2 rounded-[4px] font-medium transition-all duration-300 bg-[#0a1128] border border-white/20 text-white hover:bg-white/10 px-2 text-[13px]"
+                        className="h-11 flex-1 max-w-[110px] flex items-center justify-center gap-1.5 rounded-[4px] font-semibold transition-all duration-300 bg-white/5 border border-white/10 hover:bg-emerald-500/10 hover:border-emerald-400/30 text-white px-2 text-[12px]"
                     >
-                        <MessageCircle size={16} className="text-emerald-400" />
+                        <MessageCircle size={15} className="text-emerald-400" />
                         <span className="truncate">WhatsApp</span>
                     </motion.button>
 
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.92 }}
-                        className="h-11 flex-1 max-w-[140px] flex items-center justify-center gap-1.5 rounded-[4px] font-bold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] border border-[#f9df9f]/50 px-2 text-[13px]"
+                        className="h-11 flex-1 max-w-[145px] flex items-center justify-center gap-1.5 rounded-[4px] font-bold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 px-2 text-[12px]"
                     >
-                        <Calendar size={16} strokeWidth={2} />
+                        <Calendar size={15} strokeWidth={2} />
                         <span className="truncate">Schedule Visit</span>
                     </motion.button>
                 </div>

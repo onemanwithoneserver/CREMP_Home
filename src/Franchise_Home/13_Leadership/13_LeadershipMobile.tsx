@@ -68,7 +68,7 @@ function LeaderCardMobile({
               <RotateCw size={12} className="text-[#d4af37]" />
             </motion.div>
           </div>
-          <div className="absolute bottom-0 left-0 w-full px-4 pb-6 pt-4 flex flex-col justify-end z-10">
+          <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 flex flex-col justify-end z-10">
             <span className="inline-block px-2 py-0.5 rounded-[2px] text-[#d4af37] text-[9px] font-bold uppercase tracking-wider mb-2 w-max border border-[#d4af37]/30 bg-[#d4af37]/10 backdrop-blur-sm">
               {member.experience}
             </span>
