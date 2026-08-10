@@ -3,7 +3,7 @@ import { Activity } from "lucide-react";
 import { infrastructureData } from "./data";
 
 const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 30 } },
 };
 
@@ -20,10 +20,10 @@ const rowReveal: Variants = {
 const getStatusStyle = (status: string) => {
     const s = status.toUpperCase();
     if (["INSTALLED", "CONNECTED", "COMPLIANT", "WIRED", "WITHIN UNIT", "YES"].includes(s))
-        return "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-800/60";
+        return "bg-emerald-50/80 text-emerald-600 border-emerald-100";
     if (["PROVISION"].includes(s))
-        return "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-100 dark:border-amber-800/60";
-    return "bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border-sky-100 dark:border-sky-800/60";
+        return "bg-amber-50/80 text-amber-600 border-amber-100";
+    return "bg-sky-50/80 text-sky-600 border-sky-100";
 };
 
 export default function Infrastructure() {
@@ -31,21 +31,26 @@ export default function Infrastructure() {
         <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "-60px" }}
             variants={staggerContainer}
             className="w-full relative z-10"
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)] border border-gray-200/80 dark:border-white/10 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
             >
-                <div className="flex items-center gap-2.5 p-4 border-b border-gray-100 dark:border-white/5">
-                    <div className="w-8 h-8 rounded-[4px] bg-[#ea580c] flex items-center justify-center text-white shrink-0 shadow-md shadow-[#ea580c]/25">
-                        <Activity size={15} />
+                {/* Section header */}
+                <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
+                    <div className="w-9 h-9 rounded-xl bg-[#ea580c] flex items-center justify-center text-white shrink-0 shadow-lg shadow-[#ea580c]/20">
+                        <Activity size={16} />
                     </div>
-                    <h2 className="text-[1rem] font-semibold text-[#0a1128] dark:text-white tracking-tight">{infrastructureData.title}</h2>
+                    <div className="flex flex-col">
+                        <h2 className="text-[1.05rem] font-bold text-[#0a1128] tracking-tight leading-tight">{infrastructureData.title}</h2>
+                        <span className="text-[0.65rem] text-gray-400 font-medium">Systems & Utilities</span>
+                    </div>
                 </div>
 
+                {/* Infrastructure items */}
                 <motion.div
                     variants={staggerContainer}
                     initial="hidden"
@@ -58,23 +63,26 @@ export default function Infrastructure() {
                             key={idx}
                             variants={rowReveal}
                             whileHover={{ x: 3 }}
-                            className="flex items-center justify-between py-3.5 border-b border-gray-50 dark:border-white/[0.03] last:border-0 group cursor-default rounded-[2px] px-1 hover:bg-[#d4af37]/[0.02] transition-colors"
+                            className="flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 group cursor-default rounded-xl px-1 hover:bg-[#d4af37]/[0.02] transition-all duration-300"
                         >
                             <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 rounded-[4px] ${item.iconBg} flex items-center justify-center text-white shrink-0 shadow-md`}>
-                                    <item.icon size={14} />
+                                <div className={`w-9 h-9 rounded-xl ${item.iconBg} flex items-center justify-center text-white shrink-0 shadow-md`}>
+                                    <item.icon size={15} />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[0.82rem] font-semibold text-[#0a1128] dark:text-gray-200">{item.label}</span>
-                                    <span className="text-[0.68rem] text-gray-400 font-medium">{item.sub}</span>
+                                    <span className="text-[0.82rem] font-semibold text-[#0a1128]">{item.label}</span>
+                                    <span className="text-[0.65rem] text-gray-400 font-medium">{item.sub}</span>
                                 </div>
                             </div>
-                            <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-[2px] border shadow-sm ${getStatusStyle(item.status)}`}>
+                            <span className={`text-[0.58rem] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border shadow-sm ${getStatusStyle(item.status)}`}>
                                 {item.status}
                             </span>
                         </motion.div>
                     ))}
                 </motion.div>
+
+                {/* Bottom padding */}
+                <div className="h-2" />
             </motion.div>
         </motion.div>
     );

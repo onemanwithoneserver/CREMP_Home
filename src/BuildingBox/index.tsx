@@ -11,43 +11,50 @@ const LocationIntelligence = lazy(() => import("./07.LocationIntelligence"));
 const Terms = lazy(() => import("./08.Terms"));
 const StickyFooter = lazy(() => import("./StickyFooter"));
 
-const pulseGlow: Variants = {
+const ambientGlow: Variants = {
     animate: {
-        scale: [1, 1.08, 1],
-        opacity: [0.15, 0.35, 0.15],
-        transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+        opacity: [0.4, 0.6, 0.4],
+        scale: [1, 1.05, 1],
+        transition: { duration: 10, repeat: Infinity, ease: "easeInOut" },
     },
 };
 
 const SectionLoader = () => (
-    <div className="w-full h-32 animate-pulse bg-gray-50 dark:bg-[#0b1b42] rounded-[4px]" />
+    <div className="w-full h-32 animate-pulse bg-gray-100/60 rounded-2xl mx-2.5" style={{ width: 'calc(100% - 1.25rem)' }} />
 );
 
 export default function BuildingBox() {
     return (
-        <div className="w-full min-h-screen flex flex-col bg-white dark:bg-[#0b1b42] text-gray-900 dark:text-white transition-colors duration-300 relative overflow-hidden">
-            <motion.div
-                variants={pulseGlow}
-                animate="animate"
-                className="pointer-events-none fixed top-[20%] -right-[15%] w-[400px] h-[400px] rounded-full bg-[#D4AF37]/8 blur-[120px] dark:bg-[#D4AF37]/10 z-0"
-            />
-            <motion.div
-                variants={pulseGlow}
-                animate="animate"
-                style={{ animationDelay: "4s" }}
-                className="pointer-events-none fixed bottom-[30%] -left-[15%] w-[350px] h-[350px] rounded-full bg-[#D4AF37]/6 blur-[120px] dark:bg-[#D4AF37]/8 z-0"
-            />
+        <div className="w-full min-h-screen flex flex-col bg-[#f8f9fc] text-gray-900 transition-colors duration-300 relative overflow-hidden">
+            {/* Subtle ambient background layers */}
+            <div className="pointer-events-none fixed inset-0 z-0">
+                <motion.div
+                    variants={ambientGlow}
+                    animate="animate"
+                    className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#d4af37]/[0.04] blur-[140px]"
+                />
+                <motion.div
+                    variants={ambientGlow}
+                    animate="animate"
+                    style={{ animationDelay: "5s" }}
+                    className="absolute bottom-[20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#0b1b42]/[0.03] blur-[140px]"
+                />
+                <div className="absolute top-0 left-0 right-0 h-[600px] bg-gradient-to-b from-[#0a1128]/[0.02] via-transparent to-transparent" />
+            </div>
 
+            {/* Main content */}
             <div className="relative z-10 flex-1 flex flex-col pb-24">
                 <Hero />
                 <Suspense fallback={<SectionLoader />}>
-                    <CommercialTerms />
-                    <SpaceOverview />
-                    <FitOut />
-                    <Infrastructure />
-                    <Media />
-                    <LocationIntelligence />
-                    <Terms />
+                    <div className="flex flex-col gap-2.5 px-2.5 pt-2">
+                        <CommercialTerms />
+                        <SpaceOverview />
+                        <FitOut />
+                        <Infrastructure />
+                        <Media />
+                        <LocationIntelligence />
+                        <Terms />
+                    </div>
                 </Suspense>
             </div>
             <Suspense fallback={null}>
