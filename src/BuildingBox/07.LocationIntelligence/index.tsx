@@ -43,7 +43,7 @@ export default function LocationIntelligence() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden relative"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden relative"
             >
                 {/* Ambient glow */}
                 <motion.div
@@ -91,7 +91,7 @@ export default function LocationIntelligence() {
                                 key={idx}
                                 variants={gridItem}
                                 whileHover={{ y: -2, scale: 1.02 }}
-                                className="relative rounded-xl border border-gray-100 bg-gray-50/50 backdrop-blur-sm p-3 flex flex-col justify-between min-h-[90px] overflow-hidden opacity-65 cursor-default hover:opacity-85 hover:border-[#7c3aed]/20 hover:bg-[#7c3aed]/[0.02] transition-all duration-300 group shadow-sm"
+                                className="relative rounded-xl p-3 flex flex-col justify-between min-h-[90px] overflow-hidden opacity-65 cursor-default hover:opacity-85 hover:bg-[#7c3aed]/[0.02] transition-all duration-300 group"
                             >
                                 <motion.div
                                     animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -100,7 +100,7 @@ export default function LocationIntelligence() {
                                 >
                                     <Lock size={10} className="text-gray-300 group-hover:text-[#7c3aed]/40 transition-colors duration-300" />
                                 </motion.div>
-                                <div className="w-6 h-6 rounded-lg bg-[#7c3aed]/8 flex items-center justify-center text-[#7c3aed] mb-2 border border-[#7c3aed]/12">
+                                <div className="w-6 h-6 flex items-center justify-center text-[#7c3aed] mb-2">
                                     <item.icon size={12} />
                                 </div>
                                 <div className="flex flex-col gap-0.5">

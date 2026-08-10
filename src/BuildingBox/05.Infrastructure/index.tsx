@@ -37,7 +37,7 @@ export default function Infrastructure() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
             >
                 {/* Section header */}
                 <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
@@ -74,7 +74,7 @@ export default function Infrastructure() {
                                     <span className="text-[0.65rem] text-gray-400 font-medium">{item.sub}</span>
                                 </div>
                             </div>
-                            <span className={`text-[0.58rem] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border shadow-sm ${getStatusStyle(item.status)}`}>
+                            <span className={`text-[0.58rem] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full ${getStatusStyle(item.status).replace('border-', 'border-transparent ')}`}>
                                 {item.status}
                             </span>
                         </motion.div>

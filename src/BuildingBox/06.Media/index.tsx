@@ -31,7 +31,7 @@ export default function Media() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
             >
                 {/* Section header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100/80">
@@ -130,10 +130,10 @@ export default function Media() {
                                             key={idx}
                                             variants={gridItem}
                                             whileHover={{ x: 3 }}
-                                            className="flex items-center justify-between p-4 rounded-xl border border-gray-100 bg-gray-50/50 backdrop-blur-sm group cursor-default hover:border-[#d4af37]/20 hover:bg-[#d4af37]/[0.02] transition-all duration-300 shadow-sm"
+                                            className="flex items-center justify-between p-4 rounded-xl group cursor-default hover:bg-[#d4af37]/[0.02] transition-all duration-300"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-xl bg-[#7c3aed]/8 text-[#7c3aed] flex items-center justify-center shrink-0 border border-[#7c3aed]/15 group-hover:bg-[#7c3aed]/15 transition-colors duration-300">
+                                                <div className="w-10 h-10 rounded-xl text-[#7c3aed] flex items-center justify-center shrink-0 group-hover:bg-[#7c3aed]/5 transition-colors duration-300">
                                                     <plan.icon size={17} />
                                                 </div>
                                                 <div className="flex flex-col">
@@ -142,10 +142,10 @@ export default function Media() {
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-1.5">
-                                                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-8 h-8 rounded-xl bg-gray-100/80 hover:bg-[#d4af37]/10 text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all border border-transparent hover:border-[#d4af37]/20">
+                                                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-8 h-8 rounded-xl text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all hover:bg-[#d4af37]/10">
                                                     <Eye size={15} />
                                                 </motion.button>
-                                                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-8 h-8 rounded-xl bg-gray-100/80 hover:bg-[#d4af37]/10 text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all border border-transparent hover:border-[#d4af37]/20">
+                                                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-8 h-8 rounded-xl text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all hover:bg-[#d4af37]/10">
                                                     <Download size={15} />
                                                 </motion.button>
                                             </div>

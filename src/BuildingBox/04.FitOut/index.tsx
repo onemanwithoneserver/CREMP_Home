@@ -31,7 +31,7 @@ export default function FitOut() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
             >
                 {/* Accordion header */}
                 <motion.button
@@ -102,8 +102,8 @@ export default function FitOut() {
                                             whileHover={{ x: 3 }}
                                             className="flex items-center gap-2.5 text-gray-600 group cursor-default py-2 px-2 rounded-xl hover:bg-[#d4af37]/[0.03] transition-all duration-300"
                                         >
-                                            <div className="w-7 h-7 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#d4af37]/10 group-hover:border-[#d4af37]/20 transition-all duration-300">
-                                                <item.icon size={13} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
+                                            <div className="w-7 h-7 flex items-center justify-center shrink-0 transition-all duration-300">
+                                                <item.icon size={15} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
                                             </div>
                                             <span className="text-[0.78rem] font-medium truncate">{item.label}</span>
                                             {item.active && (

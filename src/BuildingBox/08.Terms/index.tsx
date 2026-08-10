@@ -31,7 +31,7 @@ export default function Terms() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
             >
                 {/* Section header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100/80">

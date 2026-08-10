@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useAnimationFrame, type Variants } from "framer-motion";
 import { Play, Heart, Share2, Flag, MapPin } from "lucide-react";
 import { heroData } from "./data";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const staggerContainer: Variants = {
     hidden: { opacity: 0 },
@@ -32,7 +32,6 @@ const scaleIn: Variants = {
 const actionIcons = [
     { Icon: Heart, label: "Save", hoverBg: "hover:bg-rose-500/90 hover:border-rose-500", hoverShadow: "hover:shadow-[0_4px_15px_rgba(244,63,94,0.3)]" },
     { Icon: Share2, label: "Share", hoverBg: "hover:bg-emerald-500/90 hover:border-emerald-500", hoverShadow: "hover:shadow-[0_4px_15px_rgba(52,211,153,0.3)]" },
-    { Icon: Flag, label: "Report", hoverBg: "hover:bg-amber-500/90 hover:border-amber-500", hoverShadow: "hover:shadow-[0_4px_15px_rgba(245,158,11,0.3)]" },
 ];
 
 export default function MobileHero() {
@@ -43,6 +42,21 @@ export default function MobileHero() {
     });
     const imageY = useTransform(scrollYProgress, [0, 1], [0, 80]);
     const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+    const marqueeRef = useRef<HTMLDivElement>(null);
+    const [paused, setPaused] = useState(false);
+    const x = useRef(0);
+
+    useAnimationFrame((_, delta) => {
+        if (paused || !marqueeRef.current) return;
+        const speed = 30; // pixels per second
+        x.current -= (speed * delta) / 1000;
+        const loopWidth = marqueeRef.current.scrollWidth / 2;
+        if (-x.current >= loopWidth) {
+            x.current = 0;
+        }
+        marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
+    });
 
     return (
         <div
@@ -95,10 +109,10 @@ export default function MobileHero() {
                 transition={{ delay: 0.6, type: "spring", stiffness: 280, damping: 20 }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.92 }}
-                className="absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-16 h-16 rounded-full bg-[#d4af37]/90 backdrop-blur-xl border-2 border-[#f9df9f]/50 flex items-center justify-center text-[#0a1128] shadow-[0_0_50px_rgba(212,175,55,0.4)] transition-all duration-300 group"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[4.5rem] h-[4.5rem] rounded-full bg-[#0a1128]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg transition-all duration-300 group hover:bg-[#0a1128]/90 hover:border-white/40"
             >
-                <div className="absolute inset-0 rounded-full animate-ping bg-[#d4af37] opacity-15" />
-                <Play size={24} className="ml-1 transition-transform group-hover:scale-110" fill="currentColor" />
+                <div className="absolute inset-0 rounded-full animate-ping bg-white opacity-[0.03]" />
+                <Play size={26} className="ml-1.5 transition-transform group-hover:scale-110" fill="currentColor" />
             </motion.button>
 
             {/* Content area */}
@@ -142,41 +156,44 @@ export default function MobileHero() {
                         </motion.div>
                     </div>
 
-                    {/* Media info pill */}
-                    <motion.div variants={fadeInUp} className="flex items-center">
-                        <span className="inline-flex items-center gap-2 bg-white/6 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full text-xs font-semibold text-white/85">
-                            <Play size={11} className="text-[#d4af37]" />
-                            {heroData.mediaInfo.videos} Videos
-                            <span className="text-white/25 mx-0.5">•</span>
-                            {heroData.mediaInfo.photos} Photos
-                        </span>
-                    </motion.div>
 
-                    {/* Stats cards — horizontal scroll */}
-                    <motion.div
-                        variants={fadeInUp}
-                        className="flex gap-2 w-full mt-0.5 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide snap-x snap-mandatory"
-                    >
-                        {heroData.stats.map((stat, idx) => (
-                            <motion.div
-                                key={idx}
-                                variants={scaleIn}
-                                whileHover={{ y: -3, scale: 1.02 }}
-                                className="flex flex-col gap-1.5 p-3 rounded-xl bg-white/[0.07] border border-white/[0.1] backdrop-blur-xl shrink-0 min-w-[100px] snap-start transition-all duration-300 hover:bg-white/[0.12] hover:border-white/20 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)]"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-white/8 border border-white/10">
-                                        <stat.icon size={12} strokeWidth={2.5} className="text-white/80" />
-                                    </div>
-                                    <span className="text-[0.55rem] font-bold text-white/50 tracking-[0.15em] uppercase">
-                                        {stat.label}
-                                    </span>
+                    {/* Stats cards — horizontal scroll (Marquee) */}
+                    <motion.div variants={fadeInUp} className="relative z-10 overflow-hidden w-[calc(100%+2.5rem)] -mx-5 px-5 py-4 group">
+                        <motion.div
+                            ref={marqueeRef}
+                            className="flex w-max"
+                            onPointerEnter={() => setPaused(true)}
+                            onPointerLeave={() => setPaused(false)}
+                            onPointerDown={() => setPaused(true)}
+                            onPointerUp={() => setPaused(false)}
+                        >
+                            {[0, 1].map((copy) => (
+                                <div key={copy} className="flex gap-2.5 pr-2.5 shrink-0">
+                                    {heroData.stats.map((stat, idx) => (
+                                        <motion.div
+                                            key={`${copy}-${idx}`}
+                                            whileHover={{ scale: 1.05, y: -2 }}
+                                            className="flex flex-col gap-2 p-3.5 rounded-[10px] bg-[#121c33]/90 border border-white/10 backdrop-blur-xl shrink-0 min-w-[125px] transition-all duration-300 hover:bg-[#1a2542] hover:border-[#d4af37]/30 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)] hover:z-10"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0a1128] border border-white/5 shadow-inner">
+                                                    <stat.icon size={13} strokeWidth={2.5} className="text-[#d4af37]" />
+                                                </div>
+                                                <span className="text-[0.6rem] font-bold text-gray-400 tracking-[0.15em] uppercase">
+                                                    {stat.label}
+                                                </span>
+                                            </div>
+                                            <span className="text-[1.15rem] font-bold text-white tracking-tight mt-0.5">
+                                                {stat.value}
+                                            </span>
+                                        </motion.div>
+                                    ))}
                                 </div>
-                                <span className="text-[1.05rem] font-bold text-white tracking-tight">
-                                    {stat.value}
-                                </span>
-                            </motion.div>
-                        ))}
+                            ))}
+                        </motion.div>
+                        {/* Gradient edges for marquee */}
+                        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#0a1128] to-transparent z-10" />
+                        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#0a1128] to-transparent z-10" />
                     </motion.div>
                 </motion.div>
             </div>

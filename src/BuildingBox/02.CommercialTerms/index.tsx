@@ -26,7 +26,7 @@ export default function CommercialTerms() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
             >
                 {/* Section header */}
                 <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
@@ -87,7 +87,7 @@ export default function CommercialTerms() {
                             </div>
 
                             {'secondaryCard' in currentData && currentData.secondaryCard && (
-                                <div className="border border-gray-200/80 rounded-xl p-3.5 flex flex-col items-center justify-center min-w-[85px] bg-gray-50/60 backdrop-blur-sm shadow-sm">
+                                <div className="flex flex-col items-end justify-center min-w-[85px]">
                                     <span className="text-[0.52rem] font-bold text-gray-400 tracking-[0.15em] uppercase">{currentData.secondaryCard.label}</span>
                                     <span className="text-[1.15rem] font-bold text-[#0a1128] mt-0.5 tracking-tight">{currentData.secondaryCard.value}</span>
                                     <span className="text-[0.62rem] text-gray-400 font-medium">{currentData.secondaryCard.desc}</span>
@@ -118,8 +118,8 @@ export default function CommercialTerms() {
                                     className="flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 px-1 rounded-lg transition-all duration-300 cursor-default group hover:bg-[#d4af37]/[0.03]"
                                 >
                                     <div className="flex items-center gap-3 text-gray-500">
-                                        <div className="w-7 h-7 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:bg-[#d4af37]/10 group-hover:border-[#d4af37]/20 transition-all duration-300">
-                                            <detail.icon size={13} className="group-hover:text-[#d4af37] transition-colors duration-300" />
+                                        <div className="w-7 h-7 flex items-center justify-center transition-all duration-300">
+                                            <detail.icon size={15} className="group-hover:text-[#d4af37] transition-colors duration-300" />
                                         </div>
                                         <span className="text-[0.82rem] font-medium">{detail.label}</span>
                                     </div>

@@ -33,7 +33,7 @@ export default function SpaceOverview() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)] border border-gray-200/60 overflow-hidden"
+                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
             >
                 {/* Section header */}
                 <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
@@ -60,7 +60,7 @@ export default function SpaceOverview() {
                                 key={idx}
                                 variants={tagItem}
                                 whileHover={{ scale: 1.05, y: -2 }}
-                                className={`px-3 py-1.5 text-[0.62rem] font-bold rounded-full border shadow-sm cursor-default tracking-wide uppercase transition-all duration-300 hover:shadow-md ${tag.color}`}
+                                className={`px-3 py-1.5 text-[0.62rem] font-bold rounded-full cursor-default tracking-wide uppercase transition-all duration-300 ${tag.color.replace('border', '').replace('bg-', 'bg-opacity-10 text-')}`}
                             >
                                 {tag.text}
                             </motion.span>
@@ -76,8 +76,8 @@ export default function SpaceOverview() {
                                 className="flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 px-1 rounded-lg cursor-default group transition-all duration-300 hover:bg-[#d4af37]/[0.03]"
                             >
                                 <div className="flex items-center gap-3 text-gray-500">
-                                    <div className="w-7 h-7 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:bg-[#d4af37]/10 group-hover:border-[#d4af37]/20 transition-all duration-300">
-                                        <detail.icon size={13} className="group-hover:text-[#d4af37] transition-colors duration-300" />
+                                    <div className="w-7 h-7 flex items-center justify-center transition-all duration-300">
+                                        <detail.icon size={15} className="group-hover:text-[#d4af37] transition-colors duration-300" />
                                     </div>
                                     <span className="text-[0.82rem] font-medium">{detail.label}</span>
                                 </div>
