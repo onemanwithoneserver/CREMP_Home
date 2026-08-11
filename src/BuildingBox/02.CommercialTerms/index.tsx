@@ -30,22 +30,22 @@ export default function CommercialTerms() {
         />
 
         <div className="px-4 mt-3">
-          <div className="flex w-full bg-gray-50/80 rounded-lg p-1 border border-gray-200/80 shadow-inner relative gap-1.5 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60"></div>
+          <div className="flex w-full bg-slate-50/50 backdrop-blur-2xl rounded-[2px] p-0 border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] relative gap-0 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none"></div>
             {commercialData.tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 py-2 text-[0.62rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 uppercase tracking-[0.1em] focus-visible:outline-none border ${
+                className={`relative flex-1 py-2 text-[0.68rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
                   activeTab === tab
-                    ? "border-transparent text-white"
-                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 text-[#0a1128]"
+                    ? "text-white"
+                    : "bg-white/80 hover:bg-white text-[#0a1128] border-r border-gray-200/50 last:border-r-0"
                 }`}
               >
                 {activeTab === tab && (
                   <motion.div
                     layoutId="commercialTabActive"
-                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                    className="absolute inset-0 bg-gradient-to-b from-[#1c2e64] to-[#0b1b42] rounded-[2px] shadow-[0_4px_16px_rgba(11,27,66,0.3),inset_0_1px_2px_rgba(255,255,255,0.3)] ring-1 ring-[#0b1b42]/50"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -53,9 +53,7 @@ export default function CommercialTerms() {
                       mass: 0.8,
                     }}
                   >
-                    <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
-                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
-                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
+                    <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent rounded-t-[2px] pointer-events-none" />
                   </motion.div>
                 )}
                 <span className="relative z-10">{tab}</span>
