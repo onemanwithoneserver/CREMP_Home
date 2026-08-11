@@ -1,12 +1,12 @@
 import {
   Percent,
-  Building,
-  Stamp,
-  Lock,
-  ShieldCheck,
-  Calendar,
-  Receipt,
-  IndianRupee,
+  FileSignature,
+  BadgeIndianRupee,
+  MapPin,
+  Vault,
+  CalendarClock,
+  Landmark,
+  Wallet,
 } from "lucide-react";
 
 export const termsData = {
@@ -23,13 +23,13 @@ export const termsData = {
     {
       label: "Lease preference",
       value: "Company lease preferred",
-      icon: Building,
+      icon: FileSignature,
       color: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]",
     },
     {
       label: "Additional charges",
       value: "Registration & stamp duty charges extra",
-      icon: Stamp,
+      icon: BadgeIndianRupee,
       color: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
     },
   ],
@@ -37,31 +37,31 @@ export const termsData = {
     {
       label: "Site visits",
       value: "By appointment only",
-      icon: Calendar,
+      icon: MapPin,
       color: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]",
     },
     {
       label: "Security deposit",
       value: "Negotiable",
-      icon: ShieldCheck,
+      icon: Vault,
       color: "bg-gradient-to-br from-[#bf953f] to-[#b38728]",
     },
     {
       label: "Lock-in period",
       value: "36 months",
-      icon: Lock,
+      icon: CalendarClock,
       color: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C]",
     },
     {
       label: "Taxes",
       value: "GST applicable on monthly rent",
-      icon: Receipt,
+      icon: Landmark,
       color: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
     },
     {
       label: "Advance rent",
       value: "3 months",
-      icon: IndianRupee,
+      icon: Wallet,
       color: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]",
     },
   ],
