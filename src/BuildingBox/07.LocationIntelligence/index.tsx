@@ -39,14 +39,14 @@ export default function LocationIntelligence() {
             <motion.div
               animate={{
                 boxShadow: [
-                  "0 0 0 0 rgba(11, 27, 66, 0.2)",
+                  "0 0 0 0 rgba(11, 27, 66, 0.4)",
                   "0 0 0 15px rgba(11, 27, 66, 0)",
                 ],
               }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-[#0b1b42] mb-3 border border-[#0b1b42]/10"
+              className="w-12 h-12 rounded-full bg-[#0b1b42] shadow-[0_4px_15px_rgba(11,27,66,0.3)] flex items-center justify-center text-white mb-3 border border-[#1c2e64]"
             >
-              <Lock size={20} />
+              <Lock size={20} strokeWidth={2.5} />
             </motion.div>
             <div className="bg-white/90 px-4 py-2 rounded-full shadow-sm border border-gray-100 flex items-center gap-2">
               <span className="flex gap-1">
