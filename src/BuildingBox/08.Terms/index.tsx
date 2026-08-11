@@ -111,7 +111,7 @@ export default function Terms() {
                     </div>
                   </div>
 
-                  <div className="flex-1 h-full px-4 rounded-[4px] bg-gradient-to-br from-white/95 to-white/70 backdrop-blur-xl border border-gray-200/80 hover:border-[#d4af37]/50 transition-all duration-300 flex items-center gap-3 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.15)] cursor-default overflow-hidden relative">
+                  <div className="flex-1 p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px] overflow-hidden">
                     <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:animate-[shimmer_1.5s_ease-in-out_infinite]" />
 
                     <div className="flex flex-col min-w-0 z-10 transform group-hover:translate-x-1 transition-transform duration-300">
@@ -162,7 +162,7 @@ export default function Terms() {
                           </div>
                         </div>
 
-                        <div className="flex-1 h-full px-4 rounded-[4px] bg-gradient-to-br from-white/95 to-white/70 backdrop-blur-xl border border-gray-200/80 hover:border-[#d4af37]/50 transition-all duration-300 flex items-center gap-3 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.15)] cursor-default overflow-hidden relative">
+                        <div className="flex-1 p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px] overflow-hidden">
                           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:animate-[shimmer_1.5s_ease-in-out_infinite]" />
 
                           <div className="flex flex-col min-w-0 z-10 transform group-hover:translate-x-1 transition-transform duration-300">
@@ -189,7 +189,7 @@ export default function Terms() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 font-semibold text-[10px] px-5 py-2.5 rounded-[4px] border border-[#d4af37]/40 text-[#d4af37] tracking-wider uppercase transition-all bg-white/80 backdrop-blur-md hover:bg-[#d4af37]/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_6px_16px_rgba(212,175,55,0.2)] w-max"
+                className="flex items-center justify-center gap-2 font-semibold text-[10px] px-5 py-2.5 rounded-[4px] text-[#d4af37] tracking-wider uppercase transition-all backdrop-blur-md  w-max"
               >
                 {isOpen ? "Hide Specs" : "View All Specs"}
                 <motion.div
