@@ -13,10 +13,22 @@ const StickyFooter = lazy(() => import("./StickyFooter"));
 
 
 const SectionLoader = () => (
-  <div className="w-full h-32 flex flex-col items-center justify-center gap-3">
-    <div className="w-6 h-6 border-2 border-[#d4af37]/30 border-t-[#d4af37] rounded-full animate-spin" />
-    <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
-      <div className="h-full bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37] to-[#d4af37]/20 animate-[pulse_1.5s_ease-in-out_infinite] w-full" />
+  <div className="w-full py-16 flex flex-col items-center justify-center gap-5">
+    <div className="relative flex items-center justify-center w-12 h-12">
+      <div className="absolute inset-0 border-[3px] border-gray-100 rounded-full" />
+      <div className="absolute inset-0 border-[3px] border-[#d4af37] rounded-full border-t-transparent animate-spin" />
+      <div className="absolute inset-2 border-[3px] border-[#d4af37]/30 rounded-full border-b-transparent animate-[spin_1.5s_linear_infinite_reverse]" />
+      <div className="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+    </div>
+    <div className="flex flex-col items-center gap-1.5">
+      <span className="text-[0.68rem] font-bold tracking-[0.25em] text-[#d4af37] uppercase animate-pulse">
+        Loading Content
+      </span>
+      <div className="flex gap-1.5">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#d4af37]/40 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+        ))}
+      </div>
     </div>
   </div>
 );

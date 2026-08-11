@@ -23,7 +23,7 @@ export const commercialData = {
       primaryAmountColor: "text-[#0a1128] dark:text-white",
       primaryDesc: "/mo",
       primarySub: "₹100/sq.ft · Fixed Amount",
-      secondaryCard: {
+      secondaryDarkCard: {
         label: "DEPOSIT",
         value: "₹3.6L",
         desc: "3 months",

@@ -70,32 +70,32 @@ export default function Infrastructure() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-col gap-0 px-4 py-4"
+          className="flex flex-col gap-2.5 px-4 py-4"
         >
           {infrastructureData.items.map((item, idx) => (
             <motion.div
               key={idx}
               variants={rowReveal}
-              whileHover={{ x: 3 }}
-              className="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
+              whileHover={{ scale: 1.015, y: -1 }}
+              className="flex items-center justify-between p-3.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group cursor-default"
             >
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-3.5">
                 <div
-                  className={`w-7 h-7 rounded-[4px] ${item.iconBg} flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110`}
+                  className={`w-9 h-9 rounded-[6px] ${item.iconBg} flex items-center justify-center shrink-0 shadow-sm transition-transform duration-400 group-hover:scale-110 group-hover:rotate-3`}
                 >
-                  <item.icon size={13} strokeWidth={2.5} />
+                  <item.icon size={16} strokeWidth={2.2} className="text-white" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[0.75rem] font-semibold text-[#0a1128]">
+                  <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
                     {item.label}
                   </span>
-                  <span className="text-[0.6rem] text-gray-400 font-medium">
+                  <span className="text-[0.62rem] text-gray-400 font-medium mt-0.5">
                     {item.sub}
                   </span>
                 </div>
               </div>
               <span
-                className={`text-[0.58rem] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-[4px] ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
+                className={`text-[0.62rem] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-[6px] shadow-sm ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
               >
                 {item.status}
               </span>
