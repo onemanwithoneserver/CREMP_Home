@@ -28,7 +28,7 @@ export default function SectionHeader({
         <div className="flex flex-col min-w-0 gap-1.5 justify-center">
           {overline && (
             <div className="flex w-fit items-center">
-              <span className="flex items-center gap-1 rounded-[4px] border border-[#d4af37]/25 bg-gradient-to-r from-[#d4af37]/5 to-[#d4af37]/15 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-widest text-[#d4af37]/90 shadow-[0_0_8px_rgba(212,175,55,0.1)] backdrop-blur-sm">
+              <span className="flex items-center gap-1 rounded-[4px] border border-[#d4af37]/25 bg-gradient-to-r from-[#d4af37]/5 to-[#d4af37]/15 px-2.5 py-0.5 text-[0.65rem] font-semibold tracking-widest text-[#d4af37]/90 shadow-[0_0_8px_rgba(212,175,55,0.1)] backdrop-blur-sm">
                 {overline}
               </span>
             </div>

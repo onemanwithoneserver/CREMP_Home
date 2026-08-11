@@ -71,7 +71,7 @@ export default function Infrastructure() {
                 </div>
               </div>
               <span
-                className={`text-[0.62rem] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-[6px] shadow-sm ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
+                className={`text-[0.62rem] font-semibold tracking-[0.1em] px-3 py-1.5 rounded-[6px] shadow-sm ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
               >
                 {item.status}
               </span>

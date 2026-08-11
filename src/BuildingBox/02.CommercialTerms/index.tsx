@@ -36,7 +36,7 @@ export default function CommercialTerms() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 py-2 text-[0.68rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
+                className={`relative flex-1 py-2 text-[0.68rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
                   activeTab === tab
                     ? "text-white"
                     : "bg-white/80 hover:bg-white text-[#0a1128] border-r border-gray-200/50 last:border-r-0"
@@ -77,13 +77,13 @@ export default function CommercialTerms() {
                 
                 <div className="flex flex-col relative z-10 gap-1.5 w-full">
                   <div className="flex justify-between items-start w-full">
-                    <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5 pt-1">
+                    <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                       {currentData.primaryAmountLabel}
                     </span>
                     
                     {("secondaryBadge" in currentData && currentData.secondaryBadge) && (
-                      <div className={`px-2 py-1 rounded-[4px] border text-[0.6rem] font-bold tracking-wider uppercase shadow-sm ${currentData.secondaryBadge.color}`}>
+                      <div className={`px-2 py-1 rounded-[4px] border text-[0.6rem] font-semibold tracking-wider shadow-sm ${currentData.secondaryBadge.color}`}>
                         {currentData.secondaryBadge.text}
                       </div>
                     )}
@@ -96,7 +96,7 @@ export default function CommercialTerms() {
                   )}
                   
                   <div className="flex items-baseline gap-1 mt-0.5 ml-3">
-                    <span className={`text-[2.2rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
+                    <span className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
                       {currentData.primaryAmount}
                     </span>
                     {currentData.primaryDesc && (
@@ -111,10 +111,10 @@ export default function CommercialTerms() {
               {("secondaryDarkCard" in currentData && currentData.secondaryDarkCard) ? (
                 <div className="bg-[#0b1b42] rounded-[8px] p-3 flex flex-col items-center justify-center min-w-[95px] shadow-[0_8px_25px_rgba(11,27,66,0.2)] relative overflow-hidden border border-[#d4af37]/30 group shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="text-[0.5rem] font-bold text-gray-400 tracking-[0.15em] uppercase text-center relative z-10">
+                  <span className="text-[0.5rem] font-semibold text-gray-400 tracking-[0.15em] text-center relative z-10">
                     {currentData.secondaryDarkCard.label}
                   </span>
-                  <span className="text-[1.2rem] font-bold text-white mt-1 tracking-tight relative z-10">
+                  <span className="text-[1.2rem] font-semibold text-white mt-1 tracking-tight relative z-10">
                     {currentData.secondaryDarkCard.value}
                   </span>
                   {"desc" in currentData.secondaryDarkCard && currentData.secondaryDarkCard.desc && (
@@ -143,7 +143,7 @@ export default function CommercialTerms() {
                     </span>
                   </div>
                   <span
-                    className={`text-[0.82rem] font-bold tracking-tight ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                    className={`text-[0.82rem] font-semibold tracking-tight ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
                   >
                     {detail.value}
                   </span>
@@ -157,7 +157,7 @@ export default function CommercialTerms() {
                 
                 {currentData.footer.type === "tag-text" && (
                   <div className="flex items-center gap-3 ml-2">
-                    <span className="px-2.5 py-1 text-[0.55rem] font-bold rounded-[4px] bg-[#d4af37] text-white tracking-[0.15em] uppercase shadow-[0_2px_8px_rgba(212,175,55,0.4)]">
+                    <span className="px-2.5 py-1 text-[0.55rem] font-semibold rounded-[4px] bg-[#d4af37] text-white tracking-[0.15em] shadow-[0_2px_8px_rgba(212,175,55,0.4)]">
                       {currentData.footer.tag}
                     </span>
                     <span className="text-[0.72rem] text-gray-600 font-medium italic">
@@ -170,7 +170,7 @@ export default function CommercialTerms() {
                     <span className="text-[0.72rem] text-gray-600 font-medium">
                       {currentData.footer.left}
                     </span>
-                    <span className="text-[0.75rem] text-[#0a1128] font-bold">
+                    <span className="text-[0.75rem] text-[#0a1128] font-semibold">
                       {currentData.footer.right}
                     </span>
                   </div>

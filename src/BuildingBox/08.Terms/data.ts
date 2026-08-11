@@ -5,7 +5,7 @@ import {
   Lock,
   ShieldCheck,
   Bell,
-  Receipt,
+  IndianRupee,
   Zap,
 } from "lucide-react";
 
@@ -55,7 +55,7 @@ export const termsData = {
     {
       label: "PROPERTY TAX",
       value: "To be borne by owner",
-      icon: Receipt,
+      icon: IndianRupee,
       color: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
     },
     {

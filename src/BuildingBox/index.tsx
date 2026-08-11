@@ -21,7 +21,7 @@ const SectionLoader = () => (
       <div className="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
     </div>
     <div className="flex flex-col items-center gap-1.5">
-      <span className="text-[0.68rem] font-bold tracking-[0.25em] text-[#d4af37] uppercase animate-pulse">
+      <span className="text-[0.68rem] font-semibold tracking-[0.25em] text-[#d4af37] animate-pulse">
         Loading Content
       </span>
       <div className="flex gap-1.5">

@@ -121,7 +121,7 @@ export default function MobileHero() {
             {heroData.badges.map((badge, idx) => (
               <span
                 key={idx}
-                className={`px-3 py-1.5 text-[0.6rem] font-semibold rounded-[2px] border backdrop-blur-md uppercase tracking-[0.12em] ${
+                className={`px-3 py-1.5 text-[0.6rem] font-semibold rounded-[2px] border backdrop-blur-md tracking-[0.12em] ${
                   idx === 0
                     ? "bg-[#d4af37]/15 text-[#f9df9f] border-[#d4af37]/40 shadow-sm"
                     : "bg-white/8 text-white/90 border-white/15"
@@ -178,7 +178,7 @@ export default function MobileHero() {
                             className="text-white"
                           />
                         </div>
-                        <span className="text-[0.6rem] font-semibold text-gray-300 tracking-[0.15em] uppercase">
+                        <span className="text-[0.6rem] font-semibold text-gray-300 tracking-[0.15em]">
                           {stat.label}
                         </span>
                       </div>

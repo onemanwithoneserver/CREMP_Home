@@ -38,9 +38,9 @@ export default function SpaceOverview() {
           <div className="border border-gray-100 rounded-[6px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsFeaturesOpen(!isFeaturesOpen)}
-              className="w-full flex items-center justify-between p-2.5 bg-gray-50/50 hover:bg-gray-50 text-[0.68rem] font-bold text-[#0a1128] transition-colors"
+              className="w-full flex items-center justify-between p-2.5 bg-gray-50/50 hover:bg-gray-50 text-[0.68rem] font-semibold text-[#0a1128] transition-colors"
             >
-              <span className="uppercase tracking-wide flex items-center gap-1.5">
+              <span className="tracking-wide flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
                 Key Specifications ({spaceOverviewData.tags.length})
               </span>
@@ -72,7 +72,7 @@ export default function SpaceOverview() {
                         className="flex items-center gap-2 cursor-default group"
                       >
                         <BadgeCheck size={15} strokeWidth={2.5} className="text-[#d4af37] shrink-0 shadow-sm rounded-full bg-amber-50/50" />
-                        <span className="text-[0.62rem] font-bold tracking-wide uppercase text-[#0b1b42] transition-colors group-hover:text-[#d4af37]">
+                        <span className="text-[0.62rem] font-semibold tracking-wide text-[#0b1b42] transition-colors group-hover:text-[#d4af37]">
                           {tag.text}
                         </span>
                       </motion.div>
@@ -98,7 +98,7 @@ export default function SpaceOverview() {
                     {detail.label}
                   </span>
                 </div>
-                <span className="text-[0.82rem] font-bold tracking-tight text-[#0a1128]">
+                <span className="text-[0.82rem] font-semibold tracking-tight text-[#0a1128]">
                   {detail.value}
                 </span>
               </motion.div>

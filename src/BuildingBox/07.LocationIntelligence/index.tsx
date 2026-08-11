@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, Lock, Sparkles, Check } from "lucide-react";
+import { Cpu, Lock, Check } from "lucide-react";
 import { locationIntelligenceData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer, gridItem } from "../components/animations";
@@ -58,7 +58,7 @@ export default function LocationIntelligence() {
                   className="w-1.5 h-1.5 rounded-full bg-[#0b1b42]"
                 />
               </span>
-              <span className="text-[0.6rem] font-bold text-[#0b1b42] tracking-[0.2em] uppercase absolute transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+              <span className="text-[0.6rem] font-semibold text-[#0b1b42] tracking-[0.2em] absolute transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
                 Coming Soon
               </span>
             </div>
@@ -99,7 +99,7 @@ export default function LocationIntelligence() {
                       }}
                       className="w-1.5 h-1.5 rounded-full bg-gray-400"
                     />
-                    <span className="text-[0.52rem] text-gray-500 font-semibold uppercase tracking-wider">
+                    <span className="text-[0.52rem] text-gray-500 font-semibold tracking-wider">
                       {item.status}
                     </span>
                   </div>
@@ -125,7 +125,7 @@ export default function LocationIntelligence() {
                 onClick={() => setIsNotified(true)}
                 whileHover={!isNotified ? { scale: 1.05 } : {}}
                 whileTap={!isNotified ? { scale: 0.95 } : {}}
-                className={`text-[0.65rem] font-semibold px-3 py-1.5 rounded-[2px] shadow-sm border uppercase tracking-wider flex items-center justify-center transition-all duration-300 min-w-[85px] ${
+                className={`text-[0.65rem] font-semibold px-3 py-1.5 rounded-[2px] shadow-sm border tracking-wider flex items-center justify-center transition-all duration-300 min-w-[85px] ${
                   isNotified
                     ? "bg-emerald-50/80 text-emerald-600 border-emerald-200 cursor-default"
                     : "text-[#0b1b42] bg-white border-gray-200 hover:border-[#0b1b42]/30"

@@ -39,7 +39,7 @@ export default function Media() {
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
-                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 text-[0.68rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
+                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 text-[0.68rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
                   activeTab === tab.label
                     ? "text-white"
                     : "bg-white/80 hover:bg-white text-[#0a1128] border-r border-gray-200/50 last:border-r-0"
