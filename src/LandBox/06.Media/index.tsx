@@ -120,7 +120,7 @@ export default function Media() {
                 </motion.div>
               )}
 
-              {activeTab === "Floor Plan" && (
+              {activeTab === "Site Plan" && (
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"

@@ -12,8 +12,9 @@ const getStatusStyle = (status: string) => {
       "CONNECTED",
       "COMPLIANT",
       "WIRED",
-      "WITHIN UNIT",
+      "TESTED",
       "YES",
+      "AVAILABLE",
     ].includes(s)
   )
     return "bg-emerald-50/80 text-emerald-600 border-emerald-100";

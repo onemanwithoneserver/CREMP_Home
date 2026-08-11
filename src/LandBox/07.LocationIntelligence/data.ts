@@ -1,7 +1,7 @@
 import {
   Activity,
   Store,
-  Handshake,
+  Target,
   BarChart3,
   Home,
   Globe,
@@ -27,15 +27,15 @@ export const locationIntelligenceData = {
       bgClass: "bg-gradient-to-br from-[#bf953f] to-[#b38728] shadow-sm shadow-[#d4af37]/20 border-none",
     },
     {
-      label: "Retail Presence",
+      label: "Commercial Presence",
       status: "Indexing...",
       icon: Store,
       bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] shadow-sm shadow-[#3B82F6]/20 border-none",
     },
     {
-      label: "Franchise Opportunity",
+      label: "Development Potential",
       status: "Processing...",
-      icon: Handshake,
+      icon: Target,
       bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C] shadow-sm shadow-[#F97316]/20 border-none",
     },
     {

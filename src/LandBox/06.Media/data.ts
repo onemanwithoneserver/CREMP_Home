@@ -4,6 +4,7 @@ import {
   Images,
   LayoutGrid,
   Navigation,
+  Map,
 } from "lucide-react";
 
 import premiumPlotImg from "../../assets/premium_land_plot.png";
@@ -11,9 +12,10 @@ import premiumPlotImg from "../../assets/premium_land_plot.png";
 export const mediaData = {
   title: "Media",
   tabs: [
-    { label: "Video", icon: Video },
-    { label: "Virtual Tour", icon: Maximize },
-    { label: "Photos", icon: Images },
+    { label: "Video", count: 3, icon: Video },
+    { label: "Site Plan", count: 2, icon: Map },
+    { label: "Virtual Tour", count: 1, icon: Maximize },
+    { label: "Photos", count: 14, icon: Images },
   ],
   videos: [
     {
