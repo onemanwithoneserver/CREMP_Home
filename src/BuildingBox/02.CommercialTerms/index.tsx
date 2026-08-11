@@ -75,30 +75,36 @@ export default function CommercialTerms() {
               <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[8px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
                 
-                <div className="flex justify-between items-center relative z-10 gap-2">
-                  <div className="flex flex-col">
-                    <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
+                <div className="flex flex-col relative z-10 gap-1.5 w-full">
+                  <div className="flex justify-between items-start w-full">
+                    <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5 pt-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                       {currentData.primaryAmountLabel}
                     </span>
                     
-                    <div className="flex items-baseline gap-1 mt-1.5">
-                      <span className={`text-[1.75rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
-                        {currentData.primaryAmount}
-                      </span>
-                      {currentData.primaryDesc && (
-                        <span className="text-[0.75rem] text-gray-500 font-semibold tracking-wide ml-0.5">
-                          {currentData.primaryDesc}
-                        </span>
-                      )}
-                    </div>
+                    {("secondaryBadge" in currentData && currentData.secondaryBadge) && (
+                      <div className={`px-2 py-1 rounded-[4px] border text-[0.6rem] font-bold tracking-wider uppercase shadow-sm ${currentData.secondaryBadge.color}`}>
+                        {currentData.secondaryBadge.text}
+                      </div>
+                    )}
                   </div>
                   
                   {currentData.primarySub && (
-                    <span className="text-[0.65rem] text-gray-500 font-medium text-right leading-[1.2] min-w-[65px] shrink-0">
+                    <span className="text-[0.72rem] text-gray-500 font-medium ml-3 mt-1">
                       {currentData.primarySub}
                     </span>
                   )}
+                  
+                  <div className="flex items-baseline gap-1 mt-0.5 ml-3">
+                    <span className={`text-[2.2rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
+                      {currentData.primaryAmount}
+                    </span>
+                    {currentData.primaryDesc && (
+                      <span className="text-[0.85rem] text-gray-500 font-semibold tracking-wide ml-0.5">
+                        {currentData.primaryDesc}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -120,11 +126,6 @@ export default function CommercialTerms() {
               ) : null}
             </div>
 
-            {("secondaryBadge" in currentData && currentData.secondaryBadge) && (
-              <div className={`px-3.5 py-2.5 rounded-[6px] border text-[0.72rem] font-semibold shadow-sm w-full text-center ${currentData.secondaryBadge.color}`}>
-                {currentData.secondaryBadge.text}
-              </div>
-            )}
 
             <div className="flex flex-col gap-2.5 mt-1">
               {currentData.details.map((detail, idx) => (

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { LayoutGrid } from "lucide-react";
+import { LayoutGrid, BadgeCheck } from "lucide-react";
 import { spaceOverviewData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer, itemReveal as tagItem } from "../components/animations";
@@ -37,17 +37,20 @@ export default function SpaceOverview() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex flex-wrap gap-2"
+            className="grid grid-cols-2 gap-y-3.5 gap-x-2 px-1"
           >
             {spaceOverviewData.tags.map((tag, idx) => (
-              <motion.span
+              <motion.div
                 key={idx}
                 variants={tagItem}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="px-3 py-1.5 text-[0.62rem] font-semibold rounded-full cursor-default tracking-wide uppercase transition-all duration-300 bg-white border border-gray-200 text-[#0b1b42] shadow-sm hover:shadow-md hover:border-[#d4af37]/40"
+                whileHover={{ scale: 1.02, x: 2 }}
+                className="flex items-center gap-2 cursor-default group"
               >
-                {tag.text}
-              </motion.span>
+                <BadgeCheck size={15} strokeWidth={2.5} className="text-[#d4af37] shrink-0 shadow-sm rounded-full bg-amber-50/50" />
+                <span className="text-[0.62rem] font-bold tracking-wide uppercase text-[#0b1b42] transition-colors group-hover:text-[#d4af37]">
+                  {tag.text}
+                </span>
+              </motion.div>
             ))}
           </motion.div>
 
