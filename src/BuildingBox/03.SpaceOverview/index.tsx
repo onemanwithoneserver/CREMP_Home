@@ -48,7 +48,7 @@ export default function SpaceOverview() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white overflow-hidden border-b border-gray-200/60"
+        className="w-full"
       >
         <SectionHeader
           overline="Specifications & Features"
@@ -56,7 +56,7 @@ export default function SpaceOverview() {
           icon={LayoutGrid}
         />
 
-        <div className="p-3 flex flex-col gap-3">
+        <div className="px-4 py-4 flex flex-col gap-4">
           <motion.div
             variants={tagStagger}
             initial="hidden"
@@ -69,27 +69,22 @@ export default function SpaceOverview() {
                 key={idx}
                 variants={tagItem}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className={`px-3 py-1.5 text-[0.62rem] font-bold rounded-full cursor-default tracking-wide uppercase transition-all duration-300 ${tag.color.replace("border", "").replace("bg-", "bg-opacity-10 text-")}`}
+                className={`px-3 py-1.5 text-[0.62rem] font-bold rounded-full cursor-default tracking-wide uppercase transition-all duration-300 ${tag.color}`}
               >
                 {tag.text}
               </motion.span>
             ))}
           </motion.div>
 
-          <div className="flex flex-col gap-0 border-t border-gray-100/80 pt-1">
+          <div className="flex flex-col gap-0 border-t border-gray-100 pt-2">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ x: 3 }}
-                className="flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 px-1 rounded-[4px] cursor-default group transition-all duration-300 hover:bg-[#d4af37]/[0.03]"
+                className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0 transition-all duration-300 cursor-default group"
               >
-                <div className="flex items-center gap-3 text-gray-500">
-                  <div className="w-7 h-7 flex items-center justify-center transition-all duration-300">
-                    <detail.icon
-                      size={15}
-                      className="group-hover:text-[#d4af37] transition-colors duration-300"
-                    />
-                  </div>
+                <div className="flex items-center gap-2.5 text-gray-500">
+                  <detail.icon size={15} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
                   <span className="text-[0.82rem] font-medium">
                     {detail.label}
                   </span>

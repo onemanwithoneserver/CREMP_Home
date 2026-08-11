@@ -57,7 +57,7 @@ export default function Infrastructure() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white overflow-hidden border-b border-gray-200/60"
+        className="w-full"
       >
         <SectionHeader
           overline="Systems & Utilities"
@@ -70,18 +70,18 @@ export default function Infrastructure() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-col gap-0 px-3"
+          className="flex flex-col gap-0 px-4 py-4"
         >
           {infrastructureData.items.map((item, idx) => (
             <motion.div
               key={idx}
               variants={rowReveal}
               whileHover={{ x: 3 }}
-              className="flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 group cursor-default rounded-[4px] px-1 hover:bg-[#d4af37]/[0.02] transition-all duration-300"
+              className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-9 h-9 rounded-[4px] ${item.iconBg} flex items-center justify-center text-white shrink-0 shadow-md`}
+                  className={`w-9 h-9 rounded-[4px] ${item.iconBg} flex items-center justify-center text-[#d4af37] shrink-0 border border-[#d4af37]/20`}
                 >
                   <item.icon size={15} />
                 </div>
@@ -95,7 +95,7 @@ export default function Infrastructure() {
                 </div>
               </div>
               <span
-                className={`text-[0.58rem] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
+                className={`text-[0.58rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-[4px] ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
               >
                 {item.status}
               </span>

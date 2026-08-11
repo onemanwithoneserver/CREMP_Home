@@ -18,7 +18,7 @@ export const infrastructureData = {
       status: "INSTALLED",
       statusColor: "text-emerald-500",
       icon: Zap,
-      iconBg: "bg-amber-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "Water",
@@ -26,7 +26,7 @@ export const infrastructureData = {
       status: "CONNECTED",
       statusColor: "text-emerald-500",
       icon: Droplets,
-      iconBg: "bg-cyan-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "HVAC / AC",
@@ -34,7 +34,7 @@ export const infrastructureData = {
       status: "PROVISION",
       statusColor: "text-orange-500",
       icon: Wind,
-      iconBg: "bg-purple-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "Electricals",
@@ -42,7 +42,7 @@ export const infrastructureData = {
       status: "WIRED",
       statusColor: "text-emerald-500",
       icon: PlugZap,
-      iconBg: "bg-blue-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "Parking",
@@ -50,7 +50,7 @@ export const infrastructureData = {
       status: "4 SPOTS",
       statusColor: "text-indigo-500",
       icon: Car,
-      iconBg: "bg-teal-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "Washrooms",
@@ -58,7 +58,7 @@ export const infrastructureData = {
       status: "WITHIN UNIT",
       statusColor: "text-emerald-500",
       icon: Bath,
-      iconBg: "bg-emerald-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "Fire Safety",
@@ -66,7 +66,7 @@ export const infrastructureData = {
       status: "COMPLIANT",
       statusColor: "text-emerald-500",
       icon: Flame,
-      iconBg: "bg-red-500",
+      iconBg: "bg-[#0b1b42]",
     },
     {
       label: "Compound Wall",
@@ -74,7 +74,7 @@ export const infrastructureData = {
       status: "YES",
       statusColor: "text-emerald-500",
       icon: Shield,
-      iconBg: "bg-slate-500",
+      iconBg: "bg-[#0b1b42]",
     },
   ],
 };

@@ -36,7 +36,7 @@ export default function CommercialTerms() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white overflow-hidden border-b border-gray-200/60"
+        className="w-full"
       >
         <SectionHeader
           overline="Commercial Details"
@@ -44,21 +44,21 @@ export default function CommercialTerms() {
           icon={currentData.headerIcon}
         />
 
-        <div className="flex w-full border-b border-gray-100/80 bg-gray-50/60 backdrop-blur-sm p-1.5 gap-1">
+        <div className="flex w-full px-4 gap-1 mt-2">
           {commercialData.tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`relative flex-1 py-2.5 text-[0.68rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 uppercase tracking-wide ${
+              className={`relative flex-1 py-2 text-[0.65rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 uppercase tracking-[0.1em] ${
                 activeTab === tab
                   ? "text-white"
-                  : "text-gray-400 hover:text-gray-600 hover:bg-black/[0.03]"
+                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
               }`}
             >
               {activeTab === tab && (
                 <motion.div
                   layoutId="commercialTabActive"
-                  className="absolute inset-0 bg-gradient-to-r from-[#0b1b42] to-[#0a1128] rounded-[4px] shadow-[0_4px_14px_rgba(10,17,40,0.2)]"
+                  className="absolute inset-0 bg-[#0b1b42] rounded-[2px] shadow-sm"
                   transition={{
                     type: "spring",
                     stiffness: 400,
@@ -81,7 +81,7 @@ export default function CommercialTerms() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="p-3 flex flex-col gap-3"
+            className="px-4 py-4 flex flex-col gap-4"
           >
             <div className="flex justify-between items-start">
               <div className="flex flex-col">
@@ -132,18 +132,16 @@ export default function CommercialTerms() {
 
               {"secondaryDarkCard" in currentData &&
                 currentData.secondaryDarkCard && (
-                  <div className="bg-[#0a1128] border border-[#d4af37]/25 rounded-[4px] p-3.5 flex flex-col items-center justify-center min-w-[105px] mt-1 shadow-[0_4px_20px_rgba(10,17,40,0.15)]">
+                  <div className="bg-white border border-gray-200 rounded-[4px] p-3.5 flex flex-col items-center justify-center min-w-[105px] mt-1 shadow-sm">
                     <span className="text-[0.48rem] font-bold text-gray-400 tracking-[0.15em] uppercase">
                       {currentData.secondaryDarkCard.label}
                     </span>
-                    <span
-                      className={`text-[1.3rem] font-bold mt-0.5 tracking-tight ${currentData.secondaryDarkCard.valueColor}`}
-                    >
+                    <span className="text-[1.3rem] font-bold text-[#0a1128] mt-0.5 tracking-tight">
                       {currentData.secondaryDarkCard.value}
                     </span>
                     {"desc" in currentData.secondaryDarkCard &&
                       currentData.secondaryDarkCard.desc && (
-                        <span className="text-[0.58rem] text-gray-500 font-medium">
+                        <span className="text-[0.58rem] text-[#d4af37] font-medium">
                           {currentData.secondaryDarkCard.desc}
                         </span>
                       )}
@@ -151,20 +149,15 @@ export default function CommercialTerms() {
                 )}
             </div>
 
-            <div className="flex flex-col gap-0 border-t border-gray-100/80 pt-1">
+            <div className="flex flex-col gap-0 border-t border-gray-100 pt-2">
               {currentData.details.map((detail, idx) => (
                 <motion.div
                   key={idx}
                   whileHover={{ x: 3 }}
-                  className="flex items-center justify-between py-3.5 border-b border-gray-50 last:border-0 px-1 rounded-[4px] transition-all duration-300 cursor-default group hover:bg-[#d4af37]/[0.03]"
+                  className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0 transition-all duration-300 cursor-default group"
                 >
-                  <div className="flex items-center gap-3 text-gray-500">
-                    <div className="w-7 h-7 flex items-center justify-center transition-all duration-300">
-                      <detail.icon
-                        size={15}
-                        className="group-hover:text-[#d4af37] transition-colors duration-300"
-                      />
-                    </div>
+                  <div className="flex items-center gap-2.5 text-gray-500">
+                    <detail.icon size={15} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
                     <span className="text-[0.82rem] font-medium">
                       {detail.label}
                     </span>
@@ -181,10 +174,10 @@ export default function CommercialTerms() {
         </AnimatePresence>
 
         {"footer" in currentData && currentData.footer && (
-          <div className="bg-gray-50/60 backdrop-blur-sm p-3 px-4 border-t border-gray-100/80 flex items-center justify-between">
+          <div className="bg-gray-50 p-4 border-t border-gray-100 flex items-center justify-between mt-2">
             {currentData.footer.type === "tag-text" && (
               <>
-                <span className="px-2.5 py-1 text-[0.58rem] font-bold rounded-[4px] border border-[#D4AF37]/25 bg-[#d4af37]/[0.06] text-[#D4AF37] tracking-[0.12em] uppercase">
+                <span className="px-2.5 py-1 text-[0.58rem] font-bold rounded-[2px] border border-[#D4AF37]/25 bg-[#d4af37]/[0.06] text-[#D4AF37] tracking-[0.12em] uppercase">
                   {currentData.footer.tag}
                 </span>
                 <span className="text-[0.72rem] text-gray-500 font-medium">

@@ -49,7 +49,7 @@ export default function Media() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white overflow-hidden border-b border-gray-200/60"
+        className="w-full"
       >
         <SectionHeader
           overline="Photos, Videos & Tours"
@@ -57,21 +57,21 @@ export default function Media() {
           icon={ImageIcon}
         />
 
-        <div className="flex w-full border-b border-gray-100/80 bg-gray-50/60 backdrop-blur-sm p-1.5 gap-1">
+        <div className="flex w-full px-4 gap-1 mt-2">
           {mediaData.tabs.map((tab) => (
             <button
               key={tab.label}
               onClick={() => setActiveTab(tab.label)}
-              className={`relative flex-1 flex flex-row items-center justify-center py-2.5 gap-1.5 transition-all duration-300 rounded-[4px] z-10 ${
+              className={`relative flex-1 flex flex-row items-center justify-center py-2 gap-1.5 transition-all duration-300 rounded-[2px] z-10 ${
                 activeTab === tab.label
                   ? "text-white"
-                  : "text-gray-400 hover:text-gray-600 hover:bg-black/[0.03]"
+                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
               }`}
             >
               {activeTab === tab.label && (
                 <motion.div
                   layoutId="mediaTabActive"
-                  className="absolute inset-0 bg-gradient-to-r from-[#0b1b42] to-[#0a1128] rounded-[4px] shadow-[0_4px_14px_rgba(10,17,40,0.2)]"
+                  className="absolute inset-0 bg-[#0b1b42] rounded-[2px] shadow-sm"
                   transition={{
                     type: "spring",
                     stiffness: 400,
@@ -90,7 +90,7 @@ export default function Media() {
           ))}
         </div>
 
-        <div className="p-3">
+        <div className="px-4 py-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -154,10 +154,10 @@ export default function Media() {
                       key={idx}
                       variants={gridItem}
                       whileHover={{ x: 3 }}
-                      className="flex items-center justify-between p-3 rounded-[4px] group cursor-default hover:bg-[#d4af37]/[0.02] transition-all duration-300"
+                      className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-[4px] text-[#7c3aed] flex items-center justify-center shrink-0 group-hover:bg-[#7c3aed]/5 transition-colors duration-300">
+                        <div className="w-10 h-10 rounded-[4px] text-[#0b1b42] bg-[#0b1b42]/5 border border-[#0b1b42]/10 flex items-center justify-center shrink-0 transition-colors duration-300">
                           <plan.icon size={17} />
                         </div>
                         <div className="flex flex-col">
@@ -226,7 +226,7 @@ export default function Media() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="mt-2 px-6 py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white font-bold text-sm flex items-center gap-2 transition-all shadow-[0_0_25px_rgba(212,175,55,0.35)] border border-[#f9df9f]/50"
+                      className="mt-2 px-6 py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white font-bold text-sm flex items-center gap-2 transition-all shadow-md"
                     >
                       <mediaData.virtualTour.btnIcon
                         size={15}

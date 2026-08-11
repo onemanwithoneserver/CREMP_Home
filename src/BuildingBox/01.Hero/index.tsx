@@ -31,13 +31,11 @@ const actionIcons = [
     Icon: Heart,
     label: "Save",
     hoverBg: "hover:bg-rose-500/90 hover:border-rose-500",
-    hoverShadow: "hover:shadow-[0_4px_15px_rgba(244,63,94,0.3)]",
   },
   {
     Icon: Share2,
     label: "Share",
     hoverBg: "hover:bg-emerald-500/90 hover:border-emerald-500",
-    hoverShadow: "hover:shadow-[0_4px_15px_rgba(52,211,153,0.3)]",
   },
 ];
 
@@ -90,10 +88,10 @@ export default function MobileHero() {
         style={{ top: "45%" }}
       />
 
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-[#f8f9fc] z-[2]" />
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-white z-[2]" />
 
       <div className="absolute top-6 right-5 flex flex-col gap-2.5 z-20">
-        {actionIcons.map(({ Icon, hoverBg, hoverShadow }, i) => (
+        {actionIcons.map(({ Icon, hoverBg }, i) => (
           <motion.button
             key={i}
             initial={{ opacity: 0, x: 20 }}
@@ -106,7 +104,7 @@ export default function MobileHero() {
             }}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
-            className={`w-11 h-11 rounded-[4px] bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white transition-all duration-300 ${hoverBg} ${hoverShadow} hover:text-white`}
+            className={`w-11 h-11 rounded-[4px] bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 ${hoverBg} shadow-sm hover:shadow-md hover:text-white`}
           >
             <Icon size={17} strokeWidth={2.5} />
           </motion.button>
@@ -119,7 +117,7 @@ export default function MobileHero() {
         transition={{ delay: 0.6, type: "spring", stiffness: 280, damping: 20 }}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
-        className="absolute top-[30%] left-[40%] -translate-x-1/2 -translate-y-1/2 z-20 w-[4.5rem] h-[4.5rem] rounded-full bg-[#0a1128]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg transition-all duration-300 group hover:bg-[#0a1128]/90 hover:border-white/40"
+        className="absolute top-[30%] left-[40%] -translate-x-1/2 -translate-y-1/2 z-20 w-[4.5rem] h-[4.5rem] rounded-full bg-[#0a1128]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md transition-all duration-300 group hover:bg-[#0a1128]/90 hover:border-white/40"
       >
         <div className="absolute inset-0 rounded-full animate-ping bg-white opacity-[0.03]" />
         <Play
@@ -140,9 +138,9 @@ export default function MobileHero() {
             {heroData.badges.map((badge, idx) => (
               <span
                 key={idx}
-                className={`px-3 py-1.5 text-[0.6rem] font-bold rounded-[4px] border backdrop-blur-xl uppercase tracking-[0.12em] ${
+                className={`px-3 py-1.5 text-[0.6rem] font-bold rounded-[2px] border backdrop-blur-md uppercase tracking-[0.12em] ${
                   idx === 0
-                    ? "bg-[#d4af37]/15 text-[#f9df9f] border-[#d4af37]/40 shadow-[0_0_20px_rgba(212,175,55,0.12)]"
+                    ? "bg-[#d4af37]/15 text-[#f9df9f] border-[#d4af37]/40 shadow-sm"
                     : "bg-white/8 text-white/90 border-white/15"
                 }`}
               >
@@ -187,17 +185,17 @@ export default function MobileHero() {
                     <motion.div
                       key={`${copy}-${idx}`}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex flex-col gap-2 p-3.5 rounded-[4px] bg-[#121c33]/90 border border-white/10 backdrop-blur-xl shrink-0 min-w-[125px] transition-all duration-300 hover:bg-[#1a2542] hover:border-[#d4af37]/30 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)] hover:z-10"
+                      className="flex flex-col gap-2 p-3.5 rounded-[4px] bg-white/10 border border-white/20 backdrop-blur-md shrink-0 min-w-[125px] transition-all duration-300 hover:bg-white/20 hover:border-[#d4af37]/50 shadow-sm hover:shadow-md hover:z-10"
                     >
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-[4px] flex items-center justify-center bg-[#0a1128] border border-white/5 shadow-inner">
+                        <div className="w-7 h-7 rounded-[2px] flex items-center justify-center bg-white/10 border border-white/20">
                           <stat.icon
                             size={13}
                             strokeWidth={2.5}
-                            className="text-[#d4af37]"
+                            className="text-white"
                           />
                         </div>
-                        <span className="text-[0.6rem] font-bold text-gray-400 tracking-[0.15em] uppercase">
+                        <span className="text-[0.6rem] font-bold text-gray-300 tracking-[0.15em] uppercase">
                           {stat.label}
                         </span>
                       </div>
