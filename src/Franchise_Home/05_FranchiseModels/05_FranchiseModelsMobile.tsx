@@ -1,45 +1,90 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Info, MousePointerClick, TrendingUp, Users, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Info,
+  MousePointerClick,
+  TrendingUp,
+  Users,
+  X,
+} from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { franchiseModelsData, franchiseModelsUI, getStaffBadgeColor, revenueROIData, getModelSpecifications, getRightMetrics, type CostBreakdownItem } from "./data";
+import {
+  franchiseModelsData,
+  franchiseModelsUI,
+  getStaffBadgeColor,
+  revenueROIData,
+  getModelSpecifications,
+  getRightMetrics,
+  type CostBreakdownItem,
+} from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 
-const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValue: string; }) => {
+const DonutChart = ({
+  data,
+  totalValue,
+}: {
+  data: CostBreakdownItem[];
+  totalValue: string;
+}) => {
   const size = 220;
   const strokeWidth = 55;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const gapLength = 1;
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hoveredItem, setHoveredItem] = useState<{ item: CostBreakdownItem; x: number; y: number; } | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<{
+    item: CostBreakdownItem;
+    x: number;
+    y: number;
+  } | null>(null);
   let currentOffset = 0;
-  
+
   return (
-    <div ref={containerRef} className="relative flex items-center justify-center overflow-visible" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="transform -rotate-90 overflow-visible">
+    <div
+      ref={containerRef}
+      className="relative flex items-center justify-center overflow-visible"
+      style={{ width: size, height: size }}
+    >
+      <svg
+        width={size}
+        height={size}
+        className="transform -rotate-90 overflow-visible"
+      >
         {data.map((item, i) => {
           const rawSegmentLength = (item.percentage / 100) * circumference;
           const segmentLength = Math.max(0, rawSegmentLength - gapLength);
           const offset = currentOffset;
           currentOffset += rawSegmentLength;
-          const angle = ((offset + segmentLength / 2) / circumference) * 2 * Math.PI;
+          const angle =
+            ((offset + segmentLength / 2) / circumference) * 2 * Math.PI;
           const textX = size / 2 + radius * Math.cos(angle);
           const textY = size / 2 + radius * Math.sin(angle);
           const isSmall = item.percentage < 10;
           return (
-              <motion.g
-                key={`group-${item.label}`}
-                animate={{
-                  x: hoveredItem?.item.label === item.label ? Math.cos(angle) * 12 : 0,
-                  y: hoveredItem?.item.label === item.label ? Math.sin(angle) * 12 : 0,
-                  scale: hoveredItem?.item.label === item.label ? 1.03 : 1,
-                  rotate: hoveredItem?.item.label === item.label ? [0, -3, 3, 0] : 0,
-                  filter: hoveredItem?.item.label === item.label ? "drop-shadow(0 8px 16px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))" : "drop-shadow(0 0px 0px rgba(0,0,0,0))"
-                }}
-                style={{ transformOrigin: `${size / 2}px ${size / 2}px` }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-              >
+            <motion.g
+              key={`group-${item.label}`}
+              animate={{
+                x:
+                  hoveredItem?.item.label === item.label
+                    ? Math.cos(angle) * 12
+                    : 0,
+                y:
+                  hoveredItem?.item.label === item.label
+                    ? Math.sin(angle) * 12
+                    : 0,
+                scale: hoveredItem?.item.label === item.label ? 1.03 : 1,
+                rotate:
+                  hoveredItem?.item.label === item.label ? [0, -3, 3, 0] : 0,
+                filter:
+                  hoveredItem?.item.label === item.label
+                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))"
+                    : "drop-shadow(0 0px 0px rgba(0,0,0,0))",
+              }}
+              style={{ transformOrigin: `${size / 2}px ${size / 2}px` }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
               <motion.circle
                 key={item.label}
                 cx={size / 2}
@@ -51,8 +96,15 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                 strokeDasharray={`0 ${circumference}`}
                 strokeDashoffset={-offset}
                 strokeLinecap="butt"
-                animate={{ strokeDasharray: `${segmentLength} ${circumference - segmentLength}` }}
-                transition={{ duration: 0.8, delay: i * 0.05, type: "spring", bounce: 0.1 }}
+                animate={{
+                  strokeDasharray: `${segmentLength} ${circumference - segmentLength}`,
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.05,
+                  type: "spring",
+                  bounce: 0.1,
+                }}
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={(e) => {
                   if (containerRef.current) {
@@ -60,7 +112,11 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                     setHoveredItem((prev) =>
                       prev?.item.label === item.label
                         ? null
-                        : { item, x: e.clientX - rect.left, y: e.clientY - rect.top }
+                        : {
+                            item,
+                            x: e.clientX - rect.left,
+                            y: e.clientY - rect.top,
+                          },
                     );
                   }
                 }}
@@ -77,19 +133,33 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
                 transition={{ duration: 0.5, delay: 0.8 + i * 0.05 }}
               >
                 <div className="flex flex-col items-center justify-center w-full h-full text-white">
-                  <item.icon size={isSmall ? 9 : 11} className="mb-[1px] opacity-90" />
-                  <span className={clsx("font-semibold leading-tight mt-[1px]", isSmall ? "text-[10px]" : "text-xs")}>
+                  <item.icon
+                    size={isSmall ? 9 : 11}
+                    className="mb-[1px] opacity-90"
+                  />
+                  <span
+                    className={clsx(
+                      "font-semibold leading-tight mt-[1px]",
+                      isSmall ? "text-[10px]" : "text-xs",
+                    )}
+                  >
                     {item.amount}
                   </span>
                 </div>
               </motion.foreignObject>
-              </motion.g>
+            </motion.g>
           );
         })}
       </svg>
       <div
         className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
-        style={{ width: size - strokeWidth * 2, height: size - strokeWidth * 2, left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
+        style={{
+          width: size - strokeWidth * 2,
+          height: size - strokeWidth * 2,
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
       >
         <span className="text-2xl font-bold text-[#0a1128] dark:text-white tracking-tight relative z-10">
           {totalValue}
@@ -105,7 +175,12 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(4px)" }}
             className="absolute pointer-events-none bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 text-[#0a1128] dark:text-white px-3.5 py-2.5 rounded-[4px] shadow-xl z-[9999] flex flex-col gap-1"
-            style={{ left: Math.max(10, Math.min(hoveredItem.x, size - 10)), top: hoveredItem.y - 10, transform: "translate(-50%, -100%)", maxWidth: size - 20 }}
+            style={{
+              left: Math.max(10, Math.min(hoveredItem.x, size - 10)),
+              top: hoveredItem.y - 10,
+              transform: "translate(-50%, -100%)",
+              maxWidth: size - 20,
+            }}
           >
             <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300">
               <hoveredItem.item.icon size={13} className="text-[#d4af37]" />
@@ -125,12 +200,22 @@ const DonutChart = ({ data, totalValue }: { data: CostBreakdownItem[]; totalValu
 };
 
 export default function FranchiseModelsMobile() {
-  const [activeModel, setActiveModel] = useState(franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id || franchiseModelsData.models[0].id);
-  const [activeSection, setActiveSection] = useState<"piechart" | "outlet" | "roi">("piechart");
+  const [activeModel, setActiveModel] = useState(
+    franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id ||
+      franchiseModelsData.models[0].id,
+  );
+  const [activeSection, setActiveSection] = useState<
+    "piechart" | "outlet" | "roi"
+  >("piechart");
   const [isStaffModalOpen, setIsStaffModalOpen] = useState(false);
 
-  const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
-  const leftMetrics = useMemo(() => getModelSpecifications(selected), [selected]);
+  const selected = franchiseModelsData.models.find(
+    (m) => m.id === activeModel,
+  )!;
+  const leftMetrics = useMemo(
+    () => getModelSpecifications(selected),
+    [selected],
+  );
   const rightMetrics = useMemo(() => getRightMetrics(), []);
 
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -153,7 +238,10 @@ export default function FranchiseModelsMobile() {
 
   const scrollTabs = (direction: "left" | "right") => {
     if (tabsRef.current) {
-      tabsRef.current.scrollBy({ left: direction === "left" ? -120 : 120, behavior: "smooth" });
+      tabsRef.current.scrollBy({
+        left: direction === "left" ? -120 : 120,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -161,34 +249,98 @@ export default function FranchiseModelsMobile() {
 
   return (
     <section className="w-full py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300 overflow-hidden">
-      <SectionHeader overline={franchiseModelsData.sectionLabel} title={franchiseModelsData.title} subtitle={franchiseModelsData.subtitle} align="center" />
-      
-      
+      <SectionHeader
+        overline={franchiseModelsData.sectionLabel}
+        title={franchiseModelsData.title}
+        subtitle={franchiseModelsData.subtitle}
+        align="center"
+      />
+
       <div className="relative z-10 w-full overflow-hidden group flex items-center mb-2 mt-2">
         {canScrollLeft && (
-          <button onClick={() => scrollTabs("left")} className="absolute left-0 z-20 h-full px-1.5 bg-gradient-to-r from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white">
+          <button
+            onClick={() => scrollTabs("left")}
+            className="absolute left-0 z-20 h-full px-1.5 bg-gradient-to-r from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white"
+          >
             <ChevronLeft size={20} />
           </button>
         )}
-        <div ref={tabsRef} onScroll={checkScroll} className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-gray-200/80 dark:border-white/10 relative">
+        <div
+          ref={tabsRef}
+          onScroll={checkScroll}
+          className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-gray-200/80 dark:border-white/10 relative"
+        >
           {franchiseModelsData.models.map((model) => {
             const isActive = model.id === activeModel;
             const Icon = model.icon;
             return (
-              <button key={model.id} onClick={() => setActiveModel(model.id)} className={clsx("shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10 border", !isActive ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10" : "border-transparent")}>
+              <button
+                key={model.id}
+                onClick={() => setActiveModel(model.id)}
+                className={clsx(
+                  "shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10 border",
+                  !isActive
+                    ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10"
+                    : "border-transparent",
+                )}
+              >
                 {isActive && (
-                  <motion.div layoutId="mobileTabActive" className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md" transition={{ type: "spring", stiffness: 380, damping: 28, mass: 0.8 }}>
+                  <motion.div
+                    layoutId="mobileTabActive"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 28,
+                      mass: 0.8,
+                    }}
+                  >
                     <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
                     <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
                   </motion.div>
                 )}
-                <motion.div className={clsx("relative z-10 w-7 h-7 rounded-[4px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm", isActive ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]" : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent shadow-sm")} animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }} transition={{ duration: 0.4, ease: "easeInOut" }}>
-                  <Icon size={13} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400"} />
+                <motion.div
+                  className={clsx(
+                    "relative z-10 w-7 h-7 rounded-[4px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm",
+                    isActive
+                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                      : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent shadow-sm",
+                  )}
+                  animate={
+                    isActive
+                      ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
+                      : { scale: 1, rotate: 0 }
+                  }
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                >
+                  <Icon
+                    size={13}
+                    strokeWidth={isActive ? 2.5 : 2}
+                    className={
+                      isActive
+                        ? "text-[#d4af37]"
+                        : "text-gray-600 dark:text-gray-400"
+                    }
+                  />
                 </motion.div>
-                <span className={clsx("relative z-10 font-bold text-xs mb-0.5 transition-colors duration-300", isActive ? "text-white" : "text-[#0a1128] dark:text-gray-200")}>
+                <span
+                  className={clsx(
+                    "relative z-10 font-bold text-xs mb-0.5 transition-colors duration-300",
+                    isActive
+                      ? "text-white"
+                      : "text-[#0a1128] dark:text-gray-200",
+                  )}
+                >
                   {model.name}
                 </span>
-                <span className={clsx("relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300", isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400")}>
+                <span
+                  className={clsx(
+                    "relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300",
+                    isActive
+                      ? "text-[#d4af37]"
+                      : "text-gray-600 dark:text-gray-400",
+                  )}
+                >
                   {model.priceRange}
                 </span>
               </button>
@@ -196,23 +348,31 @@ export default function FranchiseModelsMobile() {
           })}
         </div>
         {canScrollRight && (
-          <button onClick={() => scrollTabs("right")} className="absolute right-0 z-20 h-full px-1.5 bg-gradient-to-l from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-end text-[#0a1128] dark:text-white">
+          <button
+            onClick={() => scrollTabs("right")}
+            className="absolute right-0 z-20 h-full px-1.5 bg-gradient-to-l from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-end text-[#0a1128] dark:text-white"
+          >
             <ChevronRight size={20} />
           </button>
         )}
       </div>
 
-      
       <div className="relative z-10 flex w-full bg-gray-100/80 dark:bg-[#0e172f]/80 p-1 rounded-[4px] border border-gray-200/80 dark:border-white/10 shadow-sm backdrop-blur-sm">
-        {[{id: 'piechart', label: 'Piechart'}, {id: 'outlet', label: 'Outlet'}, {id: 'roi', label: 'ROI'}].map((tab) => (
+        {[
+          { id: "piechart", label: "Piechart" },
+          { id: "outlet", label: "Outlet" },
+          { id: "roi", label: "ROI" },
+        ].map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveSection(tab.id as "piechart" | "outlet" | "roi")}
+            onClick={() =>
+              setActiveSection(tab.id as "piechart" | "outlet" | "roi")
+            }
             className={clsx(
               "flex-1 text-[11px] font-bold py-2.5 text-center rounded-[2px] transition-all duration-300 relative z-10 uppercase tracking-wide",
               activeSection === tab.id
                 ? "bg-gradient-to-r from-[#16254c] to-[#0a1128] dark:from-[#d4af37] dark:to-[#aa8922] text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] border border-transparent dark:border-[#fcdb73]/20"
-                : "text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 border border-transparent"
+                : "text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 border border-transparent",
             )}
           >
             {tab.label}
@@ -220,7 +380,6 @@ export default function FranchiseModelsMobile() {
         ))}
       </div>
 
-      
       <div className="relative z-10 w-full overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -234,7 +393,10 @@ export default function FranchiseModelsMobile() {
             dragElastic={0.2}
             onDragEnd={(_e, info) => {
               const currentIndex = sectionsList.indexOf(activeSection);
-              if (info.offset.x < -40 && currentIndex < sectionsList.length - 1) {
+              if (
+                info.offset.x < -40 &&
+                currentIndex < sectionsList.length - 1
+              ) {
                 setActiveSection(sectionsList[currentIndex + 1]);
               } else if (info.offset.x > 40 && currentIndex > 0) {
                 setActiveSection(sectionsList[currentIndex - 1]);
@@ -244,8 +406,18 @@ export default function FranchiseModelsMobile() {
           >
             {activeSection === "piechart" && (
               <div className="flex flex-col items-center justify-center pt-8 pb-4">
-                <motion.div key={`chart-${selected.id}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }} className="relative flex flex-col items-center">
-                  <DonutChart data={selected.costBreakdown} totalValue={selected.avgTotal} />
+                <motion.div
+                  key={`chart-${selected.id}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative flex flex-col items-center"
+                >
+                  <DonutChart
+                    data={selected.costBreakdown}
+                    totalValue={selected.avgTotal}
+                  />
                   <div className="flex items-center justify-center gap-1.5 mt-8 animate-bounce">
                     <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
                       {franchiseModelsUI.tapSegmentsHint}
@@ -279,13 +451,39 @@ export default function FranchiseModelsMobile() {
                     <div className="absolute left-[32px] -translate-x-1/2 -top-[16px] bottom-[24px] w-[2px] pointer-events-none z-0 origin-top">
                       <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                       <div className="absolute inset-0 border-l border-dashed border-[#ffd700]/70" />
-                      <motion.div className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]" animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
+                      <motion.div
+                        className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+                        animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
                     </div>
                     <div className="flex flex-col gap-3 relative z-10 group">
                       {leftMetrics.map((stat) => (
-                        <motion.div key={stat.label} whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }} className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px] group">
+                        <motion.div
+                          key={stat.label}
+                          whileHover={{
+                            scale: 1.02,
+                            x: 4,
+                            transition: {
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 25,
+                            },
+                          }}
+                          className="rounded-[4px] border border-gray-200/80 dark:border-gray-800 shadow-sm p-3 bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm flex items-center justify-between gap-3 relative z-10 min-h-[58px] group"
+                        >
                           <div className="flex items-center gap-3 min-w-0">
-                            <motion.div whileHover={{ scale: 1.08, rotate: 4 }} className={clsx("w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}>
+                            <motion.div
+                              whileHover={{ scale: 1.08, rotate: 4 }}
+                              className={clsx(
+                                "w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10",
+                                stat.color,
+                              )}
+                            >
                               <stat.icon size={16} strokeWidth={2.2} />
                             </motion.div>
                             <div className="flex flex-col min-w-0">
@@ -299,7 +497,10 @@ export default function FranchiseModelsMobile() {
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">
                             {stat.hasStaffModal ? (
-                              <button onClick={() => setIsStaffModalOpen(true)} className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-[2px] border border-blue-200/60 dark:border-blue-700/50 flex items-center gap-1 hover:bg-blue-100 transition-colors">
+                              <button
+                                onClick={() => setIsStaffModalOpen(true)}
+                                className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-[2px] border border-blue-200/60 dark:border-blue-700/50 flex items-center gap-1 hover:bg-blue-100 transition-colors"
+                              >
                                 <span>Staff</span>
                                 <Info size={11} strokeWidth={2.5} />
                               </button>
@@ -339,7 +540,15 @@ export default function FranchiseModelsMobile() {
                   <div className="relative flex flex-col pt-1">
                     <div className="absolute left-[32px] -translate-x-1/2 -top-[16px] bottom-[24px] w-[2px] pointer-events-none z-0 origin-top">
                       <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
-                      <motion.div className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]" animate={{ top: ["0%", "100%"], opacity: [0, 1, 0] }} transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }} />
+                      <motion.div
+                        className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+                        animate={{ top: ["0%", "100%"], opacity: [0, 1, 0] }}
+                        transition={{
+                          duration: 2.6,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
                     </div>
                     <div className="flex flex-col gap-3 relative z-10">
                       {rightMetrics.map((stat) => {
@@ -347,31 +556,72 @@ export default function FranchiseModelsMobile() {
                         return (
                           <motion.div
                             key={stat.label}
-                            whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                            animate={isHighlight ? {
-                              borderColor: ["rgba(212,175,55,0.3)", "rgba(212,175,55,0.8)", "rgba(212,175,55,0.3)"],
-                              boxShadow: ["0px 0px 0px rgba(212,175,55,0)", "0px 0px 12px rgba(212,175,55,0.3)", "0px 0px 0px rgba(212,175,55,0)"]
-                            } : {}}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            whileHover={{
+                              scale: 1.02,
+                              x: 4,
+                              transition: {
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 25,
+                              },
+                            }}
+                            animate={
+                              isHighlight
+                                ? {
+                                    borderColor: [
+                                      "rgba(212,175,55,0.3)",
+                                      "rgba(212,175,55,0.8)",
+                                      "rgba(212,175,55,0.3)",
+                                    ],
+                                    boxShadow: [
+                                      "0px 0px 0px rgba(212,175,55,0)",
+                                      "0px 0px 12px rgba(212,175,55,0.3)",
+                                      "0px 0px 0px rgba(212,175,55,0)",
+                                    ],
+                                  }
+                                : {}
+                            }
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
                             className={clsx(
                               "group rounded-[4px] backdrop-blur-sm border p-3 flex items-center justify-between gap-3 min-h-[64px] transition-all duration-300",
                               isHighlight
                                 ? "bg-[#0b1b42] border-[#d4af37]/50 shadow-[0_4px_16px_rgba(212,175,55,0.15)] hover:border-[#d4af37]/80"
-                                : "bg-gray-50/90 dark:bg-[#0b1b42]/90 border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40"
+                                : "bg-gray-50/90 dark:bg-[#0b1b42]/90 border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40",
                             )}
                           >
                             <div className="flex items-center gap-3 min-w-0">
                               <motion.div
                                 whileHover={{ scale: 1.08, rotate: -4 }}
-                                className={clsx("w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10", stat.color)}
+                                className={clsx(
+                                  "w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm relative z-10",
+                                  stat.color,
+                                )}
                               >
                                 <stat.icon size={18} strokeWidth={2.2} />
                               </motion.div>
                               <div className="flex flex-col min-w-0">
-                                <span className={clsx("text-[10px] font-bold uppercase tracking-wider mb-0.5", isHighlight ? "text-gray-400" : "text-gray-500 dark:text-gray-400")}>
+                                <span
+                                  className={clsx(
+                                    "text-[10px] font-bold uppercase tracking-wider mb-0.5",
+                                    isHighlight
+                                      ? "text-gray-400"
+                                      : "text-gray-500 dark:text-gray-400",
+                                  )}
+                                >
                                   {stat.label}
                                 </span>
-                                <span className={clsx("text-sm font-bold leading-tight truncate transition-colors group-hover:text-[#d4af37]", isHighlight ? "text-white" : "text-[#0a1128] dark:text-white")}>
+                                <span
+                                  className={clsx(
+                                    "text-sm font-bold leading-tight truncate transition-colors group-hover:text-[#d4af37]",
+                                    isHighlight
+                                      ? "text-white"
+                                      : "text-[#0a1128] dark:text-white",
+                                  )}
+                                >
                                   {stat.value}
                                 </span>
                               </div>
@@ -397,8 +647,44 @@ export default function FranchiseModelsMobile() {
 
       <AnimatePresence>
         {isStaffModalOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" onClick={() => setIsStaffModalOpen(false)}>
-            <motion.div initial={{ scale: 0.3, opacity: 0, y: 40, filter: "blur(20px)", borderRadius: "100px" }} animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }} exit={{ scale: 0.5, opacity: 0, y: 20, filter: "blur(15px)", borderRadius: "50px" }} transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }} className="w-full max-w-[90vw] sm:max-w-md bg-white/80 dark:bg-[#0b1b42]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-5 relative overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+            onClick={() => setIsStaffModalOpen(false)}
+          >
+            <motion.div
+              initial={{
+                scale: 0.3,
+                opacity: 0,
+                y: 40,
+                filter: "blur(20px)",
+                borderRadius: "100px",
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+                borderRadius: "4px",
+              }}
+              exit={{
+                scale: 0.5,
+                opacity: 0,
+                y: 20,
+                filter: "blur(15px)",
+                borderRadius: "50px",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 15,
+                mass: 1.5,
+              }}
+              className="w-full max-w-[90vw] sm:max-w-md bg-white/80 dark:bg-[#0b1b42]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-5 relative overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-200 dark:border-gray-800">
                 <div className="flex items-center gap-2.5">
                   <div className="w-7 h-7 rounded-[2px] bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
@@ -408,18 +694,30 @@ export default function FranchiseModelsMobile() {
                     {franchiseModelsUI.staffRequirements}
                   </h5>
                 </div>
-                <button onClick={() => setIsStaffModalOpen(false)} className="w-6 h-6 flex items-center justify-center rounded-[2px] bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800 dark:hover:bg-red-900/50 transition-colors" aria-label="Close">
+                <button
+                  onClick={() => setIsStaffModalOpen(false)}
+                  className="w-6 h-6 flex items-center justify-center rounded-[2px] bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 dark:bg-gray-800 dark:hover:bg-red-900/50 transition-colors"
+                  aria-label="Close"
+                >
                   <X size={14} strokeWidth={2.5} />
                 </button>
               </div>
               <div className="flex flex-col gap-2.5 max-h-[60vh] overflow-y-auto pr-1 scrollbar-thin">
                 {selected.staffDetails?.map((staff, idx) => (
-                  <div key={idx} className="flex flex-col bg-gray-50 dark:bg-[#121c33] p-3 rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm">
+                  <div
+                    key={idx}
+                    className="flex flex-col bg-gray-50 dark:bg-[#121c33] p-3 rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm"
+                  >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-bold text-[#0a1128] dark:text-white">
                         {staff.name}
                       </span>
-                      <span className={clsx("text-[10px] font-bold px-2 py-0.5 rounded-[2px]", getStaffBadgeColor(idx))}>
+                      <span
+                        className={clsx(
+                          "text-[10px] font-bold px-2 py-0.5 rounded-[2px]",
+                          getStaffBadgeColor(idx),
+                        )}
+                      >
                         {staff.count}x
                       </span>
                     </div>

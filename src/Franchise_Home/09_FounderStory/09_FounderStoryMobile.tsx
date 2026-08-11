@@ -1,6 +1,13 @@
 import clsx from "clsx";
 import { motion, type Variants } from "framer-motion";
-import { Quote, Store, Users, Award, TrendingUp, IndianRupee } from "lucide-react";
+import {
+  Quote,
+  Store,
+  Users,
+  Award,
+  TrendingUp,
+  IndianRupee,
+} from "lucide-react";
 import { getTextStyles } from "../utils/theme";
 import { founderStoryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -13,7 +20,6 @@ const pulseGlow: Variants = {
   },
 };
 
-// @ts-ignore - used as JSX component
 function YoutubeIcon({ size = 15 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -22,7 +28,6 @@ function YoutubeIcon({ size = 15 }: { size?: number }) {
   );
 }
 
-// @ts-ignore - used as JSX component
 function InstagramIcon({ size = 15 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -31,8 +36,7 @@ function InstagramIcon({ size = 15 }: { size?: number }) {
   );
 }
 
-// @ts-ignore - used as JSX component
-function LinkedinIcon({ size = 15 }: { size?: number }) {
+function LinkedinIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -42,19 +46,27 @@ function LinkedinIcon({ size = 15 }: { size?: number }) {
 
 const getStatIcon = (label: string, size = 18) => {
   const lower = (label || "").toLowerCase();
-  if (lower.includes("outlet") || lower.includes("store")) return <Store size={size} strokeWidth={2.5} />;
-  if (lower.includes("user") || lower.includes("customer") || lower.includes("client")) return <Users size={size} strokeWidth={2.5} />;
-  if (lower.includes("award") || lower.includes("win")) return <Award size={size} strokeWidth={2.5} />;
-  if (lower.includes("revenue") || lower.includes("sales")) return <IndianRupee size={size} strokeWidth={2.5} />;
+  if (lower.includes("outlet") || lower.includes("store"))
+    return <Store size={size} strokeWidth={2.5} />;
+  if (
+    lower.includes("user") ||
+    lower.includes("customer") ||
+    lower.includes("client")
+  )
+    return <Users size={size} strokeWidth={2.5} />;
+  if (lower.includes("award") || lower.includes("win"))
+    return <Award size={size} strokeWidth={2.5} />;
+  if (lower.includes("revenue") || lower.includes("sales"))
+    return <IndianRupee size={size} strokeWidth={2.5} />;
   return <TrendingUp size={size} strokeWidth={2.5} />;
 };
 
 const getIconBgColor = (idx: number) => {
   const colors = [
-    "bg-[#d4af37]", 
-    "bg-blue-500", 
-    "bg-emerald-500", 
-    "bg-pink-500"
+    "bg-[#d4af37]",
+    "bg-blue-500",
+    "bg-emerald-500",
+    "bg-pink-500",
   ];
   return colors[idx % colors.length];
 };
@@ -99,8 +111,6 @@ export default function FounderStoryMobile() {
                   size={40}
                   className="text-[#d4af37]/30 -translate-x-1 -translate-y-1"
                 />
-                
-             
               </div>
 
               <div className="flex flex-col gap-4">
@@ -146,7 +156,7 @@ export default function FounderStoryMobile() {
                   className="bg-[#0b1b42] border border-white/5 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-sm relative overflow-hidden hover:border-white/10 hover:shadow-md transition-all duration-300"
                 >
                   <div className="absolute -right-4 -top-4 w-12 h-12 bg-white/5 rounded-full blur-xl" />
-                  
+
                   <div className="flex flex-col items-start z-10">
                     <p
                       className={clsx(
@@ -160,13 +170,13 @@ export default function FounderStoryMobile() {
                       {stat.label}
                     </p>
                   </div>
-                  
+
                   <motion.div
                     whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className={clsx(
                       "w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md shrink-0 z-10",
-                      getIconBgColor(idx)
+                      getIconBgColor(idx),
                     )}
                   >
                     {getStatIcon(stat.label)}

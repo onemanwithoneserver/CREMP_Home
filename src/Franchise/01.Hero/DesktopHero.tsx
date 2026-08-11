@@ -5,191 +5,198 @@ import heroImageDark from "./Hero_Section_dark.png";
 import heroImageLight from "./Hero_Section_light.png";
 
 const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.2,
-        },
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
+  },
 };
 
 const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: { type: "spring", stiffness: 400, damping: 30 },
-    },
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 400, damping: 30 },
+  },
 };
 
 const floatAnimation: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    show: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+  hidden: { opacity: 0, scale: 0.9 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+  },
+  animate: {
+    y: [-12, 12, -12],
+    rotate: [-1, 1, -1],
+    transition: {
+      duration: 7,
+      repeat: Infinity,
+      ease: "easeInOut",
     },
-    animate: {
-        y: [-12, 12, -12],
-        rotate: [-1, 1, -1],
-        transition: {
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-        },
-    },
+  },
 };
 
 const pulseGlow: Variants = {
-    animate: {
-        scale: [1, 1.05, 1],
-        opacity: [0.4, 0.7, 0.4],
-        transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-    },
+  animate: {
+    scale: [1, 1.05, 1],
+    opacity: [0.4, 0.7, 0.4],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+  },
 };
 
 export default function DesktopHero() {
-    const Btn1Icon = heroData.buttons[0].icon;
-    const Btn2Icon = heroData.buttons[1].icon;
+  const Btn1Icon = heroData.buttons[0].icon;
+  const Btn2Icon = heroData.buttons[1].icon;
 
-    return (
-        <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 pt-24 pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+  return (
+    <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 pt-24 pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+      />
+      <motion.div
+        variants={pulseGlow}
+        animate="animate"
+        className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[150px] dark:bg-[#D4AF37]/10"
+      />
+
+      <Container className="relative z-10">
+        <div className="flex items-center justify-between gap-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+            className="flex w-[50%] flex-col"
+          >
+            <motion.div variants={fadeInUp}>
+              <span className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37]">
+                {heroData.tag}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={fadeInUp}
+              className="mb-3 text-[3.25rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.5rem]"
+            >
+              Take Control of <br />
+              Your Franchise <br />
+              <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
+                {heroData.titleHighlight}
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeInUp}
+              className="mb-6 max-w-lg text-[1rem] leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Powered by India&apos;s{" "}
+              <span className="font-bold text-gray-900 dark:text-white">
+                Integrated Commercial Real Estate, Franchise & Retail Business
+                Opportunities Platform
+              </span>
+              , CREMP helps you build your brand, reach investors in your
+              preferred micro markets, define your ideal franchise partner and
+              discover expansion-ready locations—all through one connected
+              ecosystem.
+            </motion.p>
+
             <motion.div
-                variants={pulseGlow}
-                animate="animate"
-                className="pointer-events-none absolute -left-[10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
-            />
+              variants={fadeInUp}
+              className="mb-10 flex items-center gap-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 12 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <Btn1Icon size={18} strokeWidth={2.5} />
+                </motion.div>
+                {heroData.buttons[0].text}
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex items-center justify-center gap-3 rounded-[4px] border border-white/40 bg-white/30 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-lg transition-all hover:border-[#D4AF37]/50 hover:bg-white/50 dark:border-white/10 dark:bg-black/30 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-white/10"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: -12 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <Btn2Icon
+                    size={18}
+                    strokeWidth={2.5}
+                    className="text-gray-500 dark:text-gray-400 group-hover:dark:text-[#D4AF37]"
+                  />
+                </motion.div>
+                {heroData.buttons[1].text}
+              </motion.button>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-4">
+              {heroData.features.map((feature, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -5 }}
+                  className="group flex cursor-pointer items-center gap-3 rounded-lg border border-transparent p-2 transition-all hover:border-white/40 hover:bg-white/30 hover:backdrop-blur-md dark:hover:border-white/10 dark:hover:bg-white/5"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                    transition={{ duration: 0.3 }}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/40 text-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40 dark:text-[#D4AF37] hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:border-[#D4AF37]/50 pointer-events-auto transition-all"
+                  >
+                    <feature.icon size={18} strokeWidth={2} />
+                  </motion.div>
+                  <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
+                    {feature.text}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          <div className="relative flex h-[550px] w-[50%] items-center justify-center">
             <motion.div
-                variants={pulseGlow}
-                animate="animate"
-                className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[150px] dark:bg-[#D4AF37]/10"
-            />
-
-            <Container className="relative z-10">
-                <div className="flex items-center justify-between gap-6">
-                    <motion.div
-                        variants={staggerContainer}
-                        initial="hidden"
-                        animate="show"
-                        className="flex w-[50%] flex-col"
-                    >
-                        <motion.div variants={fadeInUp}>
-                            <span className="mb-4 flex w-fit items-center gap-2 rounded-[2px] border border-[#D4AF37]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/20 dark:bg-[#D4AF37]/5 dark:text-[#D4AF37]">
-                                {heroData.tag}
-                            </span>
-                        </motion.div>
-
-                        <motion.h1
-                            variants={fadeInUp}
-                            className="mb-3 text-[3.25rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.5rem]"
-                        >
-                            Take Control of <br />
-                            Your Franchise <br />
-                            <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
-                                {heroData.titleHighlight}
-                            </span>
-                        </motion.h1>
-
-                        <motion.p
-                            variants={fadeInUp}
-                            className="mb-6 max-w-lg text-[1rem] leading-relaxed text-gray-600 dark:text-gray-400"
-                        >
-                            Powered by India&apos;s{" "}
-                            <span className="font-bold text-gray-900 dark:text-white">
-                                Integrated Commercial Real Estate, Franchise & Retail Business
-                                Opportunities Platform
-                            </span>
-                            , CREMP helps you build your brand, reach investors in your
-                            preferred micro markets, define your ideal franchise partner and
-                            discover expansion-ready locations—all through one connected
-                            ecosystem.
-                        </motion.p>
-
-                        <motion.div
-                            variants={fadeInUp}
-                            className="mb-10 flex items-center gap-4"
-                        >
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group flex items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] px-6 py-3 text-[0.95rem] font-bold text-white shadow-[0_8px_20px_rgba(178,127,28,0.2)] transition-all hover:shadow-[0_0_30px_rgba(178,127,28,0.4)] dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128] dark:shadow-[0_8px_20px_rgba(246,178,59,0.2)] dark:hover:shadow-[0_0_30px_rgba(246,178,59,0.4)]"
-                            >
-                                <motion.div whileHover={{ scale: 1.2, rotate: 12 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                                    <Btn1Icon
-                                        size={18}
-                                        strokeWidth={2.5}
-                                    />
-                                </motion.div>
-                                {heroData.buttons[0].text}
-                            </motion.button>
-
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group flex items-center justify-center gap-3 rounded-[4px] border border-white/40 bg-white/30 px-6 py-3 text-[0.95rem] font-bold text-gray-900 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-lg transition-all hover:border-[#D4AF37]/50 hover:bg-white/50 dark:border-white/10 dark:bg-black/30 dark:text-white dark:hover:border-[#D4AF37]/50 dark:hover:bg-white/10"
-                            >
-                                <motion.div whileHover={{ scale: 1.2, rotate: -12 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                                    <Btn2Icon
-                                        size={18}
-                                        strokeWidth={2.5}
-                                        className="text-gray-500 dark:text-gray-400 group-hover:dark:text-[#D4AF37]"
-                                    />
-                                </motion.div>
-                                {heroData.buttons[1].text}
-                            </motion.button>
-                        </motion.div>
-
-                        <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-4">
-                            {heroData.features.map((feature, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    whileHover={{ y: -5 }}
-                                    className="group flex cursor-pointer items-center gap-3 rounded-lg border border-transparent p-2 transition-all hover:border-white/40 hover:bg-white/30 hover:backdrop-blur-md dark:hover:border-white/10 dark:hover:bg-white/5"
-                                >
-                                        <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/40 text-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md dark:border-white/10 dark:bg-black/40 dark:text-[#D4AF37] hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:border-[#D4AF37]/50 pointer-events-auto transition-all">
-                                        <feature.icon size={18} strokeWidth={2} />
-                                    </motion.div>
-                                    <span className="text-[0.8rem] font-bold leading-snug text-gray-700 transition-colors group-hover:text-[#D4AF37] dark:text-gray-200 dark:group-hover:text-[#D4AF37]">
-                                        {feature.text}
-                                    </span>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    </motion.div>
-
-                    <div className="relative flex h-[550px] w-[50%] items-center justify-center">
-                        <motion.div
-                            variants={floatAnimation}
-                            initial="hidden"
-                            animate={["show", "animate"]}
-                            className="relative z-10 flex h-full w-full items-center justify-center"
-                            style={{
-                                WebkitMaskImage:
-                                    "radial-gradient(ellipse at center, black 45%, transparent 80%)",
-                                maskImage:
-                                    "radial-gradient(ellipse at center, black 45%, transparent 80%)",
-                            }}
-                        >
-                            <motion.img
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                src={heroImageLight}
-                                alt="Franchise Ecosystem Map"
-                                className="block h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(178,127,28,0.15)] dark:hidden"
-                            />
-                            <motion.img
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                src={heroImageDark}
-                                alt="Franchise Ecosystem Map"
-                                className="hidden h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(246,178,59,0.2)] dark:block"
-                            />
-                        </motion.div>
-                    </div>
-                </div>
-            </Container>
+              variants={floatAnimation}
+              initial="hidden"
+              animate={["show", "animate"]}
+              className="relative z-10 flex h-full w-full items-center justify-center"
+              style={{
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, black 45%, transparent 80%)",
+                maskImage:
+                  "radial-gradient(ellipse at center, black 45%, transparent 80%)",
+              }}
+            >
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                src={heroImageLight}
+                alt="Franchise Ecosystem Map"
+                className="block h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(178,127,28,0.15)] dark:hidden"
+              />
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                src={heroImageDark}
+                alt="Franchise Ecosystem Map"
+                className="hidden h-auto w-[105%] max-w-none object-contain drop-shadow-[0_20px_40px_rgba(246,178,59,0.2)] dark:block"
+              />
+            </motion.div>
+          </div>
         </div>
-    );
+      </Container>
+    </div>
+  );
 }

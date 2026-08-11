@@ -142,7 +142,11 @@ export default function HeroGalleryMobile() {
 
           <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] p-3 w-full mx-auto">
             <div className="flex items-center gap-2.5">
-              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0 cursor-pointer">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.3 }}
+                className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0 cursor-pointer"
+              >
                 <Calendar size={16} className="text-white" />
               </motion.div>
               <div className="flex flex-col overflow-hidden">
@@ -155,7 +159,11 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0 cursor-pointer">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.3 }}
+                className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0 cursor-pointer"
+              >
                 <Wallet size={16} className="text-white" />
               </motion.div>
               <div className="flex flex-col overflow-hidden">
@@ -168,7 +176,11 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0 cursor-pointer">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.3 }}
+                className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0 cursor-pointer"
+              >
                 <TrendingUp size={16} className="text-white" />
               </motion.div>
               <div className="flex flex-col overflow-hidden">
@@ -181,7 +193,11 @@ export default function HeroGalleryMobile() {
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0 cursor-pointer">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.3 }}
+                className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0 cursor-pointer"
+              >
                 <MapPin size={16} className="text-white" />
               </motion.div>
               <div className="flex flex-col overflow-hidden">
@@ -208,23 +224,27 @@ export default function HeroGalleryMobile() {
             <div className="h-px bg-gradient-to-l from-transparent to-[#d4af37] flex-1" />
           </div>
 
-            <div className="flex flex-col gap-3">
-              {heroData.whyChooseUs.map((feature, i) => (
-                <div
-                  key={i}
-                  className="flex items-center text-left p-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
+          <div className="flex flex-col gap-3">
+            {heroData.whyChooseUs.map((feature, i) => (
+              <div
+                key={i}
+                className="flex items-center text-left p-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] border border-gray-200 dark:border-gray-800 shadow-sm group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.3 }}
+                  className={`w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm cursor-pointer mr-3 ${feature.colorClass}`}
                 >
-                  <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className={`w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm cursor-pointer mr-3 ${feature.colorClass}`}>
-                    <span className="text-white font-bold text-base">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </motion.div>
-                  <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 leading-snug">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+                  <span className="text-white font-bold text-base">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+                <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 leading-snug">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </motion.section>

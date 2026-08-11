@@ -1,15 +1,80 @@
-import { Zap, Droplets, Wind, PlugZap, Car, Bath, Flame, Shield } from "lucide-react";
+import {
+  Zap,
+  Droplets,
+  Wind,
+  PlugZap,
+  Car,
+  Bath,
+  Flame,
+  Shield,
+} from "lucide-react";
 
 export const infrastructureData = {
-    title: "Infrastructure & Facilities",
-    items: [
-        { label: "Power", sub: "30 kW · Three Phase", status: "INSTALLED", statusColor: "text-emerald-500", icon: Zap, iconBg: "bg-amber-500" },
-        { label: "Water", sub: "Municipal + Borewell", status: "CONNECTED", statusColor: "text-emerald-500", icon: Droplets, iconBg: "bg-cyan-500" },
-        { label: "HVAC / AC", sub: "Ducting provision done", status: "PROVISION", statusColor: "text-orange-500", icon: Wind, iconBg: "bg-purple-500" },
-        { label: "Electricals", sub: "30 kW sanctioned", status: "WIRED", statusColor: "text-emerald-500", icon: PlugZap, iconBg: "bg-blue-500" },
-        { label: "Parking", sub: "Visitor: Limited", status: "4 SPOTS", statusColor: "text-indigo-500", icon: Car, iconBg: "bg-teal-500" },
-        { label: "Washrooms", sub: "Accessible 24/7", status: "WITHIN UNIT", statusColor: "text-emerald-500", icon: Bath, iconBg: "bg-emerald-500" },
-        { label: "Fire Safety", sub: "Sprinklers + Extinguishers", status: "COMPLIANT", statusColor: "text-emerald-500", icon: Flame, iconBg: "bg-red-500" },
-        { label: "Compound Wall", sub: "Secured perimeter", status: "YES", statusColor: "text-emerald-500", icon: Shield, iconBg: "bg-slate-500" }
-    ]
+  title: "Infrastructure & Facilities",
+  items: [
+    {
+      label: "Power",
+      sub: "30 kW · Three Phase",
+      status: "INSTALLED",
+      statusColor: "text-emerald-500",
+      icon: Zap,
+      iconBg: "bg-amber-500",
+    },
+    {
+      label: "Water",
+      sub: "Municipal + Borewell",
+      status: "CONNECTED",
+      statusColor: "text-emerald-500",
+      icon: Droplets,
+      iconBg: "bg-cyan-500",
+    },
+    {
+      label: "HVAC / AC",
+      sub: "Ducting provision done",
+      status: "PROVISION",
+      statusColor: "text-orange-500",
+      icon: Wind,
+      iconBg: "bg-purple-500",
+    },
+    {
+      label: "Electricals",
+      sub: "30 kW sanctioned",
+      status: "WIRED",
+      statusColor: "text-emerald-500",
+      icon: PlugZap,
+      iconBg: "bg-blue-500",
+    },
+    {
+      label: "Parking",
+      sub: "Visitor: Limited",
+      status: "4 SPOTS",
+      statusColor: "text-indigo-500",
+      icon: Car,
+      iconBg: "bg-teal-500",
+    },
+    {
+      label: "Washrooms",
+      sub: "Accessible 24/7",
+      status: "WITHIN UNIT",
+      statusColor: "text-emerald-500",
+      icon: Bath,
+      iconBg: "bg-emerald-500",
+    },
+    {
+      label: "Fire Safety",
+      sub: "Sprinklers + Extinguishers",
+      status: "COMPLIANT",
+      statusColor: "text-emerald-500",
+      icon: Flame,
+      iconBg: "bg-red-500",
+    },
+    {
+      label: "Compound Wall",
+      sub: "Secured perimeter",
+      status: "YES",
+      statusColor: "text-emerald-500",
+      icon: Shield,
+      iconBg: "bg-slate-500",
+    },
+  ],
 };

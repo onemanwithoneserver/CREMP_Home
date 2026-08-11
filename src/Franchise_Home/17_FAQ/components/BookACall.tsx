@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Calendar, 
-  Clock, 
-  CheckCircle2, 
-  Send, 
-  Sparkles, 
-  ChevronLeft, 
-  ChevronRight, 
+import {
+  Calendar,
+  Clock,
+  CheckCircle2,
+  Send,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
   Headset,
   User,
   CalendarDays,
-  ShieldCheck
+  ShieldCheck,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -41,7 +41,7 @@ const SCHEDULE_DATA = [
     id: "date-3",
     dayStr: "Tue",
     date: "Aug 04",
-    slots: [], 
+    slots: [],
     isPast: false,
   },
   {
@@ -68,38 +68,47 @@ const SCHEDULE_DATA = [
 ];
 
 const FEATURES = [
-  { 
-    icon: User, 
-    label: "Expert\nGuidance", 
+  {
+    icon: User,
+    label: "Expert\nGuidance",
     delay: 0,
-    colors: "bg-orange-500 text-white border-orange-400/50 shadow-md shadow-orange-500/20"
+    colors:
+      "bg-orange-500 text-white border-orange-400/50 shadow-md shadow-orange-500/20",
   },
-  { 
-    icon: CalendarDays, 
-    label: "Flexible\nScheduling", 
+  {
+    icon: CalendarDays,
+    label: "Flexible\nScheduling",
     delay: 0.15,
-    colors: "bg-pink-500 text-white border-pink-400/50 shadow-md shadow-pink-500/20"
+    colors:
+      "bg-pink-500 text-white border-pink-400/50 shadow-md shadow-pink-500/20",
   },
-  { 
-    icon: ShieldCheck, 
-    label: "No\nObligation", 
+  {
+    icon: ShieldCheck,
+    label: "No\nObligation",
     delay: 0.3,
-    colors: "bg-emerald-500 text-white border-emerald-400/50 shadow-md shadow-emerald-500/20"
+    colors:
+      "bg-emerald-500 text-white border-emerald-400/50 shadow-md shadow-emerald-500/20",
   },
 ];
 
 export function BookACall() {
   const [currentStep, setCurrentStep] = useState<"intro" | "schedule">("intro");
-  
-  const todayDateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
-  const defaultDate = SCHEDULE_DATA.find(d => d.date === todayDateStr) 
-    || SCHEDULE_DATA.find(d => !d.isPast && d.slots.length > 0) 
-    || SCHEDULE_DATA[1];
-  
+
+  const todayDateStr = new Date().toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+  });
+  const defaultDate =
+    SCHEDULE_DATA.find((d) => d.date === todayDateStr) ||
+    SCHEDULE_DATA.find((d) => !d.isPast && d.slots.length > 0) ||
+    SCHEDULE_DATA[1];
+
   const [selectedDateId, setSelectedDateId] = useState<string>(defaultDate.id);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [bookingState, setBookingState] = useState<"idle" | "booking" | "success">("idle");
-  
+  const [bookingState, setBookingState] = useState<
+    "idle" | "booking" | "success"
+  >("idle");
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -130,10 +139,10 @@ export function BookACall() {
   const handleBook = () => {
     if (selectedSlot) {
       setBookingState("booking");
-      
+
       setTimeout(() => {
         setBookingState("success");
-        
+
         setTimeout(() => {
           setBookingState("idle");
           setSelectedSlot(null);
@@ -155,17 +164,16 @@ export function BookACall() {
 
   return (
     <div className="w-full relative flex flex-col p-4 sm:p-5 bg-white/40 dark:bg-[#0b1b42]/30 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-[8px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden transition-all duration-500 min-h-[320px] justify-center group/container">
-      
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[8px] z-0">
-        <motion.div 
-          animate={{ x: [-20, 20, -20], y: [-20, 30, -20], scale: [1, 1.2, 1] }} 
+        <motion.div
+          animate={{ x: [-20, 20, -20], y: [-20, 30, -20], scale: [1, 1.2, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-10 -right-10 w-48 h-48 bg-blue-400/20 dark:bg-blue-500/20 rounded-full blur-[60px] mix-blend-multiply dark:mix-blend-screen" 
+          className="absolute -top-10 -right-10 w-48 h-48 bg-blue-400/20 dark:bg-blue-500/20 rounded-full blur-[60px] mix-blend-multiply dark:mix-blend-screen"
         />
-        <motion.div 
-          animate={{ x: [20, -30, 20], y: [20, -20, 20], scale: [1, 1.3, 1] }} 
+        <motion.div
+          animate={{ x: [20, -30, 20], y: [20, -20, 20], scale: [1, 1.3, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-10 -left-10 w-56 h-56 bg-[#d4af37]/20 dark:bg-[#d4af37]/15 rounded-full blur-[60px] mix-blend-multiply dark:mix-blend-screen" 
+          className="absolute -bottom-10 -left-10 w-56 h-56 bg-[#d4af37]/20 dark:bg-[#d4af37]/15 rounded-full blur-[60px] mix-blend-multiply dark:mix-blend-screen"
         />
       </div>
 
@@ -182,25 +190,37 @@ export function BookACall() {
             className="flex flex-col items-center justify-center text-center gap-4 relative z-10 w-full py-2"
           >
             <div className="relative flex items-center justify-center mt-2 mb-2">
-              <motion.div 
-                animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180] }} 
+              <motion.div
+                animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-[#d4af37]/20 dark:from-blue-500/40 dark:to-[#d4af37]/30 rounded-full scale-[1.5] blur-[8px] pointer-events-none" 
+                className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-[#d4af37]/20 dark:from-blue-500/40 dark:to-[#d4af37]/30 rounded-full scale-[1.5] blur-[8px] pointer-events-none"
               />
-              <motion.div 
-                animate={{ scale: [1, 1.1, 1] }} 
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-blue-100/50 dark:bg-[#0b1b42]/80 border border-white/50 dark:border-white/10 rounded-full scale-[1.3] pointer-events-none" 
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-blue-100/50 dark:bg-[#0b1b42]/80 border border-white/50 dark:border-white/10 rounded-full scale-[1.3] pointer-events-none"
               />
               <div className="w-[56px] h-[56px] rounded-full bg-gradient-to-b from-[#1c4ed8] to-[#0b1b42] flex items-center justify-center text-white shadow-[0_4px_16px_rgba(11,27,66,0.3)] relative z-10 border border-white/20">
                 <motion.div
                   animate={{ y: [-2, 2, -2] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
-                  <Headset size={26} strokeWidth={2} className="drop-shadow-md" />
+                  <Headset
+                    size={26}
+                    strokeWidth={2}
+                    className="drop-shadow-md"
+                  />
                 </motion.div>
-                <motion.div 
-                  animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }} 
+                <motion.div
+                  animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
                   transition={{ duration: 2, repeat: Infinity }}
                   className="absolute top-1 right-1 text-[#d4af37]"
                 >
@@ -208,27 +228,38 @@ export function BookACall() {
                 </motion.div>
               </div>
             </div>
-            
+
             <div className="flex flex-col gap-1.5">
               <h3 className="text-[24px] sm:text-[28px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
                 Let's get to know <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">each other.</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">
+                  each other.
+                </span>
               </h3>
               <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium max-w-[260px] mx-auto leading-relaxed">
-                Schedule a 1-on-1 discovery call with our franchise specialists today.
+                Schedule a 1-on-1 discovery call with our franchise specialists
+                today.
               </p>
             </div>
 
             <div className="flex items-center justify-center w-full max-w-[320px] mx-auto mt-2">
               {FEATURES.map((feature, index) => (
-                <div key={feature.label} className="flex flex-1 items-center justify-center">
-                  <motion.div 
+                <div
+                  key={feature.label}
+                  className="flex flex-1 items-center justify-center"
+                >
+                  <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: feature.delay, duration: 0.4 }}
                     className="flex flex-col items-center gap-1.5 group"
                   >
-                    <div className={clsx("w-8 h-8 rounded-[8px] flex items-center justify-center shrink-0 border group-hover:scale-110 transition-transform duration-300", feature.colors)}>
+                    <div
+                      className={clsx(
+                        "w-8 h-8 rounded-[8px] flex items-center justify-center shrink-0 border group-hover:scale-110 transition-transform duration-300",
+                        feature.colors,
+                      )}
+                    >
                       <feature.icon size={15} strokeWidth={2.5} />
                     </div>
                     <span className="text-[9px] font-bold text-gray-800 dark:text-gray-300 leading-tight text-center whitespace-pre-line">
@@ -286,7 +317,7 @@ export function BookACall() {
 
                 <AnimatePresence>
                   {canScrollLeft && (
-                    <motion.button 
+                    <motion.button
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
@@ -300,7 +331,7 @@ export function BookACall() {
 
                 <AnimatePresence>
                   {canScrollRight && (
-                    <motion.button 
+                    <motion.button
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
@@ -312,7 +343,7 @@ export function BookACall() {
                   )}
                 </AnimatePresence>
 
-                <div 
+                <div
                   ref={scrollRef}
                   onScroll={checkScroll}
                   className="flex gap-2 overflow-x-auto pt-1 pb-2 px-1 -mx-1 scrollbar-hide snap-x snap-mandatory relative z-10"
@@ -322,28 +353,32 @@ export function BookACall() {
                     const isPast = item.isPast;
                     const hasSlots = item.slots.length > 0;
                     const isDisabled = isPast || !hasSlots;
-                    
+
                     return (
                       <button
                         key={item.id}
-                        onClick={() => !isDisabled && setSelectedDateId(item.id)}
+                        onClick={() =>
+                          !isDisabled && setSelectedDateId(item.id)
+                        }
                         disabled={isDisabled}
                         className={clsx(
                           "relative shrink-0 snap-start flex flex-col items-center justify-center gap-0.5 py-2.5 w-[64px] rounded-[8px] border transition-all duration-300",
                           isSelected
                             ? "bg-gradient-to-b from-[#0b1b42] to-[#060e24] dark:from-[#d4af37] dark:to-[#aa8922] border-transparent shadow-[0_4px_12px_rgba(11,27,66,0.3)] dark:shadow-[0_4px_12px_rgba(212,175,55,0.3)] scale-[1.02]"
                             : isDisabled
-                            ? "bg-gray-100/50 dark:bg-white/5 border-transparent opacity-40 cursor-not-allowed grayscale"
-                            : "bg-white/70 dark:bg-white/5 border-white/60 dark:border-white/10 hover:border-[#0b1b42]/30 dark:hover:border-[#d4af37]/50 shadow-sm backdrop-blur-md"
+                              ? "bg-gray-100/50 dark:bg-white/5 border-transparent opacity-40 cursor-not-allowed grayscale"
+                              : "bg-white/70 dark:bg-white/5 border-white/60 dark:border-white/10 hover:border-[#0b1b42]/30 dark:hover:border-[#d4af37]/50 shadow-sm backdrop-blur-md",
                         )}
                       >
-                        {isSelected && <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[8px]" />}
+                        {isSelected && (
+                          <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[8px]" />
+                        )}
                         <span
                           className={clsx(
                             "text-[10px] font-black uppercase tracking-widest transition-colors",
                             isSelected
                               ? "text-blue-100 dark:text-[#0b1b42]/80"
-                              : "text-gray-500 dark:text-gray-400"
+                              : "text-gray-500 dark:text-gray-400",
                           )}
                         >
                           {item.dayStr}
@@ -351,12 +386,14 @@ export function BookACall() {
                         <span
                           className={clsx(
                             "text-[13px] font-black transition-colors",
-                            isSelected ? "text-white dark:text-[#0b1b42]" : "text-gray-900 dark:text-white"
+                            isSelected
+                              ? "text-white dark:text-[#0b1b42]"
+                              : "text-gray-900 dark:text-white",
                           )}
                         >
                           {item.date.split(" ")[1]}
                         </span>
-                        
+
                         {isDisabled && (
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div className="h-[1.5px] w-8 bg-gray-400/80 dark:bg-gray-500/80 rotate-45 rounded-full" />
@@ -389,7 +426,9 @@ export function BookACall() {
                   >
                     {selectedDateObj?.slots.length === 0 ? (
                       <div className="col-span-full py-5 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 border border-dashed border-gray-300 dark:border-gray-700/50 rounded-[4px] bg-white/40 dark:bg-transparent">
-                        <span className="text-[11px] font-bold">No slots available.</span>
+                        <span className="text-[11px] font-bold">
+                          No slots available.
+                        </span>
                       </div>
                     ) : (
                       selectedDateObj?.slots.map((slot) => {
@@ -402,21 +441,29 @@ export function BookACall() {
                               "flex items-center justify-center gap-1.5 py-2 px-1 rounded-[4px] border transition-all duration-300 group active:scale-95",
                               isSelected
                                 ? "bg-gradient-to-r from-[#0b1b42] to-[#12235a] dark:from-[#d4af37] dark:to-[#aa8922] border-transparent text-white dark:text-[#0b1b42] shadow-md"
-                                : "bg-white/80 dark:bg-white/5 border-white/60 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-[#0b1b42]/40 dark:hover:border-[#d4af37]/60 hover:shadow-sm"
+                                : "bg-white/80 dark:bg-white/5 border-white/60 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-[#0b1b42]/40 dark:hover:border-[#d4af37]/60 hover:shadow-sm",
                             )}
                           >
-                            {isSelected && <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[4px]" />}
-                            <Clock 
-                              size={12} 
+                            {isSelected && (
+                              <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[4px]" />
+                            )}
+                            <Clock
+                              size={12}
                               className={clsx(
-                                "transition-colors shrink-0", 
-                                isSelected ? "text-blue-200 dark:text-[#0b1b42]/80" : "text-[#0b1b42]/60 dark:text-[#d4af37]/80 group-hover:text-[#0b1b42] dark:group-hover:text-[#d4af37]"
-                              )} 
+                                "transition-colors shrink-0",
+                                isSelected
+                                  ? "text-blue-200 dark:text-[#0b1b42]/80"
+                                  : "text-[#0b1b42]/60 dark:text-[#d4af37]/80 group-hover:text-[#0b1b42] dark:group-hover:text-[#d4af37]",
+                              )}
                             />
-                            <span className={clsx(
-                              "text-[11px] font-bold tracking-wide transition-colors",
-                              isSelected ? "text-white dark:text-[#0b1b42]" : "text-gray-800 dark:text-gray-200"
-                            )}>
+                            <span
+                              className={clsx(
+                                "text-[11px] font-bold tracking-wide transition-colors",
+                                isSelected
+                                  ? "text-white dark:text-[#0b1b42]"
+                                  : "text-gray-800 dark:text-gray-200",
+                              )}
+                            >
                               {slot}
                             </span>
                           </button>
@@ -436,7 +483,7 @@ export function BookACall() {
                   "w-[160px] py-2.5 rounded-[8px] font-black text-[11px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
                   selectedSlot
                     ? "bg-[#0b1b42] text-white border-[#0b1b42] hover:shadow-[0_4px_16px_rgba(11,27,66,0.3)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.3)] active:scale-[0.98]"
-                    : "bg-gray-200/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 border-transparent cursor-not-allowed backdrop-blur-md"
+                    : "bg-gray-200/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 border-transparent cursor-not-allowed backdrop-blur-md",
                 )}
               >
                 {selectedSlot && (
@@ -447,7 +494,9 @@ export function BookACall() {
                 )}
                 <span className="relative z-10 flex items-center gap-1.5 drop-shadow-sm">
                   Confirm
-                  {selectedSlot && <CheckCircle2 size={14} className="text-[#d4af37]" />}
+                  {selectedSlot && (
+                    <CheckCircle2 size={14} className="text-[#d4af37]" />
+                  )}
                 </span>
               </button>
             </div>
@@ -473,10 +522,22 @@ export function BookACall() {
                 <div className="relative flex items-center justify-center w-14 h-14">
                   <div className="absolute inset-0 rounded-full border-[2px] border-dashed border-[#0b1b42] dark:border-[#d4af37] animate-[spin_3s_linear_infinite]" />
                   <motion.div
-                    animate={{ x: [0, 4, -4, 0], y: [0, -4, -2, 0], rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    animate={{
+                      x: [0, 4, -4, 0],
+                      y: [0, -4, -2, 0],
+                      rotate: [0, 5, -5, 0],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   >
-                    <Send size={20} className="drop-shadow-md" fill="currentColor" />
+                    <Send
+                      size={20}
+                      className="drop-shadow-md"
+                      fill="currentColor"
+                    />
                   </motion.div>
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-gray-900 dark:text-white animate-pulse">
@@ -502,21 +563,41 @@ export function BookACall() {
                     <div className="absolute top-0 inset-x-0 h-[1px] bg-white/40" />
                     <CheckCircle2 size={32} strokeWidth={2.5} />
                   </motion.div>
-                  
-                  <motion.div animate={{ y: [-10, -20], opacity: [0, 1, 0], scale: [0, 1, 0] }} transition={{ duration: 1.2, delay: 0.1 }} className="absolute -top-3 -right-3 text-[#d4af37]">
+
+                  <motion.div
+                    animate={{
+                      y: [-10, -20],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1, 0],
+                    }}
+                    transition={{ duration: 1.2, delay: 0.1 }}
+                    className="absolute -top-3 -right-3 text-[#d4af37]"
+                  >
                     <Sparkles size={16} fill="currentColor" />
                   </motion.div>
-                  <motion.div animate={{ y: [10, 20], opacity: [0, 1, 0], scale: [0, 1, 0] }} transition={{ duration: 1.2, delay: 0.2 }} className="absolute -bottom-1 -left-4 text-[#d4af37]">
+                  <motion.div
+                    animate={{
+                      y: [10, 20],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1, 0],
+                    }}
+                    transition={{ duration: 1.2, delay: 0.2 }}
+                    className="absolute -bottom-1 -left-4 text-[#d4af37]"
+                  >
                     <Sparkles size={12} fill="currentColor" />
                   </motion.div>
                 </div>
-                
+
                 <div className="flex flex-col gap-1 items-center">
                   <h4 className="text-[18px] font-black text-gray-900 dark:text-white tracking-tight leading-none">
                     Booking Confirmed!
                   </h4>
                   <p className="text-[11px] text-gray-600 dark:text-gray-300 font-medium leading-relaxed max-w-[220px] mt-1">
-                    You're scheduled for <span className="text-[#d4af37] font-black">{selectedDateObj?.dayStr} at {selectedSlot}</span>. Check your inbox for the calendar invite.
+                    You're scheduled for{" "}
+                    <span className="text-[#d4af37] font-black">
+                      {selectedDateObj?.dayStr} at {selectedSlot}
+                    </span>
+                    . Check your inbox for the calendar invite.
                   </p>
                 </div>
               </motion.div>

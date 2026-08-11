@@ -44,10 +44,10 @@ export default function FullCycleSupportMobile() {
 
   const handleScroll = (direction: "left" | "right") => {
     if (!marqueeRef.current) return;
-    
-    handlePause(); 
-    
-    const scrollAmount = 176; 
+
+    handlePause();
+
+    const scrollAmount = 176;
     const loopWidth = marqueeRef.current.scrollWidth / 2;
 
     if (direction === "left") {
@@ -61,9 +61,9 @@ export default function FullCycleSupportMobile() {
         x.current += loopWidth;
       }
     }
-    
+
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
-    handleResume(); 
+    handleResume();
   };
 
   return (

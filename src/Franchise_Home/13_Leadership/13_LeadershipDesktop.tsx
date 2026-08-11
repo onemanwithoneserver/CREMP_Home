@@ -64,7 +64,10 @@ function LeaderCard({
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/95 via-[#0a1128]/45 to-transparent opacity-85 group-hover:opacity-90 transition-opacity duration-500" />
 
           <div className="absolute top-4 right-4 z-20">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 shadow-lg">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 shadow-lg"
+            >
               <span>View Profile</span>
               <RotateCw size={12} className="text-[#d4af37]" />
             </motion.div>
@@ -125,7 +128,10 @@ function LeaderCard({
             <div className="mt-4 flex flex-col gap-2">
               {member.highlights.map((highlight, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
-                  <Sparkles size={14} className="text-[#d4af37] shrink-0 mt-[3px]" />
+                  <Sparkles
+                    size={14}
+                    className="text-[#d4af37] shrink-0 mt-[3px]"
+                  />
                   <span className="text-[13px] font-medium text-gray-100 leading-tight">
                     {highlight}
                   </span>

@@ -16,7 +16,13 @@ interface FilterChipProps {
   isActive?: boolean;
 }
 
-function FilterChip({ label, value, options, onChange, isActive }: FilterChipProps) {
+function FilterChip({
+  label,
+  value,
+  options,
+  onChange,
+  isActive,
+}: FilterChipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const chipRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +41,10 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
   const hasValue = value && value !== "Any" && value !== "";
 
   return (
-    <div className={clsx("relative shrink-0", isOpen ? "z-[200]" : "z-10")} ref={chipRef}>
+    <div
+      className={clsx("relative shrink-0", isOpen ? "z-[200]" : "z-10")}
+      ref={chipRef}
+    >
       <motion.button
         type="button"
         whileHover={{ scale: 1.04, y: -1 }}
@@ -47,11 +56,15 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
           isOpen
             ? "bg-[#0b1b42] text-white border-[#d4af37] shadow-[0_4px_20px_rgba(212,175,55,0.3),0_0_0_2px_rgba(212,175,55,0.2)]"
             : hasValue || isActive
-            ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_16px_rgba(11,27,66,0.35)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:border-[#d4af37]/60"
-            : "bg-white/60 dark:bg-white/10 text-gray-600 dark:text-gray-300 border-gray-200/80 dark:border-white/15 hover:border-[#d4af37]/50 hover:bg-white/80 dark:hover:bg-white/15 shadow-sm backdrop-blur-md"
+              ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_16px_rgba(11,27,66,0.35)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:border-[#d4af37]/60"
+              : "bg-white/60 dark:bg-white/10 text-gray-600 dark:text-gray-300 border-gray-200/80 dark:border-white/15 hover:border-[#d4af37]/50 hover:bg-white/80 dark:hover:bg-white/15 shadow-sm backdrop-blur-md",
         )}
       >
-        <span className={clsx(hasValue || isActive || isOpen ? "text-white" : "")}>{displayLabel}</span>
+        <span
+          className={clsx(hasValue || isActive || isOpen ? "text-white" : "")}
+        >
+          {displayLabel}
+        </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 22 }}
@@ -59,7 +72,9 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
           <ChevronDown
             className={clsx(
               "w-3.5 h-3.5 transition-colors duration-200",
-              isOpen || hasValue || isActive ? "text-[#d4af37]" : "text-gray-400"
+              isOpen || hasValue || isActive
+                ? "text-[#d4af37]"
+                : "text-gray-400",
             )}
           />
         </motion.div>
@@ -74,7 +89,6 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
             transition={{ type: "spring", damping: 26, stiffness: 420 }}
             className="absolute left-0 top-[calc(100%+8px)] w-full sm:min-w-[180px] z-[9999] bg-white/80 backdrop-blur-2xl rounded-xl border border-gray-200/60 shadow-[0_16px_48px_rgba(11,27,66,0.18),0_4px_12px_rgba(0,0,0,0.06)] overflow-hidden dark:bg-[#0e172f]/90 dark:border-white/15 dark:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
           >
-            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="py-1.5 max-h-[240px] overflow-y-auto scrollbar-hide">
@@ -86,8 +100,15 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
                     type="button"
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.04, duration: 0.2, ease: "easeOut" }}
-                    whileHover={{ x: 4, backgroundColor: "rgba(212,175,55,0.06)" }}
+                    transition={{
+                      delay: index * 0.04,
+                      duration: 0.2,
+                      ease: "easeOut",
+                    }}
+                    whileHover={{
+                      x: 4,
+                      backgroundColor: "rgba(212,175,55,0.06)",
+                    }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       onChange(opt.id);
@@ -97,7 +118,7 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
                       "w-full text-left px-4 py-2.5 text-[12.5px] transition-all duration-150 flex items-center justify-between cursor-pointer group",
                       isSelected
                         ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-extrabold border-l-[3px] border-[#d4af37]"
-                        : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent"
+                        : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent",
                     )}
                   >
                     <span>{opt.label}</span>
@@ -105,7 +126,11 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
                       <motion.div
                         initial={{ scale: 0, rotate: -45 }}
                         animate={{ scale: 1, rotate: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 22 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 22,
+                        }}
                       >
                         <Check
                           className="w-3.5 h-3.5 text-[#d4af37]"
@@ -123,8 +148,6 @@ function FilterChip({ label, value, options, onChange, isActive }: FilterChipPro
     </div>
   );
 }
-
-// ── Main BasicFilters Component ──────────────────────────────────────────────
 
 import type { FilterState } from "./data";
 import { PROPERTY_TYPES, BUDGET_OPTIONS } from "./data";
@@ -187,7 +210,6 @@ export default function BasicFilters({
   return (
     <div className="w-full relative z-40">
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2.5 pb-1">
-        
         <div className="hidden sm:flex shrink-0 items-center gap-2 pr-3 border-r border-gray-200/50 dark:border-white/10 mr-1">
           <div className="w-6 h-6 rounded-md bg-[#0b1b42]/[0.08] dark:bg-white/[0.06] flex items-center justify-center">
             <svg
@@ -215,7 +237,6 @@ export default function BasicFilters({
           </span>
         </div>
 
-        
         {activeFilters.map((filter) => (
           <FilterChip
             key={filter.key}

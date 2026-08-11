@@ -16,19 +16,22 @@ const typeConfig: Record<
     icon: MapPin,
     badge: "Locality",
     badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200/60",
-    iconBg: "bg-emerald-500/10 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white",
+    iconBg:
+      "bg-emerald-500/10 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white",
   },
   landmark: {
     icon: Sparkles,
     badge: "Landmark",
     badgeBg: "bg-violet-50 text-violet-700 border-violet-200/60",
-    iconBg: "bg-violet-500/10 text-violet-600 group-hover:bg-violet-500 group-hover:text-white",
+    iconBg:
+      "bg-violet-500/10 text-violet-600 group-hover:bg-violet-500 group-hover:text-white",
   },
   hub: {
     icon: Building2,
     badge: "IT Hub",
     badgeBg: "bg-blue-50 text-blue-700 border-blue-200/60",
-    iconBg: "bg-blue-500/10 text-blue-600 group-hover:bg-blue-500 group-hover:text-white",
+    iconBg:
+      "bg-blue-500/10 text-blue-600 group-hover:bg-blue-500 group-hover:text-white",
   },
 };
 
@@ -41,7 +44,9 @@ export default function SearchResults({
       <div className="py-8 text-center">
         <MapPin className="w-8 h-8 text-gray-300 mx-auto mb-2" />
         <p className="text-sm text-gray-400 font-medium">No results found</p>
-        <p className="text-xs text-gray-300 mt-1">Try a different search term</p>
+        <p className="text-xs text-gray-300 mt-1">
+          Try a different search term
+        </p>
       </div>
     );
   }
@@ -76,20 +81,18 @@ export default function SearchResults({
               className={clsx(
                 "relative group w-full flex items-center gap-3.5 p-3.5 transition-all duration-200 cursor-pointer text-left",
                 "bg-gray-50/60 border-gray-100",
-                "hover:bg-white hover:border-[#d4af37]/40 hover:shadow-[0_4px_16px_rgba(23,39,76,0.06)]"
+                "hover:bg-white hover:border-[#d4af37]/40 hover:shadow-[0_4px_16px_rgba(23,39,76,0.06)]",
               )}
             >
-              
               <div
                 className={clsx(
                   "w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200",
-                  config.iconBg
+                  config.iconBg,
                 )}
               >
                 <Icon className="w-[18px] h-[18px]" strokeWidth={2} />
               </div>
 
-              
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <h4 className="text-[14px] font-extrabold text-[#0a1128] truncate">
@@ -98,7 +101,7 @@ export default function SearchResults({
                   <span
                     className={clsx(
                       "text-[8.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border shrink-0",
-                      config.badgeBg
+                      config.badgeBg,
                     )}
                   >
                     {config.badge}
@@ -109,7 +112,6 @@ export default function SearchResults({
                 </p>
               </div>
 
-              
               <div className="shrink-0 flex items-center gap-3">
                 <div className="text-right">
                   <span className="text-[14px] font-extrabold text-[#d4af37] block leading-tight">

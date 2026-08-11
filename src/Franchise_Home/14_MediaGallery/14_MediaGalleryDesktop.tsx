@@ -153,27 +153,37 @@ export default function MediaGalleryDesktop() {
 
               {documents.length > 0 && (
                 <div className="flex flex-col gap-4 pt-6 border-t border-gray-200/50 dark:border-white/5">
-                  <motion.button 
+                  <motion.button
                     onClick={() => setIsDocsExpanded(!isDocsExpanded)}
                     whileHover={{ scale: 1.005 }}
                     whileTap={{ scale: 0.995 }}
                     className="flex items-center justify-between w-full p-4 md:p-5 rounded-2xl bg-white/40 dark:bg-[#0b1b42]/30 backdrop-blur-xl border border-gray-200/60 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-300 group shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-lg overflow-hidden relative"
                   >
-                    
                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
+
                     <div className="flex items-center gap-4 text-base font-bold text-gray-900 dark:text-white relative z-10">
                       <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20 group-hover:scale-110 group-hover:-rotate-[10deg] transition-transform duration-500 shadow-sm">
                         <FileCheck2 size={22} strokeWidth={2.5} />
                       </div>
                       <div className="flex flex-col items-start">
-                        <span className="text-lg group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">Investor & Operation Documents</span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Download key materials and PDF resources</span>
+                        <span className="text-lg group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+                          Investor & Operation Documents
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                          Download key materials and PDF resources
+                        </span>
                       </div>
                     </div>
-                    
+
                     <div className="w-10 h-10 rounded-full bg-white dark:bg-gray-800/80 flex items-center justify-center text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-white/5 group-hover:bg-emerald-500 group-hover:text-white group-hover:border-emerald-500 transition-all duration-300 shadow-sm relative z-10">
-                      <motion.div animate={{ rotate: isDocsExpanded ? 180 : 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+                      <motion.div
+                        animate={{ rotate: isDocsExpanded ? 180 : 0 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        }}
+                      >
                         <ChevronDown size={20} strokeWidth={2.5} />
                       </motion.div>
                     </div>
@@ -181,15 +191,18 @@ export default function MediaGalleryDesktop() {
 
                   <AnimatePresence initial={false}>
                     {isDocsExpanded && (
-                      <motion.div 
+                      <motion.div
                         key="docs-content"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        transition={{
+                          duration: 0.4,
+                          ease: [0.04, 0.62, 0.23, 0.98],
+                        }}
                         className="overflow-hidden"
                       >
-                        <motion.div 
+                        <motion.div
                           variants={docsContainerVariants}
                           initial="hidden"
                           animate="show"
@@ -364,7 +377,10 @@ function MediaCard({
 
         {(item.format === "video" || item.format === "short_video") && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-all duration-500 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] pointer-events-auto">
+            <motion.div
+              whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-all duration-500 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] pointer-events-auto"
+            >
               <Play size={20} className="ml-0.5" fill="currentColor" />
             </motion.div>
           </div>
@@ -373,18 +389,19 @@ function MediaCard({
     );
   }
 
-  // Document Card Fallback (Redesigned)
   return (
     <motion.div
       variants={itemVariants}
       whileHover={{ y: -4, scale: 1.02 }}
       className="relative overflow-hidden rounded-xl bg-white/50 dark:bg-[#0b1b42]/40 backdrop-blur-xl border border-gray-200/80 dark:border-white/5 p-4 flex items-center gap-4 shadow-[0_4px_15px_rgb(0,0,0,0.02)] dark:shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_30px_rgba(16,185,129,0.12)] transition-all duration-300 group cursor-pointer"
     >
-      
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="w-12 h-12 rounded-[10px] bg-white dark:bg-gray-800/80 flex items-center justify-center shadow-sm shrink-0 group-hover:bg-emerald-500/10 border border-gray-100 dark:border-gray-700/50 group-hover:border-emerald-500/30 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 relative z-10">
-        <FileText size={24} className="text-gray-400 dark:text-gray-500 group-hover:text-emerald-500 transition-colors duration-300" />
+        <FileText
+          size={24}
+          className="text-gray-400 dark:text-gray-500 group-hover:text-emerald-500 transition-colors duration-300"
+        />
       </div>
 
       <div className="flex-1 flex flex-col justify-center min-w-0 relative z-10">

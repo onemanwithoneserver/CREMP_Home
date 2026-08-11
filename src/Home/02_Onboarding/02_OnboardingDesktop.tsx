@@ -128,7 +128,6 @@ export default function Desktop() {
 
   const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
 
-
   return (
     <div
       ref={sectionRef}

@@ -5,19 +5,18 @@ import Footer from "./04_footer";
 import { AnnouncementProvider } from "./context/AnnouncementContext";
 
 interface HomeProps {
-    isMobile: boolean;
+  isMobile: boolean;
 }
 
 export default function Home({ isMobile }: HomeProps) {
-    return (
-        <AnnouncementProvider>
-            <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#17274C] text-[#0a1128] dark:text-white transition-colors duration-300">
-                <Header isMobile={isMobile} />
-                <Onboarding isMobile={isMobile} />
-                <StakeHolders isMobile={isMobile} />
-                <Footer isMobile={isMobile} />
-            </div>
-        </AnnouncementProvider>
-    );
+  return (
+    <AnnouncementProvider>
+      <div className="w-full min-h-screen flex flex-col bg-gray-50 dark:bg-[#17274C] text-[#0a1128] dark:text-white transition-colors duration-300">
+        <Header isMobile={isMobile} />
+        <Onboarding isMobile={isMobile} />
+        <StakeHolders isMobile={isMobile} />
+        <Footer isMobile={isMobile} />
+      </div>
+    </AnnouncementProvider>
+  );
 }
-

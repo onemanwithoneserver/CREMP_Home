@@ -39,8 +39,8 @@ export default function FullCycleSupportDesktop() {
 
   const handleScroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
-    
-    const scrollAmount = 264; 
+
+    const scrollAmount = 264;
     const totalWidth = containerRef.current.scrollWidth / 2;
 
     if (direction === "left") {
@@ -54,7 +54,7 @@ export default function FullCycleSupportDesktop() {
         x.current += totalWidth;
       }
     }
-    
+
     containerRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   };
 
@@ -112,7 +112,7 @@ export default function FullCycleSupportDesktop() {
                         transition={{ duration: 0.4, ease: "easeInOut" }}
                         className={clsx(
                           "relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-[4px] shadow-sm",
-                          item.colorClass
+                          item.colorClass,
                         )}
                       >
                         <Icon

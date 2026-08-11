@@ -94,7 +94,11 @@ export default function HeroGalleryDesktop() {
 
             <div className="flex flex-row w-full mt-4 rounded-[4px] overflow-hidden">
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
-                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0 cursor-pointer">
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.3 }}
+                  className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm shadow-blue-500/20 shrink-0 cursor-pointer"
+                >
                   <Calendar size={16} className="text-white" />
                 </motion.div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
@@ -107,7 +111,11 @@ export default function HeroGalleryDesktop() {
                 </div>
               </div>
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
-                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0 cursor-pointer">
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.3 }}
+                  className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-sm shadow-orange-500/20 shrink-0 cursor-pointer"
+                >
                   <Wallet size={16} className="text-white" />
                 </motion.div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
@@ -120,7 +128,11 @@ export default function HeroGalleryDesktop() {
                 </div>
               </div>
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
-                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0 cursor-pointer">
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.3 }}
+                  className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-sm shadow-emerald-500/20 shrink-0 cursor-pointer"
+                >
                   <TrendingUp size={16} className="text-white" />
                 </motion.div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
@@ -133,7 +145,11 @@ export default function HeroGalleryDesktop() {
                 </div>
               </div>
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
-                <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.3 }} className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0 cursor-pointer">
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.3 }}
+                  className="w-8 h-8 xl:w-10 xl:h-10 rounded-[4px] bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm shadow-red-500/20 shrink-0 cursor-pointer"
+                >
                   <MapPin size={16} className="text-white" />
                 </motion.div>
                 <div className="flex flex-col text-center xl:text-left min-w-0">
@@ -216,7 +232,11 @@ export default function HeroGalleryDesktop() {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
                   />
                   <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                    <motion.div whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }} className="w-12 h-12 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-12 h-12 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                    >
                       <Play
                         size={20}
                         className="text-white ml-1"
@@ -234,7 +254,11 @@ export default function HeroGalleryDesktop() {
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
                     />
                     <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                      <motion.div whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }} className="w-10 h-10 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <motion.div
+                        whileHover={{ scale: 1.15 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-10 h-10 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                      >
                         <Play
                           size={16}
                           className="text-white ml-0.5"
@@ -288,7 +312,7 @@ export default function HeroGalleryDesktop() {
                     className={`w-12 h-12 rounded-[4px] flex items-center justify-center mb-2.5 shadow-md relative overflow-hidden transition-transform duration-300 group-hover/feature:scale-105 ${feature.colorClass}`}
                   >
                     <span className="relative z-10 text-white font-bold text-lg">
-                      {String(i + 1).padStart(2, '0')}
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 leading-snug">

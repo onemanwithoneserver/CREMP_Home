@@ -2,9 +2,9 @@ import DesktopWhyInvest from "./DesktopWhyInvest";
 import MobileWhyInvest from "./MobileWhyInvest";
 
 export default function DeveloperAndOwnerWhyInvest({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileWhyInvest /> : <DesktopWhyInvest />;
+  return isMobile ? <MobileWhyInvest /> : <DesktopWhyInvest />;
 }

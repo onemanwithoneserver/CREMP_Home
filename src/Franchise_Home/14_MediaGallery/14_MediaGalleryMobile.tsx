@@ -40,7 +40,6 @@ const fadeScaleUp = {
   },
 };
 
-// Predetermined heights to force a dynamic masonry look
 const masonryHeights = [
   "h-[150px]",
   "h-[200px]",
@@ -53,19 +52,19 @@ const masonryHeights = [
 export default function MediaGalleryMobile() {
   const filteredItems = mediaGalleryData.items;
 
-  // Separate gallery (images/videos) from documents
-  const galleryItems = filteredItems.filter((item) => item.format !== "document");
+  const galleryItems = filteredItems.filter(
+    (item) => item.format !== "document",
+  );
   const documents = filteredItems.filter((item) => item.format === "document");
 
   const [isDocsExpanded, setIsDocsExpanded] = useState(false);
-  
-  // Loading State for Gallery
+
   const [visibleCount, setVisibleCount] = useState(6);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
-    // Simulate network delay to show off the gradient animation
+
     setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + 6, galleryItems.length));
       setIsLoadingMore(false);
@@ -77,10 +76,9 @@ export default function MediaGalleryMobile() {
 
   return (
     <section className="w-full px-3 py-6 relative overflow-hidden rounded-[4px] bg-gray-50/50 dark:bg-[#060d20]">
-      
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-        
+
         <motion.div
           variants={pulseGlow}
           animate="animate"
@@ -118,8 +116,10 @@ export default function MediaGalleryMobile() {
               >
                 <AnimatePresence>
                   {visibleGalleryItems.map((item, idx) => {
-                    const heightClass = masonryHeights[idx % masonryHeights.length];
-                    const isVideo = item.format === "video" || item.format === "short_video";
+                    const heightClass =
+                      masonryHeights[idx % masonryHeights.length];
+                    const isVideo =
+                      item.format === "video" || item.format === "short_video";
 
                     return (
                       <motion.div
@@ -131,7 +131,7 @@ export default function MediaGalleryMobile() {
                         exit={{ opacity: 0, scale: 0.9 }}
                         className={clsx(
                           "relative break-inside-avoid rounded-[4px] overflow-hidden group shadow-[0_4px_15px_rgb(0,0,0,0.05)] dark:shadow-[0_4px_15px_rgba(0,0,0,0.2)] bg-gray-900 border border-black/5 dark:border-white/10 cursor-pointer transform-gpu transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5",
-                          heightClass
+                          heightClass,
                         )}
                       >
                         <img
@@ -140,11 +140,9 @@ export default function MediaGalleryMobile() {
                           loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
                         />
-                        
-                        
+
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-                        
                         <div className="absolute inset-0 p-2 flex flex-col justify-end pointer-events-none translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
                           <span className="text-[#d4af37] text-[8px] font-black uppercase tracking-widest mb-0.5 drop-shadow-md line-clamp-1">
                             {item.category}
@@ -154,7 +152,6 @@ export default function MediaGalleryMobile() {
                           </h4>
                         </div>
 
-                        
                         {isVideo && (
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-xl group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] transition-all duration-300 group-hover:scale-110">
@@ -172,7 +169,6 @@ export default function MediaGalleryMobile() {
                 </AnimatePresence>
               </motion.div>
 
-              
               <AnimatePresence>
                 {hasMore && (
                   <motion.div
@@ -186,15 +182,16 @@ export default function MediaGalleryMobile() {
                       disabled={isLoadingMore}
                       className="relative flex items-center justify-center w-32 h-9 rounded-[2px] bg-[#0a1128] border border-white/10 shadow-md overflow-hidden group active:scale-[0.98] transition-all duration-300"
                     >
-                      
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                      
+
                       {isLoadingMore ? (
                         <>
-                          
                           <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,#0a1128_0%,#d4af37_50%,#0a1128_100%)] animate-spin" />
                           <div className="absolute inset-[1.5px] rounded-[1px] bg-[#0a1128] z-0" />
-                          <Loader2 size={14} className="text-[#d4af37] animate-spin relative z-10" />
+                          <Loader2
+                            size={14}
+                            className="text-[#d4af37] animate-spin relative z-10"
+                          />
                         </>
                       ) : (
                         <span className="text-[11px] font-bold text-white uppercase tracking-wider relative z-10 group-hover:text-[#d4af37] transition-colors">
@@ -208,10 +205,9 @@ export default function MediaGalleryMobile() {
             </>
           )}
 
-          
           {documents.length > 0 && (
             <div className="flex flex-col gap-2 mt-2">
-              <button 
+              <button
                 onClick={() => setIsDocsExpanded(!isDocsExpanded)}
                 className="flex items-center justify-between w-full bg-white/70 dark:bg-[#0b1b42]/50 backdrop-blur-xl border border-gray-200/60 dark:border-white/10 rounded-[4px] p-3 shadow-sm active:scale-[0.99] transition-all duration-300 group"
               >
@@ -223,11 +219,17 @@ export default function MediaGalleryMobile() {
                     Investor Documents
                   </span>
                 </div>
-                <motion.div animate={{ rotate: isDocsExpanded ? 180 : 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-                  <ChevronDown size={16} className="text-gray-500 dark:text-gray-400 group-hover:text-emerald-500 transition-colors" />
+                <motion.div
+                  animate={{ rotate: isDocsExpanded ? 180 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <ChevronDown
+                    size={16}
+                    className="text-gray-500 dark:text-gray-400 group-hover:text-emerald-500 transition-colors"
+                  />
                 </motion.div>
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {isDocsExpanded && (
                   <motion.div
@@ -256,17 +258,19 @@ export default function MediaGalleryMobile() {
 
 function DocumentCard({ item }: { item: MediaItem }) {
   return (
-    <motion.div 
+    <motion.div
       variants={fadeScaleUp}
       initial="hidden"
       animate="show"
       className="relative overflow-hidden rounded-[4px] bg-white/60 dark:bg-[#0b1b42]/40 backdrop-blur-xl border border-gray-200/60 dark:border-white/5 p-2.5 flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow group cursor-pointer"
     >
-      
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
+
       <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center border border-emerald-100 dark:border-emerald-500/20 shrink-0 relative z-10 group-hover:-rotate-12 transition-transform duration-300">
-        <FileText size={15} className="text-emerald-600 dark:text-emerald-400" />
+        <FileText
+          size={15}
+          className="text-emerald-600 dark:text-emerald-400"
+        />
       </div>
 
       <div className="flex-1 flex flex-col justify-center min-w-0 relative z-10">

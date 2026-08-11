@@ -2,9 +2,9 @@ import DesktopYourMarkets from "./DesktopYourMarkets";
 import MobileYourMarkets from "./MobileYourMarkets";
 
 export default function FranchiseYourMarkets({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileYourMarkets /> : <DesktopYourMarkets />;
+  return isMobile ? <MobileYourMarkets /> : <DesktopYourMarkets />;
 }

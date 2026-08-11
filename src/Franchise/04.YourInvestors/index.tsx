@@ -2,9 +2,9 @@ import DesktopYourInvestors from "./DesktopYourInvestors";
 import MobileYourInvestors from "./MobileYourInvestors";
 
 export default function FranchiseYourInvestors({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileYourInvestors /> : <DesktopYourInvestors />;
+  return isMobile ? <MobileYourInvestors /> : <DesktopYourInvestors />;
 }

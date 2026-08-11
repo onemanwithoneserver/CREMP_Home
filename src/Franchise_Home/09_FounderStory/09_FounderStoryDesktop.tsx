@@ -1,6 +1,13 @@
 import clsx from "clsx";
 import { motion, type Variants } from "framer-motion";
-import { Quote, Store, Users, Award, TrendingUp, IndianRupee } from "lucide-react";
+import {
+  Quote,
+  Store,
+  Users,
+  Award,
+  TrendingUp,
+  IndianRupee,
+} from "lucide-react";
 import { getTextStyles } from "../utils/theme";
 import { founderStoryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -22,9 +29,6 @@ const fadeInUp: Variants = {
   },
 };
 
-
-
-// @ts-ignore - used as JSX component
 function YoutubeIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -33,7 +37,6 @@ function YoutubeIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-// @ts-ignore - used as JSX component
 function InstagramIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -42,7 +45,6 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-// @ts-ignore - used as JSX component
 function LinkedinIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -53,19 +55,27 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
-  if (lower.includes("outlet") || lower.includes("store")) return <Store size={22} strokeWidth={2.5} />;
-  if (lower.includes("user") || lower.includes("customer") || lower.includes("client")) return <Users size={22} strokeWidth={2.5} />;
-  if (lower.includes("award") || lower.includes("win")) return <Award size={22} strokeWidth={2.5} />;
-  if (lower.includes("revenue") || lower.includes("sales")) return <IndianRupee size={22} strokeWidth={2.5} />;
+  if (lower.includes("outlet") || lower.includes("store"))
+    return <Store size={22} strokeWidth={2.5} />;
+  if (
+    lower.includes("user") ||
+    lower.includes("customer") ||
+    lower.includes("client")
+  )
+    return <Users size={22} strokeWidth={2.5} />;
+  if (lower.includes("award") || lower.includes("win"))
+    return <Award size={22} strokeWidth={2.5} />;
+  if (lower.includes("revenue") || lower.includes("sales"))
+    return <IndianRupee size={22} strokeWidth={2.5} />;
   return <TrendingUp size={22} strokeWidth={2.5} />;
 };
 
 const getIconBgColor = (idx: number) => {
   const colors = [
-    "bg-amber-600", 
-    "bg-blue-500", 
-    "bg-emerald-500", 
-    "bg-pink-500"
+    "bg-amber-600",
+    "bg-blue-500",
+    "bg-emerald-500",
+    "bg-pink-500",
   ];
   return colors[idx % colors.length];
 };
@@ -108,8 +118,6 @@ export default function FounderStoryDesktop() {
                   size={64}
                   className="text-[#d4af37]/30 -translate-x-2 -translate-y-2 group-hover:text-[#d4af37]/50 transition-colors duration-500"
                 />
-                
-               
               </div>
 
               <div className="flex-1 flex items-center">
@@ -155,7 +163,7 @@ export default function FounderStoryDesktop() {
                   className="flex-1 bg-[#0b1b42] border border-white/5 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-lg group hover:border-white/10 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-[#d4af37]/10 transition-colors duration-500" />
-                  
+
                   <div className="relative z-10 flex flex-row items-center justify-between gap-4 w-full">
                     <div className="flex flex-col items-start">
                       <p
@@ -176,7 +184,7 @@ export default function FounderStoryDesktop() {
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className={clsx(
                         "w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-white shadow-lg shrink-0",
-                        getIconBgColor(idx)
+                        getIconBgColor(idx),
                       )}
                     >
                       {getStatIcon(stat.label)}

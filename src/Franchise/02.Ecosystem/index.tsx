@@ -2,9 +2,9 @@ import DesktopEcosystem from "./DesktopEcosystem";
 import MobileEcosystem from "./MobileEcosystem";
 
 export default function FranchiseEcosystem({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileEcosystem /> : <DesktopEcosystem />;
+  return isMobile ? <MobileEcosystem /> : <DesktopEcosystem />;
 }

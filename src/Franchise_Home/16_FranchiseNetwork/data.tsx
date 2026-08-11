@@ -1,4 +1,12 @@
-import { Building2, CheckCircle2, Lock, MapPin, Sparkles, Target, Zap } from "lucide-react";
+import {
+  Building2,
+  CheckCircle2,
+  Lock,
+  MapPin,
+  Sparkles,
+  Target,
+  Zap,
+} from "lucide-react";
 
 export interface CityNode {
   id: string;
@@ -17,20 +25,62 @@ export interface CityNode {
 export const franchiseNetworkData = {
   sectionLabel: "EXPANSION MAP",
   title: "Franchise Network — Pan India",
-  subtitle: "Explore our rapidly expanding footprint across high-demand metropolitan hubs and Tier-2 growth corridors.",
+  subtitle:
+    "Explore our rapidly expanding footprint across high-demand metropolitan hubs and Tier-2 growth corridors.",
   outletCount: "187+ Outlets • 8 States • 25 In Pipeline",
-  
+
   stats: [
-    { label: "Active Outlets", value: "187+", change: "+24 this quarter", icon: Building2 },
-    { label: "States Present", value: "8", change: "4 new states pending", icon: MapPin },
-    { label: "In Pipeline", value: "25", change: "Opening in 60 days", icon: Zap },
-    { label: "Territory Allocation", value: "84/90", change: "6 prime zones open", icon: Target },
+    {
+      label: "Active Outlets",
+      value: "187+",
+      change: "+24 this quarter",
+      icon: Building2,
+    },
+    {
+      label: "States Present",
+      value: "8",
+      change: "4 new states pending",
+      icon: MapPin,
+    },
+    {
+      label: "In Pipeline",
+      value: "25",
+      change: "Opening in 60 days",
+      icon: Zap,
+    },
+    {
+      label: "Territory Allocation",
+      value: "84/90",
+      change: "6 prime zones open",
+      icon: Target,
+    },
   ],
 
   legend: [
-    { status: "active", label: "Existing Outlets (187+)", icon: CheckCircle2, color: "text-emerald-500", bg: "bg-emerald-500", ring: "ring-emerald-400/30" },
-    { status: "expansion", label: "Fast-Track Expansion (25)", icon: Sparkles, color: "text-[#d4af37]", bg: "bg-[#d4af37]", ring: "ring-[#d4af37]/30" },
-    { status: "available", label: "Prime Available Territories (6)", icon: Lock, color: "text-blue-400", bg: "bg-blue-500", ring: "ring-blue-400/30" },
+    {
+      status: "active",
+      label: "Existing Outlets (187+)",
+      icon: CheckCircle2,
+      color: "text-emerald-500",
+      bg: "bg-emerald-500",
+      ring: "ring-emerald-400/30",
+    },
+    {
+      status: "expansion",
+      label: "Fast-Track Expansion (25)",
+      icon: Sparkles,
+      color: "text-[#d4af37]",
+      bg: "bg-[#d4af37]",
+      ring: "ring-[#d4af37]/30",
+    },
+    {
+      status: "available",
+      label: "Prime Available Territories (6)",
+      icon: Lock,
+      color: "text-blue-400",
+      bg: "bg-blue-500",
+      ring: "ring-blue-400/30",
+    },
   ],
 
   cities: [

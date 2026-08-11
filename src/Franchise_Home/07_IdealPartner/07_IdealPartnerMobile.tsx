@@ -46,7 +46,7 @@ export default function IdealPartnerMobile() {
     <section className="w-full px-2 py-12 relative overflow-hidden bg-gray-50/50 dark:bg-[#060d20] rounded-[4px]">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-        
+
         <motion.div
           variants={ambientGlow}
           animate="animate"
@@ -82,7 +82,7 @@ export default function IdealPartnerMobile() {
                 variants={fadeSlideUp}
                 className={clsx(
                   "relative rounded-[4px] border border-white/60 dark:border-white/5 p-5 bg-white/60 dark:bg-[#0b1b42]/40 backdrop-blur-2xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:border-[#d4af37]/30 hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-500 group overflow-hidden",
-                  getCardStyles(item.intent)
+                  getCardStyles(item.intent),
                 )}
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/80 dark:via-[#d4af37]/30 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
@@ -91,10 +91,14 @@ export default function IdealPartnerMobile() {
                   <div
                     className={clsx(
                       "w-10 h-10 rounded-[4px] flex shrink-0 items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-500",
-                      getIconContainerStyles(item.intent)
+                      getIconContainerStyles(item.intent),
                     )}
                   >
-                    <Icon size={20} strokeWidth={2.2} className="text-white drop-shadow-md" />
+                    <Icon
+                      size={20}
+                      strokeWidth={2.2}
+                      className="text-white drop-shadow-md"
+                    />
                   </div>
                   <h4 className="text-[#0a1128] dark:text-white font-extrabold text-[17px] tracking-tight leading-tight group-hover:text-[#d4af37] transition-colors duration-300">
                     {item.title}
@@ -114,14 +118,14 @@ export default function IdealPartnerMobile() {
                         <div
                           className={clsx(
                             "mt-[3px] shrink-0 rounded-full p-0.5 bg-white dark:bg-[#0b1b42]",
-                            badgeStyles.wrapper
+                            badgeStyles.wrapper,
                           )}
                         >
                           <BadgeCheck
                             size={18}
                             className={clsx(
                               "text-gray-300 dark:text-gray-600 transition-colors duration-300 group-hover/item:text-[#d4af37]",
-                              badgeStyles.icon
+                              badgeStyles.icon,
                             )}
                             strokeWidth={2.5}
                           />
@@ -138,7 +142,6 @@ export default function IdealPartnerMobile() {
           })}
         </motion.div>
 
-        
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -161,16 +164,16 @@ export default function IdealPartnerMobile() {
                   <div
                     className={clsx(
                       "w-10 h-10 rounded-[12px] flex shrink-0 items-center justify-center shadow-sm mb-3 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-md",
-                      getIconContainerStyles(item.intent)
+                      getIconContainerStyles(item.intent),
                     )}
                   >
                     <Icon size={18} strokeWidth={2.2} className="text-white" />
                   </div>
-                  
+
                   <span className="text-[#0a1128] dark:text-white font-black text-[13px] leading-tight mb-1 group-hover:text-[#d4af37] transition-colors duration-300 whitespace-nowrap">
                     {item.value}
                   </span>
-                  
+
                   <span className="text-gray-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-widest leading-tight">
                     {item.title}
                   </span>
@@ -196,9 +199,7 @@ export default function IdealPartnerMobile() {
             </div>
 
             <div className="flex items-center gap-3.5 relative z-10">
-              <div
-                className="w-12 h-12 rounded-[4px] bg-gradient-to-br from-[#d4af37]/20 to-transparent border border-[#d4af37]/50 text-[#d4af37] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-md group-hover:scale-105 transition-transform duration-500"
-              >
+              <div className="w-12 h-12 rounded-[4px] bg-gradient-to-br from-[#d4af37]/20 to-transparent border border-[#d4af37]/50 text-[#d4af37] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-md group-hover:scale-105 transition-transform duration-500">
                 <idealPartnerData.additionalExpectations.icon
                   size={22}
                   strokeWidth={2.2}
@@ -208,7 +209,7 @@ export default function IdealPartnerMobile() {
                 {idealPartnerData.additionalExpectations.title}
               </h4>
             </div>
-            
+
             <p className="text-gray-300 font-medium text-[14px] leading-relaxed relative z-10 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
               {idealPartnerData.additionalExpectations.text}
             </p>

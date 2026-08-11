@@ -68,7 +68,7 @@ export default function AdvancedFilters({
       const currentList = (newFilters[cat.key] as string[]) || [];
       if (currentList.includes(optionId)) {
         newFilters[cat.key] = currentList.filter(
-          (id) => id !== optionId
+          (id) => id !== optionId,
         ) as any;
       } else {
         newFilters[cat.key] = [...currentList, optionId] as any;
@@ -165,7 +165,6 @@ export default function AdvancedFilters({
   const activeCategories =
     activeTab === "commercial" ? commercialCategories : businessCategories;
 
-  // Count active advanced filters
   const activeCount =
     activeTab === "commercial"
       ? [
@@ -186,9 +185,9 @@ export default function AdvancedFilters({
             filters.dealPref !== DEFAULT_FILTERS.dealPref,
           filters.commercialTags && filters.commercialTags.length > 0,
         ].filter(Boolean).length
-      : [
-          filters.businessOption && filters.businessOption.length > 0,
-        ].filter(Boolean).length;
+      : [filters.businessOption && filters.businessOption.length > 0].filter(
+          Boolean,
+        ).length;
 
   return (
     <div className="relative">
@@ -201,7 +200,7 @@ export default function AdvancedFilters({
           "w-12 h-12 flex items-center justify-center rounded-lg border transition-all duration-300 cursor-pointer shadow-sm relative",
           isOpen
             ? "bg-red-500/90 border-red-400 text-white shadow-[0_4px_20px_rgba(239,68,68,0.3)]"
-            : "bg-[#0b1b42] border-[#0b1b42] text-[#d4af37] hover:border-[#d4af37]/60 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2)] shadow-[0_4px_16px_rgba(11,27,66,0.3)]"
+            : "bg-[#0b1b42] border-[#0b1b42] text-[#d4af37] hover:border-[#d4af37]/60 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2)] shadow-[0_4px_16px_rgba(11,27,66,0.3)]",
         )}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -211,9 +210,26 @@ export default function AdvancedFilters({
               initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
               animate={{ rotate: 0, opacity: 1, scale: 1 }}
               exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
+              transition={{
+                duration: 0.2,
+                type: "spring",
+                stiffness: 400,
+                damping: 20,
+              }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
             </motion.div>
           ) : (
             <motion.div
@@ -221,7 +237,12 @@ export default function AdvancedFilters({
               initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
               animate={{ rotate: 0, opacity: 1, scale: 1 }}
               exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
+              transition={{
+                duration: 0.2,
+                type: "spring",
+                stiffness: 400,
+                damping: 20,
+              }}
             >
               <SlidersHorizontal className="w-5 h-5 stroke-[2.5]" />
             </motion.div>
@@ -249,7 +270,6 @@ export default function AdvancedFilters({
             transition={{ type: "spring", damping: 26, stiffness: 380 }}
             className="absolute top-[calc(100%+10px)] right-0 w-[320px] sm:w-[360px] bg-white/70 backdrop-blur-2xl rounded-xl border border-gray-200/50 shadow-[0_20px_56px_rgba(11,27,66,0.16),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-[#0e172f]/85 dark:border-white/15 dark:shadow-[0_20px_56px_rgba(0,0,0,0.5)]"
           >
-            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="flex items-center justify-between p-2.5 shrink-0">
@@ -286,7 +306,7 @@ export default function AdvancedFilters({
                     "rounded-lg transition-all duration-300",
                     expandedKey === "size"
                       ? "bg-white/60 dark:bg-[#0b1b42]/30 border border-[#d4af37]/40 shadow-sm overflow-visible relative z-30 backdrop-blur-md"
-                      : "bg-white/30 dark:bg-white/5 border border-white/40 dark:border-white/10 overflow-hidden hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-md"
+                      : "bg-white/30 dark:bg-white/5 border border-white/40 dark:border-white/10 overflow-hidden hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-md",
                   )}
                 >
                   <motion.button
@@ -314,7 +334,11 @@ export default function AdvancedFilters({
                     <motion.div
                       className="text-gray-400 transition-colors"
                       animate={{ rotate: expandedKey === "size" ? 180 : 0 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 22,
+                      }}
                     >
                       {expandedKey === "size" ? (
                         <Minus className="w-4 h-4" />
@@ -337,7 +361,7 @@ export default function AdvancedFilters({
                         className={clsx(
                           expandedKey === "size"
                             ? "overflow-visible"
-                            : "overflow-hidden"
+                            : "overflow-hidden",
                         )}
                       >
                         <div className="px-3.5 pb-3 space-y-2.5">
@@ -349,9 +373,7 @@ export default function AdvancedFilters({
                               <CustomSelect
                                 options={SIZE_MIN_OPTIONS}
                                 value={filters.sizeMin}
-                                onChange={(val) =>
-                                  handleUpdate("sizeMin", val)
-                                }
+                                onChange={(val) => handleUpdate("sizeMin", val)}
                               />
                             </div>
                             <div className="flex-1 relative z-20">
@@ -361,9 +383,7 @@ export default function AdvancedFilters({
                               <CustomSelect
                                 options={SIZE_MAX_OPTIONS}
                                 value={filters.sizeMax}
-                                onChange={(val) =>
-                                  handleUpdate("sizeMax", val)
-                                }
+                                onChange={(val) => handleUpdate("sizeMax", val)}
                               />
                             </div>
                           </div>
@@ -374,9 +394,7 @@ export default function AdvancedFilters({
                             <CustomSelect
                               options={SIZE_UNITS}
                               value={filters.sizeUnit}
-                              onChange={(val) =>
-                                handleUpdate("sizeUnit", val)
-                              }
+                              onChange={(val) => handleUpdate("sizeUnit", val)}
                             />
                           </div>
                         </div>
@@ -386,7 +404,6 @@ export default function AdvancedFilters({
                 </div>
               )}
 
-              
               {activeCategories.map((cat, catIndex) => {
                 const isExpanded = expandedKey === cat.key;
                 const currentValue = filters[cat.key as keyof FilterState];
@@ -405,7 +422,7 @@ export default function AdvancedFilters({
                       "rounded-lg transition-all duration-300",
                       isExpanded
                         ? "bg-white/60 dark:bg-[#0b1b42]/30 border border-[#d4af37]/40 shadow-sm backdrop-blur-md"
-                        : "bg-white/30 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-md"
+                        : "bg-white/30 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-[#d4af37]/40 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-md",
                     )}
                   >
                     <motion.button
@@ -421,7 +438,7 @@ export default function AdvancedFilters({
                           whileHover={{ scale: 1.1, rotate: 4 }}
                           className={clsx(
                             "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 shadow-sm",
-                            cat.iconBg
+                            cat.iconBg,
                           )}
                         >
                           <cat.icon
@@ -448,7 +465,11 @@ export default function AdvancedFilters({
                         <motion.div
                           className="text-gray-400 transition-colors"
                           animate={{ rotate: isExpanded ? 180 : 0 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 22,
+                          }}
                         >
                           {isExpanded ? (
                             <Minus className="w-4 h-4" />
@@ -483,8 +504,15 @@ export default function AdvancedFilters({
                                       type="button"
                                       initial={{ opacity: 0, x: -8 }}
                                       animate={{ opacity: 1, x: 0 }}
-                                      transition={{ delay: optIndex * 0.04, duration: 0.2 }}
-                                      whileHover={{ x: 3, backgroundColor: "rgba(212,175,55,0.04)" }}
+                                      transition={{
+                                        delay: optIndex * 0.04,
+                                        duration: 0.2,
+                                      }}
+                                      whileHover={{
+                                        x: 3,
+                                        backgroundColor:
+                                          "rgba(212,175,55,0.04)",
+                                      }}
                                       whileTap={{ scale: 0.98 }}
                                       onClick={() =>
                                         handleOptionToggle(cat, opt.id)
@@ -493,7 +521,7 @@ export default function AdvancedFilters({
                                         "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-all cursor-pointer group",
                                         isSelected
                                           ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-[3px] border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent"
+                                          : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent",
                                       )}
                                     >
                                       <div
@@ -501,7 +529,7 @@ export default function AdvancedFilters({
                                           "w-4 h-4 rounded flex items-center justify-center shrink-0 border transition-all duration-200",
                                           isSelected
                                             ? "bg-[#0b1b42] border-[#d4af37] text-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.3)]"
-                                            : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 group-hover:border-[#d4af37]"
+                                            : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 group-hover:border-[#d4af37]",
                                         )}
                                       >
                                         {isSelected && (
@@ -546,15 +574,21 @@ export default function AdvancedFilters({
                                       type="button"
                                       initial={{ opacity: 0, x: -8 }}
                                       animate={{ opacity: 1, x: 0 }}
-                                      transition={{ delay: optIndex * 0.04, duration: 0.2 }}
-                                      whileHover={{ x: 3, backgroundColor: "rgba(212,175,55,0.04)" }}
+                                      transition={{
+                                        delay: optIndex * 0.04,
+                                        duration: 0.2,
+                                      }}
+                                      whileHover={{
+                                        x: 3,
+                                        backgroundColor:
+                                          "rgba(212,175,55,0.04)",
+                                      }}
                                       whileTap={{ scale: 0.98 }}
                                       onClick={() => {
                                         if (opt.id === "Any") {
                                           onFilterChange({
                                             ...filters,
-                                            [cat.key]:
-                                              DEFAULT_FILTERS[cat.key],
+                                            [cat.key]: DEFAULT_FILTERS[cat.key],
                                           });
                                         } else {
                                           handleOptionToggle(cat, opt.id);
@@ -564,7 +598,7 @@ export default function AdvancedFilters({
                                         "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-all cursor-pointer group",
                                         isSelected
                                           ? "bg-[#0b1b42]/[0.06] dark:bg-white/10 text-[#0a1128] dark:text-white font-bold border-l-[3px] border-[#d4af37]"
-                                          : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent"
+                                          : "text-gray-700 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-white font-medium border-l-[3px] border-transparent",
                                       )}
                                     >
                                       <div
@@ -572,7 +606,7 @@ export default function AdvancedFilters({
                                           "w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all duration-200",
                                           isSelected
                                             ? "border-[#d4af37] bg-white dark:bg-[#0b1b42] ring-2 ring-[#d4af37]/30"
-                                            : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 group-hover:border-[#d4af37]"
+                                            : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 group-hover:border-[#d4af37]",
                                         )}
                                       >
                                         {isSelected && (

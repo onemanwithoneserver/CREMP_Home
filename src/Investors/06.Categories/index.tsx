@@ -2,9 +2,9 @@ import DesktopCategories from "./DesktopCategories";
 import MobileCategories from "./MobileCategories";
 
 export default function InvestorsCategories({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileCategories /> : <DesktopCategories />;
+  return isMobile ? <MobileCategories /> : <DesktopCategories />;
 }

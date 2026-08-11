@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import clsx from "clsx";
-import { 
-  ChevronRight, 
-  Download, 
-  Globe2, 
-  MapPin, 
-  Navigation, 
+import {
+  ChevronRight,
+  Download,
+  Globe2,
+  MapPin,
+  Navigation,
   CheckCircle2,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -22,10 +22,11 @@ const pulseGlow: Variants = {
   },
 };
 
-
 export default function FranchiseNetworkDesktop() {
   const [hoveredCity, setHoveredCity] = useState<CityNode | null>(null);
-  const [activeCity, setActiveCity] = useState<CityNode>(franchiseNetworkData.cities[0]);
+  const [activeCity, setActiveCity] = useState<CityNode>(
+    franchiseNetworkData.cities[0],
+  );
 
   return (
     <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] ">
@@ -77,7 +78,10 @@ export default function FranchiseNetworkDesktop() {
                   <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     {stat.label}
                   </span>
-                  <motion.div whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }} className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] shadow-sm">
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                    className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] shadow-sm"
+                  >
                     <Icon size={16} />
                   </motion.div>
                 </div>
@@ -108,7 +112,13 @@ export default function FranchiseNetworkDesktop() {
 
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-60">
               <defs>
-                <linearGradient id="networkGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="networkGold"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="#d4af37" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
                 </linearGradient>
@@ -152,7 +162,10 @@ export default function FranchiseNetworkDesktop() {
 
             <div className="relative z-20 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0b1b42]/80 backdrop-blur-md border border-[#d4af37]/30 rounded-[4px]">
-                <Globe2 size={14} className="text-[#d4af37] animate-spin-slow" />
+                <Globe2
+                  size={14}
+                  className="text-[#d4af37] animate-spin-slow"
+                />
                 <span className="text-[11px] font-bold text-white uppercase tracking-wider">
                   Live National Network
                 </span>
@@ -161,9 +174,14 @@ export default function FranchiseNetworkDesktop() {
 
               <div className="flex items-center gap-2 bg-[#0b1b42]/90 backdrop-blur-md px-3 py-1.5 rounded-[4px] border border-gray-700/60">
                 {franchiseNetworkData.legend.map((l) => (
-                  <div key={l.status} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-medium">
+                  <div
+                    key={l.status}
+                    className="flex items-center gap-1.5 text-[11px] text-gray-300 font-medium"
+                  >
                     <span className={clsx("w-2 h-2 rounded-full", l.bg)} />
-                    <span className="hidden sm:inline">{l.label.split("(")[0]}</span>
+                    <span className="hidden sm:inline">
+                      {l.label.split("(")[0]}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -173,13 +191,13 @@ export default function FranchiseNetworkDesktop() {
               {franchiseNetworkData.cities.map((city) => {
                 const isSelected = activeCity.id === city.id;
                 const isHovered = hoveredCity?.id === city.id;
-                
-                const nodeColor = 
-                  city.status === "active" 
-                    ? "bg-emerald-500 border-emerald-300 text-emerald-400" 
+
+                const nodeColor =
+                  city.status === "active"
+                    ? "bg-emerald-500 border-emerald-300 text-emerald-400"
                     : city.status === "expansion"
-                    ? "bg-[#d4af37] border-amber-200 text-[#d4af37]"
-                    : "bg-blue-500 border-blue-300 text-blue-400";
+                      ? "bg-[#d4af37] border-amber-200 text-[#d4af37]"
+                      : "bg-blue-500 border-blue-300 text-blue-400";
 
                 return (
                   <div
@@ -193,7 +211,11 @@ export default function FranchiseNetworkDesktop() {
                     <div
                       className={clsx(
                         "absolute -inset-2 rounded-full opacity-60 animate-ping pointer-events-none",
-                        city.status === "active" ? "bg-emerald-400" : city.status === "expansion" ? "bg-[#d4af37]" : "bg-blue-400"
+                        city.status === "active"
+                          ? "bg-emerald-400"
+                          : city.status === "expansion"
+                            ? "bg-[#d4af37]"
+                            : "bg-blue-400",
                       )}
                       style={{ animationDuration: "3s" }}
                     />
@@ -206,9 +228,15 @@ export default function FranchiseNetworkDesktop() {
                         isSelected
                           ? "ring-4 ring-[#d4af37] scale-110 z-30"
                           : "z-10",
-                        nodeColor.includes("emerald") ? "bg-emerald-950/80 border-emerald-400 text-emerald-300" : "",
-                        nodeColor.includes("d4af37") ? "bg-amber-950/80 border-[#d4af37] text-[#d4af37]" : "",
-                        nodeColor.includes("blue") ? "bg-blue-950/80 border-blue-400 text-blue-300" : ""
+                        nodeColor.includes("emerald")
+                          ? "bg-emerald-950/80 border-emerald-400 text-emerald-300"
+                          : "",
+                        nodeColor.includes("d4af37")
+                          ? "bg-amber-950/80 border-[#d4af37] text-[#d4af37]"
+                          : "",
+                        nodeColor.includes("blue")
+                          ? "bg-blue-950/80 border-blue-400 text-blue-300"
+                          : "",
                       )}
                     >
                       <MapPin size={13} className="drop-shadow" />
@@ -219,11 +247,15 @@ export default function FranchiseNetworkDesktop() {
                         "absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap px-2 py-0.5 rounded-[2px] text-[10px] font-bold tracking-tight shadow-md border transition-all duration-200 pointer-events-none z-30",
                         isSelected || isHovered
                           ? "bg-white text-gray-950 border-[#d4af37] opacity-100 translate-y-0"
-                          : "bg-gray-900/90 text-gray-300 border-gray-700 opacity-80"
+                          : "bg-gray-900/90 text-gray-300 border-gray-700 opacity-80",
                       )}
                     >
                       {city.name}
-                      {city.outlets > 0 && <span className="ml-1 text-[#d4af37]">({city.outlets})</span>}
+                      {city.outlets > 0 && (
+                        <span className="ml-1 text-[#d4af37]">
+                          ({city.outlets})
+                        </span>
+                      )}
                     </div>
                   </div>
                 );
@@ -235,7 +267,9 @@ export default function FranchiseNetworkDesktop() {
                 <Navigation size={12} className="text-[#d4af37]" />
                 Click any node on the map to inspect micro-market capacity
               </span>
-              <span className="hidden sm:inline text-gray-500">Updated Real-Time • FY 2025-26</span>
+              <span className="hidden sm:inline text-gray-500">
+                Updated Real-Time • FY 2025-26
+              </span>
             </div>
           </div>
 
@@ -243,14 +277,16 @@ export default function FranchiseNetworkDesktop() {
             <div className="flex flex-col gap-5">
               <div className="border-b border-gray-200 dark:border-gray-800 pb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className={clsx(
-                    "text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[2px] border",
-                    activeCity.status === "active"
-                      ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800"
-                      : activeCity.status === "expansion"
-                      ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-[#d4af37] dark:border-amber-800"
-                      : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800"
-                  )}>
+                  <span
+                    className={clsx(
+                      "text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[2px] border",
+                      activeCity.status === "active"
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800"
+                        : activeCity.status === "expansion"
+                          ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-[#d4af37] dark:border-amber-800"
+                          : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800",
+                    )}
+                  >
                     {activeCity.statusLabel}
                   </span>
                   <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
@@ -288,18 +324,28 @@ export default function FranchiseNetworkDesktop() {
 
               <div className="space-y-2 text-xs">
                 <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-600 dark:text-gray-400">Territory Exclusivity</span>
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Territory Exclusivity
+                  </span>
                   <span className="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                     <CheckCircle2 size={12} /> Guaranteed
                   </span>
                 </div>
                 <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-600 dark:text-gray-400">Supply Chain Access</span>
-                  <span className="font-semibold text-gray-900 dark:text-white">24h Direct Depot</span>
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Supply Chain Access
+                  </span>
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    24h Direct Depot
+                  </span>
                 </div>
                 <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-600 dark:text-gray-400">Launch Timeline</span>
-                  <span className="font-semibold text-gray-900 dark:text-white">45–60 Days</span>
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Launch Timeline
+                  </span>
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    45–60 Days
+                  </span>
                 </div>
               </div>
 
@@ -316,7 +362,7 @@ export default function FranchiseNetworkDesktop() {
                         "px-2.5 py-1 text-xs rounded-[2px] border transition-all",
                         activeCity.id === city.id
                           ? "bg-[#0b1b42] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 dark:border-[#d4af37] font-bold"
-                          : "bg-white dark:bg-[#0b1b42] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-[#d4af37]"
+                          : "bg-white dark:bg-[#0b1b42] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-[#d4af37]",
                       )}
                     >
                       {city.name}
@@ -329,7 +375,10 @@ export default function FranchiseNetworkDesktop() {
             <div className="flex flex-col gap-2.5 pt-5 border-t border-gray-200 dark:border-gray-800 mt-4">
               <button className="w-full py-3 px-4 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
-                <ChevronRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                <ChevronRight
+                  size={15}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </button>
 
               <button className="w-full py-2.5 px-4 bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] transition-all flex items-center justify-center gap-2">

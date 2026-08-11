@@ -2,7 +2,15 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { Info, TrendingUp, Users, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import {franchiseModelsData, franchiseModelsUI,getStaffBadgeColor,revenueROIData,getModelSpecifications,getRightMetrics,type CostBreakdownItem,} from "./data";
+import {
+  franchiseModelsData,
+  franchiseModelsUI,
+  getStaffBadgeColor,
+  revenueROIData,
+  getModelSpecifications,
+  getRightMetrics,
+  type CostBreakdownItem,
+} from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 const DonutChartWithLegend = ({
   data,
@@ -39,7 +47,10 @@ const DonutChartWithLegend = ({
           className="transform -rotate-90 overflow-visible"
         >
           {chartData.map((item, i) => {
-            const angle = ((item.offset + item.segmentLength / 2) / circumference) * 2 * Math.PI;
+            const angle =
+              ((item.offset + item.segmentLength / 2) / circumference) *
+              2 *
+              Math.PI;
             const textX = size / 2 + radius * Math.cos(angle);
             const textY = size / 2 + radius * Math.sin(angle);
             const isSmall = item.percentage < 10;
@@ -55,7 +66,9 @@ const DonutChartWithLegend = ({
                   y: isHovered ? Math.sin(angle) * 12 : 0,
                   scale: isHovered ? 1.03 : 1,
                   rotate: isHovered ? [0, -3, 3, 0] : 0,
-                  filter: isHovered ? "drop-shadow(0 8px 16px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))" : "drop-shadow(0 0px 0px rgba(0,0,0,0))"
+                  filter: isHovered
+                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))"
+                    : "drop-shadow(0 0px 0px rgba(0,0,0,0))",
                 }}
                 style={{ transformOrigin: `${size / 2}px ${size / 2}px` }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
@@ -71,8 +84,14 @@ const DonutChartWithLegend = ({
                   strokeDashoffset={-item.offset}
                   strokeLinecap="butt"
                   initial={{ strokeDasharray: `0 ${circumference}` }}
-                  animate={{ strokeDasharray: `${item.segmentLength} ${circumference}` }}
-                  transition={{ duration: 1.2, delay: i * 0.1, ease: "easeOut" }}
+                  animate={{
+                    strokeDasharray: `${item.segmentLength} ${circumference}`,
+                  }}
+                  transition={{
+                    duration: 1.2,
+                    delay: i * 0.1,
+                    ease: "easeOut",
+                  }}
                   style={{ transition: "stroke-width 0.3s ease" }}
                 />
                 <motion.foreignObject
@@ -87,8 +106,16 @@ const DonutChartWithLegend = ({
                   transition={{ duration: 0.5, delay: 1.2 + i * 0.1 }}
                 >
                   <div className="flex flex-col items-center justify-center w-full h-full text-white">
-                    <item.icon size={isSmall ? 13 : 15} className="mb-0.5 opacity-90" />
-                    <span className={clsx("font-semibold leading-tight", isSmall ? "text-xs" : "text-sm")}>
+                    <item.icon
+                      size={isSmall ? 13 : 15}
+                      className="mb-0.5 opacity-90"
+                    />
+                    <span
+                      className={clsx(
+                        "font-semibold leading-tight",
+                        isSmall ? "text-xs" : "text-sm",
+                      )}
+                    >
                       {item.amount}
                     </span>
                   </div>
@@ -99,7 +126,13 @@ const DonutChartWithLegend = ({
         </svg>
         <div
           className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-md rounded-full pointer-events-none z-10 shadow-lg border border-gray-200 dark:border-gray-800"
-          style={{ width: size - strokeWidth * 2, height: size - strokeWidth * 2, left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
+          style={{
+            width: size - strokeWidth * 2,
+            height: size - strokeWidth * 2,
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
         >
           <span className="text-3xl font-bold text-[#0a1128] dark:text-white tracking-tight relative z-10">
             {totalValue}
@@ -121,7 +154,9 @@ const DonutChartWithLegend = ({
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={clsx(
                 "flex items-center justify-between p-2.5 px-3.5 rounded-[4px] bg-white dark:bg-[#121c33] transition-all duration-300 cursor-pointer border",
-                isHovered ? "bg-white dark:bg-[#121c33] shadow-md border-gray-300 dark:border-[#d4af37]/40 scale-[1.02]" : "border-transparent"
+                isHovered
+                  ? "bg-white dark:bg-[#121c33] shadow-md border-gray-300 dark:border-[#d4af37]/40 scale-[1.02]"
+                  : "border-transparent",
               )}
             >
               <div className="flex items-center gap-3">
@@ -148,15 +183,26 @@ const DonutChartWithLegend = ({
 };
 export default function FranchiseModelsDesktop() {
   const [activeModel, setActiveModel] = useState(
-    franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id || franchiseModelsData.models[0].id
+    franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id ||
+      franchiseModelsData.models[0].id,
   );
   const [isStaffTooltipOpen, setIsStaffTooltipOpen] = useState(false);
-  const selected = franchiseModelsData.models.find((m) => m.id === activeModel)!;
-  const leftMetrics = useMemo(() => getModelSpecifications(selected), [selected]);
+  const selected = franchiseModelsData.models.find(
+    (m) => m.id === activeModel,
+  )!;
+  const leftMetrics = useMemo(
+    () => getModelSpecifications(selected),
+    [selected],
+  );
   const rightMetrics = useMemo(() => getRightMetrics(), []);
   return (
     <section className="w-full px-8 py-16 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300">
-      <SectionHeader overline={franchiseModelsData.sectionLabel} title={franchiseModelsData.title} subtitle={franchiseModelsData.subtitle} align="center" />
+      <SectionHeader
+        overline={franchiseModelsData.sectionLabel}
+        title={franchiseModelsData.title}
+        subtitle={franchiseModelsData.subtitle}
+        align="center"
+      />
       <div className="relative z-10 w-full max-w-7xl mx-auto flex justify-center mb-6">
         <div className="flex w-full bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] relative gap-1.5 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
@@ -169,14 +215,21 @@ export default function FranchiseModelsDesktop() {
                 onClick={() => setActiveModel(model.id)}
                 className={clsx(
                   "flex-1 relative flex flex-col items-center justify-center py-3 px-3 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border",
-                  !isActive ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10" : "border-transparent"
+                  !isActive
+                    ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10"
+                    : "border-transparent",
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeModelIndicator"
                     className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
-                    transition={{ type: "spring", stiffness: 380, damping: 28, mass: 0.8 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 28,
+                      mass: 0.8,
+                    }}
                   >
                     <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
                     <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
@@ -189,18 +242,44 @@ export default function FranchiseModelsDesktop() {
                       "w-7 h-7 rounded-[4px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
                       isActive
                         ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
-                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 shadow-sm"
+                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 shadow-sm",
                     )}
-                    animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }}
+                    animate={
+                      isActive
+                        ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
+                        : { scale: 1, rotate: 0 }
+                    }
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                   >
-                    <Icon size={14} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400"} />
+                    <Icon
+                      size={14}
+                      strokeWidth={isActive ? 2.5 : 2}
+                      className={
+                        isActive
+                          ? "text-[#d4af37]"
+                          : "text-gray-600 dark:text-gray-400"
+                      }
+                    />
                   </motion.div>
-                  <span className={clsx("font-bold text-sm whitespace-nowrap transition-colors duration-300", isActive ? "text-white" : "text-[#0a1128] dark:text-gray-200")}>
+                  <span
+                    className={clsx(
+                      "font-bold text-sm whitespace-nowrap transition-colors duration-300",
+                      isActive
+                        ? "text-white"
+                        : "text-[#0a1128] dark:text-gray-200",
+                    )}
+                  >
                     {model.name}
                   </span>
                 </div>
-                <span className={clsx("text-xs font-bold tracking-tight transition-colors duration-300 relative z-10", isActive ? "text-[#d4af37]" : "text-gray-600 dark:text-gray-400")}>
+                <span
+                  className={clsx(
+                    "text-xs font-bold tracking-tight transition-colors duration-300 relative z-10",
+                    isActive
+                      ? "text-[#d4af37]"
+                      : "text-gray-600 dark:text-gray-400",
+                  )}
+                >
                   {model.priceRange}
                 </span>
               </button>
@@ -249,19 +328,34 @@ export default function FranchiseModelsDesktop() {
                     <motion.div
                       className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
                       animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
-                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     />
                   </div>
                   {leftMetrics.map((stat) => (
                     <motion.div
                       key={stat.label}
-                      whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+                      whileHover={{
+                        scale: 1.02,
+                        x: 4,
+                        transition: {
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 25,
+                        },
+                      }}
                       className="p-3 sm:p-3.5 rounded-[4px] bg-gray-50/90 dark:bg-[#0b1b42]/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-800 hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 flex items-center justify-between gap-3 group cursor-default shadow-sm relative z-10 min-h-[64px]"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div
                           whileHover={{ scale: 1.08, rotate: 4 }}
-                          className={clsx("w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm", stat.color)}
+                          className={clsx(
+                            "w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm",
+                            stat.color,
+                          )}
                         >
                           <stat.icon size={18} strokeWidth={2.2} />
                         </motion.div>
@@ -278,7 +372,9 @@ export default function FranchiseModelsDesktop() {
                         {stat.hasStaffModal ? (
                           <div
                             className="flex items-center gap-1 relative cursor-pointer"
-                            onClick={() => setIsStaffTooltipOpen(!isStaffTooltipOpen)}
+                            onClick={() =>
+                              setIsStaffTooltipOpen(!isStaffTooltipOpen)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter" || e.key === " ") {
                                 setIsStaffTooltipOpen(!isStaffTooltipOpen);
@@ -295,10 +391,33 @@ export default function FranchiseModelsDesktop() {
                             <AnimatePresence>
                               {isStaffTooltipOpen && (
                                 <motion.div
-                                  initial={{ opacity: 0, scale: 0.3, y: 40, filter: "blur(20px)", borderRadius: "100px" }}
-                                  animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", borderRadius: "4px" }}
-                                  exit={{ opacity: 0, scale: 0.5, y: 20, filter: "blur(15px)", borderRadius: "50px" }}
-                                  transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
+                                  initial={{
+                                    opacity: 0,
+                                    scale: 0.3,
+                                    y: 40,
+                                    filter: "blur(20px)",
+                                    borderRadius: "100px",
+                                  }}
+                                  animate={{
+                                    opacity: 1,
+                                    scale: 1,
+                                    y: 0,
+                                    filter: "blur(0px)",
+                                    borderRadius: "4px",
+                                  }}
+                                  exit={{
+                                    opacity: 0,
+                                    scale: 0.5,
+                                    y: 20,
+                                    filter: "blur(15px)",
+                                    borderRadius: "50px",
+                                  }}
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 15,
+                                    mass: 1.5,
+                                  }}
                                   className="absolute left-[calc(100%+16px)] bottom-[-40px] w-80 max-w-[90vw] bg-white/80 dark:bg-[#0b1b42]/80 backdrop-blur-2xl rounded-[4px] shadow-2xl border border-gray-200/50 dark:border-gray-700/50 z-[99999] py-4 px-3 pointer-events-auto cursor-default text-left"
                                   onClick={(e) => e.stopPropagation()}
                                 >
@@ -323,26 +442,36 @@ export default function FranchiseModelsDesktop() {
                                     </button>
                                   </div>
                                   <div className="flex flex-col gap-2.5 max-h-[360px] overflow-y-auto pr-1 relative z-10 scrollbar-thin">
-                                    {selected.staffDetails?.map((staff, idx) => (
-                                      <div key={idx} className="flex flex-col bg-white/50 dark:bg-[#121c33]/50 rounded-[4px] p-3 border border-gray-200 dark:border-gray-800 shadow-sm">
-                                        <div className="flex justify-between items-center mb-1">
-                                          <span className="text-xs font-bold text-[#0a1128] dark:text-white">
-                                            {staff.name}
-                                          </span>
-                                          <span className={clsx("text-[10px] font-bold px-2 py-0.5 rounded-[2px]", getStaffBadgeColor(idx))}>
-                                            {staff.count}x
-                                          </span>
+                                    {selected.staffDetails?.map(
+                                      (staff, idx) => (
+                                        <div
+                                          key={idx}
+                                          className="flex flex-col bg-white/50 dark:bg-[#121c33]/50 rounded-[4px] p-3 border border-gray-200 dark:border-gray-800 shadow-sm"
+                                        >
+                                          <div className="flex justify-between items-center mb-1">
+                                            <span className="text-xs font-bold text-[#0a1128] dark:text-white">
+                                              {staff.name}
+                                            </span>
+                                            <span
+                                              className={clsx(
+                                                "text-[10px] font-bold px-2 py-0.5 rounded-[2px]",
+                                                getStaffBadgeColor(idx),
+                                              )}
+                                            >
+                                              {staff.count}x
+                                            </span>
+                                          </div>
+                                          <div className="flex gap-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
+                                            <span>{staff.type}</span>
+                                            <span>•</span>
+                                            <span>{staff.experience}</span>
+                                          </div>
+                                          <p className="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
+                                            {staff.remarks}
+                                          </p>
                                         </div>
-                                        <div className="flex gap-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
-                                          <span>{staff.type}</span>
-                                          <span>•</span>
-                                          <span>{staff.experience}</span>
-                                        </div>
-                                        <p className="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
-                                          {staff.remarks}
-                                        </p>
-                                      </div>
-                                    ))}
+                                      ),
+                                    )}
                                   </div>
                                 </motion.div>
                               )}
@@ -364,8 +493,18 @@ export default function FranchiseModelsDesktop() {
         <div className="col-span-12 lg:col-span-6 rounded-[4px] p-0 flex flex-col justify-center relative overflow-visible h-full ">
           <div className="flex-1 flex items-center justify-center">
             <AnimatePresence mode="wait">
-              <motion.div key={`chart-${selected.id}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.4 }} className="w-full">
-                <DonutChartWithLegend data={selected.costBreakdown} totalValue={selected.avgTotal} />
+              <motion.div
+                key={`chart-${selected.id}`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="w-full"
+              >
+                <DonutChartWithLegend
+                  data={selected.costBreakdown}
+                  totalValue={selected.avgTotal}
+                />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -401,7 +540,11 @@ export default function FranchiseModelsDesktop() {
                 <motion.div
                   className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-14 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
                   animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
-                  transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 2.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
               </div>
               {rightMetrics.map((stat) => {
@@ -409,46 +552,87 @@ export default function FranchiseModelsDesktop() {
                 return (
                   <motion.div
                     key={stat.label}
-                    whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                    animate={isHighlight ? {
-                      borderColor: ["rgba(212,175,55,0.3)", "rgba(212,175,55,0.8)", "rgba(212,175,55,0.3)"],
-                      boxShadow: ["0px 0px 0px rgba(212,175,55,0)", "0px 0px 12px rgba(212,175,55,0.3)", "0px 0px 0px rgba(212,175,55,0)"]
-                    } : {}}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    whileHover={{
+                      scale: 1.02,
+                      x: 4,
+                      transition: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      },
+                    }}
+                    animate={
+                      isHighlight
+                        ? {
+                            borderColor: [
+                              "rgba(212,175,55,0.3)",
+                              "rgba(212,175,55,0.8)",
+                              "rgba(212,175,55,0.3)",
+                            ],
+                            boxShadow: [
+                              "0px 0px 0px rgba(212,175,55,0)",
+                              "0px 0px 12px rgba(212,175,55,0.3)",
+                              "0px 0px 0px rgba(212,175,55,0)",
+                            ],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                     className={clsx(
                       "p-3 sm:p-3.5 rounded-[4px] backdrop-blur-sm border transition-all duration-300 flex items-center justify-between gap-3 min-h-[64px]",
                       isHighlight
                         ? "bg-[#0b1b42] border-[#d4af37]/50 shadow-[0_4px_16px_rgba(212,175,55,0.15)] hover:border-[#d4af37]/80"
-                        : "bg-gray-50/90 dark:bg-[#0b1b42]/90 hover:border-gray-300 dark:hover:border-[#d4af37]/40 border-gray-200/80 dark:border-gray-800"
+                        : "bg-gray-50/90 dark:bg-[#0b1b42]/90 hover:border-gray-300 dark:hover:border-[#d4af37]/40 border-gray-200/80 dark:border-gray-800",
                     )}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <motion.div
                         whileHover={{ scale: 1.08, rotate: -4 }}
-                        className={clsx("w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm", stat.color)}
+                        className={clsx(
+                          "w-10 h-10 rounded-[4px] flex items-center justify-center shrink-0 relative z-10 shadow-sm",
+                          stat.color,
+                        )}
                       >
                         <stat.icon size={18} strokeWidth={2.2} />
                       </motion.div>
                       <div className="flex flex-col min-w-0">
-                        <span className={clsx("text-[10px] font-bold uppercase tracking-wider mb-0.5", isHighlight ? "text-gray-400" : "text-gray-500 dark:text-gray-400")}>
+                        <span
+                          className={clsx(
+                            "text-[10px] font-bold uppercase tracking-wider mb-0.5",
+                            isHighlight
+                              ? "text-gray-400"
+                              : "text-gray-500 dark:text-gray-400",
+                          )}
+                        >
                           {stat.label}
                         </span>
-                        <span className={clsx("text-sm sm:text-base font-bold leading-tight group-hover:text-[#d4af37] transition-colors truncate group-hover:whitespace-normal group-hover:overflow-visible", isHighlight ? "text-white" : "text-[#0a1128] dark:text-white")}>
+                        <span
+                          className={clsx(
+                            "text-sm sm:text-base font-bold leading-tight group-hover:text-[#d4af37] transition-colors truncate group-hover:whitespace-normal group-hover:overflow-visible",
+                            isHighlight
+                              ? "text-white"
+                              : "text-[#0a1128] dark:text-white",
+                          )}
+                        >
                           {stat.value}
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1.5 shrink-0">
-                     {stat.badge !== "Breakeven" && (
-                      <span
-                        className={clsx(
-                          "text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border",
-                          "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60"
-                        )}
-                      >
-                        {stat.badge}
-                      </span>
-                    )}
+                      {stat.badge !== "Breakeven" && (
+                        <span
+                          className={clsx(
+                            "text-[10px] font-semibold px-2 py-0.5 rounded-[2px] border",
+                            "text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800/80 border-gray-200 dark:border-gray-700/60",
+                          )}
+                        >
+                          {stat.badge}
+                        </span>
+                      )}
                     </div>
                   </motion.div>
                 );

@@ -2,9 +2,9 @@ import DesktopOpportunities from "./DesktopOpportunities";
 import MobileOpportunities from "./MobileOpportunities";
 
 export default function DeveloperAndOwnerOpportunities({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileOpportunities /> : <DesktopOpportunities />;
+  return isMobile ? <MobileOpportunities /> : <DesktopOpportunities />;
 }

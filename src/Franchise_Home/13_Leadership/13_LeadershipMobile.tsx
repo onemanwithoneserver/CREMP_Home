@@ -63,7 +63,10 @@ function LeaderCardMobile({
 
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/40 to-transparent opacity-95" />
           <div className="absolute top-4 right-4 z-20">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60"
+            >
               <span>View Bio</span>
               <RotateCw size={12} className="text-[#d4af37]" />
             </motion.div>
@@ -120,7 +123,10 @@ function LeaderCardMobile({
             <div className="mt-4 flex flex-col gap-2">
               {member.highlights.map((highlight, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
-                  <Sparkles size={14} className="text-[#d4af37] shrink-0 mt-[3px]" />
+                  <Sparkles
+                    size={14}
+                    className="text-[#d4af37] shrink-0 mt-[3px]"
+                  />
                   <span className="text-[13px] font-medium text-gray-100 leading-tight">
                     {highlight}
                   </span>
@@ -183,7 +189,7 @@ export default function LeadershipMobile() {
       />
 
       <div className="relative z-10 flex flex-col items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -213,7 +219,7 @@ export default function LeadershipMobile() {
               <motion.div
                 variants={itemVariants}
                 key={member.name}
-                className="w-[85vw] max-w-[340px] shrink-0 snap-center" 
+                className="w-[85vw] max-w-[340px] shrink-0 snap-center"
               >
                 <LeaderCardMobile
                   member={member}

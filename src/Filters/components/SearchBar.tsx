@@ -65,7 +65,7 @@ export default function SearchBar({
           "relative flex items-center transition-all duration-300 rounded-lg overflow-hidden",
           isFocused
             ? "ring-2 ring-[#d4af37]/50 shadow-[0_4px_24px_rgba(212,175,55,0.18)]"
-            : "shadow-[0_2px_10px_rgba(11,27,66,0.06)]"
+            : "shadow-[0_2px_10px_rgba(11,27,66,0.06)]",
         )}
       >
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
@@ -76,7 +76,7 @@ export default function SearchBar({
             <Search
               className={clsx(
                 "h-[18px] w-[18px] transition-colors duration-300",
-                isFocused ? "text-[#d4af37]" : "text-gray-400"
+                isFocused ? "text-[#d4af37]" : "text-gray-400",
               )}
             />
           </motion.div>
@@ -94,7 +94,8 @@ export default function SearchBar({
             "placeholder-gray-500 text-[#0a1128] dark:text-white dark:placeholder-gray-400",
             "focus:outline-none transition-all duration-300",
             "rounded-lg",
-            isFocused && "border-[#d4af37]/60 bg-white/35 dark:bg-white/10 shadow-[0_0_24px_rgba(212,175,55,0.12)]"
+            isFocused &&
+              "border-[#d4af37]/60 bg-white/35 dark:bg-white/10 shadow-[0_0_24px_rgba(212,175,55,0.12)]",
           )}
           id="search-location-input"
           autoComplete="off"
@@ -105,7 +106,12 @@ export default function SearchBar({
               initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
-              transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
+              transition={{
+                duration: 0.2,
+                type: "spring",
+                stiffness: 400,
+                damping: 20,
+              }}
               type="button"
               onClick={() => {
                 onSearchChange("");
@@ -129,7 +135,6 @@ export default function SearchBar({
             transition={{ type: "spring", damping: 26, stiffness: 380 }}
             className="absolute z-50 w-full mt-2.5 bg-white/70 dark:bg-[#0e172f]/85 backdrop-blur-2xl border border-gray-200/50 dark:border-white/10 rounded-xl shadow-[0_12px_40px_rgba(11,27,66,0.14),0_4px_12px_rgba(0,0,0,0.05)] overflow-visible"
           >
-            
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
 
             <div className="px-3 pt-2.5 pb-1">
@@ -148,7 +153,11 @@ export default function SearchBar({
                       type="button"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.04, duration: 0.22, ease: "easeOut" }}
+                      transition={{
+                        delay: index * 0.04,
+                        duration: 0.22,
+                        ease: "easeOut",
+                      }}
                       whileHover={{
                         x: 4,
                         backgroundColor: "rgba(212,175,55,0.05)",
@@ -162,10 +171,14 @@ export default function SearchBar({
                     >
                       <motion.div
                         whileHover={{ scale: 1.08, rotate: 4 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 20,
+                        }}
                         className={clsx(
                           "w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300",
-                          "bg-[#0b1b42]/[0.06] dark:bg-white/[0.06] text-[#0b1b42] dark:text-gray-300 group-hover:bg-[#0b1b42] group-hover:text-[#d4af37] dark:group-hover:bg-[#0b1b42] dark:group-hover:text-[#d4af37]"
+                          "bg-[#0b1b42]/[0.06] dark:bg-white/[0.06] text-[#0b1b42] dark:text-gray-300 group-hover:bg-[#0b1b42] group-hover:text-[#d4af37] dark:group-hover:bg-[#0b1b42] dark:group-hover:text-[#d4af37]",
                         )}
                       >
                         <Icon className="w-4 h-4" strokeWidth={2} />

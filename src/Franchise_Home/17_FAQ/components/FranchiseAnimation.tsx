@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  Coffee, 
-  TrendingUp, 
-  ShieldCheck, 
-  Zap, 
-  MapPin, 
-  Sparkles, 
+import {
+  Coffee,
+  TrendingUp,
+  ShieldCheck,
+  Zap,
+  MapPin,
+  Sparkles,
   Activity,
-  Cpu
+  Cpu,
 } from "lucide-react";
 
 export function FranchiseAnimation() {
@@ -71,11 +71,12 @@ export function FranchiseAnimation() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#d4af37]/10 rounded-full blur-[100px]" />
         <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-blue-500/10 rounded-full blur-[80px]" />
         <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-emerald-500/10 rounded-full blur-[80px]" />
-        
-        <div 
+
+        <div
           className="absolute inset-0 opacity-[0.07] mix-blend-overlay"
           style={{
-            backgroundImage: "radial-gradient(#d4af37 1px, transparent 1px), radial-gradient(#d4af37 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(#d4af37 1px, transparent 1px), radial-gradient(#d4af37 1px, transparent 1px)",
             backgroundSize: "24px 24px",
             backgroundPosition: "0 0, 12px 12px",
           }}
@@ -96,7 +97,10 @@ export function FranchiseAnimation() {
       </div>
 
       <div className="relative w-full h-[320px] flex items-center justify-center my-2">
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 320 320">
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 320 320"
+        >
           <defs>
             <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#d4af37" stopOpacity="0.25" />
@@ -108,13 +112,65 @@ export function FranchiseAnimation() {
             </linearGradient>
           </defs>
 
-          <circle cx="160" cy="160" r="140" fill="none" stroke="#1e293b" strokeWidth="1" strokeDasharray="3 6" opacity="0.6" />
-          <circle cx="160" cy="160" r="105" fill="none" stroke="#334155" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
-          <circle cx="160" cy="160" r="70" fill="url(#radarGlow)" stroke="#d4af37" strokeWidth="1" opacity="0.4" />
-          <circle cx="160" cy="160" r="40" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.6" />
+          <circle
+            cx="160"
+            cy="160"
+            r="140"
+            fill="none"
+            stroke="#1e293b"
+            strokeWidth="1"
+            strokeDasharray="3 6"
+            opacity="0.6"
+          />
+          <circle
+            cx="160"
+            cy="160"
+            r="105"
+            fill="none"
+            stroke="#334155"
+            strokeWidth="1"
+            strokeDasharray="4 4"
+            opacity="0.8"
+          />
+          <circle
+            cx="160"
+            cy="160"
+            r="70"
+            fill="url(#radarGlow)"
+            stroke="#d4af37"
+            strokeWidth="1"
+            opacity="0.4"
+          />
+          <circle
+            cx="160"
+            cy="160"
+            r="40"
+            fill="none"
+            stroke="#d4af37"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
 
-          <line x1="160" y1="10" x2="160" y2="310" stroke="#334155" strokeWidth="1" strokeDasharray="2 4" opacity="0.3" />
-          <line x1="10" y1="160" x2="310" y2="160" stroke="#334155" strokeWidth="1" strokeDasharray="2 4" opacity="0.3" />
+          <line
+            x1="160"
+            y1="10"
+            x2="160"
+            y2="310"
+            stroke="#334155"
+            strokeWidth="1"
+            strokeDasharray="2 4"
+            opacity="0.3"
+          />
+          <line
+            x1="10"
+            y1="160"
+            x2="310"
+            y2="160"
+            stroke="#334155"
+            strokeWidth="1"
+            strokeDasharray="2 4"
+            opacity="0.3"
+          />
 
           <g className="origin-[160px_160px] animate-spin-slow">
             <path
@@ -122,7 +178,15 @@ export function FranchiseAnimation() {
               fill="url(#beamGrad)"
               opacity="0.18"
             />
-            <line x1="160" y1="160" x2="300" y2="160" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
+            <line
+              x1="160"
+              y1="160"
+              x2="300"
+              y2="160"
+              stroke="#d4af37"
+              strokeWidth="1.5"
+              opacity="0.7"
+            />
           </g>
         </svg>
 
@@ -151,13 +215,14 @@ export function FranchiseAnimation() {
           <div className="absolute -inset-2 rounded-full border border-[#d4af37]/40 animate-ping pointer-events-none" />
           <div className="absolute -inset-4 rounded-full border border-[#d4af37]/20 pointer-events-none" />
 
-          <Coffee size={28} className="text-[#d4af37] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] group-hover/core:scale-110 transition-transform" />
+          <Coffee
+            size={28}
+            className="text-[#d4af37] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] group-hover/core:scale-110 transition-transform"
+          />
           <span className="text-[9px] font-black text-white tracking-widest uppercase mt-1">
             CREMP
           </span>
-          <span className="text-[7px] text-[#d4af37] font-bold">
-            HUB 360°
-          </span>
+          <span className="text-[7px] text-[#d4af37] font-bold">HUB 360°</span>
         </motion.div>
 
         {orbitingSatellites.map((node, i) => {
@@ -193,7 +258,9 @@ export function FranchiseAnimation() {
                   <div className="text-[10px] font-bold text-gray-300 leading-tight">
                     {node.title}
                   </div>
-                  <div className={`text-[11px] font-extrabold ${node.color} tracking-tight`}>
+                  <div
+                    className={`text-[11px] font-extrabold ${node.color} tracking-tight`}
+                  >
                     {node.value}
                   </div>
                 </div>
@@ -232,11 +299,12 @@ export function FranchiseAnimation() {
         <div className="text-[10px] text-gray-400 flex items-center justify-between border-t border-gray-800/60 pt-1.5">
           <span className="truncate flex items-center gap-1">
             <Sparkles size={10} className="text-[#d4af37]" />
-            Active Module: <strong className="text-white">{orbitingSatellites[activeNode].title}</strong>
+            Active Module:{" "}
+            <strong className="text-white">
+              {orbitingSatellites[activeNode].title}
+            </strong>
           </span>
-          <span className="text-[#d4af37] font-bold shrink-0 ml-2">
-            STABLE
-          </span>
+          <span className="text-[#d4af37] font-bold shrink-0 ml-2">STABLE</span>
         </div>
       </div>
     </div>

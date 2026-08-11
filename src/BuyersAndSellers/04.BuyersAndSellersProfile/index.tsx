@@ -2,13 +2,13 @@ import DesktopBuyersAndSellersProfile from "./DesktopBuyersAndSellersProfile";
 import MobileBuyersAndSellersProfile from "./MobileBuyersAndSellersProfile";
 
 export default function BuyersAndSellersProfile({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? (
-        <MobileBuyersAndSellersProfile />
-    ) : (
-        <DesktopBuyersAndSellersProfile />
-    );
+  return isMobile ? (
+    <MobileBuyersAndSellersProfile />
+  ) : (
+    <DesktopBuyersAndSellersProfile />
+  );
 }

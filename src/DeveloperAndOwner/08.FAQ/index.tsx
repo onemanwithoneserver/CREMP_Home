@@ -2,9 +2,9 @@ import DesktopFAQ from "./DesktopFAQ";
 import MobileFAQ from "./MobileFAQ";
 
 export default function DeveloperAndOwnerFAQ({
-    isMobile,
+  isMobile,
 }: {
-    isMobile: boolean;
+  isMobile: boolean;
 }) {
-    return isMobile ? <MobileFAQ /> : <DesktopFAQ />;
+  return isMobile ? <MobileFAQ /> : <DesktopFAQ />;
 }

@@ -62,7 +62,7 @@ export default function FilterBar({
           "flex items-center justify-center transition-all duration-200 cursor-pointer",
           isDropdownOpen
             ? "px-3.5 py-3 rounded-[4px] bg-red-50 hover:bg-red-100/80 text-red-500 hover:text-red-600 border border-red-200/60 shadow-xs"
-            : "gap-2 px-4 py-3 rounded-[4px] border border-[#d4af37]/40 bg-[#17274C] text-white hover:bg-[#121c33] hover:border-[#d4af37] shadow-[0_4px_14px_rgba(23,39,76,0.25)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] text-sm font-bold"
+            : "gap-2 px-4 py-3 rounded-[4px] border border-[#d4af37]/40 bg-[#17274C] text-white hover:bg-[#121c33] hover:border-[#d4af37] shadow-[0_4px_14px_rgba(23,39,76,0.25)] hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)] text-sm font-bold",
         )}
         aria-label={isDropdownOpen ? "Close filters" : "Open filters"}
       >
@@ -73,7 +73,10 @@ export default function FilterBar({
             transition={{ duration: 0.2 }}
             className="flex items-center justify-center"
           >
-            <X className="w-5 h-5 text-red-500 hover:text-red-600" strokeWidth={2.5} />
+            <X
+              className="w-5 h-5 text-red-500 hover:text-red-600"
+              strokeWidth={2.5}
+            />
           </motion.div>
         ) : (
           <>
