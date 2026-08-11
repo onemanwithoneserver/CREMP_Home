@@ -4,9 +4,9 @@ import {
   Stamp,
   Lock,
   ShieldCheck,
-  Bell,
+  Calendar,
+  Receipt,
   IndianRupee,
-  Zap,
 } from "lucide-react";
 
 export const termsData = {
@@ -15,19 +15,19 @@ export const termsData = {
   count: "8 TERMS",
   visibleItems: [
     {
-      label: "BROKERAGE APPLICABLE",
+      label: "Brokerage applicable",
       value: "2% of annual rent",
       icon: Percent,
       color: "bg-gradient-to-br from-[#10B981] to-[#047857]",
     },
     {
-      label: "LEASE PREFERENCE",
+      label: "Lease preference",
       value: "Company lease preferred",
       icon: Building,
       color: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]",
     },
     {
-      label: "ADDITIONAL CHARGES",
+      label: "Additional charges",
       value: "Registration & stamp duty charges extra",
       icon: Stamp,
       color: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
@@ -35,33 +35,33 @@ export const termsData = {
   ],
   hiddenItems: [
     {
-      label: "LOCK-IN PERIOD",
-      value: "3 years",
-      icon: Lock,
+      label: "Site visits",
+      value: "By appointment only",
+      icon: Calendar,
       color: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]",
     },
     {
-      label: "SECURITY DEPOSIT",
-      value: "6 months rent",
+      label: "Security deposit",
+      value: "Negotiable",
       icon: ShieldCheck,
       color: "bg-gradient-to-br from-[#bf953f] to-[#b38728]",
     },
     {
-      label: "NOTICE PERIOD",
-      value: "3 months",
-      icon: Bell,
+      label: "Lock-in period",
+      value: "36 months",
+      icon: Lock,
       color: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C]",
     },
     {
-      label: "PROPERTY TAX",
-      value: "To be borne by owner",
-      icon: IndianRupee,
+      label: "Taxes",
+      value: "GST applicable on monthly rent",
+      icon: Receipt,
       color: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
     },
     {
-      label: "UTILITIES",
-      value: "Water & electricity charges as per meter reading",
-      icon: Zap,
+      label: "Advance rent",
+      value: "3 months",
+      icon: IndianRupee,
       color: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]",
     },
   ],

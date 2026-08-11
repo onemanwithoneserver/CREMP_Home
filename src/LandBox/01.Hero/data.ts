@@ -1,21 +1,21 @@
 import { Compass, Layers, Maximize2, MoveHorizontal } from "lucide-react";
 
 export const heroData = {
-  badges: ["COMMERCIAL", "WARM SHELL", "CORNER UNIT"],
-  title: "Premium Ground Floor Retail Space",
+  badges: ["COMMERCIAL", "CLEAR TITLE", "CORNER PLOT"],
+  title: "Premium Commercial Land Plot",
   location: "Linking Road, Bandra West, Mumbai 400050",
   mediaInfo: { videos: 3, photos: 14 },
   stats: [
     {
-      label: "CARPET",
-      value: "1,200 sq.ft",
+      label: "PLOT AREA",
+      value: "1,200 sq.yd",
       icon: Maximize2,
       color: "bg-blue-500",
       iconColor: "text-white",
     },
     {
-      label: "FLOOR",
-      value: "Ground",
+      label: "ZONING",
+      value: "Commercial",
       icon: Layers,
       color: "bg-emerald-500",
       iconColor: "text-white",

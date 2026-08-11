@@ -1,19 +1,19 @@
 import {
   Video,
-  Map,
   Maximize,
   Images,
   LayoutGrid,
   Navigation,
 } from "lucide-react";
 
+import premiumPlotImg from "../../assets/premium_land_plot.png";
+
 export const mediaData = {
   title: "Media",
   tabs: [
-    { label: "Video", count: 3, icon: Video },
-    { label: "Site Plan", count: 2, icon: Map },
-    { label: "Virtual Tour", count: 1, icon: Maximize },
-    { label: "Photos", count: 14, icon: Images },
+    { label: "Video", icon: Video },
+    { label: "Virtual Tour", icon: Maximize },
+    { label: "Photos", icon: Images },
   ],
   videos: [
     {
@@ -26,8 +26,7 @@ export const mediaData = {
     {
       title: "Plot Boundaries",
       duration: "1:12",
-      image:
-        "https://images.unsplash.com/photo-1518557999814-1e07374b7875?auto=format&fit=crop&q=80",
+      image: premiumPlotImg,
       fullWidth: false,
     },
     {
@@ -66,8 +65,7 @@ export const mediaData = {
     },
     {
       label: "Plot Area",
-      image:
-        "https://images.unsplash.com/photo-1518557999814-1e07374b7875?auto=format&fit=crop&q=80",
+      image: premiumPlotImg,
     },
     {
       label: "Surroundings",

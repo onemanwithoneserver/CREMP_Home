@@ -1,40 +1,36 @@
-import { LayoutTemplate, Grid3X3, Star } from "lucide-react";
+import { Layers, Grid3X3, MapPin } from "lucide-react";
 
 export const spaceOverviewData = {
-  title: "Space Overview",
+  title: "Plot Overview",
   tags: [
     {
-      text: "WARM SHELL",
+      text: "CLEAR TITLE",
       color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
     },
     {
-      text: "GLASS FACADE",
+      text: "CORNER PLOT",
       color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
     },
     {
-      text: "COLUMN FREE",
+      text: "COMMERCIAL ZONING",
       color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
     },
     {
-      text: "BRANDING SPACE",
+      text: "LEVEL GROUND",
       color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
     },
     {
-      text: "FALSE CEILING",
+      text: "FREEHOLD",
       color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
     },
     {
-      text: "STORAGE",
-      color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
-    },
-    {
-      text: "EXTERNAL BRANDING",
+      text: "HIGH VISIBILITY",
       color: "bg-[#0b1b42]/5 text-[#0b1b42] border border-[#0b1b42]/10",
     },
   ],
   details: [
-    { label: "Partition Type", value: "Glass", icon: LayoutTemplate, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
-    { label: "No. of Partitions", value: "2", icon: Grid3X3, bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]" },
-    { label: "External Branding", value: "Available Outside", icon: Star, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
+    { label: "Soil Type", value: "Red Soil", icon: Layers, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
+    { label: "FSI / FAR", value: "2.5", icon: Grid3X3, bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]" },
+    { label: "Road Access", value: "40ft Wide Road", icon: MapPin, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
   ],
 };
