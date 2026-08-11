@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useAnimationFrame, type Variants } from "framer-motion";
-import { Play, Heart, Share2, Flag, MapPin } from "lucide-react";
+import { Play, Heart, Share2, MapPin } from "lucide-react";
 import { heroData } from "./data";
 import { useRef, useState } from "react";
 
@@ -20,14 +20,7 @@ const fadeInUp: Variants = {
     },
 };
 
-const scaleIn: Variants = {
-    hidden: { opacity: 0, scale: 0.85 },
-    show: {
-        opacity: 1,
-        scale: 1,
-        transition: { type: "spring", stiffness: 300, damping: 25 },
-    },
-};
+
 
 const actionIcons = [
     { Icon: Heart, label: "Save", hoverBg: "hover:bg-rose-500/90 hover:border-rose-500", hoverShadow: "hover:shadow-[0_4px_15px_rgba(244,63,94,0.3)]" },

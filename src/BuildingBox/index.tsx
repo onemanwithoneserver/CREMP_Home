@@ -20,12 +20,12 @@ const ambientGlow: Variants = {
 };
 
 const SectionLoader = () => (
-    <div className="w-full h-32 animate-pulse bg-gray-100/60 rounded-2xl mx-2.5" style={{ width: 'calc(100% - 1.25rem)' }} />
+    <div className="w-full h-32 animate-pulse bg-gray-100/60 rounded-2xl" />
 );
 
 export default function BuildingBox() {
     return (
-        <div className="w-full min-h-screen flex flex-col bg-[#f8f9fc] text-gray-900 transition-colors duration-300 relative overflow-hidden">
+        <div className="w-full min-h-screen flex flex-col bg-white text-gray-900 transition-colors duration-300 relative overflow-hidden">
             {/* Subtle ambient background layers */}
             <div className="pointer-events-none fixed inset-0 z-0">
                 <motion.div
@@ -46,7 +46,7 @@ export default function BuildingBox() {
             <div className="relative z-10 flex-1 flex flex-col pb-24">
                 <Hero />
                 <Suspense fallback={<SectionLoader />}>
-                    <div className="flex flex-col gap-2 px-0 pt-0">
+                    <div className="flex flex-col gap-0 px-0 pt-0">
                         <CommercialTerms />
                         <SpaceOverview />
                         <FitOut />

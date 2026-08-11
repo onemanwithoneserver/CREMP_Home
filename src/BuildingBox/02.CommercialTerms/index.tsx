@@ -26,10 +26,10 @@ export default function CommercialTerms() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
+                className="w-full bg-white overflow-hidden border-b border-gray-200/60"
             >
                 {/* Section header */}
-                <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
+                <div className="flex items-center gap-3 p-3 border-b border-gray-100/80">
                     <div className={`w-9 h-9 rounded-xl ${currentData.headerIconBg} flex items-center justify-center text-white shrink-0 shadow-lg`}>
                         <currentData.headerIcon size={16} fill="currentColor" />
                     </div>
@@ -73,7 +73,7 @@ export default function CommercialTerms() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                        className="p-4 flex flex-col gap-4"
+                        className="p-3 flex flex-col gap-3"
                     >
                         {/* Primary amount + secondary card */}
                         <div className="flex justify-between items-start">

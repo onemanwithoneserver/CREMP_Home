@@ -33,10 +33,10 @@ export default function SpaceOverview() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
+                className="w-full bg-white overflow-hidden border-b border-gray-200/60"
             >
                 {/* Section header */}
-                <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
+                <div className="flex items-center gap-3 p-3 border-b border-gray-100/80">
                     <div className="w-9 h-9 rounded-xl bg-[#0284c7] flex items-center justify-center text-white shrink-0 shadow-lg shadow-[#0284c7]/20">
                         <LayoutGrid size={16} fill="currentColor" />
                     </div>
@@ -46,7 +46,7 @@ export default function SpaceOverview() {
                     </div>
                 </div>
 
-                <div className="p-4 flex flex-col gap-4">
+                <div className="p-3 flex flex-col gap-3">
                     {/* Tags */}
                     <motion.div
                         variants={tagStagger}

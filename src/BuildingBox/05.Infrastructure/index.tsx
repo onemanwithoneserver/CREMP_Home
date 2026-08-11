@@ -37,10 +37,10 @@ export default function Infrastructure() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
+                className="w-full bg-white overflow-hidden border-b border-gray-200/60"
             >
                 {/* Section header */}
-                <div className="flex items-center gap-3 p-4 border-b border-gray-100/80">
+                <div className="flex items-center gap-3 p-3 border-b border-gray-100/80">
                     <div className="w-9 h-9 rounded-xl bg-[#ea580c] flex items-center justify-center text-white shrink-0 shadow-lg shadow-[#ea580c]/20">
                         <Activity size={16} />
                     </div>
@@ -56,7 +56,7 @@ export default function Infrastructure() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="flex flex-col gap-0 px-4"
+                    className="flex flex-col gap-0 px-3"
                 >
                     {infrastructureData.items.map((item, idx) => (
                         <motion.div

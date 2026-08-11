@@ -43,7 +43,7 @@ export default function LocationIntelligence() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden relative"
+                className="w-full bg-white overflow-hidden border-b border-gray-200/60 relative"
             >
                 {/* Ambient glow */}
                 <motion.div
@@ -53,7 +53,7 @@ export default function LocationIntelligence() {
                 />
 
                 {/* Section header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-100/80 relative z-10">
+                <div className="flex items-center justify-between p-3 border-b border-gray-100/80 relative z-10">
                     <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-xl bg-[#7c3aed] flex items-center justify-center text-white shrink-0 shadow-lg shadow-[#7c3aed]/20">
                             <Cpu size={16} />
@@ -73,7 +73,7 @@ export default function LocationIntelligence() {
                 </div>
 
                 {/* Description */}
-                <div className="p-4 flex flex-col gap-3.5 relative z-10">
+                <div className="p-3 flex flex-col gap-3 relative z-10">
                     <p className="text-[0.78rem] text-gray-500 leading-relaxed font-medium">
                         {locationIntelligenceData.description}
                     </p>
@@ -120,7 +120,7 @@ export default function LocationIntelligence() {
                 </div>
 
                 {/* Footer */}
-                <div className="bg-gray-50/60 backdrop-blur-sm p-3 px-4 border-t border-gray-100/80 flex items-center gap-2.5 relative z-10">
+                <div className="bg-gray-50/60 backdrop-blur-sm p-2.5 px-3 border-t border-gray-100/80 flex items-center gap-2.5 relative z-10">
                     <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#d4af37] to-[#b38728] shrink-0" />
                     <MapPin size={13} className="text-[#7c3aed] shrink-0" />
                     <span className="text-[0.68rem] text-gray-500 font-medium truncate">{locationIntelligenceData.footer}</span>

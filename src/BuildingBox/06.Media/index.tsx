@@ -31,10 +31,10 @@ export default function Media() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
+                className="w-full bg-white overflow-hidden border-b border-gray-200/60"
             >
                 {/* Section header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-100/80">
+                <div className="flex items-center justify-between p-3 border-b border-gray-100/80">
                     <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-xl bg-[#d97706] flex items-center justify-center text-white shrink-0 shadow-lg shadow-[#d97706]/20">
                             <ImageIcon size={16} />
@@ -82,7 +82,7 @@ export default function Media() {
                 </div>
 
                 {/* Tab content */}
-                <div className="p-4">
+                <div className="p-3">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
@@ -130,7 +130,7 @@ export default function Media() {
                                             key={idx}
                                             variants={gridItem}
                                             whileHover={{ x: 3 }}
-                                            className="flex items-center justify-between p-4 rounded-xl group cursor-default hover:bg-[#d4af37]/[0.02] transition-all duration-300"
+                                            className="flex items-center justify-between p-3 rounded-xl group cursor-default hover:bg-[#d4af37]/[0.02] transition-all duration-300"
                                         >
                                             <div className="flex items-center gap-3">
                                                 <div className="w-10 h-10 rounded-xl text-[#7c3aed] flex items-center justify-center shrink-0 group-hover:bg-[#7c3aed]/5 transition-colors duration-300">
@@ -164,7 +164,7 @@ export default function Media() {
                                 >
                                     <img src={mediaData.virtualTour.image} alt="Virtual Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                                     <div className="absolute inset-0 bg-[#0a1128]/60 backdrop-blur-[3px]" />
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 text-center">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-3 text-center">
                                         <motion.div
                                             animate={{ scale: [1, 1.08, 1] }}
                                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}

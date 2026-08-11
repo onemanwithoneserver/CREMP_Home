@@ -31,13 +31,13 @@ export default function FitOut() {
         >
             <motion.div
                 variants={fadeInUp}
-                className="w-full bg-white/95 backdrop-blur-2xl border-y border-gray-200/60 overflow-hidden"
+                className="w-full bg-white overflow-hidden border-b border-gray-200/60"
             >
                 {/* Accordion header */}
                 <motion.button
                     onClick={() => setIsOpen(!isOpen)}
                     whileTap={{ scale: 0.998 }}
-                    className="w-full flex items-center justify-between p-4 bg-transparent hover:bg-[#d4af37]/[0.02] transition-colors duration-300"
+                    className="w-full flex items-center justify-between p-3 bg-transparent hover:bg-[#d4af37]/[0.02] transition-colors duration-300"
                 >
                     <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-xl bg-[#0b1b42] border border-[#d4af37]/25 flex items-center justify-center text-[#d4af37] shrink-0 shadow-lg shadow-[#0a1128]/20">
@@ -67,7 +67,7 @@ export default function FitOut() {
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="overflow-hidden"
                         >
-                            <div className="px-4 pb-4 flex flex-col gap-4 border-t border-gray-100/80 mx-0">
+                            <div className="px-3 pb-3 flex flex-col gap-3 border-t border-gray-100/80 mx-0">
                                 {/* Included items */}
                                 <motion.div
                                     variants={staggerContainer}
