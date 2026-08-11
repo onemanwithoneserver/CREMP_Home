@@ -1,32 +1,8 @@
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { Activity } from "lucide-react";
 import { infrastructureData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.1 },
-  },
-};
-
-const rowReveal: Variants = {
-  hidden: { opacity: 0, x: -15 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
+import { fadeInUp, staggerContainer, rowReveal } from "../components/animations";
 
 const getStatusStyle = (status: string) => {
   const s = status.toUpperCase();
@@ -57,7 +33,7 @@ export default function Infrastructure() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full"
+        className="w-full bg-white border-b border-gray-200/60 relative"
       >
         <SectionHeader
           overline="Systems & Utilities"
@@ -70,7 +46,7 @@ export default function Infrastructure() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-col gap-2.5 px-4 py-4"
+          className="flex flex-col gap-3 px-4 py-4"
         >
           {infrastructureData.items.map((item, idx) => (
             <motion.div
@@ -103,7 +79,7 @@ export default function Infrastructure() {
           ))}
         </motion.div>
 
-        <div className="h-2" />
+
       </motion.div>
     </motion.div>
   );

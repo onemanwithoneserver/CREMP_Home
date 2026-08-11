@@ -3,28 +3,11 @@ import {
   useScroll,
   useTransform,
   useAnimationFrame,
-  type Variants,
 } from "framer-motion";
 import { Play, Heart, Share2, MapPin } from "lucide-react";
 import { heroData } from "./data";
 import { useRef, useState } from "react";
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.25 },
-  },
-};
-
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 350, damping: 28 },
-  },
-};
+import { fadeInUp, staggerContainer } from "../components/animations";
 
 const actionIcons = [
   {
@@ -54,7 +37,7 @@ export default function MobileHero() {
 
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
-    const speed = 30; // pixels per second
+    const speed = 30;
     x.current -= (speed * delta) / 1000;
     const loopWidth = marqueeRef.current.scrollWidth / 2;
     if (-x.current >= loopWidth) {

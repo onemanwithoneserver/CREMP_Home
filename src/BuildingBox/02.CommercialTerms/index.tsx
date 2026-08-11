@@ -1,23 +1,8 @@
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { commercialData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.1 },
-  },
-};
+import { fadeInUp, staggerContainer } from "../components/animations";
 
 export default function CommercialTerms() {
   const [activeTab, setActiveTab] = useState<
@@ -36,7 +21,7 @@ export default function CommercialTerms() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full"
+        className="w-full bg-white border-b border-gray-200/60 relative"
       >
         <SectionHeader
           overline="Commercial Details"
@@ -44,8 +29,8 @@ export default function CommercialTerms() {
           icon={currentData.headerIcon}
         />
 
-        <div className="px-4 mt-2">
-          <div className="flex w-full bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative gap-1.5 overflow-hidden">
+        <div className="px-4 mt-3">
+          <div className="flex w-full bg-gray-50/80 rounded-lg p-1 border border-gray-200/80 shadow-inner relative gap-1.5 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60"></div>
             {commercialData.tabs.map((tab) => (
               <button
@@ -88,23 +73,23 @@ export default function CommercialTerms() {
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="px-4 py-4 flex flex-col gap-4"
           >
-            <div className="flex justify-between items-stretch gap-3">
-              <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[8px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
+            <div className="flex justify-between items-stretch gap-2">
+              <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[8px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
                 
-                <div className="flex justify-between items-end relative z-10 gap-2">
+                <div className="flex justify-between items-center relative z-10 gap-2">
                   <div className="flex flex-col">
                     <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
                       {currentData.primaryAmountLabel}
                     </span>
                     
-                    <div className="flex items-baseline gap-1 mt-2.5">
-                      <span className={`text-[2.2rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
+                    <div className="flex items-baseline gap-1 mt-1.5">
+                      <span className={`text-[1.75rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
                         {currentData.primaryAmount}
                       </span>
                       {currentData.primaryDesc && (
-                        <span className="text-[0.85rem] text-gray-500 font-semibold tracking-wide ml-1">
+                        <span className="text-[0.75rem] text-gray-500 font-semibold tracking-wide ml-0.5">
                           {currentData.primaryDesc}
                         </span>
                       )}
@@ -112,7 +97,7 @@ export default function CommercialTerms() {
                   </div>
                   
                   {currentData.primarySub && (
-                    <span className="text-[0.7rem] text-gray-500 font-medium text-right mb-1">
+                    <span className="text-[0.65rem] text-gray-500 font-medium text-right leading-[1.2] min-w-[65px] shrink-0">
                       {currentData.primarySub}
                     </span>
                   )}
@@ -120,12 +105,12 @@ export default function CommercialTerms() {
               </div>
 
               {("secondaryDarkCard" in currentData && currentData.secondaryDarkCard) ? (
-                <div className="bg-[#0b1b42] rounded-[8px] p-4 flex flex-col items-center justify-center min-w-[115px] shadow-[0_8px_25px_rgba(11,27,66,0.2)] relative overflow-hidden border border-[#d4af37]/30 group">
+                <div className="bg-[#0b1b42] rounded-[8px] p-3 flex flex-col items-center justify-center min-w-[95px] shadow-[0_8px_25px_rgba(11,27,66,0.2)] relative overflow-hidden border border-[#d4af37]/30 group shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="text-[0.52rem] font-bold text-gray-400 tracking-[0.15em] uppercase text-center relative z-10">
+                  <span className="text-[0.5rem] font-bold text-gray-400 tracking-[0.15em] uppercase text-center relative z-10">
                     {currentData.secondaryDarkCard.label}
                   </span>
-                  <span className="text-[1.4rem] font-bold text-white mt-1.5 tracking-tight relative z-10">
+                  <span className="text-[1.2rem] font-bold text-white mt-1 tracking-tight relative z-10">
                     {currentData.secondaryDarkCard.value}
                   </span>
                   {"desc" in currentData.secondaryDarkCard && currentData.secondaryDarkCard.desc && (

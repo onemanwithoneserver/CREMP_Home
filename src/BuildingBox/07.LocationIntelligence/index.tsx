@@ -1,34 +1,9 @@
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, Lock, Sparkles, Check } from "lucide-react";
 import { locationIntelligenceData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
-  },
-};
-
-const gridItem: Variants = {
-  hidden: { opacity: 0, y: 10, scale: 0.95 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
+import { fadeInUp, staggerContainer, gridItem } from "../components/animations";
 
 export default function LocationIntelligence() {
   const [isNotified, setIsNotified] = useState(false);
@@ -43,7 +18,7 @@ export default function LocationIntelligence() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full relative"
+        className="w-full bg-white border-b border-gray-200/60 relative"
       >
         <SectionHeader
           overline={locationIntelligenceData.subtitle}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Image as ImageIcon,
   Download,
@@ -9,32 +9,7 @@ import {
 } from "lucide-react";
 import { mediaData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.1 },
-  },
-};
-
-const gridItem: Variants = {
-  hidden: { opacity: 0, scale: 0.9, y: 10 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
+import { fadeInUp, staggerContainer, gridItem } from "../components/animations";
 
 export default function Media() {
   const [activeTab, setActiveTab] = useState(mediaData.tabs[0].label);
@@ -49,7 +24,7 @@ export default function Media() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full"
+        className="w-full bg-white border-b border-gray-200/60 relative"
       >
         <SectionHeader
           overline="Photos, Videos & Tours"
@@ -57,8 +32,8 @@ export default function Media() {
           icon={ImageIcon}
         />
 
-        <div className="px-4 mt-2">
-          <div className="flex w-full bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative gap-1.5 overflow-hidden">
+        <div className="px-4 mt-3">
+          <div className="flex w-full bg-gray-50/80 rounded-lg p-1 border border-gray-200/80 shadow-inner relative gap-1.5 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60"></div>
             {mediaData.tabs.map((tab) => (
               <button

@@ -35,10 +35,10 @@ const SectionLoader = () => (
 
 export default function BuildingBox() {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-white text-[#0a1128] transition-colors duration-300 relative overflow-hidden">
+    <div className="w-full min-h-screen flex flex-col bg-slate-50 text-[#0a1128] transition-colors duration-300 relative overflow-hidden">
       <div className="relative z-10 flex-1 flex flex-col pb-24">
         <Hero />
-        <div className="flex flex-col gap-0 px-0 pt-0">
+        <div className="flex flex-col gap-0 px-0 py-0">
           <Suspense fallback={<SectionLoader />}>
             <CommercialTerms />
           </Suspense>

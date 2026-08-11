@@ -1,39 +1,14 @@
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { LayoutGrid } from "lucide-react";
 import { spaceOverviewData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
-  },
-};
+import { fadeInUp, staggerContainer, itemReveal as tagItem } from "../components/animations";
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.05 },
-  },
-};
-
-const tagStagger: Variants = {
+const tagStagger = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: { staggerChildren: 0.04, delayChildren: 0.15 },
-  },
-};
-
-const tagItem: Variants = {
-  hidden: { opacity: 0, scale: 0.85, y: 8 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 500, damping: 30 },
   },
 };
 
@@ -48,7 +23,7 @@ export default function SpaceOverview() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full"
+        className="w-full bg-white border-b border-gray-200/60 relative"
       >
         <SectionHeader
           overline="Specifications & Features"

@@ -1,43 +1,9 @@
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FileText, ChevronDown, Info } from "lucide-react";
 import { termsData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 25 },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
-  },
-};
-
-const listItemReveal: Variants = {
-  hidden: { opacity: 0, x: -10 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring", stiffness: 350, damping: 25 },
-  },
-};
-
-const lineReveal: Variants = {
-  hidden: { scaleX: 0, opacity: 0 },
-  show: {
-    scaleX: 1,
-    opacity: 1,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
+import { fadeInUp, staggerContainer, rowReveal as listItemReveal, lineReveal } from "../components/animations";
 
 export default function Terms() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +16,7 @@ export default function Terms() {
       variants={staggerContainer}
       className="w-full relative z-10 flex flex-col h-full rounded-[4px]"
     >
-      <motion.div variants={fadeInUp} className="w-full">
+      <motion.div variants={fadeInUp} className="w-full bg-white border-b border-gray-200/60 relative">
         <SectionHeader
           overline={termsData.overline}
           title={termsData.title}
@@ -62,7 +28,7 @@ export default function Terms() {
           }
         />
 
-        <div className="px-3 py-3 flex flex-col relative w-full">
+        <div className="px-4 py-4 flex flex-col relative w-full">
           <div className="relative flex flex-col w-full z-10">
             <motion.div
               initial={{ scaleY: 0 }}
@@ -70,7 +36,7 @@ export default function Terms() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               style={{ originY: 0 }}
-              className="absolute left-[35px] top-[20px] bottom-[20px] w-[2px] z-0 rounded-full bg-gradient-to-b from-[#e5e7eb] via-[#d4af37] to-[#e5e7eb]"
+              className="absolute left-[39px] top-[24px] bottom-[24px] w-[2px] z-0 rounded-full bg-gradient-to-b from-[#e5e7eb] via-[#d4af37] to-[#e5e7eb]"
             />
 
             <motion.ul
