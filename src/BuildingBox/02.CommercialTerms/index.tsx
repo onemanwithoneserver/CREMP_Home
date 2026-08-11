@@ -51,7 +51,7 @@ export default function CommercialTerms() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 py-2 text-[0.62rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 uppercase tracking-[0.1em] focus-visible:outline-none border ${
+                className={`relative flex-1 py-2 text-[0.62rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 uppercase tracking-[0.1em] focus-visible:outline-none border ${
                   activeTab === tab
                     ? "border-transparent text-white"
                     : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 text-[#0a1128]"
@@ -90,7 +90,7 @@ export default function CommercialTerms() {
           >
             <div className="flex justify-between items-start">
               <div className="flex flex-col">
-                <span className="text-[0.58rem] font-bold text-gray-400 tracking-[0.15em] uppercase">
+                <span className="text-[0.58rem] font-semibold text-gray-400 tracking-[0.15em] uppercase">
                   {currentData.primaryAmountLabel}
                 </span>
                 <div className="flex items-baseline gap-1.5 mt-1.5">
@@ -114,10 +114,10 @@ export default function CommercialTerms() {
 
               {"secondaryCard" in currentData && currentData.secondaryCard && (
                 <div className="flex flex-col items-end justify-center min-w-[85px]">
-                  <span className="text-[0.52rem] font-bold text-gray-400 tracking-[0.15em] uppercase">
+                  <span className="text-[0.52rem] font-semibold text-gray-400 tracking-[0.15em] uppercase">
                     {currentData.secondaryCard.label}
                   </span>
-                  <span className="text-[1.15rem] font-bold text-[#0a1128] mt-0.5 tracking-tight">
+                  <span className="text-[1.15rem] font-semibold text-[#0a1128] mt-0.5 tracking-tight">
                     {currentData.secondaryCard.value}
                   </span>
                   <span className="text-[0.62rem] text-gray-400 font-medium">
@@ -138,10 +138,10 @@ export default function CommercialTerms() {
               {"secondaryDarkCard" in currentData &&
                 currentData.secondaryDarkCard && (
                   <div className="bg-white border border-gray-200 rounded-[4px] p-3.5 flex flex-col items-center justify-center min-w-[105px] mt-1 shadow-sm">
-                    <span className="text-[0.48rem] font-bold text-gray-400 tracking-[0.15em] uppercase">
+                    <span className="text-[0.48rem] font-semibold text-gray-400 tracking-[0.15em] uppercase">
                       {currentData.secondaryDarkCard.label}
                     </span>
-                    <span className="text-[1.3rem] font-bold text-[#0a1128] mt-0.5 tracking-tight">
+                    <span className="text-[1.3rem] font-semibold text-[#0a1128] mt-0.5 tracking-tight">
                       {currentData.secondaryDarkCard.value}
                     </span>
                     {"desc" in currentData.secondaryDarkCard &&
@@ -184,7 +184,7 @@ export default function CommercialTerms() {
           <div className="bg-gray-50 p-4 border-t border-gray-100 flex items-center justify-between mt-2">
             {currentData.footer.type === "tag-text" && (
               <>
-                <span className="px-2.5 py-1 text-[0.58rem] font-bold rounded-[2px] border border-[#D4AF37]/25 bg-[#d4af37]/[0.06] text-[#D4AF37] tracking-[0.12em] uppercase">
+                <span className="px-2.5 py-1 text-[0.58rem] font-semibold rounded-[2px] border border-[#D4AF37]/25 bg-[#d4af37]/[0.06] text-[#D4AF37] tracking-[0.12em] uppercase">
                   {currentData.footer.tag}
                 </span>
                 <span className="text-[0.72rem] text-gray-500 font-medium">

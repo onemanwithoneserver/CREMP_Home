@@ -81,7 +81,7 @@ export default function Infrastructure() {
             >
               <div className="flex items-center gap-2.5">
                 <div
-                  className={`w-7 h-7 rounded-[4px] ${item.iconBg} flex items-center justify-center shrink-0`}
+                  className={`w-7 h-7 rounded-[4px] ${item.iconBg} flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110`}
                 >
                   <item.icon size={13} strokeWidth={2.5} />
                 </div>
@@ -95,7 +95,7 @@ export default function Infrastructure() {
                 </div>
               </div>
               <span
-                className={`text-[0.58rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-[4px] ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
+                className={`text-[0.58rem] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-[4px] ${getStatusStyle(item.status).replace("border-", "border-transparent ")}`}
               >
                 {item.status}
               </span>

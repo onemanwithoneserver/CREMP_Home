@@ -2,7 +2,7 @@ import { Box, Armchair, Monitor, Coffee } from "lucide-react";
 
 export const fitOutData = {
   title: "Fit-out & Furniture",
-  subtitle: "4 Workstations · 8 Chairs · 2 Partitions",
+  subtitle: "Core essentials",
   included: ["AC", "Fridge", "Water Dispenser", "Internet Modem"],
   items: [
     { label: "Storage / Cupboards", icon: Box, active: true, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },

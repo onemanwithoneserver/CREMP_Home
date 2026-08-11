@@ -52,7 +52,7 @@ export default function LocationIntelligence() {
           rightElement={
             <div className="flex items-center gap-1.5 bg-[#d4af37]/10 text-[#d4af37] px-2.5 py-1 rounded-[2px] border border-[#d4af37]/20">
               <Sparkles size={12} />
-              <span className="text-[0.62rem] font-bold uppercase tracking-wider">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-wider">
                 Coming Soon
               </span>
             </div>
@@ -110,13 +110,13 @@ export default function LocationIntelligence() {
               >
                 <div className="flex justify-between items-start">
                   <div
-                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 ${item.bgClass}`}
+                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110 ${item.bgClass}`}
                   >
                     <item.icon size={13} strokeWidth={2.5} />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5 mt-0.5">
-                  <span className="text-[0.62rem] font-extrabold text-[#0a1128] leading-[1.2] pr-1 tracking-tight">
+                  <span className="text-[0.62rem] font-semibold text-[#0a1128] leading-[1.2] pr-1 tracking-tight">
                     {item.label}
                   </span>
                   <div className="flex items-center gap-1.5">
@@ -129,7 +129,7 @@ export default function LocationIntelligence() {
                       }}
                       className="w-1.5 h-1.5 rounded-full bg-gray-400"
                     />
-                    <span className="text-[0.52rem] text-gray-500 font-bold uppercase tracking-wider">
+                    <span className="text-[0.52rem] text-gray-500 font-semibold uppercase tracking-wider">
                       {item.status}
                     </span>
                   </div>
@@ -144,7 +144,7 @@ export default function LocationIntelligence() {
           >
             <div className="bg-gray-50 p-3 flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-[0.75rem] font-bold text-[#0a1128]">
+                <span className="text-[0.75rem] font-semibold text-[#0a1128]">
                   {locationIntelligenceData.footer.title}
                 </span>
                 <span className="text-[0.65rem] text-gray-500 font-medium">
@@ -155,7 +155,7 @@ export default function LocationIntelligence() {
                 onClick={() => setIsNotified(true)}
                 whileHover={!isNotified ? { scale: 1.05 } : {}}
                 whileTap={!isNotified ? { scale: 0.95 } : {}}
-                className={`text-[0.65rem] font-bold px-3 py-1.5 rounded-[2px] shadow-sm border uppercase tracking-wider flex items-center justify-center transition-all duration-300 min-w-[85px] ${
+                className={`text-[0.65rem] font-semibold px-3 py-1.5 rounded-[2px] shadow-sm border uppercase tracking-wider flex items-center justify-center transition-all duration-300 min-w-[85px] ${
                   isNotified
                     ? "bg-emerald-50/80 text-emerald-600 border-emerald-200 cursor-default"
                     : "text-[#0b1b42] bg-white border-gray-200 hover:border-[#0b1b42]/30"

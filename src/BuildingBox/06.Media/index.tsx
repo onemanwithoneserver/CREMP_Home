@@ -57,37 +57,42 @@ export default function Media() {
           icon={ImageIcon}
         />
 
-        <div className="flex w-full px-4 gap-1 mt-2">
-          {mediaData.tabs.map((tab) => (
-            <button
-              key={tab.label}
-              onClick={() => setActiveTab(tab.label)}
-              className={`relative flex-1 flex flex-row items-center justify-center py-1.5 gap-1.5 transition-all duration-300 rounded-[2px] z-10 ${
-                activeTab === tab.label
-                  ? "text-white"
-                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
-              }`}
-            >
-              {activeTab === tab.label && (
-                <motion.div
-                  layoutId="mediaTabActive"
-                  className="absolute inset-0 bg-[#0b1b42] rounded-[2px] shadow-sm"
-                  transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 30,
-                    mass: 0.8,
-                  }}
-                >
-                  <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
-                </motion.div>
-              )}
-              <tab.icon size={14} className="relative z-10 shrink-0" />
-              <span className="text-[0.65rem] font-bold whitespace-nowrap relative z-10 tracking-wide">
-                {tab.label}
-              </span>
-            </button>
-          ))}
+        <div className="px-4 mt-2">
+          <div className="flex w-full bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative gap-1.5 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60"></div>
+            {mediaData.tabs.map((tab) => (
+              <button
+                key={tab.label}
+                onClick={() => setActiveTab(tab.label)}
+                className={`relative flex-1 flex flex-row items-center justify-center py-2 gap-1.5 transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none border ${
+                  activeTab === tab.label
+                    ? "border-transparent text-white"
+                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 text-[#0a1128]"
+                }`}
+              >
+                {activeTab === tab.label && (
+                  <motion.div
+                    layoutId="mediaTabActive"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 30,
+                      mass: 0.8,
+                    }}
+                  >
+                    <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
+                  </motion.div>
+                )}
+                <tab.icon size={13} strokeWidth={2.5} className="relative z-10 shrink-0" />
+                <span className="text-[0.62rem] font-semibold whitespace-nowrap relative z-10 tracking-wide">
+                  {tab.label}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="px-4 py-4">
@@ -216,7 +221,7 @@ export default function Media() {
                       <Maximize size={22} />
                     </motion.div>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-white text-lg font-bold tracking-tight">
+                      <h3 className="text-white text-lg font-semibold tracking-tight">
                         {mediaData.virtualTour.title}
                       </h3>
                       <p className="text-gray-300 text-xs font-medium">
@@ -226,7 +231,7 @@ export default function Media() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="mt-2 px-6 py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white font-bold text-sm flex items-center gap-2 transition-all shadow-md"
+                      className="mt-2 px-6 py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white font-semibold text-sm flex items-center gap-2 transition-all shadow-md"
                     >
                       <mediaData.virtualTour.btnIcon
                         size={15}
@@ -278,7 +283,7 @@ export default function Media() {
                         repeat: Infinity,
                         ease: "easeInOut",
                       }}
-                      className="text-[#d4af37] text-xl font-bold"
+                      className="text-[#d4af37] text-xl font-semibold"
                     >
                       +9
                     </motion.span>

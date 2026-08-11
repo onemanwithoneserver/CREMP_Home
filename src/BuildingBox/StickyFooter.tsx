@@ -108,7 +108,7 @@ export default function StickyFooter() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setIsBookingOpen(true)}
-                className="h-11 flex-1 max-w-[150px] flex items-center justify-center gap-1.5 rounded-[4px] font-bold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 px-2.5 text-[0.72rem]"
+                className="h-11 flex-1 max-w-[150px] flex items-center justify-center gap-1.5 rounded-[4px] font-semibold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 px-2.5 text-[0.72rem]"
               >
                 <Calendar size={15} strokeWidth={2} className="shrink-0" />
                 <span className="truncate">Schedule Visit</span>

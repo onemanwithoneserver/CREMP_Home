@@ -5,7 +5,7 @@ import {
   Lock,
   ShieldCheck,
   Bell,
-  FileText,
+  Receipt,
   Zap,
 } from "lucide-react";
 
@@ -55,7 +55,7 @@ export const termsData = {
     {
       label: "PROPERTY TAX",
       value: "To be borne by owner",
-      icon: FileText,
+      icon: Receipt,
       color: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
     },
     {

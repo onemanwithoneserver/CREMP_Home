@@ -69,7 +69,7 @@ export default function SpaceOverview() {
                 key={idx}
                 variants={tagItem}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className={`px-3 py-1.5 text-[0.62rem] font-bold rounded-full cursor-default tracking-wide uppercase transition-all duration-300 ${tag.color}`}
+                className={`px-3 py-1.5 text-[0.62rem] font-semibold rounded-full cursor-default tracking-wide uppercase transition-all duration-300 ${tag.color}`}
               >
                 {tag.text}
               </motion.span>

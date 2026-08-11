@@ -1,4 +1,4 @@
-import { LayoutGrid, Grid3X3, Star } from "lucide-react";
+import { LayoutTemplate, Grid3X3, Star } from "lucide-react";
 
 export const spaceOverviewData = {
   title: "Space Overview",
@@ -33,7 +33,7 @@ export const spaceOverviewData = {
     },
   ],
   details: [
-    { label: "Partition Type", value: "Glass", icon: LayoutGrid, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
+    { label: "Partition Type", value: "Glass", icon: LayoutTemplate, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
     { label: "No. of Partitions", value: "2", icon: Grid3X3, bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]" },
     { label: "External Branding", value: "Available Outside", icon: Star, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
   ],

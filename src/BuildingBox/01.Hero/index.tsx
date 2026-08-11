@@ -138,7 +138,7 @@ export default function MobileHero() {
             {heroData.badges.map((badge, idx) => (
               <span
                 key={idx}
-                className={`px-3 py-1.5 text-[0.6rem] font-bold rounded-[2px] border backdrop-blur-md uppercase tracking-[0.12em] ${
+                className={`px-3 py-1.5 text-[0.6rem] font-semibold rounded-[2px] border backdrop-blur-md uppercase tracking-[0.12em] ${
                   idx === 0
                     ? "bg-[#d4af37]/15 text-[#f9df9f] border-[#d4af37]/40 shadow-sm"
                     : "bg-white/8 text-white/90 border-white/15"
@@ -152,7 +152,7 @@ export default function MobileHero() {
           <div className="flex flex-col gap-2">
             <motion.h1
               variants={fadeInUp}
-              className="text-[1.75rem] font-bold leading-[1.15] tracking-tight text-white drop-shadow-lg"
+              className="text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-white drop-shadow-lg"
             >
               {heroData.title}
             </motion.h1>
@@ -195,11 +195,11 @@ export default function MobileHero() {
                             className="text-white"
                           />
                         </div>
-                        <span className="text-[0.6rem] font-bold text-gray-300 tracking-[0.15em] uppercase">
+                        <span className="text-[0.6rem] font-semibold text-gray-300 tracking-[0.15em] uppercase">
                           {stat.label}
                         </span>
                       </div>
-                      <span className="text-[1.15rem] font-bold text-white tracking-tight mt-0.5">
+                      <span className="text-[1.15rem] font-semibold text-white tracking-tight mt-0.5">
                         {stat.value}
                       </span>
                     </motion.div>
