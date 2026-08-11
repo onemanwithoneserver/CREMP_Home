@@ -18,6 +18,7 @@ import FranchiseHome from "./Franchise_Home";
 import Home from "./Home";
 import Investors from "./Investors";
 import BuildingBox from "./BuildingBox";
+import LandBox from "./LandBox";
 
 function App() {
   const location = useLocation();
@@ -55,7 +56,7 @@ function App() {
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
           onClose={handleClose}
-          showViewControls={pathParts[1] !== "building-box"}
+          showViewControls={pathParts[1] !== "building-box" && pathParts[1] !== "land-box"}
         />
       )}
 
@@ -96,6 +97,11 @@ function App() {
                 element={<Navigate to="/mobile/building-box" replace />}
               />
               <Route path="/mobile/building-box" element={<BuildingBox />} />
+              <Route
+                path="/desktop/land-box"
+                element={<Navigate to="/mobile/land-box" replace />}
+              />
+              <Route path="/mobile/land-box" element={<LandBox />} />
               <Route
                 path="*"
                 element={<Navigate to="/desktop/home" replace />}
