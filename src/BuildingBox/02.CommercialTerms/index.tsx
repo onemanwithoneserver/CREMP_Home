@@ -92,27 +92,31 @@ export default function CommercialTerms() {
               <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[8px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
                 
-                <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
-                  {currentData.primaryAmountLabel}
-                </span>
-                
-                <div className="flex items-baseline gap-1 mt-2.5 relative z-10">
-                  <span className={`text-[2.2rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
-                    {currentData.primaryAmount}
-                  </span>
-                  {currentData.primaryDesc && (
-                    <span className="text-[0.85rem] text-gray-500 font-semibold tracking-wide ml-1">
-                      {currentData.primaryDesc}
+                <div className="flex justify-between items-end relative z-10 gap-2">
+                  <div className="flex flex-col">
+                    <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
+                      {currentData.primaryAmountLabel}
+                    </span>
+                    
+                    <div className="flex items-baseline gap-1 mt-2.5">
+                      <span className={`text-[2.2rem] font-bold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
+                        {currentData.primaryAmount}
+                      </span>
+                      {currentData.primaryDesc && (
+                        <span className="text-[0.85rem] text-gray-500 font-semibold tracking-wide ml-1">
+                          {currentData.primaryDesc}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {currentData.primarySub && (
+                    <span className="text-[0.7rem] text-gray-500 font-medium text-right mb-1">
+                      {currentData.primarySub}
                     </span>
                   )}
                 </div>
-                
-                {currentData.primarySub && (
-                  <span className="text-[0.7rem] text-gray-500 mt-2.5 font-medium block relative z-10">
-                    {currentData.primarySub}
-                  </span>
-                )}
               </div>
 
               {("secondaryDarkCard" in currentData && currentData.secondaryDarkCard) ? (
