@@ -16,6 +16,11 @@ export default {
       '3xl': '8px',
       full: '9999px',
     },
+    fontFamily: {
+      sans: ['Outfit'],
+      serif: ['Outfit'],
+      mono: ['Outfit'],
+    },
     extend: {
       colors: {
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
@@ -99,9 +104,6 @@ export default {
 
       textColor: {
         primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
-      },
-      fontFamily: {
-        sans: ['Outfit'],
       },
       boxShadow: {
         'elevation-1': '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)',
