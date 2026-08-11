@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid, BadgeCheck, ChevronDown } from "lucide-react";
+// import { useState } from "react";
+import { motion } from "framer-motion";
+import { LayoutGrid } from "lucide-react";
 import { spaceOverviewData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-import { fadeInUp, staggerContainer, itemReveal as tagItem } from "../components/animations";
+import { fadeInUp, staggerContainer } from "../components/animations";
 
-const tagStagger = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.04, delayChildren: 0.15 },
-  },
-};
+// const tagStagger = {
+//   hidden: { opacity: 0 },
+//   show: {
+//     opacity: 1,
+//     transition: { staggerChildren: 0.04, delayChildren: 0.15 },
+//   },
+// };
 
 export default function SpaceOverview() {
-  const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
+  // const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
 
   return (
     <motion.div
@@ -34,8 +34,8 @@ export default function SpaceOverview() {
           icon={LayoutGrid}
         />
 
-        <div className="px-3 py-3 flex flex-col gap-3 mx-0">
-          <div className="border border-gray-100 rounded-[6px] overflow-hidden bg-white shadow-sm mt-1">
+        <div className="px-3 py-3 flex flex-col mx-0">
+          {/* <div className="border border-gray-100 rounded-[6px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsFeaturesOpen(!isFeaturesOpen)}
               className="w-full flex items-center justify-between p-2.5 bg-gray-50/50 hover:bg-gray-50 text-[0.68rem] font-semibold text-[#0a1128] transition-colors"
@@ -81,9 +81,9 @@ export default function SpaceOverview() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </div> */}
 
-          <div className="flex flex-col gap-2.5 mt-1 pt-2">
+          <div className="flex flex-col gap-2.5">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div
                 key={idx}
