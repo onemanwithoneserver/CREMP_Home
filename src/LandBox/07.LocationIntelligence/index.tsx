@@ -36,7 +36,7 @@ export default function LocationIntelligence() {
                 ],
               }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-12 h-12 rounded-full bg-[#0b1b42] shadow-[0_4px_15px_rgba(11,27,66,0.3)] flex items-center justify-center text-white mb-3 border border-[#1c2e64] group-hover:scale-110 transition-transform duration-300"
+              className="w-12 h-12 rounded-full bg-[#0b1b42] shadow-[0_4px_15px_rgba(11,27,66,0.3)] flex items-center justify-center text-white mb-3 border border-[#1c2e64] group-hover:[transform:rotateY(180deg)] transition-transform duration-500"
             >
               <Lock size={20} strokeWidth={2.5} />
             </motion.div>
@@ -80,7 +80,7 @@ export default function LocationIntelligence() {
               >
                 <div className="flex justify-between items-start">
                   <div
-                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110 ${item.bgClass}`}
+                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-500 group-hover:[transform:rotateY(180deg)] ${item.bgClass}`}
                   >
                     <item.icon size={13} strokeWidth={2.5} />
                   </div>

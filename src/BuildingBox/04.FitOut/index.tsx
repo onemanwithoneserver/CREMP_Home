@@ -109,7 +109,7 @@ export default function FitOut() {
                       whileHover={{ scale: 1.02, y: -1 }}
                       className="flex items-center gap-2.5 p-2.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group cursor-default"
                     >
-                      <div className={`w-7 h-7 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-400 group-hover:scale-110 group-hover:rotate-3 ${item.bgClass}`}>
+                      <div className={`w-7 h-7 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-500 group-hover:[transform:rotateY(180deg)] ${item.bgClass}`}>
                         <item.icon size={14} strokeWidth={2.2} />
                       </div>
                       <span className="text-[0.72rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors truncate">
