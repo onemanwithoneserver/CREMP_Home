@@ -165,6 +165,12 @@ export default {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
         },
+        'icon-shake': {
+          '0%': { transform: 'scale(1) rotate(0deg)' },
+          '25%': { transform: 'scale(1.15) rotate(-10deg)' },
+          '75%': { transform: 'scale(1.15) rotate(10deg)' },
+          '100%': { transform: 'scale(1.15) rotate(0deg)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-out forwards',
@@ -179,6 +185,7 @@ export default {
         'shimmer': 'shimmer 2s linear infinite',
         'spin-slow': 'spin-slow 20s linear infinite',
         'marquee': 'marquee 30s linear infinite',
+        'icon-shake': 'icon-shake 0.4s ease-in-out forwards',
       },
     },
   },

@@ -57,7 +57,7 @@ export default function Infrastructure() {
             >
               <div className="flex items-center gap-3.5">
                 <div
-                  className={`w-9 h-9 rounded-[6px] ${item.iconBg} flex items-center justify-center shrink-0 shadow-sm transition-transform duration-500 group-hover:[transform:rotateY(180deg)]`}
+                  className={`w-9 h-9 rounded-[6px] flex items-center justify-center shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.iconBg}`}
                 >
                   <item.icon size={16} strokeWidth={2.2} className="text-white" />
                 </div>

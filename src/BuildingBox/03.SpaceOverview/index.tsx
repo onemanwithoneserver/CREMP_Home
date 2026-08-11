@@ -91,8 +91,11 @@ export default function SpaceOverview() {
                 className="flex items-center justify-between p-3.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group cursor-default"
               >
                 <div className="flex items-center gap-3.5 text-gray-600">
-                  <div className={`w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-500 group-hover:[transform:rotateY(180deg)] ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}>
-                    <detail.icon size={15} strokeWidth={2.2} />
+                  <div className="relative w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm">
+                    <div
+                      className={`absolute inset-0 rounded-[6px] group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
+                    />
+                    <detail.icon size={15} strokeWidth={2.2} className="relative z-10 pointer-events-none" />
                   </div>
                   <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
                     {detail.label}

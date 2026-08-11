@@ -28,18 +28,11 @@ export default function LocationIntelligence() {
 
         <div className="px-4 py-4 relative">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
-            <motion.div
-              animate={{
-                boxShadow: [
-                  "0 0 0 0 rgba(11, 27, 66, 0.4)",
-                  "0 0 0 15px rgba(11, 27, 66, 0)",
-                ],
-              }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-12 h-12 rounded-full bg-[#0b1b42] shadow-[0_4px_15px_rgba(11,27,66,0.3)] flex items-center justify-center text-white mb-3 border border-[#1c2e64] group-hover:[transform:rotateY(180deg)] transition-transform duration-500"
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.3)] border border-[#1c2e64] bg-[#0b1b42] group-hover:animate-icon-shake origin-center transition-all duration-300"
             >
               <Lock size={20} strokeWidth={2.5} />
-            </motion.div>
+            </div>
             <div className="bg-white/95 px-4 py-2 rounded-full shadow-lg border border-gray-100/80 flex items-center justify-center h-8 relative overflow-hidden min-w-[70px] group-hover:min-w-[120px] transition-all duration-300">
               <span className="flex gap-1 absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-y-4">
                 <motion.span
@@ -80,9 +73,9 @@ export default function LocationIntelligence() {
               >
                 <div className="flex justify-between items-start">
                   <div
-                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-500 group-hover:[transform:rotateY(180deg)] ${item.bgClass}`}
+                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}
                   >
-                    <item.icon size={13} strokeWidth={2.5} />
+                    <item.icon size={14} />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5 mt-0.5">

@@ -72,7 +72,7 @@ export default function CommercialTerms() {
             className="px-4 py-4 flex flex-col gap-4"
           >
             <div className="flex justify-between items-stretch gap-2">
-              <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[8px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
+              <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
                 
                 <div className="flex flex-col relative z-10 gap-1.5 w-full">
@@ -110,8 +110,13 @@ export default function CommercialTerms() {
                   className="flex items-center justify-between p-3.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-3.5 text-gray-600">
-                    <div className={`w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-500 group-hover:[transform:rotateY(180deg)] ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}>
-                      <detail.icon size={15} strokeWidth={2.2} />
+                    <div className="relative w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm">
+                      <motion.div
+                        whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                        transition={{ duration: 0.3 }}
+                        className={`absolute inset-0 rounded-[6px] ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
+                      />
+                      <detail.icon size={15} strokeWidth={2.2} className="relative z-10 pointer-events-none" />
                     </div>
                     <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
                       {detail.label}
