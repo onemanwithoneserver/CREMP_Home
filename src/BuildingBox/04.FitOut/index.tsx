@@ -7,6 +7,7 @@ import { fadeInUp, staggerContainer, itemReveal } from "../components/animations
 
 export default function FitOut() {
   const [isOpen, setIsOpen] = useState(true);
+  const [isIncludedOpen, setIsIncludedOpen] = useState(false);
 
   return (
     <motion.div
@@ -49,31 +50,57 @@ export default function FitOut() {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              <div className="px-4 pb-4 flex flex-col gap-4 mx-0">
-                <motion.div
-                  variants={staggerContainer}
-                  initial="hidden"
-                  animate="show"
-                  className="flex flex-wrap gap-2 pt-2"
-                >
-                  {fitOutData.included.map((item, idx) => (
-                    <motion.span
-                      key={idx}
-                      variants={itemReveal}
-                      whileHover={{ scale: 1.05, y: -1 }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-[0.65rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm hover:shadow-md hover:border-[#d4af37]/40 transition-all duration-300"
-                    >
-                      <CheckCircle2 size={13} className="text-emerald-500" />
-                      {item}
-                    </motion.span>
-                  ))}
-                </motion.div>
+              <div className="px-3 pb-3 flex flex-col gap-3 mx-0">
+                <div className="border border-gray-100 rounded-[6px] overflow-hidden bg-white shadow-sm mt-1">
+                  <button
+                    onClick={() => setIsIncludedOpen(!isIncludedOpen)}
+                    className="w-full flex items-center justify-between p-2.5 bg-gray-50/50 hover:bg-gray-50 text-[0.68rem] font-bold text-[#0a1128] transition-colors"
+                  >
+                    <span className="uppercase tracking-wide flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      Included Amenities ({fitOutData.included.length})
+                    </span>
+                    <ChevronDown
+                      size={14}
+                      className={`text-gray-500 transition-transform duration-300 ${isIncludedOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {isIncludedOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <motion.div
+                          variants={staggerContainer}
+                          initial="hidden"
+                          animate="show"
+                          className="flex flex-wrap gap-1.5 p-2.5 pt-2 border-t border-gray-100/60"
+                        >
+                          {fitOutData.included.map((item, idx) => (
+                            <motion.span
+                              key={idx}
+                              variants={itemReveal}
+                              className="flex items-center gap-1 px-2.5 py-1 text-[0.62rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm cursor-default"
+                            >
+                              <CheckCircle2 size={12} className="text-emerald-500" />
+                              {item}
+                            </motion.span>
+                          ))}
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
                   animate="show"
-                  className="grid grid-cols-2 gap-2 pb-2 mt-2 pt-2 border-t border-gray-100"
+                  className="grid grid-cols-2 gap-2 pb-2 mt-2 pt-2 "
                 >
                   {fitOutData.items.map((item, idx) => (
                     <motion.div

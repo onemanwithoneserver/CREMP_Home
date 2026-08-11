@@ -24,18 +24,10 @@ export default function LocationIntelligence() {
           overline={locationIntelligenceData.subtitle}
           title={locationIntelligenceData.title}
           icon={Cpu}
-          rightElement={
-            <div className="flex items-center gap-1.5 bg-[#d4af37]/10 text-[#d4af37] px-2.5 py-1 rounded-[2px] border border-[#d4af37]/20">
-              <Sparkles size={12} />
-              <span className="text-[0.62rem] font-semibold uppercase tracking-wider">
-                Coming Soon
-              </span>
-            </div>
-          }
         />
 
         <div className="px-4 py-4 relative">
-          <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center">
+          <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
             <motion.div
               animate={{
                 boxShadow: [
@@ -44,12 +36,12 @@ export default function LocationIntelligence() {
                 ],
               }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-12 h-12 rounded-full bg-[#0b1b42] shadow-[0_4px_15px_rgba(11,27,66,0.3)] flex items-center justify-center text-white mb-3 border border-[#1c2e64]"
+              className="w-12 h-12 rounded-full bg-[#0b1b42] shadow-[0_4px_15px_rgba(11,27,66,0.3)] flex items-center justify-center text-white mb-3 border border-[#1c2e64] group-hover:scale-110 transition-transform duration-300"
             >
               <Lock size={20} strokeWidth={2.5} />
             </motion.div>
-            <div className="bg-white/90 px-4 py-2 rounded-full shadow-sm border border-gray-100 flex items-center gap-2">
-              <span className="flex gap-1">
+            <div className="bg-white/95 px-4 py-2 rounded-full shadow-lg border border-gray-100/80 flex items-center justify-center h-8 relative overflow-hidden min-w-[70px] group-hover:min-w-[120px] transition-all duration-300">
+              <span className="flex gap-1 absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-y-4">
                 <motion.span
                   animate={{ opacity: [0.2, 1, 0.2] }}
                   transition={{ duration: 1.5, repeat: Infinity, delay: 0 }}
@@ -65,6 +57,9 @@ export default function LocationIntelligence() {
                   transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }}
                   className="w-1.5 h-1.5 rounded-full bg-[#0b1b42]"
                 />
+              </span>
+              <span className="text-[0.6rem] font-bold text-[#0b1b42] tracking-[0.2em] uppercase absolute transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+                Coming Soon
               </span>
             </div>
           </div>

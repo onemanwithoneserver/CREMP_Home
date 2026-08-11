@@ -16,7 +16,7 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className="px-4 py-3.5 flex items-center justify-between shrink-0 relative bg-[#0b1b42] rounded-none min-h-[72px] border-b border-white/5">
-      <div className="flex items-center gap-4 min-w-0 w-full">
+      <div className="flex items-center gap-4 min-w-0 flex-1">
         <motion.div
           whileHover={{ scale: 1.05, rotate: -3 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -38,9 +38,10 @@ export default function SectionHeader({
           </h3>
         </div>
       </div>
-
       {rightElement && (
-        <div className="relative z-10 shrink-0 ml-4">{rightElement}</div>
+        <div className="ml-3 shrink-0 flex items-center justify-end">
+          {rightElement}
+        </div>
       )}
     </div>
   );
