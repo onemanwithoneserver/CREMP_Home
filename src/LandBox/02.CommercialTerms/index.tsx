@@ -30,7 +30,7 @@ export default function CommercialTerms() {
         />
 
         <div className="px-4 mt-3">
-          <div className="flex w-full bg-slate-50/50 backdrop-blur-2xl rounded-[2px] p-0 border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] relative gap-0 overflow-hidden">
+          <div className="flex w-[85%] mx-auto bg-slate-50/50 backdrop-blur-2xl rounded-[2px] p-0 border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] relative gap-0 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none"></div>
             {commercialData.tabs.map((tab) => (
               <button
@@ -72,24 +72,24 @@ export default function CommercialTerms() {
             className="px-4 py-4 flex flex-col gap-4"
           >
             <div className="flex justify-between items-stretch gap-2">
-              <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
+              <div className="flex-1 bg-gradient-to-br from-gray-50 to-white  rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
                 
-                <div className="flex flex-col relative z-10 gap-1.5 w-full">
-                  <div className="flex justify-between items-start w-full">
+                <div className="flex justify-between items-center relative z-10 w-full">
+                  <div className="flex flex-col gap-1.5">
                     <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                       {currentData.primaryAmountLabel}
                     </span>
+                    
+                    {currentData.primarySub && (
+                      <span className="text-[0.72rem] text-gray-500 font-medium ml-3">
+                        {currentData.primarySub}
+                      </span>
+                    )}
                   </div>
                   
-                  {currentData.primarySub && (
-                    <span className="text-[0.72rem] text-gray-500 font-medium ml-3 mt-1">
-                      {currentData.primarySub}
-                    </span>
-                  )}
-                  
-                  <div className="flex items-baseline gap-1 mt-0.5 ml-3">
+                  <div className="flex items-baseline gap-1 mt-0.5 text-right">
                     <span className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
                       {currentData.primaryAmount}
                     </span>
