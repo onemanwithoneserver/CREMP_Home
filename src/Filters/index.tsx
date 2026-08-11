@@ -20,7 +20,7 @@ export default function Filters(_props: FiltersProps) {
   const handleResultSelect = useCallback((_result: LocationResult) => {}, []);
 
   return (
-    <div className="w-full min-h-full flex-1 flex flex-col bg-white/30 backdrop-blur-2xl border-t border-white/20 text-[#0a1128] font-sans select-none relative transition-colors duration-300 dark:bg-[#0b1b42]/50 dark:border-white/10 shadow-[0_-8px_32px_rgba(11,27,66,0.05)] dark:shadow-[0_-8px_32px_rgba(0,0,0,0.25)]">
+    <div className="w-full min-h-full flex-1 flex flex-col bg-white/30 backdrop-blur-2xl border-t border-white/20 text-[#0a1128] select-none relative transition-colors duration-300 dark:bg-[#0b1b42]/50 dark:border-white/10 shadow-[0_-8px_32px_rgba(11,27,66,0.05)] dark:shadow-[0_-8px_32px_rgba(0,0,0,0.25)]">
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-[#d4af37]/[0.02] pointer-events-none" />
 
       <TopHeader

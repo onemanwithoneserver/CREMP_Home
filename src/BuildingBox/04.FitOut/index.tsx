@@ -95,22 +95,21 @@ export default function FitOut() {
                   variants={staggerContainer}
                   initial="hidden"
                   animate="show"
-                  className="grid grid-cols-2 gap-y-3 gap-x-4 pb-1 border-t border-gray-100 pt-4"
+                  className="grid grid-cols-2 gap-y-2.5 gap-x-3 pb-1 border-t border-gray-100 pt-3"
                 >
                   {fitOutData.items.map((item, idx) => (
                     <motion.div
                       key={idx}
                       variants={itemReveal}
-                      whileHover={{ x: 3 }}
-                      className="flex items-center gap-2.5 text-gray-600 group cursor-default transition-all duration-300"
+                      whileHover={{ x: 2 }}
+                      className="flex items-center gap-2 text-gray-700 group cursor-default transition-all duration-300"
                     >
-                      <item.icon size={15} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
-                      <span className="text-[0.78rem] font-medium truncate">
+                      <div className={`w-6 h-6 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110 ${item.bgClass}`}>
+                        <item.icon size={13} strokeWidth={2.5} />
+                      </div>
+                      <span className="text-[0.7rem] font-medium truncate">
                         {item.label}
                       </span>
-                      {item.active && (
-                        <CheckCircle2 size={13} className="text-emerald-500 shrink-0 ml-auto" />
-                      )}
                     </motion.div>
                   ))}
                 </motion.div>

@@ -5,9 +5,9 @@ export const fitOutData = {
   subtitle: "4 Workstations · 8 Chairs · 2 Partitions",
   included: ["AC", "Fridge", "Water Dispenser", "Internet Modem"],
   items: [
-    { label: "Storage / Cupboards", icon: Box, active: true },
-    { label: "Sofa / Lounge", icon: Armchair, active: true },
-    { label: "Reception Desk", icon: Monitor, active: true },
-    { label: "Pantry Equipment", icon: Coffee, active: true },
+    { label: "Storage / Cupboards", icon: Box, active: true, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
+    { label: "Sofa / Lounge", icon: Armchair, active: true, bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]" },
+    { label: "Reception Desk", icon: Monitor, active: true, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
+    { label: "Pantry Equipment", icon: Coffee, active: true, bgClass: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]" },
   ],
 };

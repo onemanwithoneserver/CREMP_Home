@@ -1,5 +1,6 @@
-import { motion, type Variants } from "framer-motion";
-import { Cpu, Lock, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { Cpu, Lock, Sparkles, Check } from "lucide-react";
 import { locationIntelligenceData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 const fadeInUp: Variants = {
@@ -30,6 +31,8 @@ const gridItem: Variants = {
 };
 
 export default function LocationIntelligence() {
+  const [isNotified, setIsNotified] = useState(false);
+
   return (
     <motion.div
       initial="hidden"
@@ -57,7 +60,7 @@ export default function LocationIntelligence() {
         />
 
         <div className="px-4 py-4 relative">
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center">
+          <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center">
             <motion.div
               animate={{
                 boxShadow: [
@@ -96,21 +99,20 @@ export default function LocationIntelligence() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-3 opacity-40 grayscale-[0.5] pt-2"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2"
           >
             {locationIntelligenceData.items.map((item, idx) => (
               <motion.div
                 key={idx}
                 variants={gridItem}
                 whileHover={{ y: -2, scale: 1.02 }}
-                className="bg-[#0b1b42]/[0.02] border border-gray-100 rounded-[4px] p-3 flex flex-col gap-2 relative transition-all duration-300 group cursor-default"
+                className="bg-[#0b1b42]/[0.02] border border-gray-100 rounded-[4px] p-2.5 flex flex-col gap-1.5 relative transition-all duration-300 group cursor-default"
               >
                 <div className="flex justify-between items-start">
                   <div
-                    className="w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm bg-white border border-gray-100"
-                    style={{ color: item.color }}
+                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 ${item.bgClass}`}
                   >
-                    <item.icon size={16} strokeWidth={2.2} />
+                    <item.icon size={13} strokeWidth={2.5} />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5 mt-0.5">
@@ -125,8 +127,7 @@ export default function LocationIntelligence() {
                         repeat: Infinity,
                         delay: idx * 0.2,
                       }}
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ backgroundColor: item.color }}
+                      className="w-1.5 h-1.5 rounded-full bg-gray-400"
                     />
                     <span className="text-[0.52rem] text-gray-500 font-bold uppercase tracking-wider">
                       {item.status}
@@ -139,9 +140,9 @@ export default function LocationIntelligence() {
 
           <motion.div
             variants={fadeInUp}
-            className="w-full relative overflow-hidden mt-4 border-t border-gray-100"
+            className="w-full relative z-20 overflow-hidden mt-3 border-t border-gray-100 bg-white"
           >
-            <div className="bg-gray-50 p-4 border-t border-gray-100 flex items-center justify-between">
+            <div className="bg-gray-50 p-3 flex items-center justify-between">
               <div className="flex flex-col">
                 <span className="text-[0.75rem] font-bold text-[#0a1128]">
                   {locationIntelligenceData.footer.title}
@@ -150,9 +151,41 @@ export default function LocationIntelligence() {
                   {locationIntelligenceData.footer.subtitle}
                 </span>
               </div>
-              <div className="text-[0.65rem] font-bold text-[#0b1b42] bg-white px-3 py-1.5 rounded-[2px] shadow-sm border border-gray-200 uppercase tracking-wider">
-                Notify Me
-              </div>
+              <motion.button
+                onClick={() => setIsNotified(true)}
+                whileHover={!isNotified ? { scale: 1.05 } : {}}
+                whileTap={!isNotified ? { scale: 0.95 } : {}}
+                className={`text-[0.65rem] font-bold px-3 py-1.5 rounded-[2px] shadow-sm border uppercase tracking-wider flex items-center justify-center transition-all duration-300 min-w-[85px] ${
+                  isNotified
+                    ? "bg-emerald-50/80 text-emerald-600 border-emerald-200 cursor-default"
+                    : "text-[#0b1b42] bg-white border-gray-200 hover:border-[#0b1b42]/30"
+                }`}
+              >
+                <AnimatePresence mode="wait">
+                  {isNotified ? (
+                    <motion.div
+                      key="notified"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="flex items-center gap-1.5"
+                    >
+                      <Check size={12} strokeWidth={3} />
+                      <span>NOTIFIED</span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="notify"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                      className="flex items-center"
+                    >
+                      <span>NOTIFY ME</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
             </div>
           </motion.div>
         </div>

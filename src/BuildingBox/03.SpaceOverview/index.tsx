@@ -76,20 +76,22 @@ export default function SpaceOverview() {
             ))}
           </motion.div>
 
-          <div className="flex flex-col gap-0 border-t border-gray-100 pt-2">
+          <div className="flex flex-col gap-0 border-t border-gray-100 pt-2 mt-2">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ x: 3 }}
-                className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0 transition-all duration-300 cursor-default group"
+                className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0 transition-all duration-300 cursor-default group"
               >
-                <div className="flex items-center gap-2.5 text-gray-500">
-                  <detail.icon size={15} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
-                  <span className="text-[0.82rem] font-medium">
+                <div className="flex items-center gap-2 text-gray-500">
+                  <div className={`w-5 h-5 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110 ${"bgClass" in detail ? detail.bgClass : ""}`}>
+                    <detail.icon size={11} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[0.75rem] font-medium">
                     {detail.label}
                   </span>
                 </div>
-                <span className="text-[0.82rem] font-semibold text-[#0a1128]">
+                <span className="text-[0.75rem] font-semibold text-[#0a1128]">
                   {detail.value}
                 </span>
               </motion.div>

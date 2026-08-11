@@ -44,34 +44,39 @@ export default function CommercialTerms() {
           icon={currentData.headerIcon}
         />
 
-        <div className="flex w-full px-4 gap-1 mt-2">
-          {commercialData.tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`relative flex-1 py-2 text-[0.65rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 uppercase tracking-[0.1em] ${
-                activeTab === tab
-                  ? "text-white"
-                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
-              }`}
-            >
-              {activeTab === tab && (
-                <motion.div
-                  layoutId="commercialTabActive"
-                  className="absolute inset-0 bg-[#0b1b42] rounded-[2px] shadow-sm"
-                  transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 30,
-                    mass: 0.8,
-                  }}
-                >
-                  <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
-                </motion.div>
-              )}
-              <span className="relative z-10">{tab}</span>
-            </button>
-          ))}
+        <div className="px-4 mt-2">
+          <div className="flex w-full bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative gap-1.5 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60"></div>
+            {commercialData.tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative flex-1 py-2 text-[0.62rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 uppercase tracking-[0.1em] focus-visible:outline-none border ${
+                  activeTab === tab
+                    ? "border-transparent text-white"
+                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 text-[#0a1128]"
+                }`}
+              >
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="commercialTabActive"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 30,
+                      mass: 0.8,
+                    }}
+                  >
+                    <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
+                  </motion.div>
+                )}
+                <span className="relative z-10">{tab}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
@@ -149,21 +154,23 @@ export default function CommercialTerms() {
                 )}
             </div>
 
-            <div className="flex flex-col gap-0 border-t border-gray-100 pt-2">
+            <div className="flex flex-col gap-0 border-t border-gray-100 pt-2 mt-2">
               {currentData.details.map((detail, idx) => (
                 <motion.div
                   key={idx}
                   whileHover={{ x: 3 }}
-                  className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0 transition-all duration-300 cursor-default group"
+                  className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0 transition-all duration-300 cursor-default group"
                 >
-                  <div className="flex items-center gap-2.5 text-gray-500">
-                    <detail.icon size={15} className="text-gray-400 group-hover:text-[#d4af37] transition-colors duration-300" />
-                    <span className="text-[0.82rem] font-medium">
+                  <div className="flex items-center gap-2 text-gray-500">
+                    <div className={`w-5 h-5 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 group-hover:scale-110 ${"bgClass" in detail ? detail.bgClass : ""}`}>
+                      <detail.icon size={11} strokeWidth={2.5} />
+                    </div>
+                    <span className="text-[0.75rem] font-medium">
                       {detail.label}
                     </span>
                   </div>
                   <span
-                    className={`text-[0.82rem] font-semibold ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                    className={`text-[0.75rem] font-semibold ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
                   >
                     {detail.value}
                   </span>

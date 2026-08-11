@@ -62,7 +62,7 @@ export default function Media() {
             <button
               key={tab.label}
               onClick={() => setActiveTab(tab.label)}
-              className={`relative flex-1 flex flex-row items-center justify-center py-2 gap-1.5 transition-all duration-300 rounded-[2px] z-10 ${
+              className={`relative flex-1 flex flex-row items-center justify-center py-1.5 gap-1.5 transition-all duration-300 rounded-[2px] z-10 ${
                 activeTab === tab.label
                   ? "text-white"
                   : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
@@ -154,17 +154,17 @@ export default function Media() {
                       key={idx}
                       variants={gridItem}
                       whileHover={{ x: 3 }}
-                      className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
+                      className="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-[4px] text-[#0b1b42] bg-[#0b1b42]/5 border border-[#0b1b42]/10 flex items-center justify-center shrink-0 transition-colors duration-300">
-                          <plan.icon size={17} />
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-[4px] text-white bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] shadow-sm shadow-[#3B82F6]/20 border-none flex items-center justify-center shrink-0 transition-colors duration-300">
+                          <plan.icon size={14} />
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-[0.85rem] font-semibold text-[#0a1128]">
+                          <span className="text-[0.75rem] font-semibold text-[#0a1128]">
                             {plan.title}
                           </span>
-                          <span className="text-[0.65rem] text-gray-400 font-medium">
+                          <span className="text-[0.6rem] text-gray-400 font-medium">
                             {plan.desc}
                           </span>
                         </div>

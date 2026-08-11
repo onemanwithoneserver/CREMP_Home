@@ -77,19 +77,19 @@ export default function Infrastructure() {
               key={idx}
               variants={rowReveal}
               whileHover={{ x: 3 }}
-              className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
+              className="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-0 group cursor-default transition-all duration-300"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <div
-                  className={`w-9 h-9 rounded-[4px] ${item.iconBg} flex items-center justify-center text-[#d4af37] shrink-0 border border-[#d4af37]/20`}
+                  className={`w-7 h-7 rounded-[4px] ${item.iconBg} flex items-center justify-center shrink-0`}
                 >
-                  <item.icon size={15} />
+                  <item.icon size={13} strokeWidth={2.5} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[0.82rem] font-semibold text-[#0a1128]">
+                  <span className="text-[0.75rem] font-semibold text-[#0a1128]">
                     {item.label}
                   </span>
-                  <span className="text-[0.65rem] text-gray-400 font-medium">
+                  <span className="text-[0.6rem] text-gray-400 font-medium">
                     {item.sub}
                   </span>
                 </div>
