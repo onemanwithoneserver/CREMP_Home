@@ -93,7 +93,7 @@ export default function SpaceOverview() {
                 <div className="flex items-center gap-3.5 text-gray-600">
                   <div className="relative w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm">
                     <div
-                      className={`absolute inset-0 rounded-[6px] group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
+                      className={`absolute inset-0 rounded-[6px] group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-gray-950"}`}
                     />
                     <detail.icon size={15} strokeWidth={2.2} className="relative z-10 pointer-events-none" />
                   </div>
