@@ -18,6 +18,7 @@ import FranchiseHome from "./Franchise_Home";
 import Home from "./Home";
 import Investors from "./Investors";
 import BuildingBox from "./BuildingBox";
+import AllBuildingBox from "./AllBuildingBox";
 import LandBox from "./LandBox";
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
                 element={<Navigate to="/mobile/building-box" replace />}
               />
               <Route path="/mobile/building-box" element={<BuildingBox />} />
+              <Route path="/mobile/all-building-box" element={<AllBuildingBox />} />
               <Route
                 path="/desktop/land-box"
                 element={<Navigate to="/mobile/land-box" replace />}
