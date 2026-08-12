@@ -1,101 +1,133 @@
 import {
   FileText,
-  Building2,
+  Building,
   TrendingUp,
   Calendar,
   Tag,
   Users,
   Store,
   CheckCircle2,
-  Maximize2,
-  Info,
+  Maximize,
+  BarChart2,
 } from "lucide-react";
 
-export const tabsData = [
-  { id: "lease", label: "Lease / Rent" },
-  { id: "sale", label: "Sale" },
-  { id: "pre_leased", label: "Pre-Leased" },
-  { id: "fractional", label: "Fractional" },
-];
-
-export const tabContent: Record<string, any> = {
-  lease: {
-    header: {
-      title: "MONTHLY RENT",
-      value: "₹1.2L",
-      suffix: "/mo",
-      subtext: "₹100/sq.ft · Fixed Amount",
+export const commercialData = {
+  tabs: ["Lease / Rent", "Sale", "Pre-Leased", "Fractional"],
+  tabData: {
+    "Lease / Rent": {
+      title: "Commercial Terms",
+      headerIcon: Tag,
+      headerIconBg: "bg-indigo-500",
+      primaryAmountLabel: "MONTHLY RENT",
+      primaryAmount: "₹1.2L",
+      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryDesc: "/mo",
+      primarySub: "₹100/sq.ft · Fixed Amount",
+      secondaryDarkCard: {
+        label: "DEPOSIT",
+        value: "₹3.6L",
+        desc: "3 months",
+      },
+      details: [
+        { label: "Lease Type", value: "Full Lease", icon: FileText, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
+        { label: "Maintenance", value: "₹8,000/mo", icon: Building, bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]" },
+        { label: "Escalation", value: "5% pa", icon: TrendingUp, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
+        { label: "Escalation Cycle", value: "36 Months", icon: Calendar, bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]" },
+      ],
+      footer: {
+        type: "tag-text",
+        text: "Single unit available",
+        tag: "KEY METRICS",
+      },
     },
-    rightCard: {
-      type: "box",
-      label: "DEPOSIT",
-      value: "₹3.6L",
-      subtext: "3 months",
+    Sale: {
+      title: "Sale Overview",
+      headerIcon: Tag,
+      headerIconBg: "bg-red-500",
+      primaryAmountLabel: "SALE PRICE",
+      primaryAmount: "₹1.85Cr",
+      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryDesc: "",
+      primarySub: "₹15,417/sq.ft",
+      secondaryBadge: {
+        text: "Vacant Space",
+        color:
+          "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-500 dark:border-amber-700/50",
+      },
+      details: [
+        {
+          label: "Est. Rental Yield",
+          value: "7.8% pa",
+          icon: TrendingUp,
+          valueColor: "text-amber-600 dark:text-amber-500",
+          bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]",
+        },
+        { label: "Price / sq.ft", value: "₹15,417", icon: Tag, bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]" },
+      ],
+      footer: {
+        type: "split",
+        left: "Additional Charges",
+        right: "Stamp duty & registration charges extra",
+      },
     },
-    details: [
-      { label: "Lease Type", value: "Full Lease", icon: FileText },
-      { label: "Maintenance", value: "₹8,000/mo", icon: Building2 },
-      { label: "Escalation", value: "5% pa", icon: TrendingUp },
-      { label: "Escalation Cycle", value: "36 Months", icon: Calendar },
-    ],
+    "Pre-Leased": {
+      title: "Investment Summary",
+      headerIcon: TrendingUp,
+      headerIconBg: "bg-amber-500",
+      primaryAmountLabel: "EXISTING RENT",
+      primaryAmount: "₹1.1L",
+      primaryAmountColor: "text-emerald-500",
+      primaryDesc: "/mo",
+      primarySub: "",
+      secondaryDarkCard: {
+        label: "RENTAL YIELD",
+        value: "7.8%",
+        valueColor: "text-amber-500",
+        desc: "per annum",
+      },
+      details: [
+        { label: "Existing Tenant", value: "FabIndia Ltd.", icon: Users, bgClass: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C]" },
+        { label: "Tenant Category", value: "Fashion Retail", icon: Store, bgClass: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]" },
+        {
+          label: "Remaining Tenure",
+          value: "18 Months",
+          icon: Calendar,
+          valueColor: "text-cyan-500",
+          bgClass: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
+        },
+        { label: "Rent Escalation", value: "5% / 36 Months", icon: TrendingUp, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
+        { label: "Sale Price", value: "₹1.85Cr", icon: Tag, bgClass: "bg-gradient-to-br from-[#bf953f] to-[#b38728]" },
+      ],
+    },
+    Fractional: {
+      title: "Fractional Investment",
+      headerIcon: BarChart2,
+      headerIconBg: "bg-purple-500",
+      primaryAmountLabel: "ASSURED MONTHLY RENT",
+      primaryAmount: "₹30,000",
+      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryDesc: "/mo",
+      primarySub: "Min. 300 sq.ft ownership",
+      secondaryDarkCard: {
+        label: "ANNUAL YIELD",
+        value: "9.2%",
+        valueColor: "text-amber-500",
+      },
+      details: [
+        {
+          label: "Pre-Leased",
+          value: "✓ Yes",
+          icon: CheckCircle2,
+          valueColor: "text-emerald-500",
+          bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]",
+        },
+        { label: "Min. Investment", value: "300 sq.ft", icon: Maximize, bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]" },
+        { label: "Assured Returns", value: "Yes — Monthly", icon: TrendingUp, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
+      ],
+      footer: {
+        type: "text-only",
+        text: "Ideal for passive income investors seeking assured returns.",
+      },
+    },
   },
-  sale: {
-    header: {
-      title: "SALE PRICE",
-      value: "₹1.85Cr",
-      suffix: "",
-      subtext: "₹15,417/sq.ft",
-    },
-    rightCard: {
-      type: "pill",
-      label: "Vacant Space",
-    },
-    details: [
-      { label: "Est. Rental Yield", value: "7.8% pa", valueColor: "text-amber-500", icon: TrendingUp },
-      { label: "Price / sq.ft", value: "₹15,417", icon: Tag },
-      { label: "Additional Charges", value: "Stamp duty & registration charges extra", icon: Info },
-    ],
-  },
-  pre_leased: {
-    header: {
-      title: "EXISTING RENT",
-      value: "₹1.1L",
-      valueColor: "text-emerald-500",
-      suffix: "/mo",
-      subtext: "",
-    },
-    rightCard: {
-      type: "dark",
-      label: "RENTAL YIELD",
-      value: "7.8%",
-      subtext: "per annum",
-    },
-    details: [
-      { label: "Existing Tenant", value: "FabIndia Ltd.", icon: Users },
-      { label: "Tenant Category", value: "Fashion Retail", icon: Store },
-      { label: "Remaining Tenure", value: "18 Months", valueColor: "text-cyan-500", icon: Calendar },
-      { label: "Rent Escalation", value: "5% / 36 Months", icon: TrendingUp },
-      { label: "Sale Price", value: "₹1.85Cr", icon: Tag },
-    ],
-  },
-  fractional: {
-    header: {
-      title: "ASSURED MONTHLY RENT",
-      value: "₹30,000",
-      suffix: "/mo",
-      subtext: "Min. 300 sq.ft ownership",
-    },
-    rightCard: {
-      type: "dark",
-      label: "ANNUAL YIELD",
-      value: "9.2%",
-      subtext: "",
-    },
-    details: [
-      { label: "Pre-Leased", value: "Yes", showCheck: true, valueColor: "text-emerald-500", icon: CheckCircle2 },
-      { label: "Min. Investment", value: "300 sq.ft", icon: Maximize2 },
-      { label: "Assured Returns", value: "Yes — Monthly", icon: TrendingUp },
-    ],
-    footer: "Ideal for passive income investors seeking assured returns.",
-  },
-};
+} as const;
