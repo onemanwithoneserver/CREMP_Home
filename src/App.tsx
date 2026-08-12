@@ -57,7 +57,7 @@ function App() {
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
           onClose={handleClose}
-          showViewControls={pathParts[1] !== "building-box" && pathParts[1] !== "land-box"}
+          showViewControls={pathParts[1] !== "building-box" && pathParts[1] !== "land-box" && pathParts[1] !== "all-building-box"}
         />
       )}
 
