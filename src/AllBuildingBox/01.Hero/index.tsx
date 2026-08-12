@@ -8,6 +8,7 @@ import { Play, Heart, Share2, MapPin } from "lucide-react";
 import { heroData } from "./data";
 import { useRef, useState } from "react";
 import { fadeInUp, staggerContainer } from "../components/animations";
+import HeroImage from "../../assets/commercial_building_hero.png";
 
 const actionIcons = [
   {
@@ -59,8 +60,8 @@ export default function MobileHero() {
         className="absolute inset-0 z-0"
       >
         <img
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80"
-          alt="Retail Space"
+          src={HeroImage}
+          alt="Commercial Building"
           className="w-full h-full object-cover opacity-65"
         />
       </motion.div>

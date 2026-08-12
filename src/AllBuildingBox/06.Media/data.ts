@@ -20,21 +20,21 @@ export const mediaData = {
       title: "Building Walkthrough",
       duration: "3:45",
       image:
-        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
       fullWidth: true,
     },
     {
       title: "Lobby & Amenities",
       duration: "1:30",
       image:
-        "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
       fullWidth: false,
     },
     {
       title: "Building Elevation",
       duration: "2:10",
       image:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1575517111478-7f6cc517f414?auto=format&fit=crop&q=80",
       fullWidth: false,
     },
   ],
@@ -54,7 +54,7 @@ export const mediaData = {
     title: "360° Building Tour",
     desc: "Interactive walkthrough available",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80",
     btnIcon: Navigation,
     btnText: "Launch Tour",
   },
@@ -62,27 +62,27 @@ export const mediaData = {
     {
       label: "Exterior",
       image:
-        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
     },
     {
       label: "Lobby",
       image:
-        "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
     },
     {
       label: "Amenities",
       image:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1575517111478-7f6cc517f414?auto=format&fit=crop&q=80",
     },
     {
       label: "Parking",
       image:
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1416331108676-a22ccb276eac?auto=format&fit=crop&q=80",
     },
     {
       label: "Roof",
       image:
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&q=80",
     },
   ],
 };
