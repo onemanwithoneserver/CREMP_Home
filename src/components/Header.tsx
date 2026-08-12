@@ -13,6 +13,7 @@ export type Page =
   | "developer-and-owner"
   | "filters"
   | "building-box"
+  | "all-building-box"
   | "land-box";
 export type ViewMode = "desktop" | "mobile";
 
@@ -32,6 +33,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "developer-and-owner": "Developer & Owner",
   filters: "Filters",
   "building-box": "Building Box",
+  "all-building-box": "All Building Box",
   "land-box": "Land Box",
 };
 
@@ -65,11 +67,13 @@ export default function Header({
             ? "developer-and-owner"
             : location.pathname.includes("filters")
               ? "filters"
-              : location.pathname.includes("building-box")
-                ? "building-box"
-                : location.pathname.includes("land-box")
-                  ? "land-box"
-                  : "home";
+              : location.pathname.includes("all-building-box")
+                ? "all-building-box"
+                : location.pathname.includes("building-box")
+                  ? "building-box"
+                  : location.pathname.includes("land-box")
+                    ? "land-box"
+                    : "home";
 
   const handleNavigate = useCallback(
     (page: string) => {
