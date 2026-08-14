@@ -33,7 +33,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "developer-and-owner": "Developer & Owner",
   filters: "Filters",
   "building-box": "Building Box",
-  "all-building-box": "All Building Box",
+  "all-building-box": "Building Core & Shell",
   "land-box": "Land Box",
 };
 
