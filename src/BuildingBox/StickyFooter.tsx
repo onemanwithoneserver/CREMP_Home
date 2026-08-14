@@ -18,7 +18,7 @@ export default function StickyFooter() {
         />
       )}
 
-      <div className="fixed bottom-0 left-0 w-full z-50">
+      <div className="w-full z-50">
         <AnimatePresence>
           {isBookingOpen && (
             <motion.div
@@ -81,14 +81,6 @@ export default function StickyFooter() {
                 <span className="text-[0.52rem] font-semibold">Share</span>
               </motion.button>
 
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.92 }}
-                className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 bg-white/5 hover:bg-blue-500/10 border border-white/10 hover:border-blue-400/40 text-white hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] shrink-0"
-              >
-                <OpenInNewIcon style={{ fontSize: 17 }} />
-                <span className="text-[0.52rem] font-semibold">Web</span>
-              </motion.button>
             </div>
 
             <div className="flex items-center gap-2 flex-1 justify-end">

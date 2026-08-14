@@ -57,7 +57,7 @@ function App() {
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
           onClose={handleClose}
-          showViewControls={pathParts[1] !== "building-box" && pathParts[1] !== "land-box" && pathParts[1] !== "all-building-box"}
+          showViewControls={true}
         />
       )}
 
@@ -94,16 +94,17 @@ function App() {
                 element={<Filters isMobile={isMobile} />}
               />
               <Route
-                path="/desktop/building-box"
-                element={<Navigate to="/mobile/building-box" replace />}
+                path="/:viewMode/building-box"
+                element={<BuildingBox />}
               />
-              <Route path="/mobile/building-box" element={<BuildingBox />} />
-              <Route path="/mobile/all-building-box" element={<AllBuildingBox />} />
               <Route
-                path="/desktop/land-box"
-                element={<Navigate to="/mobile/land-box" replace />}
+                path="/:viewMode/all-building-box"
+                element={<AllBuildingBox />}
               />
-              <Route path="/mobile/land-box" element={<LandBox />} />
+              <Route
+                path="/:viewMode/land-box"
+                element={<LandBox />}
+              />
               <Route
                 path="*"
                 element={<Navigate to="/desktop/home" replace />}
