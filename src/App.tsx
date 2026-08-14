@@ -63,7 +63,7 @@ function App() {
 
       <div className="flex-1 overflow-hidden relative z-10">
         <MobileViewport isMobile={isMobile}>
-          <PageTransition motionKey={location.pathname}>
+          <PageTransition motionKey={location.pathname} className="h-full w-full">
             <Routes location={location}>
               <Route
                 path="/:viewMode/home"

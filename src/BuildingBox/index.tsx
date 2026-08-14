@@ -77,7 +77,7 @@ export default function BuildingBox() {
 
   const content = (
     <div className="flex-1 flex flex-col relative h-full w-full overflow-hidden">
-      <div className="flex-1 overflow-y-auto overflow-x-hidden pb-24">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-24">
         <Hero />
       <div className="flex flex-col gap-0 px-0 py-0">
         <Suspense fallback={<SectionLoader />}>

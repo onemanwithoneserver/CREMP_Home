@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Share2, Calendar, MessageCircle, X } from "lucide-react";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+
 import clsx from "clsx";
 import { BookACall } from "../Franchise_Home/17_FAQ/components/BookACall";
 
