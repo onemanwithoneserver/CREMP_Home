@@ -40,7 +40,7 @@ export default function SectionHeader({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-40px" }}
-      className="relative flex w-full items-end justify-between px-4 pt-3.5 pb-2"
+      className="relative flex w-full items-end justify-between px-[var(--panel-px,1rem)] pt-3.5 pb-2"
     >
       <div className="flex flex-col gap-1.5 min-w-0">
         <motion.div variants={fadeInUp} className="flex items-center gap-2">

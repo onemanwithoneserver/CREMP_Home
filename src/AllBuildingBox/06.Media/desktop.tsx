@@ -32,7 +32,7 @@ export default function Desktop() {
           icon={ImageIcon}
         />
 
-        <div className="px-4 mt-4 mb-1 flex justify-center w-full">
+        <div className="px-[var(--panel-px,1rem)] mt-4 mb-1 flex justify-center w-full">
           <div className="grid grid-cols-4 gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.04)] relative overflow-hidden w-full">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
             {mediaData.tabs.map((tab) => (
@@ -80,7 +80,7 @@ export default function Desktop() {
           </div>
         </div>
 
-        <div className="px-4 py-4">
+        <div className="px-[var(--panel-px,1rem)] py-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}

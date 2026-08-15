@@ -34,7 +34,32 @@ export default function AllBuildingBox() {
   const { viewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
   const [dialogWidth, setDialogWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
+  const [panelPadding, setPanelPadding] = useState("1rem");
   const containerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!panelRef.current) return;
+    const updatePadding = () => {
+      if (!panelRef.current) return;
+      const width = panelRef.current.clientWidth;
+      // JS-based dynamic padding calculation based on slider width:
+      if (width < 450) {
+        setPanelPadding("0.875rem"); // 14px for compact width
+      } else if (width < 580) {
+        setPanelPadding("1rem"); // 16px standard
+      } else if (width < 720) {
+        setPanelPadding("1.25rem"); // 20px expanded
+      } else {
+        setPanelPadding("1.5rem"); // 24px maximum expanded
+      }
+    };
+
+    updatePadding();
+    const observer = new ResizeObserver(updatePadding);
+    observer.observe(panelRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,7 +74,8 @@ export default function AllBuildingBox() {
       const mapWidthPercent =
         ((e.clientX - containerRect.left) / containerRect.width) * 100;
 
-      const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 70);
+      // Clamp dialog width to a maximum of 35% (map between 65% and 75%)
+      const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 75);
       setDialogWidth(100 - clampedMapWidth);
     },
     [isDragging],
@@ -75,7 +101,7 @@ export default function AllBuildingBox() {
 
   const content = (
     <div className="flex-1 flex flex-col relative h-full w-full overflow-hidden">
-      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-10 px-0 pt-0 w-full max-w-[480px] mx-auto">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20 px-0 pt-0 w-full">
         <Hero />
         <div className="border-b border-gray-100 w-full" />
         <Suspense fallback={<SectionLoader />}>
@@ -128,14 +154,22 @@ export default function AllBuildingBox() {
           </div>
 
           <div
-            style={{ width: `${dialogWidth}%` }}
+            ref={panelRef}
+            style={
+              {
+                width: `${dialogWidth}%`,
+                "--panel-px": panelPadding,
+              } as React.CSSProperties
+            }
             className="h-full bg-white shadow-xl relative z-20 border-l border-gray-200"
           >
             {content}
           </div>
         </div>
       ) : (
-        <div className="w-full h-full bg-white relative z-20">{content}</div>
+        <div className="w-full h-full flex flex-col max-w-[480px] mx-auto bg-white shadow-xl relative z-20">
+          {content}
+        </div>
       )}
     </div>
   );

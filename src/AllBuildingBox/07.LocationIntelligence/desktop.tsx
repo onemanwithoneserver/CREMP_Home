@@ -26,7 +26,7 @@ export default function Desktop() {
           icon={Cpu}
         />
 
-        <div className="px-4 py-4 relative">
+        <div className="px-[var(--panel-px,1rem)] py-4 relative">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
             <div className="w-12 h-12 rounded-full flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.3)] border border-[#1c2e64] bg-[#0b1b42] group-hover:animate-icon-shake origin-center transition-all duration-300">
               <Lock size={20} strokeWidth={2.5} />

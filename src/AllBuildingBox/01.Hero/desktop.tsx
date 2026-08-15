@@ -5,7 +5,7 @@ import { fadeInUp, staggerContainer } from "../components/animations";
 
 export default function Desktop() {
   return (
-    <div className="relative w-full bg-[#0b1b42] text-white pt-6 pb-5 px-6 flex flex-col border-b border-[#d4af37]/20 shadow-lg overflow-hidden">
+    <div className="relative w-full bg-[#0b1b42] text-white pt-6 pb-5 px-[var(--panel-px,1rem)] flex flex-col border-b border-[#d4af37]/20 shadow-lg overflow-hidden">
       {/* Top subtle gold glow accent line */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent pointer-events-none" />
       <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />

@@ -30,7 +30,7 @@ export default function Desktop() {
           icon={Sofa}
         />
 
-        <div className="px-6 py-6 flex flex-col gap-4 mx-0">
+        <div className="px-[var(--panel-px,1rem)] py-4 flex flex-col gap-4 mx-0">
           <div className="border border-gray-100 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsIncludedOpen(!isIncludedOpen)}

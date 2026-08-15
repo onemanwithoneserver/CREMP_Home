@@ -23,7 +23,7 @@ export default function Desktop() {
           icon={opportunitiesData.headerIcon}
         />
 
-        <div className="px-6 mt-4">
+        <div className="px-[var(--panel-px,1rem)] mt-4">
           <motion.div
             variants={staggerContainer}
             initial="hidden"

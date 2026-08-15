@@ -38,7 +38,7 @@ export default function Desktop() {
           }
         />
 
-        <div className="px-4 py-4 flex flex-col relative w-full">
+        <div className="px-[var(--panel-px,1rem)] py-4 flex flex-col relative w-full">
           <div className="relative flex flex-col w-full z-10">
             <motion.div
               initial={{ scaleY: 0 }}
