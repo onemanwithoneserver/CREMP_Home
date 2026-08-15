@@ -68,7 +68,7 @@ export default function Mobile() {
           </div>
         </div>
 
-        <div className="px-5 py-5 w-full">
+        <div className="px-2 py-2 w-full">
 
         <AnimatePresence mode="wait">
           <motion.div
@@ -77,7 +77,7 @@ export default function Mobile() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="px-4 py-4 flex flex-col gap-4"
+            className="px-2 py-2 flex flex-col gap-4"
           >
             <div className="flex justify-between items-stretch gap-2">
               <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
@@ -146,7 +146,7 @@ export default function Mobile() {
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.015, y: -1 }}
-                  className="flex items-center justify-between p-3.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group"
+                  className="flex items-center justify-between p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-3.5 text-gray-600">
                     <div className="relative w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm">
