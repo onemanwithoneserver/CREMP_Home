@@ -1,17 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import {
-  ChevronRight,
-  ChevronDown,
-  Download,
-  Globe2,
-  MapPin,
-  CheckCircle2,
-  Sparkles,
-  Building2,
-  Zap,
-} from "lucide-react";
+import { ChevronRight,ChevronDown,Globe2,MapPin,Sparkles,Building2,Zap,ThumbsUp,ThumbsDown,Star,} from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
@@ -28,7 +18,7 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(
     franchiseNetworkData.cities[0],
   );
-  const [interestedMap, setInterestedMap] = useState<Record<string, boolean>>({});
+  const [actionMap, setActionMap] = useState<Record<string, 'up' | 'down' | 'fav' | null>>({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -42,8 +32,8 @@ export default function FranchiseNetworkMobile() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleInterest = (id: string) => {
-    setInterestedMap((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleAction = (id: string, action: 'up' | 'down' | 'fav') => {
+    setActionMap((prev) => ({ ...prev, [id]: prev[id] === action ? null : action }));
   };
 
   return (
@@ -236,10 +226,7 @@ export default function FranchiseNetworkMobile() {
             </span>
           </div>
         </div>
-
-        {/* Right Panel / Bottom Container in Mobile */}
-        {/* Right Panel / Bottom Container in Mobile */}
-        <div className="shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-5 relative mt-4">
+        <div className="bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)] rounded-[16px] p-5 relative mt-4 text-gray-900 dark:text-white">
           <div className="flex flex-col gap-5">
             
             {/* City Dropdown & Status Header */}
@@ -248,23 +235,23 @@ export default function FranchiseNetworkMobile() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col gap-3 border-b border-gray-100 pb-4"
+              className="flex flex-col gap-4 border-b border-gray-200 dark:border-white/10 pb-5"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1.5">
-                  <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <MapPin size={11} strokeWidth={2.5} />
+                <span className="text-[11px] font-black uppercase tracking-widest text-gray-600 dark:text-white/60 flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-[3px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <MapPin size={14} strokeWidth={2.5} />
                   </div>
                   Select Hub
                 </span>
                 <span
                   className={clsx(
-                    "text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[3px] border",
+                    "text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-[2px] border shadow-sm",
                     activeCity.status === "active"
-                      ? "bg-emerald-50 text-emerald-600 border-emerald-200"
+                      ? "bg-[#e8f7f0] dark:bg-emerald-500/10 text-[#0f9d58] dark:text-emerald-400 border-[#a7e8c3] dark:border-emerald-500/20"
                       : activeCity.status === "expansion"
-                        ? "bg-amber-50 text-[#b38728] border-amber-200"
-                        : "bg-blue-50 text-blue-600 border-blue-200",
+                        ? "bg-[#fff9e6] dark:bg-amber-500/10 text-[#d4af37] dark:text-amber-400 border-[#fce390] dark:border-amber-500/20"
+                        : "bg-[#e6f0fa] dark:bg-blue-500/10 text-[#0088cc] dark:text-blue-400 border-[#99d6ff] dark:border-blue-500/20",
                   )}
                 >
                   {activeCity.statusLabel}
@@ -275,17 +262,21 @@ export default function FranchiseNetworkMobile() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full flex items-center justify-between bg-white border border-gray-200 hover:border-gray-300 rounded-[4px] py-2.5 px-3 text-[12px] font-bold text-gray-900 shadow-sm transition-all focus:outline-none"
+                  className="w-full flex items-center justify-between bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-[#d4af37]/50 rounded-[4px] py-3 px-3.5 text-[13px] font-bold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none"
                 >
-                  <span className="truncate pr-2 text-left">
-                    {activeCity.name} ({activeCity.state}) —{" "}
-                    {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                  <span className="truncate pr-2 text-left flex items-center gap-1.5 flex-wrap">
+                    <span className="text-gray-900 dark:text-white">{activeCity.name}</span>
+                    <span className="text-gray-500 dark:text-white/40 font-medium text-[11px]">({activeCity.state})</span>
+                    <span className="hidden sm:inline text-gray-300 dark:text-white/20">—</span>
+                    <span className="text-[#d4af37]">
+                      {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                    </span>
                   </span>
                   <ChevronDown
-                    size={16}
+                    size={18}
                     className={clsx(
-                      "text-gray-400 transition-transform duration-200 shrink-0",
-                      isDropdownOpen && "rotate-180"
+                      "text-gray-400 dark:text-white/50 transition-transform duration-300 shrink-0",
+                      isDropdownOpen && "rotate-180 text-gray-900 dark:text-white"
                     )}
                   />
                 </button>
@@ -297,7 +288,7 @@ export default function FranchiseNetworkMobile() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[220px] overflow-y-auto [&::-webkit-scrollbar]:hidden"
+                      className="absolute z-50 w-full mt-2 bg-white dark:bg-[#0a1128]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/40 rounded-[4px] shadow-2xl overflow-hidden max-h-[220px] overflow-y-auto [&::-webkit-scrollbar]:hidden"
                     >
                       {franchiseNetworkData.cities.map((city) => (
                         <button
@@ -307,15 +298,15 @@ export default function FranchiseNetworkMobile() {
                             setIsDropdownOpen(false);
                           }}
                           className={clsx(
-                            "w-full text-left px-3 py-2.5 text-[12px] transition-colors hover:bg-gray-50",
+                            "w-full text-left px-3.5 py-3 text-[12px] transition-colors border-b border-gray-100 dark:border-white/5 last:border-0 hover:bg-gray-50 dark:hover:bg-white/10",
                             activeCity.id === city.id
-                              ? "bg-gray-50 font-bold text-[#d4af37]"
-                              : "text-gray-700 font-semibold"
+                              ? "bg-gray-50 dark:bg-white/10 font-bold text-[#d4af37]"
+                              : "text-gray-700 dark:text-white/80 font-medium"
                           )}
                         >
                           <span className="flex items-center justify-between">
                             <span>{city.name}</span>
-                            <span className="text-[10px] text-gray-400">
+                            <span className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 dark:bg-black/20 text-gray-600 dark:text-white px-2 py-0.5 rounded-[2px]">
                               {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
                             </span>
                           </span>
@@ -325,41 +316,48 @@ export default function FranchiseNetworkMobile() {
                   )}
                 </AnimatePresence>
               </div>
+              
+              <div className="w-full h-px bg-gray-200/60 dark:bg-white/10 my-0.5" />
             </motion.div>
 
-            {/* Quick Metrics */}
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid grid-cols-2 gap-2 text-xs"
+              className="grid grid-cols-2 gap-3 text-xs"
             >
-              <div className="p-2.5 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-bold text-gray-500 mb-0.5">
-                    Operating Stores
-                  </span>
-                  <span className="text-sm font-black text-gray-900 tracking-tight">
-                    {activeCity.outlets} Units
-                  </span>
-                </div>
-                <div className="w-6 h-6 rounded-[3px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                  <Building2 size={12} strokeWidth={2.5} />
+              <div className="p-3.5 bg-white dark:bg-white/5 border border-[#e2e8f0] dark:border-white/10 rounded-[4px] flex flex-col justify-between shadow-sm relative overflow-hidden">
+                <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/50 mb-3 block">
+                  Operating Stores
+                </span>
+                <div className="flex items-end justify-between w-full">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-[26px] font-black text-gray-900 dark:text-white tracking-tight leading-none">
+                      {activeCity.outlets}
+                    </span>
+                    <span className="text-[12px] text-gray-400 dark:text-white/50 font-bold mb-0.5">Units</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-[4px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Building2 size={16} strokeWidth={2.5} />
+                  </div>
                 </div>
               </div>
               
-              <div className="p-2.5 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-bold text-gray-500 mb-0.5">
-                    In Pipeline
-                  </span>
-                  <span className="text-sm font-black text-[#d4af37] tracking-tight">
-                    {activeCity.pipeline} Locations
-                  </span>
-                </div>
-                <div className="w-6 h-6 rounded-[3px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                  <Zap size={12} strokeWidth={2.5} />
+              <div className="p-3.5 bg-[#fffdf5] dark:bg-[#d4af37]/10 border border-[#fde68a] dark:border-[#d4af37]/20 rounded-[4px] flex flex-col justify-between shadow-sm relative overflow-hidden">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#b38728] dark:text-[#d4af37]/80 mb-3 block">
+                  In Pipeline
+                </span>
+                <div className="flex items-end justify-between w-full">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-[26px] font-black text-[#d4af37] tracking-tight leading-none">
+                      {activeCity.pipeline}
+                    </span>
+                    <span className="text-[12px] text-[#b38728] dark:text-[#d4af37]/60 font-bold mb-0.5">Loc</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-[4px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Zap size={16} strokeWidth={2.5} />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -370,99 +368,103 @@ export default function FranchiseNetworkMobile() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col gap-2"
+              className="flex flex-col gap-2 mt-1"
             >
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
-                  <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Sparkles size={11} strokeWidth={2.5} />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-[3px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Sparkles size={14} strokeWidth={2.5} />
                   </div>
                   Available Opportunities
                 </span>
-                <span className="text-[10px] font-bold text-[#d4af37]">
-                  {activeCity.opportunities?.length || 0} Circles Open
+                <span className="text-[10px] font-black tracking-widest text-[#d4af37] bg-[#fffdf5] dark:bg-[#d4af37]/10 px-2 py-1 rounded-[2px] border border-[#fde68a] dark:border-[#d4af37]/20 shadow-sm">
+                  {activeCity.opportunities?.length || 0} CIRCLES OPEN
                 </span>
               </div>
 
               {/* Table / Row headers */}
-              <div className="flex items-center justify-between px-2 py-1.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-200">
+              <div className="flex items-center justify-between px-3 py-2 text-[9px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 border-b border-gray-200 dark:border-white/10">
                 <span className="flex-1">Opportunity Details</span>
-                <span className="w-[70px] text-right">Action</span>
+                <span className="w-[80px] text-right">Action</span>
               </div>
 
               {/* Rows List with custom scrollbar */}
-              <div className="flex flex-col gap-2 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:hidden pb-2 border-b border-gray-200">
+              <div className="flex flex-col gap-2.5 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:hidden pb-2 border-b border-gray-200 dark:border-white/10">
                 {activeCity.opportunities?.map((opp) => {
-                  const isInterested = interestedMap[opp.id];
+                  const currentAction = actionMap[opp.id];
                   return (
                     <div
                       key={opp.id}
-                      className="flex items-center justify-between p-2.5 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all group"
+                      className="group flex flex-col gap-3 p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[6px] hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-colors shadow-sm"
                     >
-                      <div className="flex flex-col flex-1 pr-2 min-w-0">
-                        <span className="font-bold text-gray-900 truncate text-[12px] mb-0.5">
-                          {opp.circleName}
-                        </span>
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-0.5">
+                      <div className="flex justify-between items-start gap-4">
+                        <div className="flex flex-col">
+                          <span className="font-bold text-gray-900 dark:text-white text-[14px] mb-1">
+                            {opp.circleName}
+                          </span>
                           {opp.badge && (
-                            <span className="text-[9px] font-bold text-emerald-600 flex items-center gap-1">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" /> {opp.badge} Zone
+                            <span className="text-[9px] font-bold text-[#0f9d58] dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#0f9d58] inline-block" /> {opp.badge} Zone
                             </span>
                           )}
-                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-bold rounded-[3px] bg-gray-50 text-gray-600 border border-gray-200">
-                            {opp.format}
-                          </span>
                         </div>
+                        
+                        <span className="inline-block px-2.5 py-1 text-[9px] font-black uppercase tracking-widest rounded-[2px] bg-[#e2e8f0] dark:bg-black/30 text-gray-700 dark:text-white/80 border border-[#cbd5e1] dark:border-white/5">
+                          {opp.format}
+                        </span>
                       </div>
 
-                      <div className="w-[85px] shrink-0 flex justify-end">
+                      <div className="flex justify-end gap-1.5 mt-1 border-t border-gray-100 dark:border-white/5 pt-3">
                         <button
-                          onClick={() => toggleInterest(opp.id)}
+                          onClick={() => toggleAction(opp.id, 'up')}
                           className={clsx(
-                            "px-2.5 py-1.5 text-[10px] font-bold rounded-[4px] transition-all flex items-center justify-center gap-1 border w-full",
-                            isInterested
-                              ? "bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm"
-                              : "bg-white text-gray-800 hover:bg-gray-50 border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
+                            "p-2.5 rounded-[4px] transition-all duration-300 border shadow-sm",
+                            currentAction === 'up'
+                              ? "bg-[#e8f7f0] dark:bg-emerald-500/20 text-[#0f9d58] dark:text-emerald-400 border-[#a7e8c3] dark:border-emerald-500/40 flex"
+                              : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hidden group-hover:flex"
                           )}
                         >
-                          {isInterested ? (
-                            <>
-                              <CheckCircle2 size={10} className="text-emerald-500" />
-                              <span>Applied</span>
-                            </>
-                          ) : (
-                            <span>Interested</span>
+                          <ThumbsUp size={14} className={clsx(currentAction === 'up' && "fill-current")} />
+                        </button>
+                        <button
+                          onClick={() => toggleAction(opp.id, 'down')}
+                          className={clsx(
+                            "p-2.5 rounded-[4px] transition-all duration-300 border shadow-sm",
+                            currentAction === 'down'
+                              ? "bg-red-50 dark:bg-red-500/20 text-red-500 dark:text-red-400 border-red-200 dark:border-red-500/40 flex"
+                              : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hidden group-hover:flex"
                           )}
+                        >
+                          <ThumbsDown size={14} className={clsx(currentAction === 'down' && "fill-current")} />
+                        </button>
+                        <button
+                          onClick={() => toggleAction(opp.id, 'fav')}
+                          className={clsx(
+                            "p-2.5 rounded-[4px] transition-all duration-300 border shadow-sm",
+                            currentAction === 'fav' || !currentAction
+                              ? "flex"
+                              : "hidden group-hover:flex",
+                            currentAction === 'fav'
+                              ? "bg-amber-50 dark:bg-amber-500/20 text-amber-500 dark:text-amber-400 border-amber-200 dark:border-amber-500/40"
+                              : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10"
+                          )}
+                        >
+                          <Star size={14} className={clsx(currentAction === 'fav' && "fill-current")} />
                         </button>
                       </div>
                     </div>
                   );
                 })}
               </div>
-              
-              {/* Load More Button */}
-              {activeCity.opportunities && activeCity.opportunities.length > 0 && (
-                <button className="w-full mt-0.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 hover:text-gray-700 bg-gray-50/50 hover:bg-gray-100 rounded-[4px] transition-colors border border-gray-100">
-                  Load More
-                </button>
-              )}
             </motion.div>
 
-            {/* Bottom Actions */}
-            <div className="flex flex-col gap-2.5 pt-2">
+            <div className="flex flex-col gap-3 pt-3">
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-3 bg-[#0a1128] hover:bg-[#121c33] text-white text-[12px] font-bold uppercase tracking-wider rounded-[4px] shadow-lg flex items-center justify-center gap-1.5"
+                className="w-full py-3.5 bg-gradient-to-r from-[#d4af37] to-[#e5c158] hover:from-[#b38728] hover:to-[#d4af37] text-[#0a1128] text-[12px] font-black uppercase tracking-widest rounded-[4px] shadow-[0_4px_14px_rgba(212,175,55,0.4)] flex items-center justify-center gap-1.5"
               >
                 <span>{franchiseNetworkData.cta.primary}</span>
-                <ChevronRight size={14} />
-              </motion.button>
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                className="w-full py-2.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 text-[12px] font-bold rounded-[4px] shadow-sm flex items-center justify-center gap-1.5"
-              >
-                <Download size={13} className="text-[#d4af37]" />
-                <span>{franchiseNetworkData.cta.secondary}</span>
+                <ChevronRight size={16} strokeWidth={3} />
               </motion.button>
             </div>
           </div>

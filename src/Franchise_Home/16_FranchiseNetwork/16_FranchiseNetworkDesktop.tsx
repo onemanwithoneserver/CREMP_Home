@@ -4,14 +4,15 @@ import clsx from "clsx";
 import {
   ChevronRight,
   ChevronDown,
-  Download,
   Globe2,
   MapPin,
   Navigation,
-  CheckCircle2,
   Sparkles,
   Building2,
   Zap,
+  ThumbsUp,
+  ThumbsDown,
+  Star,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -19,10 +20,23 @@ import mapBg from "../../assets/map_bg.png";
 
 const pulseGlow: Variants = {
   animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+    scale: [1, 1.08, 1],
+    opacity: [0.2, 0.5, 0.2],
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
 export default function FranchiseNetworkDesktop() {
@@ -30,7 +44,7 @@ export default function FranchiseNetworkDesktop() {
   const [activeCity, setActiveCity] = useState<CityNode>(
     franchiseNetworkData.cities[0],
   );
-  const [interestedMap, setInterestedMap] = useState<Record<string, boolean>>({});
+  const [actionMap, setActionMap] = useState<Record<string, 'up' | 'down' | 'fav' | null>>({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -44,192 +58,151 @@ export default function FranchiseNetworkDesktop() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleInterest = (id: string) => {
-    setInterestedMap((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleAction = (id: string, action: 'up' | 'down' | 'fav') => {
+    setActionMap((prev) => ({ ...prev, [id]: prev[id] === action ? null : action }));
   };
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] ">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[4px]">
       <motion.div
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
+        className="pointer-events-none absolute top-[10%] left-[5%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/10 blur-[140px] dark:bg-[#D4AF37]/15"
       />
       <motion.div
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
+        className="pointer-events-none absolute bottom-[10%] right-[5%] w-[600px] h-[600px] rounded-full bg-[#3b82f6]/10 blur-[140px] dark:bg-[#3b82f6]/15"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
-          <div>
-            <SectionHeader
-              overline={franchiseNetworkData.sectionLabel}
-              title={franchiseNetworkData.title}
-              align="left"
-            />
-            {franchiseNetworkData.subtitle && (
-              <p className="text-gray-600 dark:text-gray-400 text-sm max-w-2xl mt-1">
-                {franchiseNetworkData.subtitle}
-              </p>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-[#0b1b42]/70 rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 backdrop-blur-md self-start md:self-auto shrink-0 shadow-sm">
-            <Sparkles size={14} className="text-[#d4af37]" />
-            <span className="text-xs font-bold text-gray-800 dark:text-gray-200">
-              {franchiseNetworkData.outletCount}
-            </span>
-          </div>
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-12">
+        <div className="flex flex-col items-center justify-center gap-2 pb-6 border-b border-gray-200/50 dark:border-gray-800/50">
+          <SectionHeader
+            overline={franchiseNetworkData.sectionLabel}
+            title={franchiseNetworkData.title}
+            align="center"
+          />
+          {franchiseNetworkData.subtitle && (
+            <p className="text-gray-600 dark:text-gray-400 text-sm max-w-2xl mt-2 text-center leading-relaxed">
+              {franchiseNetworkData.subtitle}
+            </p>
+          )}
         </div>
 
-        <div className="relative z-10 w-full grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="relative z-10 w-full grid grid-cols-2 lg:grid-cols-4 gap-5"
+        >
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
             const bgColors = [
-              "bg-[#0f9d58] shadow-[0_4px_12px_rgba(15,157,88,0.25)]", 
-              "bg-[#8a2be2] shadow-[0_4px_12px_rgba(138,43,226,0.25)]", 
-              "bg-[#f4b400] shadow-[0_4px_12px_rgba(244,180,0,0.25)]", 
-              "bg-[#0088cc] shadow-[0_4px_12px_rgba(0,136,204,0.25)]", 
+              "bg-gradient-to-br from-[#0f9d58] to-[#0a6c3c] shadow-[0_4px_16px_rgba(15,157,88,0.3)]", 
+              "bg-gradient-to-br from-[#8a2be2] to-[#5e1e99] shadow-[0_4px_16px_rgba(138,43,226,0.3)]", 
+              "bg-gradient-to-br from-[#f4b400] to-[#b38400] shadow-[0_4px_16px_rgba(244,180,0,0.3)]", 
+              "bg-gradient-to-br from-[#0088cc] to-[#005f8f] shadow-[0_4px_16px_rgba(0,136,204,0.3)]", 
             ];
             
             return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="relative flex items-center p-4 rounded-md  shadow-sm hover:shadow-md transition-shadow gap-3.5"
+                variants={fadeUp}
+                className="relative flex items-center p-5 rounded-[4px] bg-white/50 dark:bg-[#0b1b42]/40 backdrop-blur-sm hover:bg-white dark:hover:bg-[#0b1b42]/60 hover:shadow-xl shadow-sm transition-all duration-300 gap-4 group"
               >
                 <div
                   className={clsx(
-                    "w-10 h-10 rounded-[4px] flex items-center justify-center text-white shrink-0",
+                    "w-12 h-12 rounded-[4px] flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300",
                     bgColors[idx]
                   )}
                 >
-                  <Icon size={18} strokeWidth={2.5} />
+                  <Icon size={20} strokeWidth={2.5} />
                 </div>
                 
                 <div className="flex flex-col flex-1 min-w-0">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">
                     {stat.label}
                   </span>
-                  <div className="text-xl font-black text-gray-900 dark:text-white tracking-tight leading-none mt-1 truncate">
+                  <div className="text-2xl font-black text-gray-900 dark:text-white tracking-tight leading-none truncate">
                     {stat.value}
                   </div>
                 </div>
 
-                <div className="hidden xl:block shrink-0 border border-gray-200 dark:border-gray-700 rounded-[3px] px-2 py-0.5 bg-gray-50 dark:bg-gray-800/50">
-                  <span className="text-[9px] font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                <div className="hidden xl:flex shrink-0 items-center justify-center border border-gray-200 dark:border-gray-700/80 rounded-[2px] px-2.5 py-1 bg-gray-50 dark:bg-[#070d1e]/50">
+                  <span className="text-[10px] font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap">
                     {stat.change}
                   </span>
                 </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          <div className="lg:col-span-7 relative min-h-[540px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-2xl flex flex-col justify-between p-6">
-            <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-luminosity overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Map Panel */}
+          <div className="lg:col-span-7 relative min-h-[580px] bg-[#070d1e] rounded-[4px] border border-gray-800/80 overflow-hidden shadow-2xl flex flex-col p-6 group">
+            <div className="absolute inset-0 pointer-events-none opacity-50 mix-blend-luminosity overflow-hidden transition-opacity duration-700 group-hover:opacity-70">
               <img
                 src={mapBg}
                 alt="Expansion Map Background"
-                className="w-full h-full object-cover scale-110"
+                className="w-full h-full object-cover scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-transparent to-[#070d1e]/80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-[#070d1e]/40 to-[#070d1e]/80" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#070d1e]/90 via-transparent to-transparent" />
             </div>
 
-            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-60">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-70">
               <defs>
-                <linearGradient
-                  id="networkGold"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#d4af37" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
+                <linearGradient id="networkGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#d4af37" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#d4af37" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
                 </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
               </defs>
-              <path
-                d="M 44% 62% Q 42% 69% 40% 76%"
-                stroke="url(#networkGold)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-                fill="none"
-              />
-              <path
-                d="M 44% 62% Q 34% 59% 24% 56%"
-                stroke="url(#networkGold)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-                fill="none"
-              />
-              <path
-                d="M 24% 56% Q 30% 42% 37% 28%"
-                stroke="url(#networkGold)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-                fill="none"
-              />
-              <path
-                d="M 44% 62% Q 58% 55% 72% 48%"
-                stroke="url(#networkGold)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-                fill="none"
-              />
-              <path
-                d="M 44% 62% Q 45% 71% 47% 80%"
-                stroke="url(#networkGold)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-                fill="none"
-              />
+              <g filter="url(#glow)">
+                <path d="M 44% 62% Q 42% 69% 40% 76%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
+                <path d="M 44% 62% Q 34% 59% 24% 56%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
+                <path d="M 24% 56% Q 30% 42% 37% 28%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
+                <path d="M 44% 62% Q 58% 55% 72% 48%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
+                <path d="M 44% 62% Q 45% 71% 47% 80%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
+              </g>
             </svg>
 
-            <div className="relative z-20 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0b1b42]/80 backdrop-blur-md border border-[#d4af37]/30 rounded-[4px]">
-                <Globe2
-                  size={14}
-                  className="text-[#d4af37] animate-spin-slow"
-                />
-                <span className="text-[11px] font-bold text-white uppercase tracking-wider">
+            <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 mb-6">
+              <div className="flex items-center gap-2.5 px-3.5 py-2 bg-[#0b1b42]/90 backdrop-blur-xl border border-[#d4af37]/40 rounded-[2px] shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                <Globe2 size={16} className="text-[#d4af37] animate-spin-slow" />
+                <span className="text-[11px] font-black text-white uppercase tracking-widest">
                   Live National Network
                 </span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-1" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse ml-1" />
               </div>
 
-              <div className="flex items-center gap-2 bg-[#0b1b42]/90 backdrop-blur-md px-3 py-1.5 rounded-[4px] border border-gray-700/60">
+              <div className="flex items-center gap-3 bg-[#0b1b42]/80 backdrop-blur-xl px-4 py-2 rounded-[4px] border border-gray-700/60 shadow-lg">
                 {franchiseNetworkData.legend.map((l) => (
-                  <div
-                    key={l.status}
-                    className="flex items-center gap-1.5 text-[11px] text-gray-300 font-medium"
-                  >
-                    <span className={clsx("w-2 h-2 rounded-full", l.bg)} />
-                    <span className="hidden sm:inline">
-                      {l.label.split("(")[0]}
-                    </span>
+                  <div key={l.status} className="flex items-center gap-2 text-[11px] text-gray-200 font-bold tracking-wide">
+                    <span className={clsx("w-2.5 h-2.5 rounded-full shadow-sm", l.bg)} />
+                    <span className="hidden sm:inline">{l.label.split("(")[0]}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative w-full h-[400px] z-20">
+            <div className="absolute inset-0 z-20 mt-[80px]">
               {franchiseNetworkData.cities.map((city) => {
                 const isSelected = activeCity.id === city.id;
                 const isHovered = hoveredCity?.id === city.id;
 
                 const nodeColor =
                   city.status === "active"
-                    ? "bg-emerald-500 border-emerald-300 text-emerald-400"
+                    ? "bg-emerald-500 border-emerald-300 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
                     : city.status === "expansion"
-                      ? "bg-[#d4af37] border-amber-200 text-[#d4af37]"
-                      : "bg-blue-500 border-blue-300 text-blue-400";
+                      ? "bg-[#d4af37] border-amber-200 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                      : "bg-blue-500 border-blue-300 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.4)]";
 
                 return (
                   <div
@@ -242,7 +215,7 @@ export default function FranchiseNetworkDesktop() {
                   >
                     <div
                       className={clsx(
-                        "absolute -inset-2 rounded-full opacity-60 animate-ping pointer-events-none",
+                        "absolute -inset-3 rounded-full opacity-40 animate-ping pointer-events-none",
                         city.status === "active"
                           ? "bg-emerald-400"
                           : city.status === "expansion"
@@ -253,38 +226,38 @@ export default function FranchiseNetworkDesktop() {
                     />
 
                     <motion.div
-                      whileHover={{ scale: 1.25 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.3 }}
+                      whileTap={{ scale: 0.9 }}
                       className={clsx(
-                        "relative w-7 h-7 rounded-full flex items-center justify-center border-2 shadow-lg backdrop-blur-md transition-all duration-300",
+                        "relative w-8 h-8 rounded-full flex items-center justify-center border-2 backdrop-blur-md transition-all duration-300",
                         isSelected
-                          ? "ring-4 ring-[#d4af37] scale-110 z-30"
-                          : "z-10",
+                          ? "ring-4 ring-white/20 scale-125 z-40"
+                          : "z-30",
                         nodeColor.includes("emerald")
-                          ? "bg-emerald-950/80 border-emerald-400 text-emerald-300"
+                          ? "bg-[#052e16]/90 border-emerald-400 text-emerald-300"
                           : "",
                         nodeColor.includes("d4af37")
-                          ? "bg-amber-950/80 border-[#d4af37] text-[#d4af37]"
+                          ? "bg-[#382600]/90 border-[#d4af37] text-[#d4af37]"
                           : "",
                         nodeColor.includes("blue")
-                          ? "bg-blue-950/80 border-blue-400 text-blue-300"
+                          ? "bg-[#0f172a]/90 border-blue-400 text-blue-300"
                           : "",
                       )}
                     >
-                      <MapPin size={13} className="drop-shadow" />
+                      <MapPin size={14} strokeWidth={2.5} className="drop-shadow-md" />
                     </motion.div>
 
                     <div
                       className={clsx(
-                        "absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap px-2 py-0.5 rounded-[2px] text-[10px] font-bold tracking-tight shadow-md border transition-all duration-200 pointer-events-none z-30",
+                        "absolute left-1/2 -translate-x-1/2 top-full mt-2.5 whitespace-nowrap px-2.5 py-1 rounded-[2px] text-[11px] font-black tracking-wide shadow-xl border transition-all duration-300 pointer-events-none z-50",
                         isSelected || isHovered
                           ? "bg-white text-gray-950 border-[#d4af37] opacity-100 translate-y-0"
-                          : "bg-gray-900/90 text-gray-300 border-gray-700 opacity-80",
+                          : "bg-[#070d1e]/95 text-gray-300 border-gray-700/80 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0",
                       )}
                     >
                       {city.name}
                       {city.outlets > 0 && (
-                        <span className="ml-1 text-[#d4af37]">
+                        <span className={clsx("ml-1.5", isSelected || isHovered ? "text-[#d4af37]" : "text-gray-500")}>
                           ({city.outlets})
                         </span>
                       )}
@@ -294,62 +267,64 @@ export default function FranchiseNetworkDesktop() {
               })}
             </div>
 
-            <div className="relative z-20 flex items-center justify-between text-[11px] text-gray-400 border-t border-gray-800/80 pt-3">
-              <span className="flex items-center gap-1.5">
-                <Navigation size={12} className="text-[#d4af37]" />
+            <div className="relative z-20 mt-auto flex items-center justify-between text-[11px] font-bold tracking-wide text-gray-400 border-t border-gray-800/80 pt-4 bg-gradient-to-t from-[#070d1e] to-transparent">
+              <span className="flex items-center gap-2">
+                <Navigation size={14} className="text-[#d4af37]" />
                 Click any node on the map to inspect micro-market capacity
               </span>
-              <span className="hidden sm:inline text-gray-500">
+              <span className="hidden sm:inline text-gray-500 uppercase">
                 Updated Real-Time • FY 2025-26
               </span>
             </div>
           </div>
-          <div className="lg:col-span-5 flex flex-col justify-between shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-6 relative">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] p-7 relative text-gray-900 dark:text-white bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)]">
             <div className="flex flex-col gap-6">
-                           {/* City Dropdown & Status Header */}
               <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex flex-col gap-3 border-b border-gray-100 pb-5"
+                key={`header-${activeCity.id}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col gap-5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                      <MapPin size={11} strokeWidth={2.5} />
+                  <span className="text-[12px] font-black uppercase tracking-widest text-gray-600 dark:text-white/60 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-[4px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <MapPin size={16} strokeWidth={2.5} />
                     </div>
                     Select Hub
                   </span>
                   <span
                     className={clsx(
-                      "text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[3px] border",
+                      "text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-[2px] border",
                       activeCity.status === "active"
-                        ? "bg-emerald-50 text-emerald-600 border-emerald-200"
+                        ? "bg-[#e8f7f0] dark:bg-emerald-500/10 text-[#0f9d58] dark:text-emerald-400 border-[#a7e8c3] dark:border-emerald-500/20"
                         : activeCity.status === "expansion"
-                          ? "bg-amber-50 text-[#b38728] border-amber-200"
-                          : "bg-blue-50 text-blue-600 border-blue-200",
+                          ? "bg-[#fff9e6] dark:bg-amber-500/10 text-[#d4af37] dark:text-amber-400 border-[#fce390] dark:border-amber-500/20"
+                          : "bg-[#e6f0fa] dark:bg-blue-500/10 text-[#0088cc] dark:text-blue-400 border-[#99d6ff] dark:border-blue-500/20",
                     )}
                   >
                     {activeCity.statusLabel}
                   </span>
                 </div>
 
-                {/* Modern Custom Dropdown Selector */}
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="w-full flex items-center justify-between bg-white border border-gray-200 hover:border-gray-300 rounded-[4px] py-3 px-4 text-[13px] font-bold text-gray-900 shadow-sm transition-all focus:outline-none"
+                    className="w-full flex items-center justify-between bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-[#d4af37]/50 rounded-[4px] py-4 px-5 text-[15px] font-medium text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none"
                   >
-                    <span>
-                      {activeCity.name} ({activeCity.state}) —{" "}
-                      {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                    <span className="flex items-center gap-2">
+                      <span className="font-bold text-gray-900 dark:text-white">{activeCity.name}</span>
+                      <span className="text-gray-500 dark:text-white/40">({activeCity.state})</span>
+                      <span className="text-gray-300 dark:text-white/20 mx-1">—</span>
+                      <span className="text-[#d4af37] font-bold">
+                        {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                      </span>
                     </span>
                     <ChevronDown
-                      size={16}
+                      size={18}
                       className={clsx(
-                        "text-gray-400 transition-transform duration-200",
-                        isDropdownOpen && "rotate-180"
+                        "text-gray-400 dark:text-white/50 transition-transform duration-300",
+                        isDropdownOpen && "rotate-180 text-gray-900 dark:text-white"
                       )}
                     />
                   </button>
@@ -357,11 +332,11 @@ export default function FranchiseNetworkDesktop() {
                   <AnimatePresence>
                     {isDropdownOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: -5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        transition={{ duration: 0.15 }}
-                        className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:hidden"
+                        initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute z-50 w-full mt-2 bg-white dark:bg-[#0a1128]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/40 rounded-[4px] shadow-2xl overflow-hidden max-h-[280px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
                       >
                         {franchiseNetworkData.cities.map((city) => (
                           <button
@@ -371,15 +346,15 @@ export default function FranchiseNetworkDesktop() {
                               setIsDropdownOpen(false);
                             }}
                             className={clsx(
-                              "w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-gray-50",
+                              "w-full text-left px-5 py-3 text-[14px] transition-all hover:bg-gray-50 dark:hover:bg-white/10 border-b border-gray-100 dark:border-white/5 last:border-0",
                               activeCity.id === city.id
-                                ? "bg-gray-50 font-bold text-[#d4af37]"
-                                : "text-gray-700 font-semibold"
+                                ? "bg-gray-50 dark:bg-white/10 font-bold text-[#d4af37]"
+                                : "text-gray-700 dark:text-white/80 font-medium"
                             )}
                           >
                             <span className="flex items-center justify-between">
-                              <span>{city.name} ({city.state})</span>
-                              <span className="text-[11px] text-gray-400">
+                              <span>{city.name} <span className="text-gray-400 dark:text-white/40 text-[12px] ml-1">({city.state})</span></span>
+                              <span className="text-[11px] font-bold uppercase tracking-wider bg-gray-100 dark:bg-black/20 text-gray-600 dark:text-white px-2 py-0.5 rounded-[2px]">
                                 {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
                               </span>
                             </span>
@@ -389,147 +364,158 @@ export default function FranchiseNetworkDesktop() {
                     )}
                   </AnimatePresence>
                 </div>
+
+                <div className="w-full h-px bg-gray-200/60 dark:bg-white/10 my-1" />
               </motion.div>
 
-              {/* City Quick Metrics */}
               <motion.div 
+                key={`metrics-${activeCity.id}`}
                 initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="grid grid-cols-2 gap-3"
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="grid grid-cols-2 gap-5"
               >
-                <div className="p-3 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+                <div className="p-5 bg-white dark:bg-white/5 border border-[#e2e8f0] dark:border-white/10 rounded-[4px] flex items-center justify-between shadow-sm">
                   <div className="flex flex-col">
-                    <span className="text-[11px] font-bold text-gray-500 mb-0.5">
+                    <span className="text-[11px] font-black uppercase tracking-widest text-gray-500 dark:text-white/50 mb-2">
                       Operating Stores
                     </span>
-                    <span className="text-lg font-black text-gray-900 tracking-tight">
-                      {activeCity.outlets} Units
-                    </span>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-[32px] font-black text-gray-900 dark:text-white tracking-tight leading-none">
+                        {activeCity.outlets}
+                      </span>
+                      <span className="text-[14px] text-gray-400 dark:text-white/50 font-bold">Units</span>
+                    </div>
                   </div>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Building2 size={15} strokeWidth={2.5} />
+                  <div className="w-12 h-12 rounded-[6px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Building2 size={22} strokeWidth={2.5} />
                   </div>
                 </div>
 
-                <div className="p-3 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+                <div className="p-5 bg-[#fffdf5] dark:bg-[#d4af37]/10 border border-[#fde68a] dark:border-[#d4af37]/20 rounded-[4px] flex items-center justify-between shadow-sm">
                   <div className="flex flex-col">
-                    <span className="text-[11px] font-bold text-gray-500 mb-0.5">
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#b38728] dark:text-[#d4af37]/80 mb-2">
                       In Pipeline
                     </span>
-                    <span className="text-lg font-black text-[#d4af37] tracking-tight">
-                      {activeCity.pipeline} Locations
-                    </span>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-[32px] font-black text-[#d4af37] tracking-tight leading-none">
+                        {activeCity.pipeline}
+                      </span>
+                      <span className="text-[14px] text-[#b38728] dark:text-[#d4af37]/60 font-bold">Loc</span>
+                    </div>
                   </div>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Zap size={15} strokeWidth={2.5} />
+                  <div className="w-12 h-12 rounded-[6px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Zap size={22} strokeWidth={2.5} />
                   </div>
                 </div>
               </motion.div>
 
-              {/* Opportunities in Rows */}
               <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col gap-2.5"
+                key={`opps-${activeCity.id}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="flex flex-col gap-3"
               >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
-                      <Sparkles size={11} strokeWidth={2.5} />
+                <div className="flex items-center justify-between mb-3 mt-2">
+                  <span className="text-[13px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-[4px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <Sparkles size={16} strokeWidth={2.5} />
                     </div>
                     Available Opportunities
                   </span>
-                  <span className="text-[11px] font-bold text-[#d4af37]">
-                    {activeCity.opportunities?.length || 0} Circles Open
+                  <span className="text-[11px] font-black tracking-widest text-[#d4af37] bg-[#fffdf5] dark:bg-[#d4af37]/10 px-3 py-1.5 rounded-[2px] border border-[#fde68a] dark:border-[#d4af37]/20 shadow-sm">
+                    {activeCity.opportunities?.length || 0} CIRCLES OPEN
                   </span>
                 </div>
 
-                {/* Table / Row headers */}
-                <div className="flex items-center justify-between px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-200">
+                <div className="flex items-center justify-between px-5 py-3 text-[11px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 border-b border-gray-200 dark:border-white/10">
                   <span className="flex-1">Circle Name</span>
-                  <span className="w-[110px] text-center">Outlet Format</span>
-                  <span className="w-[90px] text-right">Action</span>
+                  <span className="w-[120px] text-center">Format</span>
+                  <span className="w-[100px] text-right">Action</span>
                 </div>
 
-                {/* Rows list */}
-                <div className="flex flex-col gap-2 max-h-[200px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full">
-                  {activeCity.opportunities?.map((opp) => {
-                    const isInterested = interestedMap[opp.id];
+                <div className="flex flex-col max-h-[190px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gray-400 dark:hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
+                  {activeCity.opportunities?.map((opp, idx) => {
+                    const currentAction = actionMap[opp.id];
                     return (
-                      <div
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.1 }}
                         key={opp.id}
-                        className="flex items-center justify-between p-3.5 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all group"
+                        className="flex items-center justify-between p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[6px] hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 group shadow-sm mb-3 last:mb-0"
                       >
-                        {/* Circle Name */}
                         <div className="flex-1 flex flex-col pr-3">
-                          <span className="font-bold text-gray-900 truncate text-[13px] mb-0.5">
+                          <span className="font-bold text-gray-900 dark:text-white text-[15px] mb-1.5">
                             {opp.circleName}
                           </span>
                           {opp.badge && (
-                            <span className="text-[10px] font-bold text-emerald-600 flex items-center gap-1">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" /> {opp.badge} Zone
+                            <span className="text-[10px] font-bold text-[#0f9d58] dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#0f9d58] inline-block" /> {opp.badge} Zone
                             </span>
                           )}
                         </div>
 
-                        {/* Outlet Format */}
-                        <div className="w-[110px] text-center px-1">
-                          <span className="inline-block px-2.5 py-1 text-[10px] font-bold rounded-[4px] bg-gray-50 text-gray-600 border border-gray-200 truncate max-w-full">
+                        <div className="w-[120px] text-center px-1">
+                          <span className="inline-block px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-[2px] bg-[#e2e8f0] dark:bg-black/30 text-gray-700 dark:text-white/80 border border-[#cbd5e1] dark:border-white/5 truncate max-w-full">
                             {opp.format}
                           </span>
                         </div>
 
-                        {/* Interested CTA */}
-                        <div className="w-[90px] flex justify-end">
+                        <div className="w-[100px] flex justify-end gap-1.5">
                           <button
-                            onClick={() => toggleInterest(opp.id)}
+                            onClick={() => toggleAction(opp.id, 'up')}
                             className={clsx(
-                              "px-3 py-1.5 text-[11px] font-bold rounded-[4px] transition-all flex items-center justify-center gap-1.5 border w-[85px]",
-                              isInterested
-                                ? "bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm"
-                                : "bg-white text-gray-800 hover:bg-gray-50 border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
+                              "p-2 rounded-[4px] transition-all duration-300 border shadow-sm",
+                              currentAction === 'up'
+                                ? "bg-[#e8f7f0] dark:bg-emerald-500/20 text-[#0f9d58] dark:text-emerald-400 border-[#a7e8c3] dark:border-emerald-500/40 flex"
+                                : "bg-white dark:bg-white/10 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white hidden group-hover:flex"
                             )}
                           >
-                            {isInterested ? (
-                              <>
-                                <CheckCircle2 size={12} className="text-emerald-500" />
-                                <span>Applied</span>
-                              </>
-                            ) : (
-                              <span>Interested</span>
+                            <ThumbsUp size={14} className={clsx(currentAction === 'up' && "fill-current")} />
+                          </button>
+                          <button
+                            onClick={() => toggleAction(opp.id, 'down')}
+                            className={clsx(
+                              "p-2 rounded-[4px] transition-all duration-300 border shadow-sm",
+                              currentAction === 'down'
+                                ? "bg-red-50 dark:bg-red-500/20 text-red-500 dark:text-red-400 border-red-200 dark:border-red-500/40 flex"
+                                : "bg-white dark:bg-white/10 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white hidden group-hover:flex"
                             )}
+                          >
+                            <ThumbsDown size={14} className={clsx(currentAction === 'down' && "fill-current")} />
+                          </button>
+                          <button
+                            onClick={() => toggleAction(opp.id, 'fav')}
+                            className={clsx(
+                              "p-2 rounded-[4px] transition-all duration-300 border shadow-sm",
+                              currentAction === 'fav' || !currentAction
+                                ? "flex"
+                                : "hidden group-hover:flex",
+                              currentAction === 'fav'
+                                ? "bg-amber-50 dark:bg-amber-500/20 text-amber-500 dark:text-amber-400 border-amber-200 dark:border-amber-500/40"
+                                : "bg-white dark:bg-white/10 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white"
+                            )}
+                          >
+                            <Star size={14} className={clsx(currentAction === 'fav' && "fill-current")} />
                           </button>
                         </div>
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>
-
-                {/* Load More Button */}
-                {activeCity.opportunities && activeCity.opportunities.length > 0 && (
-                  <button className="w-full mt-1 py-1.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 hover:text-gray-700 bg-gray-50/50 hover:bg-gray-100 rounded-[4px] transition-colors border border-gray-100">
-                    Load More
-                  </button>
-                )}
               </motion.div>
             </div>
 
-            {/* Bottom Actions */}
-            <div className="flex flex-col gap-3 pt-4 mt-auto">
-              <button className="w-full py-3.5 px-4 bg-[#0a1128] hover:bg-[#121c33] text-white text-[13px] font-bold uppercase tracking-wider rounded-[4px] shadow-lg transition-all flex items-center justify-center gap-2 group">
+            <div className="flex flex-col gap-3 pt-6 mt-auto border-t border-gray-200 dark:border-white/10">
+              <button className="w-full py-4 px-4 bg-gradient-to-r from-[#d4af37] to-[#e5c158] hover:from-[#b38728] hover:to-[#d4af37] text-[#0a1128] text-[13px] font-black uppercase tracking-widest rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
                 <ChevronRight
-                  size={16}
-                  className="group-hover:translate-x-1 transition-transform"
+                  size={18}
+                  strokeWidth={3}
+                  className="group-hover:translate-x-1.5 transition-transform duration-300"
                 />
-              </button>
-              <button className="w-full py-3 px-4 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 text-[13px] font-bold rounded-[4px] transition-all flex items-center justify-center gap-2 shadow-sm">
-                <Download size={14} className="text-[#d4af37]" />
-                <span>{franchiseNetworkData.cta.secondary}</span>
               </button>
             </div>
           </div>
