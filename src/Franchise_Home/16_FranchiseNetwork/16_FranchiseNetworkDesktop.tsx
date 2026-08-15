@@ -13,6 +13,7 @@ import {
   LayoutGrid,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
+import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
 
 const pulseGlow: Variants = {
@@ -68,16 +69,12 @@ export default function FranchiseNetworkDesktop() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-12">
-        <div className="flex flex-col items-center justify-center gap-2 pb-6">
-          <div className="flex flex-col items-center gap-4">
-            <span className="inline-block px-3 py-1 text-[11px] font-bold tracking-widest text-[#d4af37] border border-[#d4af37]/30 rounded-[6px] uppercase bg-[#fffdf5] dark:bg-[#d4af37]/5 shadow-sm">
-              {franchiseNetworkData.sectionLabel}
-            </span>
-            <h2 className="text-4xl md:text-[42px] font-black tracking-tight text-[#0a1128] dark:text-white">
-              {franchiseNetworkData.title}
-            </h2>
-          </div>
-        </div>
+      <SectionHeader
+        overline={franchiseNetworkData.sectionLabel}
+        title={franchiseNetworkData.title}
+        subtitle={franchiseNetworkData.subtitle}
+        align="center"
+      />
 
         <motion.div 
           variants={staggerContainer}

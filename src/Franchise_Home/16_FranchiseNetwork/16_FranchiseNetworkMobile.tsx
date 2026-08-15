@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { ChevronRight,ChevronDown,Globe2,MapPin,Sparkles,Building2,Zap,LayoutGrid} from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
+import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
 
 const pulseGlow: Variants = {
@@ -44,16 +45,12 @@ export default function FranchiseNetworkMobile() {
       />
 
       <div className="relative z-10 w-full flex flex-col gap-6 px-2">
-        <div className="flex flex-col items-center justify-center gap-2 pb-4">
-          <div className="flex flex-col items-center gap-3">
-            <span className="inline-block px-3 py-1 text-[10px] font-bold tracking-widest text-[#d4af37] border border-[#d4af37]/30 rounded-[4px] uppercase bg-[#fffdf5] dark:bg-[#d4af37]/5 shadow-sm">
-              {franchiseNetworkData.sectionLabel}
-            </span>
-            <h2 className="text-3xl font-black tracking-tight text-[#0a1128] dark:text-white text-center px-2">
-              {franchiseNetworkData.title}
-            </h2>
-          </div>
-        </div>
+      <SectionHeader
+        overline={franchiseNetworkData.sectionLabel}
+        title={franchiseNetworkData.title}
+        subtitle={franchiseNetworkData.subtitle}
+        align="center"
+      />
 
         <div className="relative z-10 w-full grid grid-cols-2 gap-3">
           {franchiseNetworkData.stats.map((stat, idx) => {
