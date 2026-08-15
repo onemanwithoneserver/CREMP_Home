@@ -6,7 +6,6 @@ import {
   useCallback,
   useEffect,
 } from "react";
-import { GripVertical } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 import Hero from "./01.Hero";
@@ -128,7 +127,7 @@ export default function LandBox() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full bg-slate-50 text-[#0a1128] overflow-hidden flex relative select-none"
+      className="w-full h-full bg-white text-[#0a1128] overflow-hidden flex relative select-none"
     >
       {viewMode === "desktop" ? (
         <div className="flex w-full h-full">
@@ -140,11 +139,13 @@ export default function LandBox() {
           </div>
 
           <div
-            className="w-1.5 h-full bg-gray-200 hover:bg-blue-400 cursor-col-resize flex flex-col items-center justify-center group relative z-30 transition-colors"
+            className="w-1.5 h-full bg-gray-50/50 hover:bg-gray-100 cursor-col-resize flex flex-col items-center justify-center group relative z-30 transition-colors border-x border-gray-200/50"
             onMouseDown={handleMouseDown}
           >
-            <div className="bg-white border border-gray-300 rounded shadow-sm py-2 opacity-0 group-hover:opacity-100 transition-opacity absolute -right-2 flex items-center justify-center">
-              <GripVertical size={14} className="text-gray-500" />
+            <div className="bg-white border border-gray-200 rounded-full shadow-sm py-3 px-[1px] opacity-0 group-hover:opacity-100 transition-all duration-300 absolute -right-[5px] flex flex-col gap-1 items-center justify-center">
+              <div className="w-[2px] h-[2px] bg-gray-400 rounded-full" />
+              <div className="w-[2px] h-[2px] bg-gray-400 rounded-full" />
+              <div className="w-[2px] h-[2px] bg-gray-400 rounded-full" />
             </div>
             {isDragging && (
               <div className="fixed inset-0 z-50 cursor-col-resize" />
@@ -153,7 +154,7 @@ export default function LandBox() {
 
           <div
             style={{ width: `${dialogWidth}%` }}
-            className="h-full bg-white shadow-xl relative z-20 border-l border-gray-200"
+            className="h-full bg-white shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.1)] relative z-20"
           >
             {content}
           </div>

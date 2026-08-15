@@ -49,7 +49,7 @@ export default function Mobile() {
   return (
     <div
       ref={heroRef}
-      className="relative w-full h-[100dvh] min-h-[620px] max-h-[860px] overflow-hidden flex flex-col justify-end bg-[#0a1128] text-white"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-end bg-[#0a1128] text-white overflow-hidden"
     >
       <motion.div
         initial={{ scale: 1.15 }}
@@ -61,19 +61,19 @@ export default function Mobile() {
         <img
           src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80"
           alt="Premium Land Plot"
-          className="w-full h-full object-cover opacity-65"
+          className="w-full h-full object-cover opacity-60"
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128]/50 via-transparent to-transparent z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128]/40 via-transparent to-transparent z-[1]" />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/85 to-transparent z-[1]"
-        style={{ top: "45%" }}
+        className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/80 to-transparent z-[1]"
+        style={{ top: "40%" }}
       />
 
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-white z-[2]" />
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-white z-[2]" />
 
-      <div className="absolute top-6 right-5 flex flex-col gap-2.5 z-20">
+      <div className="absolute top-5 right-5 flex flex-col gap-2.5 z-20">
         {actionIcons.map(({ Icon, hoverBg }, i) => (
           <motion.button
             key={i}
@@ -85,11 +85,11 @@ export default function Mobile() {
               stiffness: 300,
               damping: 25,
             }}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
-            className={`w-11 h-11 rounded-[4px] bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 ${hoverBg} shadow-sm hover:shadow-md hover:text-white`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`w-10 h-10 rounded-[4px] bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center text-white transition-all duration-300 ${hoverBg} shadow-sm`}
           >
-            <Icon size={17} strokeWidth={2.5} />
+            <Icon size={16} strokeWidth={2.5} />
           </motion.button>
         ))}
       </div>
@@ -98,24 +98,24 @@ export default function Mobile() {
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.6, type: "spring", stiffness: 280, damping: 20 }}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
-        className="absolute top-[30%] left-[40%] -translate-x-1/2 -translate-y-1/2 z-20 w-[4.5rem] h-[4.5rem] rounded-full bg-[#0a1128]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md transition-all duration-300 group hover:bg-[#0a1128]/90 hover:border-white/40"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="absolute top-[35%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 w-[4rem] h-[4rem] rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-xl transition-all duration-300 group hover:bg-white/20 hover:border-white/40"
       >
-        <div className="absolute inset-0 rounded-full animate-ping bg-white opacity-[0.03]" />
+        <div className="absolute inset-0 rounded-full animate-ping bg-white opacity-[0.05]" />
         <Play
-          size={26}
-          className="ml-1.5 transition-transform group-hover:scale-110"
+          size={22}
+          className="ml-1 transition-transform group-hover:scale-110"
           fill="currentColor"
         />
       </motion.button>
 
-      <div className="relative z-10 w-full px-5 pb-8 pt-16 flex flex-col gap-3.5">
+      <div className="relative z-10 w-full px-5 pb-10 pt-16 flex flex-col gap-4">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          className="flex flex-col w-full gap-3"
+          className="flex flex-col w-full gap-3.5"
         >
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-2">
             {heroData.badges.map((badge, idx) => (
@@ -123,8 +123,8 @@ export default function Mobile() {
                 key={idx}
                 className={`px-3 py-1.5 text-[0.6rem] font-semibold rounded-[2px] border backdrop-blur-md tracking-[0.12em] ${
                   idx === 0
-                    ? "bg-[#d4af37]/15 text-[#f9df9f] border-[#d4af37]/40 shadow-sm"
-                    : "bg-white/8 text-white/90 border-white/15"
+                    ? "bg-[#d4af37]/20 text-[#f9df9f] border-[#d4af37]/40 shadow-sm"
+                    : "bg-white/10 text-white border-white/20"
                 }`}
               >
                 {badge}
@@ -135,16 +135,16 @@ export default function Mobile() {
           <div className="flex flex-col gap-2">
             <motion.h1
               variants={fadeInUp}
-              className="text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-white drop-shadow-lg"
+              className="text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-white drop-shadow-md"
             >
               {heroData.title}
             </motion.h1>
 
             <motion.div variants={fadeInUp} className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-[2px] bg-[#d4af37]/15 flex items-center justify-center">
+              <div className="w-5 h-5 rounded-[2px] bg-[#d4af37]/20 flex items-center justify-center border border-[#d4af37]/30">
                 <MapPin size={12} className="text-[#d4af37]" />
               </div>
-              <span className="text-[0.82rem] font-medium text-white/75 tracking-tight">
+              <span className="text-[0.85rem] font-medium text-white/90 tracking-tight">
                 {heroData.location}
               </span>
             </motion.div>
@@ -167,18 +167,18 @@ export default function Mobile() {
                   {heroData.stats.map((stat, idx) => (
                     <motion.div
                       key={`${copy}-${idx}`}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex flex-col gap-2 p-3.5 rounded-[4px] bg-white/10 border border-white/20 backdrop-blur-md shrink-0 min-w-[125px] transition-all duration-300 hover:bg-white/20 hover:border-[#d4af37]/50 shadow-sm hover:shadow-md hover:z-10"
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="flex flex-col gap-2 p-3.5 rounded-[4px] bg-white/5 border border-white/10 backdrop-blur-lg shrink-0 min-w-[130px] transition-all duration-300 hover:bg-white/10 hover:border-[#d4af37]/40 shadow-lg hover:shadow-xl hover:z-10"
                     >
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-[2px] flex items-center justify-center bg-white/10 border border-white/20">
+                        <div className="w-7 h-7 rounded-[2px] flex items-center justify-center bg-white/5 border border-white/10">
                           <stat.icon
                             size={13}
                             strokeWidth={2.5}
-                            className="text-white"
+                            className="text-white/90"
                           />
                         </div>
-                        <span className="text-[0.6rem] font-semibold text-gray-300 tracking-[0.15em]">
+                        <span className="text-[0.6rem] font-semibold text-white/70 tracking-[0.15em] uppercase">
                           {stat.label}
                         </span>
                       </div>

@@ -32,35 +32,31 @@ export default function Desktop() {
           icon={ImageIcon}
         />
 
-        <div className="px-4 mt-3">
-          <div className="flex mx-auto bg-slate-50/50 backdrop-blur-2xl rounded-[2px] p-0 border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] relative gap-0 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none"></div>
+        <div className="px-6 mt-4">
+          <div className="flex w-full bg-[#0b1b42] rounded-[4px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
-                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 text-[0.68rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
+                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 text-[0.8rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none min-w-max ${
                   activeTab === tab.label
-                    ? "text-white"
-                    : "bg-white/80 hover:bg-white text-[#0a1128] border-r border-gray-200/50 last:border-r-0"
+                    ? "text-[#0a1128]"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 {activeTab === tab.label && (
                   <motion.div
-                    layoutId="mediaTabActive"
-                    className="absolute inset-0 bg-gradient-to-b from-[#1c2e64] to-[#0b1b42] rounded-[2px] shadow-[0_4px_16px_rgba(11,27,66,0.3),inset_0_1px_2px_rgba(255,255,255,0.3)] ring-1 ring-[#0b1b42]/50"
+                    layoutId="mediaTabActiveDesktop"
+                    className="absolute inset-0 bg-white rounded-[2px] shadow-sm border border-white/20"
                     transition={{
                       type: "spring",
                       stiffness: 400,
                       damping: 30,
-                      mass: 0.8,
                     }}
-                  >
-                    <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent rounded-t-[2px] pointer-events-none" />
-                  </motion.div>
+                  />
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
-                  <tab.icon size={13} strokeWidth={2} />
+                  <tab.icon size={15} strokeWidth={2} />
                   {tab.label}
                 </span>
               </button>
@@ -68,7 +64,7 @@ export default function Desktop() {
           </div>
         </div>
 
-        <div className="px-4 py-4">
+        <div className="px-6 py-5">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}

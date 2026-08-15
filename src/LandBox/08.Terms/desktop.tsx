@@ -23,7 +23,7 @@ export default function Desktop() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white border-b border-gray-200/60 relative"
+        className="w-full bg-white border-b border-gray-100 relative pb-6"
       >
         <SectionHeader
           overline={termsData.overline}
@@ -36,7 +36,7 @@ export default function Desktop() {
           }
         />
 
-        <div className="px-4 py-4 flex flex-col relative w-full">
+        <div className="px-6 py-4 flex flex-col relative w-full">
           <div className="relative flex flex-col w-full z-10">
             <motion.div
               initial={{ scaleY: 0 }}
@@ -44,7 +44,7 @@ export default function Desktop() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               style={{ originY: 0 }}
-              className="absolute left-[39px] top-[24px] bottom-[24px] w-[2px] z-0 rounded-full bg-gradient-to-b from-[#e5e7eb] via-[#d4af37] to-[#e5e7eb]"
+              className="absolute left-[39px] top-[24px] bottom-[24px] w-[2px] z-0 rounded-full bg-gradient-to-b from-[#f3f4f6] via-[#d4af37] to-[#f3f4f6]"
             />
 
             <motion.ul
@@ -62,23 +62,23 @@ export default function Desktop() {
                 >
                   <div className="w-[76px] flex items-center relative shrink-0 justify-center">
                     <motion.div
-                      whileHover={{ scale: 1.08, rotate: 5 }}
-                      className={`w-10 h-10 rounded-[4px] flex items-center justify-center relative z-20 text-white shadow-md transition-shadow duration-300 group-hover:shadow-lg ${item.color}`}
+                      whileHover={{ scale: 1.05, rotate: 3 }}
+                      className={`w-10 h-10 rounded-[4px] flex items-center justify-center relative z-20 text-white shadow-sm transition-shadow duration-300 group-hover:shadow-md ${item.color}`}
                     >
-                      <item.icon size={18} strokeWidth={2.2} />
+                      <item.icon size={18} strokeWidth={2} />
                     </motion.div>
 
                     <motion.div
                       variants={lineReveal}
                       style={{ originX: 0 }}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-100 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]"
                     />
                   </div>
 
                   <motion.div
-                    whileHover={{ y: -2 }}
+                    whileHover={{ y: -1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="flex-1 p-3 rounded-[4px] bg-white border border-gray-200 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
+                    className="flex-1 p-3.5 rounded-[4px] bg-white border border-gray-100 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
                   >
                     <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                       {item.label}
@@ -115,27 +115,27 @@ export default function Desktop() {
                       >
                         <div className="w-[76px] flex items-center relative shrink-0 justify-center">
                           <motion.div
-                            whileHover={{ scale: 1.08, rotate: 5 }}
-                            className={`w-10 h-10 rounded-[4px] flex items-center justify-center relative z-20 text-white shadow-md transition-shadow duration-300 group-hover:shadow-lg ${item.color}`}
+                            whileHover={{ scale: 1.05, rotate: 3 }}
+                            className={`w-10 h-10 rounded-[4px] flex items-center justify-center relative z-20 text-white shadow-sm transition-shadow duration-300 group-hover:shadow-md ${item.color}`}
                           >
-                            <item.icon size={18} strokeWidth={2.2} />
+                            <item.icon size={18} strokeWidth={2} />
                           </motion.div>
 
                           <motion.div
                             variants={lineReveal}
                             style={{ originX: 0 }}
-                            className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]"
+                            className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-100 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]"
                           />
                         </div>
 
                         <motion.div
-                          whileHover={{ y: -2 }}
+                          whileHover={{ y: -1 }}
                           transition={{
                             type: "spring",
                             stiffness: 400,
                             damping: 25,
                           }}
-                          className="flex-1 p-3 rounded-[4px] bg-white border border-gray-200 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
+                          className="flex-1 p-3.5 rounded-[4px] bg-white border border-gray-100 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
                         >
                           <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                             {item.label}
@@ -152,22 +152,16 @@ export default function Desktop() {
             </AnimatePresence>
           </div>
 
-          <div className="flex w-full mt-4 relative z-10">
+          <div className="flex w-full mt-5 relative z-10">
             <div className="w-[76px] shrink-0" />
             <div className="flex-1">
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 font-semibold text-[0.7rem] px-4 py-2.5 rounded-[4px] text-[#d4af37] shadow-sm tracking-widest transition-all bg-white"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="flex items-center justify-center gap-2 font-semibold text-[0.7rem] px-4 py-2.5 rounded-[4px] text-gray-600 hover:text-[#d4af37] border border-gray-200 hover:border-[#d4af37]/30 shadow-sm hover:shadow tracking-widest transition-all bg-gray-50 hover:bg-white w-full"
               >
                 {isOpen ? "Hide Specs" : "View All Specs"}
-                <motion.div
-                  animate={{ rotate: isOpen ? 180 : 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                >
-                  <ChevronDown size={15} strokeWidth={2.5} />
-                </motion.div>
               </motion.button>
             </div>
           </div>

@@ -15,7 +15,7 @@ export default function Desktop() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white border-b border-gray-200/60 relative"
+        className="w-full bg-white border-b border-gray-100 relative pb-6"
       >
         <SectionHeader
           overline="Specifications & Features"
@@ -23,30 +23,30 @@ export default function Desktop() {
           icon={LayoutGrid}
         />
 
-        <div className="px-3 py-3 flex flex-col mx-0">
-          <div className="flex flex-col gap-2.5">
+        <div className="px-6 py-4 flex flex-col mx-0">
+          <div className="flex flex-col gap-3">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ scale: 1.015, y: -1 }}
-                className="flex items-center justify-between p-3.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group cursor-default"
+                whileHover={{ scale: 1.01, x: 2 }}
+                className="flex items-center justify-between p-4 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group cursor-default"
               >
-                <div className="flex items-center gap-3.5 text-gray-600">
-                  <div className="relative w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm">
+                <div className="flex items-center gap-4 text-gray-600">
+                  <div className="relative w-9 h-9 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm overflow-hidden">
                     <div
-                      className={`absolute inset-0 rounded-[6px] group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
+                      className={`absolute inset-0 group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-[#0a1128]"}`}
                     />
                     <detail.icon
-                      size={15}
-                      strokeWidth={2.2}
+                      size={16}
+                      strokeWidth={2}
                       className="relative z-10 pointer-events-none"
                     />
                   </div>
-                  <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
+                  <span className="text-[0.85rem] font-semibold text-gray-600 group-hover:text-[#0a1128] transition-colors">
                     {detail.label}
                   </span>
                 </div>
-                <span className="text-[0.82rem] font-semibold tracking-tight text-[#0a1128]">
+                <span className="text-[0.9rem] font-semibold tracking-tight text-[#0a1128]">
                   {detail.value}
                 </span>
               </motion.div>

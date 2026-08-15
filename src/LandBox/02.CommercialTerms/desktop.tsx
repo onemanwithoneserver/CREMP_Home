@@ -21,7 +21,7 @@ export default function Desktop() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white border-b border-gray-200/60 relative"
+        className="w-full bg-white border-b border-gray-100 relative pb-6"
       >
         <SectionHeader
           overline="Commercial Details"
@@ -29,29 +29,34 @@ export default function Desktop() {
           icon={currentData.headerIcon}
         />
 
-        <div className="flex px-4 py-4 gap-4 items-start w-full">
-          <div className="flex flex-col w-[30%] min-w-[120px] bg-slate-50/50 backdrop-blur-2xl rounded-[4px] p-1 border border-gray-200/60 shadow-sm relative gap-1 shrink-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none rounded-[4px]"></div>
+        <div className="flex px-6 py-6 gap-6 lg:gap-8 items-start w-full">
+          <div className="flex flex-col w-36 lg:w-44 shrink-0 gap-1 bg-[#0b1b42] p-1.5 rounded-[6px] border border-[#0b1b42]/10">
             {commercialData.tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative w-full py-2.5 px-3 text-left text-[0.7rem] font-semibold transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
+                className={`relative w-full py-3 px-4 text-left text-[0.8rem] font-semibold transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none ${
                   activeTab === tab
-                    ? "text-white"
-                    : "text-[#0a1128] hover:bg-white/80 border-b border-gray-100 last:border-b-0"
+                    ? "text-[#0a1128]"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 {activeTab === tab && (
                   <motion.div
                     layoutId="commercialTabActive_landbox"
-                    className="absolute inset-0 bg-gradient-to-r from-[#1c2e64] to-[#0b1b42] rounded-[2px] shadow-sm"
+                    className="absolute inset-0 bg-white rounded-[4px] shadow-sm"
                     transition={{
                       type: "spring",
                       stiffness: 400,
                       damping: 30,
-                      mass: 0.8,
                     }}
+                  />
+                )}
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="commercialTabLine_landbox"
+                    className="absolute left-0 top-2 bottom-2 w-0.5 bg-[#d4af37] rounded-full"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
                 <span className="relative z-10 block">{tab}</span>
@@ -67,70 +72,69 @@ export default function Desktop() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -15 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col gap-4 w-full"
+                className="flex flex-col gap-5 w-full"
               >
-                <div className="flex justify-between items-stretch gap-2">
-                  <div className="flex-1 bg-gradient-to-br from-gray-50 to-white  rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
+                <div className="flex-1 bg-white rounded-[4px] border border-gray-100 p-5 shadow-sm relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
 
-                    <div className="flex justify-between items-center relative z-10 w-full">
-                      <div className="flex flex-col gap-1.5">
-                        <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-1">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
-                          {currentData.primaryAmountLabel}
+                  <div className="flex justify-between items-center relative z-10 w-full">
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-[0.6rem] font-semibold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.4)] shrink-0" />
+                        {currentData.primaryAmountLabel}
+                      </span>
+
+                      {currentData.primarySub && (
+                        <span className="text-[0.75rem] text-gray-500 font-medium ml-3">
+                          {currentData.primarySub}
                         </span>
+                      )}
+                    </div>
 
-                        {currentData.primarySub && (
-                          <span className="text-[0.72rem] text-gray-500 font-medium ml-3">
-                            {currentData.primarySub}
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="flex items-baseline gap-1 mt-0.5 text-right">
-                        <span
-                          className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
-                        >
-                          {currentData.primaryAmount}
+                    <div className="flex items-baseline gap-1.5 text-right flex-wrap justify-end pl-2">
+                      <span
+                        className={`text-[2.2rem] lg:text-[2.5rem] font-semibold leading-tight tracking-tight pr-1 ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
+                      >
+                        {currentData.primaryAmount}
+                      </span>
+                      {currentData.primaryDesc && (
+                        <span className="text-[0.9rem] text-gray-500 font-medium tracking-wide">
+                          {currentData.primaryDesc}
                         </span>
-                        {currentData.primaryDesc && (
-                          <span className="text-[0.85rem] text-gray-500 font-semibold tracking-wide ml-0.5">
-                            {currentData.primaryDesc}
-                          </span>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-2.5 mt-1">
+
+                <div className="flex flex-col gap-3">
                   {currentData.details.map((detail, idx) => (
                     <motion.div
                       key={idx}
-                      whileHover={{ scale: 1.015, y: -1 }}
-                      className="flex items-center justify-between p-3.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group"
+                      whileHover={{ scale: 1.01, x: 2 }}
+                      className="flex items-center justify-between gap-4 p-4 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group"
                     >
-                      <div className="flex items-center gap-3.5 text-gray-600">
-                        <div className="relative w-8 h-8 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm">
+                      <div className="flex items-center gap-4 text-gray-600 shrink-0">
+                        <div className="relative w-9 h-9 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm overflow-hidden">
                           <motion.div
                             whileHover={{
                               scale: 1.15,
-                              rotate: [0, -10, 10, 0],
+                              rotate: [0, -5, 5, 0],
                             }}
                             transition={{ duration: 0.3 }}
-                            className={`absolute inset-0 rounded-[6px] ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
+                            className={`absolute inset-0 ${"bgClass" in detail ? detail.bgClass : "bg-[#0a1128]"}`}
                           />
                           <detail.icon
-                            size={15}
-                            strokeWidth={2.2}
+                            size={16}
+                            strokeWidth={2}
                             className="relative z-10 pointer-events-none"
                           />
                         </div>
-                        <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
+                        <span className="text-[0.85rem] font-semibold text-gray-600 group-hover:text-[#0a1128] transition-colors">
                           {detail.label}
                         </span>
                       </div>
                       <span
-                        className={`text-[0.82rem] font-semibold tracking-tight ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                        className={`text-[0.9rem] font-semibold tracking-tight text-right leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
                       >
                         {detail.value}
                       </span>
