@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { fadeInUp, staggerContainer, itemReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  itemReveal,
+} from "../components/animations";
 import SectionHeader from "../components/SectionHeader";
 import { opportunitiesData } from "./data";
 
@@ -32,7 +36,8 @@ export default function Desktop() {
           >
             {opportunitiesData.metrics.map((item) => {
               const Icon = item.icon;
-              const { iconBg, cardHoverBg, badge, accentText, topBorder } = item.colorTheme;
+              const { iconBg, cardHoverBg, badge, accentText, topBorder } =
+                item.colorTheme;
               return (
                 <motion.div
                   key={item.id}
@@ -40,14 +45,24 @@ export default function Desktop() {
                   whileHover={{ y: -4, scale: 1.02 }}
                   className={`flex flex-col justify-between p-5 rounded-[4px] bg-white border border-gray-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.03)] ${cardHoverBg} transition-all duration-300 relative overflow-hidden group cursor-default`}
                 >
-                  <div className={`absolute top-0 inset-x-0 h-[3px] ${topBorder} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
+                  <div
+                    className={`absolute top-0 inset-x-0 h-[3px] ${topBorder} opacity-80 group-hover:opacity-100 transition-opacity duration-300`}
+                  />
 
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className={`w-9 h-9 rounded-[4px] border ${iconBg} group-hover:scale-110 group-hover:rotate-[6deg] transition-all duration-300 flex items-center justify-center shrink-0`}>
-                        <Icon size={17} strokeWidth={2.2} className="text-white" />
+                      <div
+                        className={`w-9 h-9 rounded-[4px] border ${iconBg} group-hover:scale-110 group-hover:rotate-[6deg] transition-all duration-300 flex items-center justify-center shrink-0`}
+                      >
+                        <Icon
+                          size={17}
+                          strokeWidth={2.2}
+                          className="text-white"
+                        />
                       </div>
-                      <span className={`px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider rounded-[2px] border ${badge}`}>
+                      <span
+                        className={`px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider rounded-[2px] border ${badge}`}
+                      >
                         {item.badge}
                       </span>
                     </div>
@@ -67,7 +82,9 @@ export default function Desktop() {
                   </div>
 
                   <div className="pt-3 mt-3 border-t border-gray-100/80 flex items-center justify-between text-[0.7rem] font-medium text-gray-500">
-                    <span className={`transition-colors font-semibold ${accentText}`}>
+                    <span
+                      className={`transition-colors font-semibold ${accentText}`}
+                    >
                       {item.trend}
                     </span>
                     <ArrowUpRight

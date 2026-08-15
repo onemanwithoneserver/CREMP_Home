@@ -60,18 +60,22 @@ export default function Desktop() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-                
+
                 <div className="flex items-center gap-1.5 relative z-10 min-w-0 justify-center">
-                  <div className={`w-6 h-6 rounded-[3px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm shrink-0 ${
-                    activeTab === tab.label 
-                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.25)]" 
-                      : "bg-white/80 text-gray-600 border border-transparent group-hover:border-gray-300 shadow-sm"
-                  }`}>
+                  <div
+                    className={`w-6 h-6 rounded-[3px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm shrink-0 ${
+                      activeTab === tab.label
+                        ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.25)]"
+                        : "bg-white/80 text-gray-600 border border-transparent group-hover:border-gray-300 shadow-sm"
+                    }`}
+                  >
                     <tab.icon size={13} strokeWidth={2} />
                   </div>
-                  <span className={`font-semibold text-[0.62rem] uppercase tracking-wider whitespace-nowrap truncate transition-colors duration-300 ${
-                    activeTab === tab.label ? "text-white" : "text-[#0a1128]"
-                  }`}>
+                  <span
+                    className={`font-semibold text-[0.62rem] uppercase tracking-wider whitespace-nowrap truncate transition-colors duration-300 ${
+                      activeTab === tab.label ? "text-white" : "text-[#0a1128]"
+                    }`}
+                  >
                     {tab.label}
                   </span>
                 </div>

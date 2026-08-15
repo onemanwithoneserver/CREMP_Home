@@ -43,15 +43,14 @@ export default function AllBuildingBox() {
     const updatePadding = () => {
       if (!panelRef.current) return;
       const width = panelRef.current.clientWidth;
-      // JS-based dynamic padding calculation based on slider width:
       if (width < 450) {
-        setPanelPadding("0.875rem"); // 14px for compact width
+        setPanelPadding("0.875rem");
       } else if (width < 580) {
-        setPanelPadding("1rem"); // 16px standard
+        setPanelPadding("1rem");
       } else if (width < 720) {
-        setPanelPadding("1.25rem"); // 20px expanded
+        setPanelPadding("1.25rem");
       } else {
-        setPanelPadding("1.5rem"); // 24px maximum expanded
+        setPanelPadding("1.5rem");
       }
     };
 
@@ -74,7 +73,6 @@ export default function AllBuildingBox() {
       const mapWidthPercent =
         ((e.clientX - containerRect.left) / containerRect.width) * 100;
 
-      // Clamp dialog width to a maximum of 35% (map between 65% and 75%)
       const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 75);
       setDialogWidth(100 - clampedMapWidth);
     },

@@ -47,7 +47,7 @@ export default function Mobile() {
                 }`}
               />
             </button>
-            
+
             <AnimatePresence initial={false}>
               {isIncludedOpen && (
                 <motion.div
@@ -69,10 +69,7 @@ export default function Mobile() {
                         variants={itemReveal}
                         className="flex items-center gap-1 px-2.5 py-1 text-[0.65rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm cursor-default"
                       >
-                        <CheckCircle2
-                          size={12}
-                          className="text-emerald-500"
-                        />
+                        <CheckCircle2 size={12} className="text-emerald-500" />
                         {item}
                       </motion.span>
                     ))}

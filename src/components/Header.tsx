@@ -38,7 +38,10 @@ const PAGE_LABELS: Record<Page, string> = {
 };
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
-  .filter((p) => !["investors", "buyers-and-sellers", "developer-and-owner"].includes(p))
+  .filter(
+    (p) =>
+      !["investors", "buyers-and-sellers", "developer-and-owner"].includes(p),
+  )
   .map((p) => ({
     value: p,
     label: PAGE_LABELS[p],

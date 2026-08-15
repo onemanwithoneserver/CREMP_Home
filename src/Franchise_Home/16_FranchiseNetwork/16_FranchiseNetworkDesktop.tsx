@@ -47,7 +47,10 @@ export default function FranchiseNetworkDesktop() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     }
@@ -69,14 +72,14 @@ export default function FranchiseNetworkDesktop() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-12">
-      <SectionHeader
-        overline={franchiseNetworkData.sectionLabel}
-        title={franchiseNetworkData.title}
-        subtitle={franchiseNetworkData.subtitle}
-        align="center"
-      />
+        <SectionHeader
+          overline={franchiseNetworkData.sectionLabel}
+          title={franchiseNetworkData.title}
+          subtitle={franchiseNetworkData.subtitle}
+          align="center"
+        />
 
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
@@ -86,10 +89,10 @@ export default function FranchiseNetworkDesktop() {
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
             const bgColors = [
-              "bg-[#0f9d58]", 
-              "bg-[#8a2be2]", 
-              "bg-[#f4b400]", 
-              "bg-[#0088cc]", 
+              "bg-[#0f9d58]",
+              "bg-[#8a2be2]",
+              "bg-[#f4b400]",
+              "bg-[#0088cc]",
             ];
             const pillColors = [
               "bg-[#0f9d58]/10 text-[#0f9d58]",
@@ -97,7 +100,7 @@ export default function FranchiseNetworkDesktop() {
               "bg-[#f4b400]/10 text-[#f4b400]",
               "bg-[#0088cc]/10 text-[#0088cc]",
             ];
-            
+
             return (
               <motion.div
                 key={stat.label}
@@ -107,12 +110,12 @@ export default function FranchiseNetworkDesktop() {
                 <div
                   className={clsx(
                     "w-16 h-16 rounded-[12px] flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform duration-300",
-                    bgColors[idx]
+                    bgColors[idx],
                   )}
                 >
                   <Icon size={26} strokeWidth={2} />
                 </div>
-                
+
                 <div className="flex flex-col flex-1 min-w-0 items-start">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
                     {stat.label}
@@ -120,7 +123,12 @@ export default function FranchiseNetworkDesktop() {
                   <div className="text-[28px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-2">
                     {stat.value}
                   </div>
-                  <span className={clsx("text-[10px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap", pillColors[idx])}>
+                  <span
+                    className={clsx(
+                      "text-[10px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap",
+                      pillColors[idx],
+                    )}
+                  >
                     {stat.change}
                   </span>
                 </div>
@@ -144,7 +152,13 @@ export default function FranchiseNetworkDesktop() {
 
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-70">
               <defs>
-                <linearGradient id="networkGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="networkGold"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="#d4af37" stopOpacity="0.9" />
                   <stop offset="50%" stopColor="#d4af37" stopOpacity="0.4" />
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
@@ -155,17 +169,55 @@ export default function FranchiseNetworkDesktop() {
                 </filter>
               </defs>
               <g filter="url(#glow)">
-                <path d="M 44% 62% Q 42% 69% 40% 76%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
-                <path d="M 44% 62% Q 34% 59% 24% 56%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
-                <path d="M 24% 56% Q 30% 42% 37% 28%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
-                <path d="M 44% 62% Q 58% 55% 72% 48%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
-                <path d="M 44% 62% Q 45% 71% 47% 80%" stroke="url(#networkGold)" strokeWidth="1.5" strokeDasharray="4 6" fill="none" className="animate-[dash_30s_linear_infinite]" />
+                <path
+                  d="M 44% 62% Q 42% 69% 40% 76%"
+                  stroke="url(#networkGold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  className="animate-[dash_30s_linear_infinite]"
+                />
+                <path
+                  d="M 44% 62% Q 34% 59% 24% 56%"
+                  stroke="url(#networkGold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  className="animate-[dash_30s_linear_infinite]"
+                />
+                <path
+                  d="M 24% 56% Q 30% 42% 37% 28%"
+                  stroke="url(#networkGold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  className="animate-[dash_30s_linear_infinite]"
+                />
+                <path
+                  d="M 44% 62% Q 58% 55% 72% 48%"
+                  stroke="url(#networkGold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  className="animate-[dash_30s_linear_infinite]"
+                />
+                <path
+                  d="M 44% 62% Q 45% 71% 47% 80%"
+                  stroke="url(#networkGold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  className="animate-[dash_30s_linear_infinite]"
+                />
               </g>
             </svg>
 
             <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 mb-6">
               <div className="flex items-center gap-2.5 px-3.5 py-2 bg-[#0b1b42]/90 backdrop-blur-xl border border-[#d4af37]/40 rounded-[2px] shadow-[0_0_15px_rgba(212,175,55,0.15)]">
-                <Globe2 size={16} className="text-[#d4af37] animate-spin-slow" />
+                <Globe2
+                  size={16}
+                  className="text-[#d4af37] animate-spin-slow"
+                />
                 <span className="text-[11px] font-black text-white uppercase tracking-widest">
                   Live National Network
                 </span>
@@ -174,9 +226,19 @@ export default function FranchiseNetworkDesktop() {
 
               <div className="flex items-center gap-3 bg-[#0b1b42]/80 backdrop-blur-xl px-4 py-2 rounded-[4px] border border-gray-700/60 shadow-lg">
                 {franchiseNetworkData.legend.map((l) => (
-                  <div key={l.status} className="flex items-center gap-2 text-[11px] text-gray-200 font-bold tracking-wide">
-                    <span className={clsx("w-2.5 h-2.5 rounded-full shadow-sm", l.bg)} />
-                    <span className="hidden sm:inline">{l.label.split("(")[0]}</span>
+                  <div
+                    key={l.status}
+                    className="flex items-center gap-2 text-[11px] text-gray-200 font-bold tracking-wide"
+                  >
+                    <span
+                      className={clsx(
+                        "w-2.5 h-2.5 rounded-full shadow-sm",
+                        l.bg,
+                      )}
+                    />
+                    <span className="hidden sm:inline">
+                      {l.label.split("(")[0]}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -234,7 +296,11 @@ export default function FranchiseNetworkDesktop() {
                           : "",
                       )}
                     >
-                      <MapPin size={14} strokeWidth={2.5} className="drop-shadow-md" />
+                      <MapPin
+                        size={14}
+                        strokeWidth={2.5}
+                        className="drop-shadow-md"
+                      />
                     </motion.div>
 
                     <div
@@ -247,7 +313,14 @@ export default function FranchiseNetworkDesktop() {
                     >
                       {city.name}
                       {city.outlets > 0 && (
-                        <span className={clsx("ml-1.5", isSelected || isHovered ? "text-[#d4af37]" : "text-gray-500")}>
+                        <span
+                          className={clsx(
+                            "ml-1.5",
+                            isSelected || isHovered
+                              ? "text-[#d4af37]"
+                              : "text-gray-500",
+                          )}
+                        >
                           ({city.outlets})
                         </span>
                       )}
@@ -269,7 +342,7 @@ export default function FranchiseNetworkDesktop() {
           </div>
           <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] p-7 relative text-gray-900 dark:text-white bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)]">
             <div className="flex flex-col gap-6">
-              <motion.div 
+              <motion.div
                 key={`header-${activeCity.id}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -294,18 +367,27 @@ export default function FranchiseNetworkDesktop() {
                     className="w-full flex items-center justify-between bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-[#d4af37]/50 rounded-[4px] py-4 px-5 text-[15px] font-medium text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none"
                   >
                     <span className="flex items-center gap-2">
-                      <span className="font-bold text-gray-900 dark:text-white">{activeCity.name}</span>
-                      <span className="text-gray-500 dark:text-white/40">({activeCity.state})</span>
-                      <span className="text-gray-300 dark:text-white/20 mx-1">—</span>
+                      <span className="font-bold text-gray-900 dark:text-white">
+                        {activeCity.name}
+                      </span>
+                      <span className="text-gray-500 dark:text-white/40">
+                        ({activeCity.state})
+                      </span>
+                      <span className="text-gray-300 dark:text-white/20 mx-1">
+                        —
+                      </span>
                       <span className="text-[#d4af37] font-bold">
-                        {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                        {activeCity.outlets > 0
+                          ? `${activeCity.outlets} Live Stores`
+                          : "Prime Open Zone"}
                       </span>
                     </span>
                     <ChevronDown
                       size={18}
                       className={clsx(
                         "text-gray-400 dark:text-white/50 transition-transform duration-300",
-                        isDropdownOpen && "rotate-180 text-gray-900 dark:text-white"
+                        isDropdownOpen &&
+                          "rotate-180 text-gray-900 dark:text-white",
                       )}
                     />
                   </button>
@@ -330,13 +412,20 @@ export default function FranchiseNetworkDesktop() {
                               "w-full text-left px-5 py-3 text-[14px] transition-all hover:bg-gray-50 dark:hover:bg-white/10 border-b border-gray-100 dark:border-white/5 last:border-0",
                               activeCity.id === city.id
                                 ? "bg-gray-50 dark:bg-white/10 font-bold text-[#d4af37]"
-                                : "text-gray-700 dark:text-white/80 font-medium"
+                                : "text-gray-700 dark:text-white/80 font-medium",
                             )}
                           >
                             <span className="flex items-center justify-between">
-                              <span>{city.name} <span className="text-gray-400 dark:text-white/40 text-[12px] ml-1">({city.state})</span></span>
+                              <span>
+                                {city.name}{" "}
+                                <span className="text-gray-400 dark:text-white/40 text-[12px] ml-1">
+                                  ({city.state})
+                                </span>
+                              </span>
                               <span className="text-[11px] font-bold uppercase tracking-wider bg-gray-100 dark:bg-black/20 text-gray-600 dark:text-white px-2 py-0.5 rounded-[2px]">
-                                {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
+                                {city.outlets > 0
+                                  ? `${city.outlets} Stores`
+                                  : "Open"}
                               </span>
                             </span>
                           </button>
@@ -349,7 +438,7 @@ export default function FranchiseNetworkDesktop() {
                 <div className="w-full h-px bg-gray-200/60 dark:bg-white/10 my-1" />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 key={`metrics-${activeCity.id}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -368,7 +457,9 @@ export default function FranchiseNetworkDesktop() {
                       <span className="text-[22px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none">
                         {activeCity.outlets}
                       </span>
-                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">Units</span>
+                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">
+                        Units
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -385,7 +476,9 @@ export default function FranchiseNetworkDesktop() {
                       <span className="text-[22px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none">
                         {activeCity.pipeline}
                       </span>
-                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">Loc</span>
+                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">
+                        Loc
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -402,13 +495,15 @@ export default function FranchiseNetworkDesktop() {
                       <span className="text-[22px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none">
                         5
                       </span>
-                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">Models</span>
+                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">
+                        Models
+                      </span>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 key={`opps-${activeCity.id}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -430,7 +525,9 @@ export default function FranchiseNetworkDesktop() {
                 <div className="flex items-center justify-between px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-[#0a1128] rounded-[6px] shadow-sm">
                   <span className="flex-1">CIRCLE NAME</span>
                   <span className="w-[150px] text-center">FORMAT</span>
-                  <span className="w-[120px] text-center">TERRITORY STATUS</span>
+                  <span className="w-[120px] text-center">
+                    TERRITORY STATUS
+                  </span>
                 </div>
 
                 <div className="flex flex-col max-h-[190px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gray-400 dark:hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
@@ -449,7 +546,8 @@ export default function FranchiseNetworkDesktop() {
                           </span>
                           {opp.badge && (
                             <span className="text-[10px] font-bold text-[#0f9d58] dark:text-emerald-400 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#0f9d58] inline-block" /> {opp.badge} Zone
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#0f9d58] inline-block" />{" "}
+                              {opp.badge} Zone
                             </span>
                           )}
                         </div>

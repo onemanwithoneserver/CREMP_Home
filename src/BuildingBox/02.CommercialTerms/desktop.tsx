@@ -30,7 +30,9 @@ export default function Desktop() {
         />
 
         <div className="px-6 mt-5 mb-1 flex justify-center w-full">
-          <div className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
+          <div
+            className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? "w-3/4" : "w-full"}`}
+          >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
             {commercialData.tabs.map((tab) => (
               <button
@@ -57,10 +59,12 @@ export default function Desktop() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-                
-                <span className={`relative z-10 font-semibold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
-                  activeTab === tab ? "text-white" : "text-[#0a1128]"
-                }`}>
+
+                <span
+                  className={`relative z-10 font-semibold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                    activeTab === tab ? "text-white" : "text-[#0a1128]"
+                  }`}
+                >
                   {tab}
                 </span>
               </button>
@@ -69,7 +73,6 @@ export default function Desktop() {
         </div>
 
         <div className="px-6 py-6 w-full">
-
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
               <motion.div

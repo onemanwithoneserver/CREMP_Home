@@ -22,11 +22,11 @@ export default function Desktop() {
         ease: [0.16, 1, 0.3, 1] as any,
       },
     }),
-    exit: { 
-      opacity: 0, 
-      y: -10, 
-      transition: { duration: 0.15 } 
-    }
+    exit: {
+      opacity: 0,
+      y: -10,
+      transition: { duration: 0.15 },
+    },
   };
 
   return (
@@ -48,7 +48,9 @@ export default function Desktop() {
         />
 
         <div className="px-6 mt-5 mb-1 flex justify-center w-full">
-          <div className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
+          <div
+            className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? "w-3/4" : "w-full"}`}
+          >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
             {commercialData.tabs.map((tab) => (
               <button
@@ -75,10 +77,12 @@ export default function Desktop() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-                
-                <span className={`relative z-10 font-semibold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
-                  activeTab === tab ? "text-white" : "text-[#0a1128]"
-                }`}>
+
+                <span
+                  className={`relative z-10 font-semibold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                    activeTab === tab ? "text-white" : "text-[#0a1128]"
+                  }`}
+                >
                   {tab}
                 </span>
               </button>
@@ -99,35 +103,35 @@ export default function Desktop() {
               {/* Primary Price Card */}
               <div className="relative w-full rounded-[4px] bg-gradient-to-br from-[#0a1128] via-[#0d1e47] to-[#0a1128] p-6 shadow-[0_8px_20px_rgba(11,27,66,0.15)] overflow-hidden group border border-[#0b1b42]/20">
                 {/* Animated Background Orbs */}
-                <motion.div 
-                  animate={{ 
+                <motion.div
+                  animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3] 
+                    opacity: [0.3, 0.5, 0.3],
                   }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="absolute -top-32 -right-32 w-80 h-80 bg-gradient-to-br from-[#d4af37]/20 to-transparent rounded-full blur-3xl pointer-events-none" 
-                />
-                <motion.div 
-                  animate={{ 
-                    scale: [1, 1.3, 1],
-                    opacity: [0.2, 0.4, 0.2] 
-                  }}
-                  transition={{ 
-                    duration: 5, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 1
                   }}
-                  className="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-tr from-blue-500/15 to-transparent rounded-full blur-2xl pointer-events-none" 
+                  className="absolute -top-32 -right-32 w-80 h-80 bg-gradient-to-br from-[#d4af37]/20 to-transparent rounded-full blur-3xl pointer-events-none"
+                />
+                <motion.div
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.2, 0.4, 0.2],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                  className="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-tr from-blue-500/15 to-transparent rounded-full blur-2xl pointer-events-none"
                 />
 
                 <div className="flex justify-between items-center relative z-10 w-full gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <motion.span 
+                    <motion.span
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1, duration: 0.3 }}
@@ -138,7 +142,7 @@ export default function Desktop() {
                     </motion.span>
 
                     {currentData.primarySub && (
-                      <motion.p 
+                      <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.3 }}
@@ -150,17 +154,22 @@ export default function Desktop() {
                   </div>
 
                   <div className="flex flex-col gap-0.5 text-right items-end pl-2">
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, scale: 0.95, originX: 1 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay: 0.1 }}
+                      transition={{
+                        type: "spring",
+                        bounce: 0.4,
+                        duration: 0.6,
+                        delay: 0.1,
+                      }}
                       className="text-[2.5rem] font-semibold tracking-tight leading-none text-white"
                     >
                       {currentData.primaryAmount}
                     </motion.div>
-                    
+
                     {currentData.primaryDesc && (
-                      <motion.p 
+                      <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.3 }}

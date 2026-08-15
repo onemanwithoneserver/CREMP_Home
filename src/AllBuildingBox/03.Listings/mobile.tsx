@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Maximize2 } from "lucide-react";
-import { fadeInUp, staggerContainer, itemReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  itemReveal,
+} from "../components/animations";
 import SectionHeader from "../components/SectionHeader";
 import { listingsData } from "./data";
 
@@ -35,19 +39,29 @@ export default function Mobile() {
                 className="flex flex-col bg-white rounded-[4px] shadow-sm border border-gray-200/80 p-4 pl-4.5 relative overflow-hidden transition-all duration-300 hover:shadow-md cursor-pointer group"
               >
                 {/* Vertical Left Accent Stripe */}
-                <div className={`absolute top-0 bottom-0 left-0 w-1 ${leftBar} opacity-0 group-hover:opacity-100 transition-all duration-300`} />
+                <div
+                  className={`absolute top-0 bottom-0 left-0 w-1 ${leftBar} opacity-0 group-hover:opacity-100 transition-all duration-300`}
+                />
 
                 {/* Top Row */}
                 <div className="flex justify-between items-center mb-2.5">
                   <div className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-[4px] border ${iconBg} flex items-center justify-center shrink-0`}>
-                      <Icon size={15} strokeWidth={2.2} className="text-white" />
+                    <div
+                      className={`w-8 h-8 rounded-[4px] border ${iconBg} flex items-center justify-center shrink-0`}
+                    >
+                      <Icon
+                        size={15}
+                        strokeWidth={2.2}
+                        className="text-white"
+                      />
                     </div>
                     <span className="text-[0.62rem] font-semibold text-gray-500 uppercase tracking-wider truncate">
                       {item.type}
                     </span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded-[2px] border text-[0.55rem] font-semibold tracking-wider uppercase ${badge}`}>
+                  <span
+                    className={`px-2 py-0.5 rounded-[2px] border text-[0.55rem] font-semibold tracking-wider uppercase ${badge}`}
+                  >
                     {item.badge}
                   </span>
                 </div>

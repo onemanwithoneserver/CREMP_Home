@@ -16,7 +16,8 @@ export const listingsData = {
       statusColor: "bg-emerald-500",
       icon: Store,
       colorTheme: {
-        iconBg: "bg-emerald-600 text-white border-emerald-700/20 shadow-[0_2px_8px_rgba(5,150,105,0.35)]",
+        iconBg:
+          "bg-emerald-600 text-white border-emerald-700/20 shadow-[0_2px_8px_rgba(5,150,105,0.35)]",
         leftBar: "bg-emerald-500",
         badge: "bg-emerald-500/10 text-emerald-700 border-emerald-500/30",
         priceText: "text-emerald-600",
@@ -33,7 +34,8 @@ export const listingsData = {
       statusColor: "bg-amber-500",
       icon: Building2,
       colorTheme: {
-        iconBg: "bg-sky-600 text-white border-sky-700/20 shadow-[0_2px_8px_rgba(2,132,199,0.35)]",
+        iconBg:
+          "bg-sky-600 text-white border-sky-700/20 shadow-[0_2px_8px_rgba(2,132,199,0.35)]",
         leftBar: "bg-sky-500",
         badge: "bg-sky-500/10 text-sky-700 border-sky-500/30",
         priceText: "text-sky-600",
@@ -50,7 +52,8 @@ export const listingsData = {
       statusColor: "bg-emerald-500",
       icon: ShoppingBag,
       colorTheme: {
-        iconBg: "bg-violet-600 text-white border-violet-700/20 shadow-[0_2px_8px_rgba(124,58,237,0.35)]",
+        iconBg:
+          "bg-violet-600 text-white border-violet-700/20 shadow-[0_2px_8px_rgba(124,58,237,0.35)]",
         leftBar: "bg-violet-500",
         badge: "bg-violet-500/10 text-violet-700 border-violet-500/30",
         priceText: "text-violet-600",
@@ -67,7 +70,8 @@ export const listingsData = {
       statusColor: "bg-emerald-500",
       icon: Users,
       colorTheme: {
-        iconBg: "bg-rose-600 text-white border-rose-700/20 shadow-[0_2px_8px_rgba(225,29,72,0.35)]",
+        iconBg:
+          "bg-rose-600 text-white border-rose-700/20 shadow-[0_2px_8px_rgba(225,29,72,0.35)]",
         leftBar: "bg-rose-500",
         badge: "bg-rose-500/10 text-rose-700 border-rose-500/30",
         priceText: "text-rose-600",

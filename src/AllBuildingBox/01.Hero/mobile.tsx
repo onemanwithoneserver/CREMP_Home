@@ -18,7 +18,10 @@ export default function Mobile() {
       >
         {/* Top Header Row: Badges */}
         <div className="flex justify-between items-center w-full gap-2">
-          <motion.div variants={fadeInUp} className="flex items-center gap-1.5 flex-wrap">
+          <motion.div
+            variants={fadeInUp}
+            className="flex items-center gap-1.5 flex-wrap"
+          >
             {/* Grade A Badge */}
             <span className="px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase rounded-[3px] bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm flex items-center gap-1 backdrop-blur-md">
               <Sparkles size={10} className="text-[#d4af37]" />
@@ -62,7 +65,10 @@ export default function Mobile() {
               variants={fadeInUp}
               className="flex items-center gap-1 px-2 py-1 rounded-[3px] bg-blue-500/15 border border-blue-400/40 text-blue-400 shrink-0 shadow-sm backdrop-blur-md"
             >
-              <BadgeCheck size={14} className="text-blue-400 fill-blue-500/20" />
+              <BadgeCheck
+                size={14}
+                className="text-blue-400 fill-blue-500/20"
+              />
               <span className="text-[0.62rem] font-semibold tracking-wide uppercase text-blue-400 whitespace-nowrap">
                 Verified
               </span>

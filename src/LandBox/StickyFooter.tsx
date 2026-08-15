@@ -101,7 +101,11 @@ export default function StickyFooter() {
                 onClick={() => setIsBookingOpen(true)}
                 className="h-11 flex-1 max-w-[160px] flex items-center justify-center gap-1.5 rounded-[4px] font-semibold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 px-2 text-[0.8rem]"
               >
-                <Calendar size={15} strokeWidth={2} className="shrink-0 text-white" />
+                <Calendar
+                  size={15}
+                  strokeWidth={2}
+                  className="shrink-0 text-white"
+                />
                 <span className="truncate text-white">Schedule Visit</span>
               </motion.button>
             </div>

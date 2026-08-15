@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Maximize2 } from "lucide-react";
-import { fadeInUp, staggerContainer, itemReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  itemReveal,
+} from "../components/animations";
 import SectionHeader from "../components/SectionHeader";
 import { listingsData } from "./data";
 
@@ -35,19 +39,29 @@ export default function Desktop() {
                 className="flex flex-col bg-white rounded-[4px] shadow-[0_4px_16px_rgba(0,0,0,0.03)] border border-gray-200/80 p-5 pl-6 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_32px_rgba(11,27,66,0.12)] hover:border-slate-300 cursor-pointer group"
               >
                 {/* Vertical Left Accent Stripe on Hover */}
-                <div className={`absolute top-0 bottom-0 left-0 w-1.5 ${leftBar} opacity-0 group-hover:opacity-100 transition-all duration-300`} />
+                <div
+                  className={`absolute top-0 bottom-0 left-0 w-1.5 ${leftBar} opacity-0 group-hover:opacity-100 transition-all duration-300`}
+                />
 
                 {/* Top Row: Icon + Type + Badge */}
                 <div className="flex justify-between items-center mb-3">
                   <div className="flex items-center gap-2.5">
-                    <div className={`w-9 h-9 rounded-[4px] border ${iconBg} transition-transform duration-300 flex items-center justify-center shrink-0`}>
-                      <Icon size={17} strokeWidth={2.2} className="text-white" />
+                    <div
+                      className={`w-9 h-9 rounded-[4px] border ${iconBg} transition-transform duration-300 flex items-center justify-center shrink-0`}
+                    >
+                      <Icon
+                        size={17}
+                        strokeWidth={2.2}
+                        className="text-white"
+                      />
                     </div>
                     <span className="text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider">
                       {item.type}
                     </span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded-[2px] border text-[0.6rem] font-semibold tracking-wider uppercase ${badge}`}>
+                  <span
+                    className={`px-2 py-0.5 rounded-[2px] border text-[0.6rem] font-semibold tracking-wider uppercase ${badge}`}
+                  >
                     {item.badge}
                   </span>
                 </div>
@@ -65,7 +79,9 @@ export default function Desktop() {
                       {item.area}
                     </span>
                   </div>
-                  <span className={`text-[1.1rem] font-semibold ${priceText} group-hover:scale-105 origin-right transition-transform duration-300`}>
+                  <span
+                    className={`text-[1.1rem] font-semibold ${priceText} group-hover:scale-105 origin-right transition-transform duration-300`}
+                  >
                     {item.price}
                   </span>
                 </div>

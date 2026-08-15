@@ -1,7 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronRight,ChevronDown,Globe2,MapPin,Sparkles,Building2,Zap,LayoutGrid} from "lucide-react";
+import {
+  ChevronRight,
+  ChevronDown,
+  Globe2,
+  MapPin,
+  Sparkles,
+  Building2,
+  Zap,
+  LayoutGrid,
+} from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
@@ -23,7 +32,10 @@ export default function FranchiseNetworkMobile() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     }
@@ -45,21 +57,21 @@ export default function FranchiseNetworkMobile() {
       />
 
       <div className="relative z-10 w-full flex flex-col gap-6 px-2">
-      <SectionHeader
-        overline={franchiseNetworkData.sectionLabel}
-        title={franchiseNetworkData.title}
-        subtitle={franchiseNetworkData.subtitle}
-        align="center"
-      />
+        <SectionHeader
+          overline={franchiseNetworkData.sectionLabel}
+          title={franchiseNetworkData.title}
+          subtitle={franchiseNetworkData.subtitle}
+          align="center"
+        />
 
         <div className="relative z-10 w-full grid grid-cols-2 gap-3">
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
             const bgColors = [
-              "bg-[#0f9d58]", 
-              "bg-[#8a2be2]", 
-              "bg-[#f4b400]", 
-              "bg-[#0088cc]", 
+              "bg-[#0f9d58]",
+              "bg-[#8a2be2]",
+              "bg-[#f4b400]",
+              "bg-[#0088cc]",
             ];
             const pillColors = [
               "bg-[#0f9d58]/10 text-[#0f9d58]",
@@ -67,7 +79,7 @@ export default function FranchiseNetworkMobile() {
               "bg-[#f4b400]/10 text-[#f4b400]",
               "bg-[#0088cc]/10 text-[#0088cc]",
             ];
-            
+
             return (
               <div
                 key={idx}
@@ -77,7 +89,7 @@ export default function FranchiseNetworkMobile() {
                   <div
                     className={clsx(
                       "w-10 h-10 rounded-[8px] flex items-center justify-center text-white shrink-0",
-                      bgColors[idx]
+                      bgColors[idx],
                     )}
                   >
                     <Icon size={18} strokeWidth={2} />
@@ -86,13 +98,18 @@ export default function FranchiseNetworkMobile() {
                     {stat.label}
                   </span>
                 </div>
-                
+
                 <div className="flex flex-col mt-1">
                   <div className="text-[24px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-2">
                     {stat.value}
                   </div>
                   <div className="self-start">
-                    <span className={clsx("text-[9px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap", pillColors[idx])}>
+                    <span
+                      className={clsx(
+                        "text-[9px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap",
+                        pillColors[idx],
+                      )}
+                    >
                       {stat.change}
                     </span>
                   </div>
@@ -225,9 +242,8 @@ export default function FranchiseNetworkMobile() {
         </div>
         <div className="bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)] rounded-[16px] p-5 relative mt-4 text-gray-900 dark:text-white">
           <div className="flex flex-col gap-5">
-            
             {/* City Dropdown & Status Header */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -253,18 +269,27 @@ export default function FranchiseNetworkMobile() {
                   className="w-full flex items-center justify-between bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-[#d4af37]/50 rounded-[4px] py-3 px-3.5 text-[13px] font-bold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none"
                 >
                   <span className="truncate pr-2 text-left flex items-center gap-1.5 flex-wrap">
-                    <span className="text-gray-900 dark:text-white">{activeCity.name}</span>
-                    <span className="text-gray-500 dark:text-white/40 font-medium text-[11px]">({activeCity.state})</span>
-                    <span className="hidden sm:inline text-gray-300 dark:text-white/20">—</span>
+                    <span className="text-gray-900 dark:text-white">
+                      {activeCity.name}
+                    </span>
+                    <span className="text-gray-500 dark:text-white/40 font-medium text-[11px]">
+                      ({activeCity.state})
+                    </span>
+                    <span className="hidden sm:inline text-gray-300 dark:text-white/20">
+                      —
+                    </span>
                     <span className="text-[#d4af37]">
-                      {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                      {activeCity.outlets > 0
+                        ? `${activeCity.outlets} Live Stores`
+                        : "Prime Open Zone"}
                     </span>
                   </span>
                   <ChevronDown
                     size={18}
                     className={clsx(
                       "text-gray-400 dark:text-white/50 transition-transform duration-300 shrink-0",
-                      isDropdownOpen && "rotate-180 text-gray-900 dark:text-white"
+                      isDropdownOpen &&
+                        "rotate-180 text-gray-900 dark:text-white",
                     )}
                   />
                 </button>
@@ -289,13 +314,15 @@ export default function FranchiseNetworkMobile() {
                             "w-full text-left px-3.5 py-3 text-[12px] transition-colors border-b border-gray-100 dark:border-white/5 last:border-0 hover:bg-gray-50 dark:hover:bg-white/10",
                             activeCity.id === city.id
                               ? "bg-gray-50 dark:bg-white/10 font-bold text-[#d4af37]"
-                              : "text-gray-700 dark:text-white/80 font-medium"
+                              : "text-gray-700 dark:text-white/80 font-medium",
                           )}
                         >
                           <span className="flex items-center justify-between">
                             <span>{city.name}</span>
                             <span className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 dark:bg-black/20 text-gray-600 dark:text-white px-2 py-0.5 rounded-[2px]">
-                              {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
+                              {city.outlets > 0
+                                ? `${city.outlets} Stores`
+                                : "Open"}
                             </span>
                           </span>
                         </button>
@@ -304,11 +331,11 @@ export default function FranchiseNetworkMobile() {
                   )}
                 </AnimatePresence>
               </div>
-              
+
               <div className="w-full h-px bg-gray-200/60 dark:bg-white/10 my-0.5" />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -353,7 +380,7 @@ export default function FranchiseNetworkMobile() {
             </motion.div>
 
             {/* Opportunities in Rows */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -392,7 +419,8 @@ export default function FranchiseNetworkMobile() {
                         <div className="flex items-center gap-2 flex-wrap">
                           {opp.badge && (
                             <span className="text-[8px] font-bold text-[#0f9d58] dark:text-emerald-400 flex items-center gap-1">
-                              <span className="w-1 h-1 rounded-full bg-[#0f9d58]" /> {opp.badge} Zone
+                              <span className="w-1 h-1 rounded-full bg-[#0f9d58]" />{" "}
+                              {opp.badge} Zone
                             </span>
                           )}
                           <span className="inline-block whitespace-nowrap px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-widest rounded-[2px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20">

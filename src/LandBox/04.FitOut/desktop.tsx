@@ -69,10 +69,7 @@ export default function Desktop() {
                         variants={itemReveal}
                         className="flex items-center gap-1.5 px-3 py-1.5 text-[0.75rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm cursor-default"
                       >
-                        <CheckCircle2
-                          size={14}
-                          className="text-emerald-500"
-                        />
+                        <CheckCircle2 size={14} className="text-emerald-500" />
                         {item}
                       </motion.span>
                     ))}

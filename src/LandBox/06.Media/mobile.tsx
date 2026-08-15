@@ -35,7 +35,7 @@ export default function Mobile() {
         <div className="px-4 mt-5 mb-1 flex justify-center w-full">
           <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 px-2 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative mx-auto w-fit max-w-full overflow-visible no-scrollbar">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60 rounded-[4px]" />
-            
+
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
@@ -69,18 +69,24 @@ export default function Mobile() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-                
+
                 <div className="flex flex-row items-center justify-center relative z-10">
-                  <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-[3px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm shrink-0 ${
-                    activeTab === tab.label 
-                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]" 
-                      : "bg-white/80 text-gray-600 border border-transparent group-hover:border-gray-300 shadow-sm"
-                  }`}>
+                  <div
+                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-[3px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm shrink-0 ${
+                      activeTab === tab.label
+                        ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                        : "bg-white/80 text-gray-600 border border-transparent group-hover:border-gray-300 shadow-sm"
+                    }`}
+                  >
                     <tab.icon size={12} strokeWidth={2.2} />
                   </div>
-                  <span className={`font-semibold text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out ${
-                    activeTab === tab.label ? "w-auto opacity-100 ml-2 text-white" : "max-w-0 opacity-0 ml-0 text-white"
-                  }`}>
+                  <span
+                    className={`font-semibold text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out ${
+                      activeTab === tab.label
+                        ? "w-auto opacity-100 ml-2 text-white"
+                        : "max-w-0 opacity-0 ml-0 text-white"
+                    }`}
+                  >
                     {tab.label}
                   </span>
                 </div>

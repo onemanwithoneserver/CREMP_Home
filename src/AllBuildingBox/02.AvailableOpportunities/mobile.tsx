@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { fadeInUp, staggerContainer, itemReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  itemReveal,
+} from "../components/animations";
 import SectionHeader from "../components/SectionHeader";
 import { opportunitiesData } from "./data";
 
@@ -32,7 +36,8 @@ export default function Mobile() {
           >
             {opportunitiesData.metrics.map((item) => {
               const Icon = item.icon;
-              const { iconBg, cardHoverBg, badge, accentText, topBorder } = item.colorTheme;
+              const { iconBg, cardHoverBg, badge, accentText, topBorder } =
+                item.colorTheme;
               return (
                 <motion.div
                   key={item.id}
@@ -40,14 +45,24 @@ export default function Mobile() {
                   whileHover={{ y: -3 }}
                   className={`flex flex-col justify-between p-3.5 rounded-[4px] bg-white border border-gray-200/80 shadow-sm ${cardHoverBg} transition-all duration-300 relative overflow-hidden group cursor-default`}
                 >
-                  <div className={`absolute top-0 inset-x-0 h-[3px] ${topBorder} opacity-80`} />
+                  <div
+                    className={`absolute top-0 inset-x-0 h-[3px] ${topBorder} opacity-80`}
+                  />
 
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <div className={`w-8 h-8 rounded-[4px] border ${iconBg} group-hover:scale-105 transition-transform duration-300 flex items-center justify-center shrink-0`}>
-                        <Icon size={15} strokeWidth={2.2} className="text-white" />
+                      <div
+                        className={`w-8 h-8 rounded-[4px] border ${iconBg} group-hover:scale-105 transition-transform duration-300 flex items-center justify-center shrink-0`}
+                      >
+                        <Icon
+                          size={15}
+                          strokeWidth={2.2}
+                          className="text-white"
+                        />
                       </div>
-                      <span className={`px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wider rounded-[2px] border ${badge} truncate`}>
+                      <span
+                        className={`px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wider rounded-[2px] border ${badge} truncate`}
+                      >
                         {item.badge}
                       </span>
                     </div>
@@ -67,7 +82,9 @@ export default function Mobile() {
                   </div>
 
                   <div className="pt-2 mt-2 border-t border-gray-100/80 flex items-center justify-between text-[0.65rem] font-medium text-gray-500">
-                    <span className={`truncate font-semibold transition-colors ${accentText}`}>
+                    <span
+                      className={`truncate font-semibold transition-colors ${accentText}`}
+                    >
                       {item.trend}
                     </span>
                     <ArrowUpRight
