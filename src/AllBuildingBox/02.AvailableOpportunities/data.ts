@@ -1,12 +1,73 @@
-import { Target } from "lucide-react";
+import { Target, KeyRound, Tag, UserCheck, PieChart } from "lucide-react";
 
 export const opportunitiesData = {
   headerIcon: Target,
   title: "Available Opportunities",
+  subtitle: "INVESTMENT & LEASING PORTFOLIO",
   metrics: [
-    { label: "LEASE", value: "42", sub: "Units available" },
-    { label: "SALE", value: "18", sub: "Units listed" },
-    { label: "PRE-LEASED", value: "6", sub: "Active tenants" },
-    { label: "FRACTIONAL", value: "3", sub: "Opportunities" },
+    {
+      id: "lease",
+      label: "LEASE",
+      value: "42",
+      sub: "Units available",
+      badge: "High Demand",
+      icon: KeyRound,
+      trend: "+12% this month",
+      colorTheme: {
+        iconBg: "bg-emerald-600 text-white border-emerald-700/20 shadow-[0_2px_8px_rgba(5,150,105,0.35)]",
+        cardHoverBg: "hover:bg-emerald-50/40 hover:border-emerald-300 hover:shadow-[0_12px_28px_rgba(5,150,105,0.12)]",
+        badge: "bg-emerald-500/10 text-emerald-700 border-emerald-500/20",
+        accentText: "group-hover:text-emerald-600",
+        topBorder: "bg-emerald-500",
+      },
+    },
+    {
+      id: "sale",
+      label: "SALE",
+      value: "18",
+      sub: "Units listed",
+      badge: "Prime Assets",
+      icon: Tag,
+      trend: "Freehold Titles",
+      colorTheme: {
+        iconBg: "bg-sky-600 text-white border-sky-700/20 shadow-[0_2px_8px_rgba(2,132,199,0.35)]",
+        cardHoverBg: "hover:bg-sky-50/40 hover:border-sky-300 hover:shadow-[0_12px_28px_rgba(2,132,199,0.12)]",
+        badge: "bg-sky-500/10 text-sky-700 border-sky-500/20",
+        accentText: "group-hover:text-sky-600",
+        topBorder: "bg-sky-500",
+      },
+    },
+    {
+      id: "pre-leased",
+      label: "PRE-LEASED",
+      value: "6",
+      sub: "Active tenants",
+      badge: "Guaranteed ROI",
+      icon: UserCheck,
+      trend: "9.2% Avg Yield",
+      colorTheme: {
+        iconBg: "bg-violet-600 text-white border-violet-700/20 shadow-[0_2px_8px_rgba(124,58,237,0.35)]",
+        cardHoverBg: "hover:bg-violet-50/40 hover:border-violet-300 hover:shadow-[0_12px_28px_rgba(124,58,237,0.12)]",
+        badge: "bg-violet-500/10 text-violet-700 border-violet-500/20",
+        accentText: "group-hover:text-violet-600",
+        topBorder: "bg-violet-500",
+      },
+    },
+    {
+      id: "fractional",
+      label: "FRACTIONAL",
+      value: "3",
+      sub: "Opportunities",
+      badge: "Co-Investment",
+      icon: PieChart,
+      trend: "From ₹25 Lakhs",
+      colorTheme: {
+        iconBg: "bg-rose-600 text-white border-rose-700/20 shadow-[0_2px_8px_rgba(225,29,72,0.35)]",
+        cardHoverBg: "hover:bg-rose-50/40 hover:border-rose-300 hover:shadow-[0_12px_28px_rgba(225,29,72,0.12)]",
+        badge: "bg-rose-500/10 text-rose-700 border-rose-500/20",
+        accentText: "group-hover:text-rose-600",
+        topBorder: "bg-rose-500",
+      },
+    },
   ],
 };
