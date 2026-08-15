@@ -33,18 +33,27 @@ export default function Mobile() {
         />
 
         <div className="px-4 mt-5 mb-1 flex justify-center w-full">
-          <div className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${mediaData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 px-2 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative mx-auto w-fit max-w-full overflow-visible no-scrollbar">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60 rounded-[4px]" />
+            
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
+                title={activeTab !== tab.label ? tab.label : undefined}
                 className={`relative flex items-center justify-center py-2 rounded-[4px] transition-all duration-300 ease-in-out z-10 group focus-visible:outline-none border ${
                   activeTab === tab.label
-                    ? "flex-1 border-transparent px-3"
-                    : "flex-none w-11 bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50"
+                    ? "w-auto px-4 border-transparent"
+                    : "flex-none w-10 bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50"
                 }`}
               >
+                {activeTab !== tab.label && (
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#0a1128] text-white text-[0.6rem] font-medium rounded-[3px] opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 whitespace-nowrap shadow-md">
+                    {tab.label}
+                    <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#0a1128] rotate-45" />
+                  </div>
+                )}
+
                 {activeTab === tab.label && (
                   <motion.div
                     layoutId="mediaTabActiveMobile"
@@ -70,7 +79,7 @@ export default function Mobile() {
                     <tab.icon size={12} strokeWidth={2.2} />
                   </div>
                   <span className={`font-bold text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out ${
-                    activeTab === tab.label ? "max-w-[120px] opacity-100 ml-1.5 sm:ml-2 text-white" : "max-w-0 opacity-0 ml-0 text-white"
+                    activeTab === tab.label ? "w-auto opacity-100 ml-2 text-white" : "max-w-0 opacity-0 ml-0 text-white"
                   }`}>
                     {tab.label}
                   </span>
