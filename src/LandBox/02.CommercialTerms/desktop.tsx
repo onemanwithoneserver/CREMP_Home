@@ -48,32 +48,39 @@ export default function Desktop() {
         />
 
         <div className="px-6 mt-5 mb-1 flex justify-center w-full">
-          <div className={`flex gap-1.5 mx-auto bg-white/40 backdrop-blur-2xl rounded-[6px] p-1.5 border border-white/60 shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_8px_32px_rgba(0,0,0,0.05)] relative ${commercialData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
+          <div className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
             {commercialData.tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 flex items-center justify-center gap-1 py-2 px-1 lg:px-2 text-[0.7rem] lg:text-[0.8rem] font-bold tracking-wide uppercase whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none ${
+                className={`flex-1 relative flex flex-col items-center justify-center py-3 px-2 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border ${
                   activeTab === tab
-                    ? "text-white"
-                    : "text-gray-600 hover:text-[#0a1128] bg-white/50 border border-white/40 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:bg-white/80 hover:shadow-md"
+                    ? "border-transparent"
+                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50"
                 }`}
               >
                 {activeTab === tab && (
                   <motion.div
                     layoutId="commercialTabActiveDesktop"
-                    className="absolute inset-0 bg-[#0b1b42] rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] border border-[#d4af37]/50"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
                     transition={{
                       type: "spring",
                       stiffness: 380,
                       damping: 28,
                     }}
                   >
-                    <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
-                    <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                    <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-                <span className="relative z-10">{tab}</span>
+                
+                <span className={`relative z-10 font-bold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                  activeTab === tab ? "text-white" : "text-[#0a1128]"
+                }`}>
+                  {tab}
+                </span>
               </button>
             ))}
           </div>
