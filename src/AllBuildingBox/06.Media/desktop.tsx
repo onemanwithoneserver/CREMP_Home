@@ -32,23 +32,23 @@ export default function Desktop() {
           icon={ImageIcon}
         />
 
-        <div className="px-6 mt-5 mb-1 flex justify-center w-full">
-          <div className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${mediaData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
+        <div className="px-4 mt-4 mb-1 flex justify-center w-full">
+          <div className="grid grid-cols-4 gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.04)] relative overflow-hidden w-full">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
-                className={`flex-1 relative flex flex-col items-center justify-center py-2.5 px-2 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border ${
+                className={`relative flex items-center justify-center py-2 px-1 rounded-[3px] transition-all duration-300 z-10 group focus-visible:outline-none border min-w-0 ${
                   activeTab === tab.label
                     ? "border-transparent"
-                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50"
+                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:bg-white/50"
                 }`}
               >
                 {activeTab === tab.label && (
                   <motion.div
                     layoutId="mediaTabActiveDesktop"
-                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[3px] shadow-[0_4px_16px_rgba(212,175,55,0.25)] backdrop-blur-md"
                     transition={{
                       type: "spring",
                       stiffness: 380,
@@ -61,15 +61,15 @@ export default function Desktop() {
                   </motion.div>
                 )}
                 
-                <div className="flex items-center gap-2 relative z-10">
-                  <div className={`w-7 h-7 rounded-[4px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm ${
+                <div className="flex items-center gap-1.5 relative z-10 min-w-0 justify-center">
+                  <div className={`w-6 h-6 rounded-[3px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm shrink-0 ${
                     activeTab === tab.label 
-                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]" 
+                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.25)]" 
                       : "bg-white/80 text-gray-600 border border-transparent group-hover:border-gray-300 shadow-sm"
                   }`}>
-                    <tab.icon size={14} strokeWidth={2} />
+                    <tab.icon size={13} strokeWidth={2} />
                   </div>
-                  <span className={`font-semibold text-[0.65rem] lg:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                  <span className={`font-semibold text-[0.62rem] uppercase tracking-wider whitespace-nowrap truncate transition-colors duration-300 ${
                     activeTab === tab.label ? "text-white" : "text-[#0a1128]"
                   }`}>
                     {tab.label}
@@ -180,7 +180,7 @@ export default function Desktop() {
                 </motion.div>
               )}
 
-              {activeTab === "Virtual Tour" && (
+              {(activeTab === "Virtual Tour" || activeTab === "3D Tour") && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}

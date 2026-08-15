@@ -190,7 +190,7 @@ export default function Mobile() {
                 </motion.div>
               )}
 
-              {activeTab === "Virtual Tour" && (
+              {(activeTab === "Virtual Tour" || activeTab === "3D Tour") && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}

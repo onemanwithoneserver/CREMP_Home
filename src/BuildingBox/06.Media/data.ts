@@ -12,7 +12,7 @@ export const mediaData = {
   tabs: [
     { label: "Video", count: 3, icon: Video },
     { label: "Floor Plan", count: 2, icon: Map },
-    { label: "Virtual Tour", count: 1, icon: Maximize },
+    { label: "3D Tour", count: 1, icon: Maximize },
     { label: "Photos", count: 14, icon: Images },
   ],
   videos: [
