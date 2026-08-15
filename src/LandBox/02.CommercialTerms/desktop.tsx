@@ -11,6 +11,24 @@ export default function Desktop() {
   const currentData =
     commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
 
+  const listItemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    show: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.08,
+        duration: 0.3,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    }),
+    exit: { 
+      opacity: 0, 
+      y: -10, 
+      transition: { duration: 0.15 } 
+    }
+  };
+
   return (
     <motion.div
       initial="hidden"
@@ -68,44 +86,95 @@ export default function Desktop() {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-4 w-full"
             >
-              <div className="w-full bg-white rounded-[4px] border border-gray-100 p-6 shadow-sm relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
+              {/* Primary Price Card */}
+              <div className="relative w-full rounded-[4px] bg-gradient-to-br from-[#0a1128] via-[#0d1e47] to-[#0a1128] p-6 shadow-[0_8px_20px_rgba(11,27,66,0.15)] overflow-hidden group border border-[#0b1b42]/20">
+                {/* Animated Background Orbs */}
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3] 
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute -top-32 -right-32 w-80 h-80 bg-gradient-to-br from-[#d4af37]/20 to-transparent rounded-full blur-3xl pointer-events-none" 
+                />
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    opacity: [0.2, 0.4, 0.2] 
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-tr from-blue-500/15 to-transparent rounded-full blur-2xl pointer-events-none" 
+                />
 
-                <div className="flex justify-between items-center relative z-10 w-full">
+                <div className="flex justify-between items-center relative z-10 w-full gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-[0.65rem] font-bold text-[#d4af37] tracking-[0.2em] uppercase flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.5)] shrink-0" />
+                    <motion.span 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1, duration: 0.3 }}
+                      className="inline-flex items-center gap-2 text-[0.65rem] font-bold text-[#d4af37] tracking-[0.2em] uppercase"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-[2px] bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                       {currentData.primaryAmountLabel}
-                    </span>
+                    </motion.span>
 
                     {currentData.primarySub && (
-                      <span className="text-[0.8rem] text-gray-500 font-medium">
+                      <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2, duration: 0.3 }}
+                        className="text-blue-100/70 text-[0.8rem] font-medium"
+                      >
                         {currentData.primarySub}
-                      </span>
+                      </motion.p>
                     )}
                   </div>
 
-                  <div className="flex items-baseline gap-1.5 text-right flex-wrap justify-end pl-2">
-                    <span
-                      className={`text-[2.5rem] font-bold leading-tight tracking-tight pr-1 ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
+                  <div className="flex flex-col gap-0.5 text-right items-end pl-2">
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95, originX: 1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay: 0.1 }}
+                      className="text-[2.5rem] font-bold tracking-tight leading-none text-white"
                     >
                       {currentData.primaryAmount}
-                    </span>
+                    </motion.div>
+                    
                     {currentData.primaryDesc && (
-                      <span className="text-[0.95rem] text-gray-500 font-medium tracking-wide">
+                      <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.3 }}
+                        className="text-blue-100/90 text-[0.95rem] font-medium tracking-wide mt-1"
+                      >
                         {currentData.primaryDesc}
-                      </span>
+                      </motion.p>
                     )}
                   </div>
                 </div>
               </div>
 
+              {/* Details List */}
               <div className="flex flex-wrap gap-4">
                 {currentData.details.map((detail, idx) => (
                   <motion.div
-                    key={idx}
+                    key={`${activeTab}-detail-${idx}`}
+                    custom={idx}
+                    variants={listItemVariants}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
                     whileHover={{ scale: 1.02 }}
-                    className="flex-1 min-w-[200px] basis-[calc(33.333%-0.5rem)] flex flex-col gap-3 p-4 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group"
+                    className="flex-1 min-w-[200px] basis-[calc(33.333%-0.5rem)] flex flex-col gap-3 p-4 rounded-[4px] bg-gray-50/50 hover:bg-white border border-transparent hover:border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group cursor-default"
                   >
                     <div className="flex items-center gap-2.5 text-gray-600">
                       <div className="relative w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm overflow-hidden">
@@ -128,7 +197,7 @@ export default function Desktop() {
                       </span>
                     </div>
                     <span
-                      className={`text-[1rem] font-semibold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                      className={`text-[1rem] font-bold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
                     >
                       {detail.value}
                     </span>

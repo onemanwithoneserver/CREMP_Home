@@ -5,11 +5,29 @@ import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer } from "../components/animations";
 
 export default function Mobile() {
-  const [activeTab, setActiveTab] = useState<
-    (typeof commercialData.tabs)[number]
-  >(commercialData.tabs[0]);
-  const currentData =
-    commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
+  const [activeTab, setActiveTab] = useState<(typeof commercialData.tabs)[number]>(
+    commercialData.tabs[0]
+  );
+  
+  const currentData = commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
+
+  const listItemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    show: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.08,
+        duration: 0.3,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    }),
+    exit: { 
+      opacity: 0, 
+      y: -10, 
+      transition: { duration: 0.15 } 
+    }
+  };
 
   return (
     <motion.div
@@ -32,10 +50,11 @@ export default function Mobile() {
         <div className="px-5 mt-5 mb-1 flex justify-center w-full">
           <div className="flex w-full bg-[#0b1b42] rounded-[6px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
             {commercialData.tabs.map((tab) => (
-              <button
+              <motion.button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 py-2.5 px-4 text-[0.75rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none min-w-max ${
+                whileTap={{ scale: 0.96 }}
+                className={`relative flex-1 py-2.5 px-4 text-[0.75rem] font-semibold whitespace-nowrap transition-colors duration-300 rounded-[2px] z-10 focus:outline-none min-w-max ${
                   activeTab === tab
                     ? "text-[#0a1128]"
                     : "text-gray-400 hover:text-white"
@@ -45,15 +64,11 @@ export default function Mobile() {
                   <motion.div
                     layoutId="commercialTabActiveMobile"
                     className="absolute inset-0 bg-white rounded-[2px] shadow-sm border border-white/20"
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 30,
-                    }}
+                    transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                   />
                 )}
                 <span className="relative z-10">{tab}</span>
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -62,68 +77,123 @@ export default function Mobile() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-4 w-full"
             >
-              <div className="w-full bg-white rounded-[4px] border border-gray-100 p-5 shadow-sm relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
-
-                <div className="flex justify-between items-center relative z-10 w-full">
+              {/* Primary Price Card */}
+              <div className="relative w-full rounded-[4px] bg-gradient-to-br from-[#0a1128] via-[#0d1e47] to-[#0a1128] p-5 shadow-[0_8px_20px_rgba(11,27,66,0.15)] overflow-hidden group border border-[#0b1b42]/20">
+                {/* Animated Background Orbs */}
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3] 
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#d4af37]/20 to-transparent rounded-full blur-3xl pointer-events-none" 
+                />
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    opacity: [0.2, 0.4, 0.2] 
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className="absolute -bottom-12 -left-12 w-32 h-32 bg-gradient-to-tr from-blue-500/15 to-transparent rounded-full blur-2xl pointer-events-none" 
+                />
+                
+                <div className="relative z-10 flex justify-between items-center w-full gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-[0.6rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.4)] shrink-0" />
+                    <motion.span 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1, duration: 0.3 }}
+                      className="inline-flex items-center gap-1.5 text-[0.6rem] font-bold text-[#d4af37] tracking-[0.18em] uppercase"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-[2px] bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                       {currentData.primaryAmountLabel}
-                    </span>
-
+                    </motion.span>
+                    
                     {currentData.primarySub && (
-                      <span className="text-[0.75rem] text-gray-500 font-medium">
+                      <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2, duration: 0.3 }}
+                        className="text-blue-100/70 text-[0.75rem] font-medium"
+                      >
                         {currentData.primarySub}
-                      </span>
+                      </motion.p>
                     )}
                   </div>
 
-                  <div className="flex flex-col items-end gap-0.5 text-right flex-wrap pl-2">
-                    <span
-                      className={`text-[1.8rem] sm:text-[2rem] font-bold leading-tight tracking-tight pr-1 ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
+                  <div className="flex flex-col gap-0.5 text-right items-end pl-2">
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95, originX: 1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay: 0.1 }}
+                      className="text-[1.8rem] sm:text-[2rem] font-bold tracking-tight leading-none text-white"
                     >
                       {currentData.primaryAmount}
-                    </span>
+                    </motion.div>
+                    
                     {currentData.primaryDesc && (
-                      <span className="text-[0.85rem] text-gray-500 font-medium tracking-wide">
+                      <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.3 }}
+                        className="text-blue-100/90 text-[0.85rem] font-medium tracking-wide mt-1"
+                      >
                         {currentData.primaryDesc}
-                      </span>
+                      </motion.p>
                     )}
                   </div>
                 </div>
               </div>
 
+              {/* Details List */}
               <div className="flex flex-col gap-3">
                 {currentData.details.map((detail, idx) => (
                   <motion.div
-                    key={idx}
+                    key={`${activeTab}-detail-${idx}`}
+                    custom={idx}
+                    variants={listItemVariants}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
                     whileHover={{ scale: 1.01 }}
-                    className="w-full flex flex-col gap-3 p-4 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group"
+                    whileTap={{ scale: 0.99 }}
+                    className="flex items-center justify-between p-3.5 bg-gray-50/50 hover:bg-white border border-transparent hover:border-gray-100 rounded-[4px] shadow-sm hover:shadow-md transition-all duration-300 cursor-default group"
                   >
-                    <div className="flex items-center gap-2.5 text-gray-600">
-                      <div className="relative w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm overflow-hidden">
+                    <div className="flex items-center gap-2.5">
+                      <div className="relative w-8 h-8 rounded-[4px] flex items-center justify-center shrink-0 overflow-hidden shadow-sm">
                         <motion.div
-                          className={`absolute inset-0 ${"bgClass" in detail ? detail.bgClass : "bg-[#0a1128]"}`}
+                          initial={false}
+                          whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
+                          transition={{ duration: 0.3 }}
+                          className={`absolute inset-0 transition-transform duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-[#0a1128]"}`}
                         />
                         <detail.icon
                           size={15}
                           strokeWidth={2}
-                          className="relative z-10 pointer-events-none"
+                          className="relative z-10 pointer-events-none text-white"
                         />
                       </div>
-                      <span className="text-[0.7rem] font-semibold text-gray-500 group-hover:text-[#0a1128] transition-colors">
+                      <span className="text-[0.75rem] font-semibold text-gray-500 group-hover:text-[#0a1128] transition-colors">
                         {detail.label}
                       </span>
                     </div>
                     <span
-                      className={`text-[0.85rem] font-semibold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                      className={`text-[0.9rem] font-bold text-right tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
                     >
                       {detail.value}
                     </span>
