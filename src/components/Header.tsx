@@ -32,9 +32,9 @@ const PAGE_LABELS: Record<Page, string> = {
   "buyers-and-sellers": "Buyers & Sellers",
   "developer-and-owner": "Developer & Owner",
   filters: "Filters",
-  "building-box": "Building Box",
-  "all-building-box": "Building Core & Shell",
-  "land-box": "Land Box",
+  "building-box": "Building Details",
+  "all-building-box": "Full Building",
+  "land-box": "Land Details",
 };
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
