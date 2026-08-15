@@ -43,17 +43,17 @@ export default function Mobile() {
                     <div className={`w-8 h-8 rounded-[4px] border ${iconBg} flex items-center justify-center shrink-0`}>
                       <Icon size={15} strokeWidth={2.2} className="text-white" />
                     </div>
-                    <span className="text-[0.62rem] font-bold text-gray-500 uppercase tracking-wider truncate">
+                    <span className="text-[0.62rem] font-semibold text-gray-500 uppercase tracking-wider truncate">
                       {item.type}
                     </span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded-[2px] border text-[0.55rem] font-bold tracking-wider uppercase ${badge}`}>
+                  <span className={`px-2 py-0.5 rounded-[2px] border text-[0.55rem] font-semibold tracking-wider uppercase ${badge}`}>
                     {item.badge}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[#0a1128] font-bold text-[0.98rem] mb-2.5 leading-snug">
+                <h3 className="text-[#0a1128] font-semibold text-[0.98rem] mb-2.5 leading-snug">
                   {item.title}
                 </h3>
 
@@ -65,7 +65,7 @@ export default function Mobile() {
                       {item.area}
                     </span>
                   </div>
-                  <span className={`text-[1.05rem] font-bold ${priceText}`}>
+                  <span className={`text-[1.05rem] font-semibold ${priceText}`}>
                     {item.price}
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export default function Mobile() {
                     </span>
                   </div>
 
-                  <button className="flex items-center gap-1 text-[0.72rem] font-bold text-[#0b1b42] px-2 py-0.5 rounded-[3px] transition-all duration-300 group-hover:bg-[#0b1b42] group-hover:text-white">
+                  <button className="flex items-center gap-1 text-[0.72rem] font-semibold text-[#0b1b42] px-2 py-0.5 rounded-[3px] transition-all duration-300 group-hover:bg-[#0b1b42] group-hover:text-white">
                     <span>View Listing</span>
                     <ArrowRight
                       size={12}

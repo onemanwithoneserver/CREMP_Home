@@ -43,17 +43,17 @@ export default function Desktop() {
                     <div className={`w-9 h-9 rounded-[4px] border ${iconBg} transition-transform duration-300 flex items-center justify-center shrink-0`}>
                       <Icon size={17} strokeWidth={2.2} className="text-white" />
                     </div>
-                    <span className="text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">
+                    <span className="text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider">
                       {item.type}
                     </span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded-[2px] border text-[0.6rem] font-bold tracking-wider uppercase ${badge}`}>
+                  <span className={`px-2 py-0.5 rounded-[2px] border text-[0.6rem] font-semibold tracking-wider uppercase ${badge}`}>
                     {item.badge}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[#0a1128] font-bold text-[1.05rem] mb-3 group-hover:text-[#0b1b42] transition-colors leading-tight">
+                <h3 className="text-[#0a1128] font-semibold text-[1.05rem] mb-3 group-hover:text-[#0b1b42] transition-colors leading-tight">
                   {item.title}
                 </h3>
 
@@ -65,7 +65,7 @@ export default function Desktop() {
                       {item.area}
                     </span>
                   </div>
-                  <span className={`text-[1.1rem] font-bold ${priceText} group-hover:scale-105 origin-right transition-transform duration-300`}>
+                  <span className={`text-[1.1rem] font-semibold ${priceText} group-hover:scale-105 origin-right transition-transform duration-300`}>
                     {item.price}
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export default function Desktop() {
                     </span>
                   </div>
 
-                  <button className="flex items-center gap-1.5 text-[0.75rem] font-bold text-[#0b1b42] px-2.5 py-1 rounded-[3px] transition-all duration-300 group-hover:bg-[#0b1b42] group-hover:text-white group-hover:shadow-sm">
+                  <button className="flex items-center gap-1.5 text-[0.75rem] font-semibold text-[#0b1b42] px-2.5 py-1 rounded-[3px] transition-all duration-300 group-hover:bg-[#0b1b42] group-hover:text-white group-hover:shadow-sm">
                     <span>View Listing</span>
                     <ArrowRight
                       size={13}

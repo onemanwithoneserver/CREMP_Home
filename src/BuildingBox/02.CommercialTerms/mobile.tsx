@@ -58,7 +58,7 @@ export default function Mobile() {
                   </motion.div>
                 )}
                 
-                <span className={`relative z-10 font-bold text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                <span className={`relative z-10 font-semibold text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
                   activeTab === tab ? "text-white" : "text-[#0a1128]"
                 }`}>
                   {tab}

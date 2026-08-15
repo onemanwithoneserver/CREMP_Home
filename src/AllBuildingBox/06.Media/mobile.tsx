@@ -79,7 +79,7 @@ export default function Mobile() {
                   }`}>
                     <tab.icon size={12} strokeWidth={2.2} />
                   </div>
-                  <span className={`font-bold text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out ${
+                  <span className={`font-semibold text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out ${
                     activeTab === tab.label ? "w-auto opacity-100 ml-2 text-white" : "max-w-0 opacity-0 ml-0 text-white"
                   }`}>
                     {tab.label}

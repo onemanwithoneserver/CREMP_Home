@@ -47,12 +47,12 @@ export default function Desktop() {
                       <div className={`w-9 h-9 rounded-[4px] border ${iconBg} group-hover:scale-110 group-hover:rotate-[6deg] transition-all duration-300 flex items-center justify-center shrink-0`}>
                         <Icon size={17} strokeWidth={2.2} className="text-white" />
                       </div>
-                      <span className={`px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider rounded-[2px] border ${badge}`}>
+                      <span className={`px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider rounded-[2px] border ${badge}`}>
                         {item.badge}
                       </span>
                     </div>
 
-                    <span className="text-[0.65rem] font-bold text-gray-400 uppercase tracking-widest block mb-1">
+                    <span className="text-[0.65rem] font-semibold text-gray-400 uppercase tracking-widest block mb-1">
                       {item.label}
                     </span>
 

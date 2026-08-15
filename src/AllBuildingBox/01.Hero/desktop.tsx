@@ -21,14 +21,14 @@ export default function Desktop() {
         <div className="flex justify-between items-center w-full">
           <motion.div variants={fadeInUp} className="flex items-center gap-2 flex-wrap">
             {/* Grade A Badge */}
-            <span className="px-2.5 py-1 text-[0.62rem] font-bold tracking-wider uppercase rounded-[3px] bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm flex items-center gap-1.5 backdrop-blur-md">
+            <span className="px-2.5 py-1 text-[0.62rem] font-semibold tracking-wider uppercase rounded-[3px] bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm flex items-center gap-1.5 backdrop-blur-md">
               <Sparkles size={11} className="text-[#d4af37]" />
               {heroData.badges[0] || "GRADE A"}
             </span>
 
             {/* Comm Complex Badge */}
             {heroData.badges[1] && (
-              <span className="px-2.5 py-1 text-[0.62rem] font-bold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm flex items-center gap-1.5 backdrop-blur-md">
+              <span className="px-2.5 py-1 text-[0.62rem] font-semibold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm flex items-center gap-1.5 backdrop-blur-md">
                 <Building2 size={11} className="text-gray-400" />
                 {heroData.badges[1]}
               </span>
@@ -41,7 +41,7 @@ export default function Desktop() {
           <div className="flex flex-col gap-1.5 min-w-0">
             <motion.h1
               variants={fadeInUp}
-              className="text-2xl sm:text-[1.85rem] font-bold tracking-tight text-white leading-tight"
+              className="text-2xl sm:text-[1.85rem] font-semibold tracking-tight text-white leading-tight"
             >
               {heroData.title}
             </motion.h1>
@@ -66,7 +66,7 @@ export default function Desktop() {
             >
               <BadgeCheck size={16} className="text-blue-400 fill-blue-500/20" />
               <div className="flex flex-col leading-none">
-                <span className="text-[0.72rem] font-bold text-blue-400">
+                <span className="text-[0.72rem] font-semibold text-blue-400">
                   Verified
                 </span>
               </div>

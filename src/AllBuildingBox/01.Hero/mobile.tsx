@@ -20,14 +20,14 @@ export default function Mobile() {
         <div className="flex justify-between items-center w-full gap-2">
           <motion.div variants={fadeInUp} className="flex items-center gap-1.5 flex-wrap">
             {/* Grade A Badge */}
-            <span className="px-2 py-0.5 text-[0.6rem] font-bold tracking-wider uppercase rounded-[3px] bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm flex items-center gap-1 backdrop-blur-md">
+            <span className="px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase rounded-[3px] bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm flex items-center gap-1 backdrop-blur-md">
               <Sparkles size={10} className="text-[#d4af37]" />
               {heroData.badges[0] || "GRADE A"}
             </span>
 
             {/* Comm Complex Badge */}
             {heroData.badges[1] && (
-              <span className="px-2 py-0.5 text-[0.6rem] font-bold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm flex items-center gap-1 backdrop-blur-md">
+              <span className="px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm flex items-center gap-1 backdrop-blur-md">
                 <Building2 size={10} className="text-gray-400" />
                 {heroData.badges[1]}
               </span>
@@ -38,7 +38,7 @@ export default function Mobile() {
         {/* Title */}
         <motion.h1
           variants={fadeInUp}
-          className="text-xl font-bold tracking-tight text-white leading-tight"
+          className="text-xl font-semibold tracking-tight text-white leading-tight"
         >
           {heroData.title}
         </motion.h1>
@@ -63,7 +63,7 @@ export default function Mobile() {
               className="flex items-center gap-1 px-2 py-1 rounded-[3px] bg-blue-500/15 border border-blue-400/40 text-blue-400 shrink-0 shadow-sm backdrop-blur-md"
             >
               <BadgeCheck size={14} className="text-blue-400 fill-blue-500/20" />
-              <span className="text-[0.62rem] font-bold tracking-wide uppercase text-blue-400 whitespace-nowrap">
+              <span className="text-[0.62rem] font-semibold tracking-wide uppercase text-blue-400 whitespace-nowrap">
                 Verified
               </span>
             </motion.div>

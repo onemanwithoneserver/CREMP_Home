@@ -76,7 +76,7 @@ export default function Desktop() {
                   </motion.div>
                 )}
                 
-                <span className={`relative z-10 font-bold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                <span className={`relative z-10 font-semibold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
                   activeTab === tab ? "text-white" : "text-[#0a1128]"
                 }`}>
                   {tab}
@@ -131,7 +131,7 @@ export default function Desktop() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1, duration: 0.3 }}
-                      className="inline-flex items-center gap-2 text-[0.65rem] font-bold text-[#d4af37] tracking-[0.2em] uppercase"
+                      className="inline-flex items-center gap-2 text-[0.65rem] font-semibold text-[#d4af37] tracking-[0.2em] uppercase"
                     >
                       <span className="w-1.5 h-1.5 rounded-[2px] bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                       {currentData.primaryAmountLabel}
@@ -154,7 +154,7 @@ export default function Desktop() {
                       initial={{ opacity: 0, scale: 0.95, originX: 1 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay: 0.1 }}
-                      className="text-[2.5rem] font-bold tracking-tight leading-none text-white"
+                      className="text-[2.5rem] font-semibold tracking-tight leading-none text-white"
                     >
                       {currentData.primaryAmount}
                     </motion.div>
@@ -207,7 +207,7 @@ export default function Desktop() {
                       </span>
                     </div>
                     <span
-                      className={`text-[1rem] font-bold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                      className={`text-[1rem] font-semibold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
                     >
                       {detail.value}
                     </span>

@@ -48,7 +48,7 @@ export default function SectionHeader({
             <div className="flex items-center justify-center w-5 h-5 sm:w-5.5 sm:h-5.5 rounded-[3px] bg-gradient-to-br from-[#d4af37] via-[#b38728] to-[#96771d] shadow-[0_2px_8px_rgba(212,175,55,0.3)] text-white shrink-0">
               <Icon size={12} strokeWidth={2.4} />
             </div>
-            <span className="text-[0.6rem] sm:text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#b38728] dark:text-[#d4af37]">
+            <span className="text-[0.6rem] sm:text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[#b38728] dark:text-[#d4af37]">
               {overline}
             </span>
           </div>
@@ -57,7 +57,7 @@ export default function SectionHeader({
         
         <motion.h2 
           variants={fadeInUp} 
-          className="text-[1.3rem] sm:text-[1.5rem] font-bold text-[#0a1128] dark:text-white tracking-tight leading-tight"
+          className="text-[1.3rem] sm:text-[1.5rem] font-semibold text-[#0a1128] dark:text-white tracking-tight leading-tight"
         >
           {title}
         </motion.h2>

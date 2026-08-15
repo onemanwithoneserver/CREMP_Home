@@ -69,7 +69,7 @@ export default function Desktop() {
                   }`}>
                     <tab.icon size={14} strokeWidth={2} />
                   </div>
-                  <span className={`font-bold text-[0.65rem] lg:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                  <span className={`font-semibold text-[0.65rem] lg:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
                     activeTab === tab.label ? "text-white" : "text-[#0a1128]"
                   }`}>
                     {tab.label}

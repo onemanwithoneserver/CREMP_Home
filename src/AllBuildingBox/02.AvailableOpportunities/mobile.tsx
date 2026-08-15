@@ -47,12 +47,12 @@ export default function Mobile() {
                       <div className={`w-8 h-8 rounded-[4px] border ${iconBg} group-hover:scale-105 transition-transform duration-300 flex items-center justify-center shrink-0`}>
                         <Icon size={15} strokeWidth={2.2} className="text-white" />
                       </div>
-                      <span className={`px-1.5 py-0.5 text-[0.55rem] font-bold uppercase tracking-wider rounded-[2px] border ${badge} truncate`}>
+                      <span className={`px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wider rounded-[2px] border ${badge} truncate`}>
                         {item.badge}
                       </span>
                     </div>
 
-                    <span className="text-[0.6rem] font-bold text-gray-400 uppercase tracking-widest block mb-0.5">
+                    <span className="text-[0.6rem] font-semibold text-gray-400 uppercase tracking-widest block mb-0.5">
                       {item.label}
                     </span>
 
