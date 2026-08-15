@@ -37,10 +37,12 @@ const PAGE_LABELS: Record<Page, string> = {
   "land-box": "Land Box",
 };
 
-const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[]).map((p) => ({
-  value: p,
-  label: PAGE_LABELS[p],
-}));
+const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
+  .filter((p) => !["investors", "buyers-and-sellers", "developer-and-owner"].includes(p))
+  .map((p) => ({
+    value: p,
+    label: PAGE_LABELS[p],
+  }));
 
 export default function Header({
   viewMode,
