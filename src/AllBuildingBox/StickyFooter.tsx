@@ -31,7 +31,7 @@ export default function StickyFooter() {
               <div className="w-full max-w-md mx-auto relative shadow-2xl rounded-[4px] overflow-hidden">
                 <button
                   onClick={() => setIsBookingOpen(false)}
-                  className="absolute -top-11 right-2 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xl border border-gray-200/60 flex items-center justify-center text-gray-700 shadow-lg z-10 hover:bg-white transition-colors"
+                  className="absolute -top-11 right-2 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xl border border-gray-200/60 flex items-center justify-center text-[#0a1128] shadow-lg z-10 hover:bg-white transition-colors"
                 >
                   <X size={18} />
                 </button>
@@ -42,67 +42,67 @@ export default function StickyFooter() {
         </AnimatePresence>
 
         <div className="relative z-50 w-full bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
-
-          <div className="w-full flex items-center justify-between gap-2 relative z-10">
-            <div className="flex items-center gap-1.5 shrink-0">
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
+          <div className="w-full flex items-center gap-2 relative z-10 max-w-[480px] mx-auto">
+            {/* Save & Share */}
+            <div className="flex items-center gap-2 shrink-0">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.92 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsSaved(!isSaved)}
                 className={clsx(
-                  "w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 border shrink-0",
+                  "w-11 h-11 flex flex-col items-center justify-center gap-1 rounded-[4px] transition-all duration-300 border shrink-0",
                   isSaved
-                    ? "bg-rose-500/20 border-rose-500/40 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.2)]"
-                    : "bg-white/5 hover:bg-rose-500/10 border-white/10 hover:border-rose-400/40 text-white hover:text-rose-400 hover:shadow-[0_0_15px_rgba(244,63,94,0.15)]",
+                    ? "bg-[#d4af37]/10 border-[#d4af37]/40 text-[#d4af37]"
+                    : "bg-transparent hover:bg-white/5 border-white/20 hover:border-white/30 text-white",
                 )}
               >
                 <Heart
-                  size={17}
-                  strokeWidth={isSaved ? 0 : 2}
+                  size={16}
+                  strokeWidth={isSaved ? 0 : 1.5}
                   className={clsx(
                     "transition-all duration-300",
                     isSaved
-                      ? "fill-rose-500 text-rose-500 scale-110"
+                      ? "fill-[#d4af37] text-[#d4af37]"
                       : "fill-transparent",
                   )}
                 />
-                <span className="text-[0.52rem] font-semibold">
+                <span className="text-[0.6rem] font-semibold leading-none">
                   {isSaved ? "Saved" : "Save"}
                 </span>
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.92 }}
-                className="w-10 h-11 flex flex-col items-center justify-center gap-0.5 rounded-[4px] transition-all duration-300 bg-white/5 hover:bg-emerald-500/10 border border-white/10 hover:border-emerald-400/40 text-white hover:text-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.15)] shrink-0"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-11 h-11 flex flex-col items-center justify-center gap-1 rounded-[4px] transition-all duration-300 bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/30 text-white shrink-0"
               >
-                <Share2 size={17} strokeWidth={2} />
-                <span className="text-[0.52rem] font-semibold">Share</span>
+                <Share2 size={16} strokeWidth={1.5} />
+                <span className="text-[0.6rem] font-semibold leading-none">
+                  Share
+                </span>
               </motion.button>
             </div>
 
+            {/* WhatsApp & Schedule */}
             <div className="flex items-center gap-2 flex-1 justify-end">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.92 }}
-                className="h-11 flex-1 max-w-[115px] flex items-center justify-center gap-1.5 rounded-[4px] font-semibold transition-all duration-300 bg-white/5 border border-white/10 hover:bg-emerald-500/10 hover:border-emerald-400/25 text-white px-2.5 text-[0.72rem]"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
+                className="h-11 flex-1 max-w-[120px] flex items-center justify-center gap-1.5 rounded-[4px] font-bold transition-all duration-300 bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/30 text-white px-2 text-[0.8rem]"
               >
-                <MessageCircle
-                  size={15}
-                  className="text-emerald-400 shrink-0"
-                />
+                <MessageCircle size={15} strokeWidth={2} className="shrink-0" />
                 <span className="truncate">WhatsApp</span>
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.92 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsBookingOpen(true)}
-                className="h-11 flex-1 max-w-[150px] flex items-center justify-center gap-1.5 rounded-[4px] font-semibold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 px-2.5 text-[0.72rem]"
+                className="h-11 flex-1 max-w-[160px] flex items-center justify-center gap-1.5 rounded-[4px] font-bold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 px-2 text-[0.8rem]"
               >
-                <Calendar size={15} strokeWidth={2} className="shrink-0" />
-                <span className="truncate">Schedule Visit</span>
+                <Calendar size={15} strokeWidth={2} className="shrink-0 text-white" />
+                <span className="truncate text-white">Schedule Visit</span>
               </motion.button>
             </div>
           </div>

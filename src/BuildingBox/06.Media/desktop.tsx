@@ -32,37 +32,49 @@ export default function Desktop() {
           icon={ImageIcon}
         />
 
-        <div className="px-4 mt-3">
-          <div className="flex w-full bg-slate-50/50 backdrop-blur-2xl rounded-[2px] p-0 border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] relative gap-0 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none"></div>
+        <div className="px-6 mt-5 mb-1 flex justify-center w-full">
+          <div className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${mediaData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
-                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 text-[0.68rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
+                className={`flex-1 relative flex flex-col items-center justify-center py-2.5 px-2 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border ${
                   activeTab === tab.label
-                    ? "text-white"
-                    : "bg-white/80 hover:bg-white text-[#0a1128] border-r border-gray-200/50 last:border-r-0"
+                    ? "border-transparent"
+                    : "bg-white/30 backdrop-blur-md border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50"
                 }`}
               >
                 {activeTab === tab.label && (
                   <motion.div
-                    layoutId="mediaTabActive"
-                    className="absolute inset-0 bg-gradient-to-b from-[#1c2e64] to-[#0b1b42] rounded-[2px] shadow-[0_4px_16px_rgba(11,27,66,0.3),inset_0_1px_2px_rgba(255,255,255,0.3)] ring-1 ring-[#0b1b42]/50"
+                    layoutId="mediaTabActiveDesktop"
+                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
                     transition={{
                       type: "spring",
-                      stiffness: 400,
-                      damping: 30,
-                      mass: 0.8,
+                      stiffness: 380,
+                      damping: 28,
                     }}
                   >
-                    <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent rounded-t-[2px] pointer-events-none" />
+                    <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-                <span className="relative z-10 flex items-center gap-1.5">
-                  <tab.icon size={13} strokeWidth={2} />
-                  {tab.label}
-                </span>
+                
+                <div className="flex items-center gap-2 relative z-10">
+                  <div className={`w-7 h-7 rounded-[4px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm ${
+                    activeTab === tab.label 
+                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]" 
+                      : "bg-white/80 text-gray-600 border border-transparent group-hover:border-gray-300 shadow-sm"
+                  }`}>
+                    <tab.icon size={14} strokeWidth={2} />
+                  </div>
+                  <span className={`font-bold text-[0.65rem] lg:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                    activeTab === tab.label ? "text-white" : "text-[#0a1128]"
+                  }`}>
+                    {tab.label}
+                  </span>
+                </div>
               </button>
             ))}
           </div>
