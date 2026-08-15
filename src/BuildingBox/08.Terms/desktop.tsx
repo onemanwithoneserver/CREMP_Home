@@ -154,22 +154,24 @@ export default function Desktop() {
             </AnimatePresence>
           </div>
 
-          <div className="flex w-full mt-5 relative z-10">
-            <motion.button
-              onClick={() => setIsOpen(!isOpen)}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-3 font-bold text-[0.85rem] px-4 py-3.5 rounded-[8px] text-[#0a1128] border border-gray-200 hover:border-gray-300 shadow-sm transition-all bg-white"
-            >
-              <span>{isOpen ? "Hide Specs" : "View All Specs"}</span>
-              <motion.div
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="w-6 h-6 rounded-full bg-slate-50 border border-gray-100 flex items-center justify-center"
+          <div className="flex w-full mt-4 relative z-10">
+            <div className="w-[76px] shrink-0" />
+            <div className="flex-1">
+              <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center justify-center gap-2 font-semibold text-[0.7rem] px-4 py-2.5 rounded-[4px] text-[#d4af37] shadow-sm tracking-widest transition-all bg-white"
               >
-                <ChevronDown size={14} strokeWidth={2.5} className="text-[#0a1128]" />
-              </motion.div>
-            </motion.button>
+                <span>{isOpen ? "Hide Specs" : "View All Specs"}</span>
+                <motion.div
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                >
+                  <ChevronDown size={15} strokeWidth={2.5} />
+                </motion.div>
+              </motion.button>
+            </div>
           </div>
 
           {termsData.warning && (

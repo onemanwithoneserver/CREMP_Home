@@ -66,9 +66,6 @@ export default function Desktop() {
             >
               <BadgeCheck size={16} className="text-blue-400 fill-blue-500/20" />
               <div className="flex flex-col leading-none">
-                <span className="text-[0.55rem] font-bold uppercase tracking-widest text-blue-300">
-                  CREMP
-                </span>
                 <span className="text-[0.72rem] font-bold text-blue-400">
                   Verified
                 </span>
