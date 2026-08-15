@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronRight,ChevronDown,Globe2,MapPin,Sparkles,Building2,Zap,ThumbsUp,ThumbsDown,Star,} from "lucide-react";
+import { ChevronRight,ChevronDown,Globe2,MapPin,Sparkles,Building2,Zap,LayoutGrid} from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
-import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
 
 const pulseGlow: Variants = {
@@ -18,7 +17,6 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(
     franchiseNetworkData.cities[0],
   );
-  const [actionMap, setActionMap] = useState<Record<string, 'up' | 'down' | 'fav' | null>>({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -31,10 +29,6 @@ export default function FranchiseNetworkMobile() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const toggleAction = (id: string, action: 'up' | 'down' | 'fav') => {
-    setActionMap((prev) => ({ ...prev, [id]: prev[id] === action ? null : action }));
-  };
 
   return (
     <section className="w-full py-12 pb-20 px-2 relative overflow-hidden rounded-[8px] bg-white/40 ">
@@ -50,54 +44,60 @@ export default function FranchiseNetworkMobile() {
       />
 
       <div className="relative z-10 w-full flex flex-col gap-6 px-2">
-        <div>
-          <SectionHeader
-            overline={franchiseNetworkData.sectionLabel}
-            title={franchiseNetworkData.title}
-            align="center"
-          />
-          {franchiseNetworkData.subtitle && (
-            <p className="text-gray-600 dark:text-gray-400 text-xs text-center max-w-md mx-auto mt-1">
-              {franchiseNetworkData.subtitle}
-            </p>
-          )}
+        <div className="flex flex-col items-center justify-center gap-2 pb-4">
+          <div className="flex flex-col items-center gap-3">
+            <span className="inline-block px-3 py-1 text-[10px] font-bold tracking-widest text-[#d4af37] border border-[#d4af37]/30 rounded-[4px] uppercase bg-[#fffdf5] dark:bg-[#d4af37]/5 shadow-sm">
+              {franchiseNetworkData.sectionLabel}
+            </span>
+            <h2 className="text-3xl font-black tracking-tight text-[#0a1128] dark:text-white text-center px-2">
+              {franchiseNetworkData.title}
+            </h2>
+          </div>
         </div>
 
-        <div className="relative z-10 w-full grid grid-cols-2 gap-2">
+        <div className="relative z-10 w-full grid grid-cols-2 gap-3">
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
             const bgColors = [
-              "bg-[#0f9d58] shadow-[0_4px_12px_rgba(15,157,88,0.25)]", 
-              "bg-[#8a2be2] shadow-[0_4px_12px_rgba(138,43,226,0.25)]", 
-              "bg-[#f4b400] shadow-[0_4px_12px_rgba(244,180,0,0.25)]", 
-              "bg-[#0088cc] shadow-[0_4px_12px_rgba(0,136,204,0.25)]", 
+              "bg-[#0f9d58]", 
+              "bg-[#8a2be2]", 
+              "bg-[#f4b400]", 
+              "bg-[#0088cc]", 
+            ];
+            const pillColors = [
+              "bg-[#0f9d58]/10 text-[#0f9d58]",
+              "bg-[#8a2be2]/10 text-[#8a2be2]",
+              "bg-[#f4b400]/10 text-[#f4b400]",
+              "bg-[#0088cc]/10 text-[#0088cc]",
             ];
             
             return (
               <div
                 key={idx}
-                className="relative flex flex-col p-3 rounded-[4px]  shadow-sm gap-2"
+                className="relative flex flex-col p-3.5 rounded-[8px] bg-white dark:bg-[#0b1b42]/40 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.2)] gap-3 border border-gray-100 dark:border-white/5"
               >
-                <div className="flex items-start gap-2">
+                <div className="flex flex-col gap-2">
                   <div
                     className={clsx(
-                      "w-7 h-7 rounded-[3px] flex items-center justify-center text-white shrink-0",
+                      "w-10 h-10 rounded-[8px] flex items-center justify-center text-white shrink-0",
                       bgColors[idx]
                     )}
                   >
-                    <Icon size={14} strokeWidth={2.5} />
+                    <Icon size={18} strokeWidth={2} />
                   </div>
-                  <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-0.5 leading-tight">
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     {stat.label}
                   </span>
                 </div>
                 
-                <div className="mt-auto pt-1">
-                  <div className="text-xl font-black text-gray-900 dark:text-white tracking-tight leading-none truncate">
+                <div className="flex flex-col mt-1">
+                  <div className="text-[24px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-[9px] font-semibold text-gray-400 dark:text-gray-500 mt-1 uppercase tracking-wide truncate">
-                    {stat.change}
+                  <div className="self-start">
+                    <span className={clsx("text-[9px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap", pillColors[idx])}>
+                      {stat.change}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -237,24 +237,15 @@ export default function FranchiseNetworkMobile() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex flex-col gap-4 border-b border-gray-200 dark:border-white/10 pb-5"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-black uppercase tracking-widest text-gray-600 dark:text-white/60 flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-[3px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-2.5">
+                  <div className="w-7 h-7 bg-[#0a1128] rounded-[4px] flex items-center justify-center text-white">
                     <MapPin size={14} strokeWidth={2.5} />
                   </div>
-                  Select Hub
+                  SELECT HUB
                 </span>
-                <span
-                  className={clsx(
-                    "text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-[2px] border shadow-sm",
-                    activeCity.status === "active"
-                      ? "bg-[#e8f7f0] dark:bg-emerald-500/10 text-[#0f9d58] dark:text-emerald-400 border-[#a7e8c3] dark:border-emerald-500/20"
-                      : activeCity.status === "expansion"
-                        ? "bg-[#fff9e6] dark:bg-amber-500/10 text-[#d4af37] dark:text-amber-400 border-[#fce390] dark:border-amber-500/20"
-                        : "bg-[#e6f0fa] dark:bg-blue-500/10 text-[#0088cc] dark:text-blue-400 border-[#99d6ff] dark:border-blue-500/20",
-                  )}
-                >
-                  {activeCity.statusLabel}
+                <span className="text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[4px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
+                  EXISTING HUB
                 </span>
               </div>
 
@@ -325,40 +316,42 @@ export default function FranchiseNetworkMobile() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid grid-cols-2 gap-3 text-xs"
+              className="grid grid-cols-3 gap-2"
             >
-              <div className="p-3.5 bg-white dark:bg-white/5 border border-[#e2e8f0] dark:border-white/10 rounded-[4px] flex flex-col justify-between shadow-sm relative overflow-hidden">
-                <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/50 mb-3 block">
-                  Operating Stores
-                </span>
-                <div className="flex items-end justify-between w-full">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-[26px] font-black text-gray-900 dark:text-white tracking-tight leading-none">
-                      {activeCity.outlets}
-                    </span>
-                    <span className="text-[12px] text-gray-400 dark:text-white/50 font-bold mb-0.5">Units</span>
-                  </div>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Building2 size={16} strokeWidth={2.5} />
-                  </div>
+              <div className="p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <div className="w-8 h-8 rounded-[6px] bg-[#0088cc] text-white flex items-center justify-center mb-2">
+                  <Building2 size={14} strokeWidth={2.5} />
                 </div>
+                <span className="text-[20px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-0.5">
+                  {activeCity.outlets}
+                </span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50">
+                  Operating
+                </span>
               </div>
-              
-              <div className="p-3.5 bg-[#fffdf5] dark:bg-[#d4af37]/10 border border-[#fde68a] dark:border-[#d4af37]/20 rounded-[4px] flex flex-col justify-between shadow-sm relative overflow-hidden">
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#b38728] dark:text-[#d4af37]/80 mb-3 block">
-                  In Pipeline
-                </span>
-                <div className="flex items-end justify-between w-full">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-[26px] font-black text-[#d4af37] tracking-tight leading-none">
-                      {activeCity.pipeline}
-                    </span>
-                    <span className="text-[12px] text-[#b38728] dark:text-[#d4af37]/60 font-bold mb-0.5">Loc</span>
-                  </div>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Zap size={16} strokeWidth={2.5} />
-                  </div>
+
+              <div className="p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <div className="w-8 h-8 rounded-[6px] bg-[#f4b400] text-white flex items-center justify-center mb-2">
+                  <Zap size={14} strokeWidth={2.5} />
                 </div>
+                <span className="text-[20px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-0.5">
+                  {activeCity.pipeline}
+                </span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50">
+                  Pipeline
+                </span>
+              </div>
+
+              <div className="p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <div className="w-8 h-8 rounded-[6px] bg-[#8a2be2] text-white flex items-center justify-center mb-2">
+                  <LayoutGrid size={14} strokeWidth={2.5} />
+                </div>
+                <span className="text-[20px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-0.5">
+                  5
+                </span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50">
+                  Formats
+                </span>
               </div>
             </motion.div>
 
@@ -371,86 +364,44 @@ export default function FranchiseNetworkMobile() {
               className="flex flex-col gap-2 mt-1"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[11px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-[3px] bg-[#d4af37] text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Sparkles size={14} strokeWidth={2.5} />
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#0a1128] dark:text-white flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-[4px] bg-[#0f9d58] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Sparkles size={12} strokeWidth={2.5} />
                   </div>
-                  Available Opportunities
+                  AVAILABLE OPPORTUNITIES
                 </span>
-                <span className="text-[10px] font-black tracking-widest text-[#d4af37] bg-[#fffdf5] dark:bg-[#d4af37]/10 px-2 py-1 rounded-[2px] border border-[#fde68a] dark:border-[#d4af37]/20 shadow-sm">
+                <span className="text-[9px] font-bold tracking-widest text-[#0f9d58] uppercase">
                   {activeCity.opportunities?.length || 0} CIRCLES OPEN
                 </span>
               </div>
 
               {/* Table / Row headers */}
-              <div className="flex items-center justify-between px-3 py-2 text-[9px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 border-b border-gray-200 dark:border-white/10">
-                <span className="flex-1">Opportunity Details</span>
-                <span className="w-[80px] text-right">Action</span>
+              <div className="flex items-center justify-between px-3 py-2 mt-1 text-[8px] font-black uppercase tracking-widest text-white bg-[#0a1128] rounded-[4px] shadow-sm">
+                <span className="flex-1">CIRCLE NAME</span>
               </div>
 
               {/* Rows List with custom scrollbar */}
               <div className="flex flex-col gap-2.5 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:hidden pb-2 border-b border-gray-200 dark:border-white/10">
                 {activeCity.opportunities?.map((opp) => {
-                  const currentAction = actionMap[opp.id];
                   return (
                     <div
                       key={opp.id}
-                      className="group flex flex-col gap-3 p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[6px] hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-colors shadow-sm"
+                      className="group flex items-center justify-between p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] shadow-sm"
                     >
-                      <div className="flex justify-between items-start gap-4">
-                        <div className="flex flex-col">
-                          <span className="font-bold text-gray-900 dark:text-white text-[14px] mb-1">
-                            {opp.circleName}
-                          </span>
+                      <div className="flex flex-col flex-1">
+                        <span className="font-bold text-[#0a1128] dark:text-white text-[13px] leading-tight mb-1">
+                          {opp.circleName}
+                        </span>
+                        <div className="flex items-center gap-2 flex-wrap">
                           {opp.badge && (
-                            <span className="text-[9px] font-bold text-[#0f9d58] dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#0f9d58] inline-block" /> {opp.badge} Zone
+                            <span className="text-[8px] font-bold text-[#0f9d58] dark:text-emerald-400 flex items-center gap-1">
+                              <span className="w-1 h-1 rounded-full bg-[#0f9d58]" /> {opp.badge} Zone
                             </span>
                           )}
+                          <span className="inline-block whitespace-nowrap px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-widest rounded-[2px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20">
+                            {opp.format}
+                          </span>
                         </div>
-                        
-                        <span className="inline-block px-2.5 py-1 text-[9px] font-black uppercase tracking-widest rounded-[2px] bg-[#e2e8f0] dark:bg-black/30 text-gray-700 dark:text-white/80 border border-[#cbd5e1] dark:border-white/5">
-                          {opp.format}
-                        </span>
-                      </div>
-
-                      <div className="flex justify-end gap-1.5 mt-1 border-t border-gray-100 dark:border-white/5 pt-3">
-                        <button
-                          onClick={() => toggleAction(opp.id, 'up')}
-                          className={clsx(
-                            "p-2.5 rounded-[4px] transition-all duration-300 border shadow-sm",
-                            currentAction === 'up'
-                              ? "bg-[#e8f7f0] dark:bg-emerald-500/20 text-[#0f9d58] dark:text-emerald-400 border-[#a7e8c3] dark:border-emerald-500/40 flex"
-                              : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hidden group-hover:flex"
-                          )}
-                        >
-                          <ThumbsUp size={14} className={clsx(currentAction === 'up' && "fill-current")} />
-                        </button>
-                        <button
-                          onClick={() => toggleAction(opp.id, 'down')}
-                          className={clsx(
-                            "p-2.5 rounded-[4px] transition-all duration-300 border shadow-sm",
-                            currentAction === 'down'
-                              ? "bg-red-50 dark:bg-red-500/20 text-red-500 dark:text-red-400 border-red-200 dark:border-red-500/40 flex"
-                              : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10 hidden group-hover:flex"
-                          )}
-                        >
-                          <ThumbsDown size={14} className={clsx(currentAction === 'down' && "fill-current")} />
-                        </button>
-                        <button
-                          onClick={() => toggleAction(opp.id, 'fav')}
-                          className={clsx(
-                            "p-2.5 rounded-[4px] transition-all duration-300 border shadow-sm",
-                            currentAction === 'fav' || !currentAction
-                              ? "flex"
-                              : "hidden group-hover:flex",
-                            currentAction === 'fav'
-                              ? "bg-amber-50 dark:bg-amber-500/20 text-amber-500 dark:text-amber-400 border-amber-200 dark:border-amber-500/40"
-                              : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-white/60 border-gray-200 dark:border-white/10"
-                          )}
-                        >
-                          <Star size={14} className={clsx(currentAction === 'fav' && "fill-current")} />
-                        </button>
                       </div>
                     </div>
                   );
@@ -458,14 +409,16 @@ export default function FranchiseNetworkMobile() {
               </div>
             </motion.div>
 
-            <div className="flex flex-col gap-3 pt-3">
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                className="w-full py-3.5 bg-gradient-to-r from-[#d4af37] to-[#e5c158] hover:from-[#b38728] hover:to-[#d4af37] text-[#0a1128] text-[12px] font-black uppercase tracking-widest rounded-[4px] shadow-[0_4px_14px_rgba(212,175,55,0.4)] flex items-center justify-center gap-1.5"
-              >
-                <span>{franchiseNetworkData.cta.primary}</span>
-                <ChevronRight size={16} strokeWidth={3} />
-              </motion.button>
+            <div className="flex flex-col gap-3 pt-3 mt-4">
+              <button className="w-full py-3.5 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[11px] font-bold tracking-widest rounded-[8px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
+                <MapPin size={14} />
+                <span>CHECK TERRITORY AVAILABILITY</span>
+                <ChevronRight
+                  size={16}
+                  strokeWidth={3}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </button>
             </div>
           </div>
         </div>
