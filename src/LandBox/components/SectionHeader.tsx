@@ -1,8 +1,28 @@
-import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 15 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 400, damping: 30 },
+  },
+};
 
 interface SectionHeaderProps {
-  overline?: string;
+  overline: string;
   title: string;
   icon: LucideIcon;
   rightElement?: React.ReactNode;
@@ -15,36 +35,37 @@ export default function SectionHeader({
   rightElement,
 }: SectionHeaderProps) {
   return (
-    <div className="relative flex min-h-[76px] shrink-0 items-center justify-between overflow-hidden bg-[#0b1b42] px-5 sm:px-6 py-4 border-b border-[#d4af37]/20">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#d4af37]/5 via-transparent to-transparent opacity-70" />
-
-      <div className="relative z-10 flex min-w-0 flex-1 items-center gap-5">
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 400, damping: 15 }}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d4af37]/40 bg-gradient-to-br from-white/5 to-transparent shadow-[0_4px_20px_-4px_rgba(212,175,55,0.25)] backdrop-blur-md"
-        >
-          <Icon className="text-[#d4af37]" size={20} strokeWidth={1.5} />
+    <motion.div
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-50px" }}
+      className="relative flex w-full items-end justify-between px-5 sm:px-6 py-6 pb-4"
+    >
+      <div className="flex flex-col gap-2.5">
+        <motion.div variants={fadeInUp} className="flex items-center gap-2">
+          <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-[#d4af37]/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-widest text-[#d4af37] shadow-sm">
+            <Icon size={12} strokeWidth={2} />
+            {overline}
+          </span>
         </motion.div>
-
-        <div className="flex min-w-0 flex-col justify-center gap-1">
-          {overline && (
-            <span className="truncate text-[0.65rem] font-medium uppercase tracking-[0.2em] text-[#d4af37]/80">
-              {overline}
-            </span>
-          )}
-          <h3 className="truncate text-lg font-medium tracking-wide text-white/95">
-            {title}
-          </h3>
-        </div>
+        
+        <motion.h2 
+          variants={fadeInUp} 
+          className="text-[1.5rem] sm:text-[1.75rem] font-semibold text-[#0a1128] tracking-tight leading-none"
+        >
+          {title}
+        </motion.h2>
       </div>
 
       {rightElement && (
-        <div className="relative z-10 ml-4 flex shrink-0 items-center justify-end">
+        <motion.div 
+          variants={fadeInUp} 
+          className="relative z-10 flex shrink-0 items-center justify-end pb-1"
+        >
           {rightElement}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -19,7 +19,7 @@ export default function Mobile() {
       transition: {
         delay: i * 0.08,
         duration: 0.3,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as any,
       },
     }),
     exit: { 
@@ -47,28 +47,34 @@ export default function Mobile() {
           icon={currentData.headerIcon}
         />
 
-        <div className="px-5 mt-5 mb-1 flex justify-center w-full">
-          <div className="flex w-full bg-[#0b1b42] rounded-[6px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
+        <div className="px-5 mt-5 mb-1 flex w-full">
+          <div className="flex w-full bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden">
             {commercialData.tabs.map((tab) => (
-              <motion.button
+              <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                whileTap={{ scale: 0.96 }}
-                className={`relative flex-1 py-2.5 px-4 text-[0.75rem] font-semibold whitespace-nowrap transition-colors duration-300 rounded-[2px] z-10 focus:outline-none min-w-max ${
+                className={`relative flex-1 py-2 text-[0.75rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none ${
                   activeTab === tab
-                    ? "text-[#0a1128]"
-                    : "text-gray-400 hover:text-white"
+                    ? "text-white"
+                    : "text-gray-500 hover:text-[#0a1128] hover:bg-white/50"
                 }`}
               >
                 {activeTab === tab && (
                   <motion.div
                     layoutId="commercialTabActiveMobile"
-                    className="absolute inset-0 bg-white rounded-[2px] shadow-sm border border-white/20"
-                    transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
-                  />
+                    className="absolute inset-0 bg-[#0b1b42] rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] border border-[#d4af37]/50"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 28,
+                    }}
+                  >
+                    <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                  </motion.div>
                 )}
                 <span className="relative z-10">{tab}</span>
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>

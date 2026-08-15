@@ -33,27 +33,30 @@ export default function Desktop() {
         />
 
         <div className="px-6 mt-5 mb-1 flex justify-center w-full">
-          <div className="flex w-fit bg-[#0b1b42] rounded-[6px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
+          <div className="flex w-fit bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-x-auto scrollbar-hide">
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
-                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 text-[0.8rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none min-w-max ${
+                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 px-4 text-[0.8rem] font-bold tracking-wide uppercase whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none min-w-max ${
                   activeTab === tab.label
-                    ? "text-[#0a1128]"
-                    : "text-gray-400 hover:text-white"
+                    ? "text-white"
+                    : "text-gray-500 hover:text-[#0a1128] hover:bg-white/50"
                 }`}
               >
                 {activeTab === tab.label && (
                   <motion.div
                     layoutId="mediaTabActiveDesktop"
-                    className="absolute inset-0 bg-white rounded-[2px] shadow-sm border border-white/20"
+                    className="absolute inset-0 bg-[#0b1b42] rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] border border-[#d4af37]/50"
                     transition={{
                       type: "spring",
-                      stiffness: 400,
-                      damping: 30,
+                      stiffness: 380,
+                      damping: 28,
                     }}
-                  />
+                  >
+                    <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                    <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                  </motion.div>
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
                   <tab.icon size={15} strokeWidth={2} />
