@@ -7,6 +7,7 @@ import MapView from "./MapView";
 
 const CommercialTerms = lazy(() => import("./02.CommercialTerms"));
 const SpaceOverview = lazy(() => import("./03.SpaceOverview"));
+const FitOut = lazy(() => import("./04.FitOut"));
 const Infrastructure = lazy(() => import("./05.Infrastructure"));
 const Media = lazy(() => import("./06.Media"));
 const LocationIntelligence = lazy(() => import("./07.LocationIntelligence"));
@@ -84,6 +85,9 @@ export default function LandBox() {
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <SpaceOverview />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <FitOut />
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <Infrastructure />

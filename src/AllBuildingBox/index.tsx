@@ -7,6 +7,8 @@ import MapView from "./MapView";
 
 const AvailableOpportunities = lazy(() => import("./02.AvailableOpportunities"));
 const Listings = lazy(() => import("./03.Listings"));
+const FitOut = lazy(() => import("./04.FitOut"));
+const Infrastructure = lazy(() => import("./05.Infrastructure"));
 const Media = lazy(() => import("./06.Media"));
 const LocationIntelligence = lazy(() => import("./07.LocationIntelligence"));
 const Terms = lazy(() => import("./08.Terms"));
@@ -64,6 +66,10 @@ export default function AllBuildingBox() {
         <Suspense fallback={<SectionLoader />}>
             <AvailableOpportunities />
             <Listings />
+            <div className="border-b border-gray-100 w-full" />
+            <FitOut />
+            <div className="border-b border-gray-100 w-full" />
+            <Infrastructure />
             <div className="border-b border-gray-100 w-full" />
             <Media />
             <div className="border-b border-gray-100 w-full" />
