@@ -74,23 +74,25 @@ export default function Mobile() {
             <div className="flex justify-between items-stretch gap-2">
               <div className="flex-1 bg-gradient-to-br from-gray-50 to-white  rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
-                
+
                 <div className="flex justify-between items-center relative z-10 w-full">
                   <div className="flex flex-col gap-1.5">
                     <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                       {currentData.primaryAmountLabel}
                     </span>
-                    
+
                     {currentData.primarySub && (
                       <span className="text-[0.72rem] text-gray-500 font-medium ml-3">
                         {currentData.primarySub}
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="flex items-baseline gap-1 mt-0.5 text-right">
-                    <span className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
+                    <span
+                      className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
+                    >
                       {currentData.primaryAmount}
                     </span>
                     {currentData.primaryDesc && (
@@ -116,7 +118,11 @@ export default function Mobile() {
                         transition={{ duration: 0.3 }}
                         className={`absolute inset-0 rounded-[6px] ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
                       />
-                      <detail.icon size={15} strokeWidth={2.2} className="relative z-10 pointer-events-none" />
+                      <detail.icon
+                        size={15}
+                        strokeWidth={2.2}
+                        className="relative z-10 pointer-events-none"
+                      />
                     </div>
                     <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
                       {detail.label}

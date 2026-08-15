@@ -29,10 +29,30 @@ export const commercialData = {
         desc: "3 months",
       },
       details: [
-        { label: "Lease Type", value: "Full Lease", icon: FileText, bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]" },
-        { label: "Maintenance", value: "₹8,000/mo", icon: Building, bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]" },
-        { label: "Escalation", value: "5% pa", icon: TrendingUp, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
-        { label: "Escalation Cycle", value: "36 Months", icon: Calendar, bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]" },
+        {
+          label: "Lease Type",
+          value: "Full Lease",
+          icon: FileText,
+          bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]",
+        },
+        {
+          label: "Maintenance",
+          value: "₹8,000/mo",
+          icon: Building,
+          bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]",
+        },
+        {
+          label: "Escalation",
+          value: "5% pa",
+          icon: TrendingUp,
+          bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
+        },
+        {
+          label: "Escalation Cycle",
+          value: "36 Months",
+          icon: Calendar,
+          bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]",
+        },
       ],
       footer: {
         type: "tag-text",
@@ -62,7 +82,12 @@ export const commercialData = {
           valueColor: "text-amber-600 dark:text-amber-500",
           bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]",
         },
-        { label: "Price / sq.ft", value: "₹15,417", icon: Tag, bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]" },
+        {
+          label: "Price / sq.ft",
+          value: "₹15,417",
+          icon: Tag,
+          bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]",
+        },
       ],
       footer: {
         type: "split",
@@ -86,8 +111,18 @@ export const commercialData = {
         desc: "per annum",
       },
       details: [
-        { label: "Existing Tenant", value: "FabIndia Ltd.", icon: Users, bgClass: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C]" },
-        { label: "Tenant Category", value: "Fashion Retail", icon: Store, bgClass: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]" },
+        {
+          label: "Existing Tenant",
+          value: "FabIndia Ltd.",
+          icon: Users,
+          bgClass: "bg-gradient-to-br from-[#F43F5E] to-[#BE123C]",
+        },
+        {
+          label: "Tenant Category",
+          value: "Fashion Retail",
+          icon: Store,
+          bgClass: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]",
+        },
         {
           label: "Remaining Tenure",
           value: "18 Months",
@@ -95,8 +130,18 @@ export const commercialData = {
           valueColor: "text-cyan-500",
           bgClass: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
         },
-        { label: "Rent Escalation", value: "5% / 36 Months", icon: TrendingUp, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
-        { label: "Sale Price", value: "₹1.85Cr", icon: Tag, bgClass: "bg-gradient-to-br from-[#bf953f] to-[#b38728]" },
+        {
+          label: "Rent Escalation",
+          value: "5% / 36 Months",
+          icon: TrendingUp,
+          bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
+        },
+        {
+          label: "Sale Price",
+          value: "₹1.85Cr",
+          icon: Tag,
+          bgClass: "bg-gradient-to-br from-[#bf953f] to-[#b38728]",
+        },
       ],
     },
     Fractional: {
@@ -121,8 +166,18 @@ export const commercialData = {
           valueColor: "text-emerald-500",
           bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]",
         },
-        { label: "Min. Investment", value: "300 sq.ft", icon: Maximize, bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]" },
-        { label: "Assured Returns", value: "Yes — Monthly", icon: TrendingUp, bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]" },
+        {
+          label: "Min. Investment",
+          value: "300 sq.ft",
+          icon: Maximize,
+          bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]",
+        },
+        {
+          label: "Assured Returns",
+          value: "Yes — Monthly",
+          icon: TrendingUp,
+          bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
+        },
       ],
       footer: {
         type: "text-only",

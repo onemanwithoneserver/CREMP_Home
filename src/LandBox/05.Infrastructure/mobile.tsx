@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { Activity } from "lucide-react";
 import { infrastructureData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-import { fadeInUp, staggerContainer, rowReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  rowReveal,
+} from "../components/animations";
 
 const getStatusStyle = (status: string) => {
   const s = status.toUpperCase();
@@ -60,7 +64,11 @@ export default function Mobile() {
                 <div
                   className={`w-9 h-9 rounded-[6px] flex items-center justify-center shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.iconBg}`}
                 >
-                  <item.icon size={16} strokeWidth={2.2} className="text-white" />
+                  <item.icon
+                    size={16}
+                    strokeWidth={2.2}
+                    className="text-white"
+                  />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
@@ -79,8 +87,6 @@ export default function Mobile() {
             </motion.div>
           ))}
         </motion.div>
-
-
       </motion.div>
     </motion.div>
   );

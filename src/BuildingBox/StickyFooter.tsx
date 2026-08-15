@@ -80,7 +80,6 @@ export default function StickyFooter() {
                 <Share2 size={17} strokeWidth={2} />
                 <span className="text-[0.52rem] font-semibold">Share</span>
               </motion.button>
-
             </div>
 
             <div className="flex items-center gap-2 flex-1 justify-end">

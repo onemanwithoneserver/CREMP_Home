@@ -1,5 +1,3 @@
-
-
 export const heroData = {
   badges: ["GRADE A", "COMM. COMPLEX"],
   title: "Orchid Business Centre",

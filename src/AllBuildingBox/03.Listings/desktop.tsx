@@ -31,8 +31,9 @@ export default function Desktop() {
               whileHover={{ scale: 1.01, y: -2 }}
               className="flex flex-col bg-white rounded-[8px] shadow-sm border border-gray-200 p-4 relative overflow-hidden transition-all hover:shadow-md cursor-pointer group"
             >
-              {/* Top accent line */}
-              <div className={`absolute top-0 left-0 right-0 h-1 border-t-2 ${item.accent} opacity-80`} />
+              <div
+                className={`absolute top-0 left-0 right-0 h-1 border-t-2 ${item.accent} opacity-80`}
+              />
 
               <div className="flex justify-between items-center mb-2 mt-1">
                 <span className="text-[0.65rem] font-semibold text-gray-500">
@@ -58,15 +59,20 @@ export default function Desktop() {
 
               <div className="border-t border-gray-100 pt-3 flex justify-between items-center">
                 <div className="flex items-center gap-1.5">
-                  <div className={`w-1.5 h-1.5 rounded-full ${item.statusColor}`} />
+                  <div
+                    className={`w-1.5 h-1.5 rounded-full ${item.statusColor}`}
+                  />
                   <span className="text-[0.7rem] text-gray-500 font-medium">
                     {item.status}
                   </span>
                 </div>
-                
+
                 <button className="flex items-center gap-1 text-[0.75rem] font-semibold text-[#d4af37]">
                   View Listing
-                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
+                  <ArrowRight
+                    size={12}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
                 </button>
               </div>
             </motion.div>

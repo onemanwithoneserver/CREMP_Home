@@ -20,8 +20,6 @@ const pulseGlow: Variants = {
   },
 };
 
-
-
 const getStatIcon = (label: string, size = 18) => {
   const lower = (label || "").toLowerCase();
   if (lower.includes("outlet") || lower.includes("store"))

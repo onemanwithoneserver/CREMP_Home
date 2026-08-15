@@ -3,7 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sofa, ChevronDown, CheckCircle2 } from "lucide-react";
 import { fitOutData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-import { fadeInUp, staggerContainer, itemReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  itemReveal,
+} from "../components/animations";
 
 export default function Mobile() {
   const [isOpen, setIsOpen] = useState(true);
@@ -86,7 +90,10 @@ export default function Mobile() {
                               variants={itemReveal}
                               className="flex items-center gap-1 px-2.5 py-1 text-[0.62rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm cursor-default"
                             >
-                              <CheckCircle2 size={12} className="text-emerald-500" />
+                              <CheckCircle2
+                                size={12}
+                                className="text-emerald-500"
+                              />
                               {item}
                             </motion.span>
                           ))}
@@ -109,7 +116,9 @@ export default function Mobile() {
                       whileHover={{ scale: 1.02, y: -1 }}
                       className="flex items-center gap-2.5 p-2.5 rounded-[8px] border border-gray-100 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:border-gray-200 transition-all duration-300 group cursor-default"
                     >
-                      <div className={`w-7 h-7 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}>
+                      <div
+                        className={`w-7 h-7 rounded-[6px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}
+                      >
                         <item.icon size={14} strokeWidth={2.2} />
                       </div>
                       <span className="text-[0.72rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors truncate">

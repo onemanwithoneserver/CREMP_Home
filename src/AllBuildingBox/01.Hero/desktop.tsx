@@ -69,7 +69,10 @@ export default function Desktop() {
               {heroData.title}
             </motion.h1>
 
-            <motion.div variants={fadeInUp} className="flex items-center gap-1.5 mt-0.5">
+            <motion.div
+              variants={fadeInUp}
+              className="flex items-center gap-1.5 mt-0.5"
+            >
               <MapPin size={14} className="text-[#d4af37]" />
               <span className="text-[0.75rem] font-medium text-gray-500">
                 {heroData.location}
@@ -78,7 +81,10 @@ export default function Desktop() {
           </div>
 
           {heroData.verified && (
-            <motion.div variants={fadeInUp} className="flex items-center gap-1 mb-1">
+            <motion.div
+              variants={fadeInUp}
+              className="flex items-center gap-1 mb-1"
+            >
               <BadgeCheck size={14} className="text-blue-500" />
               <span className="text-[0.7rem] font-semibold text-blue-500 tracking-wide">
                 CREMP Verified

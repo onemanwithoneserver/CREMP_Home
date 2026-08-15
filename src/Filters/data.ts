@@ -1,8 +1,8 @@
 export interface MapPin {
   id: string;
   name: string;
-  x: number; // percentage from left
-  y: number; // percentage from top
+  x: number;
+  y: number;
   color: "purple" | "orange" | "blue" | "green" | "red";
   listingsCount?: number;
 }

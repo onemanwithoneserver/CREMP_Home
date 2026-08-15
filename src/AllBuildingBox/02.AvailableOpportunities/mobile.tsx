@@ -36,9 +36,7 @@ export default function Mobile() {
                 <span className="text-[1.8rem] font-semibold text-[#0a1128] leading-none mb-1">
                   {item.value}
                 </span>
-                <span className="text-[0.65rem] text-gray-500">
-                  {item.sub}
-                </span>
+                <span className="text-[0.65rem] text-gray-500">{item.sub}</span>
               </motion.div>
             ))}
           </motion.div>

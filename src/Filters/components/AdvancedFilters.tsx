@@ -555,8 +555,7 @@ export default function AdvancedFilters({
                                     </motion.button>
                                   );
                                 })
-                              : /* Single-select with "Any" default */
-                                [
+                              : [
                                   { id: "Any", label: "Any" },
                                   ...cat.options,
                                 ].map((opt, optIndex) => {

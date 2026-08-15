@@ -28,9 +28,7 @@ export default function Desktop() {
 
         <div className="px-4 py-4 relative">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.3)] border border-[#1c2e64] bg-[#0b1b42] group-hover:animate-icon-shake origin-center transition-all duration-300"
-            >
+            <div className="w-12 h-12 rounded-full flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.3)] border border-[#1c2e64] bg-[#0b1b42] group-hover:animate-icon-shake origin-center transition-all duration-300">
               <Lock size={20} strokeWidth={2.5} />
             </div>
             <div className="bg-white/95 px-4 py-2 rounded-full shadow-lg border border-gray-100/80 flex items-center justify-center h-8 relative overflow-hidden min-w-[70px] group-hover:min-w-[120px] transition-all duration-300">
@@ -130,7 +128,11 @@ export default function Desktop() {
                       key="notified"
                       initial={{ scale: 0.5, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      }}
                       className="flex items-center gap-1.5"
                     >
                       <Check size={12} strokeWidth={3} />

@@ -74,29 +74,34 @@ export default function Mobile() {
             <div className="flex justify-between items-stretch gap-2">
               <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
-                
+
                 <div className="flex flex-col relative z-10 gap-1.5 w-full">
                   <div className="flex justify-between items-start w-full">
                     <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                       {currentData.primaryAmountLabel}
                     </span>
-                    
-                    {("secondaryBadge" in currentData && currentData.secondaryBadge) && (
-                      <div className={`px-2 py-1 rounded-[4px] border text-[0.6rem] font-semibold tracking-wider shadow-sm ${currentData.secondaryBadge.color}`}>
-                        {currentData.secondaryBadge.text}
-                      </div>
-                    )}
+
+                    {"secondaryBadge" in currentData &&
+                      currentData.secondaryBadge && (
+                        <div
+                          className={`px-2 py-1 rounded-[4px] border text-[0.6rem] font-semibold tracking-wider shadow-sm ${currentData.secondaryBadge.color}`}
+                        >
+                          {currentData.secondaryBadge.text}
+                        </div>
+                      )}
                   </div>
-                  
+
                   {currentData.primarySub && (
                     <span className="text-[0.72rem] text-gray-500 font-medium ml-3 mt-1">
                       {currentData.primarySub}
                     </span>
                   )}
-                  
+
                   <div className="flex items-baseline gap-1 mt-0.5 ml-3">
-                    <span className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}>
+                    <span
+                      className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
+                    >
                       {currentData.primaryAmount}
                     </span>
                     {currentData.primaryDesc && (
@@ -108,7 +113,8 @@ export default function Mobile() {
                 </div>
               </div>
 
-              {("secondaryDarkCard" in currentData && currentData.secondaryDarkCard) ? (
+              {"secondaryDarkCard" in currentData &&
+              currentData.secondaryDarkCard ? (
                 <div className="bg-[#0b1b42] rounded-[4px] p-3 flex flex-col items-center justify-center min-w-[95px] shadow-[0_8px_25px_rgba(11,27,66,0.2)] relative overflow-hidden border border-[#d4af37]/30 group shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <span className="text-[0.5rem] font-semibold text-gray-400 tracking-[0.15em] text-center relative z-10">
@@ -117,15 +123,15 @@ export default function Mobile() {
                   <span className="text-[1.2rem] font-semibold text-white mt-1 tracking-tight relative z-10">
                     {currentData.secondaryDarkCard.value}
                   </span>
-                  {"desc" in currentData.secondaryDarkCard && currentData.secondaryDarkCard.desc && (
-                    <span className="text-[0.6rem] text-[#d4af37] font-semibold mt-1 relative z-10 bg-[#d4af37]/10 px-2 py-0.5 rounded-full border border-[#d4af37]/20">
-                      {currentData.secondaryDarkCard.desc}
-                    </span>
-                  )}
+                  {"desc" in currentData.secondaryDarkCard &&
+                    currentData.secondaryDarkCard.desc && (
+                      <span className="text-[0.6rem] text-[#d4af37] font-semibold mt-1 relative z-10 bg-[#d4af37]/10 px-2 py-0.5 rounded-full border border-[#d4af37]/20">
+                        {currentData.secondaryDarkCard.desc}
+                      </span>
+                    )}
                 </div>
               ) : null}
             </div>
-
 
             <div className="flex flex-col gap-2.5 mt-1">
               {currentData.details.map((detail, idx) => (
@@ -141,7 +147,11 @@ export default function Mobile() {
                         transition={{ duration: 0.3 }}
                         className={`absolute inset-0 rounded-[6px] ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
                       />
-                      <detail.icon size={15} strokeWidth={2.2} className="relative z-10 pointer-events-none" />
+                      <detail.icon
+                        size={15}
+                        strokeWidth={2.2}
+                        className="relative z-10 pointer-events-none"
+                      />
                     </div>
                     <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
                       {detail.label}
@@ -156,10 +166,10 @@ export default function Mobile() {
               ))}
             </div>
 
-            {("footer" in currentData && currentData.footer) && (
+            {"footer" in currentData && currentData.footer && (
               <div className="bg-gradient-to-r from-gray-50 to-white p-4 rounded-[8px] border border-gray-100 flex items-center justify-between mt-2 shadow-sm relative overflow-hidden">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#d4af37]" />
-                
+
                 {currentData.footer.type === "tag-text" && (
                   <div className="flex items-center gap-3 ml-2">
                     <span className="px-2.5 py-1 text-[0.55rem] font-semibold rounded-[4px] bg-[#d4af37] text-white tracking-[0.15em] shadow-[0_2px_8px_rgba(212,175,55,0.4)]">

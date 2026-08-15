@@ -3,7 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, BadgeCheck, ChevronDown } from "lucide-react";
 import { spaceOverviewData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-import { fadeInUp, staggerContainer, itemReveal as tagItem } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  itemReveal as tagItem,
+} from "../components/animations";
 
 const tagStagger = {
   hidden: { opacity: 0 },
@@ -71,7 +75,11 @@ export default function Desktop() {
                         whileHover={{ scale: 1.02, x: 2 }}
                         className="flex items-center gap-2 cursor-default group"
                       >
-                        <BadgeCheck size={15} strokeWidth={2.5} className="text-[#d4af37] shrink-0 shadow-sm rounded-full bg-amber-50/50" />
+                        <BadgeCheck
+                          size={15}
+                          strokeWidth={2.5}
+                          className="text-[#d4af37] shrink-0 shadow-sm rounded-full bg-amber-50/50"
+                        />
                         <span className="text-[0.62rem] font-semibold tracking-wide text-[#0b1b42] transition-colors group-hover:text-[#d4af37]">
                           {tag.text}
                         </span>
@@ -95,7 +103,11 @@ export default function Desktop() {
                     <div
                       className={`absolute inset-0 rounded-[6px] group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-gradient-to-br from-gray-700 to-gray-900"}`}
                     />
-                    <detail.icon size={15} strokeWidth={2.2} className="relative z-10 pointer-events-none" />
+                    <detail.icon
+                      size={15}
+                      strokeWidth={2.2}
+                      className="relative z-10 pointer-events-none"
+                    />
                   </div>
                   <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
                     {detail.label}

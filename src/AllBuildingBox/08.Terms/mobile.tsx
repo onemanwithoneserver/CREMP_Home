@@ -3,7 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FileText, ChevronDown, Info } from "lucide-react";
 import { termsData } from "./data";
 import SectionHeader from "../components/SectionHeader";
-import { fadeInUp, staggerContainer, rowReveal as listItemReveal, lineReveal } from "../components/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  rowReveal as listItemReveal,
+  lineReveal,
+} from "../components/animations";
 
 export default function Mobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +21,10 @@ export default function Mobile() {
       variants={staggerContainer}
       className="w-full relative z-10 flex flex-col h-full rounded-[4px]"
     >
-      <motion.div variants={fadeInUp} className="w-full bg-white border-b border-gray-200/60 relative">
+      <motion.div
+        variants={fadeInUp}
+        className="w-full bg-white border-b border-gray-200/60 relative"
+      >
         <SectionHeader
           overline={termsData.overline}
           title={termsData.title}
@@ -59,7 +67,7 @@ export default function Mobile() {
                     >
                       <item.icon size={18} strokeWidth={2.2} />
                     </motion.div>
-                    
+
                     <motion.div
                       variants={lineReveal}
                       style={{ originX: 0 }}
@@ -112,7 +120,7 @@ export default function Mobile() {
                           >
                             <item.icon size={18} strokeWidth={2.2} />
                           </motion.div>
-                          
+
                           <motion.div
                             variants={lineReveal}
                             style={{ originX: 0 }}
@@ -122,7 +130,11 @@ export default function Mobile() {
 
                         <motion.div
                           whileHover={{ y: -2 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 25,
+                          }}
                           className="flex-1 p-3 rounded-[4px] bg-white border border-gray-200 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
                         >
                           <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">

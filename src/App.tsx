@@ -63,7 +63,10 @@ function App() {
 
       <div className="flex-1 overflow-hidden relative z-10">
         <MobileViewport isMobile={isMobile}>
-          <PageTransition motionKey={location.pathname} className="h-full w-full">
+          <PageTransition
+            motionKey={location.pathname}
+            className="h-full w-full"
+          >
             <Routes location={location}>
               <Route
                 path="/:viewMode/home"
@@ -93,18 +96,12 @@ function App() {
                 path="/:viewMode/filters"
                 element={<Filters isMobile={isMobile} />}
               />
-              <Route
-                path="/:viewMode/building-box"
-                element={<BuildingBox />}
-              />
+              <Route path="/:viewMode/building-box" element={<BuildingBox />} />
               <Route
                 path="/:viewMode/all-building-box"
                 element={<AllBuildingBox />}
               />
-              <Route
-                path="/:viewMode/land-box"
-                element={<LandBox />}
-              />
+              <Route path="/:viewMode/land-box" element={<LandBox />} />
               <Route
                 path="*"
                 element={<Navigate to="/desktop/home" replace />}

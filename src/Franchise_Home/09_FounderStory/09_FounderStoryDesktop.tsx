@@ -29,8 +29,6 @@ const fadeInUp: Variants = {
   },
 };
 
-
-
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
   if (lower.includes("outlet") || lower.includes("store"))

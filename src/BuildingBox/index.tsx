@@ -1,4 +1,11 @@
-import { Suspense, lazy, useState, useRef, useCallback, useEffect } from "react";
+import {
+  Suspense,
+  lazy,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 import { GripVertical } from "lucide-react";
 import { useParams } from "react-router-dom";
 
@@ -28,7 +35,11 @@ const SectionLoader = () => (
       </span>
       <div className="flex gap-1.5">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#d4af37]/40 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+          <div
+            key={i}
+            className="w-1.5 h-1.5 rounded-full bg-[#d4af37]/40 animate-bounce"
+            style={{ animationDelay: `${i * 0.15}s` }}
+          />
         ))}
       </div>
     </div>
@@ -37,7 +48,7 @@ const SectionLoader = () => (
 
 export default function BuildingBox() {
   const { viewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
-  const [dialogWidth, setDialogWidth] = useState(35); // Initial width 35%
+  const [dialogWidth, setDialogWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -46,16 +57,19 @@ export default function BuildingBox() {
     setIsDragging(true);
   };
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging || !containerRef.current) return;
-    
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const mapWidthPercent = ((e.clientX - containerRect.left) / containerRect.width) * 100;
-    
-    // Clamp left pane (Map) width between 65% and 70% (meaning dialog on right is 30% to 35%)
-    const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 70);
-    setDialogWidth(100 - clampedMapWidth);
-  }, [isDragging]);
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!isDragging || !containerRef.current) return;
+
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const mapWidthPercent =
+        ((e.clientX - containerRect.left) / containerRect.width) * 100;
+
+      const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 70);
+      setDialogWidth(100 - clampedMapWidth);
+    },
+    [isDragging],
+  );
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -79,28 +93,28 @@ export default function BuildingBox() {
     <div className="flex-1 flex flex-col relative h-full w-full overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-24">
         <Hero />
-      <div className="flex flex-col gap-0 px-0 py-0">
-        <Suspense fallback={<SectionLoader />}>
-          <CommercialTerms />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <SpaceOverview />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <FitOut />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Infrastructure />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Media />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <LocationIntelligence />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Terms />
-        </Suspense>
+        <div className="flex flex-col gap-0 px-0 py-0">
+          <Suspense fallback={<SectionLoader />}>
+            <CommercialTerms />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <SpaceOverview />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <FitOut />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <Infrastructure />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <Media />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <LocationIntelligence />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <Terms />
+          </Suspense>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full z-50">
@@ -112,41 +126,39 @@ export default function BuildingBox() {
   );
 
   return (
-    <div ref={containerRef} className="w-full h-full bg-slate-50 text-[#0a1128] overflow-hidden flex relative select-none">
-      
+    <div
+      ref={containerRef}
+      className="w-full h-full bg-slate-50 text-[#0a1128] overflow-hidden flex relative select-none"
+    >
       {viewMode === "desktop" ? (
         <div className="flex w-full h-full">
-          {/* Left Map Panel */}
-          <div 
-            style={{ width: `calc(${100 - dialogWidth}% - 0.375rem)` }} 
+          <div
+            style={{ width: `calc(${100 - dialogWidth}% - 0.375rem)` }}
             className="h-full relative z-10"
           >
             <MapView />
           </div>
 
-          {/* Resize Handle */}
-          <div 
+          <div
             className="w-1.5 h-full bg-gray-200 hover:bg-blue-400 cursor-col-resize flex flex-col items-center justify-center group relative z-30 transition-colors"
             onMouseDown={handleMouseDown}
           >
             <div className="bg-white border border-gray-300 rounded shadow-sm py-2 opacity-0 group-hover:opacity-100 transition-opacity absolute -right-2 flex items-center justify-center">
-               <GripVertical size={14} className="text-gray-500" />
+              <GripVertical size={14} className="text-gray-500" />
             </div>
             {isDragging && (
               <div className="fixed inset-0 z-50 cursor-col-resize" />
             )}
           </div>
 
-          {/* Right Dialog Panel */}
-          <div 
-            style={{ width: `${dialogWidth}%` }} 
+          <div
+            style={{ width: `${dialogWidth}%` }}
             className="h-full bg-white shadow-xl relative z-20 border-l border-gray-200"
           >
             {content}
           </div>
         </div>
       ) : (
-        /* Mobile View - Full width */
         <div className="w-full h-full flex flex-col max-w-[480px] mx-auto bg-white shadow-xl relative z-20">
           {content}
         </div>

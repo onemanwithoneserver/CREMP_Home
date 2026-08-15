@@ -12,7 +12,7 @@ export const listingsData = {
       price: "₹1.2L/mo",
       status: "Immediate",
       statusColor: "bg-emerald-500",
-      accent: "border-orange-400"
+      accent: "border-orange-400",
     },
     {
       type: "3rd Floor · Office",
@@ -22,7 +22,7 @@ export const listingsData = {
       price: "₹3.24L/mo",
       status: "In 30 Days",
       statusColor: "bg-amber-500",
-      accent: "border-blue-400"
+      accent: "border-blue-400",
     },
     {
       type: "1st Floor · Retail",
@@ -32,7 +32,7 @@ export const listingsData = {
       price: "₹1.98L/mo",
       status: "Immediate",
       statusColor: "bg-emerald-500",
-      accent: "border-orange-400"
+      accent: "border-orange-400",
     },
     {
       type: "6th Floor · Coworking",
@@ -42,7 +42,7 @@ export const listingsData = {
       price: "₹4.05L/mo",
       status: "Immediate",
       statusColor: "bg-emerald-500",
-      accent: "border-purple-400"
+      accent: "border-purple-400",
     },
-  ]
+  ],
 };

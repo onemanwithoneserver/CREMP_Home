@@ -8,5 +8,5 @@ export const opportunitiesData = {
     { label: "SALE", value: "18", sub: "Units listed" },
     { label: "PRE-LEASED", value: "6", sub: "Active tenants" },
     { label: "FRACTIONAL", value: "3", sub: "Opportunities" },
-  ]
+  ],
 };
