@@ -26,7 +26,7 @@ export default function Mobile() {
           icon={Cpu}
         />
 
-        <div className="px-5 py-4 relative">
+        <div className="px-5 py-5 relative">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
             <div className="w-12 h-12 rounded-[4px] flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.2)] border border-[#1c2e64] bg-[#0b1b42] group-hover:animate-icon-shake origin-center transition-all duration-300">
               <Lock size={20} strokeWidth={2.5} />
@@ -60,7 +60,7 @@ export default function Mobile() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2"
           >
             {locationIntelligenceData.items.map((item, idx) => (
               <motion.div

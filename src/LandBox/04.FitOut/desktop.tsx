@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sofa, ChevronDown, CheckCircle2 } from "lucide-react";
+import { Sofa, CheckCircle2, ChevronDown } from "lucide-react";
 import { fitOutData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import {
@@ -45,16 +45,24 @@ export default function Desktop() {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              <div className="px-6 py-4 flex flex-col gap-4 mx-0">
+              <div className="px-6 py-6 flex flex-col gap-4 mx-0">
                 <div className="border border-gray-100 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
                   <button
                     onClick={() => setIsIncludedOpen(!isIncludedOpen)}
-                    className="w-full flex items-center justify-between p-3.5 bg-gray-50/50 hover:bg-gray-50 text-[0.8rem] font-semibold text-[#0a1128] transition-colors"
+                    className="group w-full flex items-center justify-between p-3.5 bg-white border border-gray-100 rounded-[4px] hover:border-[#d4af37]/30 hover:shadow-sm text-[0.8rem] font-semibold text-[#0a1128] transition-all duration-300 relative overflow-hidden"
                   >
-                    <span className="tracking-wide flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <span className="tracking-wide flex items-center gap-2 relative z-10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
                       Included Amenities ({fitOutData.included.length})
                     </span>
+                    <motion.div
+                      animate={{ rotate: isIncludedOpen ? 180 : 0 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="w-6 h-6 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:border-[#d4af37]/30 group-hover:bg-[#d4af37]/5 transition-colors relative z-10"
+                    >
+                      <ChevronDown size={14} className="text-[#0a1128] group-hover:text-[#d4af37] transition-colors" strokeWidth={2.5} />
+                    </motion.div>
                   </button>
                   <AnimatePresence>
                     {isIncludedOpen && (
@@ -94,7 +102,7 @@ export default function Desktop() {
                   variants={staggerContainer}
                   initial="hidden"
                   animate="show"
-                  className="grid grid-cols-2 gap-3"
+                  className="grid grid-cols-2 gap-4"
                 >
                   {fitOutData.items.map((item, idx) => (
                     <motion.div

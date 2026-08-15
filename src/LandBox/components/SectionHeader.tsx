@@ -15,31 +15,33 @@ export default function SectionHeader({
   rightElement,
 }: SectionHeaderProps) {
   return (
-    <div className="px-4 py-3.5 flex items-center justify-between shrink-0 relative bg-[#0b1b42] rounded-none min-h-[72px] border-b border-white/5">
-      <div className="flex items-center gap-4 min-w-0 flex-1">
+    <div className="relative flex min-h-[76px] shrink-0 items-center justify-between overflow-hidden bg-[#0b1b42] px-5 sm:px-6 py-4 border-b border-[#d4af37]/20">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#d4af37]/5 via-transparent to-transparent opacity-70" />
+
+      <div className="relative z-10 flex min-w-0 flex-1 items-center gap-5">
         <motion.div
-          whileHover={{ scale: 1.05, rotate: -3 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          className="w-12 h-12 rounded-lg bg-white/5 border border-[#d4af37]/60 shadow-[0_0_12px_rgba(212,175,55,0.3)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 15 }}
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d4af37]/40 bg-gradient-to-br from-white/5 to-transparent shadow-[0_4px_20px_-4px_rgba(212,175,55,0.25)] backdrop-blur-md"
         >
-          <Icon size={22} strokeWidth={2} />
+          <Icon className="text-[#d4af37]" size={20} strokeWidth={1.5} />
         </motion.div>
 
-        <div className="flex flex-col min-w-0 gap-1.5 justify-center">
+        <div className="flex min-w-0 flex-col justify-center gap-1">
           {overline && (
-            <div className="flex w-fit items-center">
-              <span className="flex items-center gap-1 rounded-[4px] border border-[#d4af37]/25 bg-gradient-to-r from-[#d4af37]/5 to-[#d4af37]/15 px-2.5 py-0.5 text-[0.65rem] font-semibold tracking-widest text-[#d4af37]/90 shadow-[0_0_8px_rgba(212,175,55,0.1)] backdrop-blur-sm">
-                {overline}
-              </span>
-            </div>
+            <span className="truncate text-[0.65rem] font-medium uppercase tracking-[0.2em] text-[#d4af37]/80">
+              {overline}
+            </span>
           )}
-          <h3 className="text-[1.1rem] font-semibold text-white/95 leading-none tracking-wide truncate">
+          <h3 className="truncate text-lg font-medium tracking-wide text-white/95">
             {title}
           </h3>
         </div>
       </div>
+
       {rightElement && (
-        <div className="ml-3 shrink-0 flex items-center justify-end">
+        <div className="relative z-10 ml-4 flex shrink-0 items-center justify-end">
           {rightElement}
         </div>
       )}

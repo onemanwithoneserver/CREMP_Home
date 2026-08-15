@@ -23,8 +23,8 @@ export default function Desktop() {
           icon={LayoutGrid}
         />
 
-        <div className="px-6 py-4 flex flex-col mx-0">
-          <div className="flex flex-col gap-3">
+        <div className="px-6 py-6 flex flex-col mx-0">
+          <div className="flex flex-col gap-4">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div
                 key={idx}

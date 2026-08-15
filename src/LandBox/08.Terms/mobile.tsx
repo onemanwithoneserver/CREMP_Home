@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, ChevronDown, Info } from "lucide-react";
+import { FileText, Info, ChevronDown } from "lucide-react";
 import { termsData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import {
@@ -29,14 +29,9 @@ export default function Mobile() {
           overline={termsData.overline}
           title={termsData.title}
           icon={FileText}
-          rightElement={
-            <span className="px-2 py-1 text-[10px] font-semibold rounded-[2px] border border-[#d4af37]/30 text-[#d4af37] tracking-wider bg-[#d4af37]/[0.08]">
-              {termsData.count}
-            </span>
-          }
         />
 
-        <div className="px-5 py-4 flex flex-col relative w-full">
+        <div className="px-5 py-5 flex flex-col relative w-full">
           <div className="relative flex flex-col w-full z-10">
             <motion.div
               initial={{ scaleY: 0 }}
@@ -52,7 +47,7 @@ export default function Mobile() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="flex flex-col gap-2.5 relative z-10 w-full"
+              className="flex flex-col gap-3 relative z-10 w-full"
             >
               {termsData.visibleItems.map((item, idx) => (
                 <motion.li
@@ -105,7 +100,7 @@ export default function Mobile() {
                     initial="hidden"
                     animate="show"
                     exit="hidden"
-                    className="flex flex-col gap-2.5 pt-2.5 w-full"
+                    className="flex flex-col gap-3 pt-3 w-full"
                   >
                     {termsData.hiddenItems.map((item, idx) => (
                       <motion.li
@@ -159,9 +154,17 @@ export default function Mobile() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
-                className="flex items-center justify-center gap-2 font-semibold text-[0.7rem] px-4 py-2.5 rounded-[4px] text-gray-600 hover:text-[#d4af37] border border-gray-200 hover:border-[#d4af37]/30 shadow-sm hover:shadow tracking-widest transition-all bg-gray-50 hover:bg-white w-full"
+                className="group flex items-center justify-center gap-2.5 font-semibold text-[0.75rem] px-5 py-3 rounded-[6px] text-[#0a1128] border border-gray-200 shadow-sm hover:shadow-md tracking-widest transition-all bg-white hover:border-[#d4af37]/40 w-full relative overflow-hidden"
               >
-                {isOpen ? "Hide Specs" : "View All Specs"}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10">{isOpen ? "Hide Specs" : "View All Specs"}</span>
+                <motion.div
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="w-6 h-6 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:border-[#d4af37]/30 group-hover:bg-[#d4af37]/5 transition-colors relative z-10"
+                >
+                  <ChevronDown size={14} className="text-[#0a1128] group-hover:text-[#d4af37] transition-colors" strokeWidth={2.5} />
+                </motion.div>
               </motion.button>
             </div>
           </div>

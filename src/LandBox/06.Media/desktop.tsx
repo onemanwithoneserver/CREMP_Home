@@ -32,8 +32,8 @@ export default function Desktop() {
           icon={ImageIcon}
         />
 
-        <div className="px-6 mt-4">
-          <div className="flex w-full bg-[#0b1b42] rounded-[4px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
+        <div className="px-6 mt-5 mb-1 flex justify-center w-full">
+          <div className="flex w-fit bg-[#0b1b42] rounded-[6px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
@@ -64,7 +64,7 @@ export default function Desktop() {
           </div>
         </div>
 
-        <div className="px-6 py-5">
+        <div className="px-6 py-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}

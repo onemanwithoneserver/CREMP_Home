@@ -51,7 +51,7 @@ export default function Mobile() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-col gap-2.5 px-5 py-4 mx-0"
+          className="flex flex-col gap-3 px-5 py-5 mx-0"
         >
           {infrastructureData.items.map((item, idx) => (
             <motion.div

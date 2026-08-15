@@ -32,13 +32,13 @@ export default function Mobile() {
           icon={ImageIcon}
         />
 
-        <div className="px-5 mt-4">
-          <div className="flex w-full bg-[#0b1b42] rounded-[4px] p-1 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
+        <div className="px-2 mt-2 mb-1 flex justify-center w-full">
+          <div className="flex w-full bg-[#0b1b42] rounded-[4px] p-0.5 border border-[#0b1b42]/10 relative overflow-x-auto scrollbar-hide">
             {mediaData.tabs.map((tab) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(tab.label)}
-                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 text-[0.75rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none min-w-max ${
+                className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 px-2 text-[0.75rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none min-w-max ${
                   activeTab === tab.label
                     ? "text-[#0a1128]"
                     : "text-gray-400 hover:text-white"

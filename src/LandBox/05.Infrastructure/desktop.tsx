@@ -51,7 +51,7 @@ export default function Desktop() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-col gap-3 px-6 py-4 mx-0"
+          className="flex flex-col gap-4 px-6 py-6 mx-0"
         >
           {infrastructureData.items.map((item, idx) => (
             <motion.div

@@ -23,8 +23,8 @@ export default function Mobile() {
           icon={LayoutGrid}
         />
 
-        <div className="px-5 py-4 flex flex-col mx-0">
-          <div className="flex flex-col gap-2.5">
+        <div className="px-5 py-5 flex flex-col mx-0">
+          <div className="flex flex-col gap-3">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div
                 key={idx}
