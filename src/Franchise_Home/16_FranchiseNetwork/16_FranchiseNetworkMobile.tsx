@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
-import { motion, type Variants } from "framer-motion";
-import { ChevronRight, Download, Globe2, MapPin } from "lucide-react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+import {
+  ChevronRight,
+  ChevronDown,
+  Download,
+  Globe2,
+  MapPin,
+  CheckCircle2,
+  Sparkles,
+  Building2,
+  Zap,
+} from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
@@ -18,6 +28,23 @@ export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(
     franchiseNetworkData.cities[0],
   );
+  const [interestedMap, setInterestedMap] = useState<Record<string, boolean>>({});
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleInterest = (id: string) => {
+    setInterestedMap((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <section className="w-full py-12 pb-20 relative overflow-hidden rounded-[8px] bg-white/40 ">
@@ -143,11 +170,15 @@ export default function FranchiseNetworkMobile() {
         </div>
 
         <div className="bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-4 flex flex-col gap-3 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
+          {/* City Selection Header & Dropdown */}
+          <div className="flex flex-col gap-2 pb-3 border-b border-gray-200 dark:border-gray-800">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                <MapPin size={11} className="text-[#d4af37]" /> Select Hub
+              </span>
               <span
                 className={clsx(
-                  "text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[2px] border",
+                  "text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-[2px] border",
                   activeCity.status === "active"
                     ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300"
                     : activeCity.status === "expansion"
@@ -157,61 +188,152 @@ export default function FranchiseNetworkMobile() {
               >
                 {activeCity.statusLabel}
               </span>
-              <h4 className="text-xl font-bold text-gray-900 dark:text-white mt-1">
-                {activeCity.name}
-              </h4>
             </div>
 
-            <div className="text-right">
-              <span className="text-lg font-black text-gray-900 dark:text-white">
-                {activeCity.outlets}
-              </span>
-              <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
-                Live Outlets
-              </span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px]">
-              <span className="text-[10px] text-gray-500 dark:text-gray-400 block">
-                Upcoming Pipeline
-              </span>
-              <span className="font-bold text-[#d4af37]">
-                {activeCity.pipeline} Stores
-              </span>
-            </div>
-            <div className="p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px]">
-              <span className="text-[10px] text-gray-500 dark:text-gray-400 block">
-                Zone Region
-              </span>
-              <span className="font-bold text-gray-900 dark:text-white">
-                {activeCity.zone} Zone
-              </span>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-1 mt-1">
-            {franchiseNetworkData.cities.map((city) => (
+            {/* Modern Custom Dropdown Selector */}
+            <div className="relative" ref={dropdownRef}>
               <button
-                key={city.id}
-                onClick={() => setActiveCity(city)}
-                className={clsx(
-                  "px-2 py-1 text-[11px] rounded-[2px] border",
-                  activeCity.id === city.id
-                    ? "bg-[#0b1b42] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 font-bold"
-                    : "bg-white dark:bg-[#0b1b42] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800",
-                )}
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full flex items-center justify-between bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-700 hover:border-[#d4af37] dark:hover:border-[#d4af37] rounded-[4px] py-2 px-3 text-xs font-semibold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
               >
-                {city.name}
+                <span>
+                  {activeCity.name} ({activeCity.state}) —{" "}
+                  {activeCity.outlets > 0 ? `${activeCity.outlets} Stores` : "Prime Territory"}
+                </span>
+                <ChevronDown
+                  size={13}
+                  className={clsx(
+                    "text-gray-400 dark:text-gray-300 transition-transform duration-200",
+                    isDropdownOpen && "rotate-180 text-[#d4af37]"
+                  )}
+                />
               </button>
-            ))}
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute z-50 w-full mt-1 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 rounded-[4px] shadow-xl overflow-hidden max-h-[220px] overflow-y-auto"
+                  >
+                    {franchiseNetworkData.cities.map((city) => (
+                      <button
+                        key={city.id}
+                        onClick={() => {
+                          setActiveCity(city);
+                          setIsDropdownOpen(false);
+                        }}
+                        className={clsx(
+                          "w-full text-left px-3 py-2 text-xs transition-colors hover:bg-gray-50 dark:hover:bg-[#121c33]",
+                          activeCity.id === city.id
+                            ? "bg-gray-50 dark:bg-[#121c33] font-bold text-[#d4af37]"
+                            : "text-gray-700 dark:text-gray-300 font-medium"
+                        )}
+                      >
+                        <span className="flex items-center justify-between">
+                          <span>{city.name} ({city.state})</span>
+                          <span className="text-[9px] text-gray-400">
+                            {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
+                          </span>
+                        </span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Quick Metrics */}
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px] flex items-center justify-between">
+              <div>
+                <span className="text-[9px] text-gray-500 dark:text-gray-400 block">
+                  Operating Stores
+                </span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                  {activeCity.outlets} Units
+                </span>
+              </div>
+              <div className="w-5 h-5 rounded-[2px] bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                <Building2 size={11} />
+              </div>
+            </div>
+            <div className="p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px] flex items-center justify-between">
+              <div>
+                <span className="text-[9px] text-gray-500 dark:text-gray-400 block">
+                  In Pipeline
+                </span>
+                <span className="text-sm font-semibold text-[#d4af37]">
+                  {activeCity.pipeline} Stores
+                </span>
+              </div>
+              <div className="w-5 h-5 rounded-[2px] bg-[#d4af37]/10 text-[#d4af37] flex items-center justify-center">
+                <Zap size={11} />
+              </div>
+            </div>
+          </div>
+
+          {/* Opportunities in Rows */}
+          <div className="mt-1">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 flex items-center gap-1">
+                <Sparkles size={10} className="text-[#d4af37]" />
+                Opportunities ({activeCity.opportunities?.length || 0})
+              </span>
+              <span className="text-[9px] font-medium text-[#d4af37]">
+                Live Territories
+              </span>
+            </div>
+
+            {/* Rows List */}
+            <div className="flex flex-col gap-1.5">
+              {activeCity.opportunities?.map((opp) => {
+                const isInterested = interestedMap[opp.id];
+                return (
+                  <div
+                    key={opp.id}
+                    className="flex items-center justify-between p-2 bg-white dark:bg-[#0b1b42] border border-gray-200/80 dark:border-gray-800 rounded-[4px] shadow-sm text-xs"
+                  >
+                    <div className="flex flex-col flex-1 pr-1 min-w-0">
+                      <span className="font-semibold text-gray-900 dark:text-white truncate text-[11px]">
+                        {opp.circleName}
+                      </span>
+                      <span className="text-[9px] text-gray-500 dark:text-gray-400">
+                        {opp.format}
+                      </span>
+                    </div>
+
+                    <button
+                      onClick={() => toggleInterest(opp.id)}
+                      className={clsx(
+                        "px-2 py-1 text-[10px] font-semibold rounded-[3px] transition-all shrink-0 flex items-center gap-1",
+                        isInterested
+                          ? "bg-emerald-600 text-white"
+                          : "bg-[#0b1b42] text-white dark:bg-[#d4af37]/20 dark:text-[#d4af37] border border-[#d4af37]/40",
+                      )}
+                    >
+                      {isInterested ? (
+                        <>
+                          <CheckCircle2 size={10} />
+                          <span>Applied</span>
+                        </>
+                      ) : (
+                        <span>Interested</span>
+                      )}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-gray-200 dark:border-gray-800">
             <motion.button
               whileTap={{ scale: 0.95 }}
-              className="w-full py-2.5 bg-[#0b1b42] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-sm flex items-center justify-center gap-1.5"
+              className="w-full py-2.5 bg-[#0b1b42] dark:bg-[#d4af37] text-white dark:text-gray-950 text-xs font-semibold uppercase tracking-wider rounded-[4px] shadow-sm flex items-center justify-center gap-1.5"
             >
               <span>{franchiseNetworkData.cta.primary}</span>
               <ChevronRight size={14} />

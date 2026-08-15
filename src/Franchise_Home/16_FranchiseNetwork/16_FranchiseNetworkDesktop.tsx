@@ -1,14 +1,17 @@
-import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import clsx from "clsx";
 import {
   ChevronRight,
+  ChevronDown,
   Download,
   Globe2,
   MapPin,
   Navigation,
   CheckCircle2,
   Sparkles,
+  Building2,
+  Zap,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -27,6 +30,23 @@ export default function FranchiseNetworkDesktop() {
   const [activeCity, setActiveCity] = useState<CityNode>(
     franchiseNetworkData.cities[0],
   );
+  const [interestedMap, setInterestedMap] = useState<Record<string, boolean>>({});
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleInterest = (id: string) => {
+    setInterestedMap((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] ">
@@ -273,13 +293,17 @@ export default function FranchiseNetworkDesktop() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col justify-between bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-6 shadow-sm">
-            <div className="flex flex-col gap-5">
-              <div className="border-b border-gray-200 dark:border-gray-800 pb-4">
+          <div className="lg:col-span-4 flex flex-col justify-between bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 shadow-sm">
+            <div className="flex flex-col gap-4">
+              {/* City Dropdown & Status Header */}
+              <div className="border-b border-gray-200 dark:border-gray-800 pb-3.5">
                 <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                    <MapPin size={11} className="text-[#d4af37]" /> Select Hub
+                  </span>
                   <span
                     className={clsx(
-                      "text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[2px] border",
+                      "text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-[2px] border",
                       activeCity.status === "active"
                         ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800"
                         : activeCity.status === "expansion"
@@ -289,100 +313,182 @@ export default function FranchiseNetworkDesktop() {
                   >
                     {activeCity.statusLabel}
                   </span>
-                  <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-                    {activeCity.zone} Region
-                  </span>
                 </div>
 
-                <h3 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">
-                  {activeCity.name}
-                </h3>
-                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mt-0.5">
-                  State: {activeCity.state}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px]">
-                  <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 block">
-                    Operating Stores
-                  </span>
-                  <span className="text-xl font-bold text-gray-900 dark:text-white">
-                    {activeCity.outlets} Units
-                  </span>
-                </div>
-
-                <div className="p-3 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px]">
-                  <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 block">
-                    In Pipeline
-                  </span>
-                  <span className="text-xl font-bold text-[#d4af37]">
-                    {activeCity.pipeline} Locations
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-2 text-xs">
-                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Territory Exclusivity
-                  </span>
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                    <CheckCircle2 size={12} /> Guaranteed
-                  </span>
-                </div>
-                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Supply Chain Access
-                  </span>
-                  <span className="font-semibold text-gray-900 dark:text-white">
-                    24h Direct Depot
-                  </span>
-                </div>
-                <div className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Launch Timeline
-                  </span>
-                  <span className="font-semibold text-gray-900 dark:text-white">
-                    45–60 Days
-                  </span>
-                </div>
-              </div>
-
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
-                  Key Growth Hubs ({franchiseNetworkData.cities.length})
-                </p>
-                <div className="flex flex-wrap gap-1.5 max-h-[110px] overflow-y-auto pr-1 scrollbar-hide">
-                  {franchiseNetworkData.cities.map((city) => (
-                    <button
-                      key={city.id}
-                      onClick={() => setActiveCity(city)}
+                {/* Modern Custom Dropdown Selector */}
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="w-full flex items-center justify-between bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-700 hover:border-[#d4af37] dark:hover:border-[#d4af37] rounded-[4px] py-2.5 px-3 text-xs font-semibold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
+                  >
+                    <span>
+                      {activeCity.name} ({activeCity.state}) —{" "}
+                      {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
+                    </span>
+                    <ChevronDown
+                      size={14}
                       className={clsx(
-                        "px-2.5 py-1 text-xs rounded-[2px] border transition-all",
-                        activeCity.id === city.id
-                          ? "bg-[#0b1b42] text-white border-[#0a1128] dark:bg-[#d4af37] dark:text-gray-950 dark:border-[#d4af37] font-bold"
-                          : "bg-white dark:bg-[#0b1b42] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-[#d4af37]",
+                        "text-gray-400 dark:text-gray-300 transition-transform duration-200",
+                        isDropdownOpen && "rotate-180 text-[#d4af37]"
                       )}
-                    >
-                      {city.name}
-                    </button>
-                  ))}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute z-50 w-full mt-1 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 rounded-[4px] shadow-xl overflow-hidden max-h-[250px] overflow-y-auto"
+                      >
+                        {franchiseNetworkData.cities.map((city) => (
+                          <button
+                            key={city.id}
+                            onClick={() => {
+                              setActiveCity(city);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={clsx(
+                              "w-full text-left px-3 py-2 text-xs transition-colors hover:bg-gray-50 dark:hover:bg-[#121c33]",
+                              activeCity.id === city.id
+                                ? "bg-gray-50 dark:bg-[#121c33] font-bold text-[#d4af37]"
+                                : "text-gray-700 dark:text-gray-300 font-medium"
+                            )}
+                          >
+                            <span className="flex items-center justify-between">
+                              <span>{city.name} ({city.state})</span>
+                              <span className="text-[10px] text-gray-400">
+                                {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
+                              </span>
+                            </span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* City Quick Metrics */}
+              <div className="grid grid-cols-2 gap-2">
+                <div className="p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px] flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
+                      Operating Stores
+                    </span>
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {activeCity.outlets} Units
+                    </span>
+                  </div>
+                  <div className="w-6 h-6 rounded-[3px] bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                    <Building2 size={12} />
+                  </div>
+                </div>
+
+                <div className="p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px] flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
+                      In Pipeline
+                    </span>
+                    <span className="text-sm font-semibold text-[#d4af37]">
+                      {activeCity.pipeline} Locations
+                    </span>
+                  </div>
+                  <div className="w-6 h-6 rounded-[3px] bg-[#d4af37]/10 text-[#d4af37] flex items-center justify-center">
+                    <Zap size={12} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Opportunities in Rows */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 flex items-center gap-1.5">
+                    <Sparkles size={11} className="text-[#d4af37]" />
+                    Available Opportunities
+                  </span>
+                  <span className="text-[10px] font-semibold text-[#d4af37]">
+                    {activeCity.opportunities?.length || 0} Circles Open
+                  </span>
+                </div>
+
+                {/* Table / Row headers */}
+                <div className="flex items-center justify-between px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 border-b border-gray-200 dark:border-gray-800">
+                  <span className="w-[44%]">Circle Name</span>
+                  <span className="w-[34%] text-center">Outlet Format</span>
+                  <span className="w-[22%] text-right">Interested</span>
+                </div>
+
+                {/* Rows list */}
+                <div className="flex flex-col gap-1.5 mt-1.5 max-h-[175px] overflow-y-auto pr-0.5 scrollbar-hide">
+                  {activeCity.opportunities?.map((opp) => {
+                    const isInterested = interestedMap[opp.id];
+                    return (
+                      <div
+                        key={opp.id}
+                        className="flex items-center justify-between p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200/80 dark:border-gray-800 hover:border-[#d4af37]/50 rounded-[4px] shadow-sm transition-all text-xs group"
+                      >
+                        {/* Circle Name */}
+                        <div className="w-[44%] flex flex-col pr-1">
+                          <span className="font-semibold text-gray-900 dark:text-white truncate text-[11px] group-hover:text-[#b38728] dark:group-hover:text-[#d4af37] transition-colors">
+                            {opp.circleName}
+                          </span>
+                          {opp.badge && (
+                            <span className="text-[9px] font-medium text-emerald-600 dark:text-emerald-400">
+                              ● {opp.badge} Zone
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Outlet Format */}
+                        <div className="w-[34%] text-center px-1">
+                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-semibold rounded-[2px] bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700/60 truncate max-w-full">
+                            {opp.format}
+                          </span>
+                        </div>
+
+                        {/* Interested CTA */}
+                        <div className="w-[22%] flex justify-end">
+                          <button
+                            onClick={() => toggleInterest(opp.id)}
+                            className={clsx(
+                              "px-2 py-1 text-[10px] font-semibold rounded-[3px] transition-all flex items-center gap-1",
+                              isInterested
+                                ? "bg-emerald-600 text-white shadow-sm"
+                                : "bg-[#0b1b42] text-white hover:bg-[#d4af37] hover:text-[#0b1b42] dark:bg-[#d4af37]/20 dark:text-[#d4af37] dark:hover:bg-[#d4af37] dark:hover:text-gray-950 border border-[#d4af37]/40",
+                            )}
+                          >
+                            {isInterested ? (
+                              <>
+                                <CheckCircle2 size={10} />
+                                <span>Applied</span>
+                              </>
+                            ) : (
+                              <span>Interested</span>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-2.5 pt-5 border-t border-gray-200 dark:border-gray-800 mt-4">
-              <button className="w-full py-3 px-4 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-bold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
+            {/* Bottom Actions */}
+            <div className="flex flex-col gap-2 pt-3.5 border-t border-gray-200 dark:border-gray-800 mt-3">
+              <button className="w-full py-2.5 px-3 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-semibold uppercase tracking-wider rounded-[4px] shadow-sm transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
                 <ChevronRight
-                  size={15}
+                  size={14}
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </button>
 
-              <button className="w-full py-2.5 px-4 bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-[4px] transition-all flex items-center justify-center gap-2">
-                <Download size={14} className="text-[#d4af37]" />
+              <button className="w-full py-2 px-3 bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-medium rounded-[4px] transition-all flex items-center justify-center gap-2">
+                <Download size={13} className="text-[#d4af37]" />
                 <span>{franchiseNetworkData.cta.secondary}</span>
               </button>
             </div>
