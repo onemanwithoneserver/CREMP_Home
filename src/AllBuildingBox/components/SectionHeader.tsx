@@ -42,17 +42,22 @@ export default function SectionHeader({
       viewport={{ once: true, margin: "-50px" }}
       className="relative flex w-full items-end justify-between px-5 sm:px-6 py-6 pb-4"
     >
-      <div className="flex flex-col gap-2.5">
-        <motion.div variants={fadeInUp} className="flex items-center gap-2">
-          <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-[#d4af37]/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-widest text-[#d4af37] shadow-sm">
-            <Icon size={12} strokeWidth={2} />
-            {overline}
-          </span>
+      <div className="flex flex-col gap-3">
+        <motion.div variants={fadeInUp} className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="flex items-center justify-center w-6 h-6 rounded-[2px] bg-gradient-to-br from-[#d4af37] via-[#bf953f] to-[#aa771c] shadow-[0_2px_12px_rgba(212,175,55,0.4)] text-white ring-1 ring-[#d4af37]/20 ring-offset-1">
+              <Icon size={13} strokeWidth={2.5} />
+            </div>
+            <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#d4af37] pt-0.5">
+              {overline}
+            </span>
+          </div>
+          <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-[#d4af37]/40 to-transparent"></div>
         </motion.div>
         
         <motion.h2 
           variants={fadeInUp} 
-          className="text-[1.5rem] sm:text-[1.75rem] font-semibold text-[#0a1128] tracking-tight leading-none"
+          className="text-[1.5rem] sm:text-[1.75rem] font-semibold text-[#0a1128] tracking-tight leading-[1.1]"
         >
           {title}
         </motion.h2>
