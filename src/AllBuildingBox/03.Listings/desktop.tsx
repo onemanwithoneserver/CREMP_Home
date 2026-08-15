@@ -23,7 +23,7 @@ export default function Desktop() {
           icon={listingsData.headerIcon}
         />
 
-        <div className="px-6 mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="px-6 mt-4 flex flex-col gap-4">
           {listingsData.listings.map((item) => {
             const Icon = item.icon;
             const { iconBg, leftBar, badge, priceText } = item.colorTheme;

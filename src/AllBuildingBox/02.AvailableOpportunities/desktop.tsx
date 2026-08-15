@@ -28,7 +28,7 @@ export default function Desktop() {
             variants={staggerContainer}
             initial="hidden"
             animate="show"
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-2 gap-4"
           >
             {opportunitiesData.metrics.map((item) => {
               const Icon = item.icon;
