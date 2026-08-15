@@ -6,18 +6,18 @@ const staggerContainer: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.05,
+      staggerChildren: 0.1,
+      delayChildren: 0.03,
     },
   },
 };
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 10 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 400, damping: 30 },
+    transition: { type: "spring", stiffness: 420, damping: 28 },
   },
 };
 
@@ -39,25 +39,25 @@ export default function SectionHeader({
       variants={staggerContainer}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-50px" }}
-      className="relative flex w-full items-end justify-between px-5 sm:px-6 py-6 pb-4"
+      viewport={{ once: true, margin: "-40px" }}
+      className="relative flex w-full items-end justify-between px-4 sm:px-5 pt-3.5 pb-2"
     >
-      <div className="flex flex-col gap-3">
-        <motion.div variants={fadeInUp} className="flex items-center gap-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex items-center justify-center w-6 h-6 rounded-[2px] bg-gradient-to-br from-[#d4af37] via-[#bf953f] to-[#aa771c] shadow-[0_2px_12px_rgba(212,175,55,0.4)] text-white ring-1 ring-[#d4af37]/20 ring-offset-1">
-              <Icon size={13} strokeWidth={2.5} />
+      <div className="flex flex-col gap-1.5 min-w-0">
+        <motion.div variants={fadeInUp} className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center w-5 h-5 sm:w-5.5 sm:h-5.5 rounded-[3px] bg-gradient-to-br from-[#d4af37] via-[#b38728] to-[#96771d] shadow-[0_2px_8px_rgba(212,175,55,0.3)] text-white shrink-0">
+              <Icon size={12} strokeWidth={2.4} />
             </div>
-            <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#d4af37] pt-0.5">
+            <span className="text-[0.6rem] sm:text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#b38728] dark:text-[#d4af37]">
               {overline}
             </span>
           </div>
-          <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-[#d4af37]/40 to-transparent"></div>
+          <div className="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-[#d4af37]/40 to-transparent shrink-0"></div>
         </motion.div>
         
         <motion.h2 
           variants={fadeInUp} 
-          className="text-[1.5rem] sm:text-[1.75rem] font-semibold text-[#0a1128] tracking-tight leading-[1.1]"
+          className="text-[1.3rem] sm:text-[1.5rem] font-bold text-[#0a1128] dark:text-white tracking-tight leading-tight"
         >
           {title}
         </motion.h2>
@@ -66,7 +66,7 @@ export default function SectionHeader({
       {rightElement && (
         <motion.div 
           variants={fadeInUp} 
-          className="relative z-10 flex shrink-0 items-center justify-end pb-1"
+          className="relative z-10 flex shrink-0 items-center justify-end pb-0.5"
         >
           {rightElement}
         </motion.div>

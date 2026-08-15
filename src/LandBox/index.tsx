@@ -90,7 +90,7 @@ export default function LandBox() {
 
   const content = (
     <div className="flex-1 flex flex-col relative h-full w-full overflow-hidden">
-      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-[72px]">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20">
         <Hero />
         <div className="flex flex-col gap-0 px-0 py-0">
           <Suspense fallback={<SectionLoader />}>

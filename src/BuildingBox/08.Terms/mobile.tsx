@@ -23,7 +23,9 @@ export default function Mobile() {
     >
       <motion.div
         variants={fadeInUp}
-        className="w-full bg-white border-b border-gray-200/60 relative"
+        className={`w-full bg-white border-b border-gray-100 relative transition-all duration-300 ${
+          isOpen ? "pb-3" : "pb-5"
+        }`}
       >
         <SectionHeader
           overline={termsData.overline}
@@ -159,9 +161,9 @@ export default function Mobile() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 font-semibold text-[0.7rem] px-4 py-2.5 rounded-[4px] text-[#d4af37] shadow-sm tracking-widest transition-all bg-white"
+                className="flex items-center justify-center gap-2 font-semibold text-[0.7rem] px-4 py-2.5 rounded-[4px] text-[#d4af37] border border-gray-200/80 hover:border-[#d4af37]/40 shadow-sm tracking-widest transition-all bg-white"
               >
-                {isOpen ? "Hide Specs" : "View All Specs"}
+                <span>{isOpen ? "Hide Specs" : "View All Specs"}</span>
                 <motion.div
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -177,7 +179,7 @@ export default function Mobile() {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="w-full mt-5 flex items-center gap-3 bg-[#0b1b42] rounded-[6px] p-3 relative z-10 shadow-[0_8px_20px_rgba(11,27,66,0.15)] border border-[#0b1b42]/10"
+              className="w-full mt-5 mb-2 flex items-center gap-3 bg-[#0b1b42] rounded-[6px] p-3 relative z-10 shadow-[0_8px_20px_rgba(11,27,66,0.15)] border border-[#0b1b42]/10"
             >
               <div className="w-9 h-9 rounded-[4px] border border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] shrink-0 shadow-[0_0_10px_rgba(212,175,55,0.15)] bg-white/5 backdrop-blur-sm">
                 <Info size={18} strokeWidth={2} />
