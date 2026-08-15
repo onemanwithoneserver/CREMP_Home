@@ -84,11 +84,16 @@ export default function FranchiseNetworkDesktop() {
           </div>
         </div>
 
-        {/* Unified Glassmorphic Stats Container */}
-        <div className="relative z-10 w-full flex bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] overflow-hidden gap-1.5">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
+        <div className="relative z-10 w-full grid grid-cols-2 lg:grid-cols-4 gap-4">
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
+            const bgColors = [
+              "bg-[#0f9d58] shadow-[0_4px_12px_rgba(15,157,88,0.25)]", 
+              "bg-[#8a2be2] shadow-[0_4px_12px_rgba(138,43,226,0.25)]", 
+              "bg-[#f4b400] shadow-[0_4px_12px_rgba(244,180,0,0.25)]", 
+              "bg-[#0088cc] shadow-[0_4px_12px_rgba(0,136,204,0.25)]", 
+            ];
+            
             return (
               <motion.div
                 key={stat.label}
@@ -96,25 +101,31 @@ export default function FranchiseNetworkDesktop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="flex-1 relative flex flex-col p-4 rounded-[4px] bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/40 dark:border-white/10 hover:bg-white/50 dark:hover:bg-white/10 transition-all duration-300 group"
+                className="relative flex items-center p-4 rounded-md bg-white dark:bg-[#0b1b42] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow gap-3.5"
               >
-                <div className="flex items-center gap-3 mb-2 relative z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-                    className="w-8 h-8 rounded-[4px] flex items-center justify-center bg-[#d4af37]/10 text-[#d4af37] group-hover:bg-[#d4af37] group-hover:text-white transition-colors duration-300"
-                  >
-                    <Icon size={14} strokeWidth={2.5} />
-                  </motion.div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                <div
+                  className={clsx(
+                    "w-10 h-10 rounded-[4px] flex items-center justify-center text-white shrink-0",
+                    bgColors[idx]
+                  )}
+                >
+                  <Icon size={18} strokeWidth={2.5} />
+                </div>
+                
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     {stat.label}
                   </span>
+                  <div className="text-xl font-black text-gray-900 dark:text-white tracking-tight leading-none mt-1 truncate">
+                    {stat.value}
+                  </div>
                 </div>
-                <span className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white tracking-tight relative z-10">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] font-semibold text-[#d4af37] mt-0.5 uppercase tracking-wide relative z-10">
-                  {stat.change}
-                </span>
+
+                <div className="hidden xl:block shrink-0 border border-gray-200 dark:border-gray-700 rounded-[3px] px-2 py-0.5 bg-gray-50 dark:bg-gray-800/50">
+                  <span className="text-[9px] font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    {stat.change}
+                  </span>
+                </div>
               </motion.div>
             );
           })}
@@ -293,25 +304,23 @@ export default function FranchiseNetworkDesktop() {
               </span>
             </div>
           </div>
-
-          <div className="lg:col-span-4 flex flex-col justify-between bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] rounded-[4px] p-5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
-            
-            <div className="relative z-10 flex flex-col gap-4">
+          <div className="lg:col-span-4 flex flex-col justify-between bg-white dark:bg-white border border-gray-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-6 relative">
+            <div className="flex flex-col gap-6">
+              
               {/* City Dropdown & Status Header */}
-              <div className="border-b border-gray-200/60 dark:border-white/10 pb-3.5">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                    <MapPin size={11} className="text-[#d4af37]" /> Select Hub
+              <div className="flex flex-col gap-3 border-b border-gray-100 pb-5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1.5">
+                    <MapPin size={13} className="text-[#d4af37]" /> Select Hub
                   </span>
                   <span
                     className={clsx(
-                      "text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-[2px] border",
+                      "text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[3px] border",
                       activeCity.status === "active"
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-800/50"
+                        ? "bg-emerald-50 text-emerald-600 border-emerald-200"
                         : activeCity.status === "expansion"
-                          ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-[#d4af37]/10 dark:text-[#d4af37] dark:border-[#d4af37]/30"
-                          : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800/50",
+                          ? "bg-amber-50 text-[#b38728] border-amber-200"
+                          : "bg-blue-50 text-blue-600 border-blue-200",
                     )}
                   >
                     {activeCity.statusLabel}
@@ -322,17 +331,17 @@ export default function FranchiseNetworkDesktop() {
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="w-full flex items-center justify-between bg-white/50 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 hover:border-[#d4af37]/50 dark:hover:border-[#d4af37]/50 rounded-[4px] py-2.5 px-3 text-xs font-semibold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none"
+                    className="w-full flex items-center justify-between bg-white border border-gray-200 hover:border-gray-300 rounded-[4px] py-3 px-4 text-[13px] font-bold text-gray-900 shadow-sm transition-all focus:outline-none"
                   >
                     <span>
                       {activeCity.name} ({activeCity.state}) —{" "}
                       {activeCity.outlets > 0 ? `${activeCity.outlets} Live Stores` : "Prime Open Zone"}
                     </span>
                     <ChevronDown
-                      size={14}
+                      size={16}
                       className={clsx(
-                        "text-gray-400 dark:text-gray-300 transition-transform duration-200",
-                        isDropdownOpen && "rotate-180 text-[#d4af37]"
+                        "text-gray-400 transition-transform duration-200",
+                        isDropdownOpen && "rotate-180"
                       )}
                     />
                   </button>
@@ -344,7 +353,7 @@ export default function FranchiseNetworkDesktop() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute z-50 w-full mt-1 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[4px] shadow-2xl overflow-hidden max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-full"
+                        className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full"
                       >
                         {franchiseNetworkData.cities.map((city) => (
                           <button
@@ -354,15 +363,15 @@ export default function FranchiseNetworkDesktop() {
                               setIsDropdownOpen(false);
                             }}
                             className={clsx(
-                              "w-full text-left px-3 py-2 text-xs transition-colors hover:bg-gray-50/80 dark:hover:bg-white/5",
+                              "w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-gray-50",
                               activeCity.id === city.id
-                                ? "bg-gray-50/80 dark:bg-white/5 font-bold text-[#d4af37]"
-                                : "text-gray-700 dark:text-gray-300 font-medium"
+                                ? "bg-gray-50 font-bold text-[#d4af37]"
+                                : "text-gray-700 font-semibold"
                             )}
                           >
                             <span className="flex items-center justify-between">
                               <span>{city.name} ({city.state})</span>
-                              <span className="text-[10px] text-gray-400">
+                              <span className="text-[11px] text-gray-400">
                                 {city.outlets > 0 ? `${city.outlets} Stores` : "Open"}
                               </span>
                             </span>
@@ -375,97 +384,97 @@ export default function FranchiseNetworkDesktop() {
               </div>
 
               {/* City Quick Metrics */}
-              <div className="grid grid-cols-2 gap-2">
-                <div className="p-2.5 bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 rounded-[4px] flex items-center justify-between shadow-sm">
-                  <div>
-                    <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-bold text-gray-500 mb-0.5">
                       Operating Stores
                     </span>
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                    <span className="text-lg font-black text-gray-900 tracking-tight">
                       {activeCity.outlets} Units
                     </span>
                   </div>
-                  <div className="w-6 h-6 rounded-[3px] bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-                    <Building2 size={12} />
+                  <div className="w-8 h-8 rounded-[4px] bg-[#0f9d58]/10 text-[#0f9d58] flex items-center justify-center shrink-0">
+                    <Building2 size={16} strokeWidth={2.5} />
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 rounded-[4px] flex items-center justify-between shadow-sm">
-                  <div>
-                    <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
+                <div className="p-3 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-bold text-gray-500 mb-0.5">
                       In Pipeline
                     </span>
-                    <span className="text-sm font-semibold text-[#d4af37]">
+                    <span className="text-lg font-black text-[#d4af37] tracking-tight">
                       {activeCity.pipeline} Locations
                     </span>
                   </div>
-                  <div className="w-6 h-6 rounded-[3px] bg-[#d4af37]/10 text-[#d4af37] flex items-center justify-center">
-                    <Zap size={12} />
+                  <div className="w-8 h-8 rounded-[4px] bg-[#f4b400]/10 text-[#f4b400] flex items-center justify-center shrink-0">
+                    <Zap size={16} strokeWidth={2.5} />
                   </div>
                 </div>
               </div>
 
               {/* Opportunities in Rows */}
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 flex items-center gap-1.5">
-                    <Sparkles size={11} className="text-[#d4af37]" />
+              <div className="flex flex-col gap-2.5">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[12px] font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
+                    <Sparkles size={13} className="text-[#d4af37]" />
                     Available Opportunities
                   </span>
-                  <span className="text-[10px] font-semibold text-[#d4af37]">
+                  <span className="text-[11px] font-bold text-[#d4af37]">
                     {activeCity.opportunities?.length || 0} Circles Open
                   </span>
                 </div>
 
                 {/* Table / Row headers */}
-                <div className="flex items-center justify-between px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 border-b border-gray-200/60 dark:border-white/10">
-                  <span className="w-[44%]">Circle Name</span>
-                  <span className="w-[34%] text-center">Outlet Format</span>
-                  <span className="w-[22%] text-right">Interested</span>
+                <div className="flex items-center justify-between px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-200">
+                  <span className="w-[45%]">Circle Name</span>
+                  <span className="w-[30%] text-center">Outlet Format</span>
+                  <span className="w-[25%] text-right">Interested</span>
                 </div>
 
-                {/* Rows list with styled scrollbar */}
-                <div className="flex flex-col gap-1.5 mt-1.5 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-full">
+                {/* Rows list */}
+                <div className="flex flex-col gap-2 max-h-[220px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full pb-2 border-b border-gray-200">
                   {activeCity.opportunities?.map((opp) => {
                     const isInterested = interestedMap[opp.id];
                     return (
                       <div
                         key={opp.id}
-                        className="flex items-center justify-between p-2.5 bg-white/50 dark:bg-white/5 border border-white/40 dark:border-white/5 hover:border-[#d4af37]/30 dark:hover:border-[#d4af37]/30 rounded-[4px] shadow-sm transition-all text-xs group"
+                        className="flex items-center justify-between p-3 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all group"
                       >
                         {/* Circle Name */}
-                        <div className="w-[44%] flex flex-col pr-1">
-                          <span className="font-semibold text-gray-900 dark:text-white truncate text-[11px] group-hover:text-[#b38728] dark:group-hover:text-[#d4af37] transition-colors">
+                        <div className="w-[45%] flex flex-col pr-2">
+                          <span className="font-bold text-gray-900 truncate text-[13px] mb-0.5">
                             {opp.circleName}
                           </span>
                           {opp.badge && (
-                            <span className="text-[9px] font-medium text-emerald-600 dark:text-emerald-400">
-                              ● {opp.badge} Zone
+                            <span className="text-[10px] font-bold text-emerald-600 flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" /> {opp.badge} Zone
                             </span>
                           )}
                         </div>
 
                         {/* Outlet Format */}
-                        <div className="w-[34%] text-center px-1">
-                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-semibold rounded-[2px] bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-white/10 truncate max-w-full">
+                        <div className="w-[30%] text-center px-1">
+                          <span className="inline-block px-2 py-1 text-[10px] font-bold rounded-[3px] bg-white text-gray-600 border border-gray-200 truncate max-w-full">
                             {opp.format}
                           </span>
                         </div>
 
                         {/* Interested CTA */}
-                        <div className="w-[22%] flex justify-end">
+                        <div className="w-[25%] flex justify-end">
                           <button
                             onClick={() => toggleInterest(opp.id)}
                             className={clsx(
-                              "px-2 py-1 text-[10px] font-semibold rounded-[3px] transition-all flex items-center gap-1 border",
+                              "px-3 py-1.5 text-[11px] font-bold rounded-[4px] transition-all flex items-center gap-1.5 border",
                               isInterested
-                                ? "bg-emerald-600 text-white border-emerald-500 shadow-sm"
-                                : "bg-white/80 dark:bg-[#d4af37]/10 text-gray-800 dark:text-[#d4af37] hover:bg-[#d4af37] hover:text-white dark:hover:bg-[#d4af37] dark:hover:text-gray-950 border-gray-200 dark:border-[#d4af37]/30",
+                                ? "bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm"
+                                : "bg-white text-gray-800 hover:bg-gray-50 border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
                             )}
                           >
                             {isInterested ? (
                               <>
-                                <CheckCircle2 size={10} />
+                                <CheckCircle2 size={12} className="text-emerald-500" />
                                 <span>Applied</span>
                               </>
                             ) : (
@@ -481,17 +490,16 @@ export default function FranchiseNetworkDesktop() {
             </div>
 
             {/* Bottom Actions */}
-            <div className="relative z-10 flex flex-col gap-2 pt-3.5 border-t border-gray-200/60 dark:border-white/10 mt-3">
-              <button className="w-full py-2.5 px-3 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-semibold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
+            <div className="flex flex-col gap-3 pt-4 mt-auto">
+              <button className="w-full py-3.5 px-4 bg-[#0a1128] hover:bg-[#121c33] text-white text-[13px] font-bold uppercase tracking-wider rounded-[4px] shadow-lg transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
                 <ChevronRight
-                  size={14}
+                  size={16}
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </button>
-
-              <button className="w-full py-2 px-3 bg-white/80 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 hover:border-[#d4af37] dark:hover:border-[#d4af37]/50 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-[4px] transition-all flex items-center justify-center gap-2 shadow-sm">
-                <Download size={13} className="text-[#d4af37]" />
+              <button className="w-full py-3 px-4 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 text-[13px] font-bold rounded-[4px] transition-all flex items-center justify-center gap-2 shadow-sm">
+                <Download size={14} className="text-[#d4af37]" />
                 <span>{franchiseNetworkData.cta.secondary}</span>
               </button>
             </div>

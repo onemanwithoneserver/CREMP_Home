@@ -33,7 +33,7 @@ export default function FAQMobile() {
   }, [searchQuery]);
 
   return (
-    <section className="w-full py-12 pb-20 relative overflow-hidden rounded-[8px] bg-white/40 ">
+    <section className="w-full py-12 pb-20 px-2 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
