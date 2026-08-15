@@ -47,16 +47,16 @@ export default function Mobile() {
           icon={currentData.headerIcon}
         />
 
-        <div className="px-5 mt-5 mb-1 flex w-full">
-          <div className="flex w-full bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden">
+        <div className="px-4 mt-5 mb-1 flex justify-center w-full">
+          <div className={`flex gap-1.5 mx-auto bg-white/40 backdrop-blur-2xl rounded-[6px] p-1.5 border border-white/60 shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_8px_32px_rgba(0,0,0,0.05)] relative ${commercialData.tabs.length < 3 ? 'w-3/4' : 'w-full'}`}>
             {commercialData.tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 py-2 text-[0.75rem] font-bold whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none ${
+                className={`relative flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 py-1.5 sm:py-2 px-1 text-[0.6rem] sm:text-[0.65rem] font-bold tracking-wide uppercase whitespace-nowrap transition-all duration-300 rounded-[4px] z-10 focus-visible:outline-none ${
                   activeTab === tab
                     ? "text-white"
-                    : "text-gray-500 hover:text-[#0a1128] hover:bg-white/50"
+                    : "text-gray-600 hover:text-[#0a1128] bg-white/50 border border-white/40 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:bg-white/80 hover:shadow-md"
                 }`}
               >
                 {activeTab === tab && (
