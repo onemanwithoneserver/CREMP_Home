@@ -69,9 +69,11 @@ export default function FranchiseNetworkDesktop() {
               title={franchiseNetworkData.title}
               align="left"
             />
-            <p className="text-gray-600 dark:text-gray-400 text-sm max-w-2xl mt-1">
-              {franchiseNetworkData.subtitle}
-            </p>
+            {franchiseNetworkData.subtitle && (
+              <p className="text-gray-600 dark:text-gray-400 text-sm max-w-2xl mt-1">
+                {franchiseNetworkData.subtitle}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center gap-2 px-3.5 py-2 bg-white/70 dark:bg-[#0b1b42]/70 rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 backdrop-blur-md self-start md:self-auto shrink-0 shadow-sm">
@@ -82,38 +84,37 @@ export default function FranchiseNetworkDesktop() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Unified Glassmorphic Stats Container */}
+        <div className="relative z-10 w-full flex bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] overflow-hidden gap-1.5">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="group bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px] p-5 flex flex-col justify-between hover:border-gray-300 hover:shadow-md dark:hover:border-[#d4af37]/40 dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] transition-all duration-300 shadow-sm"
+                className="flex-1 relative flex flex-col p-4 rounded-[4px] bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/40 dark:border-white/10 hover:bg-white/50 dark:hover:bg-white/10 transition-all duration-300 group"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-3 mb-2 relative z-10">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                    className="w-8 h-8 rounded-[4px] flex items-center justify-center bg-[#d4af37]/10 text-[#d4af37] group-hover:bg-[#d4af37] group-hover:text-white transition-colors duration-300"
+                  >
+                    <Icon size={14} strokeWidth={2.5} />
+                  </motion.div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     {stat.label}
                   </span>
-                  <motion.div
-                    whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
-                    className="w-8 h-8 rounded-[4px] bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] shadow-sm"
-                  >
-                    <Icon size={16} />
-                  </motion.div>
                 </div>
-                <div>
-                  <div className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white tracking-tight">
-                    {stat.value}
-                  </div>
-                  <div className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    {stat.change}
-                  </div>
-                </div>
+                <span className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white tracking-tight relative z-10">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] font-semibold text-[#d4af37] mt-0.5 uppercase tracking-wide relative z-10">
+                  {stat.change}
+                </span>
               </motion.div>
             );
           })}
@@ -293,10 +294,12 @@ export default function FranchiseNetworkDesktop() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col justify-between bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] p-5 shadow-sm">
-            <div className="flex flex-col gap-4">
+          <div className="lg:col-span-4 flex flex-col justify-between bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] rounded-[4px] p-5 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
+            
+            <div className="relative z-10 flex flex-col gap-4">
               {/* City Dropdown & Status Header */}
-              <div className="border-b border-gray-200 dark:border-gray-800 pb-3.5">
+              <div className="border-b border-gray-200/60 dark:border-white/10 pb-3.5">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 flex items-center gap-1">
                     <MapPin size={11} className="text-[#d4af37]" /> Select Hub
@@ -305,10 +308,10 @@ export default function FranchiseNetworkDesktop() {
                     className={clsx(
                       "text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-[2px] border",
                       activeCity.status === "active"
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800"
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-800/50"
                         : activeCity.status === "expansion"
-                          ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-[#d4af37] dark:border-amber-800"
-                          : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800",
+                          ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-[#d4af37]/10 dark:text-[#d4af37] dark:border-[#d4af37]/30"
+                          : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800/50",
                     )}
                   >
                     {activeCity.statusLabel}
@@ -319,7 +322,7 @@ export default function FranchiseNetworkDesktop() {
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="w-full flex items-center justify-between bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-700 hover:border-[#d4af37] dark:hover:border-[#d4af37] rounded-[4px] py-2.5 px-3 text-xs font-semibold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
+                    className="w-full flex items-center justify-between bg-white/50 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 hover:border-[#d4af37]/50 dark:hover:border-[#d4af37]/50 rounded-[4px] py-2.5 px-3 text-xs font-semibold text-gray-900 dark:text-white shadow-sm transition-all focus:outline-none"
                   >
                     <span>
                       {activeCity.name} ({activeCity.state}) —{" "}
@@ -341,7 +344,7 @@ export default function FranchiseNetworkDesktop() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute z-50 w-full mt-1 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-700 rounded-[4px] shadow-xl overflow-hidden max-h-[250px] overflow-y-auto"
+                        className="absolute z-50 w-full mt-1 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[4px] shadow-2xl overflow-hidden max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-full"
                       >
                         {franchiseNetworkData.cities.map((city) => (
                           <button
@@ -351,9 +354,9 @@ export default function FranchiseNetworkDesktop() {
                               setIsDropdownOpen(false);
                             }}
                             className={clsx(
-                              "w-full text-left px-3 py-2 text-xs transition-colors hover:bg-gray-50 dark:hover:bg-[#121c33]",
+                              "w-full text-left px-3 py-2 text-xs transition-colors hover:bg-gray-50/80 dark:hover:bg-white/5",
                               activeCity.id === city.id
-                                ? "bg-gray-50 dark:bg-[#121c33] font-bold text-[#d4af37]"
+                                ? "bg-gray-50/80 dark:bg-white/5 font-bold text-[#d4af37]"
                                 : "text-gray-700 dark:text-gray-300 font-medium"
                             )}
                           >
@@ -373,7 +376,7 @@ export default function FranchiseNetworkDesktop() {
 
               {/* City Quick Metrics */}
               <div className="grid grid-cols-2 gap-2">
-                <div className="p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px] flex items-center justify-between">
+                <div className="p-2.5 bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 rounded-[4px] flex items-center justify-between shadow-sm">
                   <div>
                     <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
                       Operating Stores
@@ -387,7 +390,7 @@ export default function FranchiseNetworkDesktop() {
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-gray-800 rounded-[4px] flex items-center justify-between">
+                <div className="p-2.5 bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 rounded-[4px] flex items-center justify-between shadow-sm">
                   <div>
                     <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400 block">
                       In Pipeline
@@ -415,20 +418,20 @@ export default function FranchiseNetworkDesktop() {
                 </div>
 
                 {/* Table / Row headers */}
-                <div className="flex items-center justify-between px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 border-b border-gray-200 dark:border-gray-800">
+                <div className="flex items-center justify-between px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 border-b border-gray-200/60 dark:border-white/10">
                   <span className="w-[44%]">Circle Name</span>
                   <span className="w-[34%] text-center">Outlet Format</span>
                   <span className="w-[22%] text-right">Interested</span>
                 </div>
 
-                {/* Rows list */}
-                <div className="flex flex-col gap-1.5 mt-1.5 max-h-[175px] overflow-y-auto pr-0.5 scrollbar-hide">
+                {/* Rows list with styled scrollbar */}
+                <div className="flex flex-col gap-1.5 mt-1.5 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-full">
                   {activeCity.opportunities?.map((opp) => {
                     const isInterested = interestedMap[opp.id];
                     return (
                       <div
                         key={opp.id}
-                        className="flex items-center justify-between p-2.5 bg-white dark:bg-[#0b1b42] border border-gray-200/80 dark:border-gray-800 hover:border-[#d4af37]/50 rounded-[4px] shadow-sm transition-all text-xs group"
+                        className="flex items-center justify-between p-2.5 bg-white/50 dark:bg-white/5 border border-white/40 dark:border-white/5 hover:border-[#d4af37]/30 dark:hover:border-[#d4af37]/30 rounded-[4px] shadow-sm transition-all text-xs group"
                       >
                         {/* Circle Name */}
                         <div className="w-[44%] flex flex-col pr-1">
@@ -444,7 +447,7 @@ export default function FranchiseNetworkDesktop() {
 
                         {/* Outlet Format */}
                         <div className="w-[34%] text-center px-1">
-                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-semibold rounded-[2px] bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700/60 truncate max-w-full">
+                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-semibold rounded-[2px] bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-white/10 truncate max-w-full">
                             {opp.format}
                           </span>
                         </div>
@@ -454,10 +457,10 @@ export default function FranchiseNetworkDesktop() {
                           <button
                             onClick={() => toggleInterest(opp.id)}
                             className={clsx(
-                              "px-2 py-1 text-[10px] font-semibold rounded-[3px] transition-all flex items-center gap-1",
+                              "px-2 py-1 text-[10px] font-semibold rounded-[3px] transition-all flex items-center gap-1 border",
                               isInterested
-                                ? "bg-emerald-600 text-white shadow-sm"
-                                : "bg-[#0b1b42] text-white hover:bg-[#d4af37] hover:text-[#0b1b42] dark:bg-[#d4af37]/20 dark:text-[#d4af37] dark:hover:bg-[#d4af37] dark:hover:text-gray-950 border border-[#d4af37]/40",
+                                ? "bg-emerald-600 text-white border-emerald-500 shadow-sm"
+                                : "bg-white/80 dark:bg-[#d4af37]/10 text-gray-800 dark:text-[#d4af37] hover:bg-[#d4af37] hover:text-white dark:hover:bg-[#d4af37] dark:hover:text-gray-950 border-gray-200 dark:border-[#d4af37]/30",
                             )}
                           >
                             {isInterested ? (
@@ -478,8 +481,8 @@ export default function FranchiseNetworkDesktop() {
             </div>
 
             {/* Bottom Actions */}
-            <div className="flex flex-col gap-2 pt-3.5 border-t border-gray-200 dark:border-gray-800 mt-3">
-              <button className="w-full py-2.5 px-3 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-semibold uppercase tracking-wider rounded-[4px] shadow-sm transition-all flex items-center justify-center gap-2 group">
+            <div className="relative z-10 flex flex-col gap-2 pt-3.5 border-t border-gray-200/60 dark:border-white/10 mt-3">
+              <button className="w-full py-2.5 px-3 bg-[#0b1b42] hover:bg-[#121c33] dark:bg-[#d4af37] dark:hover:bg-[#bfa030] text-white dark:text-gray-950 text-xs font-semibold uppercase tracking-wider rounded-[4px] shadow-md transition-all flex items-center justify-center gap-2 group">
                 <span>{franchiseNetworkData.cta.primary}</span>
                 <ChevronRight
                   size={14}
@@ -487,7 +490,7 @@ export default function FranchiseNetworkDesktop() {
                 />
               </button>
 
-              <button className="w-full py-2 px-3 bg-white dark:bg-[#0b1b42] border border-gray-300 dark:border-gray-800 hover:border-[#d4af37] text-gray-700 dark:text-gray-300 text-xs font-medium rounded-[4px] transition-all flex items-center justify-center gap-2">
+              <button className="w-full py-2 px-3 bg-white/80 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 hover:border-[#d4af37] dark:hover:border-[#d4af37]/50 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-[4px] transition-all flex items-center justify-center gap-2 shadow-sm">
                 <Download size={13} className="text-[#d4af37]" />
                 <span>{franchiseNetworkData.cta.secondary}</span>
               </button>

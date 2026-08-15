@@ -32,9 +32,8 @@ export interface CityNode {
 
 export const franchiseNetworkData = {
   sectionLabel: "EXPANSION MAP",
-  title: "Franchise Locations available",
-  subtitle:
-    "Explore our rapidly expanding footprint across high-demand metropolitan hubs and Tier-2 growth corridors.",
+  title: "Franchise Locations Available",
+  subtitle: "",
   outletCount: "187+ Outlets • 8 States • 25 In Pipeline",
 
   stats: [
