@@ -29,48 +29,47 @@ export default function Desktop() {
           icon={currentData.headerIcon}
         />
 
-        <div className="px-4 mt-3">
-          <div className="flex w-[85%] mx-auto bg-slate-50/50 backdrop-blur-2xl rounded-[2px] p-0 border border-white shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] relative gap-0 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none"></div>
+        <div className="flex px-4 py-4 gap-4 items-start w-full">
+          
+          <div className="flex flex-col w-[30%] min-w-[120px] bg-slate-50/50 backdrop-blur-2xl rounded-[4px] p-1 border border-gray-200/60 shadow-sm relative gap-1 shrink-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 pointer-events-none rounded-[4px]"></div>
             {commercialData.tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex-1 py-2 text-[0.68rem] font-semibold whitespace-nowrap transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
+                className={`relative w-full py-2.5 px-3 text-left text-[0.7rem] font-semibold transition-all duration-300 rounded-[2px] z-10 focus-visible:outline-none ${
                   activeTab === tab
                     ? "text-white"
-                    : "bg-white/80 hover:bg-white text-[#0a1128] border-r border-gray-200/50 last:border-r-0"
+                    : "text-[#0a1128] hover:bg-white/80 border-b border-gray-100 last:border-b-0"
                 }`}
               >
                 {activeTab === tab && (
                   <motion.div
-                    layoutId="commercialTabActive"
-                    className="absolute inset-0 bg-gradient-to-b from-[#1c2e64] to-[#0b1b42] rounded-[2px] shadow-[0_4px_16px_rgba(11,27,66,0.3),inset_0_1px_2px_rgba(255,255,255,0.3)] ring-1 ring-[#0b1b42]/50"
+                    layoutId="commercialTabActive_landbox"
+                    className="absolute inset-0 bg-gradient-to-r from-[#1c2e64] to-[#0b1b42] rounded-[2px] shadow-sm"
                     transition={{
                       type: "spring",
                       stiffness: 400,
                       damping: 30,
                       mass: 0.8,
                     }}
-                  >
-                    <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent rounded-t-[2px] pointer-events-none" />
-                  </motion.div>
+                  />
                 )}
-                <span className="relative z-10">{tab}</span>
+                <span className="relative z-10 block">{tab}</span>
               </button>
             ))}
           </div>
-        </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="px-4 py-4 flex flex-col gap-4"
-          >
+          <div className="flex-1 min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 15 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -15 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col gap-4 w-full"
+              >
             <div className="flex justify-between items-stretch gap-2">
               <div className="flex-1 bg-gradient-to-br from-gray-50 to-white  rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
@@ -131,7 +130,9 @@ export default function Desktop() {
               ))}
             </div>
           </motion.div>
-        </AnimatePresence>
+            </AnimatePresence>
+          </div>
+        </div>
       </motion.div>
     </motion.div>
   );
