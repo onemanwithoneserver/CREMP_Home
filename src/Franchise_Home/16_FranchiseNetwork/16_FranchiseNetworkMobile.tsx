@@ -86,7 +86,7 @@ export default function FranchiseNetworkMobile() {
             return (
               <div
                 key={idx}
-                className="relative flex flex-col p-3 rounded-[4px] bg-white dark:bg-[#0b1b42] border border-gray-100 dark:border-gray-800 shadow-sm gap-2"
+                className="relative flex flex-col p-3 rounded-[4px]  shadow-sm gap-2"
               >
                 <div className="flex items-start gap-2">
                   <div
@@ -239,14 +239,23 @@ export default function FranchiseNetworkMobile() {
 
         {/* Right Panel / Bottom Container in Mobile */}
         {/* Right Panel / Bottom Container in Mobile */}
-        <div className="bg-white dark:bg-white border border-gray-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-5 relative mt-4">
+        <div className="shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-5 relative mt-4">
           <div className="flex flex-col gap-5">
             
             {/* City Dropdown & Status Header */}
-            <div className="flex flex-col gap-3 border-b border-gray-100 pb-4">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex flex-col gap-3 border-b border-gray-100 pb-4"
+            >
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1.5">
-                  <MapPin size={12} className="text-[#d4af37]" /> Select Hub
+                  <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <MapPin size={11} strokeWidth={2.5} />
+                  </div>
+                  Select Hub
                 </span>
                 <span
                   className={clsx(
@@ -288,7 +297,7 @@ export default function FranchiseNetworkMobile() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[220px] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full"
+                      className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[220px] overflow-y-auto [&::-webkit-scrollbar]:hidden"
                     >
                       {franchiseNetworkData.cities.map((city) => (
                         <button
@@ -316,10 +325,16 @@ export default function FranchiseNetworkMobile() {
                   )}
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
 
             {/* Quick Metrics */}
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="grid grid-cols-2 gap-2 text-xs"
+            >
               <div className="p-2.5 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
                 <div className="flex flex-col">
                   <span className="text-[10px] font-bold text-gray-500 mb-0.5">
@@ -329,7 +344,7 @@ export default function FranchiseNetworkMobile() {
                     {activeCity.outlets} Units
                   </span>
                 </div>
-                <div className="w-6 h-6 rounded-[3px] bg-[#0f9d58]/10 text-[#0f9d58] flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 rounded-[3px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
                   <Building2 size={12} strokeWidth={2.5} />
                 </div>
               </div>
@@ -343,17 +358,25 @@ export default function FranchiseNetworkMobile() {
                     {activeCity.pipeline} Locations
                   </span>
                 </div>
-                <div className="w-6 h-6 rounded-[3px] bg-[#f4b400]/10 text-[#f4b400] flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 rounded-[3px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
                   <Zap size={12} strokeWidth={2.5} />
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Opportunities in Rows */}
-            <div className="flex flex-col gap-2">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col gap-2"
+            >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
-                  <Sparkles size={11} className="text-[#d4af37]" />
+                  <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Sparkles size={11} strokeWidth={2.5} />
+                  </div>
                   Available Opportunities
                 </span>
                 <span className="text-[10px] font-bold text-[#d4af37]">
@@ -368,53 +391,62 @@ export default function FranchiseNetworkMobile() {
               </div>
 
               {/* Rows List with custom scrollbar */}
-              <div className="flex flex-col gap-2 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full pb-2 border-b border-gray-200">
+              <div className="flex flex-col gap-2 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:hidden pb-2 border-b border-gray-200">
                 {activeCity.opportunities?.map((opp) => {
                   const isInterested = interestedMap[opp.id];
                   return (
                     <div
                       key={opp.id}
-                      className="flex items-center justify-between p-2.5 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all group"
+                      className="flex items-center justify-between p-2.5 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all group"
                     >
                       <div className="flex flex-col flex-1 pr-2 min-w-0">
                         <span className="font-bold text-gray-900 truncate text-[12px] mb-0.5">
                           {opp.circleName}
                         </span>
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-0.5">
                           {opp.badge && (
                             <span className="text-[9px] font-bold text-emerald-600 flex items-center gap-1">
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" /> {opp.badge} Zone
                             </span>
                           )}
-                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-bold rounded-[3px] bg-white text-gray-600 border border-gray-200">
+                          <span className="inline-block px-1.5 py-0.5 text-[9px] font-bold rounded-[3px] bg-gray-50 text-gray-600 border border-gray-200">
                             {opp.format}
                           </span>
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => toggleInterest(opp.id)}
-                        className={clsx(
-                          "px-2.5 py-1.5 text-[10px] font-bold rounded-[4px] transition-all shrink-0 flex items-center gap-1 border",
-                          isInterested
-                            ? "bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm"
-                            : "bg-white text-gray-800 hover:bg-gray-50 border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
-                        )}
-                      >
-                        {isInterested ? (
-                          <>
-                            <CheckCircle2 size={10} className="text-emerald-500" />
-                            <span>Applied</span>
-                          </>
-                        ) : (
-                          <span>Interested</span>
-                        )}
-                      </button>
+                      <div className="w-[85px] shrink-0 flex justify-end">
+                        <button
+                          onClick={() => toggleInterest(opp.id)}
+                          className={clsx(
+                            "px-2.5 py-1.5 text-[10px] font-bold rounded-[4px] transition-all flex items-center justify-center gap-1 border w-full",
+                            isInterested
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm"
+                              : "bg-white text-gray-800 hover:bg-gray-50 border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
+                          )}
+                        >
+                          {isInterested ? (
+                            <>
+                              <CheckCircle2 size={10} className="text-emerald-500" />
+                              <span>Applied</span>
+                            </>
+                          ) : (
+                            <span>Interested</span>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
               </div>
-            </div>
+              
+              {/* Load More Button */}
+              {activeCity.opportunities && activeCity.opportunities.length > 0 && (
+                <button className="w-full mt-0.5 py-1.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 hover:text-gray-700 bg-gray-50/50 hover:bg-gray-100 rounded-[4px] transition-colors border border-gray-100">
+                  Load More
+                </button>
+              )}
+            </motion.div>
 
             {/* Bottom Actions */}
             <div className="flex flex-col gap-2.5 pt-2">

@@ -62,7 +62,7 @@ export default function FranchiseNetworkDesktop() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-100 dark:border-gray-800 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
           <div>
             <SectionHeader
               overline={franchiseNetworkData.sectionLabel}
@@ -101,7 +101,7 @@ export default function FranchiseNetworkDesktop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="relative flex items-center p-4 rounded-md bg-white dark:bg-[#0b1b42] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow gap-3.5"
+                className="relative flex items-center p-4 rounded-md  shadow-sm hover:shadow-md transition-shadow gap-3.5"
               >
                 <div
                   className={clsx(
@@ -132,7 +132,7 @@ export default function FranchiseNetworkDesktop() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          <div className="lg:col-span-8 relative min-h-[540px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-2xl flex flex-col justify-between p-6">
+          <div className="lg:col-span-7 relative min-h-[540px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-2xl flex flex-col justify-between p-6">
             <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-luminosity overflow-hidden">
               <img
                 src={mapBg}
@@ -304,14 +304,22 @@ export default function FranchiseNetworkDesktop() {
               </span>
             </div>
           </div>
-          <div className="lg:col-span-4 flex flex-col justify-between bg-white dark:bg-white border border-gray-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-6 relative">
+          <div className="lg:col-span-5 flex flex-col justify-between shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-[8px] p-6 relative">
             <div className="flex flex-col gap-6">
-              
-              {/* City Dropdown & Status Header */}
-              <div className="flex flex-col gap-3 border-b border-gray-100 pb-5">
+                           {/* City Dropdown & Status Header */}
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex flex-col gap-3 border-b border-gray-100 pb-5"
+              >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1.5">
-                    <MapPin size={13} className="text-[#d4af37]" /> Select Hub
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <MapPin size={11} strokeWidth={2.5} />
+                    </div>
+                    Select Hub
                   </span>
                   <span
                     className={clsx(
@@ -353,7 +361,7 @@ export default function FranchiseNetworkDesktop() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full"
+                        className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-[4px] shadow-xl overflow-hidden max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:hidden"
                       >
                         {franchiseNetworkData.cities.map((city) => (
                           <button
@@ -381,10 +389,16 @@ export default function FranchiseNetworkDesktop() {
                     )}
                   </AnimatePresence>
                 </div>
-              </div>
+              </motion.div>
 
               {/* City Quick Metrics */}
-              <div className="grid grid-cols-2 gap-3">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="grid grid-cols-2 gap-3"
+              >
                 <div className="p-3 bg-white border border-gray-100 rounded-[6px] flex items-center justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
                   <div className="flex flex-col">
                     <span className="text-[11px] font-bold text-gray-500 mb-0.5">
@@ -394,8 +408,8 @@ export default function FranchiseNetworkDesktop() {
                       {activeCity.outlets} Units
                     </span>
                   </div>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#0f9d58]/10 text-[#0f9d58] flex items-center justify-center shrink-0">
-                    <Building2 size={16} strokeWidth={2.5} />
+                  <div className="w-8 h-8 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Building2 size={15} strokeWidth={2.5} />
                   </div>
                 </div>
 
@@ -408,17 +422,25 @@ export default function FranchiseNetworkDesktop() {
                       {activeCity.pipeline} Locations
                     </span>
                   </div>
-                  <div className="w-8 h-8 rounded-[4px] bg-[#f4b400]/10 text-[#f4b400] flex items-center justify-center shrink-0">
-                    <Zap size={16} strokeWidth={2.5} />
+                  <div className="w-8 h-8 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Zap size={15} strokeWidth={2.5} />
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Opportunities in Rows */}
-              <div className="flex flex-col gap-2.5">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex flex-col gap-2.5"
+              >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
-                    <Sparkles size={13} className="text-[#d4af37]" />
+                  <span className="text-[12px] font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-[4px] bg-[#0a1128] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <Sparkles size={11} strokeWidth={2.5} />
+                    </div>
                     Available Opportunities
                   </span>
                   <span className="text-[11px] font-bold text-[#d4af37]">
@@ -428,22 +450,22 @@ export default function FranchiseNetworkDesktop() {
 
                 {/* Table / Row headers */}
                 <div className="flex items-center justify-between px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-200">
-                  <span className="w-[45%]">Circle Name</span>
-                  <span className="w-[30%] text-center">Outlet Format</span>
-                  <span className="w-[25%] text-right">Interested</span>
+                  <span className="flex-1">Circle Name</span>
+                  <span className="w-[110px] text-center">Outlet Format</span>
+                  <span className="w-[90px] text-right">Action</span>
                 </div>
 
                 {/* Rows list */}
-                <div className="flex flex-col gap-2 max-h-[220px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full pb-2 border-b border-gray-200">
+                <div className="flex flex-col gap-2 max-h-[200px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full">
                   {activeCity.opportunities?.map((opp) => {
                     const isInterested = interestedMap[opp.id];
                     return (
                       <div
                         key={opp.id}
-                        className="flex items-center justify-between p-3 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all group"
+                        className="flex items-center justify-between p-3.5 bg-white border border-gray-100 rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all group"
                       >
                         {/* Circle Name */}
-                        <div className="w-[45%] flex flex-col pr-2">
+                        <div className="flex-1 flex flex-col pr-3">
                           <span className="font-bold text-gray-900 truncate text-[13px] mb-0.5">
                             {opp.circleName}
                           </span>
@@ -455,18 +477,18 @@ export default function FranchiseNetworkDesktop() {
                         </div>
 
                         {/* Outlet Format */}
-                        <div className="w-[30%] text-center px-1">
-                          <span className="inline-block px-2 py-1 text-[10px] font-bold rounded-[3px] bg-white text-gray-600 border border-gray-200 truncate max-w-full">
+                        <div className="w-[110px] text-center px-1">
+                          <span className="inline-block px-2.5 py-1 text-[10px] font-bold rounded-[4px] bg-gray-50 text-gray-600 border border-gray-200 truncate max-w-full">
                             {opp.format}
                           </span>
                         </div>
 
                         {/* Interested CTA */}
-                        <div className="w-[25%] flex justify-end">
+                        <div className="w-[90px] flex justify-end">
                           <button
                             onClick={() => toggleInterest(opp.id)}
                             className={clsx(
-                              "px-3 py-1.5 text-[11px] font-bold rounded-[4px] transition-all flex items-center gap-1.5 border",
+                              "px-3 py-1.5 text-[11px] font-bold rounded-[4px] transition-all flex items-center justify-center gap-1.5 border w-[85px]",
                               isInterested
                                 ? "bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm"
                                 : "bg-white text-gray-800 hover:bg-gray-50 border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
@@ -486,7 +508,14 @@ export default function FranchiseNetworkDesktop() {
                     );
                   })}
                 </div>
-              </div>
+
+                {/* Load More Button */}
+                {activeCity.opportunities && activeCity.opportunities.length > 0 && (
+                  <button className="w-full mt-1 py-1.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 hover:text-gray-700 bg-gray-50/50 hover:bg-gray-100 rounded-[4px] transition-colors border border-gray-100">
+                    Load More
+                  </button>
+                )}
+              </motion.div>
             </div>
 
             {/* Bottom Actions */}
