@@ -42,7 +42,7 @@ export default function Mobile() {
           <div className="border border-gray-100 rounded-[6px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsFeaturesOpen(!isFeaturesOpen)}
-              className="w-full flex items-center justify-between p-2.5 bg-gray-50/50 hover:bg-gray-50 text-[0.68rem] font-semibold text-[#0a1128] transition-colors"
+              className="w-full flex items-center justify-between p-2.5 bg-gray-50/50 hover:bg-gray-50 text-[0.68rem] font-semibold text-[#17274c] transition-colors"
             >
               <span className="tracking-wide flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
@@ -109,11 +109,11 @@ export default function Mobile() {
                       className="relative z-10 pointer-events-none"
                     />
                   </div>
-                  <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
+                  <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#17274c] transition-colors">
                     {detail.label}
                   </span>
                 </div>
-                <span className="text-[0.82rem] font-semibold tracking-tight text-[#0a1128]">
+                <span className="text-[0.82rem] font-semibold tracking-tight text-[#17274c]">
                   {detail.value}
                 </span>
               </motion.div>

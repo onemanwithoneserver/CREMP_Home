@@ -34,7 +34,7 @@ export default function Mobile() {
           <div className="border border-gray-100 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsIncludedOpen(!isIncludedOpen)}
-              className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#0a1128] transition-colors cursor-pointer select-none"
+              className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#17274c] transition-colors cursor-pointer select-none"
             >
               <span className="tracking-wide flex items-center gap-2 relative z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
@@ -97,7 +97,7 @@ export default function Mobile() {
                 >
                   <item.icon size={13} strokeWidth={2.2} />
                 </div>
-                <span className="text-[0.75rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors truncate">
+                <span className="text-[0.75rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#17274c] transition-colors leading-tight">
                   {item.label}
                 </span>
               </motion.div>

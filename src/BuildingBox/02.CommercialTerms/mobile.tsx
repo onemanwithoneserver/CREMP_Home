@@ -62,7 +62,7 @@ export default function Mobile() {
 
                 <span
                   className={`relative z-10 font-semibold text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
-                    activeTab === tab ? "text-white" : "text-[#0a1128]"
+                    activeTab === tab ? "text-white" : "text-[#17274c]"
                   }`}
                 >
                   {tab}
@@ -111,7 +111,7 @@ export default function Mobile() {
 
                     <div className="flex items-baseline gap-1 mt-0.5 ml-3">
                       <span
-                        className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#0a1128]"}`}
+                        className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#17274c]"}`}
                       >
                         {currentData.primaryAmount}
                       </span>
@@ -164,12 +164,12 @@ export default function Mobile() {
                           className="relative z-10 pointer-events-none"
                         />
                       </div>
-                      <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
+                      <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#17274c] transition-colors">
                         {detail.label}
                       </span>
                     </div>
                     <span
-                      className={`text-[0.82rem] font-semibold tracking-tight ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                      className={`text-[0.82rem] font-semibold tracking-tight ${"valueColor" in detail ? detail.valueColor : "text-[#17274c]"}`}
                     >
                       {detail.value}
                     </span>
@@ -196,7 +196,7 @@ export default function Mobile() {
                       <span className="text-[0.72rem] text-gray-600 font-medium">
                         {currentData.footer.left}
                       </span>
-                      <span className="text-[0.75rem] text-[#0a1128] font-semibold">
+                      <span className="text-[0.75rem] text-[#17274c] font-semibold">
                         {currentData.footer.right}
                       </span>
                     </div>

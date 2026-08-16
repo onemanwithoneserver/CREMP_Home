@@ -34,7 +34,7 @@ export default function Mobile() {
                 <div className="flex items-center gap-3.5 text-gray-600">
                   <div className="relative w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm overflow-hidden">
                     <div
-                      className={`absolute inset-0 group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-[#0a1128]"}`}
+                      className={`absolute inset-0 group-hover:animate-icon-shake origin-center transition-all duration-300 ${"bgClass" in detail ? detail.bgClass : "bg-[#17274c]"}`}
                     />
                     <detail.icon
                       size={15}
@@ -42,11 +42,11 @@ export default function Mobile() {
                       className="relative z-10 pointer-events-none"
                     />
                   </div>
-                  <span className="text-[0.8rem] font-semibold text-gray-600 group-hover:text-[#0a1128] transition-colors">
+                  <span className="text-[0.8rem] font-semibold text-gray-600 group-hover:text-[#17274c] transition-colors">
                     {detail.label}
                   </span>
                 </div>
-                <span className="text-[0.85rem] font-semibold tracking-tight text-[#0a1128]">
+                <span className="text-[0.85rem] font-semibold tracking-tight text-[#17274c]">
                   {detail.value}
                 </span>
               </motion.div>

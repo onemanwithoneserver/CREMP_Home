@@ -80,7 +80,7 @@ export default function Desktop() {
 
                 <span
                   className={`relative z-10 font-semibold text-[0.75rem] lg:text-[0.8rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
-                    activeTab === tab ? "text-white" : "text-[#0a1128]"
+                    activeTab === tab ? "text-white" : "text-[#17274c]"
                   }`}
                 >
                   {tab}
@@ -101,7 +101,7 @@ export default function Desktop() {
               className="flex flex-col gap-4 w-full"
             >
               {/* Primary Price Card */}
-              <div className="relative w-full rounded-[4px] bg-gradient-to-br from-[#0a1128] via-[#0d1e47] to-[#0a1128] p-6 shadow-[0_8px_20px_rgba(11,27,66,0.15)] overflow-hidden group border border-[#0b1b42]/20">
+              <div className="relative w-full rounded-[4px] bg-gradient-to-br from-[#17274c] via-[#0d1e47] to-[#17274c] p-6 shadow-[0_8px_20px_rgba(11,27,66,0.15)] overflow-hidden group border border-[#0b1b42]/20">
                 {/* Animated Background Orbs */}
                 <motion.div
                   animate={{
@@ -203,7 +203,7 @@ export default function Desktop() {
                             rotate: [0, -5, 5, 0],
                           }}
                           transition={{ duration: 0.3 }}
-                          className={`absolute inset-0 ${"bgClass" in detail ? detail.bgClass : "bg-[#0a1128]"}`}
+                          className={`absolute inset-0 ${"bgClass" in detail ? detail.bgClass : "bg-[#17274c]"}`}
                         />
                         <detail.icon
                           size={15}
@@ -211,12 +211,12 @@ export default function Desktop() {
                           className="relative z-10 pointer-events-none"
                         />
                       </div>
-                      <span className="text-[0.75rem] font-semibold text-gray-500 group-hover:text-[#0a1128] transition-colors">
+                      <span className="text-[0.75rem] font-semibold text-gray-500 group-hover:text-[#17274c] transition-colors">
                         {detail.label}
                       </span>
                     </div>
                     <span
-                      className={`text-[1rem] font-semibold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#0a1128]"}`}
+                      className={`text-[1rem] font-semibold tracking-tight leading-snug ${"valueColor" in detail ? detail.valueColor : "text-[#17274c]"}`}
                     >
                       {detail.value}
                     </span>
