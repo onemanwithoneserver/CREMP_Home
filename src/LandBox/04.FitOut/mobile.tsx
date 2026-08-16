@@ -31,7 +31,7 @@ export default function Mobile() {
         />
 
         <div className="px-5 py-5 flex flex-col gap-4 mx-0">
-          <div className="border border-transparent rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
+          <div className="border border-gray-100 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsIncludedOpen(!isIncludedOpen)}
               className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#17274c] transition-colors cursor-pointer select-none"
@@ -90,7 +90,7 @@ export default function Mobile() {
                 key={idx}
                 variants={itemReveal}
                 whileHover={{ scale: 1.01 }}
-                className="flex items-center gap-2.5 p-2.5 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group cursor-default"
+                className="flex items-center gap-2.5 p-2.5 rounded-[4px] bg-gray-50/50 border border-gray-100 hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group cursor-default"
               >
                 <div
                   className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}

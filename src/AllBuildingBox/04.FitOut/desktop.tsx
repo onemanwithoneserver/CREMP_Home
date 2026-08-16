@@ -90,7 +90,7 @@ export default function Desktop() {
                 key={idx}
                 variants={itemReveal}
                 whileHover={{ scale: 1.015, y: -1 }}
-                className="flex items-center gap-3 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200 transition-all duration-300 group cursor-default"
+                className="flex items-center gap-3 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-gray-100 hover:border-gray-200 transition-all duration-300 group cursor-default"
               >
                 <div
                   className={`w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}
