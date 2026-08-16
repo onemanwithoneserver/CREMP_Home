@@ -12,9 +12,6 @@ import { useParams } from "react-router-dom";
 import Hero from "./01.Hero";
 import MapView from "./MapView";
 
-const AvailableOpportunities = lazy(
-  () => import("./02.AvailableOpportunities"),
-);
 const Listings = lazy(() => import("./03.Listings"));
 const FitOut = lazy(() => import("./04.FitOut"));
 const Infrastructure = lazy(() => import("./05.Infrastructure"));
@@ -103,7 +100,6 @@ export default function AllBuildingBox() {
         <Hero />
         <div className="border-b border-gray-100 w-full" />
         <Suspense fallback={<SectionLoader />}>
-          <AvailableOpportunities />
           <Listings />
           <div className="border-b border-gray-100 w-full" />
           <FitOut />
