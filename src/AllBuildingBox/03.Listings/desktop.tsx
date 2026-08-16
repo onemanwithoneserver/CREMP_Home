@@ -35,44 +35,39 @@ export default function Desktop() {
               <motion.div
                 key={item.id}
                 variants={itemReveal}
-                whileHover={{ y: -2 }}
-                className="flex flex-col bg-white rounded-[4px] shadow-[0_4px_16px_rgba(0,0,0,0.03)] border border-gray-200/80 p-5 pl-6 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_32px_rgba(11,27,66,0.12)] hover:border-slate-300 cursor-pointer group"
+                className="flex flex-col bg-white rounded-lg shadow-sm border border-gray-100 p-4 pl-5 relative overflow-hidden transition-all duration-300 hover:shadow-md hover:border-gray-200 cursor-pointer group"
               >
-                {/* Vertical Left Accent Stripe on Hover */}
                 <div
-                  className={`absolute top-0 bottom-0 left-0 w-1.5 ${leftBar} opacity-0 group-hover:opacity-100 transition-all duration-300`}
+                  className={`absolute top-0 bottom-0 left-0 w-1 ${leftBar} transition-all duration-300`}
                 />
 
-                {/* Top Row: Icon + Type + Badge */}
-                <div className="flex justify-between items-center mb-3">
+                <div className="flex justify-between items-center mb-2.5">
                   <div className="flex items-center gap-2.5">
                     <div
-                      className={`w-9 h-9 rounded-[4px] border ${iconBg} transition-transform duration-300 flex items-center justify-center shrink-0`}
+                      className={`w-9 h-9 rounded-[5px] ${iconBg} transition-transform duration-300 flex items-center justify-center shrink-0`}
                     >
                       <Icon
-                        size={17}
-                        strokeWidth={2.2}
+                        size={16}
+                        strokeWidth={2}
                         className="text-white"
                       />
                     </div>
-                    <span className="text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider">
+                    <span className="text-[0.68rem] font-bold text-gray-500 uppercase tracking-widest">
                       {item.type}
                     </span>
                   </div>
                   <span
-                    className={`px-2 py-0.5 rounded-[2px] border text-[0.6rem] font-semibold tracking-wider uppercase ${badge}`}
+                    className={`px-2 py-0.5 rounded-[4px] border text-[0.62rem] font-bold tracking-wider uppercase ${badge}`}
                   >
                     {item.badge}
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-[#0a1128] font-semibold text-[1.05rem] mb-3 group-hover:text-[#0b1b42] transition-colors leading-tight">
+                <h3 className="text-[#0a1128] font-bold text-[1.1rem] mt-2 mb-3 group-hover:text-[#0b1b42] transition-colors leading-tight">
                   {item.title}
                 </h3>
 
-                {/* Area & Price */}
-                <div className="flex justify-between items-center mb-4 p-2.5 rounded-[4px] bg-gray-50/70 border border-gray-100 group-hover:border-gray-200 transition-colors">
+                <div className="flex justify-between items-center mb-4 p-2.5 rounded-md bg-[#fdfdfd] border border-gray-50 transition-colors">
                   <div className="flex items-center gap-1.5 text-gray-600">
                     <Maximize2 size={13} className="text-gray-400" />
                     <span className="text-[0.75rem] font-semibold">
@@ -80,24 +75,23 @@ export default function Desktop() {
                     </span>
                   </div>
                   <span
-                    className={`text-[1.1rem] font-semibold ${priceText} group-hover:scale-105 origin-right transition-transform duration-300`}
+                    className={`text-[1.1rem] font-bold ${priceText} group-hover:scale-105 origin-right transition-transform duration-300`}
                   >
                     {item.price}
                   </span>
                 </div>
 
-                {/* Footer: Availability status + View Listing button pill expansion */}
                 <div className="border-t border-gray-100/80 pt-3 flex justify-between items-center">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <div
                       className={`w-2 h-2 rounded-full ${item.statusColor} shadow-[0_0_6px_rgba(16,185,129,0.4)]`}
                     />
-                    <span className="text-[0.72rem] text-gray-500 font-semibold">
+                    <span className="text-[0.75rem] text-gray-500 font-semibold">
                       {item.status}
                     </span>
                   </div>
 
-                  <button className="flex items-center gap-1.5 text-[0.75rem] font-semibold text-[#0b1b42] px-2.5 py-1 rounded-[3px] transition-all duration-300 group-hover:bg-[#0b1b42] group-hover:text-white group-hover:shadow-sm">
+                  <button className="flex items-center gap-1.5 text-[0.75rem] font-bold bg-white text-[#0a1128] group-hover:bg-[#0a1128] group-hover:text-white px-3 py-1.5 rounded-[4px] transition-all duration-300">
                     <span>View Listing</span>
                     <ArrowRight
                       size={13}

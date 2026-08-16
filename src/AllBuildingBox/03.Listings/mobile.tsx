@@ -35,56 +35,50 @@ export default function Mobile() {
               <motion.div
                 key={item.id}
                 variants={itemReveal}
-                whileHover={{ y: -1 }}
-                className="flex flex-col bg-white rounded-[4px] shadow-sm border border-gray-200/80 p-4 pl-4.5 relative overflow-hidden transition-all duration-300 hover:shadow-md cursor-pointer group"
+                className="flex flex-col bg-white rounded-lg shadow-sm border border-gray-100 p-3 pl-3.5 relative overflow-hidden transition-all duration-300 hover:shadow-md cursor-pointer group"
               >
-                {/* Vertical Left Accent Stripe */}
                 <div
-                  className={`absolute top-0 bottom-0 left-0 w-1 ${leftBar} opacity-0 group-hover:opacity-100 transition-all duration-300`}
+                  className={`absolute top-0 bottom-0 left-0 w-1 ${leftBar} transition-all duration-300`}
                 />
 
-                {/* Top Row */}
-                <div className="flex justify-between items-center mb-2.5">
+                <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <div
-                      className={`w-8 h-8 rounded-[4px] border ${iconBg} flex items-center justify-center shrink-0`}
+                      className={`w-8 h-8 rounded-[4px] ${iconBg} flex items-center justify-center shrink-0`}
                     >
                       <Icon
-                        size={15}
-                        strokeWidth={2.2}
+                        size={14}
+                        strokeWidth={2}
                         className="text-white"
                       />
                     </div>
-                    <span className="text-[0.62rem] font-semibold text-gray-500 uppercase tracking-wider truncate">
+                    <span className="text-[0.62rem] font-bold text-gray-500 uppercase tracking-widest truncate">
                       {item.type}
                     </span>
                   </div>
                   <span
-                    className={`px-2 py-0.5 rounded-[2px] border text-[0.55rem] font-semibold tracking-wider uppercase ${badge}`}
+                    className={`px-1.5 py-0.5 rounded-[3px] border text-[0.55rem] font-bold tracking-wider uppercase ${badge}`}
                   >
                     {item.badge}
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-[#0a1128] font-semibold text-[0.98rem] mb-2.5 leading-snug">
+                <h3 className="text-[#0a1128] font-bold text-[0.98rem] mt-1.5 mb-2.5 leading-snug">
                   {item.title}
                 </h3>
 
-                {/* Area & Price */}
-                <div className="flex justify-between items-center mb-3 p-2 rounded-[4px] bg-gray-50/70 border border-gray-100">
-                  <div className="flex items-center gap-1 text-gray-600">
+                <div className="flex justify-between items-center mb-3 p-2 rounded-md bg-[#fdfdfd] border border-gray-50 transition-colors">
+                  <div className="flex items-center gap-1.5 text-gray-600">
                     <Maximize2 size={12} className="text-gray-400" />
                     <span className="text-[0.7rem] font-semibold">
                       {item.area}
                     </span>
                   </div>
-                  <span className={`text-[1.05rem] font-semibold ${priceText}`}>
+                  <span className={`text-[1.05rem] font-bold ${priceText}`}>
                     {item.price}
                   </span>
                 </div>
 
-                {/* Footer */}
                 <div className="border-t border-gray-100/80 pt-2.5 flex justify-between items-center">
                   <div className="flex items-center gap-1.5">
                     <div
@@ -95,7 +89,7 @@ export default function Mobile() {
                     </span>
                   </div>
 
-                  <button className="flex items-center gap-1 text-[0.72rem] font-semibold text-[#0b1b42] px-2 py-0.5 rounded-[3px] transition-all duration-300 group-hover:bg-[#0b1b42] group-hover:text-white">
+                  <button className="flex items-center gap-1 text-[0.7rem] font-bold bg-white text-[#0a1128] group-hover:bg-[#0a1128] group-hover:text-white px-2.5 py-1 rounded-[3px] transition-all duration-300">
                     <span>View Listing</span>
                     <ArrowRight
                       size={12}

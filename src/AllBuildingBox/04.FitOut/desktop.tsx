@@ -31,7 +31,7 @@ export default function Desktop() {
         />
 
         <div className="px-[var(--panel-px,1rem)] py-4 flex flex-col gap-4 mx-0">
-          <div className="border border-gray-100 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
+          <div className="border border-gray-200/80 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsIncludedOpen(!isIncludedOpen)}
               className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#0a1128] transition-colors cursor-pointer select-none"
@@ -67,7 +67,7 @@ export default function Desktop() {
                       <motion.span
                         key={idx}
                         variants={itemReveal}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.75rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm cursor-default"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-[0.75rem] font-semibold rounded-full bg-white text-[#0b1b42] shadow-sm cursor-default"
                       >
                         <CheckCircle2 size={14} className="text-emerald-500" />
                         {item}

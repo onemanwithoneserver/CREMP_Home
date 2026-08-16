@@ -1,33 +1,83 @@
-import { Box, Armchair, Monitor, Coffee } from "lucide-react";
+import {
+  Box,
+  Armchair,
+  Monitor,
+  Coffee,
+  Laptop,
+  CheckCircle2,
+  Archive,
+  Refrigerator,
+} from "lucide-react";
 
 export const fitOutData = {
-  title: "Fit-out & Furniture",
-  subtitle: "Core essentials",
-  included: ["AC", "Fridge", "Water Dispenser", "Internet Modem"],
+  title: "Fit-out & Furnishing Assets",
+  subtitle: "WORKPLACE INVENTORY & FIXTURES",
+  included: [
+    "Workstations / Tables (85 Units)",
+    "Ergonomic High-Back Chairs (110)",
+    "Modular Storage / Cupboards",
+    "Executive Sofa / Lounge Suite",
+    "Reception Desk & Counter",
+    "Pantry Equipment & Coffee Bar",
+    "Kitchen & Breakout Appliances",
+    "Dedicated Storage Space (400 sq.ft)",
+  ],
   items: [
     {
+      label: "Workstations / Tables",
+      sub: "85 Ergonomic Desks",
+      icon: Laptop,
+      active: true,
+      bgClass: "bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]",
+    },
+    {
+      label: "Chairs & Seating",
+      sub: "110 High-Back Mesh Chairs",
+      icon: CheckCircle2,
+      active: true,
+      bgClass: "bg-gradient-to-br from-[#10B981] to-[#047857]",
+    },
+    {
       label: "Storage / Cupboards",
+      sub: "Under-desk Pedestals + Cabinets",
       icon: Box,
       active: true,
       bgClass: "bg-gradient-to-br from-rose-500 to-rose-700",
     },
     {
       label: "Sofa / Lounge",
+      sub: "12-Seater Executive Lounge",
       icon: Armchair,
       active: true,
       bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]",
     },
     {
       label: "Reception Desk",
+      sub: "Custom Marble Desk",
       icon: Monitor,
       active: true,
       bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
     },
     {
       label: "Pantry Equipment",
+      sub: "Wet Counter & Water Purifier",
       icon: Coffee,
       active: true,
       bgClass: "bg-gradient-to-br from-[#0EA5E9] to-[#0369A1]",
+    },
+    {
+      label: "Appliances",
+      sub: "Microwaves, Fridge, Dispenser",
+      icon: Refrigerator,
+      active: true,
+      bgClass: "bg-gradient-to-br from-[#bf953f] to-[#b38728]",
+    },
+    {
+      label: "Storage Space",
+      sub: "400 sq.ft Secure Server Room",
+      icon: Archive,
+      active: true,
+      bgClass: "bg-gradient-to-br from-[#14B8A6] to-[#0F766E]",
     },
   ],
 };

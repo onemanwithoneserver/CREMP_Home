@@ -31,7 +31,7 @@ export default function Mobile() {
         />
 
         <div className="px-5 py-5 flex flex-col gap-4 mx-0">
-          <div className="border border-gray-100 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
+          <div className="border border-gray-200/80 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsIncludedOpen(!isIncludedOpen)}
               className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#0a1128] transition-colors cursor-pointer select-none"
@@ -67,7 +67,7 @@ export default function Mobile() {
                       <motion.span
                         key={idx}
                         variants={itemReveal}
-                        className="flex items-center gap-1 px-2.5 py-1 text-[0.65rem] font-semibold rounded-full bg-white text-[#0b1b42] border border-gray-200 shadow-sm cursor-default"
+                        className="flex items-center gap-1 px-2.5 py-1 text-[0.65rem] font-semibold rounded-full bg-white text-[#0b1b42] shadow-sm cursor-default"
                       >
                         <CheckCircle2 size={12} className="text-emerald-500" />
                         {item}

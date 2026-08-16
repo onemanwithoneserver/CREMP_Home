@@ -28,13 +28,20 @@ export default function Mobile() {
               {heroData.badges[0] || "GRADE A"}
             </span>
 
-            {/* Comm Complex Badge */}
-            {heroData.badges[1] && (
-              <span className="px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm flex items-center gap-1 backdrop-blur-md">
-                <Building2 size={10} className="text-gray-400" />
-                {heroData.badges[1]}
-              </span>
-            )}
+            {/* Building Type Dropdown */}
+            <div className="relative flex items-center">
+              <select 
+                defaultValue="Entire Building"
+                className="px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm backdrop-blur-md appearance-none cursor-pointer outline-none focus:ring-1 focus:ring-[#d4af37]/50 hover:bg-white/20 transition-colors pl-5 pr-2"
+              >
+                <option value="Land" className="text-gray-900 bg-white">LAND</option>
+                <option value="Retail" className="text-gray-900 bg-white">RETAIL</option>
+                <option value="Office" className="text-gray-900 bg-white">OFFICE</option>
+                <option value="Coworking" className="text-gray-900 bg-white">COWORKING</option>
+                <option value="Entire Building" className="text-gray-900 bg-white">ENTIRE BUILDING</option>
+              </select>
+              <Building2 size={10} className="text-gray-400 absolute left-1.5 pointer-events-none" />
+            </div>
           </motion.div>
         </div>
 

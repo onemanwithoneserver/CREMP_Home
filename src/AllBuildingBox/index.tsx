@@ -12,11 +12,11 @@ import { useParams } from "react-router-dom";
 import Hero from "./01.Hero";
 import MapView from "./MapView";
 
+
+const SpaceOverview = lazy(() => import("./03.SpaceOverview"));
 const Listings = lazy(() => import("./03.Listings"));
 const FitOut = lazy(() => import("./04.FitOut"));
 const Infrastructure = lazy(() => import("./05.Infrastructure"));
-const Media = lazy(() => import("./06.Media"));
-const LocationIntelligence = lazy(() => import("./07.LocationIntelligence"));
 const Terms = lazy(() => import("./08.Terms"));
 const StickyFooter = lazy(() => import("./StickyFooter"));
 
@@ -101,14 +101,13 @@ export default function AllBuildingBox() {
         <div className="border-b border-gray-100 w-full" />
         <Suspense fallback={<SectionLoader />}>
           <Listings />
+
+          <div className="border-b border-gray-100 w-full" />
+          <SpaceOverview />
           <div className="border-b border-gray-100 w-full" />
           <FitOut />
           <div className="border-b border-gray-100 w-full" />
           <Infrastructure />
-          <div className="border-b border-gray-100 w-full" />
-          <Media />
-          <div className="border-b border-gray-100 w-full" />
-          <LocationIntelligence />
           <div className="border-b border-gray-100 w-full" />
           <Terms />
         </Suspense>
