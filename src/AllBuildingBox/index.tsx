@@ -15,7 +15,6 @@ import MapView from "./MapView";
 
 const SpaceOverview = lazy(() => import("./03.SpaceOverview"));
 const Listings = lazy(() => import("./03.Listings"));
-const FitOut = lazy(() => import("./04.FitOut"));
 const Infrastructure = lazy(() => import("./05.Infrastructure"));
 const Terms = lazy(() => import("./08.Terms"));
 const StickyFooter = lazy(() => import("./StickyFooter"));
@@ -104,8 +103,6 @@ export default function AllBuildingBox() {
 
           <div className="border-b border-gray-100 w-full" />
           <SpaceOverview />
-          <div className="border-b border-gray-100 w-full" />
-          <FitOut />
           <div className="border-b border-gray-100 w-full" />
           <Infrastructure />
           <div className="border-b border-gray-100 w-full" />
