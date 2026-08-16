@@ -5,7 +5,6 @@ import {
   Sparkles,
   Quote,
   Store,
-  Calendar,
   IndianRupee,
   Percent,
   ChevronRight,
@@ -13,6 +12,7 @@ import {
   Layers,
   LayoutGrid,
   ExternalLink,
+  TrendingUp,
 } from "lucide-react";
 import clsx from "clsx";
 import { brandLeadershipData, type LeadershipMember } from "./data";
@@ -29,26 +29,31 @@ const pulseGlow: Variants = {
 
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
-  if (lower.includes("outlet") || lower.includes("store"))
-    return <Store size={20} strokeWidth={2.5} />;
-  if (lower.includes("year") || lower.includes("experience"))
-    return <Calendar size={20} strokeWidth={2.5} />;
-  if (lower.includes("revenue") || lower.includes("sales") || lower.includes("₹"))
-    return <IndianRupee size={20} strokeWidth={2.5} />;
-  if (lower.includes("margin") || lower.includes("%") || lower.includes("rate"))
-    return <Percent size={20} strokeWidth={2.5} />;
-  return <Award size={20} strokeWidth={2.5} />;
+  
+  let Icon = Award;
+  let bgClass = "bg-purple-600";
+  
+  if (lower.includes("outlet") || lower.includes("store")) {
+    Icon = Store;
+    bgClass = "bg-[#d97706]";
+  } else if (lower.includes("year") || lower.includes("experience")) {
+    Icon = TrendingUp;
+    bgClass = "bg-[#3b82f6]";
+  } else if (lower.includes("revenue") || lower.includes("sales") || lower.includes("₹")) {
+    Icon = IndianRupee;
+    bgClass = "bg-[#10b981]";
+  } else if (lower.includes("margin") || lower.includes("%") || lower.includes("rate")) {
+    Icon = Percent;
+    bgClass = "bg-[#0ea5e9]";
+  }
+
+  return (
+    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}>
+      <Icon size={18} strokeWidth={2.5} />
+    </div>
+  );
 };
 
-const getStatIconBg = (idx: number) => {
-  const colors = [
-    "bg-[#d4af37] text-[#0b1b42]",
-    "bg-blue-600 text-white",
-    "bg-emerald-600 text-white",
-    "bg-purple-600 text-white",
-  ];
-  return colors[idx % colors.length];
-};
 
 function FlipLeaderCard({
   member,
@@ -233,161 +238,86 @@ export default function LeadershipDesktop() {
         </div>
 
         {isSingleLeader ? (
-          <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5 bg-[#0b1b42] border border-white/10 rounded-[8px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl group text-white"
-            >
-              <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-              <div>
-                <div className="relative w-full h-[340px] rounded-[6px] overflow-hidden mb-6 border border-white/10 shadow-md">
-                  <img
-                    src={activeLeader.avatar}
-                    alt={activeLeader.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#040914] via-transparent to-transparent opacity-85" />
-                  <div className="absolute bottom-4 left-4 z-10">
-                    <span className="px-3 py-1 rounded-[4px] bg-[#d4af37] text-[#0b1b42] text-xs font-black uppercase tracking-wider shadow-md">
-                      {activeLeader.experience} Experience
-                    </span>
-                  </div>
-                </div>
+          <div className="w-full bg-[#0b1b42] border border-white/10 rounded-[12px] p-5 lg:p-6 flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch shadow-2xl relative overflow-hidden group text-white">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/5 rounded-full blur-3xl pointer-events-none" />
 
-                <h3 className="text-2xl font-black text-white tracking-tight">
+            <div className="w-full lg:w-1/3 relative rounded-[8px] overflow-hidden border border-white/10 shadow-lg shrink-0">
+              <img
+                src={activeLeader.avatar}
+                alt={activeLeader.name}
+                className="w-full h-full object-cover min-h-[300px] lg:absolute inset-0 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040914]/90 via-[#040914]/20 to-transparent" />
+              <div className="absolute bottom-4 left-4 z-10 flex flex-col">
+                <span className="px-2.5 py-1 w-max rounded-[4px] bg-[#d4af37] text-[#0b1b42] text-[11px] font-black uppercase tracking-wider shadow-md mb-1.5">
+                  {activeLeader.experience} Experience
+                </span>
+                <h3 className="text-2xl lg:text-3xl font-black text-white tracking-tight">
                   {activeLeader.name}
                 </h3>
-                <p className="text-[#d4af37] font-bold text-sm uppercase tracking-widest mt-1 mb-4">
+                <p className="text-[#d4af37] font-bold text-xs uppercase tracking-widest mt-0.5">
                   {activeLeader.role}
                 </p>
+              </div>
+            </div>
 
-                <p className="text-gray-200 text-sm leading-relaxed mb-6 font-medium">
-                  {activeLeader.bio}
-                </p>
-
-                <div className="flex flex-col gap-2.5 mb-6">
-                  {activeLeader.highlights.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-[#d4af37]/20 flex items-center justify-center shrink-0 border border-[#d4af37]/40">
-                        <Sparkles size={11} className="text-[#d4af37]" />
-                      </div>
-                      <span className="text-xs font-semibold text-gray-100">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+            <div className="w-full lg:w-2/3 flex flex-col justify-center relative">
+              <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
+                <Quote size={70} className="text-[#d4af37]" />
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
-                  Profile & Network
-                </span>
-                <div className="flex items-center gap-2">
-                  {activeLeader.socials?.linkedin && (
-                    <a
-                      href={activeLeader.socials.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-3 py-1.5 rounded-[4px] bg-white/5 hover:bg-[#d4af37] hover:text-[#0b1b42] text-gray-300 flex items-center gap-1.5 text-xs font-bold transition-all duration-300 border border-white/10"
-                    >
-                      <span>LinkedIn</span>
-                      <ExternalLink size={12} />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7 flex flex-col gap-6 justify-between text-white"
-            >
-              <div className="bg-[#0b1b42] border border-white/10 rounded-[8px] p-8 relative overflow-hidden shadow-2xl flex-1 flex flex-col justify-between">
-                <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                  <Quote size={120} className="text-[#d4af37]" />
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="px-3 py-1 rounded-[4px] bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#d4af37] text-xs font-black uppercase tracking-widest">
-                      Founder's Vision
-                    </span>
-                  </div>
-
-                  <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight mb-4">
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="px-2.5 py-0.5 rounded-[4px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-[11px] font-black uppercase tracking-widest">
                     {brandStory.title}
-                  </h4>
-
-                  <p className="text-gray-200 text-base leading-relaxed mb-6 font-medium">
-                    {brandStory.subtitle}
-                  </p>
-
-                  <div className="bg-white/5 border-l-4 border-[#d4af37] p-5 rounded-r-[6px] mb-6">
-                    <p className="text-white text-lg font-medium italic leading-relaxed">
-                      "{brandStory.quote}"
-                    </p>
-                  </div>
+                  </span>
                 </div>
 
-                <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                  <img
-                    src={activeLeader.avatar}
-                    alt={activeLeader.name}
-                    className="w-10 h-10 rounded-full object-cover border border-[#d4af37]"
-                  />
-                  <div>
-                    <p className="text-white font-bold text-sm">
-                      {activeLeader.name}
-                    </p>
-                    <p className="text-[#d4af37] text-xs font-semibold">
-                      {activeLeader.role}
-                    </p>
-                  </div>
+                <div className="bg-white/5 border-l-4 border-[#d4af37] p-4 rounded-r-[8px] mb-4 relative">
+                  <p className="text-gray-200 text-base lg:text-lg leading-relaxed italic font-medium relative z-10">
+                    "{brandStory.quote}"
+                  </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {brandStory.stats.map((stat, idx) => (
-                  <motion.div
-                    key={stat.label}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-[#0b1b42] border border-white/10 rounded-[8px] p-5 flex flex-col justify-between shadow-xl relative overflow-hidden group"
+              <motion.div 
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                }}
+                className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10"
+              >
+                {brandStory.stats.map((stat) => (
+                  <motion.div 
+                    key={stat.label} 
+                    className="flex flex-col group/stat cursor-default"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+                    }}
+                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <div
+                    <div className="flex items-center gap-2.5 mb-1 transition-transform duration-300 group-hover/stat:scale-105 origin-left">
+                      {getStatIcon(stat.label)}
+                      <span
                         className={clsx(
-                          "w-9 h-9 rounded-full flex items-center justify-center shadow-md",
-                          getStatIconBg(idx)
-                        )}
-                      >
-                        {getStatIcon(stat.label)}
-                      </div>
-                    </div>
-                    <div>
-                      <p
-                        className={clsx(
-                          "text-2xl font-black tracking-tight mb-0.5",
+                          "text-2xl lg:text-3xl font-black tracking-tight",
                           getTextStyles(stat.intent)
                         )}
                       >
                         {stat.value}
-                      </p>
-                      <p className="text-gray-300 text-[11px] font-bold uppercase tracking-wider leading-tight">
-                        {stat.label}
-                      </p>
+                      </span>
                     </div>
+                    <p className="text-gray-400 text-[11px] font-bold uppercase tracking-wider">
+                      {stat.label}
+                    </p>
                   </motion.div>
                 ))}
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         ) : viewMode === "spotlight" ? (
           <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch text-white">

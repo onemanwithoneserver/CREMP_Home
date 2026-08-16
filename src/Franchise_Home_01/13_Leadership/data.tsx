@@ -36,7 +36,6 @@ export const brandLeadershipData = {
       { value: "187+", label: "Outlets Nationwide", intent: "warning" as const },
       { value: "8+", label: "Years of Excellence", intent: "info" as const },
       { value: "₹900Cr+", label: "Network Revenue", intent: "success" as const },
-      { value: "70%+", label: "Gross Product Margin", intent: "primary" as const },
     ],
   },
   members: [

@@ -11,9 +11,6 @@ import {
   MapPin,
 } from "lucide-react";
 import mainCupImg from "../../assets/main_coffee_cup.png";
-import cafeInteriorImg from "../../assets/cafe_interior.png";
-import coffeeBeansImg from "../../assets/coffee_beans.png";
-import coffeeEquipmentImg from "../../assets/coffee_equipment.png";
 import { heroData } from "./data";
 import AppsIcon from "@mui/icons-material/Apps";
 
@@ -168,123 +165,59 @@ export default function HeroGalleryDesktop() {
             variants={item}
             className="col-span-12 lg:col-span-6 h-[400px] lg:h-auto min-h-[520px]"
           >
-            <div className="flex gap-4 h-full">
-              <div className="w-[55%] relative group/cup overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 h-full">
-                <img
-                  src={mainCupImg}
-                  alt="Main Cup"
-                  className="absolute inset-0 w-full h-full object-cover group-hover/cup:scale-105 transition-transform duration-700 ease-out bg-white"
-                />
-                <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="absolute inset-0 w-full h-full bg-black/5 hover:bg-black/20 flex items-center justify-center transition-all duration-500 focus:outline-none"
-                  aria-label={
-                    isPlaying
-                      ? "Pause Brand Story Video"
-                      : "Watch Brand Story Video"
-                  }
+            <div className="w-full h-full relative group/cup overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800">
+              <img
+                src={mainCupImg}
+                alt="Main Media"
+                className="absolute inset-0 w-full h-full object-cover group-hover/cup:scale-105 transition-transform duration-700 ease-out bg-white"
+              />
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="absolute inset-0 w-full h-full bg-black/10 hover:bg-black/25 flex items-center justify-center transition-all duration-500 focus:outline-none"
+                aria-label={
+                  isPlaying
+                    ? "Pause Brand Story Video"
+                    : "Watch Brand Story Video"
+                }
+              >
+                <motion.div
+                  className="w-20 h-20 rounded-full bg-[#0b1b42]/80 backdrop-blur-md flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-colors duration-300 hover:bg-[#0b1b42] border border-white/20 group/btn"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <motion.div
-                    className="w-16 h-16 rounded-full bg-[#0b1b42]/80 backdrop-blur-md flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-colors duration-300 hover:bg-[#0b1b42] border border-white/20 group/btn"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <AnimatePresence mode="wait" initial={false}>
-                      {isPlaying ? (
-                        <motion.div
-                          key="pause"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.8 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Pause
-                            size={24}
-                            className="text-white transition-colors"
-                            fill="currentColor"
-                          />
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="play"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.8 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Play
-                            size={24}
-                            className="text-white ml-1 transition-colors"
-                            fill="currentColor"
-                          />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                </button>
-              </div>
-
-              <div className="w-[45%] flex flex-col gap-4 h-full">
-                <div className="h-[50%] relative group overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800">
-                  <img
-                    src={cafeInteriorImg}
-                    alt="Cafe Interior"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
-                  />
-                  <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                    <motion.div
-                      whileHover={{ scale: 1.15 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-12 h-12 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
-                    >
-                      <Play
-                        size={20}
-                        className="text-white ml-1"
-                        fill="currentColor"
-                      />
-                    </motion.div>
-                  </div>
-                </div>
-
-                <div className="h-[50%] flex gap-4">
-                  <div className="w-1/2 relative group overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 h-full">
-                    <img
-                      src={coffeeBeansImg}
-                      alt="Coffee Beans"
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
-                    />
-                    <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
+                  <AnimatePresence mode="wait" initial={false}>
+                    {isPlaying ? (
                       <motion.div
-                        whileHover={{ scale: 1.15 }}
-                        transition={{ duration: 0.3 }}
-                        className="w-10 h-10 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                        key="pause"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <Play
-                          size={16}
-                          className="text-white ml-0.5"
+                        <Pause
+                          size={28}
+                          className="text-white transition-colors"
                           fill="currentColor"
                         />
                       </motion.div>
-                    </div>
-                  </div>
-                  <div className="w-1/2 relative group overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 h-full">
-                    <img
-                      src={coffeeEquipmentImg}
-                      alt="Coffee Equipment"
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-white"
-                    />
-                    <div className="absolute inset-0 bg-black/10 hover:bg-black/30 flex items-center justify-center transition-all duration-500 cursor-pointer">
-                      <div className="w-10 h-10 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    ) : (
+                      <motion.div
+                        key="play"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <Play
-                          size={16}
-                          className="text-white ml-0.5"
+                          size={28}
+                          className="text-white ml-1 transition-colors"
                           fill="currentColor"
                         />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </button>
             </div>
           </motion.div>
         </div>

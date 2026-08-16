@@ -203,90 +203,92 @@ export default function FranchiseModelsDesktop() {
         subtitle={franchiseModelsData.subtitle}
         align="center"
       />
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex justify-center mb-6">
-        <div className="flex w-full bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] relative gap-1.5 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
-          {franchiseModelsData.models.map((model) => {
-            const isActive = model.id === activeModel;
-            const Icon = model.icon;
-            return (
-              <button
-                key={model.id}
-                onClick={() => setActiveModel(model.id)}
-                className={clsx(
-                  "flex-1 relative flex flex-col items-center justify-center py-3 px-3 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border",
-                  !isActive
-                    ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10"
-                    : "border-transparent",
-                )}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeModelIndicator"
-                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 28,
-                      mass: 0.8,
-                    }}
-                  >
-                    <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
-                    <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
-                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
-                  </motion.div>
-                )}
-                <div className="flex items-center gap-2 mb-1 relative z-10">
-                  <motion.div
-                    className={clsx(
-                      "w-7 h-7 rounded-[4px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
-                      isActive
-                        ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
-                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 shadow-sm",
-                    )}
-                    animate={
-                      isActive
-                        ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
-                        : { scale: 1, rotate: 0 }
-                    }
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                  >
-                    <Icon
-                      size={14}
-                      strokeWidth={isActive ? 2.5 : 2}
-                      className={
-                        isActive
-                          ? "text-[#d4af37]"
-                          : "text-gray-600 dark:text-gray-400"
-                      }
-                    />
-                  </motion.div>
-                  <span
-                    className={clsx(
-                      "font-bold text-sm whitespace-nowrap transition-colors duration-300",
-                      isActive
-                        ? "text-white"
-                        : "text-[#0a1128] dark:text-gray-200",
-                    )}
-                  >
-                    {model.name}
-                  </span>
-                </div>
-                <span
+      {franchiseModelsData.models.length > 1 && (
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex justify-center mb-6">
+          <div className="flex w-full bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] relative gap-1.5 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
+            {franchiseModelsData.models.map((model) => {
+              const isActive = model.id === activeModel;
+              const Icon = model.icon;
+              return (
+                <button
+                  key={model.id}
+                  onClick={() => setActiveModel(model.id)}
                   className={clsx(
-                    "text-xs font-bold tracking-tight transition-colors duration-300 relative z-10",
-                    isActive
-                      ? "text-[#d4af37]"
-                      : "text-gray-600 dark:text-gray-400",
+                    "flex-1 relative flex flex-col items-center justify-center py-3 px-3 rounded-[4px] transition-all duration-300 z-10 group focus-visible:outline-none border",
+                    !isActive
+                      ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10"
+                      : "border-transparent",
                   )}
                 >
-                  {model.priceRange}
-                </span>
-              </button>
-            );
-          })}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeModelIndicator"
+                      className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.8,
+                      }}
+                    >
+                      <div className="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                      <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                      <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
+                    </motion.div>
+                  )}
+                  <div className="flex items-center gap-2 mb-1 relative z-10">
+                    <motion.div
+                      className={clsx(
+                        "w-7 h-7 rounded-[4px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
+                        isActive
+                          ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                          : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 shadow-sm",
+                      )}
+                      animate={
+                        isActive
+                          ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
+                          : { scale: 1, rotate: 0 }
+                      }
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                    >
+                      <Icon
+                        size={14}
+                        strokeWidth={isActive ? 2.5 : 2}
+                        className={
+                          isActive
+                            ? "text-[#d4af37]"
+                            : "text-gray-600 dark:text-gray-400"
+                        }
+                      />
+                    </motion.div>
+                    <span
+                      className={clsx(
+                        "font-bold text-sm whitespace-nowrap transition-colors duration-300",
+                        isActive
+                          ? "text-white"
+                          : "text-[#0a1128] dark:text-gray-200",
+                      )}
+                    >
+                      {model.name}
+                    </span>
+                  </div>
+                  <span
+                    className={clsx(
+                      "text-xs font-bold tracking-tight transition-colors duration-300 relative z-10",
+                      isActive
+                        ? "text-[#d4af37]"
+                        : "text-gray-600 dark:text-gray-400",
+                    )}
+                  >
+                    {model.priceRange}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
       <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-12 gap-6 items-stretch">
         <div className="col-span-12 lg:col-span-3 flex flex-col h-full relative z-40">
           <AnimatePresence mode="wait">

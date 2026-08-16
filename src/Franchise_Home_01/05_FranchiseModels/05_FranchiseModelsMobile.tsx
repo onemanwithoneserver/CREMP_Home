@@ -256,106 +256,108 @@ export default function FranchiseModelsMobile() {
         align="center"
       />
 
-      <div className="relative z-10 w-full overflow-hidden group flex items-center mb-2 mt-2">
-        {canScrollLeft && (
-          <button
-            onClick={() => scrollTabs("left")}
-            className="absolute left-0 z-20 h-full px-1.5 bg-gradient-to-r from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white"
+      {franchiseModelsData.models.length > 1 && (
+        <div className="relative z-10 w-full overflow-hidden group flex items-center mb-2 mt-2">
+          {canScrollLeft && (
+            <button
+              onClick={() => scrollTabs("left")}
+              className="absolute left-0 z-20 h-full px-1.5 bg-gradient-to-r from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-start text-[#0a1128] dark:text-white"
+            >
+              <ChevronLeft size={20} />
+            </button>
+          )}
+          <div
+            ref={tabsRef}
+            onScroll={checkScroll}
+            className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-gray-200/80 dark:border-white/10 relative"
           >
-            <ChevronLeft size={20} />
-          </button>
-        )}
-        <div
-          ref={tabsRef}
-          onScroll={checkScroll}
-          className="flex gap-1.5 w-full overflow-x-auto scrollbar-hide p-1.5 scroll-smooth bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-gray-200/80 dark:border-white/10 relative"
-        >
-          {franchiseModelsData.models.map((model) => {
-            const isActive = model.id === activeModel;
-            const Icon = model.icon;
-            return (
-              <button
-                key={model.id}
-                onClick={() => setActiveModel(model.id)}
-                className={clsx(
-                  "shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10 border",
-                  !isActive
-                    ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10"
-                    : "border-transparent",
-                )}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="mobileTabActive"
-                    className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 28,
-                      mass: 0.8,
-                    }}
-                  >
-                    <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
-                    <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
-                  </motion.div>
-                )}
-                <motion.div
+            {franchiseModelsData.models.map((model) => {
+              const isActive = model.id === activeModel;
+              const Icon = model.icon;
+              return (
+                <button
+                  key={model.id}
+                  onClick={() => setActiveModel(model.id)}
                   className={clsx(
-                    "relative z-10 w-7 h-7 rounded-[4px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm",
-                    isActive
-                      ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
-                      : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent shadow-sm",
+                    "shrink-0 relative flex flex-col items-center justify-center text-center px-2 py-2.5 rounded-[4px] transition-all duration-300 w-[90px] focus-visible:outline-none z-10 border",
+                    !isActive
+                      ? "bg-white/30 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/50 dark:hover:bg-white/10"
+                      : "border-transparent",
                   )}
-                  animate={
-                    isActive
-                      ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
-                      : { scale: 1, rotate: 0 }
-                  }
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                  <Icon
-                    size={13}
-                    strokeWidth={isActive ? 2.5 : 2}
-                    className={
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobileTabActive"
+                      className="absolute inset-0 bg-[#0b1b42] border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] backdrop-blur-md"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.8,
+                      }}
+                    >
+                      <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                      <div className="absolute bottom-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
+                    </motion.div>
+                  )}
+                  <motion.div
+                    className={clsx(
+                      "relative z-10 w-7 h-7 rounded-[4px] flex items-center justify-center mb-1 transition-all duration-300 backdrop-blur-sm",
+                      isActive
+                        ? "bg-black/30 border border-[#d4af37]/40 text-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                        : "bg-white/80 dark:bg-[#0b1b42]/80 text-gray-600 dark:text-gray-400 border border-transparent shadow-sm",
+                    )}
+                    animate={
+                      isActive
+                        ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] }
+                        : { scale: 1, rotate: 0 }
+                    }
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                  >
+                    <Icon
+                      size={13}
+                      strokeWidth={isActive ? 2.5 : 2}
+                      className={
+                        isActive
+                          ? "text-[#d4af37]"
+                          : "text-gray-600 dark:text-gray-400"
+                      }
+                    />
+                  </motion.div>
+                  <span
+                    className={clsx(
+                      "relative z-10 font-bold text-xs mb-0.5 transition-colors duration-300",
+                      isActive
+                        ? "text-white"
+                        : "text-[#0a1128] dark:text-gray-200",
+                    )}
+                  >
+                    {model.name}
+                  </span>
+                  <span
+                    className={clsx(
+                      "relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300",
                       isActive
                         ? "text-[#d4af37]"
-                        : "text-gray-600 dark:text-gray-400"
-                    }
-                  />
-                </motion.div>
-                <span
-                  className={clsx(
-                    "relative z-10 font-bold text-xs mb-0.5 transition-colors duration-300",
-                    isActive
-                      ? "text-white"
-                      : "text-[#0a1128] dark:text-gray-200",
-                  )}
-                >
-                  {model.name}
-                </span>
-                <span
-                  className={clsx(
-                    "relative z-10 text-[10px] font-bold tracking-wider transition-colors duration-300",
-                    isActive
-                      ? "text-[#d4af37]"
-                      : "text-gray-600 dark:text-gray-400",
-                  )}
-                >
-                  {model.priceRange}
-                </span>
-              </button>
-            );
-          })}
+                        : "text-gray-600 dark:text-gray-400",
+                    )}
+                  >
+                    {model.priceRange}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          {canScrollRight && (
+            <button
+              onClick={() => scrollTabs("right")}
+              className="absolute right-0 z-20 h-full px-1.5 bg-gradient-to-l from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-end text-[#0a1128] dark:text-white"
+            >
+              <ChevronRight size={20} />
+            </button>
+          )}
         </div>
-        {canScrollRight && (
-          <button
-            onClick={() => scrollTabs("right")}
-            className="absolute right-0 z-20 h-full px-1.5 bg-gradient-to-l from-white/90 dark:from-[#0a1128] to-transparent flex items-center justify-end text-[#0a1128] dark:text-white"
-          >
-            <ChevronRight size={20} />
-          </button>
-        )}
-      </div>
+      )}
 
       <div className="relative z-10 flex w-full bg-gray-100/80 dark:bg-[#0e172f]/80 p-1 rounded-[4px] border border-gray-200/80 dark:border-white/10 shadow-sm backdrop-blur-sm">
         {[

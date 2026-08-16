@@ -1,8 +1,19 @@
 import { useState, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
-import { RotateCw, Sparkles, Quote } from "lucide-react";
+import {
+  RotateCw,
+  Sparkles,
+  Quote,
+  Store,
+  IndianRupee,
+  Percent,
+  Award,
+  TrendingUp,
+} from "lucide-react";
+import clsx from "clsx";
 import { brandLeadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
+import { getTextStyles } from "../utils/theme";
 
 const pulseGlow: Variants = {
   animate: {
@@ -12,21 +23,31 @@ const pulseGlow: Variants = {
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
-  },
-};
+const getStatIcon = (label: string) => {
+  const lower = (label || "").toLowerCase();
+  
+  let Icon = Award;
+  let bgClass = "bg-purple-600";
+  
+  if (lower.includes("outlet") || lower.includes("store")) {
+    Icon = Store;
+    bgClass = "bg-[#d97706]";
+  } else if (lower.includes("year") || lower.includes("experience")) {
+    Icon = TrendingUp;
+    bgClass = "bg-[#3b82f6]";
+  } else if (lower.includes("revenue") || lower.includes("sales") || lower.includes("₹")) {
+    Icon = IndianRupee;
+    bgClass = "bg-[#10b981]";
+  } else if (lower.includes("margin") || lower.includes("%") || lower.includes("rate")) {
+    Icon = Percent;
+    bgClass = "bg-[#0ea5e9]";
+  }
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-  },
+  return (
+    <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}>
+      <Icon size={16} strokeWidth={2.5} />
+    </div>
+  );
 };
 
 function LeaderCardMobile({
@@ -53,7 +74,7 @@ function LeaderCardMobile({
         }}
         className="relative w-full h-full [transform-style:preserve-3d] shadow-lg"
       >
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b1b42] rounded-[8px] border border-white/10 [backface-visibility:hidden] shadow-sm">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b1b42] rounded-[4px] border border-white/10 [backface-visibility:hidden] shadow-sm">
           <img
             src={member.avatar}
             alt={member.name}
@@ -65,14 +86,14 @@ function LeaderCardMobile({
           <div className="absolute top-4 right-4 z-20">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-md"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[2px] bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-md"
             >
               <span>View Bio</span>
               <RotateCw size={12} className="text-[#d4af37]" />
             </motion.div>
           </div>
           <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 px-5 flex flex-col justify-end z-10 text-white">
-            <span className="inline-block px-2.5 py-0.5 rounded-[4px] text-white dark:text-[#d4af37] text-[9px] font-black uppercase tracking-wider mb-2 w-max border border-[#d4af37]/40 bg-[#d4af37]/20 backdrop-blur-sm">
+            <span className="inline-block px-2.5 py-0.5 rounded-[2px] text-white dark:text-[#d4af37] text-[9px] font-black uppercase tracking-wider mb-2 w-max border border-[#d4af37]/40 bg-[#d4af37]/20 backdrop-blur-sm">
               {member.experience}
             </span>
             <h4 className="text-white font-bold text-xl tracking-tight leading-tight mb-1">
@@ -86,7 +107,7 @@ function LeaderCardMobile({
           </div>
         </div>
 
-        <div className="absolute inset-0 rounded-[8px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42] backdrop-blur-2xl border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42] backdrop-blur-2xl border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
@@ -106,7 +127,7 @@ function LeaderCardMobile({
                 e.stopPropagation();
                 onToggle();
               }}
-              className="p-2 rounded-[4px] bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+              className="p-2 rounded-[2px] bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
               title="Flip back"
             >
               <RotateCw size={14} className="text-[#d4af37]" />
@@ -134,7 +155,7 @@ function LeaderCardMobile({
           </div>
 
           <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2">
-            <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[6px] border border-white/10">
+            <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[4px] border border-white/10">
               <Quote
                 size={16}
                 className="text-[#d4af37] shrink-0 mt-0.5 rotate-180 opacity-80"
@@ -151,7 +172,8 @@ function LeaderCardMobile({
 }
 
 export default function LeadershipMobile() {
-  const { members } = brandLeadershipData;
+  const { members, brandStory } = brandLeadershipData;
+  const isSingleLeader = members.length === 1;
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -175,7 +197,7 @@ export default function LeadershipMobile() {
   };
 
   return (
-    <section className="w-full py-8 relative overflow-hidden rounded-[8px] bg-slate-50/50 dark:bg-transparent">
+    <section className="w-full py-12 relative overflow-hidden bg-slate-50/50 dark:bg-transparent">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -193,7 +215,7 @@ export default function LeadershipMobile() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
-          className="mb-3 px-4 w-full"
+          className="mb-8 px-4 w-full"
         >
           <SectionHeader
             overline={brandLeadershipData.sectionLabel}
@@ -203,49 +225,129 @@ export default function LeadershipMobile() {
           />
         </motion.div>
 
-        <div className="w-full flex flex-col gap-3">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, margin: "-50px" }}
-            ref={scrollContainerRef}
-            className="flex w-full overflow-x-auto snap-x snap-mandatory px-4 py-2 gap-4 [&::-webkit-scrollbar]:hidden"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            onScroll={handleScroll}
-          >
-            {members.map((member, index) => (
-              <motion.div
-                variants={itemVariants}
-                key={member.name}
-                className="w-[85vw] max-w-[340px] shrink-0 snap-center"
-              >
-                <LeaderCardMobile
-                  member={member}
-                  isFlipped={flippedIndex === index}
-                  onToggle={() =>
-                    setFlippedIndex(flippedIndex === index ? null : index)
-                  }
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <div className="flex justify-center items-center gap-2 mt-2">
-            {members.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => scrollTo(idx)}
-                className={`transition-all duration-500 rounded-[2px] ${
-                  activeIndex === idx
-                    ? "w-8 h-1.5 bg-[#d4af37] shadow-sm"
-                    : "w-2 h-1.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
+        {isSingleLeader ? (
+          <div className="w-full px-4 flex flex-col gap-6 text-white">
+            <div className="w-full h-[420px] relative rounded-[4px] overflow-hidden border border-white/10 shadow-lg shrink-0">
+              <img
+                src={members[0].avatar}
+                alt={members[0].name}
+                className="w-full h-full object-cover transition-transform duration-700"
               />
-            ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040914]/90 via-[#040914]/30 to-transparent" />
+              <div className="absolute bottom-5 left-5 z-10 flex flex-col">
+                <span className="px-3 py-1.5 w-max rounded-[2px] bg-[#d4af37] text-[#0b1b42] text-[10px] font-black uppercase tracking-wider shadow-md mb-2">
+                  {members[0].experience} Experience
+                </span>
+                <h3 className="text-3xl font-black text-white tracking-tight">
+                  {members[0].name}
+                </h3>
+                <p className="text-[#d4af37] font-bold text-xs uppercase tracking-widest mt-1">
+                  {members[0].role}
+                </p>
+              </div>
+            </div>
+
+            <div className="w-full bg-[#0b1b42] border border-white/10 rounded-[4px] p-5 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
+                <Quote size={80} className="text-[#d4af37]" />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="px-2.5 py-1 rounded-[2px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-[10px] font-black uppercase tracking-widest">
+                    {brandStory.title}
+                  </span>
+                </div>
+
+                <div className="bg-white/5 border-l-4 border-[#d4af37] p-4 rounded-r-[4px] mb-4 relative">
+                  <p className="text-gray-200 text-sm leading-relaxed italic font-medium relative z-10">
+                    "{brandStory.quote}"
+                  </p>
+                </div>
+              </div>
+
+              <motion.div 
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                }}
+                className="grid grid-cols-3 gap-2.5 pt-4 border-t border-white/10"
+              >
+                {brandStory.stats.map((stat) => (
+                  <motion.div 
+                    key={stat.label} 
+                    className="flex flex-col group/stat cursor-default"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+                    }}
+                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                  >
+                    <div className="flex items-center gap-1.5 mb-1 transition-transform duration-300 group-hover/stat:scale-105 origin-left">
+                      {getStatIcon(stat.label)}
+                      <span
+                        className={clsx(
+                          "text-base sm:text-lg font-black tracking-tight",
+                          getTextStyles(stat.intent)
+                        )}
+                      >
+                        {stat.value}
+                      </span>
+                    </div>
+                    <p className="text-gray-400 text-[9px] font-bold uppercase tracking-wider">
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-full flex flex-col gap-3">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, margin: "-50px" }}
+              ref={scrollContainerRef}
+              className="flex w-full overflow-x-auto snap-x snap-mandatory px-4 py-2 gap-4 [&::-webkit-scrollbar]:hidden"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              onScroll={handleScroll}
+            >
+              {members.map((member, index) => (
+                <motion.div
+                  key={member.name}
+                  className="w-[85vw] max-w-[340px] shrink-0 snap-center"
+                >
+                  <LeaderCardMobile
+                    member={member}
+                    isFlipped={flippedIndex === index}
+                    onToggle={() =>
+                      setFlippedIndex(flippedIndex === index ? null : index)
+                    }
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <div className="flex justify-center items-center gap-2 mt-2">
+              {members.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => scrollTo(idx)}
+                  className={`transition-all duration-500 rounded-[2px] ${
+                    activeIndex === idx
+                      ? "w-8 h-1.5 bg-[#d4af37] shadow-sm"
+                      : "w-2 h-1.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
