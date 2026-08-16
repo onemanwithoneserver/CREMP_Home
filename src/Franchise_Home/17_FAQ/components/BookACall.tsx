@@ -222,7 +222,7 @@ export function BookACall() {
                     each other.
                   </span>
                 </h3>
-                <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium max-w-[260px] mx-auto leading-relaxed">
+                <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium mx-auto leading-relaxed">
                   Schedule a 1-on-1 discovery call with our franchise specialists
                   today.
                 </p>
