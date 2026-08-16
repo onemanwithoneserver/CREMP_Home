@@ -76,7 +76,7 @@ export default function Desktop() {
                   <motion.div
                     whileHover={{ y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="flex-1 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-center relative z-10 min-h-[64px] cursor-default transition-all duration-300 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-gray-100 hover:border-gray-200"
+                    className="flex-1 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-center relative z-10 min-h-[64px] cursor-default transition-all duration-300 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200"
                   >
                     <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                       {item.label}
@@ -133,7 +133,7 @@ export default function Desktop() {
                             stiffness: 400,
                             damping: 25,
                           }}
-                          className="flex-1 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-center relative z-10 min-h-[64px] cursor-default transition-all duration-300 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-gray-100 hover:border-gray-200"
+                          className="flex-1 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-center relative z-10 min-h-[64px] cursor-default transition-all duration-300 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200"
                         >
                           <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                             {item.label}

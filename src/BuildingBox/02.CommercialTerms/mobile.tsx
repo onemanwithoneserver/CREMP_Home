@@ -178,7 +178,7 @@ export default function Mobile() {
               </div>
 
               {"footer" in currentData && currentData.footer && (
-                <div className="bg-gradient-to-r from-gray-50 to-white p-4 rounded-[8px] border border-gray-100 flex items-center justify-between mt-2 shadow-sm relative overflow-hidden">
+                <div className="bg-gradient-to-r from-gray-50 to-white p-4 rounded-[8px] border border-transparent flex items-center justify-between mt-2 shadow-sm relative overflow-hidden">
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#d4af37]" />
 
                   {currentData.footer.type === "tag-text" && (
