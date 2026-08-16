@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import { RotateCw, Sparkles, Quote } from "lucide-react";
-import { leadershipData, type LeadershipMember } from "./data";
+import { brandLeadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 
 const pulseGlow: Variants = {
@@ -51,28 +51,28 @@ function LeaderCardMobile({
           stiffness: 150,
           damping: 20,
         }}
-        className="relative w-full h-full [transform-style:preserve-3d] shadow-xl"
+        className="relative w-full h-full [transform-style:preserve-3d] shadow-lg"
       >
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl rounded-[4px] border border-gray-200/60 dark:border-[#d4af37]/20 [backface-visibility:hidden] shadow-sm">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b1b42] rounded-[8px] border border-white/10 [backface-visibility:hidden] shadow-sm">
           <img
             src={member.avatar}
             alt={member.name}
-            className="w-full h-full object-cover filter grayscale-[15%] transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover filter grayscale-[5%] transition-transform duration-700 group-hover:scale-105"
             draggable={false}
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/40 to-transparent opacity-95" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/40 to-transparent opacity-95" />
           <div className="absolute top-4 right-4 z-20">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] font-medium shadow-md transition-colors hover:bg-black/60"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-md"
             >
               <span>View Bio</span>
               <RotateCw size={12} className="text-[#d4af37]" />
             </motion.div>
           </div>
-          <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 flex flex-col justify-end z-10">
-            <span className="inline-block px-2 py-0.5 rounded-[2px] text-[#d4af37] text-[9px] font-bold uppercase tracking-wider mb-2 w-max border border-[#d4af37]/30 bg-[#d4af37]/10 backdrop-blur-sm">
+          <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 px-5 flex flex-col justify-end z-10 text-white">
+            <span className="inline-block px-2.5 py-0.5 rounded-[4px] text-white dark:text-[#d4af37] text-[9px] font-black uppercase tracking-wider mb-2 w-max border border-[#d4af37]/40 bg-[#d4af37]/20 backdrop-blur-sm">
               {member.experience}
             </span>
             <h4 className="text-white font-bold text-xl tracking-tight leading-tight mb-1">
@@ -85,17 +85,15 @@ function LeaderCardMobile({
             <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
           </div>
         </div>
-        <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-          <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
 
+        <div className="absolute inset-0 rounded-[8px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42] backdrop-blur-2xl border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
-                <h5 className="font-bold text-lg text-white tracking-tight leading-tight">
+                <h5 className="font-black text-lg text-white tracking-tight leading-tight">
                   {member.name}
                 </h5>
-                <span className="text-[#d4af37] text-[13px] font-bold tracking-wider uppercase mt-1">
+                <span className="text-[#d4af37] text-[13px] font-black tracking-wider uppercase mt-1">
                   {member.role}
                 </span>
               </div>
@@ -116,7 +114,7 @@ function LeaderCardMobile({
           </div>
 
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
-            <p className="text-[14px] text-gray-200 leading-relaxed font-normal">
+            <p className="text-[13px] text-gray-200 leading-relaxed font-medium">
               {member.bio}
             </p>
 
@@ -127,7 +125,7 @@ function LeaderCardMobile({
                     size={14}
                     className="text-[#d4af37] shrink-0 mt-[3px]"
                   />
-                  <span className="text-[13px] font-medium text-gray-100 leading-tight">
+                  <span className="text-[12px] font-semibold text-gray-100 leading-tight">
                     {highlight}
                   </span>
                 </div>
@@ -136,12 +134,12 @@ function LeaderCardMobile({
           </div>
 
           <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2">
-            <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[4px] border border-white/10">
+            <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[6px] border border-white/10">
               <Quote
                 size={16}
                 className="text-[#d4af37] shrink-0 mt-0.5 rotate-180 opacity-80"
               />
-              <p className="text-[13px] italic text-amber-100/90 leading-relaxed font-medium">
+              <p className="text-[12px] italic text-amber-100/90 leading-relaxed font-semibold">
                 "{member.quote}"
               </p>
             </div>
@@ -153,6 +151,7 @@ function LeaderCardMobile({
 }
 
 export default function LeadershipMobile() {
+  const { members } = brandLeadershipData;
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -170,22 +169,22 @@ export default function LeadershipMobile() {
   const scrollTo = (index: number) => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const cardWidth = container.scrollWidth / leadershipData.members.length;
+      const cardWidth = container.scrollWidth / members.length;
       container.scrollTo({ left: index * cardWidth, behavior: "smooth" });
     }
   };
 
   return (
-    <section className="w-full py-6 relative overflow-hidden rounded-[8px] bg-white/40 ">
+    <section className="w-full py-8 relative overflow-hidden rounded-[8px] bg-slate-50/50 dark:bg-transparent">
       <motion.div
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15"
+        className="pointer-events-none absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-amber-400/10 dark:bg-[#D4AF37]/10 blur-[100px]"
       />
       <motion.div
         variants={pulseGlow}
         animate="animate"
-        className="pointer-events-none absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
+        className="pointer-events-none absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-blue-500/10 blur-[100px]"
       />
 
       <div className="relative z-10 flex flex-col items-center">
@@ -194,17 +193,17 @@ export default function LeadershipMobile() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
-          className="mb-2 px-4 w-full"
+          className="mb-3 px-4 w-full"
         >
           <SectionHeader
-            overline={leadershipData.sectionLabel}
-            title={leadershipData.title}
-            subtitle={leadershipData.subtitle}
+            overline={brandLeadershipData.sectionLabel}
+            title={brandLeadershipData.title}
+            subtitle={brandLeadershipData.subtitle}
             align="center"
           />
         </motion.div>
 
-        <div className="w-full flex flex-col gap-2">
+        <div className="w-full flex flex-col gap-3">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -215,7 +214,7 @@ export default function LeadershipMobile() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             onScroll={handleScroll}
           >
-            {leadershipData.members.map((member, index) => (
+            {members.map((member, index) => (
               <motion.div
                 variants={itemVariants}
                 key={member.name}
@@ -233,13 +232,13 @@ export default function LeadershipMobile() {
           </motion.div>
 
           <div className="flex justify-center items-center gap-2 mt-2">
-            {leadershipData.members.map((_, idx) => (
+            {members.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => scrollTo(idx)}
                 className={`transition-all duration-500 rounded-[2px] ${
                   activeIndex === idx
-                    ? "w-8 h-1.5 bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)]"
+                    ? "w-8 h-1.5 bg-[#d4af37] shadow-sm"
                     : "w-2 h-1.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}

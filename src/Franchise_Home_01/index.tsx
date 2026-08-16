@@ -4,7 +4,6 @@ import HeroGallery from "./01_HeroGallery";
 const FranchiseModels = lazy(() => import("./05_FranchiseModels"));
 const IdealPartner = lazy(() => import("./07_IdealPartner"));
 const FullCycleSupport = lazy(() => import("./08_FullCycleSupport"));
-const FounderStory = lazy(() => import("./09_FounderStory"));
 const Leadership = lazy(() => import("./13_Leadership"));
 const MediaGallery = lazy(() => import("./14_MediaGallery"));
 const FranchiseNetwork = lazy(() => import("./16_FranchiseNetwork"));
@@ -28,7 +27,6 @@ export default function FranchiseHome({ isMobile }: FranchiseHomeProps) {
           <FranchiseModels isMobile={isMobile} />
           <IdealPartner isMobile={isMobile} />
           <FullCycleSupport isMobile={isMobile} />
-          <FounderStory isMobile={isMobile} />
           <Leadership isMobile={isMobile} />
           <MediaGallery isMobile={isMobile} />
           <FranchiseNetwork isMobile={isMobile} />
