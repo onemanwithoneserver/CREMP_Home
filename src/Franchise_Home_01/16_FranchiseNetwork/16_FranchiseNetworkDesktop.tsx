@@ -8,6 +8,7 @@ import {
   MapPin,
   Navigation,
   Sparkles,
+  Check,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -40,6 +41,7 @@ export default function FranchiseNetworkDesktop() {
     franchiseNetworkData.cities[0],
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [bookedOpps, setBookedOpps] = useState<Set<string>>(new Set());
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function FranchiseNetworkDesktop() {
   }, []);
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[4px]">
+    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px]">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -102,11 +104,11 @@ export default function FranchiseNetworkDesktop() {
               <motion.div
                 key={stat.label}
                 variants={fadeUp}
-                className="relative flex items-center p-4 rounded-[12px] bg-white dark:bg-[#0b1b42]/40 shadow-[0_4px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 gap-4 group border border-gray-100/80 dark:border-white/5"
+                className="relative flex items-center p-4 rounded-[4px] bg-white dark:bg-[#0b1b42]/40 shadow-[0_4px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 gap-4 group border border-gray-100/80 dark:border-white/5"
               >
                 <div
                   className={clsx(
-                    "w-16 h-16 rounded-[12px] flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform duration-300",
+                    "w-16 h-16 rounded-full flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-sm",
                     bgColors[idx],
                   )}
                 >
@@ -122,7 +124,7 @@ export default function FranchiseNetworkDesktop() {
                   </div>
                   <span
                     className={clsx(
-                      "text-[10px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap",
+                      "text-[10px] font-bold px-2 py-0.5 rounded-[2px] whitespace-nowrap",
                       pillColors[idx],
                     )}
                   >
@@ -136,7 +138,7 @@ export default function FranchiseNetworkDesktop() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-          <div className="lg:col-span-7 relative min-h-[580px] bg-[#070d1e] rounded-[4px] border border-gray-800/80 overflow-hidden shadow-2xl flex flex-col p-6 group">
+          <div className="lg:col-span-7 relative min-h-[580px] bg-[#070d1e] rounded-[8px] border border-gray-800/80 overflow-hidden shadow-2xl flex flex-col p-6 group">
             <div className="absolute inset-0 pointer-events-none opacity-50 mix-blend-luminosity overflow-hidden transition-opacity duration-700 group-hover:opacity-70">
               <img
                 src={mapBg}
@@ -337,7 +339,7 @@ export default function FranchiseNetworkDesktop() {
               </span>
             </div>
           </div>
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] p-7 relative text-gray-900 dark:text-white bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)]">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-[8px] p-7 relative text-gray-900 dark:text-white bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)]">
             <div className="flex flex-col gap-6">
               <motion.div
                 key={`header-${activeCity.id}`}
@@ -348,12 +350,12 @@ export default function FranchiseNetworkDesktop() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[12px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-3">
-                    <div className="w-8 h-8 bg-[#0a1128] rounded-[6px] flex items-center justify-center text-white">
+                    <div className="w-8 h-8 bg-[#0a1128] rounded-full flex items-center justify-center text-white shadow-sm">
                       <MapPin size={16} strokeWidth={2.5} />
                     </div>
                     SELECT CITY
                   </span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-[4px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
+                  <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-[2px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
                     EXISTING CITY
                   </span>
                 </div>
@@ -443,7 +445,7 @@ export default function FranchiseNetworkDesktop() {
               >
                 <div className="flex items-center justify-between mb-3 mt-2">
                   <span className="text-[12px] font-black uppercase tracking-widest text-[#0a1128] dark:text-white flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-[6px] bg-[#0f9d58] text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-[#0f9d58] text-white flex items-center justify-center shrink-0 shadow-sm">
                       <Sparkles size={16} strokeWidth={2.5} />
                     </div>
                     AVAILABLE OPPORTUNITIES
@@ -453,7 +455,7 @@ export default function FranchiseNetworkDesktop() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[6px] shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[4px] shadow-sm">
                   <span className="flex-1">CIRCLE NAME</span>
                   <span className="w-[150px] text-center">FORMAT</span>
                   <span className="w-[120px] text-center">
@@ -469,7 +471,8 @@ export default function FranchiseNetworkDesktop() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.1 }}
                         key={opp.id}
-                        className="flex items-center justify-between p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[6px] hover:border-gray-300 dark:hover:border-[#d4af37]/40 transition-all duration-300 group shadow-sm mb-3 last:mb-0"
+                        whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.1)" }}
+                        className="flex items-center justify-between p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[4px] shadow-sm mb-3 last:mb-0 transition-colors"
                       >
                         <div className="flex-1 flex flex-col pr-3">
                           <span className="font-bold text-[#0a1128] dark:text-white text-[14px] mb-1.5">
@@ -484,15 +487,51 @@ export default function FranchiseNetworkDesktop() {
                         </div>
 
                         <div className="w-[150px] text-center px-1">
-                          <span className="inline-block whitespace-nowrap px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest rounded-[4px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 max-w-full">
+                          <span className="inline-block whitespace-nowrap px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest rounded-[2px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 max-w-full">
                             {opp.format}
                           </span>
                         </div>
 
                         <div className="w-[120px] flex justify-center px-1">
-                          <button className="px-4 py-2 text-[10px] font-bold text-white bg-[#0f9d58] rounded-[4px] hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)] transition-colors">
-                            BOOK NOW
-                          </button>
+                          <motion.button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setBookedOpps((prev) => new Set(prev).add(opp.id));
+                            }}
+                            whileHover={!bookedOpps.has(opp.id) ? { scale: 1.05 } : {}} 
+                            whileTap={!bookedOpps.has(opp.id) ? { scale: 0.95 } : {}} 
+                            className={clsx(
+                              "px-4 py-2 text-[10px] min-w-[90px] font-bold rounded-[2px] transition-all duration-300 relative overflow-hidden flex items-center justify-center border",
+                              bookedOpps.has(opp.id) 
+                                ? "bg-[#17274c] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_10px_rgba(212,175,55,0.2)] cursor-default" 
+                                : "bg-[#0f9d58] text-white border-transparent hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)]"
+                            )}
+                          >
+                            <AnimatePresence mode="wait">
+                              {bookedOpps.has(opp.id) ? (
+                                <motion.span
+                                  key="booked"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -10 }}
+                                  className="absolute flex items-center gap-1.5"
+                                >
+                                  <Check size={12} strokeWidth={3} /> BOOKED
+                                </motion.span>
+                              ) : (
+                                <motion.span
+                                  key="book-now"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -10 }}
+                                  className="absolute"
+                                >
+                                  BOOK NOW
+                                </motion.span>
+                              )}
+                            </AnimatePresence>
+                            <span className="opacity-0 flex items-center gap-1.5"><Check size={12} /> BOOKED</span>
+                          </motion.button>
                         </div>
                       </motion.div>
                     );
@@ -502,7 +541,7 @@ export default function FranchiseNetworkDesktop() {
             </div>
 
             <div className="flex flex-col gap-3 pt-4 mt-auto">
-              <button className="w-full py-4 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[12px] font-bold tracking-widest rounded-[8px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
+              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-4 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[12px] font-bold tracking-widest rounded-[4px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
                 <MapPin size={16} />
                 <span>CHECK TERRITORY AVAILABILITY</span>
                 <ChevronRight
@@ -510,7 +549,7 @@ export default function FranchiseNetworkDesktop() {
                   strokeWidth={3}
                   className="group-hover:translate-x-1.5 transition-transform duration-300"
                 />
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>

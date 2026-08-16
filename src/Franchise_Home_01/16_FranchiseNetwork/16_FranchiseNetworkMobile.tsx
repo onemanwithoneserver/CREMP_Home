@@ -7,6 +7,7 @@ import {
   Globe2,
   MapPin,
   Sparkles,
+  Check,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -25,6 +26,7 @@ export default function FranchiseNetworkMobile() {
     franchiseNetworkData.cities[0],
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [bookedOpps, setBookedOpps] = useState<Set<string>>(new Set());
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export default function FranchiseNetworkMobile() {
   }, []);
 
   return (
-    <section className="w-full py-12 pb-20 px-2 relative overflow-hidden rounded-[8px] bg-white/40 ">
+    <section className="w-full py-12 pb-20 px-2 relative overflow-hidden rounded-[4px] bg-white/40 ">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -80,12 +82,12 @@ export default function FranchiseNetworkMobile() {
             return (
               <div
                 key={idx}
-                className="relative flex flex-col p-3.5 rounded-[8px] bg-white dark:bg-[#0b1b42]/40 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.2)] gap-3 border border-gray-100 dark:border-white/5"
+                className="relative flex flex-col p-3.5 rounded-[4px] bg-white dark:bg-[#0b1b42]/40 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.2)] gap-3 border border-gray-100 dark:border-white/5"
               >
                 <div className="flex flex-col gap-2">
                   <div
                     className={clsx(
-                      "w-10 h-10 rounded-[8px] flex items-center justify-center text-white shrink-0",
+                      "w-10 h-10 rounded-full flex items-center justify-center text-white shrink-0 shadow-sm",
                       bgColors[idx],
                     )}
                   >
@@ -103,7 +105,7 @@ export default function FranchiseNetworkMobile() {
                   <div className="self-start">
                     <span
                       className={clsx(
-                        "text-[9px] font-bold px-2 py-0.5 rounded-[4px] whitespace-nowrap",
+                        "text-[9px] font-bold px-2 py-0.5 rounded-[2px] whitespace-nowrap",
                         pillColors[idx],
                       )}
                     >
@@ -170,7 +172,7 @@ export default function FranchiseNetworkMobile() {
           </svg>
 
           <div className="relative z-20 flex items-center justify-between">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#0b1b42]/90 border border-[#d4af37]/30 rounded-[4px] backdrop-blur-md">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#0b1b42]/90 border border-[#d4af37]/30 rounded-[2px] backdrop-blur-md">
               <Globe2 size={12} className="text-[#d4af37]" />
               <span className="text-[10px] font-bold text-white uppercase tracking-wider">
                 Pan-India Network
@@ -237,7 +239,7 @@ export default function FranchiseNetworkMobile() {
             </span>
           </div>
         </div>
-        <div className="bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)] rounded-[16px] p-5 relative mt-4 text-gray-900 dark:text-white">
+        <div className="bg-white dark:bg-[#0a1128]/80 backdrop-blur-3xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.1)] rounded-[4px] p-5 relative mt-4 text-gray-900 dark:text-white">
           <div className="flex flex-col gap-5">
 
             <motion.div
@@ -249,12 +251,12 @@ export default function FranchiseNetworkMobile() {
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[11px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-2.5">
-                  <div className="w-7 h-7 bg-[#0a1128] rounded-[4px] flex items-center justify-center text-white">
+                  <div className="w-7 h-7 bg-[#0a1128] rounded-full flex items-center justify-center text-white shadow-sm">
                     <MapPin size={14} strokeWidth={2.5} />
                   </div>
                   SELECT CITY
                 </span>
-                <span className="text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[4px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
+                <span className="text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[2px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
                   EXISTING CITY
                 </span>
               </div>
@@ -341,7 +343,7 @@ export default function FranchiseNetworkMobile() {
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#0a1128] dark:text-white flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-[4px] bg-[#0f9d58] text-white flex items-center justify-center shrink-0 shadow-sm">
+                  <div className="w-6 h-6 rounded-full bg-[#0f9d58] text-white flex items-center justify-center shrink-0 shadow-sm">
                     <Sparkles size={12} strokeWidth={2.5} />
                   </div>
               AVAILABLE OPPORTUNITIES
@@ -360,9 +362,12 @@ export default function FranchiseNetworkMobile() {
               <div className="flex flex-col gap-2.5 max-h-[220px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:hidden pb-2 border-b border-gray-200 dark:border-white/10">
                 {activeCity.opportunities?.map((opp) => {
                   return (
-                    <div
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      whileHover={{ scale: 1.01, backgroundColor: "rgba(255,255,255,0.1)" }}
                       key={opp.id}
-                      className="group flex items-center justify-between p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] shadow-sm"
+                      className="group flex items-center justify-between p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[4px] shadow-sm transition-colors"
                     >
                       <div className="flex flex-col flex-1 pr-2">
                         <span className="font-bold text-[#0a1128] dark:text-white text-[12px] leading-tight mb-1">
@@ -377,17 +382,53 @@ export default function FranchiseNetworkMobile() {
                       </div>
                       
                       <div className="w-[80px] flex justify-center px-1">
-                        <span className="inline-block text-center px-2 py-1 text-[7px] font-bold uppercase tracking-widest rounded-[4px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 max-w-full">
+                        <span className="inline-block text-center px-2 py-1 text-[7px] font-bold uppercase tracking-widest rounded-[2px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 max-w-full">
                           {opp.format}
                         </span>
                       </div>
 
                       <div className="w-[80px] flex justify-center pl-1">
-                        <button className="w-full px-1 py-1.5 text-[8px] font-bold text-white bg-[#0f9d58] rounded-[4px] hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)] transition-colors">
-                          BOOK NOW
-                        </button>
+                        <motion.button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setBookedOpps((prev) => new Set(prev).add(opp.id));
+                          }}
+                          whileHover={!bookedOpps.has(opp.id) ? { scale: 1.05 } : {}} 
+                          whileTap={!bookedOpps.has(opp.id) ? { scale: 0.95 } : {}} 
+                          className={clsx(
+                            "w-full px-1 py-1.5 text-[8px] font-bold rounded-[2px] transition-all duration-300 relative overflow-hidden flex items-center justify-center border",
+                            bookedOpps.has(opp.id) 
+                              ? "bg-[#17274c] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_10px_rgba(212,175,55,0.2)] cursor-default" 
+                              : "bg-[#0f9d58] text-white border-transparent hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)]"
+                          )}
+                        >
+                          <AnimatePresence mode="wait">
+                            {bookedOpps.has(opp.id) ? (
+                              <motion.span
+                                key="booked"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="absolute flex items-center gap-1"
+                              >
+                                <Check size={10} strokeWidth={3} /> BOOKED
+                              </motion.span>
+                            ) : (
+                              <motion.span
+                                key="book-now"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="absolute"
+                              >
+                                BOOK NOW
+                              </motion.span>
+                            )}
+                          </AnimatePresence>
+                          <span className="opacity-0 flex items-center gap-1"><Check size={10} /> BOOKED</span>
+                        </motion.button>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -395,7 +436,7 @@ export default function FranchiseNetworkMobile() {
             </motion.div>
 
             <div className="flex flex-col gap-3 pt-3 mt-4">
-              <button className="w-full py-3.5 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[11px] font-bold tracking-widest rounded-[8px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
+              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-3.5 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[11px] font-bold tracking-widest rounded-[4px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
                 <MapPin size={14} />
                 <span>CHECK TERRITORY AVAILABILITY</span>
                 <ChevronRight
@@ -403,7 +444,7 @@ export default function FranchiseNetworkMobile() {
                   strokeWidth={3}
                   className="group-hover:translate-x-1 transition-transform"
                 />
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
