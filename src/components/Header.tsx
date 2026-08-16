@@ -8,6 +8,7 @@ export type Page =
   | "home"
   | "franchise"
   | "franchise-home"
+  | "franchise-home-01"
   | "investors"
   | "buyers-and-sellers"
   | "developer-and-owner"
@@ -28,6 +29,7 @@ const PAGE_LABELS: Record<Page, string> = {
   home: "Home",
   franchise: "Franchise Page",
   "franchise-home": "Franchise Home",
+  "franchise-home-01": "Franchise Home 01",
   investors: "Investors Page",
   "buyers-and-sellers": "Buyers & Sellers",
   "developer-and-owner": "Developer & Owner",
@@ -60,25 +62,27 @@ export default function Header({
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
 
-  const activePage: Page = location.pathname.includes("franchise-home")
-    ? "franchise-home"
-    : location.pathname.includes("franchise")
-      ? "franchise"
-      : location.pathname.includes("investors")
-        ? "investors"
-        : location.pathname.includes("buyers-and-sellers")
-          ? "buyers-and-sellers"
-          : location.pathname.includes("developer-and-owner")
-            ? "developer-and-owner"
-            : location.pathname.includes("filters")
-              ? "filters"
-              : location.pathname.includes("all-building-box")
-                ? "all-building-box"
-                : location.pathname.includes("building-box")
-                  ? "building-box"
-                  : location.pathname.includes("land-box")
-                    ? "land-box"
-                    : "home";
+  const activePage: Page = location.pathname.includes("franchise-home-01")
+    ? "franchise-home-01"
+    : location.pathname.includes("franchise-home")
+      ? "franchise-home"
+      : location.pathname.includes("franchise")
+        ? "franchise"
+        : location.pathname.includes("investors")
+          ? "investors"
+          : location.pathname.includes("buyers-and-sellers")
+            ? "buyers-and-sellers"
+            : location.pathname.includes("developer-and-owner")
+              ? "developer-and-owner"
+              : location.pathname.includes("filters")
+                ? "filters"
+                : location.pathname.includes("all-building-box")
+                  ? "all-building-box"
+                  : location.pathname.includes("building-box")
+                    ? "building-box"
+                    : location.pathname.includes("land-box")
+                      ? "land-box"
+                      : "home";
 
   const handleNavigate = useCallback(
     (page: string) => {

@@ -15,6 +15,7 @@ import DeveloperAndOwner from "./DeveloperAndOwner";
 import Filters from "./Filters";
 import Franchise from "./Franchise";
 import FranchiseHome from "./Franchise_Home";
+import FranchiseHome01 from "./Franchise_Home_01";
 import Home from "./Home";
 import Investors from "./Investors";
 import BuildingBox from "./BuildingBox";
@@ -91,6 +92,10 @@ function App() {
               <Route
                 path="/:viewMode/franchise-home"
                 element={<FranchiseHome isMobile={isMobile} />}
+              />
+              <Route
+                path="/:viewMode/franchise-home-01"
+                element={<FranchiseHome01 isMobile={isMobile} />}
               />
               <Route
                 path="/:viewMode/filters"
