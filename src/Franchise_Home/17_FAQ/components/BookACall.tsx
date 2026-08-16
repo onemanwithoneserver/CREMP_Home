@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Calendar,
   Clock,
   CheckCircle2,
   Send,
@@ -92,8 +91,6 @@ const FEATURES = [
 ];
 
 export function BookACall() {
-  const [currentStep, setCurrentStep] = useState<"intro" | "schedule">("intro");
-
   const todayDateStr = new Date().toLocaleDateString("en-US", {
     month: "short",
     day: "2-digit",
@@ -128,13 +125,11 @@ export function BookACall() {
   };
 
   useEffect(() => {
-    if (currentStep === "schedule") {
-      checkScroll();
-      window.addEventListener("resize", checkScroll);
-      setTimeout(checkScroll, 100);
-      return () => window.removeEventListener("resize", checkScroll);
-    }
-  }, [currentStep]);
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
+    setTimeout(checkScroll, 100);
+    return () => window.removeEventListener("resize", checkScroll);
+  }, []);
 
   const handleBook = () => {
     if (selectedSlot) {
@@ -146,7 +141,6 @@ export function BookACall() {
         setTimeout(() => {
           setBookingState("idle");
           setSelectedSlot(null);
-          setCurrentStep("intro");
         }, 3000);
       }, 1500);
     }
@@ -179,135 +173,94 @@ export function BookACall() {
 
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent z-10" />
 
-      <AnimatePresence mode="wait">
-        {currentStep === "intro" && (
-          <motion.div
-            key="intro-step"
-            initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: 0.96, filter: "blur(4px)" }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="flex flex-col items-center justify-center text-center gap-4 relative z-10 w-full py-2"
-          >
-            <div className="relative flex items-center justify-center mt-2 mb-2">
-              <motion.div
-                animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-[#d4af37]/20 dark:from-blue-500/40 dark:to-[#d4af37]/30 rounded-full scale-[1.5] blur-[8px] pointer-events-none"
-              />
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute inset-0 bg-blue-100/50 dark:bg-[#0b1b42]/80 border border-white/50 dark:border-white/10 rounded-full scale-[1.3] pointer-events-none"
-              />
-              <div className="w-[56px] h-[56px] rounded-full bg-gradient-to-b from-[#1c4ed8] to-[#0b1b42] flex items-center justify-center text-white shadow-[0_4px_16px_rgba(11,27,66,0.3)] relative z-10 border border-white/20">
+      <div className="flex flex-col gap-3 relative z-10 w-full">
+            <div className="flex flex-col items-center justify-center text-center gap-2 w-full">
+              <div className="relative flex items-center justify-center mt-1 mb-1">
                 <motion.div
-                  animate={{ y: [-2, 2, -2] }}
+                  animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-[#d4af37]/20 dark:from-blue-500/40 dark:to-[#d4af37]/30 rounded-full scale-[1.5] blur-[8px] pointer-events-none"
+                />
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
                   transition={{
-                    duration: 3,
+                    duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                >
-                  <Headset
-                    size={26}
-                    strokeWidth={2}
-                    className="drop-shadow-md"
-                  />
-                </motion.div>
-                <motion.div
-                  animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute top-1 right-1 text-[#d4af37]"
-                >
-                  <Sparkles size={12} />
-                </motion.div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <h3 className="text-[24px] sm:text-[28px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
-                Let's get to know <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">
-                  each other.
-                </span>
-              </h3>
-              <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium max-w-[260px] mx-auto leading-relaxed">
-                Schedule a 1-on-1 discovery call with our franchise specialists
-                today.
-              </p>
-            </div>
-
-            <div className="flex items-center justify-center w-full max-w-[320px] mx-auto mt-2">
-              {FEATURES.map((feature, index) => (
-                <div
-                  key={feature.label}
-                  className="flex flex-1 items-center justify-center"
-                >
+                  className="absolute inset-0 bg-blue-100/50 dark:bg-[#0b1b42]/80 border border-white/50 dark:border-white/10 rounded-full scale-[1.3] pointer-events-none"
+                />
+                <div className="w-[56px] h-[56px] rounded-full bg-gradient-to-b from-[#1c4ed8] to-[#0b1b42] flex items-center justify-center text-white shadow-[0_4px_16px_rgba(11,27,66,0.3)] relative z-10 border border-white/20">
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: feature.delay, duration: 0.4 }}
-                    className="flex flex-col items-center gap-1.5 group"
+                    animate={{ y: [-2, 2, -2] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   >
-                    <div
-                      className={clsx(
-                        "w-8 h-8 rounded-[8px] flex items-center justify-center shrink-0 border group-hover:scale-110 transition-transform duration-300",
-                        feature.colors,
-                      )}
-                    >
-                      <feature.icon size={15} strokeWidth={2.5} />
-                    </div>
-                    <span className="text-[9px] font-bold text-gray-800 dark:text-gray-300 leading-tight text-center whitespace-pre-line">
-                      {feature.label}
-                    </span>
+                    <Headset
+                      size={26}
+                      strokeWidth={2}
+                      className="drop-shadow-md"
+                    />
                   </motion.div>
-                  {index < FEATURES.length - 1 && (
-                    <div className="w-px h-6 bg-gray-300 dark:bg-gray-700/60 mx-1.5" />
-                  )}
+                  <motion.div
+                    animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute top-1 right-1 text-[#d4af37]"
+                  >
+                    <Sparkles size={12} />
+                  </motion.div>
                 </div>
-              ))}
-            </div>
-
-            <button
-              onClick={() => setCurrentStep("schedule")}
-              className="mt-3 w-full max-w-[280px] py-3 rounded-[8px] bg-[#0b1b42] text-white font-black text-[12px] uppercase tracking-widest shadow-[0_4px_12px_rgba(11,27,66,0.3)] hover:shadow-lg active:scale-[0.98] transition-all duration-300 relative overflow-hidden group border border-[#12235a]/50 flex items-center justify-center"
-            >
-              <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
-              <div className="absolute top-0 inset-x-0 h-[1px] bg-white/20" />
-              <span className="relative z-10 drop-shadow-sm">Book a Call</span>
-            </button>
-          </motion.div>
-        )}
-
-        {currentStep === "schedule" && (
-          <motion.div
-            key="schedule-step"
-            initial={{ opacity: 0, x: 20, filter: "blur(4px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, x: -20, filter: "blur(4px)" }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="flex flex-col gap-4 relative z-10 w-full"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-[8px] bg-white/70 dark:bg-[#0b1b42]/60 backdrop-blur-md flex items-center justify-center shrink-0 text-[#0b1b42] dark:text-[#d4af37] border border-white/60 dark:border-white/10 shadow-sm">
-                <Calendar size={18} strokeWidth={2.5} />
               </div>
-              <div className="flex flex-col">
-                <h3 className="text-[14px] font-black text-gray-900 dark:text-white tracking-tight leading-none">
-                  Select a Time
+
+              <div className="flex flex-col gap-1">
+                <h3 className="text-[20px] sm:text-[24px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+                  Let's get to know{" "}
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">
+                    each other.
+                  </span>
                 </h3>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-1 font-bold uppercase tracking-wider">
-                  Pick a convenient slot
+                <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium max-w-[260px] mx-auto leading-relaxed">
+                  Schedule a 1-on-1 discovery call with our franchise specialists
+                  today.
                 </p>
               </div>
+
+              <div className="flex items-center justify-center w-full max-w-[320px] mx-auto mt-1">
+                {FEATURES.map((feature, index) => (
+                  <div
+                    key={feature.label}
+                    className="flex flex-1 items-center justify-center"
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: feature.delay, duration: 0.4 }}
+                      className="flex flex-col items-center gap-1.5 group"
+                    >
+                      <div
+                        className={clsx(
+                          "w-8 h-8 rounded-[8px] flex items-center justify-center shrink-0 border group-hover:scale-110 transition-transform duration-300",
+                          feature.colors,
+                        )}
+                      >
+                        <feature.icon size={15} strokeWidth={2.5} />
+                      </div>
+                      <span className="text-[9px] font-bold text-gray-800 dark:text-gray-300 leading-tight text-center whitespace-pre-line">
+                        {feature.label}
+                      </span>
+                    </motion.div>
+                    {index < FEATURES.length - 1 && (
+                      <div className="w-px h-6 bg-gray-300 dark:bg-gray-700/60 mx-1.5" />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="flex flex-col gap-3.5 border-t border-gray-200/60 dark:border-white/10 pt-3">
+            <div className="flex flex-col gap-3 border-t border-gray-200/60 dark:border-white/10 pt-3 mt-1">
               <div className="flex flex-col gap-1.5 relative">
                 <div className="flex justify-between items-center px-1">
                   <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
@@ -405,7 +358,7 @@ export function BookACall() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2 min-h-[110px] bg-white/30 dark:bg-black/20 backdrop-blur-md rounded-[8px] p-3 border border-white/50 dark:border-white/5 shadow-inner">
+              <div className="flex flex-col gap-2 min-h-[90px] bg-white/30 dark:bg-black/20 backdrop-blur-md rounded-[8px] p-3 border border-white/50 dark:border-white/5 shadow-inner">
                 <div className="flex justify-between items-end px-1">
                   <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
                     Available Slots
@@ -475,34 +428,32 @@ export function BookACall() {
               </div>
             </div>
 
-            <div className="flex justify-center w-full mt-1">
+            <div className="flex justify-center w-full mt-0 pt-0">
               <button
                 onClick={handleBook}
                 disabled={!selectedSlot || bookingState !== "idle"}
                 className={clsx(
-                  "w-[160px] py-2.5 rounded-[8px] font-black text-[11px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
+                  "w-full max-w-[280px] py-3 rounded-[8px] font-black text-[12px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
                   selectedSlot
-                    ? "bg-[#0b1b42] text-white border-[#0b1b42] hover:shadow-[0_4px_16px_rgba(11,27,66,0.3)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.3)] active:scale-[0.98]"
+                    ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_12px_rgba(11,27,66,0.3)] hover:shadow-[0_4px_16px_rgba(11,27,66,0.4)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.3)] active:scale-[0.98]"
                     : "bg-gray-200/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 border-transparent cursor-not-allowed backdrop-blur-md",
                 )}
               >
                 {selectedSlot && (
                   <>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-black/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                    <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30" />
+                    <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
+                    <div className="absolute top-0 inset-x-0 h-[1px] bg-white/20" />
                   </>
                 )}
-                <span className="relative z-10 flex items-center gap-1.5 drop-shadow-sm">
-                  Confirm
+                <span className="relative z-10 flex items-center gap-2 drop-shadow-sm">
+                  Book a Call
                   {selectedSlot && (
-                    <CheckCircle2 size={14} className="text-[#d4af37]" />
+                    <CheckCircle2 size={16} className="text-[#d4af37]" />
                   )}
                 </span>
               </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
 
       <AnimatePresence>
         {bookingState !== "idle" && (
