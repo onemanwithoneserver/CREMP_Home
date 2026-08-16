@@ -8,9 +8,6 @@ import {
   MapPin,
   Navigation,
   Sparkles,
-  Building2,
-  Zap,
-  LayoutGrid,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -354,10 +351,10 @@ export default function FranchiseNetworkDesktop() {
                     <div className="w-8 h-8 bg-[#0a1128] rounded-[6px] flex items-center justify-center text-white">
                       <MapPin size={16} strokeWidth={2.5} />
                     </div>
-                    SELECT HUB
+                    SELECT CITY
                   </span>
                   <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-[4px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
-                    EXISTING HUB
+                    EXISTING CITY
                   </span>
                 </div>
 
@@ -435,72 +432,6 @@ export default function FranchiseNetworkDesktop() {
                   </AnimatePresence>
                 </div>
 
-                <div className="w-full h-px bg-gray-200/60 dark:bg-white/10 my-1" />
-              </motion.div>
-
-              <motion.div
-                key={`metrics-${activeCity.id}`}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="grid grid-cols-3 gap-3"
-              >
-                <div className="p-4 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[8px] flex flex-col items-start shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50 mb-3">
-                    OPERATING STORES
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[8px] bg-[#0088cc] text-white flex items-center justify-center shrink-0">
-                      <Building2 size={18} strokeWidth={2.5} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[22px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none">
-                        {activeCity.outlets}
-                      </span>
-                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">
-                        Units
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[8px] flex flex-col items-start shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50 mb-3">
-                    IN PIPELINE
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[8px] bg-[#f4b400] text-white flex items-center justify-center shrink-0">
-                      <Zap size={18} strokeWidth={2.5} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[22px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none">
-                        {activeCity.pipeline}
-                      </span>
-                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">
-                        Loc
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[8px] flex flex-col items-start shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50 mb-3">
-                    AVAILABLE FORMATS
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[8px] bg-[#8a2be2] text-white flex items-center justify-center shrink-0">
-                      <LayoutGrid size={18} strokeWidth={2.5} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[22px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none">
-                        5
-                      </span>
-                      <span className="text-[10px] text-gray-500 dark:text-white/50 font-semibold mt-0.5">
-                        Models
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
 
               <motion.div
@@ -522,7 +453,7 @@ export default function FranchiseNetworkDesktop() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-[#0a1128] rounded-[6px] shadow-sm">
+                <div className="flex items-center justify-between px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[6px] shadow-sm">
                   <span className="flex-1">CIRCLE NAME</span>
                   <span className="w-[150px] text-center">FORMAT</span>
                   <span className="w-[120px] text-center">
@@ -558,8 +489,10 @@ export default function FranchiseNetworkDesktop() {
                           </span>
                         </div>
 
-                        <div className="w-[120px] text-center px-1 text-[11px] font-semibold text-[#0f9d58] dark:text-emerald-400">
-                          Available
+                        <div className="w-[120px] flex justify-center px-1">
+                          <button className="px-4 py-2 text-[10px] font-bold text-white bg-[#0f9d58] rounded-[4px] hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)] transition-colors">
+                            BOOK NOW
+                          </button>
                         </div>
                       </motion.div>
                     );

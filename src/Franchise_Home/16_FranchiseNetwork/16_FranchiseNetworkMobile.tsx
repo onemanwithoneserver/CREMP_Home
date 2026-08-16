@@ -7,9 +7,6 @@ import {
   Globe2,
   MapPin,
   Sparkles,
-  Building2,
-  Zap,
-  LayoutGrid,
 } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
@@ -255,10 +252,10 @@ export default function FranchiseNetworkMobile() {
                   <div className="w-7 h-7 bg-[#0a1128] rounded-[4px] flex items-center justify-center text-white">
                     <MapPin size={14} strokeWidth={2.5} />
                   </div>
-                  SELECT HUB
+                  SELECT CITY
                 </span>
                 <span className="text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-[4px] bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
-                  EXISTING HUB
+                  EXISTING CITY
                 </span>
               </div>
 
@@ -332,52 +329,7 @@ export default function FranchiseNetworkMobile() {
                 </AnimatePresence>
               </div>
 
-              <div className="w-full h-px bg-gray-200/60 dark:bg-white/10 my-0.5" />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid grid-cols-3 gap-2"
-            >
-              <div className="p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                <div className="w-8 h-8 rounded-[6px] bg-[#0088cc] text-white flex items-center justify-center mb-2">
-                  <Building2 size={14} strokeWidth={2.5} />
-                </div>
-                <span className="text-[20px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-0.5">
-                  {activeCity.outlets}
-                </span>
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50">
-                  Operating
-                </span>
-              </div>
-
-              <div className="p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                <div className="w-8 h-8 rounded-[6px] bg-[#f4b400] text-white flex items-center justify-center mb-2">
-                  <Zap size={14} strokeWidth={2.5} />
-                </div>
-                <span className="text-[20px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-0.5">
-                  {activeCity.pipeline}
-                </span>
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50">
-                  Pipeline
-                </span>
-              </div>
-
-              <div className="p-3 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[6px] flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                <div className="w-8 h-8 rounded-[6px] bg-[#8a2be2] text-white flex items-center justify-center mb-2">
-                  <LayoutGrid size={14} strokeWidth={2.5} />
-                </div>
-                <span className="text-[20px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-0.5">
-                  5
-                </span>
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/50">
-                  Formats
-                </span>
-              </div>
-            </motion.div>
+              </motion.div>
 
             {/* Opportunities in Rows */}
             <motion.div
@@ -400,7 +352,7 @@ export default function FranchiseNetworkMobile() {
               </div>
 
               {/* Table / Row headers */}
-              <div className="flex items-center justify-between px-3 py-2 mt-1 text-[8px] font-black uppercase tracking-widest text-white bg-[#0a1128] rounded-[4px] shadow-sm">
+              <div className="flex items-center justify-between px-3 py-2 mt-1 text-[8px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[4px] shadow-sm">
                 <span className="flex-1">CIRCLE NAME</span>
               </div>
 
@@ -428,6 +380,9 @@ export default function FranchiseNetworkMobile() {
                           </span>
                         </div>
                       </div>
+                      <button className="shrink-0 px-3 py-2 text-[10px] font-bold text-white bg-[#0f9d58] rounded-[4px] hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)] transition-colors ml-2">
+                        BOOK NOW
+                      </button>
                     </div>
                   );
                 })}

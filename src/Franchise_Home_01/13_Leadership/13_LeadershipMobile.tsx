@@ -93,17 +93,19 @@ function LeaderCardMobile({
             </motion.div>
           </div>
           <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 px-5 flex flex-col justify-end z-10 text-white">
-            <span className="inline-block px-2.5 py-0.5 rounded-[2px] text-white dark:text-[#d4af37] text-[9px] font-black uppercase tracking-wider mb-2 w-max border border-[#d4af37]/40 bg-[#d4af37]/20 backdrop-blur-sm">
-              {member.experience}
+            <span className="inline-block px-2.5 py-1 rounded-[2px] text-[#d4af37] border border-[#d4af37]/80 bg-black/50 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider mb-2.5 w-max shadow-sm">
+              {member.experience.toUpperCase().includes("YEAR")
+                ? member.experience
+                : `${member.experience} YEARS`}
             </span>
             <h4 className="text-white font-bold text-xl tracking-tight leading-tight mb-1">
               {member.name}
             </h4>
-            <p className="text-gray-300 text-xs font-semibold tracking-widest uppercase mb-3">
+            <p className="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-3">
               {member.role}
             </p>
 
-            <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
+            <div className="w-10 h-[3px] bg-[#d4af37]" />
           </div>
         </div>
 
@@ -175,6 +177,7 @@ export default function LeadershipMobile() {
   const { members, brandStory } = brandLeadershipData;
   const isSingleLeader = members.length === 1;
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+  const [isSingleFlipped, setIsSingleFlipped] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -226,82 +229,109 @@ export default function LeadershipMobile() {
         </motion.div>
 
         {isSingleLeader ? (
-          <div className="w-full px-4 flex flex-col gap-6 text-white">
-            <div className="w-full h-[420px] relative rounded-[4px] overflow-hidden border border-white/10 shadow-lg shrink-0">
-              <img
-                src={members[0].avatar}
-                alt={members[0].name}
-                className="w-full h-full object-cover transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#040914]/90 via-[#040914]/30 to-transparent" />
-              <div className="absolute bottom-5 left-5 z-10 flex flex-col">
-                <span className="px-3 py-1.5 w-max rounded-[2px] bg-[#d4af37] text-[#0b1b42] text-[10px] font-black uppercase tracking-wider shadow-md mb-2">
-                  {members[0].experience} Experience
-                </span>
-                <h3 className="text-3xl font-black text-white tracking-tight">
-                  {members[0].name}
-                </h3>
-                <p className="text-[#d4af37] font-bold text-xs uppercase tracking-widest mt-1">
-                  {members[0].role}
-                </p>
-              </div>
-            </div>
-
-            <div className="w-full bg-[#0b1b42] border border-white/10 rounded-[4px] p-5 shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
-                <Quote size={80} className="text-[#d4af37]" />
-              </div>
-
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="px-2.5 py-1 rounded-[2px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-[10px] font-black uppercase tracking-widest">
-                    {brandStory.title}
-                  </span>
-                </div>
-
-                <div className="bg-white/5 border-l-4 border-[#d4af37] p-4 rounded-r-[4px] mb-4 relative">
-                  <p className="text-gray-200 text-sm leading-relaxed italic font-medium relative z-10">
-                    "{brandStory.quote}"
-                  </p>
-                </div>
-              </div>
-
-              <motion.div 
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={{
-                  hidden: { opacity: 0 },
-                  show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+          <div className="w-full px-4 text-white">
+            <div
+              className="h-[520px] w-full [perspective:1500px] cursor-pointer group rounded-[4px]"
+              onClick={() => setIsSingleFlipped(!isSingleFlipped)}
+            >
+              <motion.div
+                animate={{ rotateY: isSingleFlipped ? 180 : 0 }}
+                transition={{
+                  duration: 0.7,
+                  type: "spring",
+                  stiffness: 150,
+                  damping: 20,
                 }}
-                className="grid grid-cols-3 gap-2.5 pt-4 border-t border-white/10"
+                className="relative w-full h-full [transform-style:preserve-3d] shadow-2xl"
               >
-                {brandStory.stats.map((stat) => (
-                  <motion.div 
-                    key={stat.label} 
-                    className="flex flex-col group/stat cursor-default"
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
-                    }}
-                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                  >
-                    <div className="flex items-center gap-1.5 mb-1 transition-transform duration-300 group-hover/stat:scale-105 origin-left">
-                      {getStatIcon(stat.label)}
-                      <span
-                        className={clsx(
-                          "text-base sm:text-lg font-black tracking-tight",
-                          getTextStyles(stat.intent)
-                        )}
-                      >
-                        {stat.value}
-                      </span>
-                    </div>
-                    <p className="text-gray-400 text-[9px] font-bold uppercase tracking-wider">
-                      {stat.label}
+                {/* FRONT SIDE */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b1b42] rounded-[4px] border border-white/10 [backface-visibility:hidden] shadow-md">
+                  <img
+                    src={members[0].avatar}
+                    alt={members[0].name}
+                    className="w-full h-full object-cover filter grayscale-[5%] transition-transform duration-700 group-hover:scale-105"
+                    draggable={false}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#040914]/95 via-[#040914]/30 to-transparent" />
+
+                  <div className="absolute top-4 right-4 z-20">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-[2px] bg-black/60 backdrop-blur-md border border-[#d4af37]/40 text-white text-[10px] font-bold shadow-md"
+                    >
+                      <span>View Vision</span>
+                      <RotateCw size={12} className="text-[#d4af37]" />
+                    </motion.div>
+                  </div>
+                  {/* Bottom Information */}
+                  <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 px-6 flex flex-col justify-end z-10 text-white">
+                    <span className="inline-block px-3 py-1 rounded-[2px] text-[#d4af37] border border-[#d4af37]/80 bg-black/50 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider mb-3 w-max shadow-sm">
+                      {members[0].experience.toUpperCase().includes("YEAR")
+                        ? members[0].experience
+                        : `${members[0].experience} YEARS`}
+                    </span>
+                    <h3 className="text-white font-black text-3xl tracking-tight leading-tight mb-1">
+                      {members[0].name}
+                    </h3>
+                    <p className="text-[#d4af37] font-bold text-xs tracking-widest uppercase mb-3">
+                      {members[0].role}
                     </p>
-                  </motion.div>
-                ))}
+
+                    <div className="w-10 h-[3px] bg-[#d4af37]" />
+                  </div>
+                </div>
+
+                {/* BACK SIDE */}
+                <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-5 bg-[#0b1b42] border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
+                    <Quote size={80} className="text-[#d4af37]" />
+                  </div>
+
+                  <div className="flex items-center justify-between gap-3 relative z-10 pb-3 border-b border-white/10">
+                    <span className="px-2.5 py-1 rounded-[2px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-[10px] font-black uppercase tracking-widest">
+                      {brandStory.title}
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsSingleFlipped(false);
+                      }}
+                      className="p-1.5 rounded-[2px] bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+                      title="Flip back"
+                    >
+                      <RotateCw size={12} className="text-[#d4af37]" />
+                    </button>
+                  </div>
+
+                  <div className="relative z-10 flex-1 flex flex-col justify-center py-3">
+                    <div className="bg-white/5 border-l-4 border-[#d4af37] p-3.5 rounded-r-[4px]">
+                      <p className="text-gray-200 text-xs sm:text-sm leading-relaxed italic font-medium">
+                        "{brandStory.quote}"
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 grid grid-cols-3 gap-2 pt-3 border-t border-white/10">
+                    {brandStory.stats.map((stat) => (
+                      <div key={stat.label} className="flex flex-col">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          {getStatIcon(stat.label)}
+                          <span
+                            className={clsx(
+                              "text-sm sm:text-base font-black tracking-tight",
+                              getTextStyles(stat.intent)
+                            )}
+                          >
+                            {stat.value}
+                          </span>
+                        </div>
+                        <p className="text-gray-400 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider leading-tight">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
