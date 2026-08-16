@@ -31,11 +31,7 @@ export default function Mobile() {
           overline={termsData.overline}
           title={termsData.title}
           icon={FileText}
-          rightElement={
-            <span className="px-2 py-1 text-[10px] font-semibold rounded-[2px] border border-[#d4af37]/30 text-[#d4af37] tracking-wider bg-[#d4af37]/[0.08]">
-              {termsData.count}
-            </span>
-          }
+
         />
 
         <div className="px-4 py-4 flex flex-col relative w-full">
@@ -65,7 +61,7 @@ export default function Mobile() {
                   <div className="w-[76px] flex items-center relative shrink-0 justify-center">
                     <motion.div
                       whileHover={{ scale: 1.08, rotate: 5 }}
-                      className={`w-10 h-10 rounded-[4px] flex items-center justify-center relative z-20 text-white shadow-md transition-shadow duration-300 group-hover:shadow-lg ${item.color}`}
+                      className={`w-10 h-10 rounded-[6px] flex items-center justify-center relative z-20 text-white shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:animate-icon-shake origin-center ${item.color}`}
                     >
                       <item.icon size={18} strokeWidth={2.2} />
                     </motion.div>
@@ -73,19 +69,19 @@ export default function Mobile() {
                     <motion.div
                       variants={lineReveal}
                       style={{ originX: 0 }}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200/80 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]/80"
                     />
                   </div>
 
                   <motion.div
                     whileHover={{ y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="flex-1 p-3 rounded-[4px] bg-white border border-gray-200 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
+                    className="flex-1 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-center relative z-10 min-h-[64px] cursor-default transition-all duration-300 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-gray-100 hover:border-gray-200"
                   >
                     <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                       {item.label}
                     </span>
-                    <span className="text-[0.85rem] pt-[1px] font-semibold text-[#0a1128] leading-tight">
+                    <span className="text-[0.85rem] pt-[1px] font-semibold text-[#17274c] leading-tight">
                       {item.value}
                     </span>
                   </motion.div>
@@ -118,7 +114,7 @@ export default function Mobile() {
                         <div className="w-[76px] flex items-center relative shrink-0 justify-center">
                           <motion.div
                             whileHover={{ scale: 1.08, rotate: 5 }}
-                            className={`w-10 h-10 rounded-[4px] flex items-center justify-center relative z-20 text-white shadow-md transition-shadow duration-300 group-hover:shadow-lg ${item.color}`}
+                            className={`w-10 h-10 rounded-[6px] flex items-center justify-center relative z-20 text-white shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:animate-icon-shake origin-center ${item.color}`}
                           >
                             <item.icon size={18} strokeWidth={2.2} />
                           </motion.div>
@@ -126,7 +122,7 @@ export default function Mobile() {
                           <motion.div
                             variants={lineReveal}
                             style={{ originX: 0 }}
-                            className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]"
+                            className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200/80 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]/80"
                           />
                         </div>
 
@@ -137,12 +133,12 @@ export default function Mobile() {
                             stiffness: 400,
                             damping: 25,
                           }}
-                          className="flex-1 p-3 rounded-[4px] bg-white border border-gray-200 shadow-sm flex flex-col justify-center relative z-10 min-h-[60px] cursor-default transition-all duration-300 group-hover:border-[#d4af37] group-hover:ring-1 group-hover:ring-[#d4af37] group-hover:shadow-md"
+                          className="flex-1 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-center relative z-10 min-h-[64px] cursor-default transition-all duration-300 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-gray-100 hover:border-gray-200"
                         >
                           <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                             {item.label}
                           </span>
-                          <span className="text-[0.85rem] pt-[1px] font-semibold text-[#0a1128] leading-tight">
+                          <span className="text-[0.85rem] pt-[1px] font-semibold text-[#17274c] leading-tight">
                             {item.value}
                           </span>
                         </motion.div>
