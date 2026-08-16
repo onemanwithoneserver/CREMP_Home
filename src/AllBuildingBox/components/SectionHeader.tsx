@@ -57,7 +57,7 @@ export default function SectionHeader({
 
         <motion.h2
           variants={fadeInUp}
-          className="text-[1.3rem] sm:text-[1.5rem] font-semibold text-[#0a1128] dark:text-white tracking-tight leading-tight"
+          className="text-[1.3rem] sm:text-[1.5rem] font-semibold text-[#17274c] dark:text-white tracking-tight leading-tight"
         >
           {title}
         </motion.h2>

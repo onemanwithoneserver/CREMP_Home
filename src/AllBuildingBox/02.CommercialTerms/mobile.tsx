@@ -58,7 +58,7 @@ export default function Mobile() {
 
                 <span
                   className={`relative z-10 font-semibold text-[0.68rem] tracking-tight whitespace-nowrap transition-colors duration-300 ${
-                    activeTab === tab ? "text-white" : "text-[#0a1128]"
+                    activeTab === tab ? "text-white" : "text-[#17274c]"
                   }`}
                 >
                   {tab}
@@ -99,7 +99,7 @@ export default function Mobile() {
 
                     <div className="flex items-baseline gap-1 mt-1">
                       <span
-                        className={`text-lg font-bold tracking-tight ${currentData.primaryAmountColor}`}
+                        className={`text-lg font-semibold tracking-tight ${currentData.primaryAmountColor}`}
                       >
                         {currentData.primaryAmount}
                       </span>
@@ -123,11 +123,11 @@ export default function Mobile() {
                         <div className="flex flex-col">
                           <div className="flex items-center gap-1">
                             <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
-                            <span className="text-[0.55rem] font-bold text-[#d4af37] tracking-[0.18em]">
+                            <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em]">
                               {currentData.secondaryDarkCard.label}
                             </span>
                           </div>
-                          <span className="text-sm font-bold text-white tracking-tight mt-0.5">
+                          <span className="text-sm font-semibold text-white tracking-tight mt-0.5">
                             {currentData.secondaryDarkCard.value}
                           </span>
                         </div>
@@ -156,11 +156,11 @@ export default function Mobile() {
                           <Icon size={14} strokeWidth={2} />
                         </div>
                         <div className="flex flex-col min-w-0">
-                          <span className="text-[0.55rem] font-bold uppercase tracking-wider text-gray-400 truncate">
+                          <span className="text-[0.55rem] font-semibold uppercase tracking-wider text-gray-400 leading-tight">
                             {detail.label}
                           </span>
                           <span
-                            className={`text-[0.68rem] font-bold text-[#0a1128] truncate mt-0.5 ${"valueColor" in detail ? (detail as { valueColor?: string }).valueColor : ""}`}
+                            className={`text-[0.68rem] font-semibold text-[#17274c] mt-0.5 leading-tight ${"valueColor" in detail ? (detail as { valueColor?: string }).valueColor : ""}`}
                           >
                             {detail.value}
                           </span>
@@ -173,7 +173,7 @@ export default function Mobile() {
                 {currentData.footer && (
                   <div className="mt-1 p-2 bg-gray-50/80 rounded-[4px] shadow-sm text-[0.62rem] text-gray-600 flex items-center justify-between">
                     {"left" in currentData.footer && (
-                      <span className="font-bold text-[#0b1b42] uppercase tracking-wider text-[0.58rem]">
+                      <span className="font-semibold text-[#0b1b42] uppercase tracking-wider text-[0.58rem]">
                         {currentData.footer.left}:
                       </span>
                     )}

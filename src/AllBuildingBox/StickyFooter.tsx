@@ -31,7 +31,7 @@ export default function StickyFooter() {
               <div className="w-full max-w-md mx-auto relative shadow-2xl rounded-[4px] overflow-hidden">
                 <button
                   onClick={() => setIsBookingOpen(false)}
-                  className="absolute -top-11 right-2 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xl border border-gray-200/60 flex items-center justify-center text-[#0a1128] shadow-lg z-10 hover:bg-white transition-colors"
+                  className="absolute -top-11 right-2 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xl border border-gray-200/60 flex items-center justify-center text-[#17274c] shadow-lg z-10 hover:bg-white transition-colors"
                 >
                   <X size={18} />
                 </button>

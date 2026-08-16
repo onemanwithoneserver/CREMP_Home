@@ -12,8 +12,8 @@ export default function MapView() {
         }}
       />
       <div className="relative z-10 flex flex-col items-center gap-2 bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-lg border border-slate-300">
-        <Map size={48} className="text-[#0a1128]" />
-        <span className="text-[#0a1128] font-semibold tracking-wide text-sm">
+        <Map size={48} className="text-[#17274c]" />
+        <span className="text-[#17274c] font-semibold tracking-wide text-sm">
           Interactive Map View
         </span>
         <span className="text-slate-600 text-xs">

@@ -63,7 +63,7 @@ export default function Desktop() {
                   </span>
                 </div>
 
-                <h3 className="text-[#0a1128] font-bold text-[1.1rem] mt-2 mb-3 group-hover:text-[#0b1b42] transition-colors leading-tight">
+                <h3 className="text-[#17274c] font-bold text-[1.1rem] mt-2 mb-3 group-hover:text-[#0b1b42] transition-colors leading-tight">
                   {item.title}
                 </h3>
 
@@ -91,7 +91,7 @@ export default function Desktop() {
                     </span>
                   </div>
 
-                  <button className="flex items-center gap-1.5 text-[0.75rem] font-bold bg-white text-[#0a1128] group-hover:bg-[#0a1128] group-hover:text-white px-3 py-1.5 rounded-[4px] transition-all duration-300">
+                  <button className="flex items-center gap-1.5 text-[0.75rem] font-bold bg-white text-[#17274c] group-hover:bg-[#17274c] group-hover:text-white px-3 py-1.5 rounded-[4px] transition-all duration-300">
                     <span>View Listing</span>
                     <ArrowRight
                       size={13}

@@ -34,7 +34,7 @@ export default function Desktop() {
           <div className="border border-gray-200/80 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
               onClick={() => setIsIncludedOpen(!isIncludedOpen)}
-              className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#0a1128] transition-colors cursor-pointer select-none"
+              className="w-full flex items-center justify-between p-3.5 bg-white hover:bg-gray-50/50 text-[0.8rem] font-semibold text-[#17274c] transition-colors cursor-pointer select-none"
             >
               <span className="tracking-wide flex items-center gap-2 relative z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
@@ -89,15 +89,15 @@ export default function Desktop() {
               <motion.div
                 key={idx}
                 variants={itemReveal}
-                whileHover={{ scale: 1.01 }}
-                className="flex items-center gap-3 p-3 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group cursor-default"
+                whileHover={{ scale: 1.015, y: -1 }}
+                className="flex items-center gap-3 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200 transition-all duration-300 group cursor-default"
               >
                 <div
                   className={`w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}
                 >
                   <item.icon size={15} strokeWidth={2} />
                 </div>
-                <span className="text-[0.8rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors truncate">
+                <span className="text-[0.8rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#17274c] transition-colors truncate">
                   {item.label}
                 </span>
               </motion.div>

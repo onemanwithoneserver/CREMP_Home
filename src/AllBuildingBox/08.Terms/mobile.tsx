@@ -85,7 +85,7 @@ export default function Mobile() {
                     <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                       {item.label}
                     </span>
-                    <span className="text-[0.85rem] pt-[1px] font-semibold text-[#0a1128] leading-tight">
+                    <span className="text-[0.85rem] pt-[1px] font-semibold text-[#17274c] leading-tight">
                       {item.value}
                     </span>
                   </motion.div>
@@ -142,7 +142,7 @@ export default function Mobile() {
                           <span className="text-[0.65rem] font-semibold text-gray-500 tracking-widest mb-0.5 transition-colors duration-300 group-hover:text-[#d4af37]">
                             {item.label}
                           </span>
-                          <span className="text-[0.85rem] pt-[1px] font-semibold text-[#0a1128] leading-tight">
+                          <span className="text-[0.85rem] pt-[1px] font-semibold text-[#17274c] leading-tight">
                             {item.value}
                           </span>
                         </motion.div>

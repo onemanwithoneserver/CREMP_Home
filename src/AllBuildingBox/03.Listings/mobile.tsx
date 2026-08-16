@@ -52,18 +52,18 @@ export default function Mobile() {
                         className="text-white"
                       />
                     </div>
-                    <span className="text-[0.62rem] font-bold text-gray-500 uppercase tracking-widest truncate">
+                    <span className="text-[0.62rem] font-semibold text-gray-500 uppercase tracking-widest truncate">
                       {item.type}
                     </span>
                   </div>
                   <span
-                    className={`px-1.5 py-0.5 rounded-[3px] border text-[0.55rem] font-bold tracking-wider uppercase ${badge}`}
+                    className={`px-1.5 py-0.5 rounded-[3px] border text-[0.55rem] font-semibold tracking-wider uppercase ${badge}`}
                   >
                     {item.badge}
                   </span>
                 </div>
 
-                <h3 className="text-[#0a1128] font-bold text-[0.98rem] mt-1.5 mb-2.5 leading-snug">
+                <h3 className="text-[#17274c] font-semibold text-[0.98rem] mt-1.5 mb-2.5 leading-snug">
                   {item.title}
                 </h3>
 
@@ -74,7 +74,7 @@ export default function Mobile() {
                       {item.area}
                     </span>
                   </div>
-                  <span className={`text-[1.05rem] font-bold ${priceText}`}>
+                  <span className={`text-[1.05rem] font-semibold ${priceText}`}>
                     {item.price}
                   </span>
                 </div>
@@ -89,7 +89,7 @@ export default function Mobile() {
                     </span>
                   </div>
 
-                  <button className="flex items-center gap-1 text-[0.7rem] font-bold bg-white text-[#0a1128] group-hover:bg-[#0a1128] group-hover:text-white px-2.5 py-1 rounded-[3px] transition-all duration-300">
+                  <button className="flex items-center gap-1 text-[0.7rem] font-semibold bg-white text-[#17274c] group-hover:bg-[#17274c] group-hover:text-white px-2.5 py-1 rounded-[3px] transition-all duration-300">
                     <span>View Listing</span>
                     <ArrowRight
                       size={12}

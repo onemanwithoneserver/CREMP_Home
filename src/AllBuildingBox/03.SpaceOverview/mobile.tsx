@@ -33,18 +33,19 @@ export default function Mobile() {
                 <motion.div
                   key={idx}
                   variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                  className="flex items-center gap-2 p-2.5 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300"
+                  whileHover={{ scale: 1.015, y: -1 }}
+                  className="flex items-center gap-3 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200 transition-all duration-300 group cursor-default"
                 >
                   <div
-                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm ${item.bgClass}`}
+                    className={`w-7 h-7 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}
                   >
                     <Icon size={14} strokeWidth={2} />
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-[0.55rem] font-bold uppercase tracking-wider text-gray-400 truncate">
+                    <span className="text-[0.55rem] font-semibold uppercase tracking-wider text-gray-400 leading-tight">
                       {item.label}
                     </span>
-                    <span className="text-[0.68rem] font-bold text-[#0a1128] truncate mt-0.5">
+                    <span className="text-[0.68rem] font-semibold text-[#17274c] mt-0.5 group-hover:text-[#0b1b42] transition-colors leading-tight">
                       {item.value}
                     </span>
                   </div>

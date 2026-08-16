@@ -70,7 +70,7 @@ export default function Desktop() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#0a1128] transition-colors">
+                  <span className="text-[0.78rem] font-semibold tracking-wide text-gray-700 group-hover:text-[#17274c] transition-colors">
                     {item.label}
                   </span>
                   <span className="text-[0.62rem] text-gray-400 font-medium mt-0.5">

@@ -33,8 +33,8 @@ export default function Desktop() {
                 <motion.div
                   key={idx}
                   variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                  whileHover={{ scale: 1.01 }}
-                  className="flex items-center gap-3 p-3 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group cursor-default"
+                  whileHover={{ scale: 1.015, y: -1 }}
+                  className="flex items-center gap-3 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200 transition-all duration-300 group cursor-default"
                 >
                   <div
                     className={`w-8 h-8 rounded-[4px] flex items-center justify-center text-white shrink-0 shadow-sm group-hover:animate-icon-shake origin-center transition-all duration-300 ${item.bgClass}`}
@@ -45,7 +45,7 @@ export default function Desktop() {
                     <span className="text-[0.6rem] font-bold uppercase tracking-wider text-gray-400 truncate">
                       {item.label}
                     </span>
-                    <span className="text-[0.74rem] font-bold text-[#0a1128] truncate mt-0.5 group-hover:text-[#0b1b42] transition-colors">
+                    <span className="text-[0.74rem] font-bold text-[#17274c] truncate mt-0.5 group-hover:text-[#0b1b42] transition-colors">
                       {item.value}
                     </span>
                   </div>

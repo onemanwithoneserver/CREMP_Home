@@ -20,40 +20,7 @@ import {
 export const spaceOverviewData = {
   overline: "Spatial & Architectural Specs",
   title: "Property & Space Overview",
-  tags: [
-    {
-      text: "STANDALONE COMMERCIAL",
-      color: "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-700/50",
-    },
-    {
-      text: "CORNER UNIT",
-      color: "bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-700/50",
-    },
-    {
-      text: "WARM SHELL",
-      color: "bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-700/50",
-    },
-    {
-      text: "GLASS FACADE (EXTERNAL BRANDING)",
-      color: "bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:border-purple-700/50",
-    },
-    {
-      text: "COLUMN FREE",
-      color: "bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-700/50",
-    },
-    {
-      text: "HIGH STREET FRONTAGE (85 FT)",
-      color: "bg-cyan-50 text-cyan-700 border border-cyan-200 dark:bg-cyan-900/30 dark:text-cyan-400 dark:border-cyan-700/50",
-    },
-    {
-      text: "FALSE CEILING INSTALLED",
-      color: "bg-slate-50 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700",
-    },
-    {
-      text: "EXTERNAL & INTERNAL BRANDING",
-      color: "bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-900/30 dark:text-rose-400 dark:border-rose-700/50",
-    },
-  ],
+
   specs: [
     {
       label: "Building Type",

@@ -58,7 +58,7 @@ export default function Desktop() {
 
                 <span
                   className={`relative z-10 font-semibold text-[0.68rem] tracking-tight whitespace-nowrap transition-colors duration-300 ${
-                    activeTab === tab ? "text-white" : "text-[#0a1128]"
+                    activeTab === tab ? "text-white" : "text-[#17274c]"
                   }`}
                 >
                   {tab}
@@ -168,7 +168,7 @@ export default function Desktop() {
                             {detail.label}
                           </span>
                           <span
-                            className={`text-[0.74rem] font-bold text-[#0a1128] truncate mt-0.5 group-hover:text-[#0b1b42] transition-colors ${"valueColor" in detail ? (detail as { valueColor?: string }).valueColor : ""}`}
+                            className={`text-[0.74rem] font-bold text-[#17274c] truncate mt-0.5 group-hover:text-[#0b1b42] transition-colors ${"valueColor" in detail ? (detail as { valueColor?: string }).valueColor : ""}`}
                           >
                             {detail.value}
                           </span>

@@ -24,7 +24,7 @@ export const commercialData = {
       headerIconBg: "bg-indigo-500",
       primaryAmountLabel: "MONTHLY LEASE / RENT",
       primaryAmount: "₹1.20L – ₹14.5L",
-      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryAmountColor: "text-[#17274c] dark:text-white",
       primaryDesc: "/mo",
       primarySub: "₹95/sq.ft · Full Lease",
       secondaryBadge: {
@@ -94,7 +94,7 @@ export const commercialData = {
       headerIconBg: "bg-blue-500",
       primaryAmountLabel: "SUB LEASE MONTHLY RENT",
       primaryAmount: "₹85,000",
-      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryAmountColor: "text-[#17274c] dark:text-white",
       primaryDesc: "/mo",
       primarySub: "₹85/sq.ft · Flexible Sublease",
       secondaryBadge: {
@@ -169,7 +169,7 @@ export const commercialData = {
       headerIconBg: "bg-red-500",
       primaryAmountLabel: "BOX PRICE / TOTAL ASSET",
       primaryAmount: "₹18.50 Cr",
-      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryAmountColor: "text-[#17274c] dark:text-white",
       primaryDesc: "",
       primarySub: "₹14,500 / sq.ft (Built-Up)",
       secondaryBadge: {
@@ -298,7 +298,7 @@ export const commercialData = {
       headerIconBg: "bg-purple-500",
       primaryAmountLabel: "ASSURED MONTHLY RENT",
       primaryAmount: "₹45,000",
-      primaryAmountColor: "text-[#0a1128] dark:text-white",
+      primaryAmountColor: "text-[#17274c] dark:text-white",
       primaryDesc: "/mo",
       primarySub: "Per Fractional Slot",
       secondaryDarkCard: {
