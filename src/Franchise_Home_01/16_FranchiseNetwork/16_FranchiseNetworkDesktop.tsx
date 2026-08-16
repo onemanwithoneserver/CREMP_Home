@@ -135,7 +135,7 @@ export default function FranchiseNetworkDesktop() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Map Panel */}
+
           <div className="lg:col-span-7 relative min-h-[580px] bg-[#070d1e] rounded-[4px] border border-gray-800/80 overflow-hidden shadow-2xl flex flex-col p-6 group">
             <div className="absolute inset-0 pointer-events-none opacity-50 mix-blend-luminosity overflow-hidden transition-opacity duration-700 group-hover:opacity-70">
               <img

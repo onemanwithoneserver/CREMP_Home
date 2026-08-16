@@ -244,7 +244,7 @@ export default function LeadershipMobile() {
                 }}
                 className="relative w-full h-full [transform-style:preserve-3d] shadow-2xl"
               >
-                {/* FRONT SIDE */}
+
                 <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b1b42] rounded-[4px] border border-white/10 [backface-visibility:hidden] shadow-md">
                   <img
                     src={members[0].avatar}
@@ -263,7 +263,7 @@ export default function LeadershipMobile() {
                       <RotateCw size={12} className="text-[#d4af37]" />
                     </motion.div>
                   </div>
-                  {/* Bottom Information */}
+
                   <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 px-6 flex flex-col justify-end z-10 text-white">
                     <span className="inline-block px-3 py-1 rounded-[2px] text-[#d4af37] border border-[#d4af37]/80 bg-black/50 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider mb-3 w-max shadow-sm">
                       {members[0].experience.toUpperCase().includes("YEAR")
@@ -281,7 +281,7 @@ export default function LeadershipMobile() {
                   </div>
                 </div>
 
-                {/* BACK SIDE */}
+
                 <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-5 bg-[#0b1b42] border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
                     <Quote size={80} className="text-[#d4af37]" />

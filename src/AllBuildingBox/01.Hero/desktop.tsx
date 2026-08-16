@@ -26,7 +26,7 @@ export default function Desktop() {
               {heroData.badges[0] || "GRADE A"}
             </span>
 
-            {/* Building Type Dropdown */}
+
             <div className="relative flex items-center">
               <select 
                 defaultValue="Entire Building"
