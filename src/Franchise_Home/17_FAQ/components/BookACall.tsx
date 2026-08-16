@@ -173,7 +173,7 @@ export function BookACall() {
 
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent z-10" />
 
-      <div className="flex flex-col gap-3 relative z-10 w-full">
+      <div className="flex flex-col gap-1 relative z-10 w-full">
             <div className="flex flex-col items-center justify-center text-center gap-2 w-full">
               <div className="relative flex items-center justify-center mt-1 mb-1">
                 <motion.div
@@ -433,7 +433,7 @@ export function BookACall() {
                 onClick={handleBook}
                 disabled={!selectedSlot || bookingState !== "idle"}
                 className={clsx(
-                  "w-full max-w-[280px] py-3 rounded-[8px] font-black text-[12px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
+                  "w-full max-w-[200px] py-2 rounded-[8px] font-black text-[12px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
                   selectedSlot
                     ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_12px_rgba(11,27,66,0.3)] hover:shadow-[0_4px_16px_rgba(11,27,66,0.4)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.3)] active:scale-[0.98]"
                     : "bg-gray-200/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 border-transparent cursor-not-allowed backdrop-blur-md",
