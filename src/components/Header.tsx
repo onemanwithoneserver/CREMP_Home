@@ -15,7 +15,8 @@ export type Page =
   | "filters"
   | "building-box"
   | "all-building-box"
-  | "land-box";
+  | "land-box"
+  | "search-results";
 export type ViewMode = "desktop" | "mobile";
 
 export interface HeaderProps {
@@ -37,6 +38,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "all-building-box": "Commercial listing",
   "building-box": "Full commercial building",
   "land-box": "Commercial listing land",
+  "search-results": "Search Results",
 };
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
@@ -82,7 +84,9 @@ export default function Header({
                     ? "building-box"
                     : location.pathname.includes("land-box")
                       ? "land-box"
-                      : "home";
+                      : location.pathname.includes("search-results")
+                        ? "search-results"
+                        : "home";
 
   const handleNavigate = useCallback(
     (page: string) => {

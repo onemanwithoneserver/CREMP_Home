@@ -21,6 +21,7 @@ import Investors from "./Investors";
 import BuildingBox from "./BuildingBox";
 import AllBuildingBox from "./AllBuildingBox";
 import LandBox from "./LandBox";
+import SearchResults from "./Search results";
 
 function App() {
   const location = useLocation();
@@ -107,6 +108,10 @@ function App() {
                 element={<AllBuildingBox />}
               />
               <Route path="/:viewMode/land-box" element={<LandBox />} />
+              <Route
+                path="/:viewMode/search-results"
+                element={<SearchResults isMobile={isMobile} />}
+              />
               <Route
                 path="*"
                 element={<Navigate to="/desktop/home" replace />}
