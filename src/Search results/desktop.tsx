@@ -161,23 +161,19 @@ export default function SearchResultsDesktop() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[4px] overflow-hidden flex text-sm z-50"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[8px] overflow-hidden flex text-sm z-50"
                   >
-                    {/* Franchise Column */}
                     <div className="w-full flex flex-col">
-                      <div className="px-4 py-3 bg-gray-50/80 dark:bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
-                        Franchise
-                      </div>
-                      <div className="overflow-y-auto flex-1 p-2 max-h-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                      <div className="overflow-y-auto flex-1 p-2 max-h-[320px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         {displayFranchises.length > 0 ? displayFranchises.map(f => (
-                          <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-start gap-3 transition-colors">
-                            <div className="w-6 h-6 mt-0.5 rounded-[4px] bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
-                              <Store size={12} />
+                          <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-white/5 cursor-pointer rounded-[8px] text-slate-800 dark:text-slate-200 flex items-center gap-4 transition-all duration-200 mx-1 my-0.5 group">
+                            <div className="w-10 h-10 rounded-[8px] bg-slate-100 dark:bg-white/10 group-hover:bg-white dark:group-hover:bg-white/20 flex items-center justify-center text-slate-500 dark:text-slate-400 shrink-0 shadow-sm border border-slate-200/50 dark:border-white/5 transition-colors">
+                              <Store size={18} strokeWidth={1.5} />
                             </div>
-                            <div className="flex flex-col min-w-0">
-                              <span className="truncate font-medium leading-tight">{f.name}</span>
-                              <span className="text-[10px] text-gray-400 dark:text-gray-500 flex items-center gap-1 mt-0.5">
-                                <MapPin size={9} />
+                            <div className="flex flex-col min-w-0 justify-center">
+                              <span className="truncate font-bold text-[14px] leading-tight tracking-tight text-[#0a1128] dark:text-white">{f.name}</span>
+                              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-1.5">
+                                <MapPin size={11} strokeWidth={2} />
                                 <span className="truncate">{f.location}</span>
                               </span>
                             </div>
