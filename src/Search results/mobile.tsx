@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Heart, MapPin, Search, ChevronRight, ChevronDown, TrendingUp, Calendar, Sparkles, Store, Map } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
@@ -20,6 +20,11 @@ export default function SearchResultsMobile() {
   const [showMap, setShowMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(5);
+
+  useEffect(() => {
+    setVisibleCount(5);
+  }, [searchQuery]);
 
   const toggleFavorite = (id: number) => {
     setFavorites(prev => {
@@ -229,7 +234,7 @@ export default function SearchResultsMobile() {
           animate="show"
           className="flex flex-col"
         >
-          {filtered.map((f) => {
+          {filtered.slice(0, visibleCount).map((f) => {
             const isActive = activeCard === f.id || selectedMarker === f.id;
             return (
               <motion.div
@@ -238,10 +243,10 @@ export default function SearchResultsMobile() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleCardTap(f.id)}
                 className={clsx(
-                  'relative cursor-pointer transition-all duration-300 ',
+                  'relative cursor-pointer transition-all duration-300 hover:z-10 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.12)] rounded-[8px] my-1 mx-2',
                   isActive
-                    ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] '
-                    : 'bg-white dark:bg-[#0b1b42] '
+                    ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.06)]'
+                    : 'bg-white dark:bg-[#0b1b42]'
                 )}
               >
                                 <motion.div
@@ -310,9 +315,6 @@ export default function SearchResultsMobile() {
                           {tag}
                         </span>
                       ))}
-                      <span className="text-[8px] font-semibold text-gray-400 bg-gray-100 dark:bg-gray-800/80 px-1.5 py-0.5 rounded-[2px] border border-gray-200 dark:border-gray-700/60">
-                        {f.units.toLocaleString()} units
-                      </span>
                     </div>
 
                     <motion.button
@@ -331,16 +333,19 @@ export default function SearchResultsMobile() {
           })}
         </motion.div>
 
-                <div className="px-4 py-6 flex justify-center ml-4">
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-6 py-2.5 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-[11px] font-bold text-[#0a1128] dark:text-white shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all uppercase tracking-widest"
-          >
-            <Sparkles size={12} className="text-[#d4af37]" />
-            Load More
-            <ChevronDown className="w-3 h-3" />
-          </motion.button>
-        </div>
+        {visibleCount < filtered.length && (
+          <div className="px-4 py-6 flex justify-center ml-4">
+            <motion.button
+              onClick={() => setVisibleCount(prev => prev + 5)}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-6 py-2.5 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-[11px] font-bold text-[#0a1128] dark:text-white shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all uppercase tracking-widest"
+            >
+              <Sparkles size={12} className="text-[#d4af37]" />
+              Load More
+              <ChevronDown className="w-3 h-3" />
+            </motion.button>
+          </div>
+        )}
       </div>
 
     </div>

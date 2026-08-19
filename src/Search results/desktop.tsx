@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Heart, MapPin, Search, ChevronRight, ChevronDown, X, TrendingUp, Calendar, Sparkles, Store } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
@@ -82,6 +82,11 @@ export default function SearchResultsDesktop() {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(5);
+
+  useEffect(() => {
+    setVisibleCount(5);
+  }, [searchQuery]);
 
   const toggleFavorite = (id: number) => {
     setFavorites(prev => {
@@ -274,7 +279,7 @@ export default function SearchResultsDesktop() {
             animate="show"
             className="flex flex-col"
           >
-            {filtered.map((f) => {
+            {filtered.slice(0, visibleCount).map((f) => {
               const isActive = hoveredCard === f.id || selectedMarker === f.id;
               return (
                 <motion.div
@@ -285,10 +290,10 @@ export default function SearchResultsDesktop() {
                   onClick={() => handleMarkerClick(f.id)}
                   whileHover={{ scale: 1.01, x: 4, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
                   className={clsx(
-                    'relative cursor-pointer transition-all duration-300 border-b',
+                    'relative cursor-pointer transition-all duration-300 hover:z-10 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.12)] rounded-[8px] my-1 mx-2',
                     isActive
-                      ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] '
-                      : 'bg-white dark:bg-[#0b1b42] '
+                      ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.06)]'
+                      : 'bg-white dark:bg-[#0b1b42]'
                   )}
                 >
                                     <motion.div
@@ -357,9 +362,6 @@ export default function SearchResultsDesktop() {
                             {tag}
                           </span>
                         ))}
-                        <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800/80 px-2 py-0.5 rounded-[2px] border border-gray-200 dark:border-gray-700/60">
-                          {f.units.toLocaleString()} units
-                        </span>
                       </div>
 
                       <motion.button
@@ -378,17 +380,20 @@ export default function SearchResultsDesktop() {
             })}
           </motion.div>
 
-                    <div className="px-5 py-8 flex justify-center ml-5">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ y: -1 }}
-              className="flex items-center gap-2 px-8 py-3 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-xs font-bold text-[#0a1128] dark:text-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all uppercase tracking-widest"
-            >
-              <Sparkles size={14} className="text-[#d4af37]" />
-              Load More
-              <ChevronDown className="w-3.5 h-3.5" />
-            </motion.button>
-          </div>
+          {visibleCount < filtered.length && (
+            <div className="px-5 py-8 flex justify-center ml-5">
+              <motion.button
+                onClick={() => setVisibleCount(prev => prev + 5)}
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ y: -1 }}
+                className="flex items-center gap-2 px-8 py-3 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-xs font-bold text-[#0a1128] dark:text-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all uppercase tracking-widest"
+              >
+                <Sparkles size={14} className="text-[#d4af37]" />
+                Load More
+                <ChevronDown className="w-3.5 h-3.5" />
+              </motion.button>
+            </div>
+          )}
         </div>
       </div>
     </div>

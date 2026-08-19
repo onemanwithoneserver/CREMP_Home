@@ -250,7 +250,7 @@ export const categoryMeta: Record<string, { icon: React.ElementType; bg: string;
   'Home Services':     { icon: Wrench,       bg: 'bg-teal-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(20,184,166,0.4)]' },
 };
 
-export const defaultMeta = { icon: Store, bg: 'bg-gray-500', text: 'text-white', glow: '' };
+export const defaultMeta = { icon: Store, bg: 'bg-[#d4af37]/10', text: 'text-[#d4af37]', glow: 'shadow-[0_0_15px_rgba(212,175,55,0.4)]' };
 export const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
 
 export const tagColors: Record<string, string> = {
