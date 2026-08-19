@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
-  ChevronRight,
   ChevronDown,
   Globe2,
   MapPin,
