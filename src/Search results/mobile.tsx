@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, ChevronDown, ChevronUp, X, ArrowRight } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, Maximize, Minimize, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, getMeta, tagColors } from './data';
@@ -177,9 +177,31 @@ export default function SearchResultsMobile() {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsListCollapsed(!isListCollapsed)}
-                className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-7 h-7 flex items-center justify-center rounded-[4px] shadow-sm border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#d4af37] transition-colors"
+                className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-7 h-7 flex items-center justify-center rounded-[4px] shadow-sm border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#d4af37] transition-colors relative overflow-hidden group"
               >
-                {isListCollapsed ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                <AnimatePresence mode="wait">
+                  {isListCollapsed ? (
+                    <motion.div
+                      key="minimize"
+                      initial={{ scale: 0.5, rotate: 90, opacity: 0 }}
+                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                      exit={{ scale: 0.5, rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Minimize size={14} className="transition-transform group-hover:scale-110" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="maximize"
+                      initial={{ scale: 0.5, rotate: -90, opacity: 0 }}
+                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                      exit={{ scale: 0.5, rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Maximize size={14} className="transition-transform group-hover:scale-110" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.button>
             </div>
 
