@@ -229,55 +229,52 @@ export default function SearchResultsMobile() {
                   >
                     <div className={clsx('h-[3px] w-full', meta.bg)} />
                     <div className="p-3">
-                      <div className="flex gap-3">
-                        <div className="flex flex-col items-center gap-1.5 shrink-0">
-                          <div className="w-[52px] h-[52px] rounded-[6px] overflow-hidden border border-gray-200/80 dark:border-gray-700 shadow-sm">
+                      <div className="flex items-start justify-between mb-1">
+                        <div className="flex gap-2.5 items-center min-w-0">
+                          <div className="w-[48px] h-[48px] rounded-[6px] overflow-hidden shrink-0 border border-gray-200/80 dark:border-gray-700 shadow-sm">
                             <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                           </div>
-                          <motion.button whileTap={{ scale: 1.4 }} onClick={e => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-0.5">
-                            <Heart className={clsx('w-4 h-4 transition-all duration-300', favorites.has(f.id) ? 'fill-red-500 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]' : 'text-gray-300 dark:text-gray-600')} />
+                          <div className="min-w-0">
+                            <h3 className="font-extrabold text-[13px] leading-tight truncate text-[#0a1128] dark:text-white">{f.name}</h3>
+                            <p className="text-[9px] text-gray-500 dark:text-gray-400 flex items-center gap-0.5 font-medium mt-0.5">
+                              <MapPin className="w-2.5 h-2.5 shrink-0" /><span className="truncate">{f.location}</span>
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-0.5 shrink-0 ml-1">
+                          <motion.button whileTap={{ scale: 1.4 }} onClick={e => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-all">
+                            <Heart className={clsx('w-3.5 h-3.5 transition-all duration-300', favorites.has(f.id) ? 'fill-red-500 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]' : 'text-gray-300 dark:text-gray-600')} />
+                          </motion.button>
+                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={e => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400 hover:text-gray-600 dark:hover:text-white transition-all">
+                            <X className="w-3.5 h-3.5" />
                           </motion.button>
                         </div>
+                      </div>
 
-                        <div className="flex-1 min-w-0 flex flex-col justify-between">
-                          <div>
-                            <div className="flex items-start justify-between gap-1">
-                              <div className="min-w-0">
-                                <h3 className="font-extrabold text-[13px] leading-tight truncate text-[#0a1128] dark:text-white">{f.name}</h3>
-                                <p className="text-[9px] text-gray-500 dark:text-gray-400 flex items-center gap-0.5 font-medium mt-0.5">
-                                  <MapPin className="w-2.5 h-2.5 shrink-0" /><span className="truncate">{f.location}</span>
-                                </p>
-                              </div>
-                              <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={e => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 -mr-0.5 -mt-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400 hover:text-gray-600 dark:hover:text-white transition-all">
-                                <X className="w-3.5 h-3.5" />
-                              </motion.button>
-                            </div>
-                            <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                              <span className="text-[10px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
-                              <span className="w-px h-2.5 bg-gray-200 dark:bg-gray-700" />
-                              <div className="flex items-center gap-0.5">
-                                <TrendingUp size={9} className="text-emerald-500" />
-                                <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-end mt-2.5">
-                            <motion.button
-                              whileTap={{ scale: 0.92 }}
-                              onClick={e => e.stopPropagation()}
-                              className="flex items-center gap-1 text-[9px] font-bold px-3 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_2px_10px_rgba(212,175,55,0.25)] border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
-                            >
-                              <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
-                              <span className="relative z-10 flex items-center gap-1">
-                                Enquire
-                                <span className="relative flex items-center justify-center w-3 h-3 overflow-hidden">
-                                  <ArrowRight className="w-3 h-3 absolute -translate-x-[150%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out" strokeWidth={2.5} />
-                                  <ArrowRight className="w-3 h-3 absolute translate-x-0 opacity-100 group-hover:translate-x-[150%] group-hover:opacity-0 transition-all duration-300 ease-out" strokeWidth={2.5} />
-                                </span>
-                              </span>
-                            </motion.button>
-                          </div>
+                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+                        <span className="text-[10px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
+                        <span className="w-px h-2.5 bg-gray-200 dark:bg-gray-700" />
+                        <div className="flex items-center gap-0.5">
+                          <TrendingUp size={9} className="text-emerald-500" />
+                          <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
                         </div>
+                      </div>
+
+                      <div className="flex justify-end mt-2">
+                        <motion.button
+                          whileTap={{ scale: 0.92 }}
+                          onClick={e => e.stopPropagation()}
+                          className="flex items-center gap-1 text-[9px] font-bold px-3 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_2px_10px_rgba(212,175,55,0.25)] border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
+                        >
+                          <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
+                          <span className="relative z-10 flex items-center gap-1">
+                            Enquire
+                            <span className="relative flex items-center justify-center w-3 h-3 overflow-hidden">
+                              <ArrowRight className="w-3 h-3 absolute -translate-x-[150%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out" strokeWidth={2.5} />
+                              <ArrowRight className="w-3 h-3 absolute translate-x-0 opacity-100 group-hover:translate-x-[150%] group-hover:opacity-0 transition-all duration-300 ease-out" strokeWidth={2.5} />
+                            </span>
+                          </span>
+                        </motion.button>
                       </div>
                     </div>
                   </motion.div>
