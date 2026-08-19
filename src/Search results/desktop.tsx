@@ -1,25 +1,5 @@
 import { useState, useMemo } from 'react';
-import {
-  Heart,
-  MapPin,
-  Search,
-  ChevronRight,
-  ChevronDown,
-  X,
-  TrendingUp,
-  Calendar,
-  Sparkles,
-  Utensils,
-  Coffee,
-  Smartphone,
-  Dumbbell,
-  PawPrint,
-  Store,
-  GraduationCap,
-  Scissors,
-  Car,
-  Wrench,
-} from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, ChevronDown, X, TrendingUp, Calendar, Sparkles, Utensils, Coffee, Smartphone, Dumbbell, PawPrint, Store, GraduationCap, Scissors, Car, Wrench } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, type Franchise } from './data';

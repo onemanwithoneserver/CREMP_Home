@@ -1,29 +1,8 @@
 import { useState, useMemo } from 'react';
-import {
-  Heart,
-  MapPin,
-  Search,
-  ChevronRight,
-  ChevronDown,
-  X,
-  TrendingUp,
-  Calendar,
-  Sparkles,
-  Utensils,
-  Coffee,
-  Smartphone,
-  Dumbbell,
-  PawPrint,
-  Store,
-  GraduationCap,
-  Scissors,
-  Car,
-  Wrench,
-  Map,
-} from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, ChevronDown, X, TrendingUp, Calendar, Sparkles, Utensils, Coffee, Smartphone, Dumbbell, PawPrint, Store, GraduationCap, Scissors, Car, Wrench } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { franchises, type Franchise } from './data';
+import { franchises } from './data';
 
 const categoryMeta: Record<string, { icon: React.ElementType; bg: string; text: string; glow: string }> = {
   'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.4)]' },
@@ -59,57 +38,6 @@ const fadeUp = {
   hidden: { opacity: 0, y: 14 },
   show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 350, damping: 28 } },
 };
-
-function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () => void }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.9, filter: 'blur(4px)' }}
-      animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-      exit={{ opacity: 0, y: 10, scale: 0.9, filter: 'blur(4px)' }}
-      transition={{ type: 'spring' as const, stiffness: 400, damping: 28 }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 bg-white/85 dark:bg-[#0b1b42]/85 backdrop-blur-2xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-white/40 dark:border-white/10 p-3.5 min-w-[240px] overflow-hidden"
-    >
-      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
-      <button
-        onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-[4px] bg-gray-100/80 hover:bg-red-50 dark:bg-white/10 dark:hover:bg-red-900/30 text-gray-500 hover:text-red-500 transition-all backdrop-blur-md"
-      >
-        <X className="w-3 h-3" strokeWidth={2.5} />
-      </button>
-      <div className="flex items-center gap-2.5 mb-2.5">
-        <div className="w-10 h-10 rounded-[4px] overflow-hidden border border-white/30 dark:border-white/10 flex-shrink-0 shadow-md">
-          <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
-        </div>
-        <div className="min-w-0">
-          <h4 className="font-bold text-[#0a1128] dark:text-white text-xs truncate">{franchise.name}</h4>
-          <p className="text-[10px] text-gray-500 dark:text-gray-400 flex items-center gap-0.5 font-medium">
-            <MapPin className="w-2.5 h-2.5 flex-shrink-0" /><span className="truncate">{franchise.location}</span>
-          </p>
-        </div>
-      </div>
-
-            <div className="grid grid-cols-3 gap-1.5 mb-2.5">
-        <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <span className="text-[8px] font-bold text-gray-400 uppercase">Invest</span>
-          <span className="text-[9px] font-extrabold text-[#d4af37]">{franchise.investment}</span>
-        </div>
-        <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <span className="text-[8px] font-bold text-gray-400 uppercase">ROI</span>
-          <span className="text-[9px] font-extrabold text-emerald-500">{franchise.roi}</span>
-        </div>
-        <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <span className="text-[8px] font-bold text-gray-400 uppercase">Break</span>
-          <span className="text-[9px] font-extrabold text-blue-500">{franchise.breakeven}</span>
-        </div>
-      </div>
-
-      <button className="w-full flex items-center justify-center gap-1 text-[10px] font-bold text-white bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] border border-[#f9df9f]/50 shadow-[0_0_15px_rgba(212,175,55,0.3)] py-2 rounded-[4px] transition-all group">
-        Enquire Now <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-      </button>
-      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white/85 dark:bg-[#0b1b42]/85 rotate-45 border-r border-b border-white/40 dark:border-white/10 backdrop-blur-2xl" />
-    </motion.div>
-  );
-}
 
 export default function SearchResultsMobile() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
@@ -298,12 +226,6 @@ export default function SearchResultsMobile() {
                       <Icon size={14} strokeWidth={2.5} className={isActive ? meta.text : 'text-gray-500 dark:text-gray-400'} />
                     </div>
                   </motion.div>
-
-                  <AnimatePresence>
-                    {selectedMarker === f.id && (
-                      <MapPopup franchise={f} onClose={() => setSelectedMarker(null)} />
-                    )}
-                  </AnimatePresence>
                 </motion.div>
               );
             })}
@@ -438,15 +360,15 @@ export default function SearchResultsMobile() {
 
       {}
       <motion.button
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.5, type: 'spring' as const, stiffness: 300, damping: 25 }}
         whileTap={{ scale: 0.93 }}
         onClick={() => setShowMap(!showMap)}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-5 py-2.5 bg-[#0a1128]/90 dark:bg-white/90 backdrop-blur-xl text-white dark:text-[#0a1128] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.25)] border border-white/10 dark:border-gray-200/30"
+        className="absolute bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-full shadow-[0_8px_24px_rgba(212,175,55,0.4)] border border-[#f9df9f]/50 transition-all"
       >
-        <Map size={14} />
-        <span className="text-[11px] font-bold tracking-wide">{showMap ? 'Hide Map' : 'Show Map'}</span>
+        <Map size={16} />
+        <span className="text-[12px] font-extrabold tracking-wide uppercase">{showMap ? 'Hide Map' : 'Show Map'}</span>
       </motion.button>
     </div>
   );
