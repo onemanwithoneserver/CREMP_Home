@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, ChevronDown, ChevronUp } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, getMeta, tagColors } from './data';
@@ -220,6 +220,92 @@ export default function SearchResultsMobile() {
                 </motion.div>
               );
             })}
+
+            <AnimatePresence>
+              {isListCollapsed && selectedMarker && (() => {
+                const f = filtered.find(x => x.id === selectedMarker);
+                if (!f) return null;
+                return (
+                  <motion.div
+                    key={`popup-${f.id}`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                    style={{
+                      position: 'absolute',
+                      top: f.lat < 40 ? `calc(${f.lat}% + 24px)` : 'auto',
+                      bottom: f.lat >= 40 ? `calc(${100 - f.lat}% + 24px)` : 'auto',
+                      left: `max(16px, min(calc(${f.lng}% - 130px), calc(100% - 276px)))`,
+                      width: '260px',
+                      transformOrigin: f.lat < 40 ? 'top center' : 'bottom center'
+                    }}
+                    className="bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl rounded-[8px] shadow-[0_12px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_12px_40px_rgba(212,175,55,0.08)] border border-gray-200/80 dark:border-white/10 p-2.5 z-40 cursor-pointer pointer-events-auto"
+                    onClick={() => handleCardTap(f.id)}
+                  >
+                    <div className="flex gap-3">
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="w-12 h-12 rounded-[4px] overflow-hidden flex-shrink-0 border border-gray-200/80 dark:border-gray-700 shadow-sm">
+                          <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                        </div>
+                        <motion.button
+                          whileTap={{ scale: 1.3 }}
+                          onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                          className="p-1"
+                        >
+                          <Heart className={clsx(
+                            'w-4 h-4 transition-all duration-300',
+                            favorites.has(f.id) ? 'fill-red-500 text-red-500' : 'text-gray-300 dark:text-gray-600'
+                          )} />
+                        </motion.button>
+                      </div>
+
+                      <div className="flex-1 min-w-0 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-start justify-between gap-1">
+                            <div className="min-w-0">
+                              <h3 className="font-extrabold text-[12px] leading-tight truncate text-[#0a1128] dark:text-white">{f.name}</h3>
+                              <p className="text-[9px] text-gray-500 dark:text-gray-400 flex items-center gap-0.5 font-medium mt-0.5 mb-1.5">
+                                <MapPin className="w-2.5 h-2.5 flex-shrink-0" /><span className="truncate">{f.location}</span>
+                              </p>
+                            </div>
+                            <motion.button
+                              whileTap={{ scale: 1.1 }}
+                              onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }}
+                              className="p-0.5 flex-shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </motion.button>
+                          </div>
+                          
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="text-[10px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
+                            <span className="w-px h-2.5 bg-gray-200 dark:bg-gray-700" />
+                            <div className="flex items-center gap-0.5">
+                              <TrendingUp size={9} className="text-emerald-500" />
+                              <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-end mt-2">
+                          <motion.button
+                            whileTap={{ scale: 0.92 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex items-center gap-0.5 text-[9px] font-bold px-3 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_0_10px_rgba(212,175,55,0.2)] border border-[#f9df9f]/50 transition-all whitespace-nowrap relative overflow-hidden group"
+                          >
+                            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+                            <span className="relative z-10 flex items-center gap-0.5">
+                              Enquire <ChevronRight className="w-2.5 h-2.5" />
+                            </span>
+                          </motion.button>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
