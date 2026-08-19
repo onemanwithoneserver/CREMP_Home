@@ -22,13 +22,13 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
       initial={{ opacity: 0, y: 10, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="absolute bottom-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[300px] bg-white dark:bg-[#0b1b42] rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/10 p-4 z-50"
+      className="absolute bottom-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[300px] glass-strong rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/10 p-4 z-50"
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
 
       <button
         onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-[6px] bg-gray-50 hover:bg-gray-100 dark:bg-white/5 dark:hover:bg-white/10 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-all"
+        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-[6px] bg-gray-50/50 hover:bg-gray-100/80 dark:bg-white/5 dark:hover:bg-white/10 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-all"
       >
         <X className="w-4 h-4" strokeWidth={2.5} />
       </button>
@@ -46,15 +46,15 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
       </div>
 
       <div className="grid grid-cols-3 gap-2 mb-4">
-        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
+        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white/50 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
           <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Investment</span>
           <span className="text-[11px] font-extrabold text-[#d4af37] text-center leading-[1.2]">{franchise.investment}</span>
         </div>
-        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
+        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white/50 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
           <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">ROI</span>
           <span className="text-[12px] font-extrabold text-emerald-500 text-center">{franchise.roi}</span>
         </div>
-        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
+        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white/50 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
           <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Breakeven</span>
           <span className="text-[12px] font-extrabold text-blue-500 text-center leading-[1.2]">{franchise.breakeven}</span>
         </div>
@@ -70,7 +70,7 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
         </button>
       </div>
 
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-[#0b1b42] rotate-45 border-r border-b border-gray-100 dark:border-white/10" />
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-xl rotate-45 border-r border-b border-gray-100 dark:border-white/10 -z-10" />
     </motion.div>
   );
 }
@@ -148,7 +148,7 @@ export default function SearchResultsDesktop() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search franchise name, industry, or location..."
-                className="w-full pl-5 pr-12 py-3.5 bg-white/90 dark:bg-[#121c33]/90 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:border-[#d4af37]/40 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]"
+                className="w-full pl-5 pr-12 py-3.5 bg-white dark:bg-[#121c33] border border-gray-200/60 dark:border-white/10 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:border-[#d4af37]/40 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]"
               />
               <div className="absolute inset-y-1.5 right-1.5 w-9 flex items-center justify-center bg-[#0a1128] dark:bg-[#d4af37]/20 rounded-[4px] text-white dark:text-[#d4af37] shadow-sm pointer-events-none">
                 <Search className="h-4 w-4" />
@@ -249,9 +249,9 @@ export default function SearchResultsDesktop() {
             );
           })}
 
-                    <div className="absolute bottom-5 right-5 flex flex-col gap-1.5">
+                    <div className="absolute bottom-5 right-5 flex flex-col gap-1.5 z-10">
             {['+', '−'].map((label) => (
-              <button key={label} className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-9 h-9 flex items-center justify-center rounded-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:text-[#d4af37] transition-colors text-lg font-medium">{label}</button>
+              <motion.button key={label} whileTap={{ scale: 0.88 }} whileHover={{ scale: 1.05 }} className="glass w-9 h-9 flex items-center justify-center rounded-[4px] text-gray-600 dark:text-gray-300 text-lg font-medium hover:text-[#d4af37] transition-colors">{label}</motion.button>
             ))}
           </div>
         </div>
