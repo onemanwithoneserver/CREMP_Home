@@ -21,20 +21,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, type Franchise } from './data';
 
-const getCategoryConfig = (category: string, size = 18) => {
+const getCategoryConfig = (category: string, size = 18, isActive = false) => {
+  // If not active, show a common franchise icon with neutral colors
+  if (!isActive) {
+    return {
+      icon: <Store size={size} strokeWidth={2.5} />,
+      colors: 'bg-white text-gray-400 dark:bg-[#121c33] dark:text-gray-500',
+    };
+  }
+
+  // If active, show category-specific icon and colors
   switch (category) {
     case 'Food & Beverage': 
-      return { icon: <Utensils size={size} strokeWidth={2.5} />, colors: 'bg-rose-100 text-rose-500 dark:bg-rose-500/20' };
+      return { icon: <Utensils size={size} strokeWidth={2.5} />, colors: 'bg-rose-100 text-rose-500 dark:bg-rose-500/20 shadow-[0_0_20px_rgba(244,63,94,0.4)]' };
     case 'Coffee & Cafe': 
-      return { icon: <Coffee size={size} strokeWidth={2.5} />, colors: 'bg-emerald-100 text-emerald-500 dark:bg-emerald-500/20' };
+      return { icon: <Coffee size={size} strokeWidth={2.5} />, colors: 'bg-emerald-100 text-emerald-500 dark:bg-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.4)]' };
     case 'Technology': 
-      return { icon: <Smartphone size={size} strokeWidth={2.5} />, colors: 'bg-blue-100 text-blue-500 dark:bg-blue-500/20' };
+      return { icon: <Smartphone size={size} strokeWidth={2.5} />, colors: 'bg-blue-100 text-blue-500 dark:bg-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.4)]' };
     case 'Health & Fitness': 
-      return { icon: <Dumbbell size={size} strokeWidth={2.5} />, colors: 'bg-cyan-100 text-cyan-500 dark:bg-cyan-500/20' };
+      return { icon: <Dumbbell size={size} strokeWidth={2.5} />, colors: 'bg-cyan-100 text-cyan-500 dark:bg-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.4)]' };
     case 'Pet Services': 
-      return { icon: <PawPrint size={size} strokeWidth={2.5} />, colors: 'bg-orange-100 text-orange-500 dark:bg-orange-500/20' };
+      return { icon: <PawPrint size={size} strokeWidth={2.5} />, colors: 'bg-orange-100 text-orange-500 dark:bg-orange-500/20 shadow-[0_0_20px_rgba(249,115,22,0.4)]' };
     default: 
-      return { icon: <Store size={size} strokeWidth={2.5} />, colors: 'bg-gray-100 text-gray-500 dark:bg-gray-500/20' };
+      return { icon: <Store size={size} strokeWidth={2.5} />, colors: 'bg-gray-100 text-gray-500 dark:bg-gray-500/20 shadow-[0_0_20px_rgba(107,114,128,0.4)]' };
   }
 };
 
@@ -212,12 +221,11 @@ export default function SearchResultsDesktop() {
                     />
                   )}
                   <div className={clsx(
-                    'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-[2.5px] border-white dark:border-[#0b1b42]',
-                    isActive
-                      ? 'bg-[#d4af37] text-[#0b1b42] shadow-[0_0_20px_rgba(212,175,55,0.55)]'
-                      : `${getCategoryConfig(f.category).colors} shadow-md`
+                    'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-[2.5px]',
+                    isActive ? 'border-white dark:border-[#0b1b42]' : 'border-gray-200 dark:border-white/10',
+                    getCategoryConfig(f.category, 18, isActive).colors
                   )}>
-                    {getCategoryConfig(f.category).icon}
+                    {getCategoryConfig(f.category, 18, isActive).icon}
                   </div>
                   {/* label */}
                   <AnimatePresence>
