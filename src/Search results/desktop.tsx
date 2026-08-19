@@ -19,59 +19,58 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14, scale: 0.92, filter: 'blur(6px)' }}
-      animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-      exit={{ opacity: 0, y: 8, scale: 0.92, filter: 'blur(6px)' }}
-      transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 bg-white/85 dark:bg-[#0b1b42]/85 backdrop-blur-2xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-white/40 dark:border-white/10 p-4 min-w-[300px] overflow-hidden"
+      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className="absolute bottom-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[300px] bg-white dark:bg-[#0b1b42] rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/10 p-4 z-50"
     >
-            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
 
       <button
         onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-2.5 right-2.5 w-6 h-6 flex items-center justify-center rounded-[4px] bg-gray-100/80 hover:bg-red-50 dark:bg-white/10 dark:hover:bg-red-900/30 text-gray-500 hover:text-red-500 transition-all backdrop-blur-md"
+        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-[6px] bg-gray-50 hover:bg-gray-100 dark:bg-white/5 dark:hover:bg-white/10 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-all"
       >
-        <X className="w-3.5 h-3.5" strokeWidth={2.5} />
+        <X className="w-4 h-4" strokeWidth={2.5} />
       </button>
 
-      <div className="flex items-center gap-3 mb-3">
-        <div className="w-12 h-12 rounded-[4px] overflow-hidden border border-white/30 dark:border-white/10 flex-shrink-0 shadow-md">
+      <div className="flex items-center gap-3.5 mb-4">
+        <div className="w-12 h-12 rounded-[6px] overflow-hidden border border-gray-100 dark:border-white/10 flex-shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
           <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
         </div>
-        <div className="min-w-0">
-          <h4 className="font-bold text-[#0a1128] dark:text-white text-sm truncate">{franchise.name}</h4>
-          <p className="text-[11px] text-gray-500 dark:text-gray-400 flex items-center gap-1 font-medium">
-            <MapPin className="w-3 h-3 flex-shrink-0" /><span className="truncate">{franchise.location}</span>
+        <div className="min-w-0 pr-6">
+          <h4 className="font-bold text-[#0a1128] dark:text-white text-[15px] leading-tight truncate mb-1">{franchise.name}</h4>
+          <p className="text-[12px] text-gray-500 dark:text-gray-400 flex items-center gap-1 font-medium">
+            <MapPin className="w-3.5 h-3.5 flex-shrink-0" /><span className="truncate">{franchise.location}</span>
           </p>
         </div>
       </div>
 
-            <div className="grid grid-cols-3 gap-2 mb-3">
-        <div className="flex flex-col items-center p-2 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Investment</span>
-          <span className="text-[11px] font-extrabold text-[#d4af37] mt-0.5">{franchise.investment}</span>
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
+          <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Investment</span>
+          <span className="text-[11px] font-extrabold text-[#d4af37] text-center leading-[1.2]">{franchise.investment}</span>
         </div>
-        <div className="flex flex-col items-center p-2 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">ROI</span>
-          <span className="text-[11px] font-extrabold text-emerald-500 mt-0.5">{franchise.roi}</span>
+        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
+          <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">ROI</span>
+          <span className="text-[12px] font-extrabold text-emerald-500 text-center">{franchise.roi}</span>
         </div>
-        <div className="flex flex-col items-center p-2 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Breakeven</span>
-          <span className="text-[11px] font-extrabold text-blue-500 mt-0.5">{franchise.breakeven}</span>
+        <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
+          <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Breakeven</span>
+          <span className="text-[12px] font-extrabold text-blue-500 text-center leading-[1.2]">{franchise.breakeven}</span>
         </div>
       </div>
 
-            <div className="flex items-center justify-between gap-2">
-        <div className={clsx('flex items-center gap-1.5 px-2 py-1 rounded-[4px] text-[10px] font-bold', meta.bg, meta.text)}>
-          <Icon size={12} strokeWidth={2.5} />
+      <div className="flex items-center justify-between gap-2">
+        <div className={clsx('flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] text-[11px] font-bold shadow-sm', meta.bg, meta.text)}>
+          <Icon size={14} strokeWidth={2.5} />
           {franchise.category}
         </div>
-        <button className="flex items-center gap-1 text-[10px] font-bold text-white bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] border border-[#f9df9f]/50 shadow-[0_0_15px_rgba(212,175,55,0.3)] px-3 py-1.5 rounded-[4px] transition-all group">
-          Enquire <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+        <button className="flex items-center justify-center gap-1.5 text-[12px] font-bold text-white bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_4px_12px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_16px_rgba(212,175,55,0.4)] px-5 py-2 rounded-[6px] transition-all group min-w-[100px]">
+          Enquire <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>
 
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white/85 dark:bg-[#0b1b42]/85 rotate-45 border-r border-b border-white/40 dark:border-white/10 backdrop-blur-2xl" />
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-[#0b1b42] rotate-45 border-r border-b border-gray-100 dark:border-white/10" />
     </motion.div>
   );
 }
@@ -171,7 +170,7 @@ export default function SearchResultsDesktop() {
                               <Store size={18} strokeWidth={1.5} />
                             </div>
                             <div className="flex flex-col min-w-0 justify-center">
-                              <span className="truncate font-bold text-[14px] leading-tight tracking-tight text-[#0a1128] dark:text-white">{f.name}</span>
+                              <span className="truncate font-semibold text-[14px] leading-tight tracking-tight text-[#0a1128] dark:text-white">{f.name}</span>
                               <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-1.5">
                                 <MapPin size={11} strokeWidth={2} />
                                 <span className="truncate">{f.location}</span>
@@ -311,7 +310,7 @@ export default function SearchResultsDesktop() {
                           <div className="min-w-0">
                             <div className="flex items-center gap-2 mb-0.5">
                               <h3 className={clsx(
-                                'font-bold text-[13px] leading-tight truncate transition-colors',
+                                'font-semibold text-[13px] leading-tight truncate transition-colors',
                                 isActive ? 'text-[#0a1128] dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-white'
                               )}>{f.name}</h3>
                             </div>
@@ -336,12 +335,12 @@ export default function SearchResultsDesktop() {
                           <span className="w-px h-3 bg-gray-200 dark:bg-gray-700" />
                           <div className="flex items-center gap-0.5">
                             <TrendingUp size={10} className="text-emerald-500" />
-                            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
+                            <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
                           </div>
                           <span className="w-px h-3 bg-gray-200 dark:bg-gray-700" />
                           <div className="flex items-center gap-0.5">
                             <Calendar size={10} className="text-blue-500" />
-                            <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400">{f.breakeven}</span>
+                            <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">{f.breakeven}</span>
                           </div>
                         </div>
                       </div>
@@ -350,7 +349,7 @@ export default function SearchResultsDesktop() {
                                         <div className="flex items-center justify-between mt-2.5 gap-2 pl-[84px]">
                       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
                         {f.tags.slice(0, 2).map((tag) => (
-                          <span key={tag} className={clsx('px-2 py-0.5 rounded-[4px] text-[9px] font-bold border', tagColors[tag] || 'bg-gray-100 dark:bg-white/5 text-gray-500 border-gray-200/60 dark:border-white/10')}>
+                          <span key={tag} className={clsx('px-2 py-0.5 rounded-[4px] text-[9px] font-semibold border', tagColors[tag] || 'bg-gray-100 dark:bg-white/5 text-gray-500 border-gray-200/60 dark:border-white/10')}>
                             {tag}
                           </span>
                         ))}
@@ -358,7 +357,7 @@ export default function SearchResultsDesktop() {
 
                       <motion.button
                         whileTap={{ scale: 0.95 }}
-                        className="flex-shrink-0 flex items-center gap-1 text-[10px] font-bold px-3.5 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_20px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 transition-all group whitespace-nowrap relative overflow-hidden"
+                        className="flex-shrink-0 flex items-center gap-1 text-[10px] font-semibold px-3.5 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_20px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 transition-all group whitespace-nowrap relative overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
                         <span className="relative z-10 flex items-center gap-1">
@@ -379,7 +378,7 @@ export default function SearchResultsDesktop() {
                 disabled={isLoadingMore}
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ y: -1 }}
-                className="flex items-center justify-center min-w-[140px] px-8 py-3 bg-[#0a1128] hover:bg-[#121c33] dark:bg-[#121c33] dark:hover:bg-[#1a2642] backdrop-blur-xl border border-[#0a1128]/10 dark:border-white/10 rounded-[4px] text-xs font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-all uppercase tracking-widest disabled:opacity-80"
+                className="flex items-center justify-center min-w-[140px] px-8 py-3 bg-[#0a1128] hover:bg-[#121c33] dark:bg-[#121c33] dark:hover:bg-[#1a2642] backdrop-blur-xl border border-[#0a1128]/10 dark:border-white/10 rounded-[4px] text-xs font-semibold text-white shadow-[0_4px_16px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-all uppercase tracking-widest disabled:opacity-80"
               >
                 {isLoadingMore ? (
                   <div className="flex gap-1.5 items-center justify-center">
