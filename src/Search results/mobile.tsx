@@ -112,37 +112,24 @@ export default function SearchResultsMobile() {
                 exit={{ opacity: 0, y: -10 }}
                 className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[4px] overflow-hidden flex text-[11px] z-50"
               >
-                {/* Places Column */}
-                <div className="w-1/2 border-r border-gray-200/60 dark:border-white/10 flex flex-col">
-                  <div className="px-3 py-2 bg-gray-50/80 dark:bg-white/5 text-[9px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
-                    Places
-                  </div>
-                  <div className="overflow-y-auto flex-1 p-1 max-h-[200px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {displayPlaces.length > 0 ? displayPlaces.map(place => (
-                      <div key={place} onClick={() => setSearchQuery(place)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-2 transition-colors">
-                        <div className="w-5 h-5 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
-                          <MapPin size={10} />
-                        </div>
-                        <span className="truncate font-medium">{place}</span>
-                      </div>
-                    )) : (
-                      <div className="p-3 text-center text-[10px] text-gray-400">No places</div>
-                    )}
-                  </div>
-                </div>
-
                 {/* Franchise Column */}
-                <div className="w-1/2 flex flex-col">
+                <div className="w-full flex flex-col">
                   <div className="px-3 py-2 bg-gray-50/80 dark:bg-white/5 text-[9px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
                     Franchise
                   </div>
                   <div className="overflow-y-auto flex-1 p-1 max-h-[200px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {displayFranchises.length > 0 ? displayFranchises.map(f => (
-                      <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-2 transition-colors">
-                        <div className="w-5 h-5 rounded-[4px] bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
+                      <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-start gap-2 transition-colors">
+                        <div className="w-5 h-5 mt-0.5 rounded-[4px] bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
                           <Store size={10} />
                         </div>
-                        <span className="truncate font-medium">{f.name}</span>
+                        <div className="flex flex-col min-w-0">
+                          <span className="truncate font-medium leading-tight">{f.name}</span>
+                          <span className="text-[9px] text-gray-400 dark:text-gray-500 flex items-center gap-0.5 mt-0.5">
+                            <MapPin size={8} />
+                            <span className="truncate">{f.location}</span>
+                          </span>
+                        </div>
                       </div>
                     )) : (
                       <div className="p-3 text-center text-[10px] text-gray-400">No franchises</div>
