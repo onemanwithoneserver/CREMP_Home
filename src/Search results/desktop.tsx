@@ -1,47 +1,130 @@
 import { useState } from 'react';
-import { Heart, MapPin, Map, Search, ChevronRight, ChevronDown, X } from 'lucide-react';
+import {
+  Heart,
+  MapPin,
+  Search,
+  ChevronRight,
+  ChevronDown,
+  X,
+  Star,
+  TrendingUp,
+  Calendar,
+  Sparkles,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import clsx from 'clsx';
 import { franchises, type Franchise } from './data';
 
+/* ── marker colours ─────────────────────────────────────── */
 const markerColors: Record<string, { bg: string; text: string; glow: string }> = {
-  selected: { bg: 'bg-[#d4af37]', text: 'text-[#0b1b42]', glow: 'shadow-[0_0_12px_rgba(212,175,55,0.5)]' },
-  high: { bg: 'bg-[#0b1b42] dark:bg-[#d4af37]', text: 'text-white dark:text-[#0b1b42]', glow: 'shadow-[0_0_12px_rgba(11,27,66,0.3)]' },
-  other: { bg: 'bg-gray-400 dark:bg-gray-500', text: 'text-white', glow: '' },
+  selected: { bg: 'bg-[#d4af37]', text: 'text-[#0b1b42]', glow: 'shadow-[0_0_18px_rgba(212,175,55,0.55)]' },
+  high:     { bg: 'bg-[#0b1b42] dark:bg-[#d4af37]', text: 'text-white dark:text-[#0b1b42]', glow: 'shadow-[0_0_14px_rgba(11,27,66,0.35)]' },
+  other:    { bg: 'bg-gray-400 dark:bg-gray-500', text: 'text-white', glow: '' },
 };
 
+/* ── tag colours ─────────────────────────────────────────── */
+const tagColors: Record<string, string> = {
+  'Top Rated':    'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/20',
+  'Trending':     'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/20',
+  'Premium':      'bg-violet-500/15 text-violet-600 dark:text-violet-400 border-violet-500/20',
+  'Popular':      'bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/20',
+  'Indian Brand': 'bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/20',
+  'New':          'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+  'High ROI':     'bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/20',
+  'Growing':      'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/20',
+};
+
+/* ── star rating component ──────────────────────────────── */
+function StarRating({ rating, count }: { rating: number; count: number }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-0.5">
+        {[1, 2, 3, 4, 5].map((s) => (
+          <Star
+            key={s}
+            size={12}
+            className={clsx(
+              'transition-colors',
+              s <= Math.floor(rating)
+                ? 'fill-amber-400 text-amber-400'
+                : s - 0.5 <= rating
+                  ? 'fill-amber-400/50 text-amber-400'
+                  : 'fill-gray-200 dark:fill-gray-700 text-gray-200 dark:text-gray-700'
+            )}
+          />
+        ))}
+      </div>
+      <span className="text-[11px] font-bold text-gray-600 dark:text-gray-400">{rating}</span>
+      <span className="text-[10px] text-gray-400 dark:text-gray-500">({count})</span>
+    </div>
+  );
+}
+
+/* ── glassmorphic map popup ─────────────────────────────── */
 function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () => void }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 8, scale: 0.95 }}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 bg-white dark:bg-[#121c33] rounded-[4px] shadow-[0_12px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-700 p-4 min-w-[260px]"
+      initial={{ opacity: 0, y: 14, scale: 0.92, filter: 'blur(6px)' }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+      exit={{ opacity: 0, y: 8, scale: 0.92, filter: 'blur(6px)' }}
+      transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+      className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 bg-white/85 dark:bg-[#0b1b42]/85 backdrop-blur-2xl rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.18)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.55)] border border-white/40 dark:border-white/10 p-4 min-w-[280px] overflow-hidden"
     >
-      <button onClick={onClose} className="absolute top-2 right-2 p-1 rounded hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-        <X className="w-3.5 h-3.5 text-gray-400" />
+      {/* top accent */}
+      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+
+      <button
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        className="absolute top-2.5 right-2.5 w-6 h-6 flex items-center justify-center rounded-lg bg-gray-100/80 hover:bg-red-50 dark:bg-white/10 dark:hover:bg-red-900/30 text-gray-500 hover:text-red-500 transition-all backdrop-blur-md"
+      >
+        <X className="w-3.5 h-3.5" strokeWidth={2.5} />
       </button>
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-10 h-10 rounded-[4px] overflow-hidden border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-[#0a1128] flex-shrink-0">
+
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-12 h-12 rounded-lg overflow-hidden border border-white/30 dark:border-white/10 flex-shrink-0 shadow-md">
           <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
         </div>
-        <div>
-          <h4 className="font-bold text-[#0a1128] dark:text-white text-sm">{franchise.name}</h4>
-          <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1"><MapPin className="w-3 h-3" />{franchise.location}</p>
+        <div className="min-w-0">
+          <h4 className="font-bold text-[#0a1128] dark:text-white text-sm truncate">{franchise.name}</h4>
+          <p className="text-[11px] text-gray-500 dark:text-gray-400 flex items-center gap-1 font-medium">
+            <MapPin className="w-3 h-3 flex-shrink-0" /><span className="truncate">{franchise.location}</span>
+          </p>
         </div>
       </div>
-      <p className="text-sm font-bold text-[#d4af37] mb-2">{franchise.investment}</p>
-      <button className="text-xs font-semibold text-[#0b1b42] dark:text-[#d4af37] hover:underline flex items-center gap-1">
-        View Details <ChevronRight className="w-3 h-3" />
+
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm font-extrabold text-[#d4af37]">{franchise.investment}</span>
+        <StarRating rating={franchise.rating} count={franchise.reviewCount} />
+      </div>
+
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+          <TrendingUp size={11} className="text-emerald-500" />
+          <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">ROI {franchise.roi}</span>
+        </div>
+        <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-gray-100 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
+          <Calendar size={11} className="text-gray-500 dark:text-gray-400" />
+          <span className="text-[10px] font-bold text-gray-600 dark:text-gray-400">Est. {franchise.established}</span>
+        </div>
+      </div>
+
+      <button className="w-full flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-gradient-to-r from-[#0b1b42] to-[#162a5e] dark:from-[#d4af37] dark:to-[#c19a2e] dark:text-[#0b1b42] hover:shadow-lg py-2.5 rounded-lg transition-all group">
+        Enquire Now <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
       </button>
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-[#121c33] rotate-45 border-r border-b border-gray-200 dark:border-gray-700" />
+
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white/85 dark:bg-[#0b1b42]/85 rotate-45 border-r border-b border-white/40 dark:border-white/10 backdrop-blur-2xl" />
     </motion.div>
   );
 }
 
+/* ════════════════════════════════════════════════════════════
+   DESKTOP SEARCH RESULTS
+   ════════════════════════════════════════════════════════════ */
 export default function SearchResultsDesktop() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleFavorite = (id: number) => {
     setFavorites(prev => {
@@ -56,45 +139,64 @@ export default function SearchResultsDesktop() {
     setSelectedMarker(selectedMarker === id ? null : id);
   };
 
+  const filtered = franchises.filter(f => {
+    return !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()) || f.location.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
   return (
     <div className="flex flex-row w-full h-full bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300">
-      <div className="w-[65%] h-full flex flex-col relative border-r border-gray-200 dark:border-gray-800 z-10 bg-white dark:bg-[#0b1b42]">
-        <div className="flex-none px-6 py-5 bg-white dark:bg-[#0b1b42] border-b border-gray-200 dark:border-gray-800 flex flex-col gap-4 relative z-20">
+
+      {/* ───── MAP PANEL ───── */}
+      <div className="w-[60%] h-full flex flex-col relative border-r border-gray-200/60 dark:border-gray-800 z-10 bg-white dark:bg-[#0b1b42]">
+
+        {/* header */}
+        <div className="flex-none px-6 py-5 bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-800 flex flex-col gap-4 relative z-20">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-[#0a1128] dark:text-white tracking-tight">Search Results</h1>
-            <span className="text-sm font-bold text-[#0b1b42] dark:text-[#d4af37]">{franchises.length} Matches</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-gray-400 dark:text-gray-500" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search by franchise name, industry, or location..."
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-700 rounded-[4px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0b1b42] dark:focus:ring-[#d4af37] focus:border-transparent transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
-              />
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-extrabold text-[#0a1128] dark:text-white tracking-tight">Discover</h1>
+              <div className="h-5 w-px bg-gray-300 dark:bg-gray-700" />
+              <span className="text-sm font-bold text-[#d4af37]">{filtered.length} Franchise Matches</span>
             </div>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search franchise name, industry, or location..."
+              className="w-full pl-11 pr-4 py-3 bg-gray-50/80 dark:bg-[#121c33]/80 backdrop-blur-md border border-gray-200/80 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:border-[#d4af37]/40 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 shadow-sm"
+            />
           </div>
         </div>
 
-        <div className="flex-1 relative bg-[#eef2f6] dark:bg-[#0a1128] overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.08]"
-            style={{
-              backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
-              color: '#64748b'
-            }}
-          />
+        {/* map area */}
+        <div className="flex-1 relative bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden">
 
-          <svg className="absolute inset-0 w-full h-full opacity-[0.06] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0,120 Q 200,180 350,80 T 700,200 T 1100,100" fill="none" stroke="#475569" strokeWidth="3" />
-            <path d="M 50,300 Q 300,250 450,350 T 850,280 T 1200,400" fill="none" stroke="#475569" strokeWidth="2" />
-            <path d="M 100,450 Q 250,500 500,400 T 900,500" fill="none" stroke="#475569" strokeWidth="2" />
+          {/* topo pattern */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.07] dark:opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="topo" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="20" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#topo)" className="text-slate-500" />
           </svg>
 
-          {franchises.map((f, i) => {
+          {/* decorative road lines */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0,120 Q 200,180 350,80 T 700,200 T 1100,100" fill="none" stroke="#64748b" strokeWidth="2.5" strokeDasharray="8 4" />
+            <path d="M 50,300 Q 300,250 450,350 T 850,280 T 1200,400" fill="none" stroke="#64748b" strokeWidth="2" strokeDasharray="6 6" />
+            <path d="M 100,450 Q 250,500 500,400 T 900,500" fill="none" stroke="#64748b" strokeWidth="1.5" strokeDasharray="4 8" />
+          </svg>
+
+          {/* markers */}
+          {filtered.map((f, i) => {
             const isActive = hoveredCard === f.id || selectedMarker === f.id;
             const colors = markerColors[f.matchLevel];
             return (
@@ -102,17 +204,44 @@ export default function SearchResultsDesktop() {
                 key={`marker-${f.id}`}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: i * 0.06, type: 'spring', stiffness: 260, damping: 20 }}
+                transition={{ delay: i * 0.06, type: 'spring' as const, stiffness: 260, damping: 20 }}
                 className="absolute"
                 style={{ top: `${f.lat}%`, left: `${f.lng}%`, transform: 'translate(-50%, -50%)' }}
                 onMouseEnter={() => setHoveredCard(f.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => handleMarkerClick(f.id)}
               >
-                <div className={`relative flex flex-col items-center cursor-pointer transition-transform duration-200 ${isActive ? 'scale-125 z-30' : 'scale-100 z-10'}`}>
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${isActive ? 'bg-[#d4af37] text-[#0b1b42] shadow-[0_0_16px_rgba(212,175,55,0.5)]' : `${colors.bg} ${colors.text} ${colors.glow}`} border-2 border-white dark:border-[#0b1b42]`}>
+                <div className={clsx('relative flex flex-col items-center cursor-pointer transition-transform duration-200', isActive ? 'scale-125 z-30' : 'scale-100 z-10')}>
+                  {/* pulse ring */}
+                  {isActive && (
+                    <motion.div
+                      className="absolute w-14 h-14 rounded-full border-2 border-[#d4af37]/40"
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      animate={{ scale: [0.6, 1.2], opacity: [0.6, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeOut' }}
+                    />
+                  )}
+                  <div className={clsx(
+                    'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-[2.5px] border-white dark:border-[#0b1b42]',
+                    isActive
+                      ? 'bg-[#d4af37] text-[#0b1b42] shadow-[0_0_20px_rgba(212,175,55,0.55)]'
+                      : `${colors.bg} ${colors.text} ${colors.glow}`
+                  )}>
                     <span className="text-xs font-extrabold">{i + 1}</span>
                   </div>
+                  {/* label */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        className="absolute -bottom-6 whitespace-nowrap bg-[#0a1128]/90 dark:bg-white/90 text-white dark:text-[#0a1128] text-[9px] font-bold px-2 py-0.5 rounded-md shadow-lg"
+                      >
+                        {f.name}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 <AnimatePresence>
@@ -124,92 +253,151 @@ export default function SearchResultsDesktop() {
             );
           })}
 
-          <div className="absolute bottom-5 left-5 flex items-center gap-4 bg-white dark:bg-[#121c33] px-4 py-2 rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-700">
-            <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#d4af37] border border-white" />
-              <span className="text-[11px] font-medium text-gray-600 dark:text-gray-400">Selected</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#0b1b42] dark:bg-[#d4af37] border border-white dark:border-[#121c33]" />
-              <span className="text-[11px] font-medium text-gray-600 dark:text-gray-400">High Match</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-gray-400 border border-white" />
-              <span className="text-[11px] font-medium text-gray-600 dark:text-gray-400">Other Matches</span>
-            </div>
+          {/* legend */}
+          <div className="absolute bottom-5 left-5 flex items-center gap-5 bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl px-5 py-2.5 rounded-xl shadow-lg border border-white/40 dark:border-white/10">
+            {[
+              { label: 'Best Match', color: 'bg-[#d4af37]' },
+              { label: 'High Match', color: 'bg-[#0b1b42] dark:bg-[#d4af37]' },
+              { label: 'Other', color: 'bg-gray-400' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-2">
+                <div className={clsx('w-3 h-3 rounded-full border-2 border-white dark:border-[#121c33]', item.color)} />
+                <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-400">{item.label}</span>
+              </div>
+            ))}
           </div>
 
+          {/* zoom controls */}
           <div className="absolute bottom-5 right-5 flex flex-col gap-1.5">
-            <button className="bg-white dark:bg-[#121c33] w-8 h-8 flex items-center justify-center rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-[#d4af37] transition-colors text-lg font-light">+</button>
-            <button className="bg-white dark:bg-[#121c33] w-8 h-8 flex items-center justify-center rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-[#d4af37] transition-colors text-lg font-light">−</button>
-            <button className="bg-white dark:bg-[#121c33] w-8 h-8 flex items-center justify-center rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-[#0b1b42] dark:hover:text-[#d4af37] transition-colors">
-              <Map className="w-4 h-4" />
-            </button>
+            {['+', '−'].map((label) => (
+              <button key={label} className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-9 h-9 flex items-center justify-center rounded-xl shadow-lg border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:text-[#d4af37] transition-colors text-lg font-medium">{label}</button>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="w-[35%] h-full flex flex-col bg-white dark:bg-[#0b1b42] overflow-hidden">
-        <div className="flex-none px-5 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
-          <span className="text-sm font-bold text-[#0a1128] dark:text-white">{franchises.length} Franchise Opportunities</span>
-          <button className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-[#0b1b42] dark:hover:text-[#d4af37] transition-colors">
-            Sort by: <span className="font-bold text-[#0a1128] dark:text-white">Relevance</span> <ChevronDown className="w-3 h-3" />
-          </button>
-        </div>
+      {/* ───── RESULTS PANEL ───── */}
+      <div className="w-[40%] h-full flex flex-col bg-white dark:bg-[#0b1b42] overflow-hidden">
 
+        {/* card list */}
         <div className="flex-1 overflow-y-auto scrollbar-hide">
-          <div className="p-4 grid grid-cols-2 gap-3">
-            {franchises.map((f, i) => {
+          <div className="flex flex-col">
+            {filtered.map((f, i) => {
               const isActive = hoveredCard === f.id || selectedMarker === f.id;
               return (
                 <motion.div
                   key={`card-${f.id}`}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.04 + 0.15 }}
+                  transition={{ delay: i * 0.05 + 0.1, type: 'spring' as const, stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredCard(f.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className={`group bg-white dark:bg-[#121c33] rounded-[4px] border transition-all duration-200 cursor-pointer flex flex-col relative overflow-hidden ${
-                    isActive ? 'border-[#d4af37] shadow-[0_4px_20px_rgba(212,175,55,0.15)] dark:shadow-[0_4px_24px_rgba(212,175,55,0.1)]' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm'
-                  }`}
+                  onClick={() => handleMarkerClick(f.id)}
+                  className={clsx(
+                    'relative cursor-pointer transition-all duration-300 border-b',
+                    isActive
+                      ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] border-[#d4af37]/20'
+                      : 'bg-white dark:bg-[#0b1b42] border-gray-100 dark:border-gray-800/60 hover:bg-gray-50/50 dark:hover:bg-white/[0.02]'
+                  )}
                 >
-                  <div className="p-3.5 pb-3 flex flex-col gap-2.5">
-                    <div className="flex items-start justify-between">
-                      <div className="w-12 h-12 rounded-[4px] overflow-hidden border border-gray-100 dark:border-gray-800 flex-shrink-0 bg-gray-50 dark:bg-[#0a1128]">
-                        <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                      </div>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                        className="p-1 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-colors -mt-0.5 -mr-0.5"
-                      >
-                        <Heart className={`w-4 h-4 transition-colors ${favorites.has(f.id) ? 'fill-red-500 text-red-500' : 'text-gray-300 dark:text-gray-600 hover:text-red-400'}`} />
-                      </button>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-[#0a1128] dark:text-white text-sm leading-tight truncate">{f.name}</h3>
-                      <p className="text-xs font-bold text-[#0b1b42] dark:text-[#d4af37] mt-0.5">{f.investment}</p>
-                    </div>
-                    <div className="flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400 font-medium">
-                      <MapPin className="w-3 h-3 flex-shrink-0" />
-                      <span className="truncate">{f.location}</span>
-                    </div>
-                  </div>
-                  <div className="px-3.5 pb-3.5">
-                    <button className="w-full flex items-center justify-center gap-1 text-xs font-bold text-white bg-[#0b1b42] dark:bg-[#d4af37] dark:text-[#0b1b42] hover:bg-[#0a1128] dark:hover:bg-[#c9a030] py-2 rounded-[4px] transition-colors">
-                      Apply Now <ChevronRight className="w-3 h-3" />
-                    </button>
-                  </div>
+                  {/* gold accent bar */}
+                  <motion.div
+                    initial={false}
+                    animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+                    transition={{ type: 'spring' as const, stiffness: 500, damping: 30 }}
+                    className="absolute left-0 top-0 w-[3px] h-full bg-gradient-to-b from-[#d4af37] to-[#aa8922] origin-top rounded-r-full shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+                  />
 
-                  <div className={`absolute top-0 left-0 w-[3px] h-full bg-[#d4af37] transition-transform duration-200 origin-top ${isActive ? 'scale-y-100' : 'scale-y-0'}`} />
+                  <div className="p-4 pl-5">
+                    {/* top row: image + info */}
+                    <div className="flex gap-4">
+                      {/* image */}
+                      <div className={clsx(
+                        'w-20 h-16 rounded-lg overflow-hidden flex-shrink-0 border transition-all duration-300',
+                        isActive
+                          ? 'border-[#d4af37]/40 shadow-[0_4px_16px_rgba(212,175,55,0.15)]'
+                          : 'border-gray-200/80 dark:border-gray-700 shadow-sm'
+                      )}>
+                        <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+
+                      {/* info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <h3 className={clsx(
+                              'font-extrabold text-[14px] leading-tight truncate transition-colors',
+                              isActive ? 'text-[#0a1128] dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-white'
+                            )}>{f.name}</h3>
+                            <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 flex items-center gap-1 font-medium">
+                              <MapPin className="w-3 h-3 flex-shrink-0" /><span className="truncate">{f.location}</span>
+                            </p>
+                          </div>
+                          <motion.button
+                            whileTap={{ scale: 1.3 }}
+                            onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                            className="p-1 flex-shrink-0 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                          >
+                            <Heart className={clsx(
+                              'w-4 h-4 transition-all duration-300',
+                              favorites.has(f.id) ? 'fill-red-500 text-red-500' : 'text-gray-300 dark:text-gray-600 hover:text-red-400'
+                            )} />
+                          </motion.button>
+                        </div>
+
+                        <div className="flex items-center gap-3 mt-1.5">
+                          <span className="text-[13px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
+                        </div>
+                        <div className="mt-1">
+                          <StarRating rating={f.rating} count={f.reviewCount} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* description */}
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-2.5 leading-relaxed line-clamp-1 font-medium">{f.description}</p>
+
+                    {/* bottom row: badges + CTA */}
+                    <div className="flex items-center justify-between mt-3 gap-3">
+                      <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+                        <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                          <TrendingUp size={10} className="text-emerald-500" />
+                          <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
+                        </div>
+                        {f.tags.slice(0, 2).map((tag) => (
+                          <span key={tag} className={clsx('px-2 py-0.5 rounded-md text-[9px] font-bold border', tagColors[tag] || 'bg-gray-100 dark:bg-white/5 text-gray-500 border-gray-200/60 dark:border-white/10')}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-shrink-0 flex items-center gap-1 text-[10px] font-bold px-4 py-2 rounded-lg bg-gradient-to-r from-[#0b1b42] to-[#162a5e] dark:from-[#d4af37] dark:to-[#c19a2e] text-white dark:text-[#0b1b42] hover:shadow-lg transition-all group whitespace-nowrap relative overflow-hidden"
+                      >
+                        <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+                        <span className="relative z-10 flex items-center gap-1">
+                          Enquire Now <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                        </span>
+                      </motion.button>
+                    </div>
+                  </div>
                 </motion.div>
               );
             })}
           </div>
 
-          <div className="px-4 pb-6 pt-2 flex justify-center">
-            <button className="flex items-center gap-1.5 px-6 py-2 border border-gray-200 dark:border-gray-700 rounded-[4px] text-sm font-semibold text-[#0a1128] dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-              Load More <ChevronDown className="w-3.5 h-3.5" />
-            </button>
+          {/* load more */}
+          <div className="px-5 py-8 flex justify-center">
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ y: -1 }}
+              className="flex items-center gap-2 px-8 py-3 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-xl text-xs font-bold text-[#0a1128] dark:text-white shadow-sm hover:shadow-lg transition-all uppercase tracking-widest"
+            >
+              <Sparkles size={14} className="text-[#d4af37]" />
+              Load More
+              <ChevronDown className="w-3.5 h-3.5" />
+            </motion.button>
           </div>
         </div>
       </div>
