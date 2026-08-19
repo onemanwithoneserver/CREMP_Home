@@ -8,9 +8,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Headset,
-  User,
-  CalendarDays,
-  ShieldCheck,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -63,30 +60,6 @@ const SCHEDULE_DATA = [
     date: "Aug 07",
     slots: ["09:30 AM", "01:00 PM"],
     isPast: false,
-  },
-];
-
-const FEATURES = [
-  {
-    icon: User,
-    label: "Expert\nGuidance",
-    delay: 0,
-    colors:
-      "bg-orange-500 text-white border-orange-400/50 shadow-md shadow-orange-500/20",
-  },
-  {
-    icon: CalendarDays,
-    label: "Flexible\nScheduling",
-    delay: 0.15,
-    colors:
-      "bg-pink-500 text-white border-pink-400/50 shadow-md shadow-pink-500/20",
-  },
-  {
-    icon: ShieldCheck,
-    label: "No\nObligation",
-    delay: 0.3,
-    colors:
-      "bg-emerald-500 text-white border-emerald-400/50 shadow-md shadow-emerald-500/20",
   },
 ];
 
@@ -226,37 +199,6 @@ export function BookACall() {
                   Schedule a 1-on-1 discovery call with our franchise specialists
                   today.
                 </p>
-              </div>
-
-              <div className="flex items-center justify-center w-full max-w-[320px] mx-auto mt-1">
-                {FEATURES.map((feature, index) => (
-                  <div
-                    key={feature.label}
-                    className="flex flex-1 items-center justify-center"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: feature.delay, duration: 0.4 }}
-                      className="flex flex-col items-center gap-1.5 group"
-                    >
-                      <div
-                        className={clsx(
-                          "w-8 h-8 rounded-[8px] flex items-center justify-center shrink-0 border group-hover:scale-110 transition-transform duration-300",
-                          feature.colors,
-                        )}
-                      >
-                        <feature.icon size={15} strokeWidth={2.5} />
-                      </div>
-                      <span className="text-[9px] font-bold text-gray-800 dark:text-gray-300 leading-tight text-center whitespace-pre-line">
-                        {feature.label}
-                      </span>
-                    </motion.div>
-                    {index < FEATURES.length - 1 && (
-                      <div className="w-px h-6 bg-gray-300 dark:bg-gray-700/60 mx-1.5" />
-                    )}
-                  </div>
-                ))}
               </div>
             </div>
 
