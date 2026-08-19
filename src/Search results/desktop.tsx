@@ -24,25 +24,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, type Franchise } from './data';
 
-/* ════════════════════════════════════════════════════════════
-   CATEGORY CONFIG — icon + pastel colour per category
-   ════════════════════════════════════════════════════════════ */
 const categoryMeta: Record<string, { icon: React.ElementType; bg: string; text: string; glow: string }> = {
-  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-100 dark:bg-rose-500/20',      text: 'text-rose-500',    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.4)]' },
-  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-100 dark:bg-emerald-500/20', text: 'text-emerald-500', glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]' },
-  'Technology':        { icon: Smartphone,   bg: 'bg-blue-100 dark:bg-blue-500/20',       text: 'text-blue-500',    glow: 'shadow-[0_0_20px_rgba(59,130,246,0.4)]' },
-  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-100 dark:bg-cyan-500/20',       text: 'text-cyan-500',    glow: 'shadow-[0_0_20px_rgba(6,182,212,0.4)]' },
-  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-100 dark:bg-orange-500/20',   text: 'text-orange-500',  glow: 'shadow-[0_0_20px_rgba(249,115,22,0.4)]' },
-  'Education':         { icon: GraduationCap,bg: 'bg-indigo-100 dark:bg-indigo-500/20',   text: 'text-indigo-500',  glow: 'shadow-[0_0_20px_rgba(99,102,241,0.4)]' },
-  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-100 dark:bg-pink-500/20',       text: 'text-pink-500',    glow: 'shadow-[0_0_20px_rgba(236,72,153,0.4)]' },
-  'Automotive':        { icon: Car,          bg: 'bg-sky-100 dark:bg-sky-500/20',         text: 'text-sky-500',     glow: 'shadow-[0_0_20px_rgba(14,165,233,0.4)]' },
-  'Home Services':     { icon: Wrench,       bg: 'bg-teal-100 dark:bg-teal-500/20',       text: 'text-teal-500',    glow: 'shadow-[0_0_20px_rgba(20,184,166,0.4)]' },
+  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.4)]' },
+  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-500',   text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]' },
+  'Technology':        { icon: Smartphone,   bg: 'bg-blue-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(59,130,246,0.4)]' },
+  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(6,182,212,0.4)]' },
+  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(249,115,22,0.4)]' },
+  'Education':         { icon: GraduationCap,bg: 'bg-indigo-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(99,102,241,0.4)]' },
+  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(236,72,153,0.4)]' },
+  'Automotive':        { icon: Car,          bg: 'bg-sky-500',       text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(14,165,233,0.4)]' },
+  'Home Services':     { icon: Wrench,       bg: 'bg-teal-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(20,184,166,0.4)]' },
 };
 
-const defaultMeta = { icon: Store, bg: 'bg-gray-100 dark:bg-gray-500/20', text: 'text-gray-500', glow: '' };
+const defaultMeta = { icon: Store, bg: 'bg-gray-500', text: 'text-white', glow: '' };
 const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
 
-/* ── tag colours ─────────────────────────────────────────── */
 const tagColors: Record<string, string> = {
   'Top Rated':    'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/20',
   'Trending':     'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/20',
@@ -54,7 +50,6 @@ const tagColors: Record<string, string> = {
   'Growing':      'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/20',
 };
 
-/* ── stagger animation variants ─────────────────────────── */
 const stagger = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
@@ -64,9 +59,6 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 350, damping: 28 } },
 };
 
-/* ════════════════════════════════════════════════════════════
-   MAP POPUP — glassmorphic with gold accent
-   ════════════════════════════════════════════════════════════ */
 function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () => void }) {
   const meta = getMeta(franchise.category);
   const Icon = meta.icon;
@@ -79,8 +71,7 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
       transition={{ type: 'spring', stiffness: 400, damping: 28 }}
       className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 bg-white/85 dark:bg-[#0b1b42]/85 backdrop-blur-2xl rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] border border-white/40 dark:border-white/10 p-4 min-w-[300px] overflow-hidden"
     >
-      {/* top accent */}
-      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
 
       <button
         onClick={(e) => { e.stopPropagation(); onClose(); }}
@@ -101,8 +92,7 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
         </div>
       </div>
 
-      {/* metrics row */}
-      <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="grid grid-cols-3 gap-2 mb-3">
         <div className="flex flex-col items-center p-2 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
           <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Investment</span>
           <span className="text-[11px] font-extrabold text-[#d4af37] mt-0.5">{franchise.investment}</span>
@@ -117,8 +107,7 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
         </div>
       </div>
 
-      {/* category + CTA */}
-      <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between gap-2">
         <div className={clsx('flex items-center gap-1.5 px-2 py-1 rounded-[4px] text-[10px] font-bold', meta.bg, meta.text)}>
           <Icon size={12} strokeWidth={2.5} />
           {franchise.category}
@@ -133,9 +122,6 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
   );
 }
 
-/* ════════════════════════════════════════════════════════════
-   DESKTOP SEARCH RESULTS
-   ════════════════════════════════════════════════════════════ */
 export default function SearchResultsDesktop() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -165,6 +151,9 @@ export default function SearchResultsDesktop() {
     return franchises.filter(f => !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [searchQuery]);
 
+  const displayPlaces = searchQuery ? uniquePlaces : uniquePlaces.slice(0, 3);
+  const displayFranchises = searchQuery ? matchingFranchises : matchingFranchises.slice(0, 3);
+
   const filtered = useMemo(() => {
     return franchises.filter(f => {
       const matchesSearch = !searchQuery ||
@@ -178,14 +167,12 @@ export default function SearchResultsDesktop() {
   return (
     <div className="flex flex-row w-full h-full bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300">
 
-      {/* ───── MAP PANEL ───── */}
-      <div className="w-[60%] h-full flex flex-col relative border-r border-gray-200/60 dark:border-gray-800 z-10 bg-white dark:bg-[#0b1b42]">
+      {}
+      <div className="w-[65%] h-full flex flex-col relative border-r border-gray-200/60 dark:border-gray-800 z-10 bg-white dark:bg-[#0b1b42]">
 
-        {/* map area */}
-        <div className="flex-1 relative bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden">
+                <div className="flex-1 relative bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden">
 
-          {/* floating search bar */}
-          <div className="absolute top-5 left-1/2 -translate-x-1/2 w-[88%] max-w-xl z-30 flex flex-col gap-2">
+                    <div className="absolute top-5 left-1/2 -translate-x-1/2 w-[88%] max-w-xl z-30 flex flex-col gap-2">
             <div className="relative group">
               <input
                 type="text"
@@ -200,25 +187,26 @@ export default function SearchResultsDesktop() {
                 <Search className="h-4 w-4" />
               </div>
 
-              {/* 2-column Dropdown */}
-              <AnimatePresence>
-                {isSearchFocused && (searchQuery || uniquePlaces.length > 0 || matchingFranchises.length > 0) && (
+                            <AnimatePresence>
+                {isSearchFocused && (searchQuery || displayPlaces.length > 0 || displayFranchises.length > 0) && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[4px] overflow-hidden max-h-[360px] flex text-sm z-50"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[4px] overflow-hidden flex text-sm z-50"
                   >
                     {/* Places Column */}
                     <div className="w-1/2 border-r border-gray-200/60 dark:border-white/10 flex flex-col">
-                      <div className="px-4 py-2 bg-gray-50/80 dark:bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0">
+                      <div className="px-4 py-3 bg-gray-50/80 dark:bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
                         Places
                       </div>
-                      <div className="overflow-y-auto flex-1 p-2">
-                        {uniquePlaces.length > 0 ? uniquePlaces.map(place => (
-                          <div key={place} onClick={() => setSearchQuery(place)} className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-2">
-                            <MapPin size={14} className="text-gray-400" />
-                            <span className="truncate">{place}</span>
+                      <div className="overflow-y-auto flex-1 p-2 max-h-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        {displayPlaces.length > 0 ? displayPlaces.map(place => (
+                          <div key={place} onClick={() => setSearchQuery(place)} className="px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-3 transition-colors">
+                            <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
+                              <MapPin size={12} />
+                            </div>
+                            <span className="truncate font-medium">{place}</span>
                           </div>
                         )) : (
                           <div className="p-4 text-center text-xs text-gray-400">No places found</div>
@@ -228,14 +216,16 @@ export default function SearchResultsDesktop() {
 
                     {/* Franchise Column */}
                     <div className="w-1/2 flex flex-col">
-                      <div className="px-4 py-2 bg-gray-50/80 dark:bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0">
+                      <div className="px-4 py-3 bg-gray-50/80 dark:bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
                         Franchise
                       </div>
-                      <div className="overflow-y-auto flex-1 p-2">
-                        {matchingFranchises.length > 0 ? matchingFranchises.map(f => (
-                          <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-2">
-                            <Store size={14} className="text-gray-400" />
-                            <span className="truncate">{f.name}</span>
+                      <div className="overflow-y-auto flex-1 p-2 max-h-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        {displayFranchises.length > 0 ? displayFranchises.map(f => (
+                          <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-3 transition-colors">
+                            <div className="w-6 h-6 rounded-[4px] bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
+                              <Store size={12} />
+                            </div>
+                            <span className="truncate font-medium">{f.name}</span>
                           </div>
                         )) : (
                           <div className="p-4 text-center text-xs text-gray-400">No franchises found</div>
@@ -248,8 +238,7 @@ export default function SearchResultsDesktop() {
             </div>
           </div>
 
-          {/* topo pattern */}
-          <svg className="absolute inset-0 w-full h-full opacity-[0.07] dark:opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="absolute inset-0 w-full h-full opacity-[0.07] dark:opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="topo" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
@@ -266,8 +255,7 @@ export default function SearchResultsDesktop() {
             <path d="M 50,300 Q 250,250 450,350 T 800,280" fill="none" stroke="#64748b" strokeWidth="1.5" strokeDasharray="5 7" />
           </svg>
 
-          {/* markers */}
-          {filtered.map((f, i) => {
+                    {filtered.map((f, i) => {
             const isActive = hoveredCard === f.id || selectedMarker === f.id;
             const meta = getMeta(f.category);
             const Icon = isActive ? meta.icon : Store;
@@ -286,8 +274,7 @@ export default function SearchResultsDesktop() {
                   transition={{ type: 'spring' as const, stiffness: 400, damping: 25 }}
                   className={clsx('relative flex flex-col items-center cursor-pointer', isActive ? 'z-30' : 'z-10')}
                 >
-                  {/* pulse ring */}
-                  {isActive && (
+                                    {isActive && (
                     <motion.div
                       className={clsx('absolute w-14 h-14 rounded-full border-2', `border-current ${meta.text} opacity-40`)}
                       initial={{ scale: 0.5, opacity: 0 }}
@@ -296,12 +283,10 @@ export default function SearchResultsDesktop() {
                     />
                   )}
                   <div className={clsx(
-                    'w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 p-[3.5px]',
-                    isActive ? `${meta.bg} ${meta.glow}` : 'bg-gray-200/60 dark:bg-white/10 shadow-sm'
+                    'w-10 h-10 rounded-[4px] flex items-center justify-center transition-all duration-300 shadow-md',
+                    isActive ? `${meta.bg} ${meta.glow}` : 'bg-gray-200/80 dark:bg-white/10'
                   )}>
-                    <div className="w-full h-full rounded-full bg-white dark:bg-[#0b1b42] flex items-center justify-center shadow-sm">
-                      <Icon size={16} strokeWidth={2.5} className={isActive ? meta.text : 'text-gray-500 dark:text-gray-400'} />
-                    </div>
+                    <Icon size={18} strokeWidth={2.5} className={isActive ? meta.text : 'text-gray-500 dark:text-gray-400'} />
                   </div>
                 </motion.div>
 
@@ -314,8 +299,7 @@ export default function SearchResultsDesktop() {
             );
           })}
 
-          {/* zoom controls */}
-          <div className="absolute bottom-5 right-5 flex flex-col gap-1.5">
+                    <div className="absolute bottom-5 right-5 flex flex-col gap-1.5">
             {['+', '−'].map((label) => (
               <button key={label} className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-9 h-9 flex items-center justify-center rounded-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:text-[#d4af37] transition-colors text-lg font-medium">{label}</button>
             ))}
@@ -323,12 +307,11 @@ export default function SearchResultsDesktop() {
         </div>
       </div>
 
-      {/* ───── RESULTS PANEL ───── */}
-      <div className="w-[40%] h-full flex flex-col bg-white dark:bg-[#0b1b42] overflow-hidden">
+      {}
+      <div className="w-[35%] h-full flex flex-col bg-white dark:bg-[#0b1b42] overflow-hidden">
 
 
-        {/* card list with animated gold timeline */}
-        <div className="flex-1 overflow-y-auto scrollbar-hide relative">
+                <div className="flex-1 overflow-y-auto scrollbar-hide relative">
 
 
           <motion.div
@@ -339,8 +322,6 @@ export default function SearchResultsDesktop() {
           >
             {filtered.map((f) => {
               const isActive = hoveredCard === f.id || selectedMarker === f.id;
-              const meta = getMeta(f.category);
-              const CatIcon = meta.icon;
               return (
                 <motion.div
                   key={`card-${f.id}`}
@@ -356,8 +337,7 @@ export default function SearchResultsDesktop() {
                       : 'bg-white dark:bg-[#0b1b42] border-gray-100 dark:border-gray-800/60'
                   )}
                 >
-                  {/* gold accent bar */}
-                  <motion.div
+                                    <motion.div
                     initial={false}
                     animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                     transition={{ type: 'spring' as const, stiffness: 500, damping: 30 }}
@@ -365,10 +345,8 @@ export default function SearchResultsDesktop() {
                   />
 
                   <div className="p-4 pl-4">
-                    {/* top row: image + info */}
-                    <div className="flex gap-3.5">
-                      {/* image */}
-                      <div className={clsx(
+                                        <div className="flex gap-3.5">
+                                            <div className={clsx(
                         'w-[72px] h-[56px] rounded-[4px] overflow-hidden flex-shrink-0 border transition-all duration-300',
                         isActive
                           ? 'border-[#d4af37]/40 shadow-[0_4px_16px_rgba(212,175,55,0.15)]'
@@ -377,14 +355,10 @@ export default function SearchResultsDesktop() {
                         <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                       </div>
 
-                      {/* info */}
-                      <div className="flex-1 min-w-0">
+                                            <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div className="min-w-0">
                             <div className="flex items-center gap-2 mb-0.5">
-                              <div className={clsx('w-5 h-5 rounded-[2px] flex items-center justify-center', meta.bg, meta.text)}>
-                                <CatIcon size={11} strokeWidth={2.5} />
-                              </div>
                               <h3 className={clsx(
                                 'font-bold text-[13px] leading-tight truncate transition-colors',
                                 isActive ? 'text-[#0a1128] dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-white'
@@ -406,8 +380,7 @@ export default function SearchResultsDesktop() {
                           </motion.button>
                         </div>
 
-                        {/* metrics row */}
-                        <div className="flex items-center gap-2 mt-2">
+                                                <div className="flex items-center gap-2 mt-2">
                           <span className="text-[12px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
                           <span className="w-px h-3 bg-gray-200 dark:bg-gray-700" />
                           <div className="flex items-center gap-0.5">
@@ -423,8 +396,7 @@ export default function SearchResultsDesktop() {
                       </div>
                     </div>
 
-                    {/* bottom row: tags + units + CTA */}
-                    <div className="flex items-center justify-between mt-2.5 gap-2 pl-[84px]">
+                                        <div className="flex items-center justify-between mt-2.5 gap-2 pl-[84px]">
                       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
                         {f.tags.slice(0, 2).map((tag) => (
                           <span key={tag} className={clsx('px-2 py-0.5 rounded-[4px] text-[9px] font-bold border', tagColors[tag] || 'bg-gray-100 dark:bg-white/5 text-gray-500 border-gray-200/60 dark:border-white/10')}>
@@ -452,8 +424,7 @@ export default function SearchResultsDesktop() {
             })}
           </motion.div>
 
-          {/* load more */}
-          <div className="px-5 py-8 flex justify-center ml-5">
+                    <div className="px-5 py-8 flex justify-center ml-5">
             <motion.button
               whileTap={{ scale: 0.95 }}
               whileHover={{ y: -1 }}

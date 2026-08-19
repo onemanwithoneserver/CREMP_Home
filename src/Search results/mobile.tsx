@@ -25,25 +25,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, type Franchise } from './data';
 
-/* ════════════════════════════════════════════════════════════
-   CATEGORY CONFIG
-   ════════════════════════════════════════════════════════════ */
 const categoryMeta: Record<string, { icon: React.ElementType; bg: string; text: string; glow: string }> = {
-  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-100 dark:bg-rose-500/20',      text: 'text-rose-500',    glow: 'shadow-[0_0_16px_rgba(244,63,94,0.4)]' },
-  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-100 dark:bg-emerald-500/20', text: 'text-emerald-500', glow: 'shadow-[0_0_16px_rgba(16,185,129,0.4)]' },
-  'Technology':        { icon: Smartphone,   bg: 'bg-blue-100 dark:bg-blue-500/20',       text: 'text-blue-500',    glow: 'shadow-[0_0_16px_rgba(59,130,246,0.4)]' },
-  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-100 dark:bg-cyan-500/20',       text: 'text-cyan-500',    glow: 'shadow-[0_0_16px_rgba(6,182,212,0.4)]' },
-  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-100 dark:bg-orange-500/20',   text: 'text-orange-500',  glow: 'shadow-[0_0_16px_rgba(249,115,22,0.4)]' },
-  'Education':         { icon: GraduationCap,bg: 'bg-indigo-100 dark:bg-indigo-500/20',   text: 'text-indigo-500',  glow: 'shadow-[0_0_16px_rgba(99,102,241,0.4)]' },
-  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-100 dark:bg-pink-500/20',       text: 'text-pink-500',    glow: 'shadow-[0_0_16px_rgba(236,72,153,0.4)]' },
-  'Automotive':        { icon: Car,          bg: 'bg-sky-100 dark:bg-sky-500/20',         text: 'text-sky-500',     glow: 'shadow-[0_0_16px_rgba(14,165,233,0.4)]' },
-  'Home Services':     { icon: Wrench,       bg: 'bg-teal-100 dark:bg-teal-500/20',       text: 'text-teal-500',    glow: 'shadow-[0_0_16px_rgba(20,184,166,0.4)]' },
+  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.4)]' },
+  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-500',   text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]' },
+  'Technology':        { icon: Smartphone,   bg: 'bg-blue-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(59,130,246,0.4)]' },
+  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(6,182,212,0.4)]' },
+  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(249,115,22,0.4)]' },
+  'Education':         { icon: GraduationCap,bg: 'bg-indigo-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(99,102,241,0.4)]' },
+  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(236,72,153,0.4)]' },
+  'Automotive':        { icon: Car,          bg: 'bg-sky-500',       text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(14,165,233,0.4)]' },
+  'Home Services':     { icon: Wrench,       bg: 'bg-teal-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(20,184,166,0.4)]' },
 };
 
-const defaultMeta = { icon: Store, bg: 'bg-gray-100 dark:bg-gray-500/20', text: 'text-gray-500', glow: '' };
+const defaultMeta = { icon: Store, bg: 'bg-gray-500', text: 'text-white', glow: '' };
 const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
 
-/* ── tag colours ──────────────────────────────────────────── */
 const tagColors: Record<string, string> = {
   'Top Rated':    'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/20',
   'Trending':     'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/20',
@@ -55,7 +51,6 @@ const tagColors: Record<string, string> = {
   'Growing':      'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/20',
 };
 
-/* ── animation variants ──────────────────────────────────── */
 const stagger = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
@@ -65,9 +60,6 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 350, damping: 28 } },
 };
 
-/* ════════════════════════════════════════════════════════════
-   MAP POPUP — mobile glassmorphic
-   ════════════════════════════════════════════════════════════ */
 function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () => void }) {
   return (
     <motion.div
@@ -96,8 +88,7 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
         </div>
       </div>
 
-      {/* metrics */}
-      <div className="grid grid-cols-3 gap-1.5 mb-2.5">
+            <div className="grid grid-cols-3 gap-1.5 mb-2.5">
         <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
           <span className="text-[8px] font-bold text-gray-400 uppercase">Invest</span>
           <span className="text-[9px] font-extrabold text-[#d4af37]">{franchise.investment}</span>
@@ -120,9 +111,6 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
   );
 }
 
-/* ════════════════════════════════════════════════════════════
-   MOBILE SEARCH RESULTS
-   ════════════════════════════════════════════════════════════ */
 export default function SearchResultsMobile() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -154,6 +142,9 @@ export default function SearchResultsMobile() {
     return franchises.filter(f => !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [searchQuery]);
 
+  const displayPlaces = searchQuery ? uniquePlaces : uniquePlaces.slice(0, 3);
+  const displayFranchises = searchQuery ? matchingFranchises : matchingFranchises.slice(0, 3);
+
   const filtered = useMemo(() => {
     return franchises.filter(f => {
       const matchesSearch = !searchQuery ||
@@ -167,13 +158,12 @@ export default function SearchResultsMobile() {
   return (
     <div className="flex flex-col w-full h-full bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300 relative">
 
-      {/* ───── FLOATING SEARCH + FILTERS ───── */}
+      {}
       <div
         className="flex-none px-4 pt-4 pb-0 relative z-40 pointer-events-none flex flex-col gap-2"
         style={{ marginBottom: showMap ? '-76px' : '8px' }}
       >
-        {/* search */}
-        <div className="relative pointer-events-auto group">
+                <div className="relative pointer-events-auto group">
           <input
             type="text"
             value={searchQuery}
@@ -187,25 +177,26 @@ export default function SearchResultsMobile() {
             <Search className="h-4 w-4" />
           </div>
 
-          {/* 2-column Dropdown */}
-          <AnimatePresence>
-            {isSearchFocused && (searchQuery || uniquePlaces.length > 0 || matchingFranchises.length > 0) && (
+                    <AnimatePresence>
+            {isSearchFocused && (searchQuery || displayPlaces.length > 0 || displayFranchises.length > 0) && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[4px] overflow-hidden max-h-[280px] flex text-[11px] z-50"
+                className="absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-[4px] overflow-hidden flex text-[11px] z-50"
               >
                 {/* Places Column */}
                 <div className="w-1/2 border-r border-gray-200/60 dark:border-white/10 flex flex-col">
-                  <div className="px-3 py-1.5 bg-gray-50/80 dark:bg-white/5 text-[9px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0">
+                  <div className="px-3 py-2 bg-gray-50/80 dark:bg-white/5 text-[9px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
                     Places
                   </div>
-                  <div className="overflow-y-auto flex-1 p-1">
-                    {uniquePlaces.length > 0 ? uniquePlaces.map(place => (
-                      <div key={place} onClick={() => setSearchQuery(place)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-1.5">
-                        <MapPin size={12} className="text-gray-400" />
-                        <span className="truncate">{place}</span>
+                  <div className="overflow-y-auto flex-1 p-1 max-h-[200px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {displayPlaces.length > 0 ? displayPlaces.map(place => (
+                      <div key={place} onClick={() => setSearchQuery(place)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-2 transition-colors">
+                        <div className="w-5 h-5 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
+                          <MapPin size={10} />
+                        </div>
+                        <span className="truncate font-medium">{place}</span>
                       </div>
                     )) : (
                       <div className="p-3 text-center text-[10px] text-gray-400">No places</div>
@@ -215,14 +206,16 @@ export default function SearchResultsMobile() {
 
                 {/* Franchise Column */}
                 <div className="w-1/2 flex flex-col">
-                  <div className="px-3 py-1.5 bg-gray-50/80 dark:bg-white/5 text-[9px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0">
+                  <div className="px-3 py-2 bg-gray-50/80 dark:bg-white/5 text-[9px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200/60 dark:border-white/10 sticky top-0 backdrop-blur-md z-10">
                     Franchise
                   </div>
-                  <div className="overflow-y-auto flex-1 p-1">
-                    {matchingFranchises.length > 0 ? matchingFranchises.map(f => (
-                      <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-1.5">
-                        <Store size={12} className="text-gray-400" />
-                        <span className="truncate">{f.name}</span>
+                  <div className="overflow-y-auto flex-1 p-1 max-h-[200px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {displayFranchises.length > 0 ? displayFranchises.map(f => (
+                      <div key={f.id} onClick={() => setSearchQuery(f.name)} className="px-2 py-2 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer rounded-[4px] text-gray-700 dark:text-gray-200 flex items-center gap-2 transition-colors">
+                        <div className="w-5 h-5 rounded-[4px] bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
+                          <Store size={10} />
+                        </div>
+                        <span className="truncate font-medium">{f.name}</span>
                       </div>
                     )) : (
                       <div className="p-3 text-center text-[10px] text-gray-400">No franchises</div>
@@ -235,7 +228,7 @@ export default function SearchResultsMobile() {
         </div>
       </div>
 
-      {/* ───── MAP SECTION ───── */}
+      {}
       <AnimatePresence>
         {showMap && (
           <motion.div
@@ -245,8 +238,7 @@ export default function SearchResultsMobile() {
             transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }}
             className="w-full relative bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden flex-shrink-0 border-y border-gray-200/60 dark:border-gray-800"
           >
-            {/* topo pattern */}
-            <svg className="absolute inset-0 w-full h-full opacity-[0.06] dark:opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="absolute inset-0 w-full h-full opacity-[0.06] dark:opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="topo-m" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
                   <circle cx="75" cy="75" r="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
@@ -262,8 +254,7 @@ export default function SearchResultsMobile() {
               <path d="M 30,180 Q 150,150 250,200 T 400,170" fill="none" stroke="#64748b" strokeWidth="1.5" strokeDasharray="4 6" />
             </svg>
 
-            {/* zoom controls */}
-            <div className="absolute bottom-16 right-3 flex flex-col gap-1 z-10">
+                        <div className="absolute bottom-16 right-3 flex flex-col gap-1 z-10">
               {['+', '−'].map((label) => (
                 <motion.button
                   key={label}
@@ -273,8 +264,7 @@ export default function SearchResultsMobile() {
               ))}
             </div>
 
-            {/* markers */}
-            {filtered.map((f, i) => {
+                        {filtered.map((f, i) => {
               const isActive = activeCard === f.id || selectedMarker === f.id;
               const meta = getMeta(f.category);
               const Icon = isActive ? meta.icon : Store;
@@ -302,12 +292,10 @@ export default function SearchResultsMobile() {
                       />
                     )}
                     <div className={clsx(
-                      'w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 p-0.5',
-                      isActive ? `${meta.bg} ${meta.glow}` : 'bg-gray-200/60 dark:bg-white/10 shadow-sm'
+                      'w-8 h-8 rounded-[4px] flex items-center justify-center transition-all duration-200 shadow-md',
+                      isActive ? `${meta.bg} ${meta.glow}` : 'bg-gray-200/80 dark:bg-white/10'
                     )}>
-                      <div className="w-full h-full rounded-full bg-white dark:bg-[#0b1b42] flex items-center justify-center shadow-sm">
-                        <Icon size={12} strokeWidth={2.5} className={isActive ? meta.text : 'text-gray-500 dark:text-gray-400'} />
-                      </div>
+                      <Icon size={14} strokeWidth={2.5} className={isActive ? meta.text : 'text-gray-500 dark:text-gray-400'} />
                     </div>
                   </motion.div>
 
@@ -324,7 +312,7 @@ export default function SearchResultsMobile() {
       </AnimatePresence>
 
 
-      {/* ───── CARD LIST ───── */}
+      {}
       <div className="flex-1 overflow-y-auto scrollbar-hide relative">
 
 
@@ -336,8 +324,6 @@ export default function SearchResultsMobile() {
         >
           {filtered.map((f) => {
             const isActive = activeCard === f.id || selectedMarker === f.id;
-            const meta = getMeta(f.category);
-            const CatIcon = meta.icon;
             return (
               <motion.div
                 key={`card-${f.id}`}
@@ -351,8 +337,7 @@ export default function SearchResultsMobile() {
                     : 'bg-white dark:bg-[#0b1b42] border-gray-100 dark:border-gray-800/60'
                 )}
               >
-                {/* gold accent bar */}
-                <motion.div
+                                <motion.div
                   initial={false}
                   animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                   transition={{ type: 'spring' as const, stiffness: 500, damping: 30 }}
@@ -360,10 +345,8 @@ export default function SearchResultsMobile() {
                 />
 
                 <div className="px-3.5 py-3 pl-3">
-                  {/* top row */}
-                  <div className="flex gap-3">
-                    {/* image */}
-                    <div className={clsx(
+                                    <div className="flex gap-3">
+                                        <div className={clsx(
                       'w-14 h-14 rounded-[4px] overflow-hidden flex-shrink-0 border transition-all duration-300',
                       isActive
                         ? 'border-[#d4af37]/40 shadow-[0_4px_12px_rgba(212,175,55,0.15)]'
@@ -372,14 +355,10 @@ export default function SearchResultsMobile() {
                       <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                     </div>
 
-                    {/* info */}
-                    <div className="flex-1 min-w-0">
+                                        <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-1.5">
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 mb-0.5">
-                            <div className={clsx('w-4 h-4 rounded-[2px] flex items-center justify-center', meta.bg, meta.text)}>
-                              <CatIcon size={9} strokeWidth={2.5} />
-                            </div>
                             <h3 className={clsx(
                               'font-extrabold text-[12px] leading-tight truncate transition-colors',
                               isActive ? 'text-[#0a1128] dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-white'
@@ -401,8 +380,7 @@ export default function SearchResultsMobile() {
                         </motion.button>
                       </div>
 
-                      {/* metrics */}
-                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+                                            <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
                         <span className="text-[11px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
                         <span className="w-px h-2.5 bg-gray-200 dark:bg-gray-700" />
                         <div className="flex items-center gap-0.5">
@@ -418,8 +396,7 @@ export default function SearchResultsMobile() {
                     </div>
                   </div>
 
-                  {/* bottom row: badges + CTA */}
-                  <div className="flex items-center justify-between mt-2 gap-2">
+                                    <div className="flex items-center justify-between mt-2 gap-2">
                     <div className="flex items-center gap-1 flex-wrap min-w-0">
                       {f.tags.slice(0, 1).map((tag) => (
                         <span key={tag} className={clsx('px-1.5 py-0.5 rounded-[4px] text-[8px] font-bold border', tagColors[tag] || 'bg-gray-100 dark:bg-white/5 text-gray-500 border-gray-200/60 dark:border-white/10')}>
@@ -447,8 +424,7 @@ export default function SearchResultsMobile() {
           })}
         </motion.div>
 
-        {/* load more */}
-        <div className="px-4 py-6 flex justify-center ml-4">
+                <div className="px-4 py-6 flex justify-center ml-4">
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 px-6 py-2.5 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-[11px] font-bold text-[#0a1128] dark:text-white shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all uppercase tracking-widest"
@@ -460,7 +436,7 @@ export default function SearchResultsMobile() {
         </div>
       </div>
 
-      {/* ───── FLOATING MAP TOGGLE ───── */}
+      {}
       <motion.button
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
