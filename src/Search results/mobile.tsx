@@ -1,60 +1,49 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
+import { useState, useMemo } from 'react';
 import {
-  ArrowLeft,
-  ChevronDown,
-  ChevronRight,
   Heart,
   MapPin,
   Search,
+  ChevronRight,
+  ChevronDown,
   X,
-  Star,
   TrendingUp,
   Calendar,
   Sparkles,
-  Map,
   Utensils,
   Coffee,
   Smartphone,
   Dumbbell,
   PawPrint,
   Store,
+  GraduationCap,
+  Scissors,
+  Car,
+  Wrench,
+  Map,
+  Building2,
+  SlidersHorizontal,
 } from 'lucide-react';
-import { franchises, type Franchise } from './data';
+import { motion, AnimatePresence } from 'framer-motion';
+import clsx from 'clsx';
+import { franchises, categories, type Franchise } from './data';
 
-const getCategoryConfig = (category: string, size = 14, isActive = false) => {
-  // If not active, show a common franchise icon with neutral colors
-  if (!isActive) {
-    return {
-      icon: <Store size={size} strokeWidth={2.5} />,
-      colors: 'bg-white text-gray-400 dark:bg-[#121c33] dark:text-gray-500',
-    };
-  }
-
-  // If active, show category-specific icon and colors
-  switch (category) {
-    case 'Food & Beverage': 
-      return { icon: <Utensils size={size} strokeWidth={2.5} />, colors: 'bg-rose-100 text-rose-500 dark:bg-rose-500/20 shadow-[0_0_16px_rgba(244,63,94,0.4)]' };
-    case 'Coffee & Cafe': 
-      return { icon: <Coffee size={size} strokeWidth={2.5} />, colors: 'bg-emerald-100 text-emerald-500 dark:bg-emerald-500/20 shadow-[0_0_16px_rgba(16,185,129,0.4)]' };
-    case 'Technology': 
-      return { icon: <Smartphone size={size} strokeWidth={2.5} />, colors: 'bg-blue-100 text-blue-500 dark:bg-blue-500/20 shadow-[0_0_16px_rgba(59,130,246,0.4)]' };
-    case 'Health & Fitness': 
-      return { icon: <Dumbbell size={size} strokeWidth={2.5} />, colors: 'bg-cyan-100 text-cyan-500 dark:bg-cyan-500/20 shadow-[0_0_16px_rgba(6,182,212,0.4)]' };
-    case 'Pet Services': 
-      return { icon: <PawPrint size={size} strokeWidth={2.5} />, colors: 'bg-orange-100 text-orange-500 dark:bg-orange-500/20 shadow-[0_0_16px_rgba(249,115,22,0.4)]' };
-    default: 
-      return { icon: <Store size={size} strokeWidth={2.5} />, colors: 'bg-gray-100 text-gray-500 dark:bg-gray-500/20 shadow-[0_0_16px_rgba(107,114,128,0.4)]' };
-  }
+/* ════════════════════════════════════════════════════════════
+   CATEGORY CONFIG
+   ════════════════════════════════════════════════════════════ */
+const categoryMeta: Record<string, { icon: React.ElementType; bg: string; text: string; glow: string }> = {
+  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-100 dark:bg-rose-500/20',      text: 'text-rose-500',    glow: 'shadow-[0_0_16px_rgba(244,63,94,0.4)]' },
+  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-100 dark:bg-emerald-500/20', text: 'text-emerald-500', glow: 'shadow-[0_0_16px_rgba(16,185,129,0.4)]' },
+  'Technology':        { icon: Smartphone,   bg: 'bg-blue-100 dark:bg-blue-500/20',       text: 'text-blue-500',    glow: 'shadow-[0_0_16px_rgba(59,130,246,0.4)]' },
+  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-100 dark:bg-cyan-500/20',       text: 'text-cyan-500',    glow: 'shadow-[0_0_16px_rgba(6,182,212,0.4)]' },
+  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-100 dark:bg-orange-500/20',   text: 'text-orange-500',  glow: 'shadow-[0_0_16px_rgba(249,115,22,0.4)]' },
+  'Education':         { icon: GraduationCap,bg: 'bg-indigo-100 dark:bg-indigo-500/20',   text: 'text-indigo-500',  glow: 'shadow-[0_0_16px_rgba(99,102,241,0.4)]' },
+  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-100 dark:bg-pink-500/20',       text: 'text-pink-500',    glow: 'shadow-[0_0_16px_rgba(236,72,153,0.4)]' },
+  'Automotive':        { icon: Car,          bg: 'bg-sky-100 dark:bg-sky-500/20',         text: 'text-sky-500',     glow: 'shadow-[0_0_16px_rgba(14,165,233,0.4)]' },
+  'Home Services':     { icon: Wrench,       bg: 'bg-teal-100 dark:bg-teal-500/20',       text: 'text-teal-500',    glow: 'shadow-[0_0_16px_rgba(20,184,166,0.4)]' },
 };
 
-/* ── marker styles ──────────────────────────────────────── */
-const markerStyles: Record<string, string> = {
-  selected: 'bg-[#d4af37] text-[#0b1b42]',
-  high: 'bg-[#0b1b42] text-white dark:bg-[#d4af37] dark:text-[#0b1b42]',
-  other: 'bg-gray-400 text-white dark:bg-gray-500',
-};
+const defaultMeta = { icon: Store, bg: 'bg-gray-100 dark:bg-gray-500/20', text: 'text-gray-500', glow: '' };
+const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
 
 /* ── tag colours ──────────────────────────────────────────── */
 const tagColors: Record<string, string> = {
@@ -68,8 +57,19 @@ const tagColors: Record<string, string> = {
   'Growing':      'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/20',
 };
 
+/* ── animation variants ──────────────────────────────────── */
+const stagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 350, damping: 28 } },
+};
 
-/* ── glassmorphic map popup ─────────────────────────────── */
+/* ════════════════════════════════════════════════════════════
+   MAP POPUP — mobile glassmorphic
+   ════════════════════════════════════════════════════════════ */
 function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () => void }) {
   return (
     <motion.div
@@ -97,19 +97,23 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-between mb-2.5">
-        <span className="text-xs font-extrabold text-[#d4af37]">{franchise.investment}</span>
-      </div>
-      <div className="flex items-center gap-1.5 mb-2.5">
-        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-[4px] bg-emerald-500/10 border border-emerald-500/20">
-          <TrendingUp size={9} className="text-emerald-500" />
-          <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">ROI {franchise.roi}</span>
+
+      {/* metrics */}
+      <div className="grid grid-cols-3 gap-1.5 mb-2.5">
+        <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
+          <span className="text-[8px] font-bold text-gray-400 uppercase">Invest</span>
+          <span className="text-[9px] font-extrabold text-[#d4af37]">{franchise.investment}</span>
         </div>
-        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-[4px] bg-gray-100 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
-          <Calendar size={9} className="text-gray-500 dark:text-gray-400" />
-          <span className="text-[9px] font-bold text-gray-600 dark:text-gray-400">Est. {franchise.established}</span>
+        <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
+          <span className="text-[8px] font-bold text-gray-400 uppercase">ROI</span>
+          <span className="text-[9px] font-extrabold text-emerald-500">{franchise.roi}</span>
+        </div>
+        <div className="flex flex-col items-center p-1.5 rounded-[4px] bg-gray-50 dark:bg-white/5 border border-gray-200/60 dark:border-white/10">
+          <span className="text-[8px] font-bold text-gray-400 uppercase">Break</span>
+          <span className="text-[9px] font-extrabold text-blue-500">{franchise.breakeven}</span>
         </div>
       </div>
+
       <button className="w-full flex items-center justify-center gap-1 text-[10px] font-bold text-white bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] border border-[#f9df9f]/50 shadow-[0_0_15px_rgba(212,175,55,0.3)] py-2 rounded-[4px] transition-all group">
         Enquire Now <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
       </button>
@@ -122,10 +126,12 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
    MOBILE SEARCH RESULTS
    ════════════════════════════════════════════════════════════ */
 export default function SearchResultsMobile() {
-  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [showMap, setShowMap] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
 
   const toggleFavorite = (id: number) => {
     setFavorites(prev => {
@@ -141,30 +147,73 @@ export default function SearchResultsMobile() {
     setSelectedMarker(id);
   };
 
-  const filtered = franchises;
+  const filtered = useMemo(() => {
+    return franchises.filter(f => {
+      const matchesSearch = !searchQuery ||
+        f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        f.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        f.category.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = activeCategory === 'All' || f.category === activeCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, activeCategory]);
 
   return (
     <div className="flex flex-col w-full h-full bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300 relative">
 
-      {/* ───── FLOATING SEARCH HEADER ───── */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: 'spring' as const, stiffness: 400, damping: 30 }}
-        className="flex-none px-4 pt-4 pb-0 relative z-40 pointer-events-none"
-        style={{ marginBottom: showMap ? '-56px' : '12px' }}
+      {/* ───── FLOATING SEARCH + FILTERS ───── */}
+      <div
+        className="flex-none px-4 pt-4 pb-0 relative z-40 pointer-events-none flex flex-col gap-2"
+        style={{ marginBottom: showMap ? '-76px' : '8px' }}
       >
+        {/* search */}
         <div className="relative pointer-events-auto">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-4 w-4 text-gray-400 dark:text-gray-500" />
           </div>
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search franchise, industry, or location..."
             className="w-full pl-11 pr-4 py-3 bg-white/90 dark:bg-[#121c33]/90 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:border-[#d4af37]/40 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]"
           />
         </div>
-      </motion.div>
+
+        {/* category pills */}
+        <div className="pointer-events-auto flex bg-white/70 dark:bg-[#0e172f]/70 backdrop-blur-xl rounded-[4px] p-1 border border-gray-200/80 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] gap-1 overflow-x-auto scrollbar-hide relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 pointer-events-none opacity-60" />
+          {categories.map((cat) => {
+            const isActive = cat === activeCategory;
+            const meta = cat === 'All' ? null : getMeta(cat);
+            const Icon = meta?.icon || SlidersHorizontal;
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={clsx(
+                  'relative flex items-center gap-1 px-2.5 py-1.5 rounded-[4px] transition-all duration-300 z-10 text-[9px] font-bold whitespace-nowrap shrink-0',
+                  !isActive && 'hover:bg-white/50 dark:hover:bg-white/10'
+                )}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeCategoryMobile"
+                    className="absolute inset-0 bg-[#0b1b42] dark:bg-[#d4af37]/20 border border-[#d4af37]/50 rounded-[4px] shadow-[0_4px_20px_rgba(212,175,55,0.3)]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 28, mass: 0.8 }}
+                  >
+                    <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
+                  </motion.div>
+                )}
+                <Icon size={10} strokeWidth={2.5} className={clsx('relative z-10', isActive ? 'text-[#d4af37]' : meta?.text || 'text-gray-500')} />
+                <span className={clsx('relative z-10', isActive ? 'text-white dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-gray-300')}>
+                  {cat}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       {/* ───── MAP SECTION ───── */}
       <AnimatePresence>
@@ -207,12 +256,14 @@ export default function SearchResultsMobile() {
             {/* markers */}
             {filtered.map((f, i) => {
               const isActive = activeCard === f.id || selectedMarker === f.id;
+              const meta = getMeta(f.category);
+              const Icon = isActive ? meta.icon : Store;
               return (
                 <motion.div
                   key={`marker-${f.id}`}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: i * 0.05, type: 'spring' as const, stiffness: 300, damping: 20 }}
+                  transition={{ delay: i * 0.04, type: 'spring' as const, stiffness: 300, damping: 20 }}
                   className="absolute"
                   style={{ top: `${f.lat}%`, left: `${f.lng}%`, transform: 'translate(-50%, -50%)' }}
                   onClick={() => setSelectedMarker(selectedMarker === f.id ? null : f.id)}
@@ -222,10 +273,9 @@ export default function SearchResultsMobile() {
                     transition={{ type: 'spring' as const, stiffness: 400, damping: 25 }}
                     className={clsx('relative flex flex-col items-center cursor-pointer', isActive ? 'z-30' : 'z-10')}
                   >
-                    {/* pulse ring */}
                     {isActive && (
                       <motion.div
-                        className="absolute w-11 h-11 rounded-full border-2 border-[#d4af37]/40"
+                        className={clsx('absolute w-11 h-11 rounded-full border-2', `border-current ${meta.text} opacity-40`)}
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: [0.5, 1.2], opacity: [0.6, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeOut' }}
@@ -234,9 +284,9 @@ export default function SearchResultsMobile() {
                     <div className={clsx(
                       'w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 border-2',
                       isActive ? 'border-white dark:border-[#0b1b42]' : 'border-gray-200 dark:border-white/10',
-                      getCategoryConfig(f.category, 12, isActive).colors
+                      isActive ? `${meta.bg} ${meta.text} ${meta.glow}` : 'bg-white text-gray-400 dark:bg-[#121c33] dark:text-gray-500 shadow-sm'
                     )}>
-                      {getCategoryConfig(f.category, 12, isActive).icon}
+                      <Icon size={12} strokeWidth={2.5} />
                     </div>
                   </motion.div>
 
@@ -248,44 +298,57 @@ export default function SearchResultsMobile() {
                 </motion.div>
               );
             })}
-
-            {/* legend */}
-            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-center gap-4 bg-white/85 dark:bg-[#121c33]/85 backdrop-blur-xl px-4 py-2 rounded-[4px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-white/40 dark:border-white/10">
-              {[
-                { label: 'Best Match', color: 'bg-[#d4af37]' },
-                { label: 'High Match', color: 'bg-[#0b1b42] dark:bg-[#d4af37]' },
-                { label: 'Other', color: 'bg-gray-400' },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-1.5">
-                  <div className={clsx('w-2.5 h-2.5 rounded-full border-2 border-white dark:border-[#121c33]', item.color)} />
-                  <span className="text-[10px] font-semibold text-gray-600 dark:text-gray-400">{item.label}</span>
-                </div>
-              ))}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* ───── RESULTS HEADER (dark navy) ───── */}
+      <div className="flex-none bg-[#0b1b42] px-4 py-3 relative overflow-hidden border-b border-[#d4af37]/20 shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
+        <div className="absolute -top-6 -right-6 w-20 h-20 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-[4px] bg-white/5 border border-[#d4af37]/60 shadow-[0_0_12px_rgba(212,175,55,0.3)] backdrop-blur-md flex items-center justify-center text-[#d4af37] shrink-0">
+              <Building2 size={14} />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-widest leading-none mb-0.5">MATCHES</span>
+              <span className="text-sm font-bold text-white leading-tight">{filtered.length} Results</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* ───── CARD LIST ───── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-        className="flex-1 overflow-y-auto scrollbar-hide bg-white dark:bg-[#0b1b42]"
-      >
-        <div className="flex flex-col">
-          {filtered.map((f, i) => {
+      <div className="flex-1 overflow-y-auto scrollbar-hide relative">
+        {/* gold timeline */}
+        <div className="absolute left-[14px] top-0 bottom-0 w-[2px] pointer-events-none z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/60 to-[#d4af37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
+          <motion.div
+            className="absolute -left-[3px] -translate-y-1/2 w-[8px] h-10 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_16px_#ffd700]"
+            animate={{ top: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </div>
+
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col"
+        >
+          {filtered.map((f) => {
             const isActive = activeCard === f.id || selectedMarker === f.id;
+            const meta = getMeta(f.category);
+            const CatIcon = meta.icon;
             return (
               <motion.div
                 key={`card-${f.id}`}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.04 + 0.15, type: 'spring' as const, stiffness: 350, damping: 28 }}
+                variants={fadeUp}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleCardTap(f.id)}
                 className={clsx(
-                  'relative cursor-pointer transition-all duration-300 border-b',
+                  'relative cursor-pointer transition-all duration-300 border-b ml-4',
                   isActive
                     ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] border-[#d4af37]/20'
                     : 'bg-white dark:bg-[#0b1b42] border-gray-100 dark:border-gray-800/60'
@@ -299,7 +362,10 @@ export default function SearchResultsMobile() {
                   className="absolute left-0 top-0 w-[3px] h-full bg-gradient-to-b from-[#d4af37] to-[#aa8922] origin-top rounded-r-full shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                 />
 
-                <div className="px-4 py-3.5 pl-5">
+                {/* timeline dot */}
+                <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-[8px] h-[8px] rounded-full border-2 border-[#d4af37] bg-white dark:bg-[#0b1b42] z-10 shadow-[0_0_6px_rgba(212,175,55,0.4)]" />
+
+                <div className="px-3.5 py-3 pl-3">
                   {/* top row */}
                   <div className="flex gap-3">
                     {/* image */}
@@ -316,12 +382,17 @@ export default function SearchResultsMobile() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-1.5">
                         <div className="min-w-0">
-                          <h3 className={clsx(
-                            'font-extrabold text-[13px] leading-tight truncate transition-colors',
-                            isActive ? 'text-[#0a1128] dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-white'
-                          )}>{f.name}</h3>
-                          <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5 flex items-center gap-0.5 font-medium">
-                            <MapPin className="w-3 h-3 flex-shrink-0" /><span className="truncate">{f.location}</span>
+                          <div className="flex items-center gap-1.5 mb-0.5">
+                            <div className={clsx('w-4 h-4 rounded-[2px] flex items-center justify-center', meta.bg, meta.text)}>
+                              <CatIcon size={9} strokeWidth={2.5} />
+                            </div>
+                            <h3 className={clsx(
+                              'font-extrabold text-[12px] leading-tight truncate transition-colors',
+                              isActive ? 'text-[#0a1128] dark:text-[#d4af37]' : 'text-[#0a1128] dark:text-white'
+                            )}>{f.name}</h3>
+                          </div>
+                          <p className="text-[9px] text-gray-500 dark:text-gray-400 flex items-center gap-0.5 font-medium">
+                            <MapPin className="w-2.5 h-2.5 flex-shrink-0" /><span className="truncate">{f.location}</span>
                           </p>
                         </div>
                         <motion.button
@@ -336,46 +407,54 @@ export default function SearchResultsMobile() {
                         </motion.button>
                       </div>
 
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[12px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
+                      {/* metrics */}
+                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+                        <span className="text-[11px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">{f.investment}</span>
+                        <span className="w-px h-2.5 bg-gray-200 dark:bg-gray-700" />
+                        <div className="flex items-center gap-0.5">
+                          <TrendingUp size={9} className="text-emerald-500" />
+                          <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
+                        </div>
+                        <span className="w-px h-2.5 bg-gray-200 dark:bg-gray-700" />
+                        <div className="flex items-center gap-0.5">
+                          <Calendar size={9} className="text-blue-500" />
+                          <span className="text-[9px] font-bold text-blue-600 dark:text-blue-400">{f.breakeven}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* bottom row: badges + CTA */}
-                  <div className="flex items-center justify-between mt-2.5 gap-2">
+                  <div className="flex items-center justify-between mt-2 gap-2">
                     <div className="flex items-center gap-1 flex-wrap min-w-0">
-                      <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-[4px] bg-emerald-500/10 border border-emerald-500/20">
-                        <TrendingUp size={9} className="text-emerald-500" />
-                        <span className="text-[8px] font-bold text-emerald-600 dark:text-emerald-400">{f.roi}</span>
-                      </div>
                       {f.tags.slice(0, 1).map((tag) => (
                         <span key={tag} className={clsx('px-1.5 py-0.5 rounded-[4px] text-[8px] font-bold border', tagColors[tag] || 'bg-gray-100 dark:bg-white/5 text-gray-500 border-gray-200/60 dark:border-white/10')}>
                           {tag}
                         </span>
                       ))}
+                      <span className="text-[8px] font-semibold text-gray-400 bg-gray-100 dark:bg-gray-800/80 px-1.5 py-0.5 rounded-[2px] border border-gray-200 dark:border-gray-700/60">
+                        {f.units.toLocaleString()} units
+                      </span>
                     </div>
 
                     <motion.button
                       whileTap={{ scale: 0.92 }}
-                      className={clsx(
-                        'flex-shrink-0 flex items-center gap-0.5 text-[10px] font-bold px-3 py-1.5 rounded-[4px] transition-all whitespace-nowrap shadow-sm',
-                        isActive
-                          ? 'bg-[#d4af37] text-[#0b1b42] shadow-[0_4px_12px_rgba(212,175,55,0.25)]'
-                          : 'bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] border border-[#f9df9f]/50 text-white shadow-[0_0_10px_rgba(212,175,55,0.2)]'
-                      )}
+                      className="flex-shrink-0 flex items-center gap-0.5 text-[10px] font-bold px-3 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_0_10px_rgba(212,175,55,0.2)] border border-[#f9df9f]/50 transition-all whitespace-nowrap relative overflow-hidden group"
                     >
-                      Enquire <ChevronRight className="w-3 h-3" />
+                      <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+                      <span className="relative z-10 flex items-center gap-0.5">
+                        Enquire <ChevronRight className="w-3 h-3" />
+                      </span>
                     </motion.button>
                   </div>
                 </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* load more */}
-        <div className="px-4 py-6 flex justify-center">
+        <div className="px-4 py-6 flex justify-center ml-4">
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 px-6 py-2.5 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-[11px] font-bold text-[#0a1128] dark:text-white shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all uppercase tracking-widest"
@@ -385,7 +464,7 @@ export default function SearchResultsMobile() {
             <ChevronDown className="w-3 h-3" />
           </motion.button>
         </div>
-      </motion.div>
+      </div>
 
       {/* ───── FLOATING MAP TOGGLE ───── */}
       <motion.button
