@@ -19,10 +19,10 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      className="absolute bottom-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[300px] glass-strong rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/10 p-4 z-50"
+      initial={{ opacity: 0, y: 10, x: "-50%", scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
+      exit={{ opacity: 0, x: "-50%", scale: 0.95 }}
+      className="absolute bottom-[calc(100%+12px)] left-1/2 w-[300px] glass-strong rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/10 p-4 z-50"
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
 
@@ -70,7 +70,7 @@ function MapPopup({ franchise, onClose }: { franchise: Franchise; onClose: () =>
         </button>
       </div>
 
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-xl rotate-45 border-r border-b border-gray-100 dark:border-white/10 -z-10" />
+      <div className="absolute -bottom-[8px] left-1/2 -translate-x-1/2 w-4 h-4 glass-strong border-r border-b border-gray-200/80 dark:border-white/10 rotate-45 [clip-path:polygon(100%_0,100%_100%,0_100%)]" />
     </motion.div>
   );
 }
