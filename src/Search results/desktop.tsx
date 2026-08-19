@@ -258,7 +258,7 @@ export default function SearchResultsDesktop() {
       </div>
 
       {}
-      <div className="w-[35%] h-full flex flex-col bg-white dark:bg-[#0b1b42] overflow-hidden">
+      <div className="w-[35%] h-full flex flex-col bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden border-l border-white/50 dark:border-white/5 z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.03)]">
 
 
                 <div className="flex-1 overflow-y-auto scrollbar-hide relative">
@@ -281,10 +281,10 @@ export default function SearchResultsDesktop() {
                   onClick={() => handleMarkerClick(f.id)}
                   whileHover={{ scale: 1.01, x: 4, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
                   className={clsx(
-                    'relative cursor-pointer transition-all duration-300 hover:z-10 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.12)] rounded-[8px] my-1 mx-2',
+                    'relative cursor-pointer transition-all duration-300 hover:z-10 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.12)] rounded-[10px] my-2 mx-3 border',
                     isActive
-                      ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.06)]'
-                      : 'bg-white dark:bg-[#0b1b42]'
+                      ? 'bg-white/90 dark:bg-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.06)] border-[#d4af37]/40 dark:border-[#d4af37]/40'
+                      : 'glass border-white/40 dark:border-white/10'
                   )}
                 >
                                     <motion.div
