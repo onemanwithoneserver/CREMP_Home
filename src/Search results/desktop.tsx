@@ -1,34 +1,8 @@
 import { useState, useMemo } from 'react';
-import { Heart, MapPin, Search, ChevronRight, ChevronDown, X, TrendingUp, Calendar, Sparkles, Utensils, Coffee, Smartphone, Dumbbell, PawPrint, Store, GraduationCap, Scissors, Car, Wrench } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, ChevronDown, X, TrendingUp, Calendar, Sparkles, Store } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { franchises, type Franchise } from './data';
-
-const categoryMeta: Record<string, { icon: React.ElementType; bg: string; text: string; glow: string }> = {
-  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.4)]' },
-  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-500',   text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]' },
-  'Technology':        { icon: Smartphone,   bg: 'bg-blue-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(59,130,246,0.4)]' },
-  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(6,182,212,0.4)]' },
-  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(249,115,22,0.4)]' },
-  'Education':         { icon: GraduationCap,bg: 'bg-indigo-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(99,102,241,0.4)]' },
-  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(236,72,153,0.4)]' },
-  'Automotive':        { icon: Car,          bg: 'bg-sky-500',       text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(14,165,233,0.4)]' },
-  'Home Services':     { icon: Wrench,       bg: 'bg-teal-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(20,184,166,0.4)]' },
-};
-
-const defaultMeta = { icon: Store, bg: 'bg-gray-500', text: 'text-white', glow: '' };
-const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
-
-const tagColors: Record<string, string> = {
-  'Top Rated':    'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/20',
-  'Trending':     'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/20',
-  'Premium':      'bg-violet-500/15 text-violet-600 dark:text-violet-400 border-violet-500/20',
-  'Popular':      'bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/20',
-  'Indian Brand': 'bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/20',
-  'New':          'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
-  'High ROI':     'bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/20',
-  'Growing':      'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/20',
-};
+import { franchises, getMeta, tagColors, type Franchise } from './data';
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -313,8 +287,8 @@ export default function SearchResultsDesktop() {
                   className={clsx(
                     'relative cursor-pointer transition-all duration-300 border-b',
                     isActive
-                      ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] border-[#d4af37]/20'
-                      : 'bg-white dark:bg-[#0b1b42] border-gray-100 dark:border-gray-800/60'
+                      ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] '
+                      : 'bg-white dark:bg-[#0b1b42] '
                   )}
                 >
                                     <motion.div

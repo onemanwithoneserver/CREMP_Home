@@ -1,34 +1,8 @@
 import { useState, useMemo } from 'react';
-import { Heart, MapPin, Search, ChevronRight, ChevronDown, TrendingUp, Calendar, Sparkles, Utensils, Coffee, Smartphone, Dumbbell, PawPrint, Store, GraduationCap, Scissors, Car, Wrench, Map } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, ChevronDown, TrendingUp, Calendar, Sparkles, Store, Map } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { franchises } from './data';
-
-const categoryMeta: Record<string, { icon: React.ElementType; bg: string; text: string; glow: string }> = {
-  'Food & Beverage':   { icon: Utensils,     bg: 'bg-rose-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.4)]' },
-  'Coffee & Cafe':     { icon: Coffee,       bg: 'bg-emerald-500',   text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]' },
-  'Technology':        { icon: Smartphone,   bg: 'bg-blue-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(59,130,246,0.4)]' },
-  'Health & Fitness':  { icon: Dumbbell,     bg: 'bg-cyan-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(6,182,212,0.4)]' },
-  'Pet Services':      { icon: PawPrint,     bg: 'bg-orange-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(249,115,22,0.4)]' },
-  'Education':         { icon: GraduationCap,bg: 'bg-indigo-500',    text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(99,102,241,0.4)]' },
-  'Beauty & Wellness': { icon: Scissors,     bg: 'bg-pink-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(236,72,153,0.4)]' },
-  'Automotive':        { icon: Car,          bg: 'bg-sky-500',       text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(14,165,233,0.4)]' },
-  'Home Services':     { icon: Wrench,       bg: 'bg-teal-500',      text: 'text-white',    glow: 'shadow-[0_0_20px_rgba(20,184,166,0.4)]' },
-};
-
-const defaultMeta = { icon: Store, bg: 'bg-gray-500', text: 'text-white', glow: '' };
-const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
-
-const tagColors: Record<string, string> = {
-  'Top Rated':    'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/20',
-  'Trending':     'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/20',
-  'Premium':      'bg-violet-500/15 text-violet-600 dark:text-violet-400 border-violet-500/20',
-  'Popular':      'bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/20',
-  'Indian Brand': 'bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/20',
-  'New':          'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
-  'High ROI':     'bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/20',
-  'Growing':      'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/20',
-};
+import { franchises, getMeta, tagColors } from './data';
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -99,10 +73,21 @@ export default function SearchResultsMobile() {
             onFocus={() => setIsSearchFocused(true)}
             onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
             placeholder="Search franchise, industry, or location..."
-            className="w-full pl-4 pr-11 py-3 bg-white/90 dark:bg-[#121c33]/90 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:border-[#d4af37]/40 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]"
+            className="w-full pl-4 pr-[72px] py-3 bg-white/90 dark:bg-[#121c33]/90 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:border-[#d4af37]/40 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]"
           />
-          <div className="absolute inset-y-1.5 right-1.5 w-8 flex items-center justify-center bg-[#0a1128] dark:bg-[#d4af37]/20 rounded-[4px] text-white dark:text-[#d4af37] shadow-sm pointer-events-none">
-            <Search className="h-4 w-4" />
+          <div className="absolute inset-y-1.5 right-1.5 flex gap-1 items-center justify-center pointer-events-auto">
+            <button 
+              onClick={() => setShowMap(!showMap)}
+              className={clsx(
+                "w-8 h-full flex items-center justify-center rounded-[4px] transition-all",
+                showMap ? "bg-[#d4af37] text-white" : "bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10"
+              )}
+            >
+              <Map className="h-4 w-4" />
+            </button>
+            <div className="w-8 h-full flex items-center justify-center bg-[#0a1128] dark:bg-[#d4af37]/20 rounded-[4px] text-white dark:text-[#d4af37] shadow-sm pointer-events-none">
+              <Search className="h-4 w-4" />
+            </div>
           </div>
 
                     <AnimatePresence>
@@ -253,10 +238,10 @@ export default function SearchResultsMobile() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleCardTap(f.id)}
                 className={clsx(
-                  'relative cursor-pointer transition-all duration-300 border-b',
+                  'relative cursor-pointer transition-all duration-300 ',
                   isActive
-                    ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] border-[#d4af37]/20'
-                    : 'bg-white dark:bg-[#0b1b42] border-gray-100 dark:border-gray-800/60'
+                    ? 'bg-[#d4af37]/[0.04] dark:bg-[#d4af37]/[0.06] '
+                    : 'bg-white dark:bg-[#0b1b42] '
                 )}
               >
                                 <motion.div
@@ -358,18 +343,6 @@ export default function SearchResultsMobile() {
         </div>
       </div>
 
-      {}
-      <motion.button
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.5, type: 'spring' as const, stiffness: 300, damping: 25 }}
-        whileTap={{ scale: 0.93 }}
-        onClick={() => setShowMap(!showMap)}
-        className="absolute bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-full shadow-[0_8px_24px_rgba(212,175,55,0.4)] border border-[#f9df9f]/50 transition-all"
-      >
-        <Map size={16} />
-        <span className="text-[12px] font-extrabold tracking-wide uppercase">{showMap ? 'Hide Map' : 'Show Map'}</span>
-      </motion.button>
     </div>
   );
 }
