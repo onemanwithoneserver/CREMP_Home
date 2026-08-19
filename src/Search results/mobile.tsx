@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, ChevronDown, ChevronUp, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, getMeta, tagColors } from './data';
@@ -294,9 +294,13 @@ export default function SearchResultsMobile() {
                             onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-0.5 text-[9px] font-bold px-3 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_0_10px_rgba(212,175,55,0.2)] border border-[#f9df9f]/50 transition-all whitespace-nowrap relative overflow-hidden group"
                           >
-                            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
-                            <span className="relative z-10 flex items-center gap-0.5">
-                              Enquire <ChevronRight className="w-2.5 h-2.5" />
+                            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
+                            <span className="relative z-10 flex items-center gap-1">
+                              Enquire
+                              <div className="relative flex items-center justify-center w-3 h-3">
+                                <ArrowRight className="w-3 h-3 absolute -translate-x-[150%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out" strokeWidth={2.5} />
+                                <ArrowRight className="w-3 h-3 absolute translate-x-0 opacity-100 group-hover:translate-x-[150%] group-hover:opacity-0 transition-all duration-300 ease-out" strokeWidth={2.5} />
+                              </div>
                             </span>
                           </motion.button>
                         </div>
@@ -408,9 +412,13 @@ export default function SearchResultsMobile() {
                       whileTap={{ scale: 0.92 }}
                       className="flex-shrink-0 flex items-center gap-0.5 text-[10px] font-bold px-3 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_0_10px_rgba(212,175,55,0.2)] border border-[#f9df9f]/50 transition-all whitespace-nowrap relative overflow-hidden group"
                     >
-                      <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
-                      <span className="relative z-10 flex items-center gap-0.5">
-                        Enquire <ChevronRight className="w-3 h-3" />
+                      <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
+                      <span className="relative z-10 flex items-center gap-1">
+                        Enquire
+                        <div className="relative flex items-center justify-center w-3.5 h-3.5">
+                          <ArrowRight className="w-3.5 h-3.5 absolute -translate-x-[150%] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out" strokeWidth={2.5} />
+                          <ArrowRight className="w-3.5 h-3.5 absolute translate-x-0 opacity-100 group-hover:translate-x-[150%] group-hover:opacity-0 transition-all duration-300 ease-out" strokeWidth={2.5} />
+                        </div>
                       </span>
                     </motion.button>
                   </div>
