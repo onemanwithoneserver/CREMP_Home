@@ -405,27 +405,27 @@ export default function FranchiseNetworkMobile() {
                           <AnimatePresence mode="wait">
                             {bookedOpps.has(opp.id) ? (
                               <motion.span
-                                key="booked"
+                                key="enquired"
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
-                                className="absolute flex items-center gap-1"
+                                className="absolute flex items-center gap-1 whitespace-nowrap"
                               >
-                                <Check size={10} strokeWidth={3} /> BOOKED
+                                <Check size={10} strokeWidth={3} /> ENQUIRED
                               </motion.span>
                             ) : (
                               <motion.span
-                                key="book-now"
+                                key="enquire-now"
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
-                                className="absolute"
+                                className="absolute whitespace-nowrap"
                               >
-                                BOOK NOW
+                                ENQUIRE NOW
                               </motion.span>
                             )}
                           </AnimatePresence>
-                          <span className="opacity-0 flex items-center gap-1"><Check size={10} /> BOOKED</span>
+                          <span className="opacity-0 flex items-center gap-1 whitespace-nowrap">ENQUIRE NOW</span>
                         </motion.button>
                       </div>
                     </motion.div>
@@ -435,17 +435,6 @@ export default function FranchiseNetworkMobile() {
 
             </motion.div>
 
-            <div className="flex flex-col gap-3 pt-3 mt-4">
-              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-3.5 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[11px] font-bold tracking-widest rounded-[4px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
-                <MapPin size={14} />
-                <span>CHECK TERRITORY AVAILABILITY</span>
-                <ChevronRight
-                  size={16}
-                  strokeWidth={3}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </motion.button>
-            </div>
           </div>
         </div>
       </div>

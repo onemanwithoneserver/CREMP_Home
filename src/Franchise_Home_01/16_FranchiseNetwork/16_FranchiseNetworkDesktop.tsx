@@ -501,7 +501,7 @@ export default function FranchiseNetworkDesktop() {
                             whileHover={!bookedOpps.has(opp.id) ? { scale: 1.05 } : {}} 
                             whileTap={!bookedOpps.has(opp.id) ? { scale: 0.95 } : {}} 
                             className={clsx(
-                              "px-4 py-2 text-[10px] min-w-[90px] font-bold rounded-[2px] transition-all duration-300 relative overflow-hidden flex items-center justify-center border",
+                              "px-4 py-2 text-[10px] min-w-[105px] font-bold rounded-[2px] transition-all duration-300 relative overflow-hidden flex items-center justify-center border",
                               bookedOpps.has(opp.id) 
                                 ? "bg-[#17274c] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_10px_rgba(212,175,55,0.2)] cursor-default" 
                                 : "bg-[#0f9d58] text-white border-transparent hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)]"
@@ -510,27 +510,27 @@ export default function FranchiseNetworkDesktop() {
                             <AnimatePresence mode="wait">
                               {bookedOpps.has(opp.id) ? (
                                 <motion.span
-                                  key="booked"
+                                  key="enquired"
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   exit={{ opacity: 0, y: -10 }}
-                                  className="absolute flex items-center gap-1.5"
+                                  className="absolute flex items-center gap-1.5 whitespace-nowrap"
                                 >
-                                  <Check size={12} strokeWidth={3} /> BOOKED
+                                  <Check size={12} strokeWidth={3} /> ENQUIRED
                                 </motion.span>
                               ) : (
                                 <motion.span
-                                  key="book-now"
+                                  key="enquire-now"
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   exit={{ opacity: 0, y: -10 }}
-                                  className="absolute"
+                                  className="absolute whitespace-nowrap"
                                 >
-                                  BOOK NOW
+                                  ENQUIRE NOW
                                 </motion.span>
                               )}
                             </AnimatePresence>
-                            <span className="opacity-0 flex items-center gap-1.5"><Check size={12} /> BOOKED</span>
+                            <span className="opacity-0 flex items-center gap-1.5 whitespace-nowrap">ENQUIRE NOW</span>
                           </motion.button>
                         </div>
                       </motion.div>
@@ -540,17 +540,6 @@ export default function FranchiseNetworkDesktop() {
               </motion.div>
             </div>
 
-            <div className="flex flex-col gap-3 pt-4 mt-auto">
-              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-4 px-4 bg-[#0a1128] hover:bg-[#1a2b5e] dark:bg-white dark:text-[#0a1128] text-white text-[12px] font-bold tracking-widest rounded-[4px] shadow-[0_4px_20px_rgba(10,17,40,0.15)] transition-all flex items-center justify-center gap-3 group">
-                <MapPin size={16} />
-                <span>CHECK TERRITORY AVAILABILITY</span>
-                <ChevronRight
-                  size={18}
-                  strokeWidth={3}
-                  className="group-hover:translate-x-1.5 transition-transform duration-300"
-                />
-              </motion.button>
-            </div>
           </div>
         </div>
       </div>

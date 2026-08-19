@@ -507,7 +507,6 @@ export const franchiseNetworkData = {
   ] as CityNode[],
 
   cta: {
-    primary: "Check Territory Availability",
     secondary: "Download Network Dossier",
   },
 };
