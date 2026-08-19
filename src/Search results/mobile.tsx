@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Heart, MapPin, Search, ChevronRight, ChevronDown, TrendingUp, Calendar, Sparkles, Store, Map } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, getMeta, tagColors } from './data';
@@ -21,6 +21,15 @@ export default function SearchResultsMobile() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount(prev => prev + 5);
+      setIsLoadingMore(false);
+    }, 600);
+  };
 
   useEffect(() => {
     setVisibleCount(5);
@@ -249,7 +258,7 @@ export default function SearchResultsMobile() {
                     : 'bg-white dark:bg-[#0b1b42]'
                 )}
               >
-                                <motion.div
+             <motion.div
                   initial={false}
                   animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                   transition={{ type: 'spring' as const, stiffness: 500, damping: 30 }}
@@ -336,13 +345,20 @@ export default function SearchResultsMobile() {
         {visibleCount < filtered.length && (
           <div className="px-4 py-6 flex justify-center ml-4">
             <motion.button
-              onClick={() => setVisibleCount(prev => prev + 5)}
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-2.5 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-[11px] font-bold text-[#0a1128] dark:text-white shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all uppercase tracking-widest"
+              className="flex items-center justify-center min-w-[120px] px-6 py-2.5 bg-[#0a1128] hover:bg-[#121c33] dark:bg-[#121c33] dark:hover:bg-[#1a2642] backdrop-blur-xl border border-[#0a1128]/10 dark:border-white/10 rounded-[4px] text-[11px] font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all uppercase tracking-widest disabled:opacity-80"
             >
-              <Sparkles size={12} className="text-[#d4af37]" />
-              Load More
-              <ChevronDown className="w-3 h-3" />
+              {isLoadingMore ? (
+                <div className="flex gap-1 items-center justify-center">
+                  <motion.div className="w-1.5 h-1.5 bg-white rounded-full" animate={{ y: [-1.5, 1.5, -1.5] }} transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }} />
+                  <motion.div className="w-1.5 h-1.5 bg-white rounded-full" animate={{ y: [-1.5, 1.5, -1.5] }} transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut', delay: 0.1 }} />
+                  <motion.div className="w-1.5 h-1.5 bg-white rounded-full" animate={{ y: [-1.5, 1.5, -1.5] }} transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }} />
+                </div>
+              ) : (
+                "Load More"
+              )}
             </motion.button>
           </div>
         )}

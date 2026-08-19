@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Heart, MapPin, Search, ChevronRight, ChevronDown, X, TrendingUp, Calendar, Sparkles, Store } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, X, TrendingUp, Calendar, Store } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, getMeta, tagColors, type Franchise } from './data';
@@ -83,6 +83,15 @@ export default function SearchResultsDesktop() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount(prev => prev + 5);
+      setIsLoadingMore(false);
+    }, 600);
+  };
 
   useEffect(() => {
     setVisibleCount(5);
@@ -383,14 +392,21 @@ export default function SearchResultsDesktop() {
           {visibleCount < filtered.length && (
             <div className="px-5 py-8 flex justify-center ml-5">
               <motion.button
-                onClick={() => setVisibleCount(prev => prev + 5)}
+                onClick={handleLoadMore}
+                disabled={isLoadingMore}
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ y: -1 }}
-                className="flex items-center gap-2 px-8 py-3 bg-white/70 dark:bg-[#121c33]/70 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-[4px] text-xs font-bold text-[#0a1128] dark:text-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all uppercase tracking-widest"
+                className="flex items-center justify-center min-w-[140px] px-8 py-3 bg-[#0a1128] hover:bg-[#121c33] dark:bg-[#121c33] dark:hover:bg-[#1a2642] backdrop-blur-xl border border-[#0a1128]/10 dark:border-white/10 rounded-[4px] text-xs font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-all uppercase tracking-widest disabled:opacity-80"
               >
-                <Sparkles size={14} className="text-[#d4af37]" />
-                Load More
-                <ChevronDown className="w-3.5 h-3.5" />
+                {isLoadingMore ? (
+                  <div className="flex gap-1.5 items-center justify-center">
+                    <motion.div className="w-1.5 h-1.5 bg-white rounded-full" animate={{ y: [-2, 2, -2] }} transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }} />
+                    <motion.div className="w-1.5 h-1.5 bg-white rounded-full" animate={{ y: [-2, 2, -2] }} transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut', delay: 0.1 }} />
+                    <motion.div className="w-1.5 h-1.5 bg-white rounded-full" animate={{ y: [-2, 2, -2] }} transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }} />
+                  </div>
+                ) : (
+                  "Load More"
+                )}
               </motion.button>
             </div>
           )}
