@@ -153,22 +153,21 @@ export default function SearchResultsMobile() {
               <path d="M 30,180 Q 150,150 250,200 T 400,170" fill="none" stroke="#64748b" strokeWidth="1.5" strokeDasharray="4 6" />
             </svg>
 
-            <div className="absolute bottom-16 right-3 flex flex-col gap-1.5 z-10">
-              {['+', '−'].map(label => (
-                <motion.button key={label} whileTap={{ scale: 0.88 }} whileHover={{ scale: 1.05 }} className="glass w-8 h-8 flex items-center justify-center rounded-[4px] text-gray-600 dark:text-gray-300 text-sm font-semibold hover:text-[#d4af37] transition-colors">
-                  {label}
-                </motion.button>
-              ))}
-              <div className="h-px w-full bg-gray-300/40 dark:bg-white/10 my-0.5" />
-              <motion.button whileTap={{ scale: 0.88 }} whileHover={{ scale: 1.05 }} onClick={() => setIsListCollapsed(!isListCollapsed)} className="glass w-8 h-8 flex items-center justify-center rounded-[4px] text-gray-600 dark:text-gray-300 hover:text-[#d4af37] transition-colors relative overflow-hidden">
+            <div className="absolute bottom-16 right-3 z-10">
+              <motion.button
+                whileTap={{ scale: 0.88 }}
+                whileHover={{ scale: 1.08 }}
+                onClick={() => setIsListCollapsed(!isListCollapsed)}
+                className="w-9 h-9 flex items-center justify-center rounded-[6px] bg-gradient-to-br from-[#bf953f] to-[#d4af37] text-white shadow-[0_4px_14px_rgba(212,175,55,0.35)] border border-[#f9df9f]/30 transition-all relative overflow-hidden"
+              >
                 <AnimatePresence mode="wait">
                   {isListCollapsed ? (
                     <motion.div key="min" initial={{ scale: 0.5, rotate: 90, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} exit={{ scale: 0.5, rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                      <Minimize size={14} />
+                      <Minimize size={16} strokeWidth={2.5} />
                     </motion.div>
                   ) : (
                     <motion.div key="max" initial={{ scale: 0.5, rotate: -90, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} exit={{ scale: 0.5, rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                      <Maximize size={14} />
+                      <Maximize size={16} strokeWidth={2.5} />
                     </motion.div>
                   )}
                 </AnimatePresence>
