@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map } from 'lucide-react';
+import { Heart, MapPin, Search, ChevronRight, TrendingUp, Calendar, Store, Map, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { franchises, getMeta, tagColors } from './data';
@@ -22,6 +22,7 @@ export default function SearchResultsMobile() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isListCollapsed, setIsListCollapsed] = useState(false);
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
@@ -143,7 +144,7 @@ export default function SearchResultsMobile() {
         {showMap && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: '36vh', opacity: 1 }}
+            animate={{ height: isListCollapsed ? '100vh' : '36vh', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }}
             className="w-full relative bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden flex-shrink-0 border-y border-gray-200/60 dark:border-gray-800"
@@ -172,6 +173,14 @@ export default function SearchResultsMobile() {
                   className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-7 h-7 flex items-center justify-center rounded-[4px] shadow-sm border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#d4af37] transition-colors"
                 >{label}</motion.button>
               ))}
+              <div className="h-px w-full bg-gray-200 dark:bg-white/10 my-0.5" />
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsListCollapsed(!isListCollapsed)}
+                className="bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl w-7 h-7 flex items-center justify-center rounded-[4px] shadow-sm border border-white/40 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#d4af37] transition-colors"
+              >
+                {isListCollapsed ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </motion.button>
             </div>
 
                         {filtered.map((f, i) => {

@@ -35,8 +35,8 @@ const PAGE_LABELS: Record<Page, string> = {
   "buyers-and-sellers": "Buyers & Sellers",
   "developer-and-owner": "Developer & Owner",
   filters: "Filters",
-  "all-building-box": "Commercial listing",
-  "building-box": "Full commercial building",
+  "all-building-box": "Full commercial building",
+  "building-box": "Commercial listing",
   "land-box": "Commercial listing land",
   "search-results": "Search Results",
 };
