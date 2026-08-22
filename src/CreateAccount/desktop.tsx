@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User, Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, Shield, ArrowRight } from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, Shield, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import heroBg from '../assets/LoginandCreateBG.png';
 import { heroFeatures, socialProviders, footerBadges, countryCodes } from './data';
