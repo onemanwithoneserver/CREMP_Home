@@ -18,7 +18,8 @@ export type Page =
   | "land-box"
   | "search-results"
   | "login"
-  | "create-account";
+  | "create-account"
+  | "video-search";
 export type ViewMode = "desktop" | "mobile";
 
 export interface HeaderProps {
@@ -43,6 +44,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "search-results": "Search Results",
   login: "Login",
   "create-account": "Create Account",
+  "video-search": "Video Search",
 };
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
@@ -94,7 +96,9 @@ export default function Header({
                           ? "create-account"
                           : location.pathname.includes("login")
                             ? "login"
-                            : "home";
+                            : location.pathname.includes("video-search")
+                              ? "video-search"
+                              : "home";
 
   const handleNavigate = useCallback(
     (page: string) => {
