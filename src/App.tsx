@@ -24,6 +24,7 @@ import LandBox from "./LandBox";
 import SearchResults from "./Search results";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
+import VideoSearch from "./videoSearch";
 
 function App() {
   const location = useLocation();
@@ -121,6 +122,10 @@ function App() {
               <Route
                 path="/:viewMode/create-account"
                 element={<CreateAccount isMobile={isMobile} />}
+              />
+              <Route
+                path="/:viewMode/video-search"
+                element={<VideoSearch isMobile={isMobile} />}
               />
               <Route
                 path="*"
