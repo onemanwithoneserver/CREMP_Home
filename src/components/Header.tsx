@@ -16,7 +16,8 @@ export type Page =
   | "building-box"
   | "all-building-box"
   | "land-box"
-  | "search-results";
+  | "search-results"
+  | "login";
 export type ViewMode = "desktop" | "mobile";
 
 export interface HeaderProps {
@@ -39,6 +40,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "building-box": "Commercial listing",
   "land-box": "Commercial listing land",
   "search-results": "Search Results",
+  login: "Login",
 };
 
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
@@ -86,7 +88,9 @@ export default function Header({
                       ? "land-box"
                       : location.pathname.includes("search-results")
                         ? "search-results"
-                        : "home";
+                        : location.pathname.includes("login")
+                          ? "login"
+                          : "home";
 
   const handleNavigate = useCallback(
     (page: string) => {
