@@ -1,41 +1,62 @@
-import { useState } from 'react';
-import { Search, SlidersHorizontal, LocateFixed, MapPin, ChevronDown, Menu, UserPlus, LogIn, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../../Logo/CREMP.png';
-import logoLight from '../../Logo/CREMP_Light.png';
-import CrempTextLogo from '../CrempTextLogo';
+import { useState } from "react";
+import {
+  Search,
+  SlidersHorizontal,
+  LocateFixed,
+  MapPin,
+  ChevronDown,
+  Menu,
+  UserPlus,
+  LogIn,
+  X,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import logo from "../../Logo/CREMP.png";
+import logoLight from "../../Logo/CREMP_Light.png";
+import CrempTextLogo from "../CrempTextLogo";
 
 interface SiteHeaderProps {
   currentPage?: string;
 }
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Invest', href: '/buy-rent?mode=buy' },
-  { label: 'Lease', href: '/buy-rent?mode=lease' },
-  { label: 'Business Opportunity', href: '/franchise' },
-  { label: 'Videos', href: '/videos' },
-  { label: 'Saved', href: '/wishlist' },
-  { label: 'Hand Picked', href: '/handpick' },
+  { label: "Home", href: "/" },
+  { label: "Invest", href: "/buy-rent?mode=buy" },
+  { label: "Lease", href: "/buy-rent?mode=lease" },
+  { label: "Business Opportunity", href: "/franchise" },
+  { label: "Videos", href: "/videos" },
+  { label: "Saved", href: "/wishlist" },
+  { label: "Hand Picked", href: "/handpick" },
 ];
 
 const cities = [
-  'All cities', 'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Pune', 'Kolkata', 'Ahmedabad',
+  "All cities",
+  "Mumbai",
+  "Delhi",
+  "Bangalore",
+  "Hyderabad",
+  "Chennai",
+  "Pune",
+  "Kolkata",
+  "Ahmedabad",
 ];
 
-export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
-  const [selectedCity, setSelectedCity] = useState('All cities');
+export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
+  const [selectedCity, setSelectedCity] = useState("All cities");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <>
       <header className="border-b border-[#E5E7EB] bg-white sticky top-0 z-50">
         <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-4 px-6 py-5 sm:gap-x-4 md:flex-nowrap md:px-10">
-
           <div className="flex min-w-0 shrink-0 items-center gap-5 xl:gap-7">
-            <a className="flex h-12 items-center overflow-visible" aria-label="CREMP home" href="/">
+            <a
+              className="flex h-12 items-center overflow-visible"
+              aria-label="CREMP home"
+              href="/"
+            >
               <img
                 src={logoLight}
                 alt="CREMP"
@@ -55,8 +76,8 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                   key={link.href}
                   className={`relative text-[16px] font-medium transition-colors ${
                     currentPage === link.href
-                      ? 'text-[#C99A2E]'
-                      : 'text-slate-800 hover:text-[#0F2A56]'
+                      ? "text-[#C99A2E]"
+                      : "text-slate-800 hover:text-[#0F2A56]"
                   }`}
                   href={link.href}
                 >
@@ -65,7 +86,11 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                     <motion.span
                       layoutId="nav-underline"
                       className="absolute -bottom-2 left-0 h-[2px] w-full rounded-full bg-[#C99A2E]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </a>
@@ -76,7 +101,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
           <div className="order-3 min-w-[180px] flex-1 md:order-none md:min-w-0 xl:min-w-[240px] xl:max-w-[420px] 2xl:max-w-[260px]">
             <div className="relative w-full z-50">
               <div className="flex w-full min-w-0 items-center border border-[#cfd5dd] bg-white h-11 rounded-xl px-2 shadow-none sm:h-12 hover:border-[#C99A2E]/40 transition-colors focus-within:border-[#C99A2E]/60 focus-within:shadow-[0_0_0_3px_rgba(201,154,46,0.1)]">
-                
                 <button
                   type="button"
                   className="flex shrink-0 items-center justify-center bg-[#f1f2f4] transition hover:bg-[#e8ebef] h-8 w-8 rounded-lg sm:h-9 sm:w-9"
@@ -100,7 +124,10 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                   className="mr-2 inline-flex shrink-0 items-center justify-center rounded-full text-[#223456] transition hover:bg-[#f3f4f6] sm:mr-3 h-8 w-8"
                   aria-label="Open filters"
                 >
-                  <SlidersHorizontal className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.2} />
+                  <SlidersHorizontal
+                    className="h-4 w-4 sm:h-5 sm:w-5"
+                    strokeWidth={2.2}
+                  />
                 </button>
 
                 <button
@@ -124,8 +151,12 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
               className="flex h-12 w-full items-center gap-1.5 rounded-xl border border-[#E5E7EB] bg-white px-2.5 text-left text-[#102B57] transition-colors hover:border-[#C99A2E]/60 focus-visible:border-[#C99A2E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A2E]/20 sm:gap-2 sm:px-3"
             >
               <MapPin className="h-4 w-4 shrink-0 text-[#C99A2E]" />
-              <span className="min-w-0 flex-1 truncate text-[13px] font-semibold">{selectedCity}</span>
-              <ChevronDown className={`h-3.5 w-3.5 shrink-0 text-slate-500 transition-transform ${showCityDropdown ? 'rotate-180' : ''}`} />
+              <span className="min-w-0 flex-1 truncate text-[13px] font-semibold">
+                {selectedCity}
+              </span>
+              <ChevronDown
+                className={`h-3.5 w-3.5 shrink-0 text-slate-500 transition-transform ${showCityDropdown ? "rotate-180" : ""}`}
+              />
             </button>
             <AnimatePresence>
               {showCityDropdown && (
@@ -140,9 +171,14 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                     <button
                       key={city}
                       type="button"
-                      onClick={() => { setSelectedCity(city); setShowCityDropdown(false); }}
+                      onClick={() => {
+                        setSelectedCity(city);
+                        setShowCityDropdown(false);
+                      }}
                       className={`w-full text-left px-3.5 py-2 text-[13px] font-medium hover:bg-[#fffaf0] transition-colors ${
-                        selectedCity === city ? 'text-[#C99A2E] bg-[#C99A2E]/5 font-semibold' : 'text-[#102B57]'
+                        selectedCity === city
+                          ? "text-[#C99A2E] bg-[#C99A2E]/5 font-semibold"
+                          : "text-[#102B57]"
                       }`}
                     >
                       {city}
@@ -154,7 +190,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
           </div>
 
           <div className="flex shrink-0 items-center gap-3">
-            
             <button
               type="button"
               aria-expanded={mobileMenuOpen}
@@ -162,7 +197,11 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#E5E7EB] text-slate-600 2xl:hidden hover:bg-gray-50 transition-colors"
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
 
             <div className="flex items-center gap-2">
@@ -206,8 +245,8 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-4 py-3 rounded-lg text-[15px] font-medium transition-colors ${
                       currentPage === link.href
-                        ? 'text-[#C99A2E] bg-[#C99A2E]/5'
-                        : 'text-slate-700 hover:bg-gray-50 hover:text-[#0F2A56]'
+                        ? "text-[#C99A2E] bg-[#C99A2E]/5"
+                        : "text-slate-700 hover:bg-gray-50 hover:text-[#0F2A56]"
                     }`}
                   >
                     {link.label}
@@ -215,7 +254,10 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                 ))}
               </nav>
             </div>
-            <div className="fixed inset-0 bg-black/20 -z-10" onClick={() => setMobileMenuOpen(false)} />
+            <div
+              className="fixed inset-0 bg-black/20 -z-10"
+              onClick={() => setMobileMenuOpen(false)}
+            />
           </motion.div>
         )}
       </AnimatePresence>

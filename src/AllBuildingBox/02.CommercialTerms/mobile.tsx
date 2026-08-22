@@ -147,7 +147,10 @@ export default function Mobile() {
                     return (
                       <motion.div
                         key={idx}
-                        variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                        variants={{
+                          hidden: { opacity: 0, y: 10 },
+                          show: { opacity: 1, y: 0 },
+                        }}
                         className="flex items-center gap-2 p-2.5 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300"
                       >
                         <div

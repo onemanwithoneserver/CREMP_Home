@@ -29,26 +29,36 @@ const pulseGlow: Variants = {
 
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
-  
+
   let Icon = Award;
   let bgClass = "bg-purple-600";
-  
+
   if (lower.includes("outlet") || lower.includes("store")) {
     Icon = Store;
     bgClass = "bg-[#d97706]";
   } else if (lower.includes("year") || lower.includes("experience")) {
     Icon = TrendingUp;
     bgClass = "bg-[#3b82f6]";
-  } else if (lower.includes("revenue") || lower.includes("sales") || lower.includes("₹")) {
+  } else if (
+    lower.includes("revenue") ||
+    lower.includes("sales") ||
+    lower.includes("₹")
+  ) {
     Icon = IndianRupee;
     bgClass = "bg-[#10b981]";
-  } else if (lower.includes("margin") || lower.includes("%") || lower.includes("rate")) {
+  } else if (
+    lower.includes("margin") ||
+    lower.includes("%") ||
+    lower.includes("rate")
+  ) {
     Icon = Percent;
     bgClass = "bg-[#0ea5e9]";
   }
 
   return (
-    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}>
+    <div
+      className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}
+    >
       <Icon size={18} strokeWidth={2.5} />
     </div>
   );
@@ -214,7 +224,7 @@ export default function LeadershipDesktop() {
                   "flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all duration-300",
                   viewMode === "spotlight"
                     ? "bg-[#d4af37] text-[#0b1b42] shadow-md shadow-[#d4af37]/20"
-                    : "text-gray-300 hover:text-white"
+                    : "text-gray-300 hover:text-white",
                 )}
               >
                 <Layers size={14} />
@@ -226,7 +236,7 @@ export default function LeadershipDesktop() {
                   "flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all duration-300",
                   viewMode === "grid"
                     ? "bg-[#d4af37] text-[#0b1b42] shadow-md shadow-[#d4af37]/20"
-                    : "text-gray-300 hover:text-white"
+                    : "text-gray-300 hover:text-white",
                 )}
               >
                 <LayoutGrid size={14} />
@@ -279,23 +289,27 @@ export default function LeadershipDesktop() {
                 </div>
               </div>
 
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, margin: "-50px" }}
                 variants={{
                   hidden: { opacity: 0 },
-                  show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
                 }}
                 className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10"
               >
                 {brandStory.stats.map((stat) => (
-                  <motion.div 
-                    key={stat.label} 
+                  <motion.div
+                    key={stat.label}
                     className="flex flex-col group/stat cursor-default"
                     variants={{
                       hidden: { opacity: 0, y: 20 },
-                      show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { type: "spring", stiffness: 100 },
+                      },
                     }}
                     whileHover={{ y: -2, transition: { duration: 0.2 } }}
                   >
@@ -304,7 +318,7 @@ export default function LeadershipDesktop() {
                       <span
                         className={clsx(
                           "text-2xl lg:text-3xl font-black tracking-tight",
-                          getTextStyles(stat.intent)
+                          getTextStyles(stat.intent),
                         )}
                       >
                         {stat.value}
@@ -374,7 +388,10 @@ export default function LeadershipDesktop() {
                     <div className="flex flex-col gap-2 mb-4">
                       {activeLeader.highlights.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-2.5">
-                          <Sparkles size={13} className="text-[#d4af37] shrink-0" />
+                          <Sparkles
+                            size={13}
+                            className="text-[#d4af37] shrink-0"
+                          />
                           <span className="text-[12px] font-semibold text-gray-100">
                             {item}
                           </span>
@@ -431,7 +448,7 @@ export default function LeadershipDesktop() {
                       <p
                         className={clsx(
                           "text-xl font-black tracking-tight",
-                          getTextStyles(stat.intent)
+                          getTextStyles(stat.intent),
                         )}
                       >
                         {stat.value}
@@ -465,7 +482,7 @@ export default function LeadershipDesktop() {
                           "flex items-center gap-3 p-3 rounded-[6px] border transition-all duration-300 text-left relative group",
                           isSelected
                             ? "bg-white/15 border-[#d4af37] shadow-md shadow-[#d4af37]/10"
-                            : "bg-white/5 border-white/5 hover:border-white/20 hover:bg-white/10"
+                            : "bg-white/5 border-white/5 hover:border-white/20 hover:bg-white/10",
                         )}
                       >
                         <img
@@ -475,7 +492,7 @@ export default function LeadershipDesktop() {
                             "w-12 h-12 rounded-full object-cover border-2 shrink-0 transition-transform duration-300",
                             isSelected
                               ? "border-[#d4af37] scale-105"
-                              : "border-white/20 group-hover:border-white/50"
+                              : "border-white/20 group-hover:border-white/50",
                           )}
                         />
 
@@ -485,7 +502,7 @@ export default function LeadershipDesktop() {
                               "text-sm font-black truncate transition-colors",
                               isSelected
                                 ? "text-[#d4af37]"
-                                : "text-white group-hover:text-[#d4af37]"
+                                : "text-white group-hover:text-[#d4af37]",
                             )}
                           >
                             {member.name}
@@ -504,7 +521,7 @@ export default function LeadershipDesktop() {
                             "shrink-0 transition-transform",
                             isSelected
                               ? "text-[#d4af37] translate-x-0.5"
-                              : "text-gray-500 group-hover:text-gray-300"
+                              : "text-gray-500 group-hover:text-gray-300",
                           )}
                         />
                       </button>

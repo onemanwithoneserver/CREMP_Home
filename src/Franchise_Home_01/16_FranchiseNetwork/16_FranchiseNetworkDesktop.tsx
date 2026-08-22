@@ -136,7 +136,6 @@ export default function FranchiseNetworkDesktop() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
           <div className="lg:col-span-7 relative min-h-[580px] bg-[#070d1e] rounded-[8px] border border-gray-800/80 overflow-hidden shadow-2xl flex flex-col p-6 group">
             <div className="absolute inset-0 pointer-events-none opacity-50 mix-blend-luminosity overflow-hidden transition-opacity duration-700 group-hover:opacity-70">
               <img
@@ -432,7 +431,6 @@ export default function FranchiseNetworkDesktop() {
                     )}
                   </AnimatePresence>
                 </div>
-
               </motion.div>
 
               <motion.div
@@ -470,7 +468,10 @@ export default function FranchiseNetworkDesktop() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.1 }}
                         key={opp.id}
-                        whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.1)" }}
+                        whileHover={{
+                          scale: 1.02,
+                          backgroundColor: "rgba(255,255,255,0.1)",
+                        }}
                         className="flex items-center justify-between p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[4px] shadow-sm mb-3 last:mb-0 transition-colors"
                       >
                         <div className="flex-1 flex flex-col pr-3">
@@ -492,18 +493,24 @@ export default function FranchiseNetworkDesktop() {
                         </div>
 
                         <div className="w-[120px] flex justify-center px-1">
-                          <motion.button 
+                          <motion.button
                             onClick={(e) => {
                               e.stopPropagation();
-                              setBookedOpps((prev) => new Set(prev).add(opp.id));
+                              setBookedOpps((prev) =>
+                                new Set(prev).add(opp.id),
+                              );
                             }}
-                            whileHover={!bookedOpps.has(opp.id) ? { scale: 1.05 } : {}} 
-                            whileTap={!bookedOpps.has(opp.id) ? { scale: 0.95 } : {}} 
+                            whileHover={
+                              !bookedOpps.has(opp.id) ? { scale: 1.05 } : {}
+                            }
+                            whileTap={
+                              !bookedOpps.has(opp.id) ? { scale: 0.95 } : {}
+                            }
                             className={clsx(
                               "px-4 py-2 text-[10px] min-w-[105px] font-bold rounded-[2px] transition-all duration-300 relative overflow-hidden flex items-center justify-center border",
-                              bookedOpps.has(opp.id) 
-                                ? "bg-[#17274c] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_10px_rgba(212,175,55,0.2)] cursor-default" 
-                                : "bg-[#0f9d58] text-white border-transparent hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)]"
+                              bookedOpps.has(opp.id)
+                                ? "bg-[#17274c] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_10px_rgba(212,175,55,0.2)] cursor-default"
+                                : "bg-[#0f9d58] text-white border-transparent hover:bg-[#0b8243] shadow-[0_2px_10px_rgba(15,157,88,0.2)]",
                             )}
                           >
                             <AnimatePresence mode="wait">
@@ -529,7 +536,9 @@ export default function FranchiseNetworkDesktop() {
                                 </motion.span>
                               )}
                             </AnimatePresence>
-                            <span className="opacity-0 flex items-center gap-1.5 whitespace-nowrap">ENQUIRE NOW</span>
+                            <span className="opacity-0 flex items-center gap-1.5 whitespace-nowrap">
+                              ENQUIRE NOW
+                            </span>
                           </motion.button>
                         </div>
                       </motion.div>
@@ -538,7 +547,6 @@ export default function FranchiseNetworkDesktop() {
                 </div>
               </motion.div>
             </div>
-
           </div>
         </div>
       </div>

@@ -46,11 +46,7 @@ export default function Desktop() {
                     <div
                       className={`w-9 h-9 rounded-[5px] ${iconBg} transition-transform duration-300 flex items-center justify-center shrink-0`}
                     >
-                      <Icon
-                        size={16}
-                        strokeWidth={2}
-                        className="text-white"
-                      />
+                      <Icon size={16} strokeWidth={2} className="text-white" />
                     </div>
                     <span className="text-[0.68rem] font-bold text-gray-500 uppercase tracking-widest">
                       {item.type}

@@ -33,9 +33,17 @@ export const brandLeadershipData = {
     quote:
       "When I started Urban Brew Co. in 2016, I wasn't just opening a café — I was building a community. I believed that great coffee, served in the right environment, could become the anchor of a neighbourhood's daily life. Today, 187 outlets later, that belief has never felt more validated. Our franchise partners aren't vendors; they're co-founders of a movement.",
     stats: [
-      { value: "187+", label: "Outlets Nationwide", intent: "warning" as const },
+      {
+        value: "187+",
+        label: "Outlets Nationwide",
+        intent: "warning" as const,
+      },
       { value: "8+", label: "Years of Excellence", intent: "info" as const },
-      { value: "₹900Cr+", label: "Network Revenue", intent: "success" as const },
+      {
+        value: "₹900Cr+",
+        label: "Network Revenue",
+        intent: "success" as const,
+      },
     ],
   },
   members: [

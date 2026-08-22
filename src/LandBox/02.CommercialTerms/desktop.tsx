@@ -100,9 +100,7 @@ export default function Desktop() {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-4 w-full"
             >
-
               <div className="relative w-full rounded-[4px] bg-gradient-to-br from-[#17274c] via-[#0d1e47] to-[#17274c] p-6 shadow-[0_8px_20px_rgba(11,27,66,0.15)] overflow-hidden group border border-[#0b1b42]/20">
-
                 <motion.div
                   animate={{
                     scale: [1, 1.2, 1],

@@ -16,7 +16,13 @@ import {
 } from "lucide-react";
 
 export const commercialData = {
-  tabs: ["Full Lease", "Sub Lease", "Outright Sale", "Pre-Leased", "Fractional"],
+  tabs: [
+    "Full Lease",
+    "Sub Lease",
+    "Outright Sale",
+    "Pre-Leased",
+    "Fractional",
+  ],
   tabData: {
     "Full Lease": {
       title: "Full Building / Wing Lease",
@@ -213,7 +219,6 @@ export const commercialData = {
           icon: Percent,
           bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]",
         },
-
       ],
       footer: {
         type: "split",

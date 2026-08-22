@@ -46,11 +46,7 @@ export default function Mobile() {
                     <div
                       className={`w-8 h-8 rounded-[4px] ${iconBg} flex items-center justify-center shrink-0`}
                     >
-                      <Icon
-                        size={14}
-                        strokeWidth={2}
-                        className="text-white"
-                      />
+                      <Icon size={14} strokeWidth={2} className="text-white" />
                     </div>
                     <span className="text-[0.62rem] font-semibold text-gray-500 uppercase tracking-widest truncate">
                       {item.type}

@@ -147,255 +147,249 @@ export function BookACall() {
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent z-10" />
 
       <div className="flex flex-col gap-1 relative z-10 w-full">
-            <div className="flex flex-col items-center justify-center text-center gap-2 w-full">
-              <div className="relative flex items-center justify-center mt-1 mb-1">
-                <motion.div
-                  animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-[#d4af37]/20 dark:from-blue-500/40 dark:to-[#d4af37]/30 rounded-full scale-[1.5] blur-[8px] pointer-events-none"
-                />
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 bg-blue-100/50 dark:bg-[#0b1b42]/80 border border-white/50 dark:border-white/10 rounded-full scale-[1.3] pointer-events-none"
-                />
-                <div className="w-[56px] h-[56px] rounded-full bg-gradient-to-b from-[#1c4ed8] to-[#0b1b42] flex items-center justify-center text-white shadow-[0_4px_16px_rgba(11,27,66,0.3)] relative z-10 border border-white/20">
-                  <motion.div
-                    animate={{ y: [-2, 2, -2] }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Headset
-                      size={26}
-                      strokeWidth={2}
-                      className="drop-shadow-md"
-                    />
-                  </motion.div>
-                  <motion.div
-                    animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute top-1 right-1 text-[#d4af37]"
-                  >
-                    <Sparkles size={12} />
-                  </motion.div>
-                </div>
-              </div>
+        <div className="flex flex-col items-center justify-center text-center gap-2 w-full">
+          <div className="relative flex items-center justify-center mt-1 mb-1">
+            <motion.div
+              animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-[#d4af37]/20 dark:from-blue-500/40 dark:to-[#d4af37]/30 rounded-full scale-[1.5] blur-[8px] pointer-events-none"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute inset-0 bg-blue-100/50 dark:bg-[#0b1b42]/80 border border-white/50 dark:border-white/10 rounded-full scale-[1.3] pointer-events-none"
+            />
+            <div className="w-[56px] h-[56px] rounded-full bg-gradient-to-b from-[#1c4ed8] to-[#0b1b42] flex items-center justify-center text-white shadow-[0_4px_16px_rgba(11,27,66,0.3)] relative z-10 border border-white/20">
+              <motion.div
+                animate={{ y: [-2, 2, -2] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Headset size={26} strokeWidth={2} className="drop-shadow-md" />
+              </motion.div>
+              <motion.div
+                animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute top-1 right-1 text-[#d4af37]"
+              >
+                <Sparkles size={12} />
+              </motion.div>
+            </div>
+          </div>
 
-              <div className="flex flex-col gap-1">
-                <h3 className="text-[20px] sm:text-[24px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
-                  Let's get to know{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">
-                    each other.
-                  </span>
-                </h3>
-                <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium mx-auto leading-relaxed">
-                  Schedule a 1-on-1 discovery call with our franchise specialists
-                  today.
-                </p>
-              </div>
+          <div className="flex flex-col gap-1">
+            <h3 className="text-[20px] sm:text-[24px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+              Let's get to know{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1c4ed8] to-[#0b1b42] dark:from-[#d4af37] dark:to-[#e8d07a]">
+                each other.
+              </span>
+            </h3>
+            <p className="text-[12px] text-gray-600 dark:text-gray-300 font-medium mx-auto leading-relaxed">
+              Schedule a 1-on-1 discovery call with our franchise specialists
+              today.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 border-t border-gray-200/60 dark:border-white/10 pt-3 mt-1">
+          <div className="flex flex-col gap-1.5 relative">
+            <div className="flex justify-between items-center px-1">
+              <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
+                Available Dates
+              </span>
             </div>
 
-            <div className="flex flex-col gap-3 border-t border-gray-200/60 dark:border-white/10 pt-3 mt-1">
-              <div className="flex flex-col gap-1.5 relative">
-                <div className="flex justify-between items-center px-1">
-                  <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
-                    Available Dates
-                  </span>
-                </div>
-
-                <AnimatePresence>
-                  {canScrollLeft && (
-                    <motion.button
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      onClick={() => scrollDates("left")}
-                      className="absolute left-0 top-[55%] z-20 w-7 h-7 rounded-full bg-white/95 dark:bg-[#121c33]/95 backdrop-blur-xl flex items-center justify-center border border-gray-200 dark:border-white/10 text-gray-700 dark:text-[#d4af37] shadow-md transition-all active:scale-95 -translate-x-1/2 hover:scale-110"
-                    >
-                      <ChevronLeft size={14} strokeWidth={2.5} />
-                    </motion.button>
-                  )}
-                </AnimatePresence>
-
-                <AnimatePresence>
-                  {canScrollRight && (
-                    <motion.button
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      onClick={() => scrollDates("right")}
-                      className="absolute right-0 top-[55%] z-20 w-7 h-7 rounded-full bg-white/95 dark:bg-[#121c33]/95 backdrop-blur-xl flex items-center justify-center border border-gray-200 dark:border-white/10 text-gray-700 dark:text-[#d4af37] shadow-md transition-all active:scale-95 translate-x-1/2 hover:scale-110"
-                    >
-                      <ChevronRight size={14} strokeWidth={2.5} />
-                    </motion.button>
-                  )}
-                </AnimatePresence>
-
-                <div
-                  ref={scrollRef}
-                  onScroll={checkScroll}
-                  className="flex gap-2 overflow-x-auto pt-1 pb-2 px-1 -mx-1 scrollbar-hide snap-x snap-mandatory relative z-10"
+            <AnimatePresence>
+              {canScrollLeft && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  onClick={() => scrollDates("left")}
+                  className="absolute left-0 top-[55%] z-20 w-7 h-7 rounded-full bg-white/95 dark:bg-[#121c33]/95 backdrop-blur-xl flex items-center justify-center border border-gray-200 dark:border-white/10 text-gray-700 dark:text-[#d4af37] shadow-md transition-all active:scale-95 -translate-x-1/2 hover:scale-110"
                 >
-                  {SCHEDULE_DATA.map((item) => {
-                    const isSelected = selectedDateId === item.id;
-                    const isPast = item.isPast;
-                    const hasSlots = item.slots.length > 0;
-                    const isDisabled = isPast || !hasSlots;
+                  <ChevronLeft size={14} strokeWidth={2.5} />
+                </motion.button>
+              )}
+            </AnimatePresence>
 
+            <AnimatePresence>
+              {canScrollRight && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  onClick={() => scrollDates("right")}
+                  className="absolute right-0 top-[55%] z-20 w-7 h-7 rounded-full bg-white/95 dark:bg-[#121c33]/95 backdrop-blur-xl flex items-center justify-center border border-gray-200 dark:border-white/10 text-gray-700 dark:text-[#d4af37] shadow-md transition-all active:scale-95 translate-x-1/2 hover:scale-110"
+                >
+                  <ChevronRight size={14} strokeWidth={2.5} />
+                </motion.button>
+              )}
+            </AnimatePresence>
+
+            <div
+              ref={scrollRef}
+              onScroll={checkScroll}
+              className="flex gap-2 overflow-x-auto pt-1 pb-2 px-1 -mx-1 scrollbar-hide snap-x snap-mandatory relative z-10"
+            >
+              {SCHEDULE_DATA.map((item) => {
+                const isSelected = selectedDateId === item.id;
+                const isPast = item.isPast;
+                const hasSlots = item.slots.length > 0;
+                const isDisabled = isPast || !hasSlots;
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => !isDisabled && setSelectedDateId(item.id)}
+                    disabled={isDisabled}
+                    className={clsx(
+                      "relative shrink-0 snap-start flex flex-col items-center justify-center gap-0.5 py-2.5 w-[64px] rounded-[8px] border transition-all duration-300",
+                      isSelected
+                        ? "bg-gradient-to-b from-[#0b1b42] to-[#060e24] dark:from-[#d4af37] dark:to-[#aa8922] border-transparent shadow-[0_4px_12px_rgba(11,27,66,0.3)] dark:shadow-[0_4px_12px_rgba(212,175,55,0.3)] scale-[1.02]"
+                        : isDisabled
+                          ? "bg-gray-100/50 dark:bg-white/5 border-transparent opacity-40 cursor-not-allowed grayscale"
+                          : "bg-white/70 dark:bg-white/5 border-white/60 dark:border-white/10 hover:border-[#0b1b42]/30 dark:hover:border-[#d4af37]/50 shadow-sm backdrop-blur-md",
+                    )}
+                  >
+                    {isSelected && (
+                      <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[8px]" />
+                    )}
+                    <span
+                      className={clsx(
+                        "text-[10px] font-black uppercase tracking-widest transition-colors",
+                        isSelected
+                          ? "text-blue-100 dark:text-[#0b1b42]/80"
+                          : "text-gray-500 dark:text-gray-400",
+                      )}
+                    >
+                      {item.dayStr}
+                    </span>
+                    <span
+                      className={clsx(
+                        "text-[13px] font-black transition-colors",
+                        isSelected
+                          ? "text-white dark:text-[#0b1b42]"
+                          : "text-gray-900 dark:text-white",
+                      )}
+                    >
+                      {item.date.split(" ")[1]}
+                    </span>
+
+                    {isDisabled && (
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="h-[1.5px] w-8 bg-gray-400/80 dark:bg-gray-500/80 rotate-45 rounded-full" />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 min-h-[90px] bg-white/30 dark:bg-black/20 backdrop-blur-md rounded-[8px] p-3 border border-white/50 dark:border-white/5 shadow-inner">
+            <div className="flex justify-between items-end px-1">
+              <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
+                Available Slots
+              </span>
+              <span className="text-[10px] font-bold text-[#0b1b42] dark:text-[#d4af37]">
+                {selectedDateObj?.date}
+              </span>
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedDateId}
+                initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                transition={{ duration: 0.25 }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-2"
+              >
+                {selectedDateObj?.slots.length === 0 ? (
+                  <div className="col-span-full py-5 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 border border-dashed border-gray-300 dark:border-gray-700/50 rounded-[4px] bg-white/40 dark:bg-transparent">
+                    <span className="text-[11px] font-bold">
+                      No slots available.
+                    </span>
+                  </div>
+                ) : (
+                  selectedDateObj?.slots.map((slot) => {
+                    const isSelected = selectedSlot === slot;
                     return (
                       <button
-                        key={item.id}
-                        onClick={() =>
-                          !isDisabled && setSelectedDateId(item.id)
-                        }
-                        disabled={isDisabled}
+                        key={slot}
+                        onClick={() => setSelectedSlot(slot)}
                         className={clsx(
-                          "relative shrink-0 snap-start flex flex-col items-center justify-center gap-0.5 py-2.5 w-[64px] rounded-[8px] border transition-all duration-300",
+                          "flex items-center justify-center gap-1.5 py-2 px-1 rounded-[4px] border transition-all duration-300 group active:scale-95",
                           isSelected
-                            ? "bg-gradient-to-b from-[#0b1b42] to-[#060e24] dark:from-[#d4af37] dark:to-[#aa8922] border-transparent shadow-[0_4px_12px_rgba(11,27,66,0.3)] dark:shadow-[0_4px_12px_rgba(212,175,55,0.3)] scale-[1.02]"
-                            : isDisabled
-                              ? "bg-gray-100/50 dark:bg-white/5 border-transparent opacity-40 cursor-not-allowed grayscale"
-                              : "bg-white/70 dark:bg-white/5 border-white/60 dark:border-white/10 hover:border-[#0b1b42]/30 dark:hover:border-[#d4af37]/50 shadow-sm backdrop-blur-md",
+                            ? "bg-gradient-to-r from-[#0b1b42] to-[#12235a] dark:from-[#d4af37] dark:to-[#aa8922] border-transparent text-white dark:text-[#0b1b42] shadow-md"
+                            : "bg-white/80 dark:bg-white/5 border-white/60 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-[#0b1b42]/40 dark:hover:border-[#d4af37]/60 hover:shadow-sm",
                         )}
                       >
                         {isSelected && (
-                          <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[8px]" />
+                          <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[4px]" />
                         )}
-                        <span
+                        <Clock
+                          size={12}
                           className={clsx(
-                            "text-[10px] font-black uppercase tracking-widest transition-colors",
+                            "transition-colors shrink-0",
                             isSelected
-                              ? "text-blue-100 dark:text-[#0b1b42]/80"
-                              : "text-gray-500 dark:text-gray-400",
+                              ? "text-blue-200 dark:text-[#0b1b42]/80"
+                              : "text-[#0b1b42]/60 dark:text-[#d4af37]/80 group-hover:text-[#0b1b42] dark:group-hover:text-[#d4af37]",
                           )}
-                        >
-                          {item.dayStr}
-                        </span>
+                        />
                         <span
                           className={clsx(
-                            "text-[13px] font-black transition-colors",
+                            "text-[11px] font-bold tracking-wide transition-colors",
                             isSelected
                               ? "text-white dark:text-[#0b1b42]"
-                              : "text-gray-900 dark:text-white",
+                              : "text-gray-800 dark:text-gray-200",
                           )}
                         >
-                          {item.date.split(" ")[1]}
+                          {slot}
                         </span>
-
-                        {isDisabled && (
-                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="h-[1.5px] w-8 bg-gray-400/80 dark:bg-gray-500/80 rotate-45 rounded-full" />
-                          </div>
-                        )}
                       </button>
                     );
-                  })}
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2 min-h-[90px] bg-white/30 dark:bg-black/20 backdrop-blur-md rounded-[8px] p-3 border border-white/50 dark:border-white/5 shadow-inner">
-                <div className="flex justify-between items-end px-1">
-                  <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
-                    Available Slots
-                  </span>
-                  <span className="text-[10px] font-bold text-[#0b1b42] dark:text-[#d4af37]">
-                    {selectedDateObj?.date}
-                  </span>
-                </div>
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={selectedDateId}
-                    initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-                    transition={{ duration: 0.25 }}
-                    className="grid grid-cols-2 sm:grid-cols-3 gap-2"
-                  >
-                    {selectedDateObj?.slots.length === 0 ? (
-                      <div className="col-span-full py-5 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 border border-dashed border-gray-300 dark:border-gray-700/50 rounded-[4px] bg-white/40 dark:bg-transparent">
-                        <span className="text-[11px] font-bold">
-                          No slots available.
-                        </span>
-                      </div>
-                    ) : (
-                      selectedDateObj?.slots.map((slot) => {
-                        const isSelected = selectedSlot === slot;
-                        return (
-                          <button
-                            key={slot}
-                            onClick={() => setSelectedSlot(slot)}
-                            className={clsx(
-                              "flex items-center justify-center gap-1.5 py-2 px-1 rounded-[4px] border transition-all duration-300 group active:scale-95",
-                              isSelected
-                                ? "bg-gradient-to-r from-[#0b1b42] to-[#12235a] dark:from-[#d4af37] dark:to-[#aa8922] border-transparent text-white dark:text-[#0b1b42] shadow-md"
-                                : "bg-white/80 dark:bg-white/5 border-white/60 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-[#0b1b42]/40 dark:hover:border-[#d4af37]/60 hover:shadow-sm",
-                            )}
-                          >
-                            {isSelected && (
-                              <div className="absolute top-0 inset-x-0 h-[1px] bg-white/30 rounded-t-[4px]" />
-                            )}
-                            <Clock
-                              size={12}
-                              className={clsx(
-                                "transition-colors shrink-0",
-                                isSelected
-                                  ? "text-blue-200 dark:text-[#0b1b42]/80"
-                                  : "text-[#0b1b42]/60 dark:text-[#d4af37]/80 group-hover:text-[#0b1b42] dark:group-hover:text-[#d4af37]",
-                              )}
-                            />
-                            <span
-                              className={clsx(
-                                "text-[11px] font-bold tracking-wide transition-colors",
-                                isSelected
-                                  ? "text-white dark:text-[#0b1b42]"
-                                  : "text-gray-800 dark:text-gray-200",
-                              )}
-                            >
-                              {slot}
-                            </span>
-                          </button>
-                        );
-                      })
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-            <div className="flex justify-center w-full mt-0 pt-0">
-              <button
-                onClick={handleBook}
-                disabled={!selectedSlot || bookingState !== "idle"}
-                className={clsx(
-                  "w-full max-w-[200px] py-2 rounded-[8px] font-black text-[12px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
-                  selectedSlot
-                    ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_12px_rgba(11,27,66,0.3)] hover:shadow-[0_4px_16px_rgba(11,27,66,0.4)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.3)] active:scale-[0.98]"
-                    : "bg-gray-200/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 border-transparent cursor-not-allowed backdrop-blur-md",
+                  })
                 )}
-              >
-                {selectedSlot && (
-                  <>
-                    <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
-                    <div className="absolute top-0 inset-x-0 h-[1px] bg-white/20" />
-                  </>
-                )}
-                <span className="relative z-10 flex items-center gap-2 drop-shadow-sm">
-                  Book a Call
-                  {selectedSlot && (
-                    <CheckCircle2 size={16} className="text-[#d4af37]" />
-                  )}
-                </span>
-              </button>
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
+        </div>
+
+        <div className="flex justify-center w-full mt-0 pt-0">
+          <button
+            onClick={handleBook}
+            disabled={!selectedSlot || bookingState !== "idle"}
+            className={clsx(
+              "w-full max-w-[200px] py-2 rounded-[8px] font-black text-[12px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 relative z-10 overflow-hidden group border",
+              selectedSlot
+                ? "bg-[#0b1b42] text-white border-[#0b1b42] shadow-[0_4px_12px_rgba(11,27,66,0.3)] hover:shadow-[0_4px_16px_rgba(11,27,66,0.4)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.3)] active:scale-[0.98]"
+                : "bg-gray-200/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 border-transparent cursor-not-allowed backdrop-blur-md",
+            )}
+          >
+            {selectedSlot && (
+              <>
+                <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-white/20" />
+              </>
+            )}
+            <span className="relative z-10 flex items-center gap-2 drop-shadow-sm">
+              Book a Call
+              {selectedSlot && (
+                <CheckCircle2 size={16} className="text-[#d4af37]" />
+              )}
+            </span>
+          </button>
+        </div>
+      </div>
 
       <AnimatePresence>
         {bookingState !== "idle" && (

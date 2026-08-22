@@ -31,7 +31,6 @@ export default function Mobile() {
           overline={termsData.overline}
           title={termsData.title}
           icon={FileText}
-
         />
 
         <div className="px-4 py-4 flex flex-col relative w-full">

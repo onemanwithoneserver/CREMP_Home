@@ -1,7 +1,16 @@
-import { useState } from 'react';
-import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { socialProviders, countryCodes } from './data';
+import { useState } from "react";
+import {
+  User,
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  Globe,
+  ChevronDown,
+  ArrowRight,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { socialProviders, countryCodes } from "./data";
 
 export default function CreateAccountMobile() {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,25 +32,35 @@ export default function CreateAccountMobile() {
       </div>
 
       <div className="flex-1 flex items-center justify-center p-4 relative z-10 pt-16 pb-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, type: 'spring', stiffness: 200, damping: 20 }}
+          transition={{
+            duration: 0.5,
+            type: "spring",
+            stiffness: 200,
+            damping: 20,
+          }}
           className="w-full max-w-[460px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl p-6 rounded-[16px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-white/60 dark:border-white/10 relative overflow-hidden"
         >
-          
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
 
           <div className="mb-5 text-center">
-            <h1 className="text-xl font-extrabold text-[#0a1128] dark:text-white mb-1.5">Create Account</h1>
-            <p className="text-[12px] font-medium text-gray-500 dark:text-gray-400">Join thousands of professionals making smarter real estate decisions.</p>
+            <h1 className="text-xl font-extrabold text-[#0a1128] dark:text-white mb-1.5">
+              Create Account
+            </h1>
+            <p className="text-[12px] font-medium text-gray-500 dark:text-gray-400">
+              Join thousands of professionals making smarter real estate
+              decisions.
+            </p>
           </div>
 
           <form className="space-y-3.5" onSubmit={(e) => e.preventDefault()}>
-            
             <div className="grid grid-cols-2 gap-2.5">
               <div className="space-y-1.5">
-                <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Full Name</label>
+                <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                  Full Name
+                </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#d4af37] transition-colors">
                     <User size={14} strokeWidth={2.5} />
@@ -54,7 +73,9 @@ export default function CreateAccountMobile() {
                 </div>
               </div>
               <div className="space-y-1.5">
-                <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Email Address</label>
+                <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                  Email Address
+                </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#d4af37] transition-colors">
                     <Mail size={14} strokeWidth={2.5} />
@@ -69,7 +90,9 @@ export default function CreateAccountMobile() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Phone Number</label>
+              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                Phone Number
+              </label>
               <div className="relative group flex">
                 <div className="relative">
                   <button
@@ -94,14 +117,21 @@ export default function CreateAccountMobile() {
                           <button
                             key={c.code}
                             type="button"
-                            onClick={() => { setSelectedCountry(c); setShowCountryDropdown(false); }}
+                            onClick={() => {
+                              setSelectedCountry(c);
+                              setShowCountryDropdown(false);
+                            }}
                             className={`w-full flex items-center gap-2 px-3 py-1.5 text-[12px] font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${
-                              selectedCountry.code === c.code ? 'text-[#d4af37] bg-[#d4af37]/5' : 'text-[#0a1128] dark:text-white'
+                              selectedCountry.code === c.code
+                                ? "text-[#d4af37] bg-[#d4af37]/5"
+                                : "text-[#0a1128] dark:text-white"
                             }`}
                           >
                             <span className="text-sm">{c.flag}</span>
                             <span>{c.country}</span>
-                            <span className="text-gray-400 ml-auto">{c.code}</span>
+                            <span className="text-gray-400 ml-auto">
+                              {c.code}
+                            </span>
                           </button>
                         ))}
                       </motion.div>
@@ -117,7 +147,9 @@ export default function CreateAccountMobile() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Password</label>
+              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                Password
+              </label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#d4af37] transition-colors">
                   <Lock size={14} strokeWidth={2.5} />
@@ -132,13 +164,19 @@ export default function CreateAccountMobile() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors outline-none"
                 >
-                  {showPassword ? <EyeOff size={14} strokeWidth={2.5} /> : <Eye size={14} strokeWidth={2.5} />}
+                  {showPassword ? (
+                    <EyeOff size={14} strokeWidth={2.5} />
+                  ) : (
+                    <Eye size={14} strokeWidth={2.5} />
+                  )}
                 </button>
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Confirm Password</label>
+              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                Confirm Password
+              </label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#d4af37] transition-colors">
                   <Lock size={14} strokeWidth={2.5} />
@@ -153,7 +191,11 @@ export default function CreateAccountMobile() {
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors outline-none"
                 >
-                  {showConfirmPassword ? <EyeOff size={14} strokeWidth={2.5} /> : <Eye size={14} strokeWidth={2.5} />}
+                  {showConfirmPassword ? (
+                    <EyeOff size={14} strokeWidth={2.5} />
+                  ) : (
+                    <Eye size={14} strokeWidth={2.5} />
+                  )}
                 </button>
               </div>
             </div>
@@ -170,10 +212,20 @@ export default function CreateAccountMobile() {
                   <div className="opacity-0 peer-checked:opacity-100 w-2 h-2 bg-[#d4af37] rounded-[1px] transition-opacity" />
                 </div>
                 <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 leading-relaxed">
-                  I agree to the{' '}
-                  <a href="#" className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors">Terms of Service</a>
-                  {' '}and{' '}
-                  <a href="#" className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors">Privacy Policy</a>
+                  I agree to the{" "}
+                  <a
+                    href="#"
+                    className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors"
+                  >
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    href="#"
+                    className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors"
+                  >
+                    Privacy Policy
+                  </a>
                 </span>
               </label>
             </div>
@@ -181,7 +233,11 @@ export default function CreateAccountMobile() {
             <button className="w-full py-3 mt-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-bold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_10px_25px_rgba(212,175,55,0.4)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
               <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               <span className="relative z-10">Create Account</span>
-              <ArrowRight size={14} strokeWidth={2.5} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight
+                size={14}
+                strokeWidth={2.5}
+                className="relative z-10 group-hover:translate-x-1 transition-transform"
+              />
             </button>
           </form>
 
@@ -190,7 +246,9 @@ export default function CreateAccountMobile() {
               <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
             </div>
             <div className="relative flex justify-center text-[10px] font-bold uppercase tracking-widest">
-              <span className="bg-white dark:bg-[#0b1b42] px-3 text-gray-400">Or sign up with</span>
+              <span className="bg-white dark:bg-[#0b1b42] px-3 text-gray-400">
+                Or sign up with
+              </span>
             </div>
           </div>
 
@@ -202,7 +260,11 @@ export default function CreateAccountMobile() {
               >
                 <span
                   className="w-3.5 h-3.5 group-hover:scale-110 transition-transform [&>svg]:w-full [&>svg]:h-full"
-                  style={provider.name === 'Apple' ? { fill: 'currentColor' } : undefined}
+                  style={
+                    provider.name === "Apple"
+                      ? { fill: "currentColor" }
+                      : undefined
+                  }
                   dangerouslySetInnerHTML={{ __html: provider.svg }}
                 />
                 {provider.name}
@@ -211,8 +273,21 @@ export default function CreateAccountMobile() {
           </div>
 
           <p className="text-center mt-5 text-[12px] font-medium text-gray-500 dark:text-gray-400">
-            Already have an account?{' '}
-            <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.history.pushState({}, '', window.location.pathname.replace('create-account', 'login')); window.location.reload(); }} className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4">
+            Already have an account?{" "}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.hash = "";
+                window.history.pushState(
+                  {},
+                  "",
+                  window.location.pathname.replace("create-account", "login"),
+                );
+                window.location.reload();
+              }}
+              className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+            >
               Login
             </a>
           </p>

@@ -31,7 +31,6 @@ export default function Desktop() {
           overline={termsData.overline}
           title={termsData.title}
           icon={FileText}
-
         />
 
         <div className="px-[var(--panel-px,1rem)] py-4 flex flex-col relative w-full">

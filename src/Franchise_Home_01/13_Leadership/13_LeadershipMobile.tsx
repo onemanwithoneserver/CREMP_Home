@@ -25,26 +25,36 @@ const pulseGlow: Variants = {
 
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
-  
+
   let Icon = Award;
   let bgClass = "bg-purple-600";
-  
+
   if (lower.includes("outlet") || lower.includes("store")) {
     Icon = Store;
     bgClass = "bg-[#d97706]";
   } else if (lower.includes("year") || lower.includes("experience")) {
     Icon = TrendingUp;
     bgClass = "bg-[#3b82f6]";
-  } else if (lower.includes("revenue") || lower.includes("sales") || lower.includes("₹")) {
+  } else if (
+    lower.includes("revenue") ||
+    lower.includes("sales") ||
+    lower.includes("₹")
+  ) {
     Icon = IndianRupee;
     bgClass = "bg-[#10b981]";
-  } else if (lower.includes("margin") || lower.includes("%") || lower.includes("rate")) {
+  } else if (
+    lower.includes("margin") ||
+    lower.includes("%") ||
+    lower.includes("rate")
+  ) {
     Icon = Percent;
     bgClass = "bg-[#0ea5e9]";
   }
 
   return (
-    <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}>
+    <div
+      className={`w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}
+    >
       <Icon size={16} strokeWidth={2.5} />
     </div>
   );
@@ -244,7 +254,6 @@ export default function LeadershipMobile() {
                 }}
                 className="relative w-full h-full [transform-style:preserve-3d] shadow-2xl"
               >
-
                 <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b1b42] rounded-[4px] border border-white/10 [backface-visibility:hidden] shadow-md">
                   <img
                     src={members[0].avatar}
@@ -318,7 +327,7 @@ export default function LeadershipMobile() {
                           <span
                             className={clsx(
                               "text-sm sm:text-base font-black tracking-tight",
-                              getTextStyles(stat.intent)
+                              getTextStyles(stat.intent),
                             )}
                           >
                             {stat.value}

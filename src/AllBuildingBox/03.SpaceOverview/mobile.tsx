@@ -24,14 +24,16 @@ export default function Mobile() {
         />
 
         <div className="px-3 mt-3">
-
           <div className="grid grid-cols-2 gap-2">
             {spaceOverviewData.specs.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={idx}
-                  variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    show: { opacity: 1, y: 0 },
+                  }}
                   whileHover={{ scale: 1.015, y: -1 }}
                   className="flex items-center gap-3 p-3.5 rounded-[8px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] border border-transparent hover:border-gray-200 transition-all duration-300 group cursor-default"
                 >

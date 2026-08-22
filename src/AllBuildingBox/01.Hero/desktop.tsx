@@ -27,17 +27,33 @@ export default function Desktop() {
             </span>
 
             <div className="relative flex items-center">
-              <select 
+              <select
                 defaultValue="Entire Building"
                 className="px-2.5 py-1 text-[0.62rem] font-semibold tracking-wider uppercase rounded-[3px] bg-white/10 text-gray-300 border border-white/20 shadow-sm backdrop-blur-md appearance-none cursor-pointer outline-none focus:ring-1 focus:ring-[#d4af37]/50 hover:bg-white/20 transition-colors pl-6 pr-2.5"
               >
-                <option value="Land" className="text-gray-900 bg-white">LAND</option>
-                <option value="Retail" className="text-gray-900 bg-white">RETAIL</option>
-                <option value="Office" className="text-gray-900 bg-white">OFFICE</option>
-                <option value="Coworking" className="text-gray-900 bg-white">COWORKING</option>
-                <option value="Entire Building" className="text-gray-900 bg-white">ENTIRE BUILDING</option>
+                <option value="Land" className="text-gray-900 bg-white">
+                  LAND
+                </option>
+                <option value="Retail" className="text-gray-900 bg-white">
+                  RETAIL
+                </option>
+                <option value="Office" className="text-gray-900 bg-white">
+                  OFFICE
+                </option>
+                <option value="Coworking" className="text-gray-900 bg-white">
+                  COWORKING
+                </option>
+                <option
+                  value="Entire Building"
+                  className="text-gray-900 bg-white"
+                >
+                  ENTIRE BUILDING
+                </option>
               </select>
-              <Building2 size={11} className="text-gray-400 absolute left-2 pointer-events-none" />
+              <Building2
+                size={11}
+                className="text-gray-400 absolute left-2 pointer-events-none"
+              />
             </div>
           </motion.div>
         </div>

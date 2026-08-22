@@ -74,7 +74,8 @@ export const termsData = {
     },
     {
       label: "Remarks & Clearances",
-      value: "Clear title, Occupancy Certificate (OC) received, Fire NOC active",
+      value:
+        "Clear title, Occupancy Certificate (OC) received, Fire NOC active",
       icon: FileCheck,
       color: "bg-gradient-to-br from-[#10B981] to-[#047857]",
     },

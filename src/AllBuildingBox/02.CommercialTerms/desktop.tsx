@@ -154,7 +154,10 @@ export default function Desktop() {
                     return (
                       <motion.div
                         key={idx}
-                        variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                        variants={{
+                          hidden: { opacity: 0, y: 10 },
+                          show: { opacity: 1, y: 0 },
+                        }}
                         whileHover={{ scale: 1.01 }}
                         className="flex items-center gap-3 p-3 rounded-[4px] bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300 group cursor-default"
                       >
