@@ -182,7 +182,6 @@ export default function Desktop() {
                 </div>
               </div>
 
-
               <div className="flex flex-wrap gap-4">
                 {currentData.details.map((detail, idx) => (
                   <motion.div

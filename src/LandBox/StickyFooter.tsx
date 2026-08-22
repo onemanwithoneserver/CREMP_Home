@@ -84,7 +84,6 @@ export default function StickyFooter() {
               </motion.button>
             </div>
 
-
             <div className="flex items-center gap-2 flex-1 justify-end">
               <motion.button
                 whileHover={{ scale: 1.02 }}

@@ -12,7 +12,6 @@ import { useParams } from "react-router-dom";
 import Hero from "./01.Hero";
 import MapView from "./MapView";
 
-
 const SpaceOverview = lazy(() => import("./03.SpaceOverview"));
 const Listings = lazy(() => import("./03.Listings"));
 const Infrastructure = lazy(() => import("./05.Infrastructure"));

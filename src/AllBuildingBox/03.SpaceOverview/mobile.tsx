@@ -25,7 +25,6 @@ export default function Mobile() {
 
         <div className="px-3 mt-3">
 
-
           <div className="grid grid-cols-2 gap-2">
             {spaceOverviewData.specs.map((item, idx) => {
               const Icon = item.icon;

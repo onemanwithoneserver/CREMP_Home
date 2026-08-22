@@ -21,13 +21,12 @@ export default function VideoSearchDesktop() {
 
   return (
     <div className="w-full min-h-screen bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white transition-colors duration-300 overflow-hidden relative font-sans">
-      {/* Background Orbs */}
+      
       <div className="absolute top-[-10%] left-[-5%] w-[40rem] h-[40rem] bg-[#d4af37]/5 dark:bg-[#d4af37]/10 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDuration: "12s" }} />
       <div className="absolute bottom-[-10%] right-[-5%] w-[35rem] h-[35rem] bg-[#c69a54]/5 dark:bg-[#c69a54]/10 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDuration: "18s", animationDelay: "2s" }} />
       
       <div className="max-w-7xl mx-auto px-10 py-12 relative z-10">
-        
-        {/* Header section */}
+
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-6 mb-12">
           <div className="flex items-center gap-3">
              <div className="w-12 h-12 bg-[#0a1128] dark:bg-[#121c33] rounded-lg shadow-lg border border-[#d4af37]/30 flex items-center justify-center shrink-0">
@@ -61,7 +60,6 @@ export default function VideoSearchDesktop() {
              </div>
           </div>
 
-          {/* Categories */}
           <div className="flex flex-wrap items-center gap-3">
              <div className="flex items-center gap-2 mr-2 text-gray-400">
                <Filter size={16} />
@@ -83,7 +81,6 @@ export default function VideoSearchDesktop() {
           </div>
         </motion.div>
 
-        {/* Video Grid */}
         <motion.div 
           variants={container}
           initial="hidden"
@@ -107,20 +104,17 @@ export default function VideoSearchDesktop() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/90 transition-opacity duration-500" />
-                
-                {/* Top Badge */}
+
                 <div className="absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded-[4px] text-white text-[10px] font-bold uppercase tracking-widest border border-white/10">
                   {video.category}
                 </div>
 
-                {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="w-14 h-14 rounded-full bg-[#0b1b42]/80 backdrop-blur-md border border-[#d4af37]/50 flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
                     <Play size={24} className="text-[#d4af37] ml-1" fill="currentColor" />
                   </div>
                 </div>
 
-                {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-10">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-[11px] font-bold text-[#f0d060] uppercase tracking-wider line-clamp-1 shadow-black drop-shadow-md">

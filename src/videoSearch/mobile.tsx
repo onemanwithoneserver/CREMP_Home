@@ -16,8 +16,7 @@ export default function VideoSearchMobile() {
 
   return (
     <div className="w-full min-h-screen bg-gray-50 dark:bg-[#0a1128] text-[#0a1128] dark:text-white overflow-x-hidden font-sans pb-20">
-      
-      {/* Header Sticky */}
+
       <div className="sticky top-0 z-40 bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/10 pt-4 pb-3 px-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -42,7 +41,6 @@ export default function VideoSearchMobile() {
         </div>
       </div>
 
-      {/* Categories Scrollable */}
       <div className="w-full overflow-x-auto scrollbar-hide px-4 py-4 flex items-center gap-2 border-b border-gray-200 dark:border-white/5 bg-white dark:bg-transparent">
          {videoCategories.map(cat => (
            <button
@@ -59,7 +57,6 @@ export default function VideoSearchMobile() {
          ))}
       </div>
 
-      {/* Video List */}
       <div className="px-4 py-4 grid grid-cols-2 gap-3">
         <AnimatePresence mode="popLayout">
           {filteredVideos.map((video) => (
@@ -77,20 +74,17 @@ export default function VideoSearchMobile() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-80 group-active:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/90 transition-opacity duration-500" />
-              
-              {/* Top Badge */}
+
               <div className="absolute top-2 right-2 px-1.5 py-0.5 bg-black/60 backdrop-blur-md rounded-[4px] text-white text-[8px] font-bold uppercase tracking-widest border border-white/10">
                 {video.category}
               </div>
 
-              {/* Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-lg">
                     <Play size={16} className="text-white ml-0.5" fill="currentColor" />
                  </div>
               </div>
 
-              {/* Content Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-3 flex flex-col justify-end z-10">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <span className="text-[9px] font-bold text-[#f0d060] uppercase tracking-wider line-clamp-1 shadow-black drop-shadow-md">

@@ -260,7 +260,6 @@ export default function FranchiseNetworkMobile() {
                 </span>
               </div>
 
-
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -332,7 +331,6 @@ export default function FranchiseNetworkMobile() {
 
               </motion.div>
 
-
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -351,7 +349,6 @@ export default function FranchiseNetworkMobile() {
                   {activeCity.opportunities?.length || 0} CIRCLES OPEN
                 </span>
               </div>
-
 
               <div className="flex items-center justify-between px-3 py-2 mt-1 text-[8px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[4px] shadow-sm">
                 <span className="flex-1">CIRCLE NAME</span>

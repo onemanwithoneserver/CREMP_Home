@@ -33,8 +33,7 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
     <>
       <header className="border-b border-[#E5E7EB] bg-white sticky top-0 z-50">
         <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-4 px-6 py-5 sm:gap-x-4 md:flex-nowrap md:px-10">
-          
-          {/* Logo & Nav */}
+
           <div className="flex min-w-0 shrink-0 items-center gap-5 xl:gap-7">
             <a className="flex h-12 items-center overflow-visible" aria-label="CREMP home" href="/">
               <img
@@ -49,8 +48,7 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
               />
               <CrempTextLogo className="h-7 w-auto text-[#0a1128] dark:text-white ml-2 hidden sm:block" />
             </a>
-            
-            {/* Desktop Nav */}
+
             <nav className="hidden items-center gap-5 2xl:flex 2xl:gap-7">
               {navLinks.map((link) => (
                 <a
@@ -75,11 +73,10 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
             </nav>
           </div>
 
-          {/* Search Bar */}
           <div className="order-3 min-w-[180px] flex-1 md:order-none md:min-w-0 xl:min-w-[240px] xl:max-w-[420px] 2xl:max-w-[260px]">
             <div className="relative w-full z-50">
               <div className="flex w-full min-w-0 items-center border border-[#cfd5dd] bg-white h-11 rounded-xl px-2 shadow-none sm:h-12 hover:border-[#C99A2E]/40 transition-colors focus-within:border-[#C99A2E]/60 focus-within:shadow-[0_0_0_3px_rgba(201,154,46,0.1)]">
-                {/* Location Button */}
+                
                 <button
                   type="button"
                   className="flex shrink-0 items-center justify-center bg-[#f1f2f4] transition hover:bg-[#e8ebef] h-8 w-8 rounded-lg sm:h-9 sm:w-9"
@@ -88,7 +85,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                   <LocateFixed className="h-4 w-4 text-[#223456] sm:h-5 sm:w-5" />
                 </button>
 
-                {/* Search Input */}
                 <div className="mx-2 sm:mx-3 flex min-w-0 flex-1 items-center rounded-[10px] border border-[#d3d8df] bg-white px-2.5 sm:px-3 h-8">
                   <input
                     type="text"
@@ -99,7 +95,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                   />
                 </div>
 
-                {/* Filter Button */}
                 <button
                   type="button"
                   className="mr-2 inline-flex shrink-0 items-center justify-center rounded-full text-[#223456] transition hover:bg-[#f3f4f6] sm:mr-3 h-8 w-8"
@@ -108,7 +103,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
                   <SlidersHorizontal className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.2} />
                 </button>
 
-                {/* Search Button */}
                 <button
                   type="button"
                   className="inline-flex shrink-0 items-center justify-center rounded-[10px] bg-[#223456] text-white transition hover:bg-[#1b2d4a] h-8 w-9 sm:h-9 sm:w-10"
@@ -120,7 +114,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
             </div>
           </div>
 
-          {/* City Selector */}
           <div className="relative w-[124px] shrink-0 sm:w-[170px]">
             <button
               type="button"
@@ -160,9 +153,8 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
             </AnimatePresence>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex shrink-0 items-center gap-3">
-            {/* Mobile Menu Toggle */}
+            
             <button
               type="button"
               aria-expanded={mobileMenuOpen}
@@ -173,7 +165,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
 
-            {/* Register & Login */}
             <div className="flex items-center gap-2">
               <a
                 aria-label="Register"
@@ -196,7 +187,6 @@ export default function SiteHeader({ currentPage = '/' }: SiteHeaderProps) {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

@@ -30,11 +30,9 @@ export default function CreateAccountDesktop() {
 
   return (
     <div className="min-h-screen flex font-sans relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      
-      {/* Left side: Create Account Form */}
+
       <div className="w-full lg:w-[45%] xl:w-[40%] flex flex-col relative z-20 shadow-[20px_0_50px_rgba(0,0,0,0.1)] dark:shadow-none dark:border-r border-white/5 bg-white dark:bg-[#0b1b42]">
-        
-        {/* Language Selector */}
+
         <div className="absolute top-6 right-6 z-30">
           <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm">
             <Globe size={16} />
@@ -43,20 +41,19 @@ export default function CreateAccountDesktop() {
           </button>
         </div>
 
-        {/* Form Container */}
         <div className="flex-1 flex flex-col justify-center px-8 sm:px-16 lg:px-10 xl:px-16 pt-20 pb-10 overflow-y-auto">
           <motion.div 
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, type: 'spring' }}
             className="w-full max-w-[460px] mx-auto"
           >
-            {/* Header */}
+            
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-7">
               <h1 className="text-[28px] font-extrabold text-[#0a1128] dark:text-white mb-2">Create Account</h1>
               <p className="text-[14px] font-medium text-gray-500 dark:text-gray-400">Join thousands of professionals making smarter real estate decisions.</p>
             </motion.div>
 
             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              {/* Full Name + Email side by side */}
+              
               <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
                   <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">Full Name</label>
@@ -86,11 +83,10 @@ export default function CreateAccountDesktop() {
                 </div>
               </motion.div>
 
-              {/* Phone Number */}
               <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="space-y-1.5">
                 <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">Phone Number</label>
                 <div className="relative group flex">
-                  {/* Country Code Dropdown */}
+                  
                   <div className="relative">
                     <button
                       type="button"
@@ -136,7 +132,6 @@ export default function CreateAccountDesktop() {
                 </div>
               </motion.div>
 
-              {/* Password */}
               <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="space-y-1.5">
                 <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">Password</label>
                 <div className="relative group">
@@ -158,7 +153,6 @@ export default function CreateAccountDesktop() {
                 </div>
               </motion.div>
 
-              {/* Confirm Password */}
               <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="space-y-1.5">
                 <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">Confirm Password</label>
                 <div className="relative group">
@@ -180,7 +174,6 @@ export default function CreateAccountDesktop() {
                 </div>
               </motion.div>
 
-              {/* Terms */}
               <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="pt-1">
                 <label className="flex items-start gap-2.5 cursor-pointer group">
                   <div className="relative w-4 h-4 mt-0.5 rounded-[4px] border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#121c33] group-hover:border-[#d4af37] transition-colors flex items-center justify-center shrink-0">
@@ -201,7 +194,6 @@ export default function CreateAccountDesktop() {
                 </label>
               </motion.div>
 
-              {/* Submit Button */}
               <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
                 <button className="w-full py-3.5 mt-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-bold text-[14px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
                   <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
@@ -211,7 +203,6 @@ export default function CreateAccountDesktop() {
               </motion.div>
             </form>
 
-            {/* Divider */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="relative mt-6 mb-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
@@ -221,7 +212,6 @@ export default function CreateAccountDesktop() {
               </div>
             </motion.div>
 
-            {/* Social Login */}
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="grid grid-cols-3 gap-3">
               {socialProviders.map((provider) => (
                 <button
@@ -238,7 +228,6 @@ export default function CreateAccountDesktop() {
               ))}
             </motion.div>
 
-            {/* Already have account */}
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }} className="text-center mt-8 text-[13px] font-medium text-gray-500 dark:text-gray-400">
               Already have an account?{' '}
               <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.history.pushState({}, '', window.location.pathname.replace('create-account', 'login')); window.location.reload(); }} className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4">
@@ -248,7 +237,6 @@ export default function CreateAccountDesktop() {
           </motion.div>
         </div>
 
-        {/* Footer Badges */}
         <div className="mt-auto bg-gray-50 dark:bg-[#121c33]/50 border-t border-gray-100 dark:border-white/5 p-4 sm:p-5 flex justify-center gap-6 sm:gap-12">
           {footerBadges.map((badge, i) => (
             <div key={i} className="flex items-center gap-3">
@@ -264,18 +252,16 @@ export default function CreateAccountDesktop() {
         </div>
       </div>
 
-      {/* Right side: Hero Image & Text */}
       <div className="hidden lg:flex w-[55%] xl:w-[60%] relative flex-col justify-between p-12 xl:p-16 overflow-hidden">
-        {/* Background Image */}
+        
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
-        {/* Gradient Overlays */}
+        
         <div className="absolute inset-0 bg-gradient-to-l from-[#0a1128]/90 via-[#0a1128]/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-transparent to-transparent" />
 
-        {/* Language Selector (hero side) */}
         <div className="relative z-10 flex justify-end">
           <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[8px] text-sm font-medium text-white hover:bg-white/20 transition-all shadow-sm">
             <Globe size={16} />
@@ -284,7 +270,6 @@ export default function CreateAccountDesktop() {
           </button>
         </div>
 
-        {/* Hero Content */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -304,7 +289,6 @@ export default function CreateAccountDesktop() {
             Real-time insights. Smarter decisions.<br/>Billionaire-grade experience.
           </motion.p>
 
-          {/* Feature Grid */}
           <motion.div variants={item} className="grid grid-cols-2 gap-4 max-w-md">
             {heroFeatures.map((feature, i) => (
               <motion.div
@@ -321,7 +305,6 @@ export default function CreateAccountDesktop() {
           </motion.div>
         </motion.div>
 
-        {/* Bottom Glass Card */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
           className="relative z-10 mt-auto max-w-md"

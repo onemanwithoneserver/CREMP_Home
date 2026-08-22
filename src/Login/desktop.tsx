@@ -36,19 +36,17 @@ export default function LoginDesktop() {
 
   return (
     <div className="min-h-screen flex font-sans relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      
-      {/* Left side: Hero Image & Text */}
+
       <div className="hidden lg:flex w-[55%] xl:w-[60%] relative flex-col justify-between p-12 xl:p-16 overflow-hidden">
-        {/* Background Image */}
+        
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
-        {/* Gradient Overlays for readability */}
+        
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128]/90 via-[#0a1128]/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-transparent to-transparent" />
 
-        {/* Language Selector on hero */}
         <div className="relative z-10 flex justify-end">
           <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[8px] text-sm font-medium text-white hover:bg-white/20 transition-all shadow-sm">
             <Globe size={16} />
@@ -57,7 +55,6 @@ export default function LoginDesktop() {
           </button>
         </div>
 
-        {/* Content */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -77,7 +74,6 @@ export default function LoginDesktop() {
             Real-time insights. Smarter decisions.<br/>Billionaire-grade experience.
           </motion.p>
 
-          {/* Feature Badges */}
           <motion.div variants={item} className="flex flex-wrap gap-6">
             {[
               { icon: BarChart3, label: 'Real-time\nAnalytics' },
@@ -98,7 +94,6 @@ export default function LoginDesktop() {
           </motion.div>
         </motion.div>
 
-        {/* Bottom Glass Card */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
           className="relative z-10 mt-auto max-w-md"
@@ -115,10 +110,8 @@ export default function LoginDesktop() {
         </motion.div>
       </div>
 
-      {/* Right side: Login Form */}
       <div className="w-full lg:w-[45%] xl:w-[40%] flex flex-col relative z-20 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] dark:shadow-none dark:border-l border-white/5 bg-white dark:bg-[#0b1b42]">
-        
-        {/* Language Selector */}
+
         <div className="absolute top-6 right-6 z-30 lg:hidden">
           <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm">
             <Globe size={16} />
@@ -127,19 +120,17 @@ export default function LoginDesktop() {
           </button>
         </div>
 
-        {/* Form Container */}
         <div className="flex-1 flex flex-col justify-center px-8 sm:px-16 lg:px-12 xl:px-20 pt-20 pb-10 overflow-y-auto">
           <motion.div 
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, type: 'spring' }}
             className="w-full max-w-[420px] mx-auto"
           >
-            {/* Header */}
+            
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-center mb-7">
               <h1 className="text-[28px] font-extrabold text-[#0a1128] dark:text-white mb-2">Welcome Back!</h1>
               <p className="text-[14px] font-medium text-gray-500 dark:text-gray-400">Sign in to your account to continue</p>
             </motion.div>
 
-            {/* Segmented Control */}
             <div className="flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-7 border border-gray-200/50 dark:border-transparent">
               <button
                 onClick={() => setLoginMethod('email')}
@@ -223,7 +214,7 @@ export default function LoginDesktop() {
                     <div className="space-y-2">
                       <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">Phone Number</label>
                       <div className="relative group flex">
-                        {/* Country Code Dropdown */}
+                        
                         <div className="relative">
                           <button
                             type="button"
@@ -337,7 +328,6 @@ export default function LoginDesktop() {
           </motion.div>
         </div>
 
-        {/* Footer Badges */}
         <div className="mt-auto bg-gray-50 dark:bg-[#121c33]/50 border-t border-gray-100 dark:border-white/5 p-4 sm:p-6 flex justify-center gap-6 sm:gap-12">
           <div className="flex flex-col items-center text-center gap-2 group cursor-default">
             <Shield className="text-[#64748b] dark:text-gray-400 group-hover:text-[#d4af37] transition-colors" size={20} strokeWidth={1.5} />

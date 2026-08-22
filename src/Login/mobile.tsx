@@ -34,14 +34,12 @@ export default function LoginMobile() {
           className="w-full max-w-[460px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl p-6 rounded-[16px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-white/60 dark:border-white/10 relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
-          
-          {/* Header */}
+
           <div className="mb-5 text-center">
             <h1 className="text-xl font-extrabold text-[#0a1128] dark:text-white mb-1.5">Welcome Back!</h1>
             <p className="text-[12px] font-medium text-gray-500 dark:text-gray-400">Sign in to your account to continue</p>
           </div>
 
-          {/* Segmented Control */}
           <div className="flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-5 border border-gray-200/50 dark:border-transparent">
             <button
               onClick={() => setLoginMethod('email')}
@@ -192,7 +190,6 @@ export default function LoginMobile() {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="relative mt-6 mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
@@ -202,7 +199,6 @@ export default function LoginMobile() {
             </div>
           </div>
 
-          {/* Social Login */}
           <div className="grid grid-cols-3 gap-2">
             <button className="flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group shadow-sm text-[12px] font-bold text-[#0a1128] dark:text-white">
               <svg className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
@@ -230,7 +226,6 @@ export default function LoginMobile() {
             </button>
           </div>
 
-          {/* Create Account link */}
           <p className="text-center mt-6 text-[12px] font-medium text-gray-500 dark:text-gray-400">
             Don't have an account?{' '}
             <a href="#" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', window.location.pathname.replace('login', 'create-account')); window.location.reload(); }} className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4">

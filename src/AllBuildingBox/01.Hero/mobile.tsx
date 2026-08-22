@@ -28,7 +28,6 @@ export default function Mobile() {
               {heroData.badges[0] || "GRADE A"}
             </span>
 
-
             <div className="relative flex items-center">
               <select 
                 defaultValue="Entire Building"
@@ -45,14 +44,12 @@ export default function Mobile() {
           </motion.div>
         </div>
 
-
         <motion.h1
           variants={fadeInUp}
           className="text-xl font-semibold tracking-tight text-white leading-tight"
         >
           {heroData.title}
         </motion.h1>
-
 
         <div className="flex justify-between items-center w-full gap-2 pt-0.5">
           <motion.div

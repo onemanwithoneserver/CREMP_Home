@@ -183,7 +183,6 @@ export default function Mobile() {
                 </div>
               </div>
 
-
               <div className="flex flex-col gap-3">
                 {currentData.details.map((detail, idx) => (
                   <motion.div

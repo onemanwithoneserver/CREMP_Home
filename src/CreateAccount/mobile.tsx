@@ -13,8 +13,7 @@ export default function CreateAccountMobile() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] flex flex-col font-sans relative overflow-hidden transition-colors duration-300">
       <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-white/40 to-transparent dark:from-[#121c33]/30 pointer-events-none" />
-      
-      {/* Language Selector */}
+
       <div className="absolute top-4 right-4 z-20">
         <button className="flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[8px] text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm">
           <Globe size={14} />
@@ -30,17 +29,16 @@ export default function CreateAccountMobile() {
           transition={{ duration: 0.5, type: 'spring', stiffness: 200, damping: 20 }}
           className="w-full max-w-[460px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl p-6 rounded-[16px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-white/60 dark:border-white/10 relative overflow-hidden"
         >
-          {/* Gold accent bar */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
           
-          {/* Header */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
+
           <div className="mb-5 text-center">
             <h1 className="text-xl font-extrabold text-[#0a1128] dark:text-white mb-1.5">Create Account</h1>
             <p className="text-[12px] font-medium text-gray-500 dark:text-gray-400">Join thousands of professionals making smarter real estate decisions.</p>
           </div>
 
           <form className="space-y-3.5" onSubmit={(e) => e.preventDefault()}>
-            {/* Full Name + Email stacked on mobile */}
+            
             <div className="grid grid-cols-2 gap-2.5">
               <div className="space-y-1.5">
                 <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Full Name</label>
@@ -70,7 +68,6 @@ export default function CreateAccountMobile() {
               </div>
             </div>
 
-            {/* Phone Number */}
             <div className="space-y-1.5">
               <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Phone Number</label>
               <div className="relative group flex">
@@ -119,7 +116,6 @@ export default function CreateAccountMobile() {
               </div>
             </div>
 
-            {/* Password */}
             <div className="space-y-1.5">
               <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Password</label>
               <div className="relative group">
@@ -141,7 +137,6 @@ export default function CreateAccountMobile() {
               </div>
             </div>
 
-            {/* Confirm Password */}
             <div className="space-y-1.5">
               <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">Confirm Password</label>
               <div className="relative group">
@@ -163,7 +158,6 @@ export default function CreateAccountMobile() {
               </div>
             </div>
 
-            {/* Terms */}
             <div className="pt-0.5">
               <label className="flex items-start gap-2 cursor-pointer group">
                 <div className="relative w-3.5 h-3.5 mt-0.5 rounded-[3px] border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#121c33] group-hover:border-[#d4af37] transition-colors flex items-center justify-center shrink-0">
@@ -184,7 +178,6 @@ export default function CreateAccountMobile() {
               </label>
             </div>
 
-            {/* Submit Button */}
             <button className="w-full py-3 mt-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-bold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_10px_25px_rgba(212,175,55,0.4)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
               <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               <span className="relative z-10">Create Account</span>
@@ -192,7 +185,6 @@ export default function CreateAccountMobile() {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="relative mt-5 mb-5">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
@@ -202,7 +194,6 @@ export default function CreateAccountMobile() {
             </div>
           </div>
 
-          {/* Social Login */}
           <div className="grid grid-cols-3 gap-2">
             {socialProviders.map((provider) => (
               <button
@@ -219,7 +210,6 @@ export default function CreateAccountMobile() {
             ))}
           </div>
 
-          {/* Already have account */}
           <p className="text-center mt-5 text-[12px] font-medium text-gray-500 dark:text-gray-400">
             Already have an account?{' '}
             <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.history.pushState({}, '', window.location.pathname.replace('create-account', 'login')); window.location.reload(); }} className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4">

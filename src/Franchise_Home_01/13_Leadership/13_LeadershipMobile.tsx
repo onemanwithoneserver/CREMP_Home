@@ -281,7 +281,6 @@ export default function LeadershipMobile() {
                   </div>
                 </div>
 
-
                 <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-5 bg-[#0b1b42] border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
                     <Quote size={80} className="text-[#d4af37]" />

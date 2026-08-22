@@ -54,7 +54,6 @@ const getStatIcon = (label: string) => {
   );
 };
 
-
 function FlipLeaderCard({
   member,
   isFlipped,

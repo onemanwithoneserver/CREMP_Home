@@ -25,7 +25,6 @@ export default function Desktop() {
 
         <div className="px-[var(--panel-px,1rem)] mt-4">
 
-
           <div className="grid grid-cols-2 gap-2.5">
             {spaceOverviewData.specs.map((item, idx) => {
               const Icon = item.icon;
