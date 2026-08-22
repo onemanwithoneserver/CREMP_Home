@@ -23,6 +23,7 @@ import AllBuildingBox from "./AllBuildingBox";
 import LandBox from "./LandBox";
 import SearchResults from "./Search results";
 import Login from "./Login";
+import CreateAccount from "./CreateAccount";
 
 function App() {
   const location = useLocation();
@@ -116,6 +117,10 @@ function App() {
               <Route
                 path="/:viewMode/login"
                 element={<Login isMobile={isMobile} />}
+              />
+              <Route
+                path="/:viewMode/create-account"
+                element={<CreateAccount isMobile={isMobile} />}
               />
               <Route
                 path="*"
