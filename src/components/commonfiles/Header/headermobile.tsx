@@ -43,8 +43,8 @@ export default function HeaderMobile({
       initial={{ opacity: 0, y: "-100%" }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: "-100%" }}
-      transition={{ type: "spring", damping: 32, stiffness: 250 }}
-      className="fixed inset-0 w-full h-[100dvh] bg-white dark:bg-[#0a1128] z-[100] xl:hidden flex flex-col overflow-hidden shadow-2xl"
+      transition={{ type: "spring" as const, damping: 32, stiffness: 250 }}
+      className="fixed inset-0 w-full h-[100dvh] bg-white dark:bg-[#0a1128] z-[100] flex flex-col overflow-hidden shadow-2xl"
     >
       <div className="flex items-center justify-between p-5 sm:p-8 shrink-0 relative z-10">
         <a href="#" className="flex items-center">

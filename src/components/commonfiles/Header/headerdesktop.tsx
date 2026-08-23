@@ -302,7 +302,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
             </div>
           )}
 
-          <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-[calc(100%-32px)] max-w-[600px] backdrop-blur-2xl bg-white/50 dark:bg-[#0a1128]/60 border border-white/70 dark:border-white/10 rounded shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.7)] p-3 transition-all duration-300`}>
+          <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-full backdrop-blur-2xl bg-white/50 dark:bg-[#0a1128]/60 border-b border-white/70 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-3 transition-all duration-300`}>
             
             <div className="flex items-center justify-between w-full relative z-40">
               <div className="flex items-center gap-2">
