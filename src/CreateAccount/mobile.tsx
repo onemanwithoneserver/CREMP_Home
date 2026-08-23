@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, CheckCircle2, Loader2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import mobileBg from "../assets/mobileBg.jpg";
 import { socialProviders, countryCodes } from "./data";
@@ -100,10 +100,9 @@ export default function CreateAccountMobile() {
           }}
           className="w-full max-w-[460px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl p-2 rounded-[4px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-white/60 dark:border-white/10 relative overflow-hidden"
         >
-          <motion.div 
+          <div 
             className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
-            animate={{ backgroundPosition: ["0% center", "200% center"] }}
-            transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+            style={{ animation: "shimmer 3s linear infinite" }}
           />
           <AnimatePresence mode="wait">
             {isSuccess ? (
@@ -147,22 +146,20 @@ export default function CreateAccountMobile() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="mb-5 text-center"
+                  className="mb-4 text-center"
                 >
                   <h1 className="text-[24px] font-semibold text-[#0a1128] dark:text-white mb-1">
                     Create Account
                   </h1>
                 </motion.div>
 
-                {/* Mobile form width is also ~85% inside the card so it fits nicely and centers */}
-                <form className="w-[85%] mx-auto space-y-3.5" onSubmit={handleSubmit} noValidate>
+                <form className="w-[85%] mx-auto space-y-2.5" onSubmit={handleSubmit} noValidate>
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
-                    className="space-y-3.5"
+                    className="space-y-2.5"
                   >
-                    {/* Name - vertically stacked */}
                     <div className="space-y-1.5">
                       <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                         Full Name
@@ -176,7 +173,7 @@ export default function CreateAccountMobile() {
                           value={formData.name}
                           onChange={(e) => handleInputChange("name", e.target.value)}
                           placeholder="Full name"
-                          className={`w-full pl-9 pr-3 py-2.5 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                          className={`w-full pl-9 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                             errors.name 
                               ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                               : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -192,7 +189,6 @@ export default function CreateAccountMobile() {
                       </AnimatePresence>
                     </div>
 
-                    {/* Email - vertically stacked */}
                     <div className="space-y-1.5">
                       <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                         Email Address
@@ -206,7 +202,7 @@ export default function CreateAccountMobile() {
                           value={formData.email}
                           onChange={(e) => handleInputChange("email", e.target.value)}
                           placeholder="Email address"
-                          className={`w-full pl-9 pr-3 py-2.5 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                          className={`w-full pl-9 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                             errors.email 
                               ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                               : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -237,7 +233,7 @@ export default function CreateAccountMobile() {
                         <button
                           type="button"
                           onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-                          className={`flex items-center gap-1.5 px-3 py-2.5 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
+                          className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
                         >
                           <span>{selectedCountry.code}</span>
                           <ChevronDown size={10} className="text-gray-400" />
@@ -282,7 +278,7 @@ export default function CreateAccountMobile() {
                         onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
                         maxLength={10}
                         placeholder="10-digit mobile number"
-                        className={`flex-1 pl-3.5 pr-3 py-2.5 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                        className={`flex-1 pl-3.5 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                           errors.phone 
                             ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                             : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -302,7 +298,7 @@ export default function CreateAccountMobile() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25 }}
-                    className="space-y-1.5"
+                    className="space-y-1"
                   >
                     <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                       Password
@@ -316,7 +312,7 @@ export default function CreateAccountMobile() {
                         value={formData.password}
                         onChange={(e) => handleInputChange("password", e.target.value)}
                         placeholder="Create a strong password"
-                        className={`w-full pl-9 pr-10 py-2.5 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                        className={`w-full pl-9 pr-10 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                           errors.password 
                             ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                             : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -405,7 +401,9 @@ export default function CreateAccountMobile() {
                           }}
                           className="opacity-0 absolute inset-0 cursor-pointer peer"
                         />
-                        <div className="opacity-0 peer-checked:opacity-100 w-2 h-2 bg-[#d4af37] rounded-[1px] transition-opacity" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 peer-checked:opacity-100 bg-[#d4af37] rounded-[3px] transition-all">
+                          <Check size={12} strokeWidth={4} className="text-white" />
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -434,7 +432,7 @@ export default function CreateAccountMobile() {
                     <button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-[85%] py-3 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-semibold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_10px_25px_rgba(212,175,55,0.4)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"
+                      className="w-[85%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-semibold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_10px_25px_rgba(212,175,55,0.4)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"
                     >
                       <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                       {isSubmitting ? (
@@ -457,7 +455,7 @@ export default function CreateAccountMobile() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.45 }}
-                  className="relative mt-5 mb-5 w-[85%] mx-auto"
+                  className="relative mt-4 mb-4 w-[85%] mx-auto"
                 >
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
@@ -498,7 +496,7 @@ export default function CreateAccountMobile() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.55 }}
-                  className="text-center mt-5 mb-2 text-[12px] font-medium text-gray-500 dark:text-gray-400"
+                  className="text-center mt-3 mb-1 text-[12px] font-medium text-gray-500 dark:text-gray-400"
                 >
                   Already have an account?{" "}
                   <a
