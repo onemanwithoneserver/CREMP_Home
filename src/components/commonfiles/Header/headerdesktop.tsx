@@ -19,9 +19,10 @@ import { navLinks, cities } from "./data";
 
 interface SiteHeaderProps {
   currentPage?: string;
+  isMobile?: boolean;
 }
 
-export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
+export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderProps) {
   const [activeNav, setActiveNav] = useState("Home");
   const [selectedCity, setSelectedCity] = useState("All cities");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
@@ -59,6 +60,7 @@ export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
         }`}
       >
         {/* Desktop Header (xl and up) */}
+        {!isMobile && (
         <div className="hidden xl:flex items-center justify-between gap-x-4 px-10 py-4 w-full mx-auto">
           <div className="flex min-w-0 shrink-0 items-center gap-8">
             <a
@@ -235,48 +237,51 @@ export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
             </div>
           </div>
         </div>
+        )}
 
         {/* Mobile Header (below xl) */}
-        <div className="flex xl:hidden flex-col w-full">
+        <div className={`${isMobile ? "flex" : "flex xl:hidden"} flex-col w-full bg-white dark:bg-[#0a1128] border-b border-gray-200 dark:border-white/10 shadow-sm`}>
           {/* Mobile Top Row */}
-          <div className="flex items-center justify-between px-4 py-3 w-full">
-            <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center justify-between px-3 py-2.5 w-full">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
                 aria-label="Menu"
                 onClick={() => setMobileMenuOpen(true)}
-                className="text-gray-600 dark:text-gray-300 hover:text-[#0a1128] dark:hover:text-white transition-colors"
+                className="text-slate-500 hover:text-[#0a1128] dark:text-gray-400 dark:hover:text-white transition-colors p-1"
               >
-                <Menu className="h-6 w-6" strokeWidth={2.5} />
+                <Menu className="h-6 w-6" strokeWidth={2} />
               </button>
               <a
-                className="flex h-9 items-center group"
+                className="flex h-8 items-center group ml-1"
                 aria-label="CREMP home"
                 href="#"
               >
                 <img
                   src={logoLight}
                   alt="CREMP"
-                  className="block h-10 w-auto object-contain dark:hidden"
+                  className="block h-8 w-auto object-contain dark:hidden"
                 />
                 <img
                   src={logo}
                   alt="CREMP"
-                  className="hidden h-10 w-auto object-contain dark:block"
+                  className="hidden h-8 w-auto object-contain dark:block"
                 />
               </a>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <div className="relative z-50">
                 <button
                   type="button"
                   onClick={() => setShowCityDropdown(!showCityDropdown)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-200 dark:border-white/10 bg-white/50 dark:bg-white/5 text-[#0a1128] dark:text-white shadow-[0_1px_4px_rgba(0,0,0,0.02)] transition-colors hover:bg-gray-50 dark:hover:bg-white/10"
+                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-[6px] border border-gray-200/80 dark:border-white/10 bg-white dark:bg-[#121c33] text-[#334155] dark:text-gray-200 transition-colors hover:bg-gray-50 dark:hover:bg-white/5"
                 >
-                  <MapPin className="h-3.5 w-3.5 text-[#d4af37]" />
-                  <span className="text-[12px] font-bold hidden sm:inline-block max-w-[80px] truncate">{selectedCity}</span>
-                  <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
+                  <div className="w-5 h-5 rounded-full bg-slate-50 dark:bg-white/5 flex items-center justify-center shrink-0">
+                    <MapPin className="h-3 w-3 text-slate-400" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[13px] font-semibold tracking-wide hidden sm:inline-block max-w-[90px] truncate">{selectedCity}</span>
+                  <ChevronDown className="h-3.5 w-3.5 text-slate-400" strokeWidth={2} />
                 </button>
 
                 <AnimatePresence>
@@ -314,15 +319,15 @@ export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
                 <button
                   type="button"
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                  className="flex items-center gap-1.5 focus:outline-none"
+                  className="flex items-center gap-1.5 p-1 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors focus:outline-none"
                 >
                   <div className="relative">
-                    <div className="w-9 h-9 rounded-full bg-gray-100 dark:bg-[#121c33] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 overflow-hidden shadow-sm">
-                      <User size={18} />
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-100 dark:bg-[#121c33] border border-gray-200/80 dark:border-white/10 flex items-center justify-center text-gray-500 overflow-hidden shadow-sm">
+                      <User size={16} />
                     </div>
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-[1.5px] border-white dark:border-[#0a1128]" />
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white dark:border-[#0a1128]" />
                   </div>
-                  <ChevronDown className="h-3 w-3 text-gray-400" />
+                  <ChevronDown className="h-3.5 w-3.5 text-slate-400" strokeWidth={2} />
                 </button>
 
                 <AnimatePresence>
@@ -347,28 +352,6 @@ export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
                   )}
                 </AnimatePresence>
               </div>
-            </div>
-          </div>
-
-          {/* Mobile Search Row */}
-          <div className="px-4 pb-4 w-full">
-            <div className="relative flex w-full min-w-0 items-center bg-gray-50/50 dark:bg-[#121c33]/50 border border-gray-200 dark:border-white/10 h-11 rounded-[10px] px-2 shadow-inner focus-within:border-[#d4af37]/60 focus-within:bg-white dark:focus-within:bg-[#121c33] transition-colors">
-              <button className="flex shrink-0 items-center justify-center h-8 w-8 text-gray-400">
-                <Search className="h-4 w-4" />
-              </button>
-              <input
-                type="text"
-                placeholder="Search properties..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-full w-full min-w-0 bg-transparent text-[13px] text-[#0a1128] dark:text-white outline-none placeholder:text-gray-400 font-medium px-2"
-              />
-              <button
-                type="button"
-                className="inline-flex shrink-0 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-sm h-8 w-8"
-              >
-                <Search className="h-4 w-4" />
-              </button>
             </div>
           </div>
         </div>

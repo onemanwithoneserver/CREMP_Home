@@ -61,7 +61,7 @@ export function SectionHeader({
           className={
             isMobile
               ? "text-2xl font-semibold text-[#0a1128] dark:text-white tracking-tight mb-3 leading-tight"
-              : "text-4xl lg:text-[42px] font-semibold text-[#0a1128] dark:text-white tracking-tight mb-3 leading-tight"
+              : "text-4xl  font-semibold text-[#0a1128] dark:text-white tracking-tight mb-3 leading-tight"
           }
         >
           {title}
