@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Search, SlidersHorizontal, MapPin, ChevronDown, Menu, User, Settings, LogOut, LocateFixed, History } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import HeaderMobile from "./headermobile";
@@ -43,14 +43,14 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
     };
   }, [mobileMenuOpen]);
 
-  const liquidDropdownVariants = {
+  const liquidDropdownVariants: Variants = {
     hidden: { opacity: 0, y: 12, scale: 0.98, filter: "blur(8px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       scale: 1, 
       filter: "blur(0px)",
-      transition: { type: "spring", stiffness: 400, damping: 28, mass: 0.8 } 
+      transition: { type: "spring" as const, stiffness: 400, damping: 28, mass: 0.8 } 
     },
     exit: { 
       opacity: 0, 
@@ -305,11 +305,11 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
           <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-[calc(100%-32px)] max-w-[600px] backdrop-blur-2xl bg-white/50 dark:bg-[#0a1128]/60 border border-white/70 dark:border-white/10 rounded shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.7)] p-3 transition-all duration-300`}>
             
             <div className="flex items-center justify-between w-full relative z-40">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(true)}
-                  className="w-8 h-8 rounded bg-white/60 dark:bg-white/5 border border-white/50 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-gray-300 shadow-sm transition-colors hover:bg-white/80 dark:hover:bg-white/10"
+                  className="w-8 h-8 rounded bg-white/60 dark:bg-white/5 border border-white/50 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-gray-300 shadow-sm transition-colors hover:bg-white/80 dark:hover:bg-white/10 shrink-0"
                 >
                   <Menu size={16} strokeWidth={2.5} />
                 </button>
@@ -317,16 +317,16 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                   <img src={logoLight} alt="CREMP" className="h-7 w-auto dark:hidden drop-shadow-sm" />
                   <img src={logo} alt="CREMP" className="hidden h-7 w-auto dark:block drop-shadow-md" />
                 </a>
-              </div>
 
-              <div className="flex items-center gap-2">
+                <div className="hidden sm:block w-[1px] h-4 bg-gray-200/80 dark:bg-gray-700/80 mx-1"></div>
+
                 <div className="relative">
                   <button 
                     onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-white/60 dark:bg-white/5 rounded text-gray-700 dark:text-gray-200 border border-white/50 dark:border-white/10 shadow-sm transition-all"
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white/60 dark:bg-white/5 rounded text-gray-700 dark:text-gray-200 border border-white/50 dark:border-white/10 shadow-sm transition-all"
                   >
                     <MapPin size={13} className="text-[#d4af37]" strokeWidth={3} />
-                    <span className="font-bold text-[12px] truncate max-w-[70px]">
+                    <span className="font-bold text-[12px] truncate max-w-[65px] sm:max-w-[100px]">
                       {currentLocation}
                     </span>
                     <ChevronDown size={13} className={`text-gray-400 transition-transform duration-300 ${showLocationDropdown ? "rotate-180" : ""}`} strokeWidth={3} />
@@ -341,7 +341,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full right-0 mt-3 w-[240px] p-2 backdrop-blur-2xl bg-white/95 dark:bg-[#0b1b42]/95 border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.15)] z-50"
+                          className="absolute top-full left-0 sm:-left-4 mt-3 w-[240px] p-2 backdrop-blur-2xl bg-white/95 dark:bg-[#0b1b42]/95 border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.15)] z-50"
                         >
                           <div className="mb-1">
                             <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-blue-50/80 dark:hover:bg-blue-500/10 text-left transition-colors">
@@ -378,7 +378,9 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                     )}
                   </AnimatePresence>
                 </div>
+              </div>
 
+              <div className="flex items-center gap-2">
                 <div className="relative">
                   <button
                     onClick={() => setShowProfileDropdown(!showProfileDropdown)}
@@ -426,7 +428,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
         </div>
       </header>
 
-      <div className={`transition-all duration-500 ${isMobile ? "h-[140px]" : "h-[100px]"}`} />
+      <div className={`transition-all duration-500 ${isMobile ? "h-[80px]" : " "}`} />
 
       <AnimatePresence>
         {mobileMenuOpen && (
