@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, ChevronDown } from "lucide-react";
+import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
+import { CustomSelect } from "../components/ui/CustomSelect";
+
+const sortOptions = [
+  { value: "latest", label: "Latest" },
+  { value: "popular", label: "Popular" },
+  { value: "oldest", label: "Oldest" },
+];
 
 const ITEMS_PER_PAGE = 10;
 
@@ -36,6 +43,7 @@ export default function VideoSearchDesktop() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [sortBy, setSortBy] = useState("latest");
 
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
@@ -46,8 +54,24 @@ export default function VideoSearchDesktop() {
     return matchesSearch && matchesCategory;
   });
 
-  const displayedVideos = filteredVideos.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredVideos.length;
+  const sortedVideos = [...filteredVideos].sort((a, b) => {
+    if (sortBy === "popular") {
+      const parseViews = (views: string) => {
+        const val = parseFloat(views);
+        if (views.toLowerCase().endsWith('k')) return val * 1000;
+        if (views.toLowerCase().endsWith('m')) return val * 1000000;
+        return val;
+      };
+      return parseViews(b.views) - parseViews(a.views);
+    }
+    if (sortBy === "oldest") {
+      return a.id.localeCompare(b.id);
+    }
+    return b.id.localeCompare(a.id);
+  });
+
+  const displayedVideos = sortedVideos.slice(0, visibleCount);
+  const hasMore = visibleCount < sortedVideos.length;
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
@@ -120,16 +144,14 @@ export default function VideoSearchDesktop() {
               </button>
             ))}
 
-            <div className="relative ml-auto flex items-center gap-2 bg-white dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 rounded-[4px] px-3 py-1.5 shadow-sm">
-              <span className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Sort by:</span>
-              <select className="bg-transparent text-[10px] font-bold text-[#0a1128] dark:text-white focus:outline-none cursor-pointer uppercase tracking-wider appearance-none pr-4 relative z-10">
-                <option value="latest">Latest</option>
-                <option value="popular">Popular</option>
-                <option value="oldest">Oldest</option>
-              </select>
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 z-0">
-                <ChevronDown size={12} strokeWidth={3} />
-              </div>
+            <div className="ml-auto flex items-center z-20">
+              <CustomSelect
+                options={sortOptions}
+                value={sortBy}
+                onChange={setSortBy}
+                label="Sort by:"
+                className="min-w-[140px]"
+              />
             </div>
           </div>
         </motion.div>

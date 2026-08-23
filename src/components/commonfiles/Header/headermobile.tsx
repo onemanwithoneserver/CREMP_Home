@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Plus, Minus, X, Search, SlidersHorizontal } from "lucide-react";
-
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import { navLinks } from "./data";
