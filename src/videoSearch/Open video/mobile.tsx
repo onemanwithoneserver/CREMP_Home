@@ -27,6 +27,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isClearScreen, setIsClearScreen] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
 
@@ -83,7 +84,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
 
   const content = (
     <div
-      className="fixed inset-0 z-[100000] bg-black flex flex-col overflow-hidden"
+      className="fixed inset-0 z-[100000] bg-gray-50 flex flex-col overflow-hidden transition-colors duration-500"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -103,14 +104,14 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none">
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white pointer-events-auto active:scale-90 transition-transform"
+              className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37]"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
             <button
               onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
-              className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white pointer-events-auto active:scale-90 transition-transform"
+              className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37]"
             >
               {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             </button>
@@ -119,9 +120,9 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
 
         {/* Play Overlay */}
         {!isPlaying && !isClearScreen && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110]">
-            <div className="w-20 h-20 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center">
-              <Play className="w-10 h-10 ml-1.5 text-white" fill="currentColor" />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110] bg-white/20 backdrop-blur-[2px]">
+            <div className="w-20 h-20 bg-white/70 backdrop-blur-2xl rounded-full border border-white shadow-[0_8px_32px_rgba(0,0,0,0.1)] flex items-center justify-center animate-pulse">
+              <Play className="w-10 h-10 ml-1.5 text-[#d4af37]" fill="currentColor" />
             </div>
           </div>
         )}
@@ -130,19 +131,19 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
         <div className="absolute right-3 bottom-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[120] flex flex-col items-center gap-6 pointer-events-none">
           {!isClearScreen && (
             <>
-              <button className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-transform">
-                <div className="w-11 h-11 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white">
+              <button className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all">
+                <div className="w-11 h-11 rounded-[8px] bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:border-[#d4af37]/50 active:bg-white active:text-[#d4af37] active:-translate-y-1 transition-all">
                   <Share2 className="w-5 h-5" />
                 </div>
-                <span className="text-white text-[10px] font-bold drop-shadow-lg">Share</span>
+                <span className="text-[#0a1128] text-[10px] font-bold drop-shadow-sm tracking-widest uppercase">Share</span>
               </button>
-              <button className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-transform">
-                <div className="w-11 h-11 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white">
-                  <Bookmark className="w-5 h-5" />
+              <button onClick={() => setIsSaved(!isSaved)} className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all">
+                <div className={`w-11 h-11 rounded-[8px] backdrop-blur-2xl border flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:-translate-y-1 transition-all ${isSaved ? 'bg-[#0a1128]/95 border-[#d4af37]/50 text-[#d4af37]' : 'bg-white/70 border-white text-[#0a1128] active:border-[#d4af37]/50 active:bg-white active:text-[#d4af37]'}`}>
+                  <Bookmark className="w-5 h-5" fill={isSaved ? "currentColor" : "none"} />
                 </div>
-                <span className="text-white text-[10px] font-bold drop-shadow-lg">Save</span>
+                <span className={`text-[10px] font-bold drop-shadow-sm tracking-widest uppercase transition-colors ${isSaved ? 'text-[#d4af37]' : 'text-[#0a1128]'}`}>{isSaved ? 'Saved' : 'Save'}</span>
               </button>
-              <button className="w-11 h-11 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white pointer-events-auto active:scale-90 transition-transform">
+              <button className="w-11 h-11 rounded-[8px] bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-gray-700 pointer-events-auto active:scale-90 active:bg-white transition-all mt-1">
                 <MoreVertical className="w-5 h-5" />
               </button>
             </>
@@ -150,37 +151,37 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           {/* Clear Screen Button (Square) */}
           <button
             onClick={() => setIsClearScreen(!isClearScreen)}
-            className="w-11 h-11 rounded-[8px] bg-black/40 backdrop-blur-md flex items-center justify-center text-white pointer-events-auto active:scale-90 transition-transform overflow-hidden border border-white/20 shadow-lg"
+            className="w-11 h-11 rounded-[8px] bg-white/70 backdrop-blur-2xl flex items-center justify-center text-[#0a1128] pointer-events-auto active:scale-90 active:bg-white transition-all overflow-hidden border border-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] mt-1"
           >
-            {isClearScreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
+            {isClearScreen ? <Minimize2 className="w-5 h-5 text-[#d4af37]" /> : <Maximize2 className="w-5 h-5 text-[#d4af37]" />}
           </button>
         </div>
 
         {/* Bottom Left Info */}
         {!isClearScreen && (
-          <div className="absolute bottom-0 left-0 right-0 p-4 pr-[70px] pb-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[115] bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="relative w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-[#6366f1] via-[#a855f7] to-[#ec4899] shrink-0">
-                <div className="w-full h-full rounded-full border-[2px] border-black overflow-hidden bg-gray-800">
+          <div className="absolute bottom-0 left-0 right-0 p-4 pr-[70px] pb-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[115] bg-gradient-to-t from-white/95 via-white/80 to-transparent pointer-events-none">
+            <div className="flex items-center gap-3 mb-2 mt-4">
+              <div className="relative w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-[#bf953f] via-[#d4af37] to-[#b38728] shrink-0 shadow-[0_0_12px_rgba(212,175,55,0.4)]">
+                <div className="w-full h-full rounded-full border-[2px] border-white overflow-hidden bg-white">
                   <img src={video.profilePic} alt={video.username} className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-white text-[15px] font-extrabold drop-shadow-md">
+                  <span className="text-[#0a1128] text-[15px] font-extrabold tracking-wide drop-shadow-sm">
                     {video.username}
                   </span>
-                  <svg className="w-4 h-4 text-[#60a5fa] shrink-0 drop-shadow-md" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-4 h-4 text-[#d4af37] shrink-0 drop-shadow-[0_0_4px_rgba(212,175,55,0.5)]" viewBox="0 0 24 24" fill="currentColor">
                     <path d="m23 12-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69zm-12.91 4.72-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48z"/>
                   </svg>
                 </div>
-                <span className="text-white/60 text-[11px] font-semibold drop-shadow-md">
+                <span className="text-[#d4af37] text-[10px] font-bold uppercase tracking-wider mt-0.5">
                   {video.likes} views
                 </span>
               </div>
             </div>
 
-            <p className="text-white text-[13px] font-semibold leading-snug drop-shadow-md">
+            <p className="text-gray-700 text-[13px] font-medium leading-relaxed">
               {video.description}
             </p>
           </div>
@@ -188,9 +189,9 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
 
         {/* Progress Bar */}
         {!isClearScreen && (
-          <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white/20 z-[125]">
+          <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gray-200/60 z-[125]">
             <div
-              className="h-full bg-white rounded-r-full shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-[width] duration-200"
+              className="h-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] rounded-r-full shadow-[0_0_12px_rgba(212,175,55,0.6)] transition-[width] duration-200"
               style={{ width: `${progress}%` }}
             />
           </div>
