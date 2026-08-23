@@ -2,7 +2,7 @@ import { useState } from "react";
 import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, CheckCircle2, Loader2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import mobileBg from "../assets/mobileBg.jpg";
-import { socialProviders, countryCodes } from "./data";
+import { countryCodes } from "./data";
 export default function CreateAccountMobile() {
   const [formData, setFormData] = useState({
     name: "",
@@ -175,28 +175,69 @@ export default function CreateAccountMobile() {
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
-                        Email Address
+                        Phone Number
                       </label>
-                      <div className="relative group">
-                        <div className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors ${errors.email ? 'text-red-400' : 'text-gray-400 group-focus-within:text-[#d4af37]'}`}>
-                          <Mail size={14} strokeWidth={2.5} />
+                      <div className="relative group flex">
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                            className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
+                          >
+                            <span>{selectedCountry.code}</span>
+                            <ChevronDown size={10} className="text-gray-400" />
+                          </button>
+                          <AnimatePresence>
+                            {showCountryDropdown && (
+                              <motion.div
+                                initial={{ opacity: 0, y: -5, scale: 0.97 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -5, scale: 0.97 }}
+                                transition={{ duration: 0.15 }}
+                                className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] shadow-xl z-50 min-w-[160px] py-1 overflow-hidden"
+                              >
+                                {countryCodes.map((c) => (
+                                  <button
+                                    key={c.code}
+                                    type="button"
+                                    onClick={() => {
+                                      setSelectedCountry(c);
+                                      setShowCountryDropdown(false);
+                                    }}
+                                    className={`w-full flex items-center gap-2 px-3 py-1.5 text-[12px] font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${
+                                      selectedCountry.code === c.code
+                                        ? "text-[#d4af37] bg-[#d4af37]/5"
+                                        : "text-[#0a1128] dark:text-white"
+                                    }`}
+                                  >
+                                    <span className="font-semibold text-sm">{c.flag}</span>
+                                    <span>{c.country}</span>
+                                    <span className="text-gray-400 ml-auto">
+                                      {c.code}
+                                    </span>
+                                  </button>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
                         <input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
-                          placeholder="Email address"
-                          className={`w-full pl-9 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                            errors.email 
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
+                          maxLength={10}
+                          placeholder="10-digit mobile number"
+                          className={`flex-1 pl-3.5 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                            errors.phone 
                               ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                               : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                           }`}
                         />
                       </div>
                       <AnimatePresence>
-                        {errors.email && (
+                        {errors.phone && (
                           <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="text-[11px] text-red-500 font-medium ml-1">
-                            {errors.email}
+                            {errors.phone}
                           </motion.p>
                         )}
                       </AnimatePresence>
@@ -209,69 +250,28 @@ export default function CreateAccountMobile() {
                     className="space-y-1.5"
                   >
                     <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
-                      Phone Number
+                      Email Address
                     </label>
-                    <div className="relative group flex">
-                      <div className="relative">
-                        <button
-                          type="button"
-                          onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-                          className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
-                        >
-                          <span>{selectedCountry.code}</span>
-                          <ChevronDown size={10} className="text-gray-400" />
-                        </button>
-                        <AnimatePresence>
-                          {showCountryDropdown && (
-                            <motion.div
-                              initial={{ opacity: 0, y: -5, scale: 0.97 }}
-                              animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: -5, scale: 0.97 }}
-                              transition={{ duration: 0.15 }}
-                              className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] shadow-xl z-50 min-w-[160px] py-1 overflow-hidden"
-                            >
-                              {countryCodes.map((c) => (
-                                <button
-                                  key={c.code}
-                                  type="button"
-                                  onClick={() => {
-                                    setSelectedCountry(c);
-                                    setShowCountryDropdown(false);
-                                  }}
-                                  className={`w-full flex items-center gap-2 px-3 py-1.5 text-[12px] font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${
-                                    selectedCountry.code === c.code
-                                      ? "text-[#d4af37] bg-[#d4af37]/5"
-                                      : "text-[#0a1128] dark:text-white"
-                                  }`}
-                                >
-                                  <span className="font-semibold text-sm">{c.flag}</span>
-                                  <span>{c.country}</span>
-                                  <span className="text-gray-400 ml-auto">
-                                    {c.code}
-                                  </span>
-                                </button>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                    <div className="relative group">
+                      <div className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors ${errors.email ? 'text-red-400' : 'text-gray-400 group-focus-within:text-[#d4af37]'}`}>
+                        <Mail size={14} strokeWidth={2.5} />
                       </div>
                       <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
-                        maxLength={10}
-                        placeholder="10-digit mobile number"
-                        className={`flex-1 pl-3.5 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                          errors.phone 
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        placeholder="Email address"
+                        className={`w-full pl-9 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                          errors.email 
                             ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                             : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                         }`}
                       />
                     </div>
                     <AnimatePresence>
-                      {errors.phone && (
+                      {errors.email && (
                         <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="text-[11px] text-red-500 font-medium ml-1">
-                          {errors.phone}
+                          {errors.email}
                         </motion.p>
                       )}
                     </AnimatePresence>
@@ -429,45 +429,7 @@ export default function CreateAccountMobile() {
                     </button>
                   </motion.div>
                 </form>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.45 }}
-                  className="relative mt-4 mb-4 w-[85%] mx-auto"
-                >
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
-                  </div>
-                  <div className="relative flex justify-center text-[10px] font-semibold uppercase tracking-widest">
-                    <span className="bg-white/95 dark:bg-[#0b1b42]/95 px-3 text-gray-400">
-                      Or sign up with
-                    </span>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="grid grid-cols-3 gap-2 w-[85%] mx-auto"
-                >
-                  {socialProviders.map((provider) => (
-                    <button
-                      key={provider.name}
-                      className="flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white"
-                    >
-                      <span
-                        className="w-3.5 h-3.5 group-hover:scale-110 transition-transform [&>svg]:w-full [&>svg]:h-full"
-                        style={
-                          provider.name === "Apple"
-                            ? { fill: "currentColor" }
-                            : undefined
-                        }
-                        dangerouslySetInnerHTML={{ __html: provider.svg }}
-                      />
-                      {provider.name}
-                    </button>
-                  ))}
-                </motion.div>
+
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

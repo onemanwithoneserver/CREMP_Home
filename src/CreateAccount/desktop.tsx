@@ -2,11 +2,7 @@ import { useState } from "react";
 import { User, Mail,Lock,Eye,EyeOff,Globe,ChevronDown,Shield,ArrowRight,CheckCircle2,Loader2,Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "../assets/LoginandCreateBG.png";
-import {
-  heroFeatures,
-  socialProviders,
-  countryCodes,
-} from "./data";
+import {heroFeatures,countryCodes,} from "./data";
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -86,21 +82,21 @@ export default function CreateAccountDesktop() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-l from-[#0a1128]/85 via-[#0a1128]/40 to-[#0a1128]/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128]/85 via-[#0a1128]/40 to-[#0a1128]/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 via-transparent to-[#0a1128]/30" />
-      <div className="absolute top-6 right-8 z-30">
+      <div className="absolute top-6 left-8 z-30">
         <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[8px] text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-sm">
           <Globe size={16} />
           English
           <ChevronDown size={14} className="text-white/60" />
         </button>
       </div>
-      <div className="absolute inset-0 flex items-center justify-end z-10 pointer-events-none">
+      <div className="absolute inset-0 flex items-center z-10 pointer-events-none">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-xl pr-10 xl:pr-16 2xl:pr-20 pointer-events-auto"
+          className="max-w-xl pl-10 xl:pl-16 2xl:pl-20 pointer-events-auto"
         >
           <motion.div variants={item} className="inline-block mb-5">
             <span className="text-[12px] font-semibold text-[#d4af37] tracking-[0.2em] uppercase">
@@ -170,9 +166,9 @@ export default function CreateAccountDesktop() {
           </motion.div>
         </motion.div>
       </div>
-      <div className="absolute left-6 xl:left-10 2xl:left-16 top-1/2 -translate-y-1/2 z-20 w-full max-w-[460px]">
+      <div className="absolute right-6 xl:right-10 2xl:right-16 top-1/2 -translate-y-1/2 z-20 w-full max-w-[460px]">
         <motion.div
-          initial={{ opacity: 0, x: -40, scale: 0.97 }}
+          initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.6, type: "spring", stiffness: 180, damping: 22 }}
           className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
@@ -267,28 +263,69 @@ export default function CreateAccountDesktop() {
                       </div>
                       <div className="space-y-1.5">
                         <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
-                          Email Address
+                          Phone Number
                         </label>
-                        <div className="relative group">
-                          <div className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors ${errors.email ? 'text-red-400' : 'text-gray-400 group-focus-within:text-[#d4af37]'}`}>
-                            <Mail size={15} strokeWidth={2.5} />
+                        <div className="relative group flex">
+                          <div className="relative">
+                            <button
+                              type="button"
+                              onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                              className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
+                            >
+                              <span>{selectedCountry.code}</span>
+                              <ChevronDown size={12} className="text-gray-400" />
+                            </button>
+                            <AnimatePresence>
+                              {showCountryDropdown && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: -5, scale: 0.97 }}
+                                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                                  exit={{ opacity: 0, y: -5, scale: 0.97 }}
+                                  transition={{ duration: 0.15 }}
+                                  className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] shadow-xl z-50 min-w-[180px] py-1 overflow-hidden"
+                                >
+                                  {countryCodes.map((c) => (
+                                    <button
+                                      key={c.code}
+                                      type="button"
+                                      onClick={() => {
+                                        setSelectedCountry(c);
+                                        setShowCountryDropdown(false);
+                                      }}
+                                      className={`w-full flex items-center gap-2.5 px-3 py-2 text-[12px] font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${
+                                        selectedCountry.code === c.code
+                                          ? "text-[#d4af37] bg-[#d4af37]/5"
+                                          : "text-[#0a1128] dark:text-white"
+                                      }`}
+                                    >
+                                      <span className="font-semibold">{c.flag}</span>
+                                      <span>{c.country}</span>
+                                      <span className="text-gray-400 ml-auto">
+                                        {c.code}
+                                      </span>
+                                    </button>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
                           </div>
                           <input
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => handleInputChange("email", e.target.value)}
-                            placeholder="Enter your email address"
-                            className={`w-full pl-10 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                              errors.email 
+                            type="tel"
+                            value={formData.phone}
+                            onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
+                            maxLength={10}
+                            placeholder="10-digit mobile number"
+                            className={`flex-1 pl-3 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                              errors.phone 
                                 ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                 : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                             }`}
                           />
                         </div>
                         <AnimatePresence>
-                          {errors.email && (
+                          {errors.phone && (
                             <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="text-[11px] text-red-500 font-medium ml-1">
-                              {errors.email}
+                              {errors.phone}
                             </motion.p>
                           )}
                         </AnimatePresence>
@@ -301,69 +338,28 @@ export default function CreateAccountDesktop() {
                       className="space-y-1.5"
                     >
                       <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
-                        Phone Number
+                        Email Address
                       </label>
-                      <div className="relative group flex">
-                        <div className="relative">
-                          <button
-                            type="button"
-                            onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-                            className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
-                          >
-                            <span>{selectedCountry.code}</span>
-                            <ChevronDown size={12} className="text-gray-400" />
-                          </button>
-                          <AnimatePresence>
-                            {showCountryDropdown && (
-                              <motion.div
-                                initial={{ opacity: 0, y: -5, scale: 0.97 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: -5, scale: 0.97 }}
-                                transition={{ duration: 0.15 }}
-                                className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] shadow-xl z-50 min-w-[180px] py-1 overflow-hidden"
-                              >
-                                {countryCodes.map((c) => (
-                                  <button
-                                    key={c.code}
-                                    type="button"
-                                    onClick={() => {
-                                      setSelectedCountry(c);
-                                      setShowCountryDropdown(false);
-                                    }}
-                                    className={`w-full flex items-center gap-2.5 px-3 py-2 text-[12px] font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${
-                                      selectedCountry.code === c.code
-                                        ? "text-[#d4af37] bg-[#d4af37]/5"
-                                        : "text-[#0a1128] dark:text-white"
-                                    }`}
-                                  >
-                                    <span className="font-semibold">{c.flag}</span>
-                                    <span>{c.country}</span>
-                                    <span className="text-gray-400 ml-auto">
-                                      {c.code}
-                                    </span>
-                                  </button>
-                                ))}
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+                      <div className="relative group">
+                        <div className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors ${errors.email ? 'text-red-400' : 'text-gray-400 group-focus-within:text-[#d4af37]'}`}>
+                          <Mail size={15} strokeWidth={2.5} />
                         </div>
                         <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
-                          maxLength={10}
-                          placeholder="10-digit mobile number"
-                          className={`flex-1 pl-3 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                            errors.phone 
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          placeholder="Enter your email address"
+                          className={`w-full pl-10 pr-3 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                            errors.email 
                               ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                               : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                           }`}
                         />
                       </div>
                       <AnimatePresence>
-                        {errors.phone && (
+                        {errors.email && (
                           <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="text-[11px] text-red-500 font-medium ml-1">
-                            {errors.phone}
+                            {errors.email}
                           </motion.p>
                         )}
                       </AnimatePresence>
@@ -521,45 +517,7 @@ export default function CreateAccountDesktop() {
                       </button>
                     </motion.div>
                   </form>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.45 }}
-                    className="relative mt-4 mb-4 w-[85%] mx-auto"
-                  >
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
-                    </div>
-                    <div className="relative flex justify-center text-[10px] font-semibold uppercase tracking-widest">
-                      <span className="bg-white/95 dark:bg-[#0b1b42]/92 px-4 text-gray-400">
-                        Or sign up with
-                      </span>
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="grid grid-cols-3 gap-3 w-[85%] mx-auto"
-                  >
-                    {socialProviders.map((provider) => (
-                      <button
-                        key={provider.name}
-                        className="flex items-center justify-center gap-2 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5"
-                      >
-                        <span
-                          className="w-4 h-4 group-hover:scale-110 transition-transform [&>svg]:w-full [&>svg]:h-full"
-                          style={
-                            provider.name === "Apple"
-                              ? { fill: "currentColor" }
-                              : undefined
-                          }
-                          dangerouslySetInnerHTML={{ __html: provider.svg }}
-                        />
-                        {provider.name}
-                      </button>
-                    ))}
-                  </motion.div>
+
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
