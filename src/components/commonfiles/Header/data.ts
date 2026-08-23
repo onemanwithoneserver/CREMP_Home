@@ -14,9 +14,14 @@ export const navLinks: NavItem[] = [
     ]
   },
   { label: "Business Opportunity", href: "#" },
-  { label: "Videos", href: "#" },
-  { label: "Saved", href: "#" },
-  { label: "Hand Picked", href: "#" },
+  { label: "Video search", href: "#" },
+  { 
+    label: "Collections", 
+    subItems: [
+      { label: "Saved Properties", href: "#" },
+      { label: "Hand Picked", href: "#" }
+    ]
+  },
 ];
 
 export const cities = [

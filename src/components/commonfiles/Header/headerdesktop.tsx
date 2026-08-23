@@ -97,7 +97,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                     >
                       {link.label}
                       {link.subItems && <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180" />}
-                      {isActive && (
+                      {!link.subItems && isActive && (
                         <motion.span
                           layoutId="nav-underline"
                           className="absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]"
@@ -173,14 +173,15 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
           </div>
 
           <div className="flex shrink-0 items-center gap-4">
-            <div className="flex items-center bg-gray-50 dark:bg-[#121c33]/80 border border-gray-200 dark:border-white/10 p-1 rounded-xl shadow-sm hover:shadow-md hover:border-[#d4af37]/30 transition-all duration-300 relative z-50">
+            <div className="flex items-center bg-gray-50 dark:bg-[#121c33]/80  rounded-xl shadow-sm hover:shadow-md hover:border-[#d4af37]/30 transition-all duration-300 relative z-50">
               <div className="relative ml-1">
                 <button
                   type="button"
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                  className="w-9 h-9 rounded-full bg-gray-100 dark:bg-[#121c33] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#d4af37] hover:text-white dark:hover:bg-[#d4af37] dark:hover:text-white hover:border-[#d4af37] dark:hover:border-[#d4af37] shadow-sm transition-all"
+                  className="h-9 px-3 rounded-full bg-gray-100 dark:bg-[#121c33] border border-gray-200 dark:border-white/10 flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:bg-[#d4af37] hover:text-white dark:hover:bg-[#d4af37] dark:hover:text-white hover:border-[#d4af37] dark:hover:border-[#d4af37] shadow-sm transition-all"
                 >
                   <User size={16} />
+                  <span className="text-[13px] font-semibold max-w-[80px] truncate">Alex</span>
                 </button>
 
                 <AnimatePresence>
@@ -191,11 +192,6 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       className="absolute top-full right-0 mt-2 w-[220px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.3)] z-50 py-2 overflow-hidden"
                     >
-                      <div className="px-4 py-3 border-b border-gray-100 dark:border-white/10">
-                        <p className="text-[15px] font-bold text-[#0a1128] dark:text-white">Alex Mitchell</p>
-                        <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-0.5 font-medium">alex.mitchell@example.com</p>
-                      </div>
-                      
                       <div className="py-2 border-b border-gray-100 dark:border-white/10">
                         <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
                           <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 dark:border-white/5 dark:bg-[#1a294d] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-[#d4af37] transition-colors">
@@ -264,7 +260,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                 <button
                   type="button"
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                  className="flex items-center gap-1.5 p-1 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors focus:outline-none"
+                  className="flex items-center gap-1.5 p-1 pr-2.5 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-colors focus:outline-none"
                 >
                   <div className="relative">
                     <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-100 dark:bg-[#121c33] border border-gray-200/80 dark:border-white/10 flex items-center justify-center text-gray-500 overflow-hidden shadow-sm">
@@ -272,7 +268,8 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                     </div>
                     <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white dark:border-[#0a1128]" />
                   </div>
-                  <ChevronDown className="h-3.5 w-3.5 text-slate-400" strokeWidth={2} />
+                  <span className="text-[13px] font-semibold text-[#0a1128] dark:text-white max-w-[70px] truncate hidden sm:block">Alex</span>
+                  <ChevronDown className="h-3.5 w-3.5 text-slate-400 hidden sm:block" strokeWidth={2} />
                 </button>
 
                 <AnimatePresence>
@@ -283,11 +280,6 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       className="absolute top-full right-0 mt-2 w-[220px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.3)] z-50 py-2 overflow-hidden"
                     >
-                      <div className="px-4 py-3 border-b border-gray-100 dark:border-white/10">
-                        <p className="text-[15px] font-bold text-[#0a1128] dark:text-white">Alex Mitchell</p>
-                        <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-0.5 font-medium">alex.mitchell@example.com</p>
-                      </div>
-                      
                       <div className="py-2 border-b border-gray-100 dark:border-white/10">
                         <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
                           <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 dark:border-white/5 dark:bg-[#1a294d] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-[#d4af37] transition-colors">
