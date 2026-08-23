@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  User,
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  Globe,
-  ChevronDown,
-  ArrowRight,
-} from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { socialProviders, countryCodes } from "./data";
 
@@ -211,14 +202,14 @@ export default function CreateAccountMobile() {
                   I agree to the{" "}
                   <a
                     href="#"
-                    className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors"
+                    className="font-semibold text-[#d4af37] underline transition-colors"
                   >
                     Terms of Service
                   </a>{" "}
                   and{" "}
                   <a
                     href="#"
-                    className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors"
+                    className="font-semibold text-[#d4af37] underline transition-colors"
                   >
                     Privacy Policy
                   </a>
@@ -282,7 +273,7 @@ export default function CreateAccountMobile() {
                 );
                 window.location.reload();
               }}
-              className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+              className="font-semibold text-[#d4af37] underline transition-colors hover:underline underline-offset-4"
             >
               Login
             </a>

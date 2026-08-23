@@ -53,9 +53,9 @@ export const footerBadges = [
 ];
 
 export const countryCodes = [
-  { code: "+91", flag: "🇮🇳", country: "India" },
-  { code: "+1", flag: "🇺🇸", country: "USA" },
-  { code: "+44", flag: "🇬🇧", country: "UK" },
-  { code: "+971", flag: "🇦🇪", country: "UAE" },
-  { code: "+65", flag: "🇸🇬", country: "Singapore" },
+  { code: "+91", flag: "IN", country: "India" },
+  { code: "+1", flag: "US", country: "USA" },
+  { code: "+44", flag: "GB", country: "UK" },
+  { code: "+971", flag: "AE", country: "UAE" },
+  { code: "+65", flag: "SG", country: "Singapore" },
 ];

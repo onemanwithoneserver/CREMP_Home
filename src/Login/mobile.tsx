@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  Mail,
-  Phone,
-  Lock,
-  Eye,
-  EyeOff,
-  Globe,
-  ChevronDown,
-  ArrowRight,
-} from "lucide-react";
+import { Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const countryCodes = [
@@ -224,7 +215,7 @@ export default function LoginMobile() {
               </label>
               <a
                 href="#"
-                className="text-[12px] font-bold text-[#d4af37] hover:text-[#b38728] transition-colors underline-offset-4 hover:underline"
+                className="text-[12px] font-bold text-[#d4af37] underline transition-colors underline-offset-4 hover:underline"
               >
                 Forgot Password?
               </a>
@@ -315,7 +306,7 @@ export default function LoginMobile() {
                 );
                 window.location.reload();
               }}
-              className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+              className="font-semibold text-[#d4af37] underline transition-colors hover:underline underline-offset-4"
             >
               Create Account
             </a>

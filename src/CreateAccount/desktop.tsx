@@ -1,19 +1,5 @@
 import { useState } from "react";
-import {
-  User,
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  Globe,
-  ChevronDown,
-  Shield,
-  ArrowRight,
-  BarChart3,
-  Brain,
-  ShieldCheck,
-  Database,
-} from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, Shield, ArrowRight} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "../assets/LoginandCreateBG.png";
 import {
@@ -145,7 +131,11 @@ export default function CreateAccountDesktop() {
           transition={{ duration: 0.6, type: "spring", stiffness: 180, damping: 22 }}
           className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
         >
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
+          <motion.div 
+            className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
+            animate={{ backgroundPosition: ["0% center", "200% center"] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+          />
           <div className="px-7 pt-7 pb-5 xl:px-9 xl:pt-8 xl:pb-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -215,9 +205,8 @@ export default function CreateAccountDesktop() {
                       onClick={() =>
                         setShowCountryDropdown(!showCountryDropdown)
                       }
-                      className="flex items-center gap-1.5 px-3 py-2.5 bg-gray-50 dark:bg-[#0d1730] border border-gray-200 dark:border-white/10 border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[85px]"
+                      className="flex items-center gap-1.5 px-3 py-2.5 bg-gray-50 dark:bg-[#0d1730] border border-gray-200 dark:border-white/10 border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px]"
                     >
-                      <span className="text-base">{selectedCountry.flag}</span>
                       <span>{selectedCountry.code}</span>
                       <ChevronDown size={12} className="text-gray-400" />
                     </button>
@@ -244,7 +233,7 @@ export default function CreateAccountDesktop() {
                                   : "text-[#0a1128] dark:text-white"
                               }`}
                             >
-                              <span className="text-base">{c.flag}</span>
+                              <span className="font-semibold">{c.flag}</span>
                               <span>{c.country}</span>
                               <span className="text-gray-400 ml-auto">
                                 {c.code}
@@ -344,14 +333,14 @@ export default function CreateAccountDesktop() {
                     I agree to the{" "}
                     <a
                       href="#"
-                      className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-2"
+                      className="font-semibold underline text-[#d4af37] transition-colors hover:underline underline-offset-2"
                     >
                       Terms of Service
                     </a>{" "}
                     and{" "}
                     <a
                       href="#"
-                      className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-2"
+                      className="font-semibold text-[#d4af37] underline transition-colors hover:underline underline-offset-2"
                     >
                       Privacy Policy
                     </a>
@@ -432,7 +421,7 @@ export default function CreateAccountDesktop() {
                   );
                   window.location.reload();
                 }}
-                className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+                className="font-semibold text-[#d4af37] underline transition-colors hover:underline underline-offset-4"
               >
                 Login
               </a>

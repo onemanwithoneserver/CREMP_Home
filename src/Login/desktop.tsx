@@ -1,29 +1,14 @@
 import { useState } from "react";
-import {
-  Mail,
-  Phone,
-  Lock,
-  Eye,
-  EyeOff,
-  Globe,
-  ChevronDown,
-  Shield,
-  Clock,
-  ArrowRight,
-  BarChart3,
-  Brain,
-  ShieldCheck,
-  Headphones,
-} from "lucide-react";
+import { Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, Shield, ArrowRight, BarChart3, Brain, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "../assets/LoginandCreateBG.png";
 
 const countryCodes = [
-  { code: "+91", flag: "🇮🇳", country: "India" },
-  { code: "+1", flag: "🇺🇸", country: "USA" },
-  { code: "+44", flag: "🇬🇧", country: "UK" },
-  { code: "+971", flag: "🇦🇪", country: "UAE" },
-  { code: "+65", flag: "🇸🇬", country: "Singapore" },
+  { code: "+91", flag: "IN", country: "India" },
+  { code: "+1", flag: "US", country: "USA" },
+  { code: "+44", flag: "GB", country: "UK" },
+  { code: "+971", flag: "AE", country: "UAE" },
+  { code: "+65", flag: "SG", country: "Singapore" },
 ];
 
 const container = {
@@ -147,7 +132,11 @@ export default function LoginDesktop() {
           transition={{ duration: 0.6, type: "spring", stiffness: 180, damping: 22 }}
           className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
         >
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
+          <motion.div 
+            className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
+            animate={{ backgroundPosition: ["0% center", "200% center"] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+          />
           <div className="px-8 pt-8 pb-6 xl:px-10 xl:pt-9 xl:pb-7">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -259,11 +248,8 @@ export default function LoginDesktop() {
                             onClick={() =>
                               setShowCountryDropdown(!showCountryDropdown)
                             }
-                            className="flex items-center gap-1.5 px-3 py-3 bg-gray-50 dark:bg-[#0d1730] border border-gray-200 dark:border-white/10 border-r-0 rounded-l-[8px] text-[13px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[90px]"
+                            className="flex items-center gap-1.5 px-3 py-3 bg-gray-50 dark:bg-[#0d1730] border border-gray-200 dark:border-white/10 border-r-0 rounded-l-[8px] text-[13px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[70px]"
                           >
-                            <span className="text-lg">
-                              {selectedCountry.flag}
-                            </span>
                             <span>{selectedCountry.code}</span>
                             <ChevronDown size={12} className="text-gray-400" />
                           </button>
@@ -290,7 +276,7 @@ export default function LoginDesktop() {
                                         : "text-[#0a1128] dark:text-white"
                                     }`}
                                   >
-                                    <span className="text-base">{c.flag}</span>
+                                    <span className="font-semibold">{c.flag}</span>
                                     <span>{c.country}</span>
                                     <span className="text-gray-400 ml-auto">
                                       {c.code}
@@ -326,7 +312,7 @@ export default function LoginDesktop() {
                 </label>
                 <a
                   href="#"
-                  className="text-[12px] font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors underline-offset-4 hover:underline"
+                  className="text-[12px] font-semibold text-[#d4af37] underline transition-colors underline-offset-4 hover:underline"
                 >
                   Forgot Password?
                 </a>
@@ -413,7 +399,7 @@ export default function LoginDesktop() {
                   );
                   window.location.reload();
                 }}
-                className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+                className="font-semibold text-[#d4af37] underline transition-colors hover:underline underline-offset-4"
               >
                 Create Account
               </a>
