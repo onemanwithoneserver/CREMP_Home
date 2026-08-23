@@ -435,7 +435,7 @@ export default function SearchResultsDesktop() {
 
       {}
       <div className="w-[35%] h-full flex flex-col bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden border-l border-white/50 dark:border-white/5 z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.03)]">
-        <div className="flex-1 overflow-y-auto scrollbar-hide relative">
+        <div className="flex-1 overflow-y-auto scrollbar-hide relative bg-white dark:bg-[#0b1b42]">
           <motion.div
             variants={stagger}
             initial="hidden"
