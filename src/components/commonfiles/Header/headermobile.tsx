@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { LogIn, UserPlus, Plus, Minus, X, Search, SlidersHorizontal } from "lucide-react";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Plus, Minus, X, Search, SlidersHorizontal } from "lucide-react";
+
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import { navLinks } from "./data";
@@ -40,7 +37,6 @@ export default function HeaderMobile({
 
   return (
     <>
-      {/* Backdrop overlay for clicking outside to close */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -49,14 +45,12 @@ export default function HeaderMobile({
         onClick={() => setMobileMenuOpen(false)}
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90]"
       />
-
-      {/* Side Drawer */}
       <motion.div
-        initial={{ opacity: 0, x: "100%" }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: "100%" }}
+        initial={{ opacity: 0, y: "-100%" }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: "-100%" }}
         transition={{ type: "spring", damping: 30, stiffness: 250 }}
-        className="fixed top-0 right-0 w-[85vw] max-w-[360px] h-[100dvh] bg-white dark:bg-[#0a1128] z-[100] flex flex-col overflow-hidden shadow-2xl border-l border-gray-100 dark:border-white/10"
+        className="fixed top-0 left-0 w-full h-auto max-h-[100dvh] rounded-b-[8px] bg-white dark:bg-[#0a1128] z-[100] flex flex-col overflow-hidden shadow-2xl border-b border-gray-100 dark:border-white/10"
       >
         <div className="flex items-center justify-between p-5 shrink-0 relative z-10 border-b border-gray-100 dark:border-white/10">
           <a href="#" className="flex items-center">
@@ -177,39 +171,6 @@ export default function HeaderMobile({
               })}
             </motion.nav>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-10 pt-6 border-t border-gray-100 dark:border-white/10 flex flex-col gap-6"
-            >
-              <div className="flex flex-col gap-3">
-                <a
-                  href="#"
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-50 dark:bg-white/5 text-[#0a1128] dark:text-white font-bold text-[13px] hover:bg-gray-100 dark:hover:bg-white/10 transition-all border border-gray-200/50 dark:border-transparent"
-                >
-                  <LogIn size={16} strokeWidth={2.5} /> Sign In
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl bg-[#d4af37] text-white font-bold text-[13px] hover:bg-[#c4a02e] shadow-lg shadow-[#d4af37]/20 transition-all"
-                >
-                  <UserPlus size={16} strokeWidth={2.5} /> Register
-                </a>
-              </div>
-
-              <div className="flex items-center justify-between px-2">
-                {[FacebookIcon, TwitterIcon, InstagramIcon, LinkedInIcon].map((Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#d4af37] transition-all hover:-translate-y-1"
-                  >
-                    <Icon sx={{ fontSize: 18 }} />
-                  </a>
-                ))}
-              </div>
-            </motion.div>
 
           </div>
         </div>
