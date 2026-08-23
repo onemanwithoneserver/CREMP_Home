@@ -1,5 +1,4 @@
 import { MapPin, Mail, Phone } from "lucide-react";
-import logoLight from "../../../Logo/CREMP_Light.png";
 import logoDark from "../../../Logo/CREMP.png";
 import CrempTextLogo from "../../CrempTextLogo";
 import { brandLinks, quickLinks, resources, legalLinks } from "./data";
