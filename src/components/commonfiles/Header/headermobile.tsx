@@ -132,7 +132,7 @@ export default function HeaderMobile({
                       
                       {link.subItems && (
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isSubOpen ? "bg-[#d4af37]/10 text-[#d4af37]" : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-gray-500"
+                          isSubOpen ? "bg-white text-[#0a1128] shadow-md" : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-gray-500"
                         }`}>
                           {isSubOpen ? <Minus size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
                         </div>

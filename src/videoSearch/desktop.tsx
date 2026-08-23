@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
-import { SectionHeader } from "../Franchise_Home/components/SectionHeader";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -77,13 +76,6 @@ export default function VideoSearchDesktop() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-8">
-        <div className="flex justify-center w-full">
-          <SectionHeader
-            overline="Video Library"
-            title="Discover Franchise Opportunities"
-            align="center"
-          />
-        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 15 }}
