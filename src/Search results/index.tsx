@@ -11,7 +11,7 @@ export default function SearchResults({ isMobile }: { isMobile?: boolean }) {
         <div className="flex-1 relative flex flex-col w-full">
           <Mobile />
         </div>
-        <SiteFooter />
+        <SiteFooter isMobile={isMobile} />
       </div>
     );
   }

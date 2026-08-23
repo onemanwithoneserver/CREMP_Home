@@ -3,7 +3,13 @@ import logoDark from "../../../Logo/CREMP.png";
 import CrempTextLogo from "../../CrempTextLogo";
 import { brandLinks, quickLinks, resources, legalLinks } from "./data";
 
-export default function SiteFooter() {
+import FooterMobile from "./footermobile";
+
+export default function SiteFooter({ isMobile = false }: { isMobile?: boolean }) {
+  if (isMobile) {
+    return <FooterMobile />;
+  }
+
   return (
     <footer className="relative bg-[#050b14] border-t border-white/5 pt-16 pb-8 overflow-hidden font-sans">
       <div className="pointer-events-none absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#d4af37]/5 blur-[120px] dark:bg-[#d4af37]/10" />

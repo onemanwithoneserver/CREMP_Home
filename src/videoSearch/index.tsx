@@ -19,7 +19,7 @@ export default function VideoSearch({ isMobile = false }: VideoSearchProps) {
             <Mobile />
           </Suspense>
         </div>
-        <SiteFooter />
+        <SiteFooter isMobile={isMobile} />
       </div>
     );
   }
