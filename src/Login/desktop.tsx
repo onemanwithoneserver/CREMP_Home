@@ -80,7 +80,7 @@ export default function LoginDesktop() {
             <br />
             Billionaire-grade experience.
           </motion.p>
-          <motion.div variants={item} className="flex flex-wrap gap-6 mb-8">
+          <motion.div variants={item} className="flex flex-wrap gap-16 mb-8">
             {[
               { icon: BarChart3, label: "Real-time\nAnalytics", color: "#F97316" },
               { icon: Brain, label: "AI-Powered\nInsights", color: "#0EA5E9" },
