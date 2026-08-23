@@ -22,6 +22,7 @@ interface SiteHeaderProps {
 }
 
 export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
+  const [activeNav, setActiveNav] = useState("Home");
   const [selectedCity, setSelectedCity] = useState("All cities");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -78,30 +79,37 @@ export default function SiteHeader({ currentPage = "/" }: SiteHeaderProps) {
             </a>
 
             <nav className="hidden items-center gap-6 2xl:flex 2xl:gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href + link.label}
-                  className={`relative text-[14px] font-semibold tracking-wide transition-colors py-2 ${
-                    currentPage === link.href
-                      ? "text-[#d4af37]"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0a1128] dark:hover:text-white"
-                  }`}
-                  href={link.href}
-                >
-                  {link.label}
-                  {currentPage === link.href && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeNav === link.label;
+                return (
+                  <a
+                    key={link.label}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setActiveNav(link.label);
+                    }}
+                    className={`relative text-[14px] font-semibold tracking-wide transition-colors py-2 ${
+                      isActive
+                        ? "text-[#d4af37]"
+                        : "text-gray-600 dark:text-gray-300 hover:text-[#0a1128] dark:hover:text-white"
+                    }`}
+                    href={link.href}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
             </nav>
           </div>
 
