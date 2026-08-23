@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import mobileBg from "../assets/mobileBg.jpg";
 import { socialProviders, countryCodes } from "./data";
 
 export default function CreateAccountMobile() {
@@ -72,8 +73,12 @@ export default function CreateAccountMobile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] flex flex-col font-sans relative overflow-hidden transition-colors duration-300">
-      <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-white/40 to-transparent dark:from-[#121c33]/30 pointer-events-none" />
+    <div className="min-h-screen flex flex-col font-sans relative overflow-hidden transition-colors duration-300">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s]"
+        style={{ backgroundImage: `url(${mobileBg})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/60 to-[#0a1128]/30 dark:from-[#0a1128] dark:via-[#0a1128]/80 dark:to-[#0a1128]/60" />
 
       <div className="absolute top-4 right-4 z-20">
         <button className="flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[8px] text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm">
