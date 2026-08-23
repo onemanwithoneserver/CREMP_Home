@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { createPortal } from 'react-dom';
 import {
   Share2,
   MoreVertical,
@@ -90,14 +89,13 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
   }, []);
 
   const content = (
-    <div className="fixed inset-0 z-[100000] bg-black/95 flex items-center justify-center">
-      <div
-        className="relative bg-black flex flex-col overflow-hidden w-full h-[100dvh] md:max-w-[390px] md:aspect-[390/844] md:h-[min(90vh,844px)] md:rounded-[32px] md:shadow-2xl md:border md:border-white/10"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <video
+    <div
+      className="fixed inset-0 z-[100000] bg-black flex flex-col overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <video
           ref={videoRef}
           src={video.videoUrl}
           className="absolute inset-0 w-full h-full object-cover"
@@ -107,7 +105,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           playsInline
         />
 
-        <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none md:pt-6">
+        <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none">
           <button
             onClick={onClose}
             className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white pointer-events-auto active:scale-90 transition-transform"
@@ -158,7 +156,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </button>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 pb-[calc(env(safe-area-inset-bottom,8px)+12px)] z-[115] bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none md:pb-6 md:rounded-b-[32px]">
+        <div className="absolute bottom-0 left-0 right-0 p-4 pb-[calc(env(safe-area-inset-bottom,8px)+12px)] z-[115] bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
           <div className="flex items-center gap-3 mb-2">
             <div className="relative w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-[#6366f1] via-[#a855f7] to-[#ec4899] shrink-0">
               <div className="w-full h-full rounded-full border-[2px] border-black overflow-hidden bg-gray-800">
@@ -185,15 +183,14 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white/20 z-[125] md:bottom-3 md:left-4 md:right-4 md:rounded-full md:overflow-hidden md:h-1">
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white/20 z-[125]">
           <div
             className="h-full bg-white rounded-r-full shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-[width] duration-200"
             style={{ width: `${progress}%` }}
           />
         </div>
-      </div>
     </div>
   );
 
-  return createPortal(content, document.body);
+  return content;
 }
