@@ -3,7 +3,6 @@ import { Globe, Star } from "lucide-react";
 import mapBg from "../../assets/map_bg.png";
 import { Container } from "../../components/layout";
 import { marketData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -12,7 +11,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,7 +18,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const pulseNode: Variants = {
   animate: {
     boxShadow: [
@@ -30,7 +27,6 @@ const pulseNode: Variants = {
     transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const pulseBackground: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -38,7 +34,6 @@ const pulseBackground: Variants = {
     transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function MobileYourMarkets() {
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
@@ -52,7 +47,6 @@ export default function MobileYourMarkets() {
         animate="animate"
         className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 translate-y-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10"
       />
-
       <Container className="relative z-10 mx-auto w-full">
         <div className="mb-8 flex flex-col items-center gap-6 text-center">
           <motion.div
@@ -80,7 +74,6 @@ export default function MobileYourMarkets() {
                 </span>
               </motion.div>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-4 text-[2.5rem] font-black leading-[1.1] tracking-tight sm:text-[3rem]"
@@ -92,7 +85,6 @@ export default function MobileYourMarkets() {
                 {marketData.titleHighlight}
               </span>
             </motion.h2>
-
             <motion.div
               variants={fadeInUp}
               className="flex flex-col gap-4 px-2 text-center"
@@ -105,7 +97,6 @@ export default function MobileYourMarkets() {
               </p>
             </motion.div>
           </motion.div>
-
           <div className="relative flex h-[400px] w-full items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -122,11 +113,9 @@ export default function MobileYourMarkets() {
                 alt="Local Market Network"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1C] via-transparent to-[#0A0F1C]/50" />
-
               {marketData.hexagons.map((hex, idx) => {
                 const isGold = hex.color === "gold";
                 const isBlue = hex.color === "blue";
-
                 const mobilePositions = [
                   { top: "25%", left: "25%" },
                   { top: "12%", left: "55%" },
@@ -137,7 +126,6 @@ export default function MobileYourMarkets() {
                 const position = mobilePositions[idx] || hex.position;
                 const isTopNode =
                   parseInt((position?.top as string) || "0") < 30;
-
                 return (
                   <motion.div
                     key={idx}
@@ -184,7 +172,6 @@ export default function MobileYourMarkets() {
                         }`}
                       />
                     </div>
-
                     <motion.div
                       variants={isGold ? pulseNode : {}}
                       initial="animate"
@@ -216,7 +203,6 @@ export default function MobileYourMarkets() {
                   </motion.div>
                 );
               })}
-
               <svg
                 className="absolute inset-0 h-full w-full opacity-50"
                 style={{ zIndex: 0 }}
@@ -275,7 +261,6 @@ export default function MobileYourMarkets() {
             </motion.div>
           </div>
         </div>
-
         <div className="grid grid-cols-1 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -296,7 +281,6 @@ export default function MobileYourMarkets() {
                 {marketData.benefitsTitle}
               </h3>
             </div>
-
             <div className="flex w-full flex-col gap-1.5">
               {marketData.benefits.map((benefit, idx) => (
                 <div

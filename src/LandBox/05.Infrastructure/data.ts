@@ -8,7 +8,6 @@ import {
   FileCheck,
   FlaskConical,
 } from "lucide-react";
-
 export const infrastructureData = {
   title: "Site Infrastructure & Utilities",
   items: [

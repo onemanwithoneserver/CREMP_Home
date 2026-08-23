@@ -6,7 +6,6 @@ import {
   DualToneTag,
   DualToneUsers,
 } from "../../components/DualToneIcons";
-
 export const ecosystemData = {
   tag: "WHY IT MATTERS",
   titleHighlight: "Franchise Portal.",

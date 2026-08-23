@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Heart, Share2, Calendar } from "lucide-react";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import clsx from "clsx";
-
 const Tooltip = ({
   children,
   text,
@@ -14,7 +13,6 @@ const Tooltip = ({
   show: boolean;
 }) => {
   if (!show) return <>{children}</>;
-
   return (
     <div className="relative flex items-center justify-center group">
       {children}
@@ -25,14 +23,11 @@ const Tooltip = ({
     </div>
   );
 };
-
 export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
   const [isSaved, setIsSaved] = useState(false);
-
   return (
     <div className="fixed bottom-0 left-0 w-full z-50 bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
-
       <div className="max-w-[1440px] w-full flex items-center justify-between gap-2 md:gap-4 relative z-10">
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
           <Tooltip text={isSaved ? "Saved" : "Save"} show={isMobile}>
@@ -61,11 +56,9 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
               {!isMobile && <span>{isSaved ? "Saved" : "Save"}</span>}
             </motion.button>
           </Tooltip>
-
           {!isMobile && (
             <div className="w-px h-6 bg-gradient-to-b from-transparent via-white/10 to-transparent mx-0 md:mx-1 shrink-0" />
           )}
-
           <Tooltip text="Website Link" show={isMobile}>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -81,7 +74,6 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
               )}
             </motion.button>
           </Tooltip>
-
           <Tooltip text="Share" show={isMobile}>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -96,7 +88,6 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
             </motion.button>
           </Tooltip>
         </div>
-
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.92 }}

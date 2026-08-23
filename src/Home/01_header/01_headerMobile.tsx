@@ -7,17 +7,14 @@ import { useAnnouncement } from "../context/AnnouncementContext";
 import logo from "../../Logo/CREMP.png";
 import logoLight from "../../Logo/CREMP_Light.png";
 import { useTheme } from "../ThemeContext";
-
 export default function Mobile() {
   const { theme, toggleTheme } = useTheme();
   const { showSticky } = useAnnouncement();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 30);
   });
-
   return (
     <motion.header
       initial={{ y: -50, opacity: 0 }}
@@ -58,7 +55,6 @@ export default function Mobile() {
             <CrempTextLogo className="h-7 w-auto text-[#0a1128] dark:text-white" />
           </div>
         </motion.a>
-
         <div className="flex items-center gap-3">
           <motion.button
             onClick={toggleTheme}
@@ -87,7 +83,6 @@ export default function Mobile() {
               )}
             </motion.div>
           </motion.button>
-
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -101,7 +96,6 @@ export default function Mobile() {
           </motion.button>
         </div>
       </div>
-
       <div className="flex w-full justify-center">
         <HeaderStickyBanner isVisible={showSticky} isMobile />
       </div>

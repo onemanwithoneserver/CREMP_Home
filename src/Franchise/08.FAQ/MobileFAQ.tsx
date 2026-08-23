@@ -3,7 +3,6 @@ import { Minus, Plus, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Container } from "../../components/layout";
 import { faqData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -12,7 +11,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,7 +18,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -28,13 +25,10 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function MobileFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-
   const renderFaqCard = (faq: any, index: number) => {
     const isOpen = openIdx === index;
-
     return (
       <motion.div
         key={index}
@@ -70,7 +64,6 @@ export default function MobileFAQ() {
               />
             </motion.div>
           </div>
-
           <div className="flex flex-1 flex-col pt-1">
             <div className="flex items-center justify-between gap-3">
               <h4
@@ -97,7 +90,6 @@ export default function MobileFAQ() {
                 />
               </div>
             </div>
-
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
@@ -117,7 +109,6 @@ export default function MobileFAQ() {
       </motion.div>
     );
   };
-
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <motion.div
@@ -125,7 +116,6 @@ export default function MobileFAQ() {
         animate="animate"
         className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10"
       />
-
       <Container className="relative z-10 flex flex-col items-center px-4">
         <motion.div
           variants={staggerContainer}
@@ -150,14 +140,12 @@ export default function MobileFAQ() {
               {faqData.tag}
             </span>
           </motion.div>
-
           <motion.h2
             variants={fadeInUp}
             className="mb-4 text-[2.5rem] font-semibold leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
           >
             {faqData.title}
           </motion.h2>
-
           <motion.p
             variants={fadeInUp}
             className="text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -165,11 +153,9 @@ export default function MobileFAQ() {
             {faqData.desc}
           </motion.p>
         </motion.div>
-
         <div className="mb-10 flex w-full flex-col gap-4">
           {faqData.faqs.map((faq, index) => renderFaqCard(faq, index))}
         </div>
-
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +186,6 @@ export default function MobileFAQ() {
               </defs>
             </svg>
           </div>
-
           <div className="relative z-10 mb-8 flex flex-col items-center gap-6">
             <motion.div
               whileHover={{ rotate: 360, scale: 1.1 }}
@@ -223,7 +208,6 @@ export default function MobileFAQ() {
               </p>
             </div>
           </div>
-
           <div className="relative z-10 flex w-full flex-col">
             <motion.button
               whileHover={{ scale: 1.02 }}

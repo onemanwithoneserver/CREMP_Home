@@ -8,7 +8,6 @@ import {
   Landmark,
   Wallet,
 } from "lucide-react";
-
 export const termsData = {
   overline: "TERMS & CONDITIONS",
   title: "Seller-defined conditions",

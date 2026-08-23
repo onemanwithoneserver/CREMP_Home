@@ -5,7 +5,6 @@ import { HelpCircle, Minus, Plus } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { BookACall } from "./components/BookACall";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -13,13 +12,11 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function FAQMobile() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [expandedId, setExpandedId] = useState<string | null>(
     faqData.questions[0].id,
   );
-
   const filteredQuestions = useMemo(() => {
     if (!searchQuery.trim()) return faqData.questions;
     const q = searchQuery.toLowerCase();
@@ -31,7 +28,6 @@ export default function FAQMobile() {
       );
     });
   }, [searchQuery]);
-
   return (
     <section className="w-full py-12 pb-20 px-2 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
@@ -44,7 +40,6 @@ export default function FAQMobile() {
         animate="animate"
         className="pointer-events-none absolute bottom-[10%] -left-[10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 flex flex-col gap-4">
         <div>
           <SectionHeader
@@ -53,7 +48,6 @@ export default function FAQMobile() {
             align="center"
           />
         </div>
-
         <motion.div layout className="flex flex-col gap-3">
           <AnimatePresence mode="popLayout">
             {filteredQuestions.length === 0 ? (
@@ -81,7 +75,6 @@ export default function FAQMobile() {
             ) : (
               filteredQuestions.map((q, index) => {
                 const isExpanded = expandedId === q.id;
-
                 return (
                   <motion.div
                     layout
@@ -107,7 +100,6 @@ export default function FAQMobile() {
                         isExpanded ? "opacity-100" : "opacity-0",
                       )}
                     />
-
                     <button
                       onClick={() => setExpandedId(isExpanded ? null : q.id)}
                       className="w-full flex items-start justify-between p-4 text-left gap-3 relative z-10"
@@ -124,7 +116,6 @@ export default function FAQMobile() {
                           {q.question}
                         </h4>
                       </div>
-
                       <motion.div
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -142,7 +133,6 @@ export default function FAQMobile() {
                         )}
                       </motion.div>
                     </button>
-
                     <AnimatePresence initial={false}>
                       {isExpanded && (
                         <motion.div

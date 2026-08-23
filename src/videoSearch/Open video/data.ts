@@ -9,7 +9,6 @@ export interface ReelData {
   shares: string;
   profilePic: string;
 }
-
 export const reelsData: ReelData[] = [
   {
     id: "v1",
@@ -44,14 +43,10 @@ export const reelsData: ReelData[] = [
     shares: "450",
     profilePic: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=150&q=80"
   },
-  // We provide a fallback for other IDs as well
 ];
-
-// Helper function to get reel data, falling back to a default if not found
 export const getReelData = (id: string): ReelData => {
   const found = reelsData.find(r => r.id === id);
   if (found) return found;
-  
   return {
     id,
     videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",

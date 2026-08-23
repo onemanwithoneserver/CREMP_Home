@@ -1,10 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, Phone, Video, X } from "lucide-react";
 import { useState } from "react";
-
 export default function Mobile() {
   const [isOpen, setIsOpen] = useState(false);
-
   const connectOptions = [
     {
       id: "whatsapp",
@@ -31,7 +29,6 @@ export default function Mobile() {
       action: () => window.open("https://meet.google.com", "_blank"),
     },
   ];
-
   return (
     <>
       <AnimatePresence>
@@ -45,7 +42,6 @@ export default function Mobile() {
           />
         )}
       </AnimatePresence>
-
       <div className="fixed bottom-6 right-6 z-[100] ">
         <AnimatePresence>
           {isOpen && (
@@ -81,7 +77,6 @@ export default function Mobile() {
             </motion.div>
           )}
         </AnimatePresence>
-
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.9 }}

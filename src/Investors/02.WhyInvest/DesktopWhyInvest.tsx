@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Globe } from "lucide-react";
 import { Container } from "../../components/layout";
 import { whyInvestData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -26,12 +25,10 @@ const scaleIn: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function DesktopWhyInvest() {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
         <motion.div
           variants={staggerContainer}
@@ -55,7 +52,6 @@ export default function DesktopWhyInvest() {
             </span>
           </motion.h2>
         </motion.div>
-
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -94,13 +90,11 @@ export default function DesktopWhyInvest() {
               </p>
             </div>
           </motion.div>
-
           <motion.div
             variants={scaleIn}
             className="col-span-7 row-span-1 rounded-[8px] border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-[#121c33] flex items-center justify-between relative overflow-hidden group"
           >
             <div className="absolute inset-0 bg-gradient-to-l from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#D4AF37]/5" />
-
             <div className="relative z-10 flex flex-col max-w-[40%]">
               <div className="flex h-14 w-14 items-center justify-center rounded-[8px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg shadow-[#D4AF37]/30 mb-6 dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128] dark:shadow-[#D4AF37]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
                 <Globe size={24} />
@@ -113,7 +107,6 @@ export default function DesktopWhyInvest() {
                 {whyInvestData.bannerTextHighlight}
               </p>
             </div>
-
             <div className="relative z-10 flex items-center gap-3">
               {whyInvestData.flowItems.map((item, idx) => (
                 <div
@@ -136,7 +129,6 @@ export default function DesktopWhyInvest() {
               ))}
             </div>
           </motion.div>
-
           <motion.div
             variants={scaleIn}
             className="col-span-7 row-span-1 rounded-[8px] bg-gradient-to-br from-[#D4AF37] to-[#b38728] p-10 shadow-xl dark:from-[#121c33] dark:to-[#0a1128] dark:border dark:border-gray-800 flex items-center justify-between group overflow-hidden relative"
@@ -150,7 +142,6 @@ export default function DesktopWhyInvest() {
                 Explore Now <ArrowRight size={16} />
               </button>
             </div>
-
             <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
               <div
                 className="absolute h-full w-full rounded-full border-t-2 border-[#D4AF37] animate-spin"

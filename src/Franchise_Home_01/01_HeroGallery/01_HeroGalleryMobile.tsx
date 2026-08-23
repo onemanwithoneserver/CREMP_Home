@@ -13,7 +13,6 @@ import {
 import mainCupImg from "../../assets/main_coffee_cup.png";
 import { heroData } from "./data";
 import AppsIcon from "@mui/icons-material/Apps";
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -21,7 +20,6 @@ const container = {
     transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
-
 const item = {
   hidden: { opacity: 0, y: 15 },
   show: {
@@ -30,10 +28,8 @@ const item = {
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
-
 export default function HeroGalleryMobile() {
   const [isPlaying, setIsPlaying] = useState(false);
-
   return (
     <motion.section
       variants={container}
@@ -51,7 +47,6 @@ export default function HeroGalleryMobile() {
           style={{ animationDuration: "14s", animationDelay: "2s" }}
         />
       </div>
-
       <motion.div variants={item} className="w-full relative h-[350px] z-10">
         <img
           src={mainCupImg}
@@ -59,7 +54,6 @@ export default function HeroGalleryMobile() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 via-transparent to-transparent" />
-
         <button
           onClick={() => setIsPlaying(!isPlaying)}
           className="absolute inset-0 w-full h-full flex items-center justify-center focus:outline-none"
@@ -105,7 +99,6 @@ export default function HeroGalleryMobile() {
           </motion.div>
         </button>
       </motion.div>
-
       <div className="px-2 -mt-6 relative z-10 flex flex-col gap-4">
         <motion.div
           variants={item}
@@ -122,7 +115,6 @@ export default function HeroGalleryMobile() {
                 {heroData.subCategory}
               </div>
             </div>
-
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center p-2.5 bg-[#0b1b42] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
                 <AppsIcon style={{ fontSize: 36 }} />
@@ -132,14 +124,12 @@ export default function HeroGalleryMobile() {
               </h1>
             </div>
           </div>
-
           <div className="relative pl-5">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#bf953f] via-[#d4af37] to-transparent rounded-full" />
             <p className="text-[14px] text-gray-700 dark:text-gray-200 leading-[1.8] font-normal">
               {heroData.shortDescription}
             </p>
           </div>
-
           <div className="grid grid-cols-2 gap-3 bg-gray-50 dark:bg-[#0b1b42] rounded-[4px] p-3 w-full mx-auto">
             <div className="flex items-center gap-2.5">
               <motion.div
@@ -211,7 +201,6 @@ export default function HeroGalleryMobile() {
             </div>
           </div>
         </motion.div>
-
         <motion.div
           variants={item}
           className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-5 flex flex-col gap-4"
@@ -223,7 +212,6 @@ export default function HeroGalleryMobile() {
             </h3>
             <div className="h-px bg-gradient-to-l from-transparent to-[#d4af37] flex-1" />
           </div>
-
           <div className="flex flex-col gap-3">
             {heroData.whyChooseUs.map((feature, i) => (
               <div

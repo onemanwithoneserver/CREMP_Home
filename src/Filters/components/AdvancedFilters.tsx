@@ -31,13 +31,11 @@ import {
   SIZE_UNITS,
 } from "./data";
 import { CustomSelect } from "./CustomSelect";
-
 interface AdvancedFiltersProps {
   activeTab: "commercial" | "business";
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
 }
-
 interface CategoryDef {
   key: keyof FilterState;
   title: string;
@@ -46,7 +44,6 @@ interface CategoryDef {
   options: { id: string; label: string }[];
   isMulti?: boolean;
 }
-
 export default function AdvancedFilters({
   activeTab,
   filters,
@@ -54,14 +51,11 @@ export default function AdvancedFilters({
 }: AdvancedFiltersProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [expandedKey, setExpandedKey] = useState<string | null>(null);
-
   const mapStringsToOptions = (arr: string[]) =>
     arr.map((item) => ({ id: item, label: item }));
-
   const handleUpdate = (key: keyof FilterState, value: any) => {
     onFilterChange({ ...filters, [key]: value });
   };
-
   const handleOptionToggle = (cat: CategoryDef, optionId: string) => {
     const newFilters = { ...filters };
     if (cat.isMulti) {
@@ -80,7 +74,6 @@ export default function AdvancedFilters({
     }
     onFilterChange(newFilters);
   };
-
   const handleReset = () => {
     onFilterChange({
       ...filters,
@@ -101,7 +94,6 @@ export default function AdvancedFilters({
           }),
     });
   };
-
   const commercialCategories: CategoryDef[] = [
     {
       key: "fitOut",
@@ -151,7 +143,6 @@ export default function AdvancedFilters({
       isMulti: true,
     },
   ];
-
   const businessCategories: CategoryDef[] = [
     {
       key: "businessOption",
@@ -161,10 +152,8 @@ export default function AdvancedFilters({
       options: BUSINESS_OPTIONS.map((o) => ({ id: o.id, label: o.label })),
     },
   ];
-
   const activeCategories =
     activeTab === "commercial" ? commercialCategories : businessCategories;
-
   const activeCount =
     activeTab === "commercial"
       ? [
@@ -188,7 +177,6 @@ export default function AdvancedFilters({
       : [filters.businessOption && filters.businessOption.length > 0].filter(
           Boolean,
         ).length;
-
   return (
     <div className="relative">
       <motion.button
@@ -248,7 +236,6 @@ export default function AdvancedFilters({
             </motion.div>
           )}
         </AnimatePresence>
-
         {activeCount > 0 && !isOpen && (
           <motion.span
             initial={{ scale: 0 }}
@@ -260,7 +247,6 @@ export default function AdvancedFilters({
           </motion.span>
         )}
       </motion.button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -271,7 +257,6 @@ export default function AdvancedFilters({
             className="absolute top-[calc(100%+10px)] right-0 w-[320px] sm:w-[360px] bg-white/70 backdrop-blur-2xl rounded-xl border border-gray-200/50 shadow-[0_20px_56px_rgba(11,27,66,0.16),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden z-50 flex flex-col max-h-[calc(100vh-200px)] dark:bg-[#0e172f]/85 dark:border-white/15 dark:shadow-[0_20px_56px_rgba(0,0,0,0.5)]"
           >
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
-
             <div className="flex items-center justify-between p-2.5 shrink-0">
               <div className="flex items-center gap-2">
                 {activeCount > 0 && (
@@ -298,7 +283,6 @@ export default function AdvancedFilters({
                 </motion.button>
               )}
             </div>
-
             <div className="overflow-y-auto p-3 space-y-2 scrollbar-hide">
               {activeTab === "commercial" && (
                 <div
@@ -347,7 +331,6 @@ export default function AdvancedFilters({
                       )}
                     </motion.div>
                   </motion.button>
-
                   <AnimatePresence>
                     {expandedKey === "size" && (
                       <motion.div
@@ -403,7 +386,6 @@ export default function AdvancedFilters({
                   </AnimatePresence>
                 </div>
               )}
-
               {activeCategories.map((cat, catIndex) => {
                 const isExpanded = expandedKey === cat.key;
                 const currentValue = filters[cat.key as keyof FilterState];
@@ -411,7 +393,6 @@ export default function AdvancedFilters({
                   ? ((currentValue as string[]) || []).length > 0
                   : currentValue !== "Any" &&
                     currentValue !== DEFAULT_FILTERS[cat.key];
-
                 return (
                   <motion.div
                     key={cat.key}
@@ -479,7 +460,6 @@ export default function AdvancedFilters({
                         </motion.div>
                       </div>
                     </motion.button>
-
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.div
@@ -566,7 +546,6 @@ export default function AdvancedFilters({
                                         currentValue ===
                                           DEFAULT_FILTERS[cat.key]
                                       : currentValue === opt.id;
-
                                   return (
                                     <motion.button
                                       key={opt.id}

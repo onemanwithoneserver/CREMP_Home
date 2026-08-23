@@ -3,7 +3,6 @@ import { Globe, Star } from "lucide-react";
 import mapBg from "../../assets/map_bg.png";
 import { Container } from "../../components/layout";
 import { marketData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -12,7 +11,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,7 +18,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const pulseNode: Variants = {
   animate: {
     boxShadow: [
@@ -30,7 +27,6 @@ const pulseNode: Variants = {
     transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const pulseBackground: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -38,7 +34,6 @@ const pulseBackground: Variants = {
     transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function DesktopYourMarkets() {
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
@@ -52,7 +47,6 @@ export default function DesktopYourMarkets() {
         animate="animate"
         className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 translate-y-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10"
       />
-
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
         <div className="mb-24 flex flex-col items-center justify-center">
           <motion.div
@@ -76,7 +70,6 @@ export default function DesktopYourMarkets() {
                 </span>
               </div>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-8 text-[3.5rem] font-black leading-[1.05] tracking-tight xl:text-[4rem]"
@@ -88,7 +81,6 @@ export default function DesktopYourMarkets() {
                 {marketData.titleHighlight}
               </span>
             </motion.h2>
-
             <motion.div
               variants={fadeInUp}
               className="flex flex-col items-center gap-6"
@@ -102,7 +94,6 @@ export default function DesktopYourMarkets() {
             </motion.div>
           </motion.div>
         </div>
-
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -123,7 +114,6 @@ export default function DesktopYourMarkets() {
                 {marketData.benefitsTitle}
               </h3>
             </div>
-
             <div className="grid grid-cols-1 gap-4">
               {marketData.benefits.map((benefit, idx) => (
                 <motion.div
@@ -145,7 +135,6 @@ export default function DesktopYourMarkets() {
               ))}
             </div>
           </motion.div>
-
           <div className="relative flex h-[550px] w-full items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -162,13 +151,11 @@ export default function DesktopYourMarkets() {
                 alt="Local Market Network"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1C] via-transparent to-[#0A0F1C]/50" />
-
               {marketData.hexagons.map((hex, idx) => {
                 const isGold = hex.color === "gold";
                 const isBlue = hex.color === "blue";
                 const isTopNode =
                   parseInt((hex.position?.top as string) || "0") < 30;
-
                 return (
                   <motion.div
                     key={idx}
@@ -215,7 +202,6 @@ export default function DesktopYourMarkets() {
                         }`}
                       />
                     </div>
-
                     <motion.div
                       variants={isGold ? pulseNode : {}}
                       initial="animate"
@@ -247,7 +233,6 @@ export default function DesktopYourMarkets() {
                   </motion.div>
                 );
               })}
-
               <svg
                 className="absolute inset-0 h-full w-full opacity-50"
                 style={{ zIndex: 0 }}

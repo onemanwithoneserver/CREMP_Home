@@ -10,7 +10,6 @@ import {
   Maximize,
   BarChart2,
 } from "lucide-react";
-
 export const commercialData = {
   tabs: ["Lease / Rent", "Sale", "Pre-Leased", "Fractional"],
   tabData: {

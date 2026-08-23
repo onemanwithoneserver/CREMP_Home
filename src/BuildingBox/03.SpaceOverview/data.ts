@@ -1,5 +1,4 @@
 import { LayoutTemplate, Grid3X3, Star } from "lucide-react";
-
 export const spaceOverviewData = {
   title: "Space Overview",
   tags: [

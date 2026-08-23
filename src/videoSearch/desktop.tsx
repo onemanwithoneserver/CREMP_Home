@@ -4,15 +4,12 @@ import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw } from "luc
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
-
 const sortOptions = [
   { value: "latest", label: "Latest" },
   { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
-
 const ITEMS_PER_PAGE = 10;
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -20,7 +17,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -28,7 +24,6 @@ const containerVariants = {
     transition: { staggerChildren: 0.06, delayChildren: 0.1 },
   },
 };
-
 const cardVariants = {
   hidden: { opacity: 0, scale: 0.92, y: 20 },
   show: {
@@ -38,7 +33,6 @@ const cardVariants = {
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
-
 export default function VideoSearchDesktop() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -46,7 +40,6 @@ export default function VideoSearchDesktop() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [sortBy, setSortBy] = useState("latest");
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
-
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
       v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -55,7 +48,6 @@ export default function VideoSearchDesktop() {
       activeCategory === "All" || v.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
-
   const sortedVideos = [...filteredVideos].sort((a, b) => {
     if (sortBy === "popular") {
       const parseViews = (views: string) => {
@@ -71,10 +63,8 @@ export default function VideoSearchDesktop() {
     }
     return b.id.localeCompare(a.id);
   });
-
   const displayedVideos = sortedVideos.slice(0, visibleCount);
   const hasMore = visibleCount < sortedVideos.length;
-
   const handleLoadMore = () => {
     setIsLoadingMore(true);
     setTimeout(() => {
@@ -82,12 +72,10 @@ export default function VideoSearchDesktop() {
       setIsLoadingMore(false);
     }, 600);
   };
-
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
     setVisibleCount(ITEMS_PER_PAGE);
   };
-
   return (
     <section className="w-full px-6 pt-32 pb-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#0b1b42] min-h-screen font-sans">
       <motion.div
@@ -100,9 +88,7 @@ export default function VideoSearchDesktop() {
         animate="animate"
         className="pointer-events-none absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-8">
-
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -124,7 +110,6 @@ export default function VideoSearchDesktop() {
               <Search size={17} />
             </div>
           </div>
-
           <div className="flex flex-wrap items-center justify-center gap-2">
             <div className="flex items-center gap-2 mr-3 text-gray-400">
               <Filter size={14} />
@@ -145,7 +130,6 @@ export default function VideoSearchDesktop() {
                 {cat}
               </button>
             ))}
-
             <div className="ml-auto flex items-center z-20">
               <CustomSelect
                 options={sortOptions}
@@ -157,14 +141,12 @@ export default function VideoSearchDesktop() {
             </div>
           </div>
         </motion.div>
-
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium text-gray-400 dark:text-gray-500">
             Showing <span className="text-[#0a1128] dark:text-white font-semibold">{displayedVideos.length}</span> of{" "}
             <span className="text-[#0a1128] dark:text-white font-semibold">{filteredVideos.length}</span> videos
           </p>
         </div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -190,13 +172,11 @@ export default function VideoSearchDesktop() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1b42]/90 via-[#0b1b42]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-
                 <div className="absolute top-3 right-3">
                   <span className="flex w-fit items-center gap-2 rounded-[2px] border border-white/20 bg-black/50 backdrop-blur-md px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white shadow-sm">
                     {video.category}
                   </span>
                 </div>
-
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
@@ -205,7 +185,6 @@ export default function VideoSearchDesktop() {
                     <Play size={16} className="ml-0.5" fill="currentColor" />
                   </motion.div>
                 </div>
-
                 <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                   <span className="text-[#d4af37] text-[10px] font-bold uppercase tracking-widest mb-1.5 drop-shadow-md">
                     {video.brand}
@@ -228,7 +207,6 @@ export default function VideoSearchDesktop() {
             ))}
           </AnimatePresence>
         </motion.div>
-
         {hasMore && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -251,7 +229,6 @@ export default function VideoSearchDesktop() {
             </motion.button>
           </motion.div>
         )}
-
         {filteredVideos.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -268,7 +245,6 @@ export default function VideoSearchDesktop() {
           </motion.div>
         )}
       </div>
-
       {selectedVideoId && (
         <OpenVideo 
           initialVideoId={selectedVideoId} 

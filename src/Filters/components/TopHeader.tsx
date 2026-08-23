@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
 import { Building2, Briefcase } from "lucide-react";
-
 interface TopHeaderProps {
   activeTab: "commercial" | "business";
   onTabChange: (tab: "commercial" | "business") => void;
   commercialCount?: number;
   businessCount?: number;
 }
-
 const TABS = [
   {
     id: "commercial" as const,
@@ -16,7 +14,6 @@ const TABS = [
   },
   { id: "business" as const, label: "Business Opportunities", icon: Briefcase },
 ];
-
 export default function TopHeader({ activeTab, onTabChange }: TopHeaderProps) {
   return (
     <header className="w-full bg-white/20 backdrop-blur-2xl border-b border-white/30 text-gray-900 select-none relative z-30 shadow-[0_4px_24px_rgba(11,27,66,0.06)] dark:bg-white/5 dark:text-white dark:border-white/10 dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
@@ -25,9 +22,7 @@ export default function TopHeader({ activeTab, onTabChange }: TopHeaderProps) {
         animate={{ opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
-
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-1 py-3 flex items-center justify-between gap-4 relative">
         <div
           role="tablist"
@@ -36,7 +31,6 @@ export default function TopHeader({ activeTab, onTabChange }: TopHeaderProps) {
         >
           {TABS.map(({ id, label, icon: Icon }) => {
             const isActive = activeTab === id;
-
             return (
               <button
                 key={id}
@@ -63,11 +57,9 @@ export default function TopHeader({ activeTab, onTabChange }: TopHeaderProps) {
                   >
                     <div className="absolute top-0 inset-x-3 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-80" />
                     <div className="absolute bottom-0 inset-x-3 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-25" />
-
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#d4af37]/15 rounded-full blur-xl pointer-events-none" />
                   </motion.div>
                 )}
-
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   animate={
@@ -91,7 +83,6 @@ export default function TopHeader({ activeTab, onTabChange }: TopHeaderProps) {
                     strokeWidth={isActive ? 2.5 : 2}
                   />
                 </motion.div>
-
                 <span className="font-bold sm:whitespace-nowrap leading-[1.1] text-center text-[10px] sm:text-[12px]">
                   {label}
                 </span>

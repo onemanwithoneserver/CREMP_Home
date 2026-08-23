@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { Equal, Globe2, Plus, Target } from "lucide-react";
 import { Container } from "../../components/layout";
 import { ecosystemData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -10,7 +9,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 15 },
   show: {
@@ -19,7 +17,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 const drawLine: Variants = {
   hidden: { pathLength: 0, opacity: 0, strokeDashoffset: 0 },
   show: {
@@ -38,7 +35,6 @@ const drawLine: Variants = {
     },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -46,14 +42,12 @@ const pulseGlow: Variants = {
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const floatAnimation: Variants = {
   animate: {
     y: [-4, 4, -4],
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function MobileEcosystem() {
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-white/40 py-8 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] ">
@@ -67,7 +61,6 @@ export default function MobileEcosystem() {
         animate="animate"
         className="pointer-events-none absolute right-[-10%] bottom-[-10%] h-[200px] w-[200px] rounded-full bg-[#D4AF37]/10 blur-[80px] dark:bg-[#D4AF37]/10"
       />
-
       <Container className="relative z-10 max-w-5xl px-4 mx-auto">
         <div className="mb-4 flex flex-col items-start gap-1 text-left px-2">
           <motion.div
@@ -82,7 +75,6 @@ export default function MobileEcosystem() {
                 {ecosystemData.tag}
               </span>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-4 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
@@ -92,14 +84,12 @@ export default function MobileEcosystem() {
                 {ecosystemData.titleHighlight}
               </span>
             </motion.h2>
-
             <motion.p
               variants={fadeInUp}
               className="mb-6 px-2 text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
             >
               {ecosystemData.subtitle}
             </motion.p>
-
             <motion.div
               variants={fadeInUp}
               className="mb-8 flex w-full flex-col gap-2.5 px-2"
@@ -119,7 +109,6 @@ export default function MobileEcosystem() {
                 </div>
               ))}
             </motion.div>
-
             <motion.p
               variants={fadeInUp}
               className="text-[0.9rem] font-bold tracking-wide text-gray-900 dark:text-white"
@@ -130,7 +119,6 @@ export default function MobileEcosystem() {
               </span>
             </motion.p>
           </motion.div>
-
           <div className="relative mt-8 flex w-full max-w-[360px] flex-col items-center mx-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -205,7 +193,6 @@ export default function MobileEcosystem() {
                     />
                   </svg>
                 </div>
-
                 {ecosystemData.flowItems.map((item, idx) => (
                   <div
                     key={idx}
@@ -226,7 +213,6 @@ export default function MobileEcosystem() {
                     </span>
                   </div>
                 ))}
-
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 90 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -235,7 +221,6 @@ export default function MobileEcosystem() {
                   <Plus size={14} strokeWidth={3} />
                 </motion.div>
               </div>
-
               <div className="relative z-0 -mt-[10px] h-[40px] w-full">
                 <svg
                   className="absolute inset-0 h-full w-full"
@@ -278,18 +263,15 @@ export default function MobileEcosystem() {
                   />
                 </svg>
               </div>
-
               <div className="z-20 -mt-[12px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#b38728] text-white shadow-md ring-2 ring-gray-50 backdrop-blur-sm dark:from-[#D4AF37] dark:to-[#b38728] dark:ring-[#0a1128]">
                 <Equal size={16} strokeWidth={3} />
               </div>
-
               <motion.div
                 variants={floatAnimation}
                 animate="animate"
                 className="relative z-10 -mt-[12px] flex w-[90%] max-w-[280px] items-center justify-center gap-3 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#020617] p-3 shadow-lg ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#0a1128]"
               >
                 <div className="absolute inset-0 flex justify-end rounded-xl bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-50 dark:from-[#D4AF37]/20" />
-
                 <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 shadow-inner ring-1 ring-white/10">
                   <Globe2
                     size={20}
@@ -297,7 +279,6 @@ export default function MobileEcosystem() {
                     strokeWidth={1.5}
                   />
                 </div>
-
                 <div className="relative z-10 flex flex-col text-left">
                   <span className="text-[0.75rem] font-bold text-gray-300 uppercase tracking-wider">
                     One Connected
@@ -310,7 +291,6 @@ export default function MobileEcosystem() {
             </motion.div>
           </div>
         </div>
-
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -319,7 +299,6 @@ export default function MobileEcosystem() {
           className="relative mx-auto mt-10 flex w-full max-w-2xl flex-row items-center justify-start gap-4 overflow-hidden rounded-xl border border-white/40 bg-white/40 p-4 text-left shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/20"
         >
           <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#D4AF37] to-[#b38728] dark:from-[#D4AF37] dark:to-[#b38728]" />
-
           <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 bg-white/50 backdrop-blur-md shadow-sm dark:border-white/10 dark:bg-black/40 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50">
             <Target
               size={18}
@@ -327,7 +306,6 @@ export default function MobileEcosystem() {
               strokeWidth={2}
             />
           </div>
-
           <p className="relative z-10 text-[0.95rem] font-medium leading-relaxed text-gray-700 dark:text-gray-300 text-left">
             Instead of switching between multiple platforms,{""}
             <span className="font-bold text-gray-900 dark:text-white">

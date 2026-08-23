@@ -1,14 +1,11 @@
 import { lazy, Suspense } from "react";
 import SiteHeader from "../components/commonfiles/Header/headerdesktop";
 import SiteFooter from "../components/commonfiles/Footer/footerdesktop";
-
 interface VideoSearchProps {
   isMobile?: boolean;
 }
-
 const Desktop = lazy(() => import("./desktop"));
 const Mobile = lazy(() => import("./mobile"));
-
 export default function VideoSearch({ isMobile = false }: VideoSearchProps) {
   if (isMobile) {
     return (
@@ -23,7 +20,6 @@ export default function VideoSearch({ isMobile = false }: VideoSearchProps) {
       </div>
     );
   }
-
   return (
     <>
       <SiteHeader />

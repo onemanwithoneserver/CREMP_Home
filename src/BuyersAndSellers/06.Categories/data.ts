@@ -12,7 +12,6 @@ import {
   Trees,
   Warehouse,
 } from "lucide-react";
-
 export const categoriesData = {
   tag: "PROPERTY CATEGORIES",
   title: "Explore Every Real Estate Category",

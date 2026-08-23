@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Container } from "../../components/layout";
 import { heroData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -26,11 +25,9 @@ const popIn: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 25 },
   },
 };
-
 export default function DesktopHero() {
   const PrimaryIcon = heroData.buttons[0].icon;
   const SecondaryIcon = heroData.buttons[1].icon;
-
   return (
     <div className="relative min-h-[85vh] w-full overflow-hidden bg-[#0b1b42] flex flex-col items-center justify-center pt-24 pb-12">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
@@ -46,7 +43,6 @@ export default function DesktopHero() {
         transition={{ duration: 3, ease: "easeOut", delay: 0.5 }}
         className="absolute -bottom-[20%] right-[10%] h-[500px] w-[500px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[120px] pointer-events-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
       />
-
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
         <motion.div
           variants={staggerContainer}
@@ -63,7 +59,6 @@ export default function DesktopHero() {
               {heroData.tag}
             </span>
           </motion.div>
-
           <motion.h1
             variants={fadeInUp}
             className="max-w-5xl text-[4rem] font-black leading-[1.05] tracking-tight text-white xl:text-[4.5rem] mb-4"
@@ -74,14 +69,12 @@ export default function DesktopHero() {
               {heroData.titleHighlight}
             </span>
           </motion.h1>
-
           <motion.p
             variants={fadeInUp}
             className="max-w-2xl text-[1.1rem] font-medium leading-relaxed text-gray-400 mb-8"
           >
             {heroData.desc}
           </motion.p>
-
           <motion.div variants={fadeInUp} className="flex items-center gap-5">
             <motion.button
               whileHover={{
@@ -114,7 +107,6 @@ export default function DesktopHero() {
             </motion.button>
           </motion.div>
         </motion.div>
-
         <motion.div
           variants={popIn}
           initial="hidden"

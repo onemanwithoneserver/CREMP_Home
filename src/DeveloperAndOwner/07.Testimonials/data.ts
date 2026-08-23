@@ -10,7 +10,6 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-
 export const testimonialsData = {
   tag: "EARLY ACCESS • JOIN BEFORE LAUNCH",
   title: "Be Among the\nFirst Developers\non CREMP",

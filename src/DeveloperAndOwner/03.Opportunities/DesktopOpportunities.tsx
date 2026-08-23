@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowRight, TrendingUp } from "lucide-react";
 import { Container } from "../../components/layout";
 import { opportunitiesData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -27,7 +26,6 @@ const popCard: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 export default function DesktopOpportunities() {
   return (
     <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
@@ -63,7 +61,6 @@ export default function DesktopOpportunities() {
                 {line}
               </motion.p>
             ))}
-
             <motion.div
               variants={fadeRight}
               className="mt-8 flex items-center gap-4"
@@ -73,7 +70,6 @@ export default function DesktopOpportunities() {
               </button>
             </motion.div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -102,7 +98,6 @@ export default function DesktopOpportunities() {
             </div>
           </motion.div>
         </div>
-
         <motion.div
           variants={staggerContainer}
           initial="hidden"

@@ -7,7 +7,6 @@ import {
   socialProviders,
   countryCodes,
 } from "./data";
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -15,7 +14,6 @@ const container = {
     transition: { staggerChildren: 0.08, delayChildren: 0.15 },
   },
 };
-
 const item = {
   hidden: { opacity: 0, y: 18 },
   show: {
@@ -24,9 +22,7 @@ const item = {
     transition: { type: "spring" as const, stiffness: 260, damping: 22 },
   },
 };
-
 const featureColors = ["#F97316", "#0EA5E9", "#8B5CF6", "#10B981"];
-
 export default function CreateAccountDesktop() {
   const [formData, setFormData] = useState({
     name: "",
@@ -38,17 +34,14 @@ export default function CreateAccountDesktop() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
-
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -59,7 +52,6 @@ export default function CreateAccountDesktop() {
       });
     }
   };
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) newErrors.name = "Full name is required";
@@ -70,31 +62,24 @@ export default function CreateAccountDesktop() {
     }
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     else if (formData.phone.length < 10) newErrors.phone = "Enter a valid 10-digit number";
-    
     if (!formData.password) newErrors.password = "Password is required";
     else if (formData.password.length < 8) newErrors.password = "Must be at least 8 characters";
-    
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
-    
     if (!agreedToTerms) newErrors.terms = "Please agree to the Terms of Service";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
     }, 2000);
   };
-
   return (
     <div className="h-screen w-full relative overflow-hidden font-sans">
       <div
@@ -280,7 +265,6 @@ export default function CreateAccountDesktop() {
                           )}
                         </AnimatePresence>
                       </div>
-
                       <div className="space-y-1.5">
                         <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                           Email Address
@@ -310,7 +294,6 @@ export default function CreateAccountDesktop() {
                         </AnimatePresence>
                       </div>
                     </motion.div>
-
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -385,7 +368,6 @@ export default function CreateAccountDesktop() {
                         )}
                       </AnimatePresence>
                     </motion.div>
-
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -430,7 +412,6 @@ export default function CreateAccountDesktop() {
                         )}
                       </AnimatePresence>
                     </motion.div>
-
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -475,7 +456,6 @@ export default function CreateAccountDesktop() {
                         )}
                       </AnimatePresence>
                     </motion.div>
-
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -514,7 +494,6 @@ export default function CreateAccountDesktop() {
                         </div>
                       </label>
                     </motion.div>
-
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -542,7 +521,6 @@ export default function CreateAccountDesktop() {
                       </button>
                     </motion.div>
                   </form>
-                  
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

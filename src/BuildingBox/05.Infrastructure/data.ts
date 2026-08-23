@@ -8,7 +8,6 @@ import {
   Flame,
   Shield,
 } from "lucide-react";
-
 export const infrastructureData = {
   title: "Infrastructure & Facilities",
   items: [

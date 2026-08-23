@@ -8,7 +8,6 @@ import { stakeholdersData } from "../03_StakeHolders/data";
 import bgImage from "./bg.png";
 import { vendorBenefits } from "./data";
 import telangana from "./telangana.png";
-
 const getTheme = (id: string) => {
   switch (id) {
     case "developers":
@@ -68,10 +67,8 @@ const getTheme = (id: string) => {
       };
   }
 };
-
 export default function Mobile() {
   const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
-
   const allStakeholders = useMemo(() => {
     const hasInvestors = stakeholdersData.some(
       (s) =>
@@ -79,16 +76,13 @@ export default function Mobile() {
         s.label.toLowerCase().includes("investor"),
     );
     if (hasInvestors) return stakeholdersData;
-
     return [
       ...stakeholdersData,
       { id: "investors", label: "Investors\n& VC", icon: TrendingUp },
     ];
   }, []);
-
   const [activeTab, setActiveTab] = useState(allStakeholders[0].id);
   const { showSticky, setShowSticky } = useAnnouncement();
-
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinelRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -97,7 +91,6 @@ export default function Mobile() {
         observerRef.current = null;
       }
       if (!node) return;
-
       observerRef.current = new IntersectionObserver(
         ([entry]) => {
           setShowSticky(!entry.isIntersecting);
@@ -108,7 +101,6 @@ export default function Mobile() {
     },
     [setShowSticky],
   );
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((current) => {
@@ -119,7 +111,6 @@ export default function Mobile() {
     }, 3000);
     return () => clearInterval(interval);
   }, [allStakeholders]);
-
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#17274C] px-5 pb-10 pt-20 text-[#0a1128] dark:text-white">
       <div className="absolute inset-0 bg-gray-50 dark:bg-[#17274C] z-0" />
@@ -141,7 +132,6 @@ export default function Mobile() {
         transition={{ duration: 2, ease: "easeOut" }}
       />
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#17274C]/90 dark:via-[#17274C]/95 dark:to-[#17274C] pointer-events-none" />
-
       <div className="relative z-10 flex w-full flex-col gap-8">
         <div className="flex flex-col z-10">
           <InlineAnnouncement
@@ -149,7 +139,6 @@ export default function Mobile() {
             isMobile
             hiddenVisually={showSticky}
           />
-
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -164,7 +153,6 @@ export default function Mobile() {
             <br />
             Marketplace
           </motion.h1>
-
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,7 +172,6 @@ export default function Mobile() {
               <span>Investments</span>
             </div>
           </motion.div>
-
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -199,7 +186,6 @@ export default function Mobile() {
             and tenants connect, collaborate and grow.
           </motion.p>
         </div>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -216,11 +202,9 @@ export default function Mobile() {
             }}
           />
           <div className="absolute inset-0 z-0 bg-gradient-to-t from-gray-50/95 via-gray-50/80 to-gray-50/60 dark:from-[#121c33]/95 dark:via-[#121c33]/80 dark:to-[#121c33]/60" />
-
           <div className="relative z-10 p-5 sm:p-6">
             <div className="group/orbit relative mx-auto flex h-[280px] w-[280px] sm:h-[320px] sm:w-[320px] shrink-0 items-center justify-center mb-8 mt-2">
               <div className="pointer-events-none absolute inset-0 rounded-full bg-[#D4AF37]/5 blur-[40px] opacity-100" />
-
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1, rotate: 360 }}
@@ -232,7 +216,6 @@ export default function Mobile() {
                 viewport={{ once: false }}
                 className="absolute inset-0 rounded-full border border-dashed border-gray-800/80 dark:border-gray-500/50"
               />
-
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
@@ -240,7 +223,6 @@ export default function Mobile() {
                 viewport={{ once: false }}
                 className="absolute inset-[12%] rounded-full border border-gray-700/30 dark:border-gray-400/30"
               />
-
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1, rotate: -360 }}
@@ -257,7 +239,6 @@ export default function Mobile() {
                 <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
                 <div className="absolute right-0 top-1/2 h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
               </motion.div>
-
               <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
@@ -272,7 +253,6 @@ export default function Mobile() {
                   className="z-10 h-[50%] w-[50%] object-contain drop-shadow-[0_0_5px_rgba(246,178,59,0.2)]"
                 />
               </motion.div>
-
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
@@ -287,7 +267,6 @@ export default function Mobile() {
                   const radius = 45;
                   const x = 50 + radius * Math.cos(angle);
                   const y = 50 + radius * Math.sin(angle);
-
                   return (
                     <motion.div
                       key={stakeholder.id}
@@ -354,7 +333,6 @@ export default function Mobile() {
                 })}
               </motion.div>
             </div>
-
             <div className="flex flex-col gap-3">
               <motion.button
                 whileTap={{ scale: 0.96 }}
@@ -363,7 +341,6 @@ export default function Mobile() {
                 <span className="relative">Request Early Access</span>
                 <ArrowRight className="relative h-4 w-4" />
               </motion.button>
-
               <motion.button
                 whileTap={{ scale: 0.96 }}
                 className="group relative flex w-full items-center justify-between rounded-[4px] border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#121c33] px-4 py-3 text-sm font-bold text-[#0a1128] dark:text-white active:bg-gray-50 dark:active:bg-gray-800"
@@ -374,7 +351,6 @@ export default function Mobile() {
             </div>
           </div>
         </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -385,7 +361,6 @@ export default function Mobile() {
           <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-200">
             Founding Vendor Benefits
           </div>
-
           <div className="flex flex-col gap-3">
             {vendorBenefits.map((benefit, idx) => (
               <motion.div

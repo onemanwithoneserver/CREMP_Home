@@ -8,7 +8,6 @@ import {
   Store,
   User,
 } from "lucide-react";
-
 export const brandData = {
   tag: "YOUR BRAND",
   titleBase: "Your Brand.",
@@ -41,7 +40,6 @@ export const brandData = {
     icon: Handshake,
   },
 };
-
 export const carouselItems = [
   {
     id: 1,

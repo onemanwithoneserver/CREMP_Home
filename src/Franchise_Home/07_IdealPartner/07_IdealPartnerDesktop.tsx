@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { motion, type Variants } from "framer-motion";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -16,7 +15,6 @@ import {
 import { idealPartnerData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { BadgeCheck } from "lucide-react";
-
 const fadeInUp = {
   hidden: { opacity: 0, y: 15, scale: 0.98 },
   show: {
@@ -31,7 +29,6 @@ const fadeInUp = {
     },
   },
 };
-
 const stagger = {
   hidden: { opacity: 0 },
   show: {
@@ -39,7 +36,6 @@ const stagger = {
     transition: { staggerChildren: 0.08, delayChildren: 0.05 },
   },
 };
-
 export default function IdealPartnerDesktop() {
   return (
     <section className="w-full px-6 py-12 relative overflow-hidden rounded-[8px] ">
@@ -60,7 +56,6 @@ export default function IdealPartnerDesktop() {
           subtitle={idealPartnerData.subtitle}
           align="center"
         />
-
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -99,7 +94,6 @@ export default function IdealPartnerDesktop() {
                     {item.title}
                   </h4>
                 </div>
-
                 <div className="flex flex-col gap-3 flex-1">
                   {item.items.map((subItem, idx) => {
                     const badgeStyles = getCheckBadgeStyles(item.intent);
@@ -134,7 +128,6 @@ export default function IdealPartnerDesktop() {
             );
           })}
         </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -181,7 +174,6 @@ export default function IdealPartnerDesktop() {
             );
           })}
         </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="show"

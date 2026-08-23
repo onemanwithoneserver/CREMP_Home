@@ -23,7 +23,6 @@ import {
   Truck,
   Box,
 } from "lucide-react";
-
 export interface FilterState {
   transactionType: string;
   propertyType: string;
@@ -35,17 +34,14 @@ export interface FilterState {
   commercialTags: string[];
   dealPref: string;
   industry: string;
-
   sizeMin: string;
   sizeMax: string;
   sizeUnit: string;
   occupancy: string;
   constructionStage: string;
-
   city: string;
   businessOption: string;
 }
-
 export type SingleSelectFilterKey =
   | "transactionType"
   | "propertyType"
@@ -55,9 +51,7 @@ export type SingleSelectFilterKey =
   | "fitOut"
   | "dealPref"
   | "industry";
-
 export type ArrayFilterKey = "status" | "commercialTags";
-
 export const DEFAULT_FILTERS: FilterState = {
   transactionType: "Buy",
   propertyType: "Office",
@@ -69,17 +63,14 @@ export const DEFAULT_FILTERS: FilterState = {
   commercialTags: [],
   dealPref: "Any",
   industry: "food-beverage",
-
   sizeMin: "Any",
   sizeMax: "Any",
   sizeUnit: "Sq Ft",
   occupancy: "Any",
   constructionStage: "Any",
-
   city: "",
   businessOption: "Any",
 };
-
 export const PROPERTY_TYPES = [
   { id: "Plot", label: "Plot", icon: Grid },
   { id: "Retail", label: "Retail", icon: Store },
@@ -88,7 +79,6 @@ export const PROPERTY_TYPES = [
   { id: "Showroom", label: "Showroom", icon: MonitorPlay },
   { id: "Industrial", label: "Industrial", icon: Factory },
 ];
-
 export const BUDGET_OPTIONS = [
   "Any",
   "Under ₹50L",
@@ -105,7 +95,6 @@ export const SIZE_OPTIONS = [
   "3000 - 5000 sq.ft",
   "5000+ sq.ft",
 ];
-
 export const FIT_OUT_OPTIONS = [
   { id: "Any", label: "Any", icon: Armchair },
   { id: "Bare Shell", label: "Bare Shell", icon: Building },
@@ -113,12 +102,10 @@ export const FIT_OUT_OPTIONS = [
   { id: "Semi-Fitted", label: "Semi-Fitted", icon: Layers },
   { id: "Fully Fitted", label: "Fully Fitted", icon: Briefcase },
 ];
-
 export const COMMERCIAL_TAGS = [
   { id: "Pre-Leased", label: "Pre-Leased (High Yield)", icon: TrendingUp },
   { id: "Verified", label: "Verified Property", icon: ShieldCheck },
 ];
-
 export const STATUS_OPTIONS = [
   "Ready to Move",
   "Under Construction",
@@ -131,7 +118,6 @@ export const CONSTRUCTION_STAGE_OPTIONS = [
   "Under Construction",
   "Planned",
 ];
-
 export const BOP_INDUSTRIES = [
   {
     id: "food-beverage",
@@ -184,14 +170,12 @@ export const BOP_INDUSTRIES = [
     color: "text-gray-400",
   },
 ];
-
 export const BUSINESS_OPTIONS = [
   { id: "New Franchise", label: "New Franchise", icon: Store },
   { id: "Existing Business", label: "Existing Business", icon: Store },
   { id: "Distribution", label: "Distribution", icon: Truck },
   { id: "Movable Assets", label: "Movable Assets", icon: Box },
 ];
-
 export const SIZE_MIN_OPTIONS = ["Any", "1000", "2000", "5000", "10000"];
 export const SIZE_MAX_OPTIONS = ["Any", "2000", "5000", "10000", "20000+"];
 export const SIZE_UNITS = ["Sq Ft", "Sq M", "Acres"];

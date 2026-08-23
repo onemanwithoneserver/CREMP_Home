@@ -1,6 +1,5 @@
 import DesktopFoundingPartner from "./DesktopFoundingPartner";
 import MobileFoundingPartner from "./MobileFoundingPartner";
-
 export default function FranchiseFoundingPartner({
   isMobile,
 }: {

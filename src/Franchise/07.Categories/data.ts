@@ -12,7 +12,6 @@ import {
   ShoppingBag,
   Utensils,
 } from "lucide-react";
-
 export const categoriesData = {
   tag: "BUILT FOR EVERY FRANCHISE CATEGORY",
   title: "Built for Every Franchise Category",
@@ -37,7 +36,6 @@ export const categoriesData = {
   bottomDisclaimer:
     "Partner with CREMP and grow your franchise the smarter way.",
 };
-
 export const iconColors = [
   "text-rose-600 bg-gradient-to-br from-rose-50 to-rose-100/80 ring-rose-200/50 group-hover:from-rose-500 group-hover:to-rose-600 group-hover:text-white group-hover:ring-rose-400 group-hover:shadow-[0_8px_20px_rgba(225,29,72,0.4)] dark:from-rose-500/10 dark:to-rose-500/5 dark:text-rose-400 dark:ring-rose-500/20 dark:group-hover:from-rose-500 dark:group-hover:to-rose-600 dark:group-hover:text-white",
   "text-emerald-600 bg-gradient-to-br from-emerald-50 to-emerald-100/80 ring-emerald-200/50 group-hover:from-emerald-500 group-hover:to-emerald-600 group-hover:text-white group-hover:ring-emerald-400 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.4)] dark:from-emerald-500/10 dark:to-emerald-500/5 dark:text-emerald-400 dark:ring-emerald-500/20 dark:group-hover:from-emerald-500 dark:group-hover:to-emerald-600 dark:group-hover:text-white",

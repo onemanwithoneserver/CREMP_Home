@@ -7,14 +7,12 @@ import {
   IndianRupee,
   LayoutGrid,
 } from "lucide-react";
-
 export interface OpportunityItem {
   id: string;
   circleName: string;
   format: string;
   badge?: "Prime" | "Hot" | "Available" | "New";
 }
-
 export interface CityNode {
   id: string;
   name: string;
@@ -29,13 +27,11 @@ export interface CityNode {
   featured?: boolean;
   opportunities: OpportunityItem[];
 }
-
 export const franchiseNetworkData = {
   sectionLabel: "EXPANSION MAP",
   title: "Franchise Locations Available",
   subtitle: "",
   outletCount: "187+ Outlets • 8 States • 25 In Pipeline",
-
   stats: [
     {
       label: "No of Locations",
@@ -62,7 +58,6 @@ export const franchiseNetworkData = {
       icon: IndianRupee,
     },
   ],
-
   legend: [
     {
       status: "active",
@@ -89,7 +84,6 @@ export const franchiseNetworkData = {
       ring: "ring-blue-400/30",
     },
   ],
-
   cities: [
     {
       id: "hyd",
@@ -505,7 +499,6 @@ export const franchiseNetworkData = {
       ],
     },
   ] as CityNode[],
-
   cta: {
     secondary: "Download Network Dossier",
   },

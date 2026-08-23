@@ -4,10 +4,8 @@ import { Cpu, Lock, Check } from "lucide-react";
 import { locationIntelligenceData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer, gridItem } from "../components/animations";
-
 export default function Desktop() {
   const [isNotified, setIsNotified] = useState(false);
-
   return (
     <motion.div
       initial="hidden"
@@ -25,7 +23,6 @@ export default function Desktop() {
           title={locationIntelligenceData.title}
           icon={Cpu}
         />
-
         <div className="px-6 py-6 relative">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
             <div className="w-12 h-12 rounded-[4px] flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.2)] border border-[#1c2e64] bg-[#17274c] group-hover:animate-icon-shake origin-center transition-all duration-300">
@@ -54,7 +51,6 @@ export default function Desktop() {
               </span>
             </div>
           </div>
-
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -98,7 +94,6 @@ export default function Desktop() {
               </motion.div>
             ))}
           </motion.div>
-
           <motion.div
             variants={fadeInUp}
             className="w-full relative z-20 overflow-hidden mt-4 border border-gray-100 bg-white rounded-[4px] shadow-sm"

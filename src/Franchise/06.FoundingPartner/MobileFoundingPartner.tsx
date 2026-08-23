@@ -1,7 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Check, Gem, Star } from "lucide-react";
 import { foundingData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -10,14 +9,12 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const rocketFloat: Variants = {
   animate: {
     y: [-6, 6, -6],
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const flameFlicker: Variants = {
   animate: {
     scaleY: [1, 1.25, 0.9, 1.15, 1],
@@ -25,7 +22,6 @@ const flameFlicker: Variants = {
     transition: { duration: 0.4, repeat: Infinity, ease: "linear" },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -33,14 +29,11 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const staggerContainer: Variants = {
   show: { transition: { staggerChildren: 0.15 } },
 };
-
 export default function MobileFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
-
   return (
     <div className="relative w-full overflow-hidden bg-white/40 backdrop-blur-xl border-y border-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <motion.div
@@ -48,7 +41,6 @@ export default function MobileFoundingPartner() {
         animate="animate"
         className="pointer-events-none absolute right-[-10%] top-[10%] h-[300px] w-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/15 via-transparent to-transparent opacity-60 blur-3xl dark:from-[#D4AF37]/15"
       />
-
       <div className="relative z-10 w-full">
         <div className="relative flex w-full flex-col overflow-hidden  backdrop-blur-xl mx-4 w-[calc(100%-32px)]">
           <div className="relative flex w-full flex-col items-center p-6 pt-6 text-center">
@@ -78,14 +70,12 @@ export default function MobileFoundingPartner() {
                   {foundingData.tag}
                 </span>
               </motion.div>
-
               <motion.h2
                 variants={fadeInUp}
                 className="mb-4 whitespace-pre-line text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
               >
                 {foundingData.title}
               </motion.h2>
-
               <motion.p
                 variants={fadeInUp}
                 className="max-w-[320px] text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -93,7 +83,6 @@ export default function MobileFoundingPartner() {
                 {foundingData.desc}
               </motion.p>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -118,7 +107,6 @@ export default function MobileFoundingPartner() {
                   <div className="h-[60%] w-[60%] rounded-[100%] border border-white/50 dark:border-white/20" />
                 </div>
               </div>
-
               <div className="absolute inset-0 -translate-x-8 -translate-y-1">
                 <motion.div
                   variants={rocketFloat}
@@ -131,11 +119,9 @@ export default function MobileFoundingPartner() {
                       <div className="absolute right-1 top-1 h-2 w-3 -rotate-45 rounded-full bg-white/60" />
                     </div>
                   </div>
-
                   <div className="absolute -left-7 bottom-2 h-16 w-8 -skew-y-12 rounded-br-[4px] rounded-tl-[100%] bg-gradient-to-tr from-[#92400e] to-[#d97706] shadow-lg" />
                   <div className="absolute -right-7 bottom-2 h-16 w-8 skew-y-12 rounded-bl-[4px] rounded-tr-[100%] bg-gradient-to-tl from-[#92400e] to-[#d97706] shadow-lg" />
                   <div className="absolute bottom-0 z-50 h-12 w-4 rounded-t-full bg-gradient-to-t from-[#78350f] to-[#b45309]" />
-
                   <motion.div
                     variants={flameFlicker}
                     initial="animate"
@@ -148,11 +134,9 @@ export default function MobileFoundingPartner() {
                     className="absolute -bottom-8 z-20 h-16 w-10 origin-top rounded-full bg-gradient-to-t from-transparent via-red-500 to-yellow-300 opacity-60 blur-[4px]"
                   />
                 </motion.div>
-
                 {foundingData.rocketNodes.map((node, idx) => {
                   const isLeft = node.pos.includes("left");
                   const isTop = node.pos.includes("top");
-
                   return (
                     <motion.div
                       key={idx}
@@ -228,7 +212,6 @@ export default function MobileFoundingPartner() {
               </div>
             </motion.div>
           </div>
-
           <div className="relative z-10 flex w-full flex-col  p-6  backdrop-blur-md ">
             <div className="mb-6 flex flex-col items-center gap-3 border-b border-gray-200/60 pb-6 text-center dark:border-gray-800/60">
               <motion.div
@@ -246,10 +229,8 @@ export default function MobileFoundingPartner() {
                 {foundingData.benefitsTitle}
               </h3>
             </div>
-
             <div className="relative mb-8 flex flex-col gap-3 text-left">
               <div className="pointer-events-none absolute left-[21px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-[#D4AF37]/20" />
-
               {foundingData.benefits.map((benefit, idx) => (
                 <motion.div
                   key={idx}
@@ -266,7 +247,6 @@ export default function MobileFoundingPartner() {
                   <div className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-xs dark:bg-[#0b1b42]">
                     <Check size={11} strokeWidth={3} />
                   </div>
-
                   <motion.div
                     whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
                     transition={{ duration: 0.3 }}
@@ -274,14 +254,12 @@ export default function MobileFoundingPartner() {
                   >
                     <benefit.icon size={14} strokeWidth={1.5} />
                   </motion.div>
-
                   <span className="text-[0.9rem] font-bold text-gray-900 dark:text-white">
                     {benefit.text}
                   </span>
                 </motion.div>
               ))}
             </div>
-
             <div className="mb-6 flex flex-col gap-3">
               <motion.button
                 whileHover={{ scale: 1.02 }}

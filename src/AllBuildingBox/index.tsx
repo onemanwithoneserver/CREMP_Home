@@ -8,23 +8,19 @@ import {
 } from "react";
 import { GripVertical } from "lucide-react";
 import { useParams } from "react-router-dom";
-
 import Hero from "./01.Hero";
 import MapView from "./MapView";
-
 const SpaceOverview = lazy(() => import("./03.SpaceOverview"));
 const Listings = lazy(() => import("./03.Listings"));
 const Infrastructure = lazy(() => import("./05.Infrastructure"));
 const Terms = lazy(() => import("./08.Terms"));
 const StickyFooter = lazy(() => import("./StickyFooter"));
-
 const SectionLoader = () => (
   <div
     className="w-full h-32 animate-pulse bg-gray-100/60 rounded-2xl mx-2.5"
     style={{ width: "calc(100% - 1.25rem)" }}
   />
 );
-
 export default function AllBuildingBox() {
   const { viewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
   const [dialogWidth, setDialogWidth] = useState(35);
@@ -32,7 +28,6 @@ export default function AllBuildingBox() {
   const [panelPadding, setPanelPadding] = useState("1rem");
   const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (!panelRef.current) return;
     const updatePadding = () => {
@@ -48,36 +43,29 @@ export default function AllBuildingBox() {
         setPanelPadding("1.5rem");
       }
     };
-
     updatePadding();
     const observer = new ResizeObserver(updatePadding);
     observer.observe(panelRef.current);
     return () => observer.disconnect();
   }, []);
-
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
-
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       if (!isDragging || !containerRef.current) return;
-
       const containerRect = containerRef.current.getBoundingClientRect();
       const mapWidthPercent =
         ((e.clientX - containerRect.left) / containerRect.width) * 100;
-
       const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 75);
       setDialogWidth(100 - clampedMapWidth);
     },
     [isDragging],
   );
-
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
   }, []);
-
   useEffect(() => {
     if (isDragging) {
       document.addEventListener("mousemove", handleMouseMove);
@@ -91,7 +79,6 @@ export default function AllBuildingBox() {
       document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, handleMouseMove, handleMouseUp]);
-
   const content = (
     <div className="flex-1 flex flex-col relative h-full w-full overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20 px-0 pt-0 w-full">
@@ -99,7 +86,6 @@ export default function AllBuildingBox() {
         <div className="border-b border-gray-100 w-full" />
         <Suspense fallback={<SectionLoader />}>
           <Listings />
-
           <div className="border-b border-gray-100 w-full" />
           <SpaceOverview />
           <div className="border-b border-gray-100 w-full" />
@@ -115,7 +101,6 @@ export default function AllBuildingBox() {
       </div>
     </div>
   );
-
   return (
     <div
       ref={containerRef}
@@ -129,7 +114,6 @@ export default function AllBuildingBox() {
           >
             <MapView />
           </div>
-
           <div
             className="w-1.5 h-full bg-gray-200 hover:bg-blue-400 cursor-col-resize flex flex-col items-center justify-center group relative z-30 transition-colors"
             onMouseDown={handleMouseDown}
@@ -141,7 +125,6 @@ export default function AllBuildingBox() {
               <div className="fixed inset-0 z-50 cursor-col-resize" />
             )}
           </div>
-
           <div
             ref={panelRef}
             style={

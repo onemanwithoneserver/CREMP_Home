@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Container } from "../../components/layout";
 import { howItWorksData } from "./data";
-
 export default function DesktopHowItWorks() {
   return (
     <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
@@ -39,10 +38,8 @@ export default function DesktopHowItWorks() {
             {howItWorksData.desc[0]}
           </motion.p>
         </div>
-
         <div className="relative mx-auto max-w-5xl">
           <div className="absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#D4AF37]/30 via-gray-200 to-transparent dark:from-[#D4AF37]/30 dark:via-gray-800" />
-
           <div className="flex flex-col gap-12">
             {howItWorksData.steps.map((step, idx) => {
               const isEven = idx % 2 === 0;
@@ -72,7 +69,6 @@ export default function DesktopHowItWorks() {
                       </p>
                     </div>
                   </div>
-
                   <div className="relative flex w-[10%] justify-center z-10">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-xl dark:border-[#0a1128] dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-gray-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95">
                       <step.icon size={24} />

@@ -1,5 +1,4 @@
 import { ExternalLink, Home, MapPin, Search, ShieldCheck } from "lucide-react";
-
 export const heroData = {
   tag: "FOR BUYERS & SELLERS • CONNECTING THE MARKET",
   titleHighlight: "Real Estate Journey.",

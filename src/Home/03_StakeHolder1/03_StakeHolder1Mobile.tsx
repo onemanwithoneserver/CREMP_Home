@@ -8,9 +8,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { stakeholderData } from "./data";
-
 const smoothEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -18,7 +16,6 @@ const sectionVariants = {
     transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
-
 const fadeUpText = {
   hidden: { opacity: 0, y: 15 },
   visible: {
@@ -27,7 +24,6 @@ const fadeUpText = {
     transition: { duration: 0.5, ease: smoothEasing },
   },
 };
-
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -36,14 +32,12 @@ const cardVariants = {
     transition: { duration: 0.5, ease: smoothEasing },
   },
 };
-
 const floatAnim: any = {
   animate: {
     y: [0, -6, 0],
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const b1Themes = [
   {
     iconWrapper:
@@ -66,7 +60,6 @@ const b1Themes = [
     cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
   },
 ];
-
 const b2Themes = [
   {
     iconWrapper:
@@ -89,14 +82,12 @@ const b2Themes = [
     cardBg: "bg-white dark:bg-white/5 backdrop-blur-md",
   },
 ];
-
 export default function MobileStakeHolder1() {
   const { block1, block2, block3 } = stakeholderData;
   const navigate = useNavigate();
   const viewMode = window.location.pathname.startsWith("/mobile")
     ? "mobile"
     : "desktop";
-
   return (
     <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-[#17274C] ">
       <motion.section
@@ -114,7 +105,6 @@ export default function MobileStakeHolder1() {
             className="w-full h-full object-cover"
           />
         </div>
-
         <div className="relative z-10 p-2 flex flex-col gap-6 w-full mt-2">
           <motion.div variants={fadeUpText} className="flex flex-col gap-3">
             <div className="flex items-center gap-1.5 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-xs font-semibold px-3 py-1.5 rounded-[2px] w-fit tracking-wider uppercase border border-transparent dark:border-white/20 backdrop-blur-md">
@@ -128,7 +118,6 @@ export default function MobileStakeHolder1() {
               {block1.subtitle}
             </p>
           </motion.div>
-
           <div className="flex flex-col gap-4 w-full">
             {block1.cards.map((card, idx) => {
               const theme = b1Themes[idx % b1Themes.length];
@@ -159,11 +148,9 @@ export default function MobileStakeHolder1() {
                       </p>
                     </div>
                   </div>
-
                   <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5">
                     {card.description}
                   </p>
-
                   <div className="w-full aspect-video shrink-0 rounded-[4px] overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm relative mb-5">
                     <img
                       src={card.image}
@@ -171,7 +158,6 @@ export default function MobileStakeHolder1() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-
                   <div className="grid grid-cols-2 gap-3 py-4 border-t border-slate-100 dark:border-slate-800 mb-2">
                     {card.features.map((feature, fIdx) => (
                       <div key={fIdx} className="flex items-center gap-2">
@@ -190,7 +176,6 @@ export default function MobileStakeHolder1() {
                       </div>
                     ))}
                   </div>
-
                   <button
                     onClick={() => navigate(`/${viewMode}${card.route}`)}
                     className={`w-full font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors ${theme.buttonBg}`}
@@ -204,7 +189,6 @@ export default function MobileStakeHolder1() {
           </div>
         </div>
       </motion.section>
-
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -213,7 +197,6 @@ export default function MobileStakeHolder1() {
         className="rounded-[4px] bg-white dark:bg-slate-900 overflow-hidden p-5 flex flex-col gap-6 relative w-full"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.05),transparent_60%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.15),transparent_60%)] pointer-events-none"></div>
-
         <div className="flex justify-between items-start gap-4 relative z-10 w-full mb-2">
           <motion.div
             variants={fadeUpText}
@@ -230,7 +213,6 @@ export default function MobileStakeHolder1() {
               {block2.subtitle}
             </p>
           </motion.div>
-
           <motion.div
             variants={fadeUpText}
             className="relative w-24 h-24 shrink-0 flex items-center justify-center mt-2 mr-2 hidden sm:flex"
@@ -266,7 +248,6 @@ export default function MobileStakeHolder1() {
             </motion.div>
           </motion.div>
         </div>
-
         <div className="flex flex-col gap-4 relative z-10 w-full">
           {block2.cards.map((card, idx) => {
             const theme = b2Themes[idx % b2Themes.length];
@@ -293,11 +274,9 @@ export default function MobileStakeHolder1() {
                     </p>
                   </div>
                 </div>
-
                 <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-5">
                   {card.description}
                 </p>
-
                 <div className="w-full aspect-video shrink-0 rounded-[4px] overflow-hidden shadow-sm relative mb-5 bg-slate-100 dark:bg-slate-900">
                   <img
                     src={card.image}
@@ -305,7 +284,6 @@ export default function MobileStakeHolder1() {
                     className="w-full h-full object-cover opacity-90"
                   />
                 </div>
-
                 <div className="grid grid-cols-2 gap-3 py-4 mb-2">
                   {card.features.map((feature, fIdx) => (
                     <div key={fIdx} className="flex items-center gap-2">
@@ -324,7 +302,6 @@ export default function MobileStakeHolder1() {
                     </div>
                   ))}
                 </div>
-
                 <button
                   onClick={() => navigate(`/${viewMode}${card.route}`)}
                   className={`w-full font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors ${theme.buttonBg}`}
@@ -337,7 +314,6 @@ export default function MobileStakeHolder1() {
           })}
         </div>
       </motion.section>
-
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -361,7 +337,6 @@ export default function MobileStakeHolder1() {
               {block3.subtitle}
             </p>
           </motion.div>
-
           <motion.div
             variants={fadeUpText}
             className="grid grid-cols-2 gap-3 mt-1"
@@ -386,7 +361,6 @@ export default function MobileStakeHolder1() {
               </div>
             ))}
           </motion.div>
-
           <motion.button
             variants={fadeUpText}
             onClick={() => navigate(`/${viewMode}${block3.route}`)}
@@ -396,7 +370,6 @@ export default function MobileStakeHolder1() {
             <ArrowRight size={16} />
           </motion.button>
         </div>
-
         <div className="w-full relative min-h-[340px] mt-2 overflow-hidden bg-slate-100 dark:bg-slate-900">
           <motion.img
             initial={{ scale: 1.05 }}
@@ -407,7 +380,6 @@ export default function MobileStakeHolder1() {
             className="absolute inset-0 w-full h-full object-cover opacity-90"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-emerald-100/80 dark:from-emerald-950/80 via-transparent to-transparent z-10"></div>
-
           <div className="absolute bottom-5 right-4 flex flex-col gap-3 z-20 items-end w-[85%] max-w-[260px]">
             {block3.floaters.slice(0, 3).map((floater, idx) => (
               <motion.div

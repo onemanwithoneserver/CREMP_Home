@@ -1,5 +1,4 @@
 import { Building2, Calendar, MapPin, Search, ShieldCheck } from "lucide-react";
-
 export const heroData = {
   tag: "FOR INVESTORS • DISCOVER OPPORTUNITIES",
   titleHighlight: "Investment.",

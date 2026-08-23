@@ -3,7 +3,6 @@ import { User, Mail, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, CheckCir
 import { motion, AnimatePresence } from "framer-motion";
 import mobileBg from "../assets/mobileBg.jpg";
 import { socialProviders, countryCodes } from "./data";
-
 export default function CreateAccountMobile() {
   const [formData, setFormData] = useState({
     name: "",
@@ -15,17 +14,14 @@ export default function CreateAccountMobile() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
-
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -36,7 +32,6 @@ export default function CreateAccountMobile() {
       });
     }
   };
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) newErrors.name = "Full name is required";
@@ -47,31 +42,24 @@ export default function CreateAccountMobile() {
     }
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     else if (formData.phone.length < 10) newErrors.phone = "Enter a valid 10-digit number";
-    
     if (!formData.password) newErrors.password = "Password is required";
     else if (formData.password.length < 8) newErrors.password = "Must be at least 8 characters";
-    
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
-    
     if (!agreedToTerms) newErrors.terms = "Please agree to the Terms of Service";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
     }, 2000);
   };
-
   return (
     <div className="min-h-screen flex flex-col font-sans relative overflow-hidden transition-colors duration-300">
       <div
@@ -79,7 +67,6 @@ export default function CreateAccountMobile() {
         style={{ backgroundImage: `url(${mobileBg})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/60 to-[#0a1128]/30 dark:from-[#0a1128] dark:via-[#0a1128]/80 dark:to-[#0a1128]/60" />
-
       <div className="absolute top-4 right-4 z-20">
         <button className="flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[8px] text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm">
           <Globe size={14} />
@@ -87,7 +74,6 @@ export default function CreateAccountMobile() {
           <ChevronDown size={14} className="text-gray-400" />
         </button>
       </div>
-
       <div className="flex-1 flex items-center justify-center p-4 relative z-10 pt-16 pb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -152,7 +138,6 @@ export default function CreateAccountMobile() {
                     Create Account
                   </h1>
                 </motion.div>
-
                 <form className="w-[85%] mx-auto space-y-2.5" onSubmit={handleSubmit} noValidate>
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
@@ -188,7 +173,6 @@ export default function CreateAccountMobile() {
                         )}
                       </AnimatePresence>
                     </div>
-
                     <div className="space-y-1.5">
                       <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                         Email Address
@@ -218,7 +202,6 @@ export default function CreateAccountMobile() {
                       </AnimatePresence>
                     </div>
                   </motion.div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -293,7 +276,6 @@ export default function CreateAccountMobile() {
                       )}
                     </AnimatePresence>
                   </motion.div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -338,7 +320,6 @@ export default function CreateAccountMobile() {
                       )}
                     </AnimatePresence>
                   </motion.div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -383,7 +364,6 @@ export default function CreateAccountMobile() {
                       )}
                     </AnimatePresence>
                   </motion.div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -422,7 +402,6 @@ export default function CreateAccountMobile() {
                       </div>
                     </label>
                   </motion.div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -450,7 +429,6 @@ export default function CreateAccountMobile() {
                     </button>
                   </motion.div>
                 </form>
-
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -466,7 +444,6 @@ export default function CreateAccountMobile() {
                     </span>
                   </div>
                 </motion.div>
-
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -491,7 +468,6 @@ export default function CreateAccountMobile() {
                     </button>
                   ))}
                 </motion.div>
-
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

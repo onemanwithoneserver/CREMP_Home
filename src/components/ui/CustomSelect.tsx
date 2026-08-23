@@ -1,12 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
-
 interface Option {
   value: string;
   label: string;
 }
-
 interface CustomSelectProps {
   options: Option[];
   value: string;
@@ -14,13 +12,10 @@ interface CustomSelectProps {
   label?: string;
   className?: string;
 }
-
 export function CustomSelect({ options, value, onChange, label, className = "" }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const selectedOption = options.find((opt) => opt.value === value) || options[0];
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -30,7 +25,6 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
   return (
     <div className={`relative ${className}`} ref={containerRef}>
       <button
@@ -49,7 +43,6 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
           <ChevronDown size={12} strokeWidth={3} />
         </motion.div>
       </button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div

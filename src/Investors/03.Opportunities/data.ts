@@ -6,7 +6,6 @@ import {
   Store,
   TrendingUp,
 } from "lucide-react";
-
 export const opportunitiesData = {
   tag: "EXPLORE OPPORTUNITIES",
   titleBase: "Your Opportunities.",

@@ -18,7 +18,6 @@ import clsx from "clsx";
 import { brandLeadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { getTextStyles } from "../utils/theme";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -26,13 +25,10 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
-
   let Icon = Award;
   let bgClass = "bg-purple-600";
-
   if (lower.includes("outlet") || lower.includes("store")) {
     Icon = Store;
     bgClass = "bg-[#d97706]";
@@ -54,7 +50,6 @@ const getStatIcon = (label: string) => {
     Icon = Percent;
     bgClass = "bg-[#0ea5e9]";
   }
-
   return (
     <div
       className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}
@@ -63,7 +58,6 @@ const getStatIcon = (label: string) => {
     </div>
   );
 };
-
 function FlipLeaderCard({
   member,
   isFlipped,
@@ -96,7 +90,6 @@ function FlipLeaderCard({
             draggable={false}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#040914] via-[#040914]/40 to-transparent opacity-90 group-hover:opacity-85 transition-opacity duration-500" />
-
           <div className="absolute top-4 right-4 z-20">
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -106,7 +99,6 @@ function FlipLeaderCard({
               <RotateCw size={12} className="text-[#d4af37]" />
             </motion.div>
           </div>
-
           <div className="absolute bottom-0 left-0 w-full p-6 flex flex-col justify-end z-10 text-white">
             <div className="flex items-center gap-2 mb-2">
               <span className="px-2.5 py-0.5 rounded-[4px] bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-black uppercase tracking-wider shadow-sm">
@@ -122,11 +114,9 @@ function FlipLeaderCard({
             <div className="w-8 h-[2px] bg-[#d4af37] rounded-full group-hover:w-16 transition-all duration-500" />
           </div>
         </div>
-
         <div className="absolute inset-0 w-full h-full rounded-[8px] overflow-hidden px-6 py-6 bg-[#0b1b42] backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-
           <div className="flex items-start justify-between gap-3 relative z-10 pb-3 border-b border-white/10">
             <div className="flex flex-col">
               <h5 className="font-black text-lg text-white tracking-tight leading-tight">
@@ -147,7 +137,6 @@ function FlipLeaderCard({
               <RotateCw size={13} className="text-[#d4af37]" />
             </button>
           </div>
-
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
             <p className="text-[13px] text-gray-200 leading-relaxed font-medium">
               {member.bio}
@@ -166,7 +155,6 @@ function FlipLeaderCard({
               ))}
             </div>
           </div>
-
           <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2">
             <div className="flex items-start gap-2 bg-white/5 p-3 rounded-[6px] border border-white/10">
               <Quote
@@ -183,17 +171,13 @@ function FlipLeaderCard({
     </div>
   );
 }
-
 export default function LeadershipDesktop() {
   const { brandStory, members } = brandLeadershipData;
   const isSingleLeader = members.length === 1;
-
   const [selectedLeaderIndex, setSelectedLeaderIndex] = useState(0);
   const [viewMode, setViewMode] = useState<"spotlight" | "grid">("spotlight");
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
-
   const activeLeader = members[selectedLeaderIndex] || members[0];
-
   return (
     <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] bg-slate-50/60 dark:bg-[#050b14] text-gray-900 dark:text-white transition-colors duration-300">
       <motion.div
@@ -206,7 +190,6 @@ export default function LeadershipDesktop() {
         animate="animate"
         className="pointer-events-none absolute -bottom-[10%] -right-[10%] w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[140px]"
       />
-
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
         <div className="mb-10 text-center flex flex-col items-center">
           <SectionHeader
@@ -215,7 +198,6 @@ export default function LeadershipDesktop() {
             subtitle={brandLeadershipData.subtitle}
             align="center"
           />
-
           {!isSingleLeader && (
             <div className="mt-6 flex items-center bg-[#0b1b42] border border-white/10 p-1 rounded-full shadow-lg">
               <button
@@ -245,11 +227,9 @@ export default function LeadershipDesktop() {
             </div>
           )}
         </div>
-
         {isSingleLeader ? (
           <div className="w-full bg-[#0b1b42] border border-white/10 rounded-[12px] p-5 lg:p-6 flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch shadow-2xl relative overflow-hidden group text-white">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/5 rounded-full blur-3xl pointer-events-none" />
-
             <div className="w-full lg:w-1/3 relative rounded-[8px] overflow-hidden border border-white/10 shadow-lg shrink-0">
               <img
                 src={activeLeader.avatar}
@@ -269,26 +249,22 @@ export default function LeadershipDesktop() {
                 </p>
               </div>
             </div>
-
             <div className="w-full lg:w-2/3 flex flex-col justify-center relative">
               <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
                 <Quote size={70} className="text-[#d4af37]" />
               </div>
-
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="px-2.5 py-0.5 rounded-[4px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-[11px] font-black uppercase tracking-widest">
                     {brandStory.title}
                   </span>
                 </div>
-
                 <div className="bg-white/5 border-l-4 border-[#d4af37] p-4 rounded-r-[8px] mb-4 relative">
                   <p className="text-gray-200 text-base lg:text-lg leading-relaxed italic font-medium relative z-10">
                     "{brandStory.quote}"
                   </p>
                 </div>
               </div>
-
               <motion.div
                 initial="hidden"
                 whileInView="show"
@@ -345,7 +321,6 @@ export default function LeadershipDesktop() {
                   className="bg-[#0b1b42] border border-white/10 rounded-[8px] p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-2xl h-full group"
                 >
                   <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-
                   <div>
                     <div className="relative w-full h-[280px] rounded-[6px] overflow-hidden mb-5 border border-white/10 shadow-md">
                       <img
@@ -360,7 +335,6 @@ export default function LeadershipDesktop() {
                         </span>
                       </div>
                     </div>
-
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="text-2xl font-black text-white tracking-tight">
                         {activeLeader.name}
@@ -376,15 +350,12 @@ export default function LeadershipDesktop() {
                         </a>
                       )}
                     </div>
-
                     <p className="text-[#d4af37] font-bold text-xs uppercase tracking-widest mb-3">
                       {activeLeader.role}
                     </p>
-
                     <p className="text-gray-200 text-[13px] leading-relaxed mb-4 font-medium">
                       {activeLeader.bio}
                     </p>
-
                     <div className="flex flex-col gap-2 mb-4">
                       {activeLeader.highlights.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-2.5">
@@ -399,7 +370,6 @@ export default function LeadershipDesktop() {
                       ))}
                     </div>
                   </div>
-
                   <div className="pt-3 border-t border-white/10 bg-white/5 p-3.5 rounded-[6px] flex items-start gap-2.5">
                     <Quote
                       size={14}
@@ -412,27 +382,22 @@ export default function LeadershipDesktop() {
                 </motion.div>
               </AnimatePresence>
             </div>
-
             <div className="lg:col-span-7 flex flex-col gap-6 justify-between text-white">
               <div className="bg-[#0b1b42] border border-white/10 rounded-[8px] p-6 sm:p-7 relative overflow-hidden shadow-2xl">
                 <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
                   <Quote size={100} className="text-[#d4af37]" />
                 </div>
-
                 <div className="flex items-center gap-2 mb-3">
                   <span className="px-2.5 py-0.5 rounded-[4px] bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-black uppercase tracking-wider">
                     Brand Story & Heritage
                   </span>
                 </div>
-
                 <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
                   {brandStory.title}
                 </h4>
-
                 <p className="text-gray-200 text-sm leading-relaxed mb-4 font-medium">
                   "{brandStory.quote}"
                 </p>
-
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-white/10">
                   {brandStory.stats.map((stat) => (
                     <div
@@ -460,7 +425,6 @@ export default function LeadershipDesktop() {
                   ))}
                 </div>
               </div>
-
               <div className="bg-[#0b1b42] border border-white/10 rounded-[8px] p-6 shadow-2xl flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-black uppercase tracking-widest text-gray-200">
@@ -470,7 +434,6 @@ export default function LeadershipDesktop() {
                     Click to view profile & vision
                   </span>
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
                   {members.map((member, index) => {
                     const isSelected = selectedLeaderIndex === index;
@@ -495,7 +458,6 @@ export default function LeadershipDesktop() {
                               : "border-white/20 group-hover:border-white/50",
                           )}
                         />
-
                         <div className="flex-1 min-w-0">
                           <p
                             className={clsx(
@@ -514,7 +476,6 @@ export default function LeadershipDesktop() {
                             {member.experience}
                           </span>
                         </div>
-
                         <ChevronRight
                           size={16}
                           className={clsx(

@@ -14,7 +14,6 @@ export const getBadgeStyles = (intent?: string) => {
       return "bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-100 dark:border-gray-700 shadow-sm rounded-[2px] px-3 py-1";
   }
 };
-
 export const getIconStyles = (intent?: string) => {
   switch (intent) {
     case "success":
@@ -31,7 +30,6 @@ export const getIconStyles = (intent?: string) => {
       return "text-gray-500";
   }
 };
-
 export const getIconContainerStyles = (intent?: string) => {
   switch (intent) {
     case "success":
@@ -54,15 +52,12 @@ export const getIconContainerStyles = (intent?: string) => {
       return "bg-gray-700 text-white shadow-md";
   }
 };
-
 export const getBorderStyles = (_intent?: string) => {
   return "border-gray-100 dark:border-gray-800 hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300";
 };
-
 export const getCardStyles = (_intent?: string) => {
   return "bg-white dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 rounded-[4px] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300";
 };
-
 export const getTextStyles = (intent?: string) => {
   switch (intent) {
     case "success":
@@ -79,7 +74,6 @@ export const getTextStyles = (intent?: string) => {
       return "text-gray-800 dark:text-gray-200 font-semibold";
   }
 };
-
 export const getSolidBgStyles = (intent?: string) => {
   switch (intent) {
     case "success":
@@ -96,7 +90,6 @@ export const getSolidBgStyles = (intent?: string) => {
       return "bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow-sm";
   }
 };
-
 export const getCheckBadgeStyles = (intent?: string) => {
   switch (intent) {
     case "success":

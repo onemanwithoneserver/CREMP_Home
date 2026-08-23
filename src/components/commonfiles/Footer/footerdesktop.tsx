@@ -2,22 +2,17 @@ import { MapPin, Mail, Phone } from "lucide-react";
 import logoDark from "../../../Logo/CREMP.png";
 import CrempTextLogo from "../../CrempTextLogo";
 import { brandLinks, quickLinks, resources, legalLinks } from "./data";
-
 import FooterMobile from "./footermobile";
-
 export default function SiteFooter({ isMobile = false }: { isMobile?: boolean }) {
   if (isMobile) {
     return <FooterMobile />;
   }
-
   return (
     <footer className="relative bg-[#050b14] border-t border-white/5 pt-16 pb-8 overflow-hidden font-sans">
       <div className="pointer-events-none absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#d4af37]/5 blur-[120px] dark:bg-[#d4af37]/10" />
       <div className="pointer-events-none absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#d4af37]/5 blur-[100px] dark:bg-[#d4af37]/10" />
-
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mb-16">
-          
           <div className="flex flex-col gap-6">
             <a href="#" className="flex items-center group w-fit">
               <img
@@ -45,7 +40,6 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
               })}
             </div>
           </div>
-
           <div className="flex flex-col gap-5">
             <h3 className="text-[11px] font-bold uppercase tracking-widest text-white">
               Quick Links
@@ -62,7 +56,6 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
               ))}
             </div>
           </div>
-
           <div className="flex flex-col gap-5">
             <h3 className="text-[11px] font-bold uppercase tracking-widest text-white">
               Resources
@@ -79,7 +72,6 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
               ))}
             </div>
           </div>
-
           <div className="flex flex-col gap-5">
             <h3 className="text-[11px] font-bold uppercase tracking-widest text-white">
               Contact Us
@@ -106,7 +98,6 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
             </div>
           </div>
         </div>
-
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <p className="text-gray-500 text-xs font-semibold tracking-wide">
             © {new Date().getFullYear()} CREMP Group. All rights reserved.

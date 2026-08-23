@@ -3,7 +3,6 @@ import { ArrowRight, Pause, Play, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Container } from "../../components/layout";
 import { carouselItems } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -12,7 +11,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 200, damping: 20 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,7 +18,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const floatAnimation: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   show: {
@@ -29,7 +26,6 @@ const floatAnimation: Variants = {
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -37,7 +33,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const getYouTubeEmbedUrl = (url: string) => {
   if (!url) return "";
   let videoId = "";
@@ -52,21 +47,17 @@ const getYouTubeEmbedUrl = (url: string) => {
   }
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 };
-
 export default function MobileYourBrand() {
   const [items, setItems] = useState(carouselItems);
   const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
   const [isCarouselPlaying, setIsCarouselPlaying] = useState(true);
-
   useEffect(() => {
     if (!isCarouselPlaying || playingVideoId !== null) return;
-
     const interval = setInterval(() => {
       setItems((prevItems) => {
         const newItems = [...prevItems];
         const first = newItems.shift();
         if (first) newItems.push(first);
-
         return newItems.map((item, index) => ({
           ...item,
           position: index - 2,
@@ -76,7 +67,6 @@ export default function MobileYourBrand() {
     }, 4000);
     return () => clearInterval(interval);
   }, [isCarouselPlaying, playingVideoId]);
-
   return (
     <section className="relative w-full overflow-hidden bg-white/40 backdrop-blur-xl border-y border-white/40 py-4 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <motion.div
@@ -84,7 +74,6 @@ export default function MobileYourBrand() {
         animate="animate"
         className="pointer-events-none absolute left-[-10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[80px] dark:bg-[#D4AF37]/15"
       />
-
       <Container className="relative z-10">
         <div className="flex flex-col items-center gap-6">
           <motion.div
@@ -111,7 +100,6 @@ export default function MobileYourBrand() {
                 </span>
               </div>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-4 text-[2.5rem] font-black leading-[1.1] tracking-tight sm:text-[3rem]"
@@ -123,7 +111,6 @@ export default function MobileYourBrand() {
                 Your Story.
               </span>
             </motion.h2>
-
             <motion.p
               variants={fadeInUp}
               className="mb-6 px-2 text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -132,7 +119,6 @@ export default function MobileYourBrand() {
               track audience engagement, and scale your growth intuitively—all
               from one powerful dashboard designed for modern creators.
             </motion.p>
-
             <motion.div
               variants={fadeInUp}
               className="flex w-full flex-col items-center justify-center gap-3"
@@ -156,7 +142,6 @@ export default function MobileYourBrand() {
                 View Live Demo
               </motion.button>
             </motion.div>
-
             <motion.div
               variants={fadeInUp}
               className="mt-8 flex items-center justify-center gap-8 border-t border-gray-200/60 pt-8 dark:border-gray-800/60"
@@ -180,7 +165,6 @@ export default function MobileYourBrand() {
               </div>
             </motion.div>
           </motion.div>
-
           <div className="relative flex w-full items-center justify-center mt-8 pb-8">
             <motion.div
               variants={floatAnimation}
@@ -193,7 +177,6 @@ export default function MobileYourBrand() {
                 let transformClasses = "";
                 let zIndexClass = "";
                 let opacityClass = "";
-
                 if (item.position === 0) {
                   transformClasses = "translate-x-0 scale-[1.0]";
                   zIndexClass = "z-30";
@@ -215,7 +198,6 @@ export default function MobileYourBrand() {
                   zIndexClass = "z-10";
                   opacityClass = "opacity-30";
                 }
-
                 return (
                   <div
                     key={item.id}
@@ -255,9 +237,7 @@ export default function MobileYourBrand() {
                           alt={item.title}
                           className="h-full w-full object-cover opacity-90"
                         />
-
                         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80 pointer-events-none" />
-
                         <div className="absolute inset-x-0 top-0 flex flex-col items-start p-4 pointer-events-none">
                           <h3
                             className={`font-bold text-white leading-tight ${item.active ? "text-lg" : "text-sm"}`}
@@ -270,7 +250,6 @@ export default function MobileYourBrand() {
                             {item.subtitle}
                           </p>
                         </div>
-
                         <div className="absolute inset-0 flex items-center justify-center">
                           <button
                             onClick={() => {
@@ -300,7 +279,6 @@ export default function MobileYourBrand() {
                             </motion.div>
                           </button>
                         </div>
-
                         <div className="absolute bottom-0 left-0 flex items-center gap-2 p-4 pointer-events-none">
                           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
                             <motion.div
@@ -328,7 +306,6 @@ export default function MobileYourBrand() {
                 );
               })}
             </motion.div>
-
             <div className="absolute bottom-0 right-4 z-40 flex items-center justify-center">
               <button
                 onClick={() => setIsCarouselPlaying(!isCarouselPlaying)}

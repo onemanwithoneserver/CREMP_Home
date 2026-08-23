@@ -7,18 +7,15 @@ export interface FAQItem {
   highlight?: string;
   points?: string[];
 }
-
 export const faqData = {
   sectionLabel: "FREQUENTLY ASKED QUESTIONS",
   title: "Everything You Need to Know",
-
   keyFacts: [
     { label: "Capex Range", value: "₹25L – ₹45L", sub: "100% turnkey setup" },
     { label: "Avg. Payback", value: "14 – 22 Months", sub: "Fast capital ROI" },
     { label: "Flat Royalty", value: "6%", sub: "Zero ad surcharges" },
     { label: "Exclusivity", value: "2–4 km", sub: "Contractual protection" },
   ],
-
   supportCard: {
     title: "Have Specific Questions?",
     description:
@@ -28,7 +25,6 @@ export const faqData = {
     phoneLabel: "Instant Franchise Helpline",
     badge: "Average Response: < 2 Hours",
   },
-
   questions: [
     {
       id: "q1",

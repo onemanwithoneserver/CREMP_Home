@@ -7,7 +7,6 @@ import {
 } from "../components/animations";
 import SectionHeader from "../components/SectionHeader";
 import { listingsData } from "./data";
-
 export default function Mobile() {
   return (
     <motion.div
@@ -26,7 +25,6 @@ export default function Mobile() {
           title={listingsData.title}
           icon={listingsData.headerIcon}
         />
-
         <div className="px-4 mt-4 flex flex-col gap-3.5">
           {listingsData.listings.map((item) => {
             const Icon = item.icon;
@@ -40,7 +38,6 @@ export default function Mobile() {
                 <div
                   className={`absolute top-0 bottom-0 left-0 w-1 ${leftBar} transition-all duration-300`}
                 />
-
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <div
@@ -58,11 +55,9 @@ export default function Mobile() {
                     {item.badge}
                   </span>
                 </div>
-
                 <h3 className="text-[#17274c] font-semibold text-[0.98rem] mt-1.5 mb-2.5 leading-snug">
                   {item.title}
                 </h3>
-
                 <div className="flex justify-between items-center mb-3 p-2 rounded-md bg-[#fdfdfd] border border-gray-50 transition-colors">
                   <div className="flex items-center gap-1.5 text-gray-600">
                     <Maximize2 size={12} className="text-gray-400" />
@@ -74,7 +69,6 @@ export default function Mobile() {
                     {item.price}
                   </span>
                 </div>
-
                 <div className="border-t border-gray-100/80 pt-2.5 flex justify-between items-center">
                   <div className="flex items-center gap-1.5">
                     <div
@@ -84,7 +78,6 @@ export default function Mobile() {
                       {item.status}
                     </span>
                   </div>
-
                   <button className="flex items-center gap-1 text-[0.7rem] font-semibold bg-white text-[#17274c] group-hover:bg-[#17274c] group-hover:text-white px-2.5 py-1 rounded-[3px] transition-all duration-300">
                     <span>View Listing</span>
                     <ArrowRight

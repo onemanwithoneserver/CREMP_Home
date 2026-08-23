@@ -1,6 +1,5 @@
 import DesktopHowItWorks from "./DesktopHowItWorks";
 import MobileHowItWorks from "./MobileHowItWorks";
-
 export default function InvestorsHowItWorks({
   isMobile,
 }: {

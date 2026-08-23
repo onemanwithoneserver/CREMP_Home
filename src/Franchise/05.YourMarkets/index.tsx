@@ -1,6 +1,5 @@
 import DesktopYourMarkets from "./DesktopYourMarkets";
 import MobileYourMarkets from "./MobileYourMarkets";
-
 export default function FranchiseYourMarkets({
   isMobile,
 }: {

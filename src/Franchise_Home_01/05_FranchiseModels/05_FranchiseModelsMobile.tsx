@@ -20,7 +20,6 @@ import {
   type CostBreakdownItem,
 } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const DonutChart = ({
   data,
   totalValue,
@@ -40,7 +39,6 @@ const DonutChart = ({
     y: number;
   } | null>(null);
   let currentOffset = 0;
-
   return (
     <div
       ref={containerRef}
@@ -198,7 +196,6 @@ const DonutChart = ({
     </div>
   );
 };
-
 export default function FranchiseModelsMobile() {
   const [activeModel, setActiveModel] = useState(
     franchiseModelsData.models.find((m) => m.id === "mall-outlet")?.id ||
@@ -208,7 +205,6 @@ export default function FranchiseModelsMobile() {
     "piechart" | "outlet" | "roi"
   >("piechart");
   const [isStaffModalOpen, setIsStaffModalOpen] = useState(false);
-
   const selected = franchiseModelsData.models.find(
     (m) => m.id === activeModel,
   )!;
@@ -217,11 +213,9 @@ export default function FranchiseModelsMobile() {
     [selected],
   );
   const rightMetrics = useMemo(() => getRightMetrics(), []);
-
   const tabsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setScrollRight] = useState(false);
-
   const checkScroll = () => {
     if (tabsRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
@@ -229,13 +223,11 @@ export default function FranchiseModelsMobile() {
       setScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
     }
   };
-
   useEffect(() => {
     checkScroll();
     window.addEventListener("resize", checkScroll);
     return () => window.removeEventListener("resize", checkScroll);
   }, []);
-
   const scrollTabs = (direction: "left" | "right") => {
     if (tabsRef.current) {
       tabsRef.current.scrollBy({
@@ -244,9 +236,7 @@ export default function FranchiseModelsMobile() {
       });
     }
   };
-
   const sectionsList = ["piechart", "outlet", "roi"] as const;
-
   return (
     <section className="w-full py-8 flex flex-col gap-6 relative bg-white dark:bg-[#0b1b42] transition-colors duration-300 overflow-hidden">
       <SectionHeader
@@ -255,7 +245,6 @@ export default function FranchiseModelsMobile() {
         subtitle={franchiseModelsData.subtitle}
         align="center"
       />
-
       {franchiseModelsData.models.length > 1 && (
         <div className="relative z-10 w-full overflow-hidden group flex items-center mb-2 mt-2">
           {canScrollLeft && (
@@ -358,7 +347,6 @@ export default function FranchiseModelsMobile() {
           )}
         </div>
       )}
-
       <div className="relative z-10 flex w-full bg-gray-100/80 dark:bg-[#0e172f]/80 p-1 rounded-[4px] border border-gray-200/80 dark:border-white/10 shadow-sm backdrop-blur-sm">
         {[
           { id: "piechart", label: "Piechart" },
@@ -381,7 +369,6 @@ export default function FranchiseModelsMobile() {
           </button>
         ))}
       </div>
-
       <div className="relative z-10 w-full overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -429,7 +416,6 @@ export default function FranchiseModelsMobile() {
                 </motion.div>
               </div>
             )}
-
             {activeSection === "outlet" && (
               <div className="flex flex-col bg-white dark:bg-[#121c33] rounded-[4px] overflow-hidden mt-4">
                 <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[72px]">
@@ -519,7 +505,6 @@ export default function FranchiseModelsMobile() {
                 </div>
               </div>
             )}
-
             {activeSection === "roi" && (
               <div className="flex flex-col bg-white dark:bg-[#121c33] rounded-[4px] overflow-hidden mt-4">
                 <div className="bg-gradient-to-r from-[#0a1128]/95 via-[#16254c]/90 to-[#0a1128]/95 backdrop-blur-xl p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-[#d4af37]/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] min-h-[72px]">
@@ -646,7 +631,6 @@ export default function FranchiseModelsMobile() {
           </motion.div>
         </AnimatePresence>
       </div>
-
       <AnimatePresence>
         {isStaffModalOpen && (
           <motion.div

@@ -8,7 +8,6 @@ import {
   IndianRupee,
   Zap,
 } from "lucide-react";
-
 export const termsData = {
   overline: "Terms & Conditions",
   title: "Seller-defined conditions",

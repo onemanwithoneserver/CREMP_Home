@@ -16,11 +16,9 @@ import {
   Star,
   CheckCircle2,
 } from "lucide-react";
-
 export const spaceOverviewData = {
   overline: "Spatial & Architectural Specs",
   title: "Property & Space Overview",
-
   specs: [
     {
       label: "Building Type",
@@ -46,7 +44,6 @@ export const spaceOverviewData = {
       icon: Ruler,
       bgClass: "bg-gradient-to-br from-[#F97316] to-[#C2410C]",
     },
-
     {
       label: "Layout Dimensions",
       value: "45 ft x 120 ft (L x B)",

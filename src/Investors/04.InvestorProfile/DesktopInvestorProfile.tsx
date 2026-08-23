@@ -3,10 +3,8 @@ import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Container } from "../../components/layout";
 import { investorProfileData } from "./data";
-
 export default function DesktopInvestorProfile() {
   const [activeTab, setActiveTab] = useState(0);
-
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
@@ -43,7 +41,6 @@ export default function DesktopInvestorProfile() {
             {investorProfileData.desc[0]}
           </motion.p>
         </div>
-
         <div className="flex gap-12 rounded-[8px] bg-white p-8 shadow-xl dark:bg-[#121c33] dark:border dark:border-gray-800">
           <div className="flex w-1/3 flex-col gap-3 border-r border-gray-100 pr-8 dark:border-gray-800">
             <h3 className="mb-4 text-[0.8rem] font-bold uppercase tracking-widest text-gray-400">
@@ -83,7 +80,6 @@ export default function DesktopInvestorProfile() {
               </button>
             ))}
           </div>
-
           <div className="flex w-2/3 flex-col py-2 pl-4">
             <div className="mb-8 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] dark:bg-[#D4AF37]/10 dark:text-[#D4AF37]">
@@ -96,7 +92,6 @@ export default function DesktopInvestorProfile() {
                 {investorProfileData.expectationsTitle}
               </h3>
             </div>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}

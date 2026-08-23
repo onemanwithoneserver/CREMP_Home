@@ -8,7 +8,6 @@ import {
   Archive,
   Refrigerator,
 } from "lucide-react";
-
 export const fitOutData = {
   title: "Fit-out & Furnishing Assets",
   subtitle: "WORKPLACE INVENTORY & FIXTURES",

@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "../../components/layout";
 import { categoriesData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -18,7 +17,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function DesktopCategories() {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
@@ -51,7 +49,6 @@ export default function DesktopCategories() {
               {categoriesData.desc}
             </motion.p>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,7 +67,6 @@ export default function DesktopCategories() {
             </motion.button>
           </motion.div>
         </div>
-
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -86,7 +82,6 @@ export default function DesktopCategories() {
               className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[8px] bg-white p-8 shadow-sm transition-all hover:shadow-2xl hover:shadow-[#D4AF37]/10 dark:bg-[#121c33] dark:hover:shadow-[#D4AF37]/10"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] to-[#b38728] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-[#2d2008] dark:to-[#121c33]" />
-
               <div className="relative z-10 flex justify-between items-start mb-8">
                 <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-gray-50 text-[#D4AF37] transition-all group-hover:bg-white/10 group-hover:text-white dark:bg-[#0b1b42] dark:text-[#D4AF37]">
                   <cat.icon size={24} />
@@ -98,7 +93,6 @@ export default function DesktopCategories() {
                   />
                 </div>
               </div>
-
               <div className="relative z-10">
                 <h3 className="whitespace-pre-line text-lg font-black text-gray-900 transition-colors group-hover:text-white dark:text-white">
                   {cat.label}
@@ -107,7 +101,6 @@ export default function DesktopCategories() {
             </motion.div>
           ))}
         </motion.div>
-
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

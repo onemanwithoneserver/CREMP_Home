@@ -3,7 +3,6 @@ import { Container } from "../../components/layout";
 import { heroData } from "./data";
 import heroImageDark from "./Hero_Section_dark.png";
 import heroImageLight from "./Hero_Section_light.png";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -11,7 +10,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -20,7 +18,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 const floatAnimation: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   show: {
@@ -34,7 +31,6 @@ const floatAnimation: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -42,11 +38,9 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function MobileHero() {
   const Btn1Icon = heroData.buttons[0].icon;
   const Btn2Icon = heroData.buttons[1].icon;
-
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] sm:py-10">
       <motion.div
@@ -54,7 +48,6 @@ export default function MobileHero() {
         animate="animate"
         className="pointer-events-none absolute -left-[10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/15"
       />
-
       <Container className="relative z-10">
         <div className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center">
           <motion.div
@@ -68,7 +61,6 @@ export default function MobileHero() {
                 {heroData.tag}
               </span>
             </motion.div>
-
             <motion.h1
               variants={fadeInUp}
               className="mb-4 text-[2.5rem] font-black leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-[3rem]"
@@ -78,7 +70,6 @@ export default function MobileHero() {
                 {heroData.titleHighlight}
               </span>
             </motion.h1>
-
             <motion.p
               variants={fadeInUp}
               className="mx-auto mb-5 w-full max-w-[90%] px-2 text-[0.95rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -92,7 +83,6 @@ export default function MobileHero() {
               preferred micro markets, define your ideal franchise partner and
               discover expansion-ready locations.
             </motion.p>
-
             <motion.div
               variants={fadeInUp}
               className="mb-6 flex w-full max-w-[280px] flex-col items-center gap-3"
@@ -112,7 +102,6 @@ export default function MobileHero() {
                   {heroData.buttons[0].text}
                 </span>
               </motion.button>
-
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -133,7 +122,6 @@ export default function MobileHero() {
                 </span>
               </motion.button>
             </motion.div>
-
             <motion.div
               variants={fadeInUp}
               className="mx-auto flex w-full max-w-[340px] flex-col gap-2.5 px-4"
@@ -157,7 +145,6 @@ export default function MobileHero() {
               ))}
             </motion.div>
           </motion.div>
-
           <div className="relative mt-2 flex h-auto min-h-[200px] w-full items-center justify-center sm:h-[350px]">
             <motion.div
               variants={floatAnimation}

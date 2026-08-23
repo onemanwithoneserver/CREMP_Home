@@ -12,7 +12,6 @@ import {
   Sparkles,
   Utensils,
 } from "lucide-react";
-
 export const categoriesData = {
   tag: "INVESTMENT CATEGORIES",
   title: "Explore Every Investment Category",

@@ -40,14 +40,12 @@ import {
 } from "./data";
 import { CustomSelect } from "./CustomSelect";
 import clsx from "clsx";
-
 interface FilterDropdownProps {
   activeTab: "commercial" | "business";
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
   onClose: () => void;
 }
-
 interface CategoryDef {
   key: keyof FilterState;
   title: string;
@@ -57,7 +55,6 @@ interface CategoryDef {
   options: { id: string; label: string }[];
   isMulti?: boolean;
 }
-
 export default function FilterDropdownMobile({
   activeTab,
   filters,
@@ -66,20 +63,16 @@ export default function FilterDropdownMobile({
 }: FilterDropdownProps) {
   const mapStringsToOptions = (arr: string[]) =>
     arr.map((item) => ({ id: item, label: item }));
-
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const [expandedCategoryKey, setExpandedCategoryKey] = useState<string | null>(
     null,
   );
-
   const toggleCategory = (key: string) => {
     setExpandedCategoryKey((prev) => (prev === key ? null : key));
   };
-
   const handleUpdate = (key: keyof FilterState, value: any) => {
     onFilterChange({ ...filters, [key]: value });
   };
-
   const handleOptionToggle = (cat: CategoryDef, optionId: string) => {
     const newFilters = { ...filters };
     if (cat.isMulti) {
@@ -98,7 +91,6 @@ export default function FilterDropdownMobile({
     }
     onFilterChange(newFilters);
   };
-
   const handleReset = () => {
     onFilterChange({
       ...filters,
@@ -125,7 +117,6 @@ export default function FilterDropdownMobile({
           }),
     });
   };
-
   const commercialAdvancedCategories: CategoryDef[] = [
     {
       key: "fitOut",
@@ -181,7 +172,6 @@ export default function FilterDropdownMobile({
       isMulti: true,
     },
   ];
-
   const businessAdvancedCategories: CategoryDef[] = [
     {
       key: "businessOption",
@@ -192,12 +182,10 @@ export default function FilterDropdownMobile({
       options: BUSINESS_OPTIONS.map((o) => ({ id: o.id, label: o.label })),
     },
   ];
-
   const advancedCategories =
     activeTab === "commercial"
       ? commercialAdvancedCategories
       : businessAdvancedCategories;
-
   const activeAdvancedCount =
     activeTab === "commercial"
       ? [
@@ -221,14 +209,12 @@ export default function FilterDropdownMobile({
       : [filters.businessOption && filters.businessOption.length > 0].filter(
           Boolean,
         ).length;
-
   return (
     <>
       <div
         className="fixed inset-0 bg-[#0a1128]/40 backdrop-blur-sm z-[9998]"
         onClick={onClose}
       />
-
       <motion.div
         initial={{ y: "100%", opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -237,11 +223,9 @@ export default function FilterDropdownMobile({
         className="fixed bottom-3 left-3 right-3 bg-white rounded-[4px] shadow-[0_20px_60px_rgba(23,39,76,0.25)] border border-[#d4af37]/35 z-[9999] flex flex-col max-h-[85vh] overflow-hidden"
       >
         <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-90 pointer-events-none" />
-
         <div className="flex justify-center pt-2.5 pb-1 shrink-0">
           <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
-
         <div className="px-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-100/90 bg-gradient-to-b from-[#17274C]/[0.03] to-transparent">
           <div>
             <h2 className="text-[18px] font-extrabold text-[#0a1128] tracking-tight">
@@ -266,7 +250,6 @@ export default function FilterDropdownMobile({
             </button>
           </div>
         </div>
-
         <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pt-3 pb-6 space-y-3.5">
           <div className="relative z-40">
             <CustomSelect
@@ -277,7 +260,6 @@ export default function FilterDropdownMobile({
               icon={<MapPin className="w-[16px] h-[16px] text-[#d4af37]" />}
             />
           </div>
-
           {activeTab === "commercial" ? (
             <div className="space-y-2.5">
               <div
@@ -353,7 +335,6 @@ export default function FilterDropdownMobile({
                   )}
                 </AnimatePresence>
               </div>
-
               <div
                 className={clsx(
                   "rounded-[4px] transition-all duration-200 overflow-hidden border",
@@ -441,7 +422,6 @@ export default function FilterDropdownMobile({
                   )}
                 </AnimatePresence>
               </div>
-
               <div
                 className={clsx(
                   "rounded-[4px] transition-all duration-200 border",
@@ -601,7 +581,6 @@ export default function FilterDropdownMobile({
               </div>
             </div>
           )}
-
           <div>
             <button
               onClick={() => setAdvancedOpen(!advancedOpen)}
@@ -641,7 +620,6 @@ export default function FilterDropdownMobile({
                   </span>
                 </div>
               </div>
-
               <div className="flex items-center gap-1.5 pl-2">
                 <div
                   className={clsx(
@@ -659,7 +637,6 @@ export default function FilterDropdownMobile({
                 </div>
               </div>
             </button>
-
             <AnimatePresence>
               {advancedOpen && (
                 <motion.div
@@ -776,7 +753,6 @@ export default function FilterDropdownMobile({
                         </AnimatePresence>
                       </div>
                     )}
-
                     {advancedCategories.map((cat) => {
                       const isExpanded = expandedCategoryKey === cat.key;
                       const currentValue =
@@ -785,7 +761,6 @@ export default function FilterDropdownMobile({
                         ? ((currentValue as string[]) || []).length > 0
                         : currentValue !== "Any" &&
                           currentValue !== DEFAULT_FILTERS[cat.key];
-
                       return (
                         <div key={cat.key} className="flex flex-col">
                           <button
@@ -968,7 +943,6 @@ export default function FilterDropdownMobile({
             </AnimatePresence>
           </div>
         </div>
-
         <div className="px-4 py-3 border-t border-gray-100 bg-white shrink-0 pb-safe">
           <button
             type="button"

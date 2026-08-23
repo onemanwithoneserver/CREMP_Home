@@ -1,7 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Globe } from "lucide-react";
 import { whyInvestData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -17,12 +16,10 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileWhyInvest() {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
-
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -46,7 +43,6 @@ export default function MobileWhyInvest() {
             </span>
           </motion.h2>
         </div>
-
         <motion.div
           variants={fadeInUp}
           className="rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
@@ -78,7 +74,6 @@ export default function MobileWhyInvest() {
             </p>
           </div>
         </motion.div>
-
         <motion.div
           variants={fadeInUp}
           className="rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#121c33]"
@@ -93,7 +88,6 @@ export default function MobileWhyInvest() {
               </h3>
             </div>
           </div>
-
           <div className="grid grid-cols-2 gap-3">
             {whyInvestData.flowItems.map((item, idx) => (
               <div
@@ -111,7 +105,6 @@ export default function MobileWhyInvest() {
             ))}
           </div>
         </motion.div>
-
         <motion.div
           variants={fadeInUp}
           className="rounded-[8px] bg-gradient-to-br from-[#D4AF37] to-[#b38728] p-8 shadow-xl dark:from-[#121c33] dark:to-[#0a1128] dark:border dark:border-gray-800 text-center relative overflow-hidden"

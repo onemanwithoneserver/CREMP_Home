@@ -12,7 +12,6 @@ import {
   User,
   Wallet,
 } from "lucide-react";
-
 export const DeveloperProfileData = {
   tag: "PROJECT PROFILE",
   titleBase: "Project Profile.",

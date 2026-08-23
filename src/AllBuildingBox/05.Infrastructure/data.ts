@@ -12,7 +12,6 @@ import {
   ParkingCircle,
   Activity,
 } from "lucide-react";
-
 export const infrastructureData = {
   title: "Infrastructure & Utilities",
   items: [

@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -11,7 +10,6 @@ const staggerContainer: Variants = {
     },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 10 },
   show: {
@@ -20,14 +18,12 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 420, damping: 28 },
   },
 };
-
 interface SectionHeaderProps {
   overline: string;
   title: string;
   icon: LucideIcon;
   rightElement?: React.ReactNode;
 }
-
 export default function SectionHeader({
   overline,
   title,
@@ -54,7 +50,6 @@ export default function SectionHeader({
           </div>
           <div className="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-[#d4af37]/40 to-transparent shrink-0"></div>
         </motion.div>
-
         <motion.h2
           variants={fadeInUp}
           className="text-[1.3rem] sm:text-[1.5rem] font-semibold text-[#0a1128] dark:text-white tracking-tight leading-tight"
@@ -62,7 +57,6 @@ export default function SectionHeader({
           {title}
         </motion.h2>
       </div>
-
       {rightElement && (
         <motion.div
           variants={fadeInUp}

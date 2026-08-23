@@ -3,7 +3,6 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "../Home/ThemeContext";
 import Dropdown from "./commonfiles/Dropdown";
-
 export type Page =
   | "home"
   | "franchise"
@@ -21,14 +20,12 @@ export type Page =
   | "create-account"
   | "video-search";
 export type ViewMode = "desktop" | "mobile";
-
 export interface HeaderProps {
   viewMode: ViewMode;
   onViewModeChange: (v: ViewMode) => void;
   showViewControls?: boolean;
   onClose?: () => void;
 }
-
 const PAGE_LABELS: Record<Page, string> = {
   home: "Home",
   franchise: "Franchise Page",
@@ -46,7 +43,6 @@ const PAGE_LABELS: Record<Page, string> = {
   "create-account": "Create Account",
   "video-search": "Video Search",
 };
-
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
   .filter(
     (p) =>
@@ -56,7 +52,6 @@ const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
     value: p,
     label: PAGE_LABELS[p],
   }));
-
 export default function Header({
   viewMode,
   onViewModeChange,
@@ -69,7 +64,6 @@ export default function Header({
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-
   const activePage: Page = location.pathname.includes("franchise-home-01")
     ? "franchise-home-01"
     : location.pathname.includes("franchise-home")
@@ -99,19 +93,15 @@ export default function Header({
                             : location.pathname.includes("video-search")
                               ? "video-search"
                               : "home";
-
   const handleNavigate = useCallback(
     (page: string) => {
       navigate(`/${viewMode}/${page}`);
     },
     [navigate, viewMode],
   );
-
   const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
-
   useEffect(() => {
     if (!mobileMenuOpen) return;
-
     const handleMouseDown = (e: MouseEvent) => {
       if (
         mobileMenuRef.current &&
@@ -120,17 +110,14 @@ export default function Header({
         closeMenu();
       }
     };
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeMenu();
     };
-
     document.addEventListener("mousedown", handleMouseDown, {
       capture: true,
       passive: true,
     });
     document.addEventListener("keydown", handleKeyDown, { capture: true });
-
     return () => {
       document.removeEventListener("mousedown", handleMouseDown, {
         capture: true,
@@ -138,7 +125,6 @@ export default function Header({
       document.removeEventListener("keydown", handleKeyDown, { capture: true });
     };
   }, [mobileMenuOpen, closeMenu]);
-
   return (
     <header className="sticky top-0 z-50 bg-white/60 dark:bg-cremp-background/80 backdrop-blur-lg border-b border-cremp-primary/15 dark:border-cremp-border shadow-sm">
       <div className="max-w-[1200px] mx-auto px-2">
@@ -151,7 +137,6 @@ export default function Header({
               CREMP
             </span>
           </div>
-
           <nav
             aria-label="View Controls"
             className="hidden md:flex flex-1 justify-center"
@@ -199,7 +184,6 @@ export default function Header({
               </div>
             )}
           </nav>
-
           <div className="flex items-center gap-2 shrink-0">
             {showViewControls && (
               <div
@@ -239,7 +223,6 @@ export default function Header({
                 ))}
               </div>
             )}
-
             <div className="hidden sm:flex items-center gap-2">
               <label
                 htmlFor="desktop-page-selector"
@@ -265,7 +248,6 @@ export default function Header({
                 {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
               </button>
             </div>
-
             <div className="relative sm:hidden" ref={mobileMenuRef}>
               <button
                 type="button"
@@ -284,7 +266,6 @@ export default function Header({
                   }`}
                 />
               </button>
-
               {mobileMenuOpen && (
                 <div
                   id={`mobile-menu-${menuId}`}
@@ -317,7 +298,6 @@ export default function Header({
                 </div>
               )}
             </div>
-
             {onClose && (
               <button
                 type="button"

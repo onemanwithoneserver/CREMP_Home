@@ -1,6 +1,5 @@
 import { motion, type Variants } from "framer-motion";
 import { howItWorksData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -16,7 +15,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileHowItWorks() {
   return (
     <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
@@ -49,7 +47,6 @@ export default function MobileHowItWorks() {
             {howItWorksData.desc[0]}
           </motion.p>
         </div>
-
         <div className="flex flex-col">
           {howItWorksData.steps.map((step, idx) => (
             <motion.div

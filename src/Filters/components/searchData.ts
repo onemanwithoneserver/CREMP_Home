@@ -6,7 +6,6 @@ export interface LocationResult {
   listings: number;
   type: "locality" | "landmark" | "hub";
 }
-
 export const LOCATIONS: LocationResult[] = [
   {
     id: "kphb",
@@ -169,14 +168,11 @@ export const LOCATIONS: LocationResult[] = [
     type: "locality",
   },
 ];
-
 export const DEFAULT_LOCATIONS = LOCATIONS.filter((l) =>
   ["hitech-city", "madhapur", "gachibowli"].includes(l.id),
 );
-
 export function searchLocations(query: string): LocationResult[] {
   if (!query.trim()) return DEFAULT_LOCATIONS;
-
   const q = query.toLowerCase().trim();
   const matches = LOCATIONS.filter(
     (loc) =>
@@ -184,6 +180,5 @@ export function searchLocations(query: string): LocationResult[] {
       loc.area.toLowerCase().includes(q) ||
       loc.city.toLowerCase().includes(q),
   );
-
   return matches.slice(0, 3);
 }

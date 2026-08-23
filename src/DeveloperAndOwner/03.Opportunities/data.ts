@@ -6,7 +6,6 @@ import {
   Search,
   TrendingUp,
 } from "lucide-react";
-
 export const opportunitiesData = {
   tag: "EXPLORE POTENTIAL",
   titleBase: "Developer Horizons.",

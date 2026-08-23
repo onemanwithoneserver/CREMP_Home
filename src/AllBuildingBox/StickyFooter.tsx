@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Share2, Calendar, MessageCircle, X } from "lucide-react";
-
 import clsx from "clsx";
 import { BookACall } from "../Franchise_Home/17_FAQ/components/BookACall";
-
 export default function StickyFooter() {
   const [isSaved, setIsSaved] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-
   return (
     <>
       {isBookingOpen && (
@@ -17,7 +14,6 @@ export default function StickyFooter() {
           onClick={() => setIsBookingOpen(false)}
         />
       )}
-
       <div className="w-full z-50">
         <AnimatePresence>
           {isBookingOpen && (
@@ -40,7 +36,6 @@ export default function StickyFooter() {
             </motion.div>
           )}
         </AnimatePresence>
-
         <div className="relative z-50 w-full bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-[var(--panel-px,1rem)] py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
           <div className="w-full flex items-center gap-2 relative z-10">
@@ -70,7 +65,6 @@ export default function StickyFooter() {
                   {isSaved ? "Saved" : "Save"}
                 </span>
               </motion.button>
-
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.95 }}
@@ -82,7 +76,6 @@ export default function StickyFooter() {
                 </span>
               </motion.button>
             </div>
-
             <div className="flex items-center gap-2 flex-1 justify-end">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -92,7 +85,6 @@ export default function StickyFooter() {
                 <MessageCircle size={15} strokeWidth={2} className="shrink-0" />
                 <span className="truncate">WhatsApp</span>
               </motion.button>
-
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.95 }}

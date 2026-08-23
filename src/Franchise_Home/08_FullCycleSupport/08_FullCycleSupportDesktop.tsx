@@ -4,7 +4,6 @@ import { motion, useAnimationFrame, type Variants } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fullCycleSupportData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -16,33 +15,24 @@ const pulseGlow: Variants = {
     },
   },
 };
-
 export default function FullCycleSupportDesktop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
   const x = useRef(0);
-
   useAnimationFrame((_, delta) => {
     if (paused || !containerRef.current) return;
-
     const speed = 60;
     x.current -= (speed * delta) / 1000;
-
     const totalWidth = containerRef.current.scrollWidth / 2;
-
     if (Math.abs(x.current) >= totalWidth) {
       x.current = 0;
     }
-
     containerRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   });
-
   const handleScroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
-
     const scrollAmount = 264;
     const totalWidth = containerRef.current.scrollWidth / 2;
-
     if (direction === "left") {
       x.current += scrollAmount;
       if (x.current > 0) {
@@ -54,10 +44,8 @@ export default function FullCycleSupportDesktop() {
         x.current += totalWidth;
       }
     }
-
     containerRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   };
-
   return (
     <section className="relative w-full rounded-[8px] bg-white/40 px-6 py-16">
       <motion.div
@@ -65,13 +53,11 @@ export default function FullCycleSupportDesktop() {
         animate="animate"
         className="pointer-events-none absolute left-[-5%] top-[20%] h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
       />
-
       <motion.div
         variants={pulseGlow}
         animate="animate"
         className="pointer-events-none absolute bottom-[20%] right-[-5%] h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 mx-auto mb-8 flex max-w-7xl justify-center">
         <SectionHeader
           overline={fullCycleSupportData.sectionLabel}
@@ -79,7 +65,6 @@ export default function FullCycleSupportDesktop() {
           align="center"
         />
       </div>
-
       <div className="group relative">
         <div className="relative overflow-x-hidden pt-4">
           <motion.div
@@ -92,7 +77,6 @@ export default function FullCycleSupportDesktop() {
               <div key={keyPrefix} className="flex shrink-0 gap-6 pr-6">
                 {fullCycleSupportData.supportItems.map((item, idx) => {
                   const Icon = item.icon;
-
                   return (
                     <motion.div
                       key={`${keyPrefix}-${idx}`}
@@ -121,11 +105,9 @@ export default function FullCycleSupportDesktop() {
                           className="text-white"
                         />
                       </motion.div>
-
                       <h4 className="mb-2 text-[15px] font-bold text-[#0a1128] dark:text-white">
                         {item.title}
                       </h4>
-
                       <p className="text-sm leading-snug text-gray-600 dark:text-gray-300">
                         {item.description}
                       </p>
@@ -135,11 +117,9 @@ export default function FullCycleSupportDesktop() {
               </div>
             ))}
           </motion.div>
-
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-[#f9fafb]/80 to-transparent dark:from-[#050b14]/80" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-[#f9fafb]/80 to-transparent dark:from-[#050b14]/80" />
         </div>
-
         <button
           onClick={() => handleScroll("left")}
           onMouseEnter={() => setPaused(true)}
@@ -149,7 +129,6 @@ export default function FullCycleSupportDesktop() {
         >
           <ChevronLeft size={20} strokeWidth={2.5} />
         </button>
-
         <button
           onClick={() => handleScroll("right")}
           onMouseEnter={() => setPaused(true)}

@@ -1,6 +1,5 @@
 export type MediaFormatType = "image" | "video" | "short_video" | "document";
 export type MediaCategoryType = string;
-
 export interface MediaItem {
   id: string;
   format: MediaFormatType;
@@ -11,7 +10,6 @@ export interface MediaItem {
   description?: string;
   fileSize?: string;
 }
-
 export const mediaGalleryData = {
   sectionLabel: "MEDIA GALLERY",
   categories: [

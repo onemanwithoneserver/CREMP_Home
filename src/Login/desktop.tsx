@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, Shield, ArrowRight, BarChart3, Brain, ShieldCheck, CheckCircle2, Loader2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "../assets/LoginandCreateBG.png";
-
 const countryCodes = [
   { code: "+91", flag: "IN", country: "India" },
   { code: "+1", flag: "US", country: "USA" },
@@ -10,7 +9,6 @@ const countryCodes = [
   { code: "+971", flag: "AE", country: "UAE" },
   { code: "+65", flag: "SG", country: "Singapore" },
 ];
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -18,7 +16,6 @@ const container = {
     transition: { staggerChildren: 0.08, delayChildren: 0.15 },
   },
 };
-
 const item = {
   hidden: { opacity: 0, y: 18 },
   show: {
@@ -27,7 +24,6 @@ const item = {
     transition: { type: "spring" as const, stiffness: 260, damping: 22 },
   },
 };
-
 export default function LoginDesktop() {
   const [loginMethod, setLoginMethod] = useState<"email" | "phone">("phone");
   const [formData, setFormData] = useState({
@@ -38,15 +34,12 @@ export default function LoginDesktop() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
-
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -57,7 +50,6 @@ export default function LoginDesktop() {
       });
     }
   };
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (loginMethod === "email") {
@@ -71,22 +63,18 @@ export default function LoginDesktop() {
       if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
       else if (formData.phone.length < 10) newErrors.phone = "Enter a valid 10-digit number";
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
     }, 2000);
   };
-
   return (
     <div className="h-screen w-full relative overflow-hidden font-sans">
       <div

@@ -11,7 +11,6 @@ import {
 import { getTextStyles } from "../utils/theme";
 import { founderStoryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -19,7 +18,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -28,7 +26,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 200, damping: 20 },
   },
 };
-
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
   if (lower.includes("outlet") || lower.includes("store"))
@@ -45,7 +42,6 @@ const getStatIcon = (label: string) => {
     return <IndianRupee size={22} strokeWidth={2.5} />;
   return <TrendingUp size={22} strokeWidth={2.5} />;
 };
-
 const getIconBgColor = (idx: number) => {
   const colors = [
     "bg-amber-600",
@@ -55,7 +51,6 @@ const getIconBgColor = (idx: number) => {
   ];
   return colors[idx % colors.length];
 };
-
 export default function FounderStoryDesktop() {
   return (
     <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] dark:bg-[#050b14] bg-white">
@@ -69,7 +64,6 @@ export default function FounderStoryDesktop() {
         animate="animate"
         className="pointer-events-none absolute right-[-5%] bottom-[-10%] h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
         <div className="mb-12">
           <SectionHeader
@@ -79,7 +73,6 @@ export default function FounderStoryDesktop() {
             align="center"
           />
         </div>
-
         <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch dark">
           <motion.div
             variants={fadeInUp}
@@ -95,13 +88,11 @@ export default function FounderStoryDesktop() {
                   className="text-[#d4af37]/30 -translate-x-2 -translate-y-2 group-hover:text-[#d4af37]/50 transition-colors duration-500"
                 />
               </div>
-
               <div className="flex-1 flex items-center">
                 <p className="text-gray-900 dark:text-white text-xl md:text-2xl leading-relaxed tracking-wide font-medium italic">
                   "{founderStoryData.quote}"
                 </p>
               </div>
-
               <div className="flex items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-white/10 mt-auto">
                 <img
                   src={founderStoryData.founder.avatar}
@@ -119,7 +110,6 @@ export default function FounderStoryDesktop() {
               </div>
             </div>
           </motion.div>
-
           <div className="lg:col-span-1 flex flex-col gap-6 h-full">
             {founderStoryData.stats.map((stat, idx) => {
               return (
@@ -139,7 +129,6 @@ export default function FounderStoryDesktop() {
                   className="flex-1 bg-[#0b1b42] border border-white/5 rounded-[8px] p-6 lg:p-8 flex flex-col justify-center shadow-lg group hover:border-white/10 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-[#d4af37]/10 transition-colors duration-500" />
-
                   <div className="relative z-10 flex flex-row items-center justify-between gap-4 w-full">
                     <div className="flex flex-col items-start">
                       <p
@@ -154,7 +143,6 @@ export default function FounderStoryDesktop() {
                         {stat.label}
                       </p>
                     </div>
-
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}

@@ -2,12 +2,10 @@ import { MapPin, ArrowRight, Building2, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import type { LocationResult } from "./searchData";
-
 interface SearchResultsProps {
   results: LocationResult[];
   onResultClick: (result: LocationResult) => void;
 }
-
 const typeConfig: Record<
   LocationResult["type"],
   { icon: typeof MapPin; badge: string; badgeBg: string; iconBg: string }
@@ -34,7 +32,6 @@ const typeConfig: Record<
       "bg-blue-500/10 text-blue-600 group-hover:bg-blue-500 group-hover:text-white",
   },
 };
-
 export default function SearchResults({
   results,
   onResultClick,
@@ -50,7 +47,6 @@ export default function SearchResults({
       </div>
     );
   }
-
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-3">
@@ -58,12 +54,10 @@ export default function SearchResults({
           {results.length} matching locations
         </h3>
       </div>
-
       <div className="flex flex-col gap-2">
         {results.map((result, index) => {
           const config = typeConfig[result.type];
           const Icon = config.icon;
-
           return (
             <motion.button
               key={result.id}
@@ -92,7 +86,6 @@ export default function SearchResults({
               >
                 <Icon className="w-[18px] h-[18px]" strokeWidth={2} />
               </div>
-
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <h4 className="text-[14px] font-extrabold text-[#0a1128] truncate">
@@ -111,7 +104,6 @@ export default function SearchResults({
                   {result.area} · {result.city}
                 </p>
               </div>
-
               <div className="shrink-0 flex items-center gap-3">
                 <div className="text-right">
                   <span className="text-[14px] font-extrabold text-[#d4af37] block leading-tight">

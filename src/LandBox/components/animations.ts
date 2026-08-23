@@ -1,5 +1,4 @@
 import type { Variants } from "framer-motion";
-
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: {
@@ -8,7 +7,6 @@ export const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -16,7 +14,6 @@ export const staggerContainer: Variants = {
     transition: { staggerChildren: 0.08, delayChildren: 0.1 },
   },
 };
-
 export const staggerContainerFast: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -24,7 +21,6 @@ export const staggerContainerFast: Variants = {
     transition: { staggerChildren: 0.05, delayChildren: 0.05 },
   },
 };
-
 export const itemReveal: Variants = {
   hidden: { opacity: 0, x: -10, scale: 0.95 },
   show: {
@@ -34,7 +30,6 @@ export const itemReveal: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export const gridItem: Variants = {
   hidden: { opacity: 0, y: 10, scale: 0.95 },
   show: {
@@ -44,7 +39,6 @@ export const gridItem: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export const rowReveal: Variants = {
   hidden: { opacity: 0, x: -15 },
   show: {
@@ -53,7 +47,6 @@ export const rowReveal: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export const lineReveal: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   show: {

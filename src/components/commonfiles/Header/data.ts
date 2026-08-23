@@ -3,7 +3,6 @@ export type NavItem = {
   href?: string;
   subItems?: { label: string; href: string }[];
 };
-
 export const navLinks: NavItem[] = [
   { label: "Home", href: "#" },
   { 
@@ -23,7 +22,6 @@ export const navLinks: NavItem[] = [
     ]
   },
 ];
-
 export const cities = [
   "All cities",
   "Mumbai",

@@ -1,5 +1,4 @@
 import { LineChart, Users, Coffee, Heart } from "lucide-react";
-
 export const heroData = {
   brandName: "The Third Place",
   logoText: "THE THIRD PLACE",
@@ -19,7 +18,6 @@ export const heroData = {
     instagram: "@thethirdplace",
     linkedin: "the-third-place",
   },
-
   whyChooseUs: [
     {
       title: "Proven Business Model",

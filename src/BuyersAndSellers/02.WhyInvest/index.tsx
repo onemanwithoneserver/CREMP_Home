@@ -1,6 +1,5 @@
 import DesktopWhyInvest from "./DesktopWhyInvest";
 import MobileWhyInvest from "./MobileWhyInvest";
-
 export default function BuyersAndSellersWhyInvest({
   isMobile,
 }: {

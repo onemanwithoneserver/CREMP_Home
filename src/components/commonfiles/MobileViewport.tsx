@@ -1,15 +1,12 @@
 import React, { forwardRef, type ReactNode, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-
 export interface MobileViewportProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   isMobile?: boolean;
 }
-
 const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
   ({ children, isMobile = false, className = "", ...props }, forwardedRef) => {
     const location = useLocation();
-
     const internalRef = useRef<HTMLDivElement>(null);
     const setRef = (node: HTMLDivElement) => {
       internalRef.current = node;
@@ -19,9 +16,7 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
         forwardedRef.current = node;
       }
     };
-
     const mobileInnerRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
       if (internalRef.current) {
         internalRef.current.scrollTo(0, 0);
@@ -30,7 +25,6 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
         mobileInnerRef.current.scrollTo(0, 0);
       }
     }, [location.pathname]);
-
     if (!isMobile) {
       return (
         <div
@@ -44,7 +38,6 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
         </div>
       );
     }
-
     return (
       <div
         role="region"
@@ -75,7 +68,5 @@ const MobileViewport = forwardRef<HTMLDivElement, MobileViewportProps>(
     );
   },
 );
-
 MobileViewport.displayName = "MobileViewport";
-
 export default MobileViewport;

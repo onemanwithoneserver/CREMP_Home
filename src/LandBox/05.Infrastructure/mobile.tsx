@@ -7,7 +7,6 @@ import {
   staggerContainer,
   rowReveal,
 } from "../components/animations";
-
 const getStatusStyle = (status: string) => {
   const s = status.toUpperCase();
   if (
@@ -26,7 +25,6 @@ const getStatusStyle = (status: string) => {
     return "bg-amber-50/80 text-amber-600 border-amber-100";
   return "bg-sky-50/80 text-sky-600 border-sky-100";
 };
-
 export default function Mobile() {
   return (
     <motion.div
@@ -45,7 +43,6 @@ export default function Mobile() {
           title={infrastructureData.title}
           icon={Activity}
         />
-
         <motion.div
           variants={staggerContainer}
           initial="hidden"

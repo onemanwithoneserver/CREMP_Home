@@ -3,14 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { commercialData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Mobile() {
   const [activeTab, setActiveTab] = useState<
     (typeof commercialData.tabs)[number]
   >(commercialData.tabs[0]);
   const currentData =
     commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
-
   return (
     <motion.div
       initial="hidden"
@@ -28,7 +26,6 @@ export default function Mobile() {
           title={currentData.title}
           icon={currentData.headerIcon}
         />
-
         <div className="px-4 mt-5 mb-1 flex justify-center w-full">
           <div
             className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? "w-3/4" : "w-full"}`}
@@ -59,7 +56,6 @@ export default function Mobile() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-
                 <span
                   className={`relative z-10 font-semibold text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
                     activeTab === tab ? "text-white" : "text-[#17274c]"
@@ -71,7 +67,6 @@ export default function Mobile() {
             ))}
           </div>
         </div>
-
         <div className="px-2 py-2 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -85,14 +80,12 @@ export default function Mobile() {
               <div className="flex justify-between items-stretch gap-2">
                 <div className="flex-1 bg-gradient-to-br from-gray-50 to-white border border-gray-200/60 rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
-
                   <div className="flex flex-col relative z-10 gap-1.5 w-full">
                     <div className="flex justify-between items-start w-full">
                       <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                         {currentData.primaryAmountLabel}
                       </span>
-
                       {"secondaryBadge" in currentData &&
                         currentData.secondaryBadge && (
                           <div
@@ -102,13 +95,11 @@ export default function Mobile() {
                           </div>
                         )}
                     </div>
-
                     {currentData.primarySub && (
                       <span className="text-[0.72rem] text-gray-500 font-medium ml-3 mt-1">
                         {currentData.primarySub}
                       </span>
                     )}
-
                     <div className="flex items-baseline gap-1 mt-0.5 ml-3">
                       <span
                         className={`text-[2.2rem] font-semibold leading-none tracking-tight ${currentData.primaryAmountColor || "text-[#17274c]"}`}
@@ -123,7 +114,6 @@ export default function Mobile() {
                     </div>
                   </div>
                 </div>
-
                 {"secondaryDarkCard" in currentData &&
                 currentData.secondaryDarkCard ? (
                   <div className="bg-[#0b1b42] rounded-[4px] p-3 flex flex-col items-center justify-center min-w-[95px] shadow-[0_8px_25px_rgba(11,27,66,0.2)] relative overflow-hidden border border-[#d4af37]/30 group shrink-0">
@@ -143,7 +133,6 @@ export default function Mobile() {
                   </div>
                 ) : null}
               </div>
-
               <div className="flex flex-col gap-2.5 mt-1">
                 {currentData.details.map((detail, idx) => (
                   <motion.div
@@ -176,11 +165,9 @@ export default function Mobile() {
                   </motion.div>
                 ))}
               </div>
-
               {"footer" in currentData && currentData.footer && (
                 <div className="bg-gradient-to-r from-gray-50 to-white p-4 rounded-[8px] border border-transparent flex items-center justify-between mt-2 shadow-sm relative overflow-hidden">
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#d4af37]" />
-
                   {currentData.footer.type === "tag-text" && (
                     <div className="flex items-center gap-3 ml-2">
                       <span className="px-2.5 py-1 text-[0.55rem] font-semibold rounded-[4px] bg-[#d4af37] text-white tracking-[0.15em] shadow-[0_2px_8px_rgba(212,175,55,0.4)]">

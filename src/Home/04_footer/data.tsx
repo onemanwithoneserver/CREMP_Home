@@ -16,7 +16,6 @@ const LinkedinIcon = (props: any) => (
     <circle cx="4" cy="4" r="2"></circle>
   </svg>
 );
-
 const InstagramIcon = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +34,6 @@ const InstagramIcon = (props: any) => (
     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
   </svg>
 );
-
 const YoutubeIcon = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -53,14 +51,12 @@ const YoutubeIcon = (props: any) => (
     <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
   </svg>
 );
-
 export const footerLinks = [
   { label: "About Us", href: "#" },
   { label: "Privacy Policy", href: "#" },
   { label: "Terms of Use", href: "#" },
   { label: "Contact Us", href: "#" },
 ];
-
 export const socialLinks = [
   {
     icon: LinkedinIcon,

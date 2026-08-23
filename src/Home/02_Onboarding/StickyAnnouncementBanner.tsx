@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Rocket } from "lucide-react";
 import { forwardRef } from "react";
-
 function DesktopAnnouncementContent() {
   return (
     <>
@@ -19,7 +18,6 @@ function DesktopAnnouncementContent() {
     </>
   );
 }
-
 function MobileAnnouncementContent() {
   return (
     <>
@@ -33,18 +31,15 @@ function MobileAnnouncementContent() {
     </>
   );
 }
-
 interface InlineAnnouncementProps {
   isMobile?: boolean;
   hiddenVisually?: boolean;
 }
-
 export const InlineAnnouncement = forwardRef<
   HTMLDivElement,
   InlineAnnouncementProps
 >(({ isMobile = false, hiddenVisually = false }, ref) => {
   const springAnim = { type: "spring" as const, stiffness: 100, damping: 20 };
-
   if (isMobile) {
     return (
       <motion.div
@@ -58,7 +53,6 @@ export const InlineAnnouncement = forwardRef<
       </motion.div>
     );
   }
-
   return (
     <motion.div
       ref={ref}
@@ -71,14 +65,11 @@ export const InlineAnnouncement = forwardRef<
     </motion.div>
   );
 });
-
 InlineAnnouncement.displayName = "InlineAnnouncement";
-
 interface HeaderStickyBannerProps {
   isVisible: boolean;
   isMobile?: boolean;
 }
-
 export default function HeaderStickyBanner({
   isVisible,
   isMobile = false,

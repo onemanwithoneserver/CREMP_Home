@@ -2,12 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-
 interface Option {
   value: string;
   label: string;
 }
-
 interface CustomSelectProps {
   options: (Option | string)[];
   value: string;
@@ -16,7 +14,6 @@ interface CustomSelectProps {
   icon?: React.ReactNode;
   className?: string;
 }
-
 export function CustomSelect({
   options,
   value,
@@ -27,17 +24,14 @@ export function CustomSelect({
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const formattedOptions = options.map((opt) =>
     typeof opt === "string" ? { value: opt, label: opt } : opt,
   );
-
   const selectedLabel =
     formattedOptions.find((o) => o.value === value)?.label ||
     value ||
     placeholder;
   const hasValue = value && value !== "Any" && value !== placeholder;
-
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
@@ -50,7 +44,6 @@ export function CustomSelect({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
   return (
     <div
       className={clsx("relative", isOpen ? "z-[200]" : "z-10", className)}
@@ -103,7 +96,6 @@ export function CustomSelect({
           />
         </motion.div>
       </motion.button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -114,7 +106,6 @@ export function CustomSelect({
             className="absolute left-0 min-w-full top-[calc(100%+6px)] bg-white/90 dark:bg-[#0e172f]/95 backdrop-blur-2xl border border-gray-200/60 dark:border-white/15 shadow-[0_16px_40px_rgba(11,27,66,0.16),0_4px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.4)] rounded-lg overflow-hidden z-[200] py-0.5"
           >
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60" />
-
             <div className="max-h-[220px] overflow-y-auto scrollbar-hide py-1">
               {formattedOptions.map((opt, index) => {
                 const isSelected = value === opt.value;

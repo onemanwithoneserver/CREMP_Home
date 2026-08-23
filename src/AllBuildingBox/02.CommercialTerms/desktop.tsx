@@ -3,14 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { commercialData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Desktop() {
   const [activeTab, setActiveTab] = useState<
     (typeof commercialData.tabs)[number]
   >(commercialData.tabs[0]);
   const currentData =
     commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
-
   return (
     <motion.div
       initial="hidden"
@@ -28,7 +26,6 @@ export default function Desktop() {
           title={currentData.title}
           icon={currentData.headerIcon}
         />
-
         <div className="px-[var(--panel-px,1rem)] mt-4 mb-1 flex justify-center w-full">
           <div className="flex gap-1 bg-white/70 backdrop-blur-xl rounded-[4px] p-1 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-x-auto scrollbar-hide w-full">
             {commercialData.tabs.map((tab) => (
@@ -55,7 +52,6 @@ export default function Desktop() {
                     <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
                   </motion.div>
                 )}
-
                 <span
                   className={`relative z-10 font-semibold text-[0.68rem] tracking-tight whitespace-nowrap transition-colors duration-300 ${
                     activeTab === tab ? "text-white" : "text-[#17274c]"
@@ -67,7 +63,6 @@ export default function Desktop() {
             ))}
           </div>
         </div>
-
         <div className="px-[var(--panel-px,1rem)] py-4 w-full">
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
@@ -82,14 +77,12 @@ export default function Desktop() {
                 <div className="flex justify-between items-stretch gap-2">
                   <div className="flex-1 bg-gradient-to-br from-gray-50 to-white rounded-[4px] p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af37]/15 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
-
                     <div className="flex flex-col relative z-10 gap-1 w-full">
                       <div className="flex justify-between items-start w-full">
                         <span className="text-[0.55rem] font-semibold text-[#d4af37] tracking-[0.18em] flex items-center gap-1.5 pt-0.5">
                           <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                           {currentData.primaryAmountLabel}
                         </span>
-
                         {"secondaryBadge" in currentData &&
                           currentData.secondaryBadge && (
                             <div
@@ -99,7 +92,6 @@ export default function Desktop() {
                             </div>
                           )}
                       </div>
-
                       <div className="flex items-baseline gap-1 mt-0.5">
                         <span
                           className={`text-xl font-bold tracking-tight ${currentData.primaryAmountColor}`}
@@ -112,7 +104,6 @@ export default function Desktop() {
                           </span>
                         )}
                       </div>
-
                       {currentData.primarySub && (
                         <span className="text-[0.65rem] text-gray-500 font-semibold tracking-wide">
                           {currentData.primarySub}
@@ -120,12 +111,10 @@ export default function Desktop() {
                       )}
                     </div>
                   </div>
-
                   {"secondaryDarkCard" in currentData &&
                     currentData.secondaryDarkCard && (
                       <div className="flex-[0.65] bg-gradient-to-br from-[#0b1b42] to-[#040817] text-white rounded-[4px] p-3 flex flex-col justify-between shadow-[0_8px_24px_rgba(11,27,66,0.15)] relative overflow-hidden group border border-[#d4af37]/30">
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.15),transparent_70%)] pointer-events-none" />
-
                         <div className="relative z-10 flex flex-col gap-0.5">
                           <div className="flex items-center gap-1.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.8)]" />
@@ -137,7 +126,6 @@ export default function Desktop() {
                             {currentData.secondaryDarkCard.value}
                           </span>
                         </div>
-
                         {"desc" in currentData.secondaryDarkCard &&
                           Boolean(currentData.secondaryDarkCard.desc) && (
                             <span className="text-[0.62rem] text-gray-300 font-medium tracking-wide relative z-10">
@@ -147,7 +135,6 @@ export default function Desktop() {
                       </div>
                     )}
                 </div>
-
                 <div className="grid grid-cols-2 gap-2">
                   {currentData.details.map((detail, idx) => {
                     const Icon = detail.icon;
@@ -180,7 +167,6 @@ export default function Desktop() {
                     );
                   })}
                 </div>
-
                 {currentData.footer && (
                   <div className="mt-1 p-2.5 bg-gray-50/80 rounded-[4px] shadow-sm text-[0.65rem] text-gray-600 flex items-center justify-between">
                     {"left" in currentData.footer && (

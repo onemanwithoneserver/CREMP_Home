@@ -16,7 +16,6 @@ import coffeeBeansImg from "../../assets/coffee_beans.png";
 import coffeeEquipmentImg from "../../assets/coffee_equipment.png";
 import { heroData } from "./data";
 import AppsIcon from "@mui/icons-material/Apps";
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -24,7 +23,6 @@ const container = {
     transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
-
 const item = {
   hidden: { opacity: 0, y: 15 },
   show: {
@@ -33,10 +31,8 @@ const item = {
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
-
 export default function HeroGalleryDesktop() {
   const [isPlaying, setIsPlaying] = useState(false);
-
   return (
     <motion.section
       variants={container}
@@ -55,7 +51,6 @@ export default function HeroGalleryDesktop() {
             style={{ animationDuration: "18s", animationDelay: "2s" }}
           />
         </div>
-
         <div className="relative z-10 grid grid-cols-12 gap-2 min-h-[520px]">
           <motion.div
             variants={item}
@@ -73,7 +68,6 @@ export default function HeroGalleryDesktop() {
                     {heroData.subCategory}
                   </div>
                 </div>
-
                 <div className="flex items-center gap-4">
                   <div className="flex items-center justify-center p-3 bg-[#0b1b42] text-white rounded-[4px] shadow-lg border border-[#d4af37]/30 shrink-0">
                     <AppsIcon style={{ fontSize: 52 }} />
@@ -83,7 +77,6 @@ export default function HeroGalleryDesktop() {
                   </h1>
                 </div>
               </div>
-
               <div className="relative pl-6">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#bf953f] via-[#d4af37] to-transparent rounded-full" />
                 <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] max-w-xl font-normal">
@@ -91,7 +84,6 @@ export default function HeroGalleryDesktop() {
                 </p>
               </div>
             </div>
-
             <div className="flex flex-row w-full mt-4 rounded-[4px] overflow-hidden">
               <div className="flex flex-col xl:flex-row items-center justify-center gap-2 xl:gap-3 py-4 w-1/4">
                 <motion.div
@@ -163,7 +155,6 @@ export default function HeroGalleryDesktop() {
               </div>
             </div>
           </motion.div>
-
           <motion.div
             variants={item}
             className="col-span-12 lg:col-span-6 h-[400px] lg:h-auto min-h-[520px]"
@@ -223,7 +214,6 @@ export default function HeroGalleryDesktop() {
                   </motion.div>
                 </button>
               </div>
-
               <div className="w-[45%] flex flex-col gap-4 h-full">
                 <div className="h-[50%] relative group overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800">
                   <img
@@ -245,7 +235,6 @@ export default function HeroGalleryDesktop() {
                     </motion.div>
                   </div>
                 </div>
-
                 <div className="h-[50%] flex gap-4">
                   <div className="w-1/2 relative group overflow-hidden rounded-[4px] shadow-sm border border-gray-200 dark:border-gray-800 h-full">
                     <img
@@ -288,7 +277,6 @@ export default function HeroGalleryDesktop() {
             </div>
           </motion.div>
         </div>
-
         <motion.div
           variants={item}
           className="relative z-10 bg-white/90 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-100 dark:border-gray-800 p-3 overflow-hidden mt-2"
@@ -301,7 +289,6 @@ export default function HeroGalleryDesktop() {
               </h3>
               <div className="h-px bg-gradient-to-l from-transparent to-[#d4af37] flex-1" />
             </div>
-
             <div className="grid grid-cols-4 gap-4">
               {heroData.whyChooseUs.map((feature, i) => (
                 <div

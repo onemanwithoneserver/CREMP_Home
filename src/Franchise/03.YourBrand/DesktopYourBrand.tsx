@@ -3,7 +3,6 @@ import { ArrowRight, Pause, Play, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Container } from "../../components/layout";
 import { carouselItems } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -12,7 +11,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 200, damping: 20 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,7 +18,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const floatAnimation: Variants = {
   hidden: { opacity: 0, x: 20 },
   show: {
@@ -33,7 +30,6 @@ const floatAnimation: Variants = {
     transition: { duration: 7, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -41,7 +37,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const getYouTubeEmbedUrl = (url: string) => {
   if (!url) return "";
   let videoId = "";
@@ -56,21 +51,17 @@ const getYouTubeEmbedUrl = (url: string) => {
   }
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 };
-
 export default function DashboardShowcase() {
   const [items, setItems] = useState(carouselItems);
   const [isCarouselPlaying, setIsCarouselPlaying] = useState(true);
   const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
-
   useEffect(() => {
     if (!isCarouselPlaying || playingVideoId !== null) return;
-
     const interval = setInterval(() => {
       setItems((prevItems) => {
         const newItems = [...prevItems];
         const first = newItems.shift();
         if (first) newItems.push(first);
-
         return newItems.map((item, index) => ({
           ...item,
           position: index - 2,
@@ -92,7 +83,6 @@ export default function DashboardShowcase() {
         animate="animate"
         className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] translate-x-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10"
       />
-
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-center lg:justify-between">
           <motion.div
@@ -119,7 +109,6 @@ export default function DashboardShowcase() {
                 </span>
               </div>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-6 text-[3.5rem] font-black leading-[1.1] tracking-tight xl:text-[4.5rem]"
@@ -131,7 +120,6 @@ export default function DashboardShowcase() {
                 Your Story.
               </span>
             </motion.h2>
-
             <motion.p
               variants={fadeInUp}
               className="mb-8 text-lg font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -141,7 +129,6 @@ export default function DashboardShowcase() {
               footprint intuitively—all from one powerful platform designed for
               modern franchisors.
             </motion.p>
-
             <motion.div
               variants={fadeInUp}
               className="flex flex-wrap items-center gap-4"
@@ -165,7 +152,6 @@ export default function DashboardShowcase() {
                 View Live Demo
               </motion.button>
             </motion.div>
-
             <motion.div
               variants={fadeInUp}
               className="mt-12 flex items-center gap-8 border-t border-gray-200/60 pt-8 dark:border-gray-800/60"
@@ -189,7 +175,6 @@ export default function DashboardShowcase() {
               </motion.div>
             </motion.div>
           </motion.div>
-
           <div className="relative flex w-full items-center justify-center lg:w-[55%]">
             <motion.div
               variants={floatAnimation}
@@ -202,7 +187,6 @@ export default function DashboardShowcase() {
                 let transformClasses = "";
                 let zIndexClass = "";
                 let opacityClass = "";
-
                 if (item.position === 0) {
                   transformClasses = "translate-x-0 scale-[1.1]";
                   zIndexClass = "z-30";
@@ -224,7 +208,6 @@ export default function DashboardShowcase() {
                   zIndexClass = "z-10";
                   opacityClass = "opacity-30";
                 }
-
                 return (
                   <div
                     key={item.id}
@@ -264,9 +247,7 @@ export default function DashboardShowcase() {
                           alt={item.title}
                           className="h-full w-full object-cover opacity-90"
                         />
-
                         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80 pointer-events-none" />
-
                         <div className="absolute inset-x-0 top-0 flex flex-col items-start p-5 pointer-events-none">
                           <h3
                             className={`font-bold text-white leading-tight ${item.active ? "text-xl" : "text-base"}`}
@@ -279,7 +260,6 @@ export default function DashboardShowcase() {
                             {item.subtitle}
                           </p>
                         </div>
-
                         <div className="absolute inset-0 flex items-center justify-center">
                           <button
                             onClick={() => {
@@ -309,7 +289,6 @@ export default function DashboardShowcase() {
                             </motion.div>
                           </button>
                         </div>
-
                         <div className="absolute bottom-0 left-0 flex items-center gap-2 p-5 pointer-events-none">
                           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
                             <motion.div
@@ -337,7 +316,6 @@ export default function DashboardShowcase() {
                 );
               })}
             </motion.div>
-
             <div className="absolute bottom-0 right-4 z-40 flex items-center justify-center lg:bottom-4 lg:right-4">
               <button
                 onClick={() => setIsCarouselPlaying(!isCarouselPlaying)}

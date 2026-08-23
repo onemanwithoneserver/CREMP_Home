@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import FilterDropdown from "./FilterDropdown";
 import type { FilterState } from "./data";
 import clsx from "clsx";
-
 interface FilterBarProps {
   activeTab: "commercial" | "business";
   searchQuery: string;
@@ -12,7 +11,6 @@ interface FilterBarProps {
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
 }
-
 export default function FilterBar({
   activeTab,
   searchQuery,
@@ -22,7 +20,6 @@ export default function FilterBar({
 }: FilterBarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -37,7 +34,6 @@ export default function FilterBar({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   return (
     <div className="w-full flex gap-3 relative" ref={containerRef}>
       <div className="flex-1 relative group">
@@ -52,7 +48,6 @@ export default function FilterBar({
           className="block w-full pl-10 pr-3 py-3 border border-gray-200/90 rounded-[4px] leading-5 bg-white/80 backdrop-blur-sm placeholder-gray-400 hover:border-[#d4af37]/60 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/40 focus:border-[#d4af37] transition-all text-sm shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
         />
       </div>
-
       <motion.button
         type="button"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -88,7 +83,6 @@ export default function FilterBar({
           </>
         )}
       </motion.button>
-
       <AnimatePresence>
         {isDropdownOpen && (
           <FilterDropdown

@@ -6,7 +6,6 @@ import {
   LayoutGrid,
   Navigation,
 } from "lucide-react";
-
 export const mediaData = {
   title: "Media",
   tabs: [

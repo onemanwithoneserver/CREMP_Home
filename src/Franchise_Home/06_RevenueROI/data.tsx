@@ -6,7 +6,6 @@ import {
   Target,
   TrendingUp,
 } from "lucide-react";
-
 export const revenueROIData = {
   sectionLabel: "Break Even & Estimated ROI",
   revenueCards: [

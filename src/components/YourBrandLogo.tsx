@@ -36,7 +36,6 @@ export function YourBrandLogo({
     },
   };
   const s = sizeMap[size];
-
   return (
     <div
       className={`flex ${stacked ? "flex-col-reverse items-center justify-center text-center" : "items-center"} ${s.gap} ${className}`}
@@ -126,7 +125,6 @@ export function YourBrandLogo({
           />
         </svg>
       </div>
-
       {showText && (
         <div
           className={`${s.text} font-extrabold tracking-[0.2em] bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 ${!stacked ? "mt-[1px] whitespace-nowrap" : "flex flex-col items-center leading-[1.1]"}`}

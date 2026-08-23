@@ -7,7 +7,6 @@ export interface VideoResult {
   thumbnail: string;
   category: string;
 }
-
 export const videoCategories = [
   "All",
   "Franchise Models",
@@ -15,7 +14,6 @@ export const videoCategories = [
   "Interviews",
   "Webinars",
 ];
-
 export const sampleVideos: VideoResult[] = [
   {
     id: "v1",

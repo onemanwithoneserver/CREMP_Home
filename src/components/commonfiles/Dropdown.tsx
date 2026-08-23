@@ -8,13 +8,11 @@ import {
   useId,
   type HTMLAttributes,
 } from "react";
-
 export interface DropdownOption {
   value: string;
   label: string;
   disabled?: boolean;
 }
-
 export interface DropdownProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   "onChange"
@@ -27,13 +25,11 @@ export interface DropdownProps extends Omit<
   className?: string;
   disabled?: boolean;
 }
-
 const sizeClasses = {
   sm: "px-2.5 py-1.5 text-xs",
   md: "px-3 py-2 text-sm",
   lg: "px-4 py-2.5 text-base",
 };
-
 const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
   (
     {
@@ -52,9 +48,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     const containerRef = useRef<HTMLDivElement>(null);
     const internalId = useId();
     const dropdownId = id || internalId;
-
     const selectedOption = options.find((o) => o.value === value);
-
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent | TouchEvent) => {
         if (
@@ -64,14 +58,12 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           setIsOpen(false);
         }
       };
-
       const handleCloseOthers = (e: Event) => {
         const customEvent = e as CustomEvent;
         if (customEvent.detail.id !== dropdownId) {
           setIsOpen(false);
         }
       };
-
       if (isOpen) {
         document.addEventListener("mousedown", handleClickOutside);
         document.addEventListener("touchstart", handleClickOutside, {
@@ -85,7 +77,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         window.removeEventListener("cremp-dropdown-open", handleCloseOthers);
       };
     }, [isOpen, dropdownId]);
-
     const toggleOpen = (e: React.MouseEvent | React.TouchEvent) => {
       if (disabled) return;
       e.stopPropagation();
@@ -99,7 +90,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         );
       }
     };
-
     return (
       <div
         className={`relative inline-block ${className}`}
@@ -138,7 +128,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             className={`transition-transform duration-300 shrink-0 ${isOpen ? "rotate-180 text-cremp-primary" : "text-cremp-text-muted"}`}
           />
         </button>
-
         <AnimatePresence>
           {isOpen && (
             <motion.ul
@@ -200,7 +189,5 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     );
   },
 );
-
 Dropdown.displayName = "Dropdown";
-
 export default Dropdown;

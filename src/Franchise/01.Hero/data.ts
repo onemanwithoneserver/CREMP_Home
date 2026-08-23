@@ -1,5 +1,4 @@
 import { Calendar, MapPin, PlaySquare, User, UserPlus } from "lucide-react";
-
 export const heroData = {
   tag: "FOR FRANCHISORS • PRE-LAUNCH EARLY ACCESS",
   titleHighlight: "Expansion.",

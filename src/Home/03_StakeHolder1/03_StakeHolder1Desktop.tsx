@@ -9,9 +9,7 @@ import {
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { stakeholderData } from "./data";
-
 const smoothEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 const fadeUpScale = {
   hidden: { opacity: 0, y: 20, scale: 0.98 },
   visible: {
@@ -21,7 +19,6 @@ const fadeUpScale = {
     transition: { duration: 0.5, ease: smoothEasing },
   },
 };
-
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -29,7 +26,6 @@ const staggerContainer = {
     transition: { staggerChildren: 0.05, delayChildren: 0.1 },
   },
 };
-
 const fadeUpItem = {
   hidden: { opacity: 0, y: 10 },
   visible: {
@@ -38,13 +34,11 @@ const fadeUpItem = {
     transition: { duration: 0.4, ease: smoothEasing },
   },
 };
-
 const buttonHover = {
   rest: { scale: 1 },
   hover: { scale: 1.02, transition: { duration: 0.2, ease: smoothEasing } },
   tap: { scale: 0.98 },
 };
-
 const b1Themes = [
   {
     mainBorder: "border-blue-100 dark:border-white/10",
@@ -91,7 +85,6 @@ const b1Themes = [
     imageGlow: "hidden",
   },
 ];
-
 const b2Themes = [
   {
     mainBorder: "border-cyan-100 dark:border-white/10",
@@ -138,7 +131,6 @@ const b2Themes = [
     imageGlow: "hidden",
   },
 ];
-
 export default function DesktopStakeHolder1() {
   const { block1, block2, block3 } = stakeholderData;
   const containerRef = useRef(null);
@@ -146,7 +138,6 @@ export default function DesktopStakeHolder1() {
   const viewMode = window.location.pathname.startsWith("/mobile")
     ? "mobile"
     : "desktop";
-
   return (
     <div
       ref={containerRef}
@@ -181,7 +172,6 @@ export default function DesktopStakeHolder1() {
           {block1.subtitle}
         </motion.p>
       </div>
-
       <div className="flex flex-col gap-6 w-full mt-2">
         {block1.cards.map((card, idx) => {
           const isEven = idx % 2 === 1;
@@ -219,13 +209,11 @@ export default function DesktopStakeHolder1() {
                     </p>
                   </div>
                 </div>
-
                 <p
                   className={`${theme.descText} text-[15px] leading-relaxed mb-5 max-w-xl`}
                 >
                   {card.description}
                 </p>
-
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
@@ -260,7 +248,6 @@ export default function DesktopStakeHolder1() {
                     </motion.div>
                   ))}
                 </motion.div>
-
                 <motion.button
                   variants={buttonHover}
                   initial="rest"
@@ -278,7 +265,6 @@ export default function DesktopStakeHolder1() {
                   />
                 </motion.button>
               </div>
-
               <div
                 className={`flex-1 w-full lg:w-1/2 relative ${theme.imageBg} flex items-center justify-center overflow-hidden`}
               >
@@ -295,7 +281,6 @@ export default function DesktopStakeHolder1() {
           );
         })}
       </div>
-
       <div className="flex flex-col items-center text-center gap-3 mt-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -325,7 +310,6 @@ export default function DesktopStakeHolder1() {
           {block2.subtitle}
         </motion.p>
       </div>
-
       <div className="flex flex-col gap-6 w-full relative mt-2">
         <div className="w-full h-full lg:p-2 flex flex-col gap-6">
           {block2.cards.map((card, idx) => {
@@ -360,13 +344,11 @@ export default function DesktopStakeHolder1() {
                       </p>
                     </div>
                   </div>
-
                   <p
                     className={`${theme.descText} text-[15px] leading-relaxed mb-5 max-w-xl`}
                   >
                     {card.description}
                   </p>
-
                   <motion.div
                     variants={staggerContainer}
                     initial="hidden"
@@ -397,7 +379,6 @@ export default function DesktopStakeHolder1() {
                       </motion.div>
                     ))}
                   </motion.div>
-
                   <motion.button
                     variants={buttonHover}
                     initial="rest"
@@ -415,7 +396,6 @@ export default function DesktopStakeHolder1() {
                     />
                   </motion.button>
                 </div>
-
                 <div
                   className={`flex-1 w-full lg:w-1/2 relative flex items-center justify-center overflow-hidden ${theme.imageBg}`}
                 >
@@ -433,7 +413,6 @@ export default function DesktopStakeHolder1() {
           })}
         </div>
       </div>
-
       <motion.section
         variants={fadeUpScale}
         initial="hidden"
@@ -457,7 +436,6 @@ export default function DesktopStakeHolder1() {
               {block3.subtitle}
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
             {block3.categories.map((category, idx) => (
               <motion.div
@@ -481,7 +459,6 @@ export default function DesktopStakeHolder1() {
               </motion.div>
             ))}
           </div>
-
           <div className="mt-2 w-full">
             <motion.button
               variants={buttonHover}
@@ -501,7 +478,6 @@ export default function DesktopStakeHolder1() {
             </motion.button>
           </div>
         </div>
-
         <div className="flex-1 w-full lg:w-2/5 relative min-h-[350px] lg:min-h-full overflow-hidden bg-slate-900 group">
           <img
             src={block3.mainImage}
@@ -510,7 +486,6 @@ export default function DesktopStakeHolder1() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-50 dark:from-slate-900 via-transparent to-transparent z-10 w-full lg:w-24 hidden lg:block pointer-events-none"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 dark:from-slate-900/80 via-transparent to-transparent pointer-events-none"></div>
-
           <div className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
             {block3.floaters.map((floater, idx) => (
               <motion.div

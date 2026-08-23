@@ -11,7 +11,6 @@ import {
 import { getTextStyles } from "../utils/theme";
 import { founderStoryData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -19,7 +18,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const getStatIcon = (label: string, size = 18) => {
   const lower = (label || "").toLowerCase();
   if (lower.includes("outlet") || lower.includes("store"))
@@ -36,7 +34,6 @@ const getStatIcon = (label: string, size = 18) => {
     return <IndianRupee size={size} strokeWidth={2.5} />;
   return <TrendingUp size={size} strokeWidth={2.5} />;
 };
-
 const getIconBgColor = (idx: number) => {
   const colors = [
     "bg-[#d4af37]",
@@ -46,7 +43,6 @@ const getIconBgColor = (idx: number) => {
   ];
   return colors[idx % colors.length];
 };
-
 export default function FounderStoryMobile() {
   return (
     <section className="w-full py-16 px-2 relative overflow-hidden rounded-[8px] dark:bg-[#050b14] bg-white">
@@ -60,7 +56,6 @@ export default function FounderStoryMobile() {
         animate="animate"
         className="pointer-events-none absolute right-[-5%] bottom-[-10%] h-[250px] w-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 w-full flex flex-col items-center">
         <div className="mb-8 w-full">
           <SectionHeader
@@ -70,7 +65,6 @@ export default function FounderStoryMobile() {
             align="center"
           />
         </div>
-
         <div className="w-full flex flex-col gap-4 dark">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -80,7 +74,6 @@ export default function FounderStoryMobile() {
             className="relative rounded-[4px] overflow-hidden group shadow-lg w-full"
           >
             <div className="absolute inset-0 bg-[#0b1b42] border border-white/5" />
-
             <div className="relative z-10 p-6 flex flex-col gap-6">
               <div className="flex items-start justify-between">
                 <Quote
@@ -88,12 +81,10 @@ export default function FounderStoryMobile() {
                   className="text-[#d4af37]/30 -translate-x-1 -translate-y-1"
                 />
               </div>
-
               <div className="flex flex-col gap-4">
                 <p className="text-gray-900 dark:text-white text-[15px] leading-relaxed tracking-wide font-medium italic">
                   "{founderStoryData.quote}"
                 </p>
-
                 <div className="flex items-center gap-3">
                   <img
                     src={founderStoryData.founder.avatar}
@@ -112,7 +103,6 @@ export default function FounderStoryMobile() {
               </div>
             </div>
           </motion.div>
-
           <div className="flex flex-col gap-3 w-full">
             {founderStoryData.stats.map((stat, idx) => {
               return (
@@ -132,7 +122,6 @@ export default function FounderStoryMobile() {
                   className="bg-[#0b1b42] border border-white/5 rounded-[8px] p-4 flex flex-row items-center justify-between shadow-sm relative overflow-hidden hover:border-white/10 hover:shadow-md transition-all duration-300"
                 >
                   <div className="absolute -right-4 -top-4 w-12 h-12 bg-white/5 rounded-full blur-xl" />
-
                   <div className="flex flex-col items-start z-10">
                     <p
                       className={clsx(
@@ -146,7 +135,6 @@ export default function FounderStoryMobile() {
                       {stat.label}
                     </p>
                   </div>
-
                   <motion.div
                     whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}

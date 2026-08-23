@@ -9,12 +9,10 @@ import {
 import { useRef, useState } from "react";
 import { stakeholdersData } from "./data";
 import stakeholderGraphic from "./stakeholder_graphic.png";
-
 export default function Mobile() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeStakeholder = stakeholdersData[activeIndex];
   const accordionRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   const handleNext = () => {
     setActiveIndex((prev) => {
       const next = (prev + 1) % stakeholdersData.length;
@@ -22,7 +20,6 @@ export default function Mobile() {
       return next;
     });
   };
-
   const handlePrev = () => {
     setActiveIndex((prev) => {
       const next =
@@ -31,12 +28,10 @@ export default function Mobile() {
       return next;
     });
   };
-
   const toggleAccordion = (index: number) => {
     setActiveIndex(index);
     scrollToAccordion(index);
   };
-
   const scrollToAccordion = (index: number) => {
     setTimeout(() => {
       if (accordionRefs.current[index]) {
@@ -47,7 +42,6 @@ export default function Mobile() {
       }
     }, 100);
   };
-
   const renderHighlightedTitle = (title: string) => {
     const words = title.split("");
     if (words.length <= 1) return title;
@@ -60,13 +54,11 @@ export default function Mobile() {
       </>
     );
   };
-
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-gray-50 text-gray-900 transition-colors duration-500 selection:bg-[#D4AF37]/30 dark:bg-[#0b1b42] dark:text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.15),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(246,178,59,0.1),transparent_70%)]" />
       <div className="pointer-events-none absolute top-1/4 -left-20 h-64 w-64 rounded-full bg-[#D4AF37]/5 blur-3xl dark:bg-[#D4AF37]/5" />
       <div className="pointer-events-none absolute top-3/4 -right-20 h-64 w-64 rounded-full bg-[#D4AF37]/5 blur-3xl dark:bg-[#D4AF37]/5" />
-
       <div className="relative z-20 mx-auto flex w-full max-w-md flex-col px-4 pb-16 pt-8">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -75,7 +67,6 @@ export default function Mobile() {
         >
           <span>For Every Stakeholder</span>
         </motion.div>
-
         <div className="relative mb-8 flex w-full flex-col items-center pt-2">
           <div className="relative flex h-[120px] w-full max-w-[340px] flex-col items-center">
             <svg
@@ -101,7 +92,6 @@ export default function Mobile() {
                 strokeLinecap="round"
               />
             </svg>
-
             <button
               onClick={handlePrev}
               className="absolute left-0 top-[50px] z-30 flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-500 shadow-lg backdrop-blur-md transition-all hover:text-[#D4AF37] active:scale-95 dark:border-gray-800 dark:bg-[#0a0f25]/90 dark:text-gray-400 dark:shadow-[0_0_20px_rgba(0,0,0,0.5)] dark:hover:text-[#D4AF37]"
@@ -109,7 +99,6 @@ export default function Mobile() {
             >
               <ChevronLeft className="h-6 w-6" strokeWidth={1.5} />
             </button>
-
             <div className="absolute left-1/2 top-[40px] z-20 -translate-x-1/2">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -139,7 +128,6 @@ export default function Mobile() {
                     }}
                     className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/20 dark:border-[#D4AF37]/20"
                   />
-
                   <div className="relative flex h-full w-full items-center justify-center rounded-full border-4 border-gray-50 bg-white shadow-[0_10px_40px_rgba(178,127,28,0.3)] dark:border-[#0a1128] dark:bg-[#121c33] dark:shadow-[0_10px_40px_rgba(246,178,59,0.4)]">
                     <motion.div
                       initial={{ scale: 1, rotate: 0 }}
@@ -157,7 +145,6 @@ export default function Mobile() {
                 </motion.div>
               </AnimatePresence>
             </div>
-
             <button
               onClick={handleNext}
               className="absolute right-0 top-[50px] z-30 flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-500 shadow-lg backdrop-blur-md transition-all hover:text-[#D4AF37] active:scale-95 dark:border-gray-800 dark:bg-[#0a0f25]/90 dark:text-gray-400 dark:shadow-[0_0_20px_rgba(0,0,0,0.5)] dark:hover:text-[#D4AF37]"
@@ -167,11 +154,9 @@ export default function Mobile() {
             </button>
           </div>
         </div>
-
         <div className="flex w-full flex-col gap-4">
           {stakeholdersData.map((stakeholder, idx) => {
             const isOpen = activeIndex === idx;
-
             return (
               <motion.div
                 key={stakeholder.id}
@@ -232,7 +217,6 @@ export default function Mobile() {
                     <ChevronDown className="h-4 w-4" />
                   </motion.div>
                 </button>
-
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
@@ -248,7 +232,6 @@ export default function Mobile() {
                         <h3 className="mb-6 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
                           {renderHighlightedTitle(stakeholder.title)}
                         </h3>
-
                         <div className="mb-6 grid grid-cols-2 gap-3">
                           {stakeholder.features.map((feature, fIdx) => (
                             <div
@@ -276,7 +259,6 @@ export default function Mobile() {
                             </div>
                           ))}
                         </div>
-
                         <div className="mb-6 flex w-full justify-center">
                           <motion.div
                             animate={{ y: [-4, 4, -4] }}
@@ -294,7 +276,6 @@ export default function Mobile() {
                             />
                           </motion.div>
                         </div>
-
                         <div className="mb-6 flex w-full gap-3">
                           {stakeholder.stats?.map((stat, sIdx) => (
                             <div
@@ -314,7 +295,6 @@ export default function Mobile() {
                             </div>
                           ))}
                         </div>
-
                         <button className="group relative flex w-full items-center justify-between overflow-hidden rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#b38728] p-3 text-[#0a1128] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]">
                           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
                             <Sparkles className="h-5 w-5" />

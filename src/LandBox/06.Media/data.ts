@@ -6,9 +6,7 @@ import {
   Navigation,
   Map,
 } from "lucide-react";
-
 import premiumPlotImg from "../../assets/premium_land_plot.png";
-
 export const mediaData = {
   title: "Media",
   tabs: [

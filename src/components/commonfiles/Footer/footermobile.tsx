@@ -4,18 +4,14 @@ import { MapPin, Mail, Phone, ChevronDown } from "lucide-react";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import CrempTextLogo from "../../CrempTextLogo";
 import { brandLinks, quickLinks, resources, legalLinks } from "./data";
-
 export default function FooterMobile() {
   const [openSection, setOpenSection] = useState<string | null>(null);
-
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
   };
-
   return (
     <footer className="bg-[#0a1128] border-t border-white/5 pt-8 pb-6 overflow-hidden relative font-sans">
       <div className="pointer-events-none absolute top-0 left-0 w-full h-[300px] bg-gradient-to-b from-[#d4af37]/10 to-transparent blur-3xl opacity-50" />
-      
       <div className="px-6 relative z-10 flex flex-col gap-6">
         <div className="flex flex-col gap-3 items-center text-center">
           <a href="#" className="flex items-center group w-fit">
@@ -40,7 +36,6 @@ export default function FooterMobile() {
             })}
           </div>
         </div>
-
         <div className="flex flex-col mt-2">
           <AccordionItem 
             title="Quick Links" 
@@ -55,7 +50,6 @@ export default function FooterMobile() {
               ))}
             </div>
           </AccordionItem>
-
           <AccordionItem 
             title="Resources" 
             isOpen={openSection === "resources"} 
@@ -69,7 +63,6 @@ export default function FooterMobile() {
               ))}
             </div>
           </AccordionItem>
-
           <AccordionItem 
             title="Contact Us" 
             isOpen={openSection === "contact"} 
@@ -93,7 +86,6 @@ export default function FooterMobile() {
             </div>
           </AccordionItem>
         </div>
-
         <div className="flex flex-col items-center gap-4 mt-2 pt-6 border-t border-white/10 text-center">
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] font-semibold text-gray-500">
             {legalLinks.map((link) => (
@@ -110,14 +102,12 @@ export default function FooterMobile() {
     </footer>
   );
 }
-
 interface AccordionItemProps {
   title: string;
   isOpen: boolean;
   onToggle: () => void;
   children: ReactNode;
 }
-
 function AccordionItem({ title, isOpen, onToggle, children }: AccordionItemProps) {
   return (
     <div className="border-b border-white/10 overflow-hidden">

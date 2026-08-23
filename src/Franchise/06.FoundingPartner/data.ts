@@ -10,7 +10,6 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
-
 export const foundingData = {
   tag: "PRE-LAUNCH • LIMITED FOUNDING PARTNERS",
   title: "Become a\nFounding\nExpansion Partner",

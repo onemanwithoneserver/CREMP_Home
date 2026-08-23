@@ -12,7 +12,6 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-
 export const stakeholdersData = [
   {
     id: "franchisors",
@@ -124,7 +123,6 @@ export const stakeholdersData = [
     ],
   },
 ];
-
 export const statsData = [
   {
     icon: Lock,

@@ -3,7 +3,6 @@ import { motion, type Variants } from "framer-motion";
 import { RotateCw, Sparkles, Quote } from "lucide-react";
 import { leadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -11,7 +10,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -20,7 +18,6 @@ const itemVariants = {
     transition: { type: "spring" as const, stiffness: 100, damping: 20 },
   },
 };
-
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
@@ -28,7 +25,6 @@ const staggerContainer = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 function LeaderCardMobile({
   member,
   isFlipped,
@@ -60,7 +56,6 @@ function LeaderCardMobile({
             className="w-full h-full object-cover filter grayscale-[15%] transition-transform duration-700 group-hover:scale-105"
             draggable={false}
           />
-
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/40 to-transparent opacity-95" />
           <div className="absolute top-4 right-4 z-20">
             <motion.div
@@ -81,14 +76,12 @@ function LeaderCardMobile({
             <p className="text-gray-300 text-xs font-semibold tracking-widest uppercase mb-3">
               {member.role}
             </p>
-
             <div className="w-10 h-[3px] bg-[#d4af37] rounded-full" />
           </div>
         </div>
         <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42]/95 backdrop-blur-2xl border border-[#d4af37]/40 shadow-2xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-
           <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
@@ -100,7 +93,6 @@ function LeaderCardMobile({
                 </span>
               </div>
             </div>
-
             <motion.button
               whileHover={{ scale: 1.1, rotate: [0, -20, 20, 0] }}
               transition={{ duration: 0.4 }}
@@ -114,12 +106,10 @@ function LeaderCardMobile({
               <RotateCw size={14} className="text-[#d4af37]" />
             </motion.button>
           </div>
-
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
             <p className="text-[14px] text-gray-200 leading-relaxed font-normal">
               {member.bio}
             </p>
-
             <div className="mt-4 flex flex-col gap-2">
               {member.highlights.map((highlight, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
@@ -134,7 +124,6 @@ function LeaderCardMobile({
               ))}
             </div>
           </div>
-
           <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2">
             <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[4px] border border-white/10">
               <Quote
@@ -151,12 +140,10 @@ function LeaderCardMobile({
     </div>
   );
 }
-
 export default function LeadershipMobile() {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
     const scrollPosition = container.scrollLeft;
@@ -166,7 +153,6 @@ export default function LeadershipMobile() {
       setActiveIndex(newIndex);
     }
   };
-
   const scrollTo = (index: number) => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
@@ -174,7 +160,6 @@ export default function LeadershipMobile() {
       container.scrollTo({ left: index * cardWidth, behavior: "smooth" });
     }
   };
-
   return (
     <section className="w-full py-6 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
@@ -187,7 +172,6 @@ export default function LeadershipMobile() {
         animate="animate"
         className="pointer-events-none absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -203,7 +187,6 @@ export default function LeadershipMobile() {
             align="center"
           />
         </motion.div>
-
         <div className="w-full flex flex-col gap-2">
           <motion.div
             variants={staggerContainer}
@@ -231,7 +214,6 @@ export default function LeadershipMobile() {
               </motion.div>
             ))}
           </motion.div>
-
           <div className="flex justify-center items-center gap-2 mt-2">
             {leadershipData.members.map((_, idx) => (
               <button

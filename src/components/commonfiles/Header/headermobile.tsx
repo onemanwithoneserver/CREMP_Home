@@ -4,20 +4,17 @@ import { Plus, Minus, X, Search, SlidersHorizontal } from "lucide-react";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import { navLinks } from "./data";
-
 interface HeaderMobileProps {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
   currentPage: string;
 }
-
 export default function HeaderMobile({
   setMobileMenuOpen,
   currentPage,
 }: HeaderMobileProps) {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -28,12 +25,10 @@ export default function HeaderMobile({
       }
     }
   };
-
   const itemVariants: Variants = {
     hidden: { opacity: 0, x: 20 },
     show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
-
   return (
     <>
       <motion.div
@@ -63,10 +58,8 @@ export default function HeaderMobile({
             <X className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" strokeWidth={2} />
           </button>
         </div>
-
         <div className="flex-1 overflow-y-auto overflow-x-hidden pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <div className="px-5 flex flex-col min-h-full">
-            
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,7 +80,6 @@ export default function HeaderMobile({
                 </button>
               </div>
             </motion.div>
-
             <motion.nav 
               variants={containerVariants}
               initial="hidden"
@@ -97,7 +89,6 @@ export default function HeaderMobile({
               {navLinks.map((link) => {
                 const isActive = currentPage === link.href;
                 const isSubOpen = openSubMenu === link.label;
-                
                 return (
                   <motion.div key={link.label} variants={itemVariants} className="flex flex-col">
                     <button
@@ -128,7 +119,6 @@ export default function HeaderMobile({
                           />
                         )}
                       </div>
-                      
                       {link.subItems && (
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isSubOpen ? "bg-white text-[#0a1128] shadow-md" : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-gray-500"
@@ -137,7 +127,6 @@ export default function HeaderMobile({
                         </div>
                       )}
                     </button>
-                    
                     <AnimatePresence>
                       {link.subItems && isSubOpen && (
                         <motion.div
@@ -169,8 +158,6 @@ export default function HeaderMobile({
                 );
               })}
             </motion.nav>
-
-
           </div>
         </div>
       </motion.div>

@@ -1,5 +1,4 @@
 import { type CostBreakdownItem } from "./data";
-
 export const CostBreakdownTable = ({
   data,
   totalValue,

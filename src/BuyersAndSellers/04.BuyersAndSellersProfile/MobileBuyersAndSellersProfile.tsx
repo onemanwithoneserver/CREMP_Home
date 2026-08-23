@@ -2,7 +2,6 @@ import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { BuyersAndSellersProfileData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -18,10 +17,8 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileBuyersAndSellersProfile() {
   const [activeIdx, setActiveIdx] = useState<number | null>(0);
-
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
       <motion.div
@@ -53,7 +50,6 @@ export default function MobileBuyersAndSellersProfile() {
             {BuyersAndSellersProfileData.desc[0]}
           </motion.p>
         </div>
-
         <div className="w-full flex flex-col gap-3">
           <h3 className="text-[0.7rem] font-bold uppercase tracking-widest text-gray-400 mb-2 pl-2">
             Select Your Profile
@@ -88,7 +84,6 @@ export default function MobileBuyersAndSellersProfile() {
                     className={`transition-transform duration-300 ${isActive ? "rotate-180" : ""}`}
                   />
                 </button>
-
                 <AnimatePresence>
                   {isActive && (
                     <motion.div

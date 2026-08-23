@@ -31,7 +31,6 @@ export const DualToneStore = ({ size = 24, className = "" }) => (
     />
   </svg>
 );
-
 export const DualToneBuilding = ({ size = 24, className = "" }) => (
   <svg
     width={size}
@@ -86,7 +85,6 @@ export const DualToneBuilding = ({ size = 24, className = "" }) => (
     />
   </svg>
 );
-
 export const DualToneTag = ({ size = 24, className = "" }) => (
   <svg
     width={size}
@@ -106,7 +104,6 @@ export const DualToneTag = ({ size = 24, className = "" }) => (
     <circle cx="8" cy="8" r="2" fill="#f59e0b" />
   </svg>
 );
-
 export const DualToneMegaphone = ({ size = 24, className = "" }) => (
   <svg
     width={size}
@@ -153,7 +150,6 @@ export const DualToneMegaphone = ({ size = 24, className = "" }) => (
     />
   </svg>
 );
-
 export const DualToneUsers = ({ size = 24, className = "" }) => (
   <svg
     width={size}
@@ -196,7 +192,6 @@ export const DualToneUsers = ({ size = 24, className = "" }) => (
     <circle cx="16" cy="7" r="1.5" fill="#f59e0b" />
   </svg>
 );
-
 export const DualToneBroker = ({ size = 24, className = "" }) => (
   <svg
     width={size}

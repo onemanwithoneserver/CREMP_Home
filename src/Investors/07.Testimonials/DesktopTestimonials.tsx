@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 import { Container } from "../../components/layout";
 import { testimonialsData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -18,11 +17,9 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function DesktopTestimonials() {
   const Btn1Icon = testimonialsData.buttons[0].icon;
   const Btn2Icon = testimonialsData.buttons[1].icon;
-
   return (
     <div className="relative w-full overflow-hidden bg-white py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
@@ -86,7 +83,6 @@ export default function DesktopTestimonials() {
               </motion.button>
             </motion.div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -103,7 +99,6 @@ export default function DesktopTestimonials() {
                   {testimonialsData.benefitsTitle}
                 </h3>
               </div>
-
               <div className="flex flex-col gap-4">
                 {testimonialsData.benefits.map((benefit, idx) => (
                   <motion.div
@@ -137,7 +132,6 @@ export default function DesktopTestimonials() {
             </div>
           </motion.div>
         </div>
-
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

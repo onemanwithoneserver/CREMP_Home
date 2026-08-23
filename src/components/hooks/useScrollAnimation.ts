@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-
 export interface ScrollAnimationOptions {
   threshold?: number | number[];
   rootMargin?: string;
   triggerOnce?: boolean;
 }
-
 export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(
   options: ScrollAnimationOptions = {},
 ) {
@@ -16,11 +14,9 @@ export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(
   } = options;
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
-
   const handleIntersection = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       const [entry] = entries;
-
       if (entry.isIntersecting) {
         setIsVisible(true);
         if (triggerOnce && ref.current) {
@@ -32,18 +28,14 @@ export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(
     },
     [triggerOnce],
   );
-
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-
     const observer = new IntersectionObserver(handleIntersection, {
       threshold,
       rootMargin,
     });
-
     observer.observe(element);
-
     return () => {
       if (element) {
         observer.unobserve(element);
@@ -51,6 +43,5 @@ export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(
       observer.disconnect();
     };
   }, [handleIntersection, threshold, rootMargin]);
-
   return { ref, isVisible };
 }

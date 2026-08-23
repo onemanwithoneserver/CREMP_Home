@@ -25,7 +25,6 @@ import {
   Info,
   type LucideIcon,
 } from "lucide-react";
-
 export interface StaffDetail {
   name: string;
   count: string;
@@ -33,7 +32,6 @@ export interface StaffDetail {
   type: string;
   remarks: string;
 }
-
 export interface CostBreakdownItem {
   label: string;
   amount: string;
@@ -41,7 +39,6 @@ export interface CostBreakdownItem {
   color: string;
   icon: LucideIcon;
 }
-
 export interface ModelSpecificationItem {
   icon: LucideIcon;
   label: string;
@@ -52,7 +49,6 @@ export interface ModelSpecificationItem {
   hasStaffModal?: boolean;
   badge?: string;
 }
-
 export interface RevenueCardItem {
   icon: LucideIcon;
   year: string;
@@ -62,7 +58,6 @@ export interface RevenueCardItem {
   sublabel: string;
   intent: "warning" | "success" | "info" | "primary";
 }
-
 export interface FranchiseModel {
   id: string;
   name: string;
@@ -77,7 +72,6 @@ export interface FranchiseModel {
   totalAvgLabel: string;
   costBreakdown: CostBreakdownItem[];
 }
-
 export const franchiseModelsData = {
   sectionLabel: "INVESTMENT BREAKDOWN",
   title: "Franchise Models",
@@ -509,7 +503,6 @@ export const franchiseModelsData = {
     },
   ] as FranchiseModel[],
 };
-
 export const revenueROIData = {
   sectionLabel: "Est. ROI",
   revenueCards: [
@@ -555,7 +548,6 @@ export const revenueROIData = {
     ],
   },
 };
-
 export const getModelSpecifications = (
   model: FranchiseModel,
 ): ModelSpecificationItem[] => [
@@ -594,7 +586,6 @@ export const getModelSpecifications = (
     badge: "Prime",
   },
 ];
-
 export const getRightMetrics = () => [
   {
     icon: BarChart3,
@@ -625,7 +616,6 @@ export const getRightMetrics = () => [
     badge: "Breakeven",
   },
 ];
-
 export const getRoiColor = (intent: string) => {
   if (intent === "primary" || intent === "warning")
     return "bg-[#d97706] text-white";
@@ -633,23 +623,19 @@ export const getRoiColor = (intent: string) => {
   if (intent === "info") return "bg-[#0284c7] text-white";
   return "bg-[#7c3aed] text-white";
 };
-
 export const staffBadgeColors = [
   "text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-900",
   "text-blue-700 bg-blue-100 dark:text-blue-300 dark:bg-blue-900",
   "text-orange-700 bg-orange-100 dark:text-orange-300 dark:bg-orange-900",
   "text-purple-700 bg-purple-100 dark:text-purple-300 dark:bg-purple-900",
 ];
-
 export const getStaffBadgeColor = (idx: number) => {
   return staffBadgeColors[idx % staffBadgeColors.length];
 };
-
 export const viewOptions = [
   { value: "chart", label: "Pie Chart View" },
   { value: "table", label: "Tabular View" },
 ];
-
 export const franchiseModelsUI = {
   specificationLabel: "MODEL SPECIFICATIONS",
   avgTotalInvestment: "AVG. TOTAL INVESTMENT",

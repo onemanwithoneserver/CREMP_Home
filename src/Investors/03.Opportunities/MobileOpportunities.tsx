@@ -1,7 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, TrendingUp } from "lucide-react";
 import { opportunitiesData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -17,7 +16,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileOpportunities() {
   return (
     <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
@@ -53,7 +51,6 @@ export default function MobileOpportunities() {
             </motion.p>
           ))}
         </div>
-
         <motion.div variants={fadeInUp} className="mb-8 grid grid-cols-2 gap-3">
           {opportunitiesData.tabletStats.map((stat, idx) => (
             <div
@@ -72,7 +69,6 @@ export default function MobileOpportunities() {
             </div>
           ))}
         </motion.div>
-
         <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-3">
           {opportunitiesData.showcaseMenu.map((item, idx) => (
             <div

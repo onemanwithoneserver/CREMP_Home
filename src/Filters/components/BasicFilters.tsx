@@ -2,12 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-
 interface FilterChipOption {
   id: string;
   label: string;
 }
-
 interface FilterChipProps {
   label: string;
   value: string;
@@ -15,7 +13,6 @@ interface FilterChipProps {
   onChange: (value: string) => void;
   isActive?: boolean;
 }
-
 function FilterChip({
   label,
   value,
@@ -25,7 +22,6 @@ function FilterChip({
 }: FilterChipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const chipRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (chipRef.current && !chipRef.current.contains(e.target as Node)) {
@@ -35,11 +31,9 @@ function FilterChip({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
   const selectedOption = options.find((o) => o.id === value);
   const displayLabel = selectedOption ? selectedOption.label : label;
   const hasValue = value && value !== "Any" && value !== "";
-
   return (
     <div
       className={clsx("relative shrink-0", isOpen ? "z-[200]" : "z-10")}
@@ -79,7 +73,6 @@ function FilterChip({
           />
         </motion.div>
       </motion.button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -90,7 +83,6 @@ function FilterChip({
             className="absolute left-0 top-[calc(100%+8px)] w-full sm:min-w-[180px] z-[9999] bg-white/80 backdrop-blur-2xl rounded-xl border border-gray-200/60 shadow-[0_16px_48px_rgba(11,27,66,0.18),0_4px_12px_rgba(0,0,0,0.06)] overflow-hidden dark:bg-[#0e172f]/90 dark:border-white/15 dark:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
           >
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
-
             <div className="py-1.5 max-h-[240px] overflow-y-auto scrollbar-hide">
               {options.map((opt, index) => {
                 const isSelected = value === opt.id;
@@ -148,17 +140,14 @@ function FilterChip({
     </div>
   );
 }
-
 import type { FilterState } from "./data";
 import { PROPERTY_TYPES, BUDGET_OPTIONS } from "./data";
 import { BOP_INDUSTRIES } from "./data";
-
 interface BasicFiltersProps {
   activeTab: "commercial" | "business";
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
 }
-
 export default function BasicFilters({
   activeTab,
   filters,
@@ -167,7 +156,6 @@ export default function BasicFilters({
   const handleUpdate = (key: keyof FilterState, value: string) => {
     onFilterChange({ ...filters, [key]: value });
   };
-
   const commercialFilters = [
     {
       key: "transactionType" as keyof FilterState,
@@ -191,7 +179,6 @@ export default function BasicFilters({
       options: BUDGET_OPTIONS.map((b) => ({ id: b, label: b })),
     },
   ];
-
   const businessFilters = [
     {
       key: "industry" as keyof FilterState,
@@ -203,10 +190,8 @@ export default function BasicFilters({
       })),
     },
   ];
-
   const activeFilters =
     activeTab === "commercial" ? commercialFilters : businessFilters;
-
   return (
     <div className="w-full relative z-40">
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-2.5 pb-1">
@@ -230,13 +215,11 @@ export default function BasicFilters({
             Filters
           </span>
         </div>
-
         <div className="flex sm:hidden items-center gap-1.5 px-1 pb-0.5">
           <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
             Basic Filters
           </span>
         </div>
-
         {activeFilters.map((filter) => (
           <FilterChip
             key={filter.key}

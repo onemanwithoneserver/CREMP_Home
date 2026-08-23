@@ -2,16 +2,13 @@ import { useState } from "react";
 import { Share2, Phone, MessageCircle, Plus, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-
 export default function FloatingActionMenu({
   isMobile,
 }: {
   isMobile: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-
   if (!isMobile) return null;
-
   return (
     <div className="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-3">
       <AnimatePresence>
@@ -44,7 +41,6 @@ export default function FloatingActionMenu({
           </motion.div>
         )}
       </AnimatePresence>
-
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(

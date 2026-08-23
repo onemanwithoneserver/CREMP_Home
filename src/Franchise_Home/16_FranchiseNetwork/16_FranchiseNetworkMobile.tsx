@@ -5,7 +5,6 @@ import { ChevronDown, Globe2, MapPin, Sparkles, Check } from "lucide-react";
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -13,7 +12,6 @@ const pulseGlow: Variants = {
     transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function FranchiseNetworkMobile() {
   const [activeCity, setActiveCity] = useState<CityNode>(
     franchiseNetworkData.cities[0],
@@ -21,7 +19,6 @@ export default function FranchiseNetworkMobile() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [bookedOpps, setBookedOpps] = useState<Set<string>>(new Set());
   const dropdownRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -34,7 +31,6 @@ export default function FranchiseNetworkMobile() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
   return (
     <section className="w-full py-12 pb-20 px-2 relative overflow-hidden rounded-[4px] bg-white/40 ">
       <motion.div
@@ -47,7 +43,6 @@ export default function FranchiseNetworkMobile() {
         animate="animate"
         className="pointer-events-none absolute bottom-[10%] right-[10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/10 blur-[100px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="relative z-10 w-full flex flex-col gap-6 px-2">
         <SectionHeader
           overline={franchiseNetworkData.sectionLabel}
@@ -55,7 +50,6 @@ export default function FranchiseNetworkMobile() {
           subtitle={franchiseNetworkData.subtitle}
           align="center"
         />
-
         <div className="relative z-10 w-full grid grid-cols-2 gap-3">
           {franchiseNetworkData.stats.map((stat, idx) => {
             const Icon = stat.icon;
@@ -71,7 +65,6 @@ export default function FranchiseNetworkMobile() {
               "bg-[#f4b400]/10 text-[#f4b400]",
               "bg-[#0088cc]/10 text-[#0088cc]",
             ];
-
             return (
               <div
                 key={idx}
@@ -90,7 +83,6 @@ export default function FranchiseNetworkMobile() {
                     {stat.label}
                   </span>
                 </div>
-
                 <div className="flex flex-col mt-1">
                   <div className="text-[24px] font-black text-[#0a1128] dark:text-white tracking-tight leading-none mb-2">
                     {stat.value}
@@ -110,7 +102,6 @@ export default function FranchiseNetworkMobile() {
             );
           })}
         </div>
-
         <div className="relative min-h-[360px] bg-[#070d1e] rounded-[4px] border border-gray-800 overflow-hidden shadow-xl p-4 flex flex-col justify-between">
           <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-luminosity">
             <img
@@ -120,7 +111,6 @@ export default function FranchiseNetworkMobile() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-transparent to-[#070d1e]/70" />
           </div>
-
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-60">
             <defs>
               <linearGradient
@@ -163,7 +153,6 @@ export default function FranchiseNetworkMobile() {
               fill="none"
             />
           </svg>
-
           <div className="relative z-20 flex items-center justify-between">
             <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#0b1b42]/90 border border-[#d4af37]/30 rounded-[2px] backdrop-blur-md">
               <Globe2 size={12} className="text-[#d4af37]" />
@@ -172,11 +161,9 @@ export default function FranchiseNetworkMobile() {
               </span>
             </div>
           </div>
-
           <div className="relative w-full h-[260px] z-20">
             {franchiseNetworkData.cities.map((city) => {
               const isSelected = activeCity.id === city.id;
-
               return (
                 <div
                   key={city.id}
@@ -216,7 +203,6 @@ export default function FranchiseNetworkMobile() {
               );
             })}
           </div>
-
           <div className="relative z-20 flex flex-wrap items-center justify-between gap-1 text-[10px] text-gray-300 border-t border-gray-800/80 pt-2">
             <span className="flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />{" "}
@@ -252,7 +238,6 @@ export default function FranchiseNetworkMobile() {
                   EXISTING CITY
                 </span>
               </div>
-
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -283,7 +268,6 @@ export default function FranchiseNetworkMobile() {
                     )}
                   />
                 </button>
-
                 <AnimatePresence>
                   {isDropdownOpen && (
                     <motion.div
@@ -322,7 +306,6 @@ export default function FranchiseNetworkMobile() {
                 </AnimatePresence>
               </div>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -341,7 +324,6 @@ export default function FranchiseNetworkMobile() {
                   {activeCity.opportunities?.length || 0} CIRCLES OPEN
                 </span>
               </div>
-
               <div className="flex items-center justify-between px-3 py-2 mt-1 text-[8px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[4px] shadow-sm">
                 <span className="flex-1">CIRCLE NAME</span>
                 <span className="w-[80px] text-center">FORMAT</span>
@@ -371,13 +353,11 @@ export default function FranchiseNetworkMobile() {
                           </span>
                         )}
                       </div>
-
                       <div className="w-[80px] flex justify-center px-1">
                         <span className="inline-block text-center px-2 py-1 text-[7px] font-bold uppercase tracking-widest rounded-[2px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 max-w-full">
                           {opp.format}
                         </span>
                       </div>
-
                       <div className="w-[80px] flex justify-center pl-1">
                         <motion.button
                           onClick={(e) => {

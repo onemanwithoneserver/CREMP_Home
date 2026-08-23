@@ -3,7 +3,6 @@ import { Container } from "../../components/layout";
 import { heroData } from "./data";
 import heroImageDark from "./Hero_Section_dark.png";
 import heroImageLight from "./Hero_Section_light.png";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -14,7 +13,6 @@ const staggerContainer: Variants = {
     },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -23,7 +21,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 const floatAnimation: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   show: {
@@ -41,7 +38,6 @@ const floatAnimation: Variants = {
     },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -49,11 +45,9 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function DesktopHero() {
   const Btn1Icon = heroData.buttons[0].icon;
   const Btn2Icon = heroData.buttons[1].icon;
-
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 pt-24 pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <motion.div
@@ -66,7 +60,6 @@ export default function DesktopHero() {
         animate="animate"
         className="pointer-events-none absolute right-[-5%] top-[20%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[150px] dark:bg-[#D4AF37]/10"
       />
-
       <Container className="relative z-10">
         <div className="flex items-center justify-between gap-6">
           <motion.div
@@ -80,7 +73,6 @@ export default function DesktopHero() {
                 {heroData.tag}
               </span>
             </motion.div>
-
             <motion.h1
               variants={fadeInUp}
               className="mb-3 text-[3.25rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.5rem]"
@@ -91,7 +83,6 @@ export default function DesktopHero() {
                 {heroData.titleHighlight}
               </span>
             </motion.h1>
-
             <motion.p
               variants={fadeInUp}
               className="mb-6 max-w-lg text-[1rem] leading-relaxed text-gray-600 dark:text-gray-400"
@@ -106,7 +97,6 @@ export default function DesktopHero() {
               discover expansion-ready locations—all through one connected
               ecosystem.
             </motion.p>
-
             <motion.div
               variants={fadeInUp}
               className="mb-10 flex items-center gap-4"
@@ -124,7 +114,6 @@ export default function DesktopHero() {
                 </motion.div>
                 {heroData.buttons[0].text}
               </motion.button>
-
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -143,7 +132,6 @@ export default function DesktopHero() {
                 {heroData.buttons[1].text}
               </motion.button>
             </motion.div>
-
             <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-4">
               {heroData.features.map((feature, idx) => (
                 <motion.div
@@ -165,7 +153,6 @@ export default function DesktopHero() {
               ))}
             </motion.div>
           </motion.div>
-
           <div className="relative flex h-[550px] w-[50%] items-center justify-center">
             <motion.div
               variants={floatAnimation}

@@ -10,7 +10,6 @@ import {
   Briefcase,
   FileCheck,
 } from "lucide-react";
-
 export const termsData = {
   overline: "Master Commercial Terms & Remarks",
   title: "Building & Sub Lease Conditions",

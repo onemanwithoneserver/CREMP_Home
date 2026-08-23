@@ -4,10 +4,8 @@ import { Cpu, Lock, Check } from "lucide-react";
 import { locationIntelligenceData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer, gridItem } from "../components/animations";
-
 export default function Mobile() {
   const [isNotified, setIsNotified] = useState(false);
-
   return (
     <motion.div
       initial="hidden"
@@ -25,7 +23,6 @@ export default function Mobile() {
           title={locationIntelligenceData.title}
           icon={Cpu}
         />
-
         <div className="px-4 py-4 relative">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[0.5px] z-10 flex flex-col items-center justify-center group cursor-pointer hover:bg-white/40 hover:backdrop-blur-sm transition-all duration-500">
             <div className="w-12 h-12 rounded-[8px] flex items-center justify-center text-white mb-3 shadow-[0_4px_15px_rgba(11,27,66,0.3)] border border-[#1c2e64] bg-[#17274c] group-hover:animate-icon-shake origin-center transition-all duration-300">
@@ -54,7 +51,6 @@ export default function Mobile() {
               </span>
             </div>
           </div>
-
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -98,7 +94,6 @@ export default function Mobile() {
               </motion.div>
             ))}
           </motion.div>
-
           <motion.div
             variants={fadeInUp}
             className="w-full relative z-20 overflow-hidden mt-3 border-t border-gray-100 bg-white"

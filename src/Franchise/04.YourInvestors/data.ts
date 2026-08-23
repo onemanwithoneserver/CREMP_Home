@@ -12,7 +12,6 @@ import {
   User,
   Wallet,
 } from "lucide-react";
-
 export const investorData = {
   tag: "YOUR INVESTORS",
   titleBase: "Your Investors.",

@@ -14,13 +14,11 @@ export interface LeadershipMember {
     youtube?: string;
   };
 }
-
 export interface BrandStat {
   value: string;
   label: string;
   intent: "warning" | "info" | "success" | "primary";
 }
-
 export const brandLeadershipData = {
   sectionLabel: "BRAND STORY & LEADERSHIP",
   title: "The Vision Behind the Brand",
@@ -70,5 +68,4 @@ export const brandLeadershipData = {
     },
   ],
 };
-
 export const leadershipData = brandLeadershipData;

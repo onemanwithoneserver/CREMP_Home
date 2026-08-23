@@ -8,7 +8,6 @@ import {
   staggerContainer,
   itemReveal as tagItem,
 } from "../components/animations";
-
 const tagStagger = {
   hidden: { opacity: 0 },
   show: {
@@ -16,10 +15,8 @@ const tagStagger = {
     transition: { staggerChildren: 0.04, delayChildren: 0.15 },
   },
 };
-
 export default function Desktop() {
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
-
   return (
     <motion.div
       initial="hidden"
@@ -37,7 +34,6 @@ export default function Desktop() {
           title={spaceOverviewData.title}
           icon={LayoutGrid}
         />
-
         <div className="px-3 py-3 flex flex-col gap-3 mx-0">
           <div className="border border-transparent rounded-[6px] overflow-hidden bg-white shadow-sm mt-1">
             <button
@@ -90,7 +86,6 @@ export default function Desktop() {
               )}
             </AnimatePresence>
           </div>
-
           <div className="flex flex-col gap-2.5 mt-1 pt-2">
             {spaceOverviewData.details.map((detail, idx) => (
               <motion.div

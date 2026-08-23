@@ -2,7 +2,6 @@ import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { faqData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -18,12 +17,10 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const Btn1Icon = faqData.banner.btn1.icon;
   const Btn2Icon = faqData.banner.btn2.icon;
-
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
       <motion.div
@@ -54,7 +51,6 @@ export default function MobileFAQ() {
             {faqData.desc}
           </motion.p>
         </div>
-
         <motion.div
           variants={fadeInUp}
           className="flex flex-col border-t border-gray-200 dark:border-gray-800 mb-12"
@@ -101,18 +97,15 @@ export default function MobileFAQ() {
             );
           })}
         </motion.div>
-
         <motion.div
           variants={fadeInUp}
           className="flex flex-col items-center justify-center gap-6 rounded-[8px] bg-[#0b1b42] p-8 text-center shadow-xl relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay"></div>
           <div className="absolute -top-[20%] -left-[20%] h-[200px] w-[200px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[80px] pointer-events-none opacity-40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></div>
-
           <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 backdrop-blur-md">
             <faqData.banner.icon size={26} className="text-[#D4AF37]" />
           </div>
-
           <div className="relative z-10">
             <h3 className="whitespace-pre-line text-[1.5rem] font-black leading-tight text-white mb-3">
               {faqData.banner.title}
@@ -121,7 +114,6 @@ export default function MobileFAQ() {
               {faqData.banner.desc}
             </p>
           </div>
-
           <div className="relative z-10 flex w-full flex-col gap-3">
             <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] py-3.5 text-[0.9rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128]">
               <Btn1Icon size={16} />

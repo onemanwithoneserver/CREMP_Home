@@ -7,10 +7,8 @@ import {
   useEffect,
 } from "react";
 import { useParams } from "react-router-dom";
-
 import Hero from "./01.Hero";
 import MapView from "./MapView";
-
 const CommercialTerms = lazy(() => import("./02.CommercialTerms"));
 const SpaceOverview = lazy(() => import("./03.SpaceOverview"));
 const FitOut = lazy(() => import("./04.FitOut"));
@@ -19,7 +17,6 @@ const Media = lazy(() => import("./06.Media"));
 const LocationIntelligence = lazy(() => import("./07.LocationIntelligence"));
 const Terms = lazy(() => import("./08.Terms"));
 const StickyFooter = lazy(() => import("./StickyFooter"));
-
 const SectionLoader = () => (
   <div className="w-full py-16 flex flex-col items-center justify-center gap-5">
     <div className="relative flex items-center justify-center w-12 h-12">
@@ -44,36 +41,29 @@ const SectionLoader = () => (
     </div>
   </div>
 );
-
 export default function LandBox() {
   const { viewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
   const [dialogWidth, setDialogWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
-
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       if (!isDragging || !containerRef.current) return;
-
       const containerRect = containerRef.current.getBoundingClientRect();
       const mapWidthPercent =
         ((e.clientX - containerRect.left) / containerRect.width) * 100;
-
       const clampedMapWidth = Math.min(Math.max(mapWidthPercent, 65), 70);
       setDialogWidth(100 - clampedMapWidth);
     },
     [isDragging],
   );
-
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
   }, []);
-
   useEffect(() => {
     if (isDragging) {
       document.addEventListener("mousemove", handleMouseMove);
@@ -87,7 +77,6 @@ export default function LandBox() {
       document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, handleMouseMove, handleMouseUp]);
-
   const content = (
     <div className="flex-1 flex flex-col relative h-full w-full overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20">
@@ -123,7 +112,6 @@ export default function LandBox() {
       </div>
     </div>
   );
-
   return (
     <div
       ref={containerRef}
@@ -137,7 +125,6 @@ export default function LandBox() {
           >
             <MapView />
           </div>
-
           <div
             className="w-1.5 h-full bg-gray-50/50 hover:bg-gray-100 cursor-col-resize flex flex-col items-center justify-center group relative z-30 transition-colors border-x border-gray-200/50"
             onMouseDown={handleMouseDown}
@@ -151,7 +138,6 @@ export default function LandBox() {
               <div className="fixed inset-0 z-50 cursor-col-resize" />
             )}
           </div>
-
           <div
             style={{ width: `${dialogWidth}%` }}
             className="h-full bg-white shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.1)] relative z-20"

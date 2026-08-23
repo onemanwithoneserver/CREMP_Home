@@ -8,7 +8,6 @@ import { Play, Heart, Share2, MapPin } from "lucide-react";
 import { heroData } from "./data";
 import { useRef, useState } from "react";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 const actionIcons = [
   {
     Icon: Heart,
@@ -21,7 +20,6 @@ const actionIcons = [
     hoverBg: "hover:bg-emerald-500/90 hover:border-emerald-500",
   },
 ];
-
 export default function Mobile() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -30,11 +28,9 @@ export default function Mobile() {
   });
   const imageY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
   const x = useRef(0);
-
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
     const speed = 30;
@@ -45,7 +41,6 @@ export default function Mobile() {
     }
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   });
-
   return (
     <div
       ref={heroRef}
@@ -64,15 +59,12 @@ export default function Mobile() {
           className="w-full h-full object-cover opacity-60"
         />
       </motion.div>
-
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128]/40 via-transparent to-transparent z-[1]" />
       <div
         className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/80 to-transparent z-[1]"
         style={{ top: "40%" }}
       />
-
       <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-white z-[2]" />
-
       <div className="absolute top-5 right-5 flex flex-col gap-2.5 z-20">
         {actionIcons.map(({ Icon, hoverBg }, i) => (
           <motion.button
@@ -93,7 +85,6 @@ export default function Mobile() {
           </motion.button>
         ))}
       </div>
-
       <motion.button
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -109,7 +100,6 @@ export default function Mobile() {
           fill="currentColor"
         />
       </motion.button>
-
       <div className="relative z-10 w-full px-5 pb-10 pt-16 flex flex-col gap-4">
         <motion.div
           variants={staggerContainer}
@@ -131,7 +121,6 @@ export default function Mobile() {
               </span>
             ))}
           </motion.div>
-
           <div className="flex flex-col gap-2">
             <motion.h1
               variants={fadeInUp}
@@ -139,7 +128,6 @@ export default function Mobile() {
             >
               {heroData.title}
             </motion.h1>
-
             <motion.div variants={fadeInUp} className="flex items-center gap-2">
               <div className="w-5 h-5 rounded-[2px] bg-[#d4af37]/20 flex items-center justify-center border border-[#d4af37]/30">
                 <MapPin size={12} className="text-[#d4af37]" />
@@ -149,7 +137,6 @@ export default function Mobile() {
               </span>
             </motion.div>
           </div>
-
           <motion.div
             variants={fadeInUp}
             className="relative z-10 overflow-hidden w-[calc(100%+2.5rem)] -mx-5 px-5 py-4 group"
@@ -190,7 +177,6 @@ export default function Mobile() {
                 </div>
               ))}
             </motion.div>
-
             <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#0a1128] to-transparent z-10" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#0a1128] to-transparent z-10" />
           </motion.div>

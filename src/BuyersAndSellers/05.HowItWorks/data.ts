@@ -6,7 +6,6 @@ import {
   SlidersHorizontal,
   UserPlus,
 } from "lucide-react";
-
 export const howItWorksData = {
   tag: "HOW IT WORKS",
   titleBase: "How It Works.",

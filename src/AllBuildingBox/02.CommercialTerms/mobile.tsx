@@ -3,14 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { commercialData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Mobile() {
   const [activeTab, setActiveTab] = useState<
     (typeof commercialData.tabs)[number]
   >(commercialData.tabs[0]);
   const currentData =
     commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
-
   return (
     <motion.div
       initial="hidden"
@@ -28,7 +26,6 @@ export default function Mobile() {
           title={currentData.title}
           icon={currentData.headerIcon}
         />
-
         <div className="px-3 mt-3 mb-1 flex justify-center w-full">
           <div className="flex gap-1 bg-white/70 backdrop-blur-xl rounded-[4px] p-1 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-x-auto scrollbar-hide w-full">
             {commercialData.tabs.map((tab) => (
@@ -55,7 +52,6 @@ export default function Mobile() {
                     <div className="absolute bottom-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30" />
                   </motion.div>
                 )}
-
                 <span
                   className={`relative z-10 font-semibold text-[0.68rem] tracking-tight whitespace-nowrap transition-colors duration-300 ${
                     activeTab === tab ? "text-white" : "text-[#17274c]"
@@ -67,7 +63,6 @@ export default function Mobile() {
             ))}
           </div>
         </div>
-
         <div className="px-3 py-3 w-full">
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
@@ -86,7 +81,6 @@ export default function Mobile() {
                         <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.6)] shrink-0" />
                         {currentData.primaryAmountLabel}
                       </span>
-
                       {"secondaryBadge" in currentData &&
                         currentData.secondaryBadge && (
                           <div
@@ -96,7 +90,6 @@ export default function Mobile() {
                           </div>
                         )}
                     </div>
-
                     <div className="flex items-baseline gap-1 mt-1">
                       <span
                         className={`text-lg font-semibold tracking-tight ${currentData.primaryAmountColor}`}
@@ -109,14 +102,12 @@ export default function Mobile() {
                         </span>
                       )}
                     </div>
-
                     {currentData.primarySub && (
                       <span className="text-[0.62rem] text-gray-500 font-semibold tracking-wide">
                         {currentData.primarySub}
                       </span>
                     )}
                   </div>
-
                   {"secondaryDarkCard" in currentData &&
                     currentData.secondaryDarkCard && (
                       <div className="w-full bg-gradient-to-br from-[#0b1b42] to-[#040817] text-white rounded-[4px] p-3 flex justify-between items-center shadow-[0_8px_24px_rgba(11,27,66,0.15)] border border-[#d4af37]/30">
@@ -140,7 +131,6 @@ export default function Mobile() {
                       </div>
                     )}
                 </div>
-
                 <div className="grid grid-cols-2 gap-2">
                   {currentData.details.map((detail, idx) => {
                     const Icon = detail.icon;
@@ -172,7 +162,6 @@ export default function Mobile() {
                     );
                   })}
                 </div>
-
                 {currentData.footer && (
                   <div className="mt-1 p-2 bg-gray-50/80 rounded-[4px] shadow-sm text-[0.62rem] text-gray-600 flex items-center justify-between">
                     {"left" in currentData.footer && (

@@ -9,10 +9,8 @@ import {
   rowReveal as listItemReveal,
   lineReveal,
 } from "../components/animations";
-
 export default function Mobile() {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <motion.div
       initial="hidden"
@@ -32,7 +30,6 @@ export default function Mobile() {
           title={termsData.title}
           icon={FileText}
         />
-
         <div className="px-4 py-4 flex flex-col relative w-full">
           <div className="relative flex flex-col w-full z-10">
             <motion.div
@@ -43,7 +40,6 @@ export default function Mobile() {
               style={{ originY: 0 }}
               className="absolute left-[39px] top-[24px] bottom-[24px] w-[2px] z-0 rounded-full bg-gradient-to-b from-[#e5e7eb] via-[#d4af37] to-[#e5e7eb]"
             />
-
             <motion.ul
               variants={staggerContainer}
               initial="hidden"
@@ -64,14 +60,12 @@ export default function Mobile() {
                     >
                       <item.icon size={18} strokeWidth={2.2} />
                     </motion.div>
-
                     <motion.div
                       variants={lineReveal}
                       style={{ originX: 0 }}
                       className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200/80 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]/80"
                     />
                   </div>
-
                   <motion.div
                     whileHover={{ y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -87,7 +81,6 @@ export default function Mobile() {
                 </motion.li>
               ))}
             </motion.ul>
-
             <AnimatePresence>
               {isOpen && (
                 <motion.div
@@ -117,14 +110,12 @@ export default function Mobile() {
                           >
                             <item.icon size={18} strokeWidth={2.2} />
                           </motion.div>
-
                           <motion.div
                             variants={lineReveal}
                             style={{ originX: 0 }}
                             className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[2px] bg-gray-200/80 z-10 transition-colors duration-300 group-hover:bg-[#d4af37]/80"
                           />
                         </div>
-
                         <motion.div
                           whileHover={{ y: -2 }}
                           transition={{
@@ -148,7 +139,6 @@ export default function Mobile() {
               )}
             </AnimatePresence>
           </div>
-
           <div className="flex w-full mt-4 relative z-10">
             <div className="w-[76px] shrink-0" />
             <div className="flex-1">
@@ -168,7 +158,6 @@ export default function Mobile() {
               </motion.button>
             </div>
           </div>
-
           {termsData.warning && (
             <motion.div
               initial={{ opacity: 0, y: 15 }}

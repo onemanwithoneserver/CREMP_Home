@@ -1,5 +1,4 @@
 import { Building, Store, ShoppingBag, Users, Briefcase } from "lucide-react";
-
 export const listingsData = {
   headerIcon: Building,
   title: "Units & Floor Inventory",

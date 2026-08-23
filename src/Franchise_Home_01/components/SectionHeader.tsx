@@ -1,6 +1,5 @@
 import { motion, type Variants } from "framer-motion";
 import { useLocation } from "react-router-dom";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -11,7 +10,6 @@ const staggerContainer: Variants = {
     },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -20,14 +18,12 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 interface SectionHeaderProps {
   title?: string;
   subtitle?: string;
   overline?: string;
   align?: "left" | "center";
 }
-
 export function SectionHeader({
   title,
   overline,
@@ -35,7 +31,6 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   const location = useLocation();
   const isMobile = location.pathname.includes("/mobile/");
-
   return (
     <motion.div
       variants={staggerContainer}
@@ -54,7 +49,6 @@ export function SectionHeader({
           </span>
         </motion.div>
       )}
-
       {title && (
         <motion.h2
           variants={fadeInUp}

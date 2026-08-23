@@ -1,5 +1,4 @@
 import { MapPin, Store, Target, TrendingUp, Users } from "lucide-react";
-
 export const marketData = {
   tag: "YOUR MARKETS",
   titleBase: "Your Markets.",

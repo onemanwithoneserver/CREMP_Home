@@ -8,10 +8,8 @@ import {
   staggerContainer,
   itemReveal,
 } from "../components/animations";
-
 export default function Desktop() {
   const [isIncludedOpen, setIsIncludedOpen] = useState(true);
-
   return (
     <motion.div
       initial="hidden"
@@ -29,7 +27,6 @@ export default function Desktop() {
           title={fitOutData.title}
           icon={Sofa}
         />
-
         <div className="px-[var(--panel-px,1rem)] py-4 flex flex-col gap-4 mx-0">
           <div className="border border-gray-200/80 rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
@@ -47,7 +44,6 @@ export default function Desktop() {
                 }`}
               />
             </button>
-
             <AnimatePresence initial={false}>
               {isIncludedOpen && (
                 <motion.div
@@ -78,7 +74,6 @@ export default function Desktop() {
               )}
             </AnimatePresence>
           </div>
-
           <motion.div
             variants={staggerContainer}
             initial="hidden"

@@ -14,7 +14,6 @@ import clsx from "clsx";
 import { brandLeadershipData, type LeadershipMember } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { getTextStyles } from "../utils/theme";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -22,13 +21,10 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const getStatIcon = (label: string) => {
   const lower = (label || "").toLowerCase();
-
   let Icon = Award;
   let bgClass = "bg-purple-600";
-
   if (lower.includes("outlet") || lower.includes("store")) {
     Icon = Store;
     bgClass = "bg-[#d97706]";
@@ -50,7 +46,6 @@ const getStatIcon = (label: string) => {
     Icon = Percent;
     bgClass = "bg-[#0ea5e9]";
   }
-
   return (
     <div
       className={`w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 ${bgClass}`}
@@ -59,7 +54,6 @@ const getStatIcon = (label: string) => {
     </div>
   );
 };
-
 function LeaderCardMobile({
   member,
   isFlipped,
@@ -91,7 +85,6 @@ function LeaderCardMobile({
             className="w-full h-full object-cover filter grayscale-[5%] transition-transform duration-700 group-hover:scale-105"
             draggable={false}
           />
-
           <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/40 to-transparent opacity-95" />
           <div className="absolute top-4 right-4 z-20">
             <motion.div
@@ -114,11 +107,9 @@ function LeaderCardMobile({
             <p className="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-3">
               {member.role}
             </p>
-
             <div className="w-10 h-[3px] bg-[#d4af37]" />
           </div>
         </div>
-
         <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-6 bg-[#0b1b42] backdrop-blur-2xl border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="flex items-start justify-between gap-3 relative z-10 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
@@ -131,7 +122,6 @@ function LeaderCardMobile({
                 </span>
               </div>
             </div>
-
             <motion.button
               whileHover={{ scale: 1.1, rotate: [0, -20, 20, 0] }}
               transition={{ duration: 0.4 }}
@@ -145,12 +135,10 @@ function LeaderCardMobile({
               <RotateCw size={14} className="text-[#d4af37]" />
             </motion.button>
           </div>
-
           <div className="relative z-10 flex-1 flex flex-col justify-center py-2">
             <p className="text-[13px] text-gray-200 leading-relaxed font-medium">
               {member.bio}
             </p>
-
             <div className="mt-4 flex flex-col gap-2">
               {member.highlights.map((highlight, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
@@ -165,7 +153,6 @@ function LeaderCardMobile({
               ))}
             </div>
           </div>
-
           <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2">
             <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-[4px] border border-white/10">
               <Quote
@@ -182,7 +169,6 @@ function LeaderCardMobile({
     </div>
   );
 }
-
 export default function LeadershipMobile() {
   const { members, brandStory } = brandLeadershipData;
   const isSingleLeader = members.length === 1;
@@ -190,7 +176,6 @@ export default function LeadershipMobile() {
   const [isSingleFlipped, setIsSingleFlipped] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
     const scrollPosition = container.scrollLeft;
@@ -200,7 +185,6 @@ export default function LeadershipMobile() {
       setActiveIndex(newIndex);
     }
   };
-
   const scrollTo = (index: number) => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
@@ -208,7 +192,6 @@ export default function LeadershipMobile() {
       container.scrollTo({ left: index * cardWidth, behavior: "smooth" });
     }
   };
-
   return (
     <section className="w-full py-12 relative overflow-hidden bg-slate-50/50 dark:bg-transparent">
       <motion.div
@@ -221,7 +204,6 @@ export default function LeadershipMobile() {
         animate="animate"
         className="pointer-events-none absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-blue-500/10 blur-[100px]"
       />
-
       <div className="relative z-10 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -237,7 +219,6 @@ export default function LeadershipMobile() {
             align="center"
           />
         </motion.div>
-
         {isSingleLeader ? (
           <div className="w-full px-4 text-white">
             <div
@@ -262,7 +243,6 @@ export default function LeadershipMobile() {
                     draggable={false}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#040914]/95 via-[#040914]/30 to-transparent" />
-
                   <div className="absolute top-4 right-4 z-20">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -272,7 +252,6 @@ export default function LeadershipMobile() {
                       <RotateCw size={12} className="text-[#d4af37]" />
                     </motion.div>
                   </div>
-
                   <div className="absolute bottom-0 left-0 w-full pb-6 pt-4 px-6 flex flex-col justify-end z-10 text-white">
                     <span className="inline-block px-3 py-1 rounded-[2px] text-[#d4af37] border border-[#d4af37]/80 bg-black/50 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider mb-3 w-max shadow-sm">
                       {members[0].experience.toUpperCase().includes("YEAR")
@@ -285,16 +264,13 @@ export default function LeadershipMobile() {
                     <p className="text-[#d4af37] font-bold text-xs tracking-widest uppercase mb-3">
                       {members[0].role}
                     </p>
-
                     <div className="w-10 h-[3px] bg-[#d4af37]" />
                   </div>
                 </div>
-
                 <div className="absolute inset-0 rounded-[4px] w-full h-full overflow-hidden px-5 py-5 bg-[#0b1b42] border border-[#d4af37]/40 shadow-xl flex flex-col justify-between text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
                     <Quote size={80} className="text-[#d4af37]" />
                   </div>
-
                   <div className="flex items-center justify-between gap-3 relative z-10 pb-3 border-b border-white/10">
                     <span className="px-2.5 py-1 rounded-[2px] bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-[10px] font-black uppercase tracking-widest">
                       {brandStory.title}
@@ -310,7 +286,6 @@ export default function LeadershipMobile() {
                       <RotateCw size={12} className="text-[#d4af37]" />
                     </button>
                   </div>
-
                   <div className="relative z-10 flex-1 flex flex-col justify-center py-3">
                     <div className="bg-white/5 border-l-4 border-[#d4af37] p-3.5 rounded-r-[4px]">
                       <p className="text-gray-200 text-xs sm:text-sm leading-relaxed italic font-medium">
@@ -318,7 +293,6 @@ export default function LeadershipMobile() {
                       </p>
                     </div>
                   </div>
-
                   <div className="relative z-10 grid grid-cols-3 gap-2 pt-3 border-t border-white/10">
                     {brandStory.stats.map((stat) => (
                       <div key={stat.label} className="flex flex-col">
@@ -369,7 +343,6 @@ export default function LeadershipMobile() {
                 </motion.div>
               ))}
             </motion.div>
-
             <div className="flex justify-center items-center gap-2 mt-2">
               {members.map((_, idx) => (
                 <button

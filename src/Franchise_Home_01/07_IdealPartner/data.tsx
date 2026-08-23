@@ -7,12 +7,10 @@ import {
   Users,
   ClipboardList,
 } from "lucide-react";
-
 export const idealPartnerData = {
   sectionLabel: "IDEAL FRANCHISE PARTNER",
   title: "Who makes the ideal Urban Brew Co. partner?",
   subtitle: "",
-
   multiSelects: [
     {
       icon: Briefcase,
@@ -42,7 +40,6 @@ export const idealPartnerData = {
       intent: "pink",
     },
   ],
-
   singleSelects: [
     {
       icon: UserCheck,
@@ -63,7 +60,6 @@ export const idealPartnerData = {
       intent: "info",
     },
   ],
-
   additionalExpectations: {
     title: "Additional Expectations",
     icon: ClipboardList,

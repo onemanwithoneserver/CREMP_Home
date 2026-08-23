@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { Activity, CheckCircle2, Star, Target } from "lucide-react";
 import { Container } from "../../components/layout";
 import { investorData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -11,7 +10,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -19,7 +17,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const pulseRing: Variants = {
   animate: {
     scale: [1, 1.15, 1],
@@ -27,7 +24,6 @@ const pulseRing: Variants = {
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function DesktopYourInvestors() {
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
@@ -41,7 +37,6 @@ export default function DesktopYourInvestors() {
         transition={{ duration: 7, repeat: Infinity, ease: "linear", delay: 1 }}
         className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] -translate-x-1/3 translate-y-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent dark:from-[#D4AF37]/10"
       />
-
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
         <div className="mb-24 flex flex-col items-center justify-center text-center">
           <motion.div
@@ -61,7 +56,6 @@ export default function DesktopYourInvestors() {
                 </span>
               </div>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-8 flex items-center justify-center gap-3 whitespace-nowrap text-[3.5rem] font-black leading-[1.05] tracking-tight xl:text-[4.5rem]"
@@ -73,7 +67,6 @@ export default function DesktopYourInvestors() {
                 {investorData.titleHighlight}
               </span>
             </motion.h2>
-
             <motion.div
               variants={fadeInUp}
               className="flex max-w-2xl flex-col items-center gap-6"
@@ -89,7 +82,6 @@ export default function DesktopYourInvestors() {
             </motion.div>
           </motion.div>
         </div>
-
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -114,7 +106,6 @@ export default function DesktopYourInvestors() {
                 {investorData.expectationsTitle}
               </h3>
             </div>
-
             <div className="grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2">
               {investorData.expectations.map((item, idx) => (
                 <motion.div
@@ -155,7 +146,6 @@ export default function DesktopYourInvestors() {
               ))}
             </div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +160,6 @@ export default function DesktopYourInvestors() {
             className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#17274C] p-10 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all hover:shadow-[0_20px_50px_rgba(178,127,28,0.2)] dark:bg-[#17274C] dark:hover:shadow-[0_20px_50px_rgba(246,178,59,0.15)]"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/30 via-transparent to-transparent opacity-60 dark:from-[#D4AF37]/30" />
-
             <div className="relative z-10 mb-12 flex flex-col items-center">
               <span className="mb-4 rounded-[4px] border border-[#D4AF37]/40 bg-[#D4AF37]/20 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-[#D4AF37] backdrop-blur-md">
                 {investorData.outcome.tag}
@@ -179,7 +168,6 @@ export default function DesktopYourInvestors() {
                 {investorData.outcome.title}
               </h3>
             </div>
-
             <div className="relative flex h-48 w-48 items-center justify-center">
               <motion.div
                 variants={pulseRing}
@@ -198,7 +186,6 @@ export default function DesktopYourInvestors() {
                 transition={{ delay: 2 }}
                 className="absolute h-[50%] w-[50%] rounded-full border border-[#D4AF37]/90 dark:border-[#D4AF37]/90"
               />
-
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -210,7 +197,6 @@ export default function DesktopYourInvestors() {
                   strokeWidth={2.5}
                 />
               </motion.div>
-
               <motion.div
                 animate={{ y: [-4, 4, -4], rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}

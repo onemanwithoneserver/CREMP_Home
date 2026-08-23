@@ -20,7 +20,6 @@ import {
   User,
   Users,
 } from "lucide-react";
-
 import brokerCard from "./assets/broker_card.png";
 import commercialBuildings from "./assets/commercial_buildings.png";
 import consultantCard from "./assets/consultant_card.png";
@@ -28,7 +27,6 @@ import developerCard from "./assets/developer_card.png";
 import franchiseCard from "./assets/franchise_card.png";
 import handshakeIllustration from "./assets/handshake_illustration.png";
 import laptopUser from "./assets/laptop_user.png";
-
 export const stakeholderData = {
   block1: {
     bgImage: commercialBuildings,

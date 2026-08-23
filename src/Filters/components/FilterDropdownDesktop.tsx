@@ -40,14 +40,12 @@ import {
 } from "./data";
 import { CustomSelect } from "./CustomSelect";
 import clsx from "clsx";
-
 interface FilterDropdownProps {
   activeTab: "commercial" | "business";
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
   onClose: () => void;
 }
-
 interface CategoryDef {
   key: keyof FilterState;
   title: string;
@@ -57,7 +55,6 @@ interface CategoryDef {
   options: { id: string; label: string }[];
   isMulti?: boolean;
 }
-
 export default function FilterDropdownDesktop({
   activeTab,
   filters,
@@ -66,20 +63,16 @@ export default function FilterDropdownDesktop({
 }: FilterDropdownProps) {
   const mapStringsToOptions = (arr: string[]) =>
     arr.map((item) => ({ id: item, label: item }));
-
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const [expandedCategoryKey, setExpandedCategoryKey] = useState<string | null>(
     null,
   );
-
   const toggleCategory = (key: string) => {
     setExpandedCategoryKey((prev) => (prev === key ? null : key));
   };
-
   const handleUpdate = (key: keyof FilterState, value: any) => {
     onFilterChange({ ...filters, [key]: value });
   };
-
   const handleOptionToggle = (cat: CategoryDef, optionId: string) => {
     const newFilters = { ...filters };
     if (cat.isMulti) {
@@ -98,7 +91,6 @@ export default function FilterDropdownDesktop({
     }
     onFilterChange(newFilters);
   };
-
   const handleReset = () => {
     onFilterChange({
       ...filters,
@@ -125,7 +117,6 @@ export default function FilterDropdownDesktop({
           }),
     });
   };
-
   const commercialAdvancedCategories: CategoryDef[] = [
     {
       key: "fitOut",
@@ -181,7 +172,6 @@ export default function FilterDropdownDesktop({
       isMulti: true,
     },
   ];
-
   const businessAdvancedCategories: CategoryDef[] = [
     {
       key: "businessOption",
@@ -192,12 +182,10 @@ export default function FilterDropdownDesktop({
       options: BUSINESS_OPTIONS.map((o) => ({ id: o.id, label: o.label })),
     },
   ];
-
   const activeCategories =
     activeTab === "commercial"
       ? commercialAdvancedCategories
       : businessAdvancedCategories;
-
   const activeAdvancedCount =
     activeTab === "commercial"
       ? [
@@ -221,7 +209,6 @@ export default function FilterDropdownDesktop({
       : [filters.businessOption && filters.businessOption.length > 0].filter(
           Boolean,
         ).length;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -14, scale: 0.96 }}
@@ -231,7 +218,6 @@ export default function FilterDropdownDesktop({
       className="absolute top-[calc(100%+8px)] right-0 bg-white/60 backdrop-blur-2xl rounded-[4px] shadow-[0_20px_60px_rgba(23,39,76,0.18)] border border-white/50 overflow-hidden z-[9999] flex flex-col w-full max-w-[440px] dark:bg-[#17274C]/80 dark:border-white/20 dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
     >
       <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-90 pointer-events-none" />
-
       <div className="px-4 pt-4 pb-2.5 shrink-0 flex items-center justify-between border-b border-gray-200/50 dark:border-white/10 bg-gradient-to-b from-[#17274C]/[0.03] dark:from-white/[0.03] to-transparent">
         <div>
           <h2 className="text-[17px] font-extrabold text-[#0a1128] dark:text-white tracking-tight">
@@ -249,7 +235,6 @@ export default function FilterDropdownDesktop({
           <span>Reset</span>
         </motion.button>
       </div>
-
       <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pt-3 pb-8 space-y-3.5 max-h-[calc(100vh-200px)]">
         <div className="relative z-40">
           <CustomSelect
@@ -260,7 +245,6 @@ export default function FilterDropdownDesktop({
             icon={<MapPin className="w-[16px] h-[16px] text-[#d4af37]" />}
           />
         </div>
-
         {activeTab === "commercial" ? (
           <div className="space-y-2.5">
             <div
@@ -350,7 +334,6 @@ export default function FilterDropdownDesktop({
                 )}
               </AnimatePresence>
             </div>
-
             <div
               className={clsx(
                 "rounded-[4px] transition-all duration-200 overflow-hidden border",
@@ -443,7 +426,6 @@ export default function FilterDropdownDesktop({
                 )}
               </AnimatePresence>
             </div>
-
             <div
               className={clsx(
                 "rounded-[4px] transition-all duration-200 border",
@@ -613,7 +595,6 @@ export default function FilterDropdownDesktop({
             </div>
           </div>
         )}
-
         <div>
           <motion.button
             type="button"
@@ -656,7 +637,6 @@ export default function FilterDropdownDesktop({
                 </span>
               </div>
             </div>
-
             <div className="flex items-center gap-1.5 pl-2">
               <div
                 className={clsx(
@@ -692,7 +672,6 @@ export default function FilterDropdownDesktop({
               </div>
             </div>
           </motion.button>
-
           <AnimatePresence>
             {advancedOpen && (
               <motion.div
@@ -818,7 +797,6 @@ export default function FilterDropdownDesktop({
                       </AnimatePresence>
                     </div>
                   )}
-
                   {activeCategories.map((cat) => {
                     const isExpanded = expandedCategoryKey === cat.key;
                     const currentValue = filters[cat.key as keyof FilterState];
@@ -826,7 +804,6 @@ export default function FilterDropdownDesktop({
                       ? ((currentValue as string[]) || []).length > 0
                       : currentValue !== "Any" &&
                         currentValue !== DEFAULT_FILTERS[cat.key];
-
                     return (
                       <div key={cat.key} className="flex flex-col">
                         <motion.button
@@ -1063,7 +1040,6 @@ export default function FilterDropdownDesktop({
           </AnimatePresence>
         </div>
       </div>
-
       <div className="px-4 py-3 border-t border-gray-100 bg-white shrink-0 rounded-b-[4px]">
         <motion.button
           type="button"

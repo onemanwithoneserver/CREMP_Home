@@ -4,7 +4,6 @@ import { motion, useAnimationFrame, type Variants } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fullCycleSupportData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -12,14 +11,11 @@ const pulseGlow: Variants = {
     transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function FullCycleSupportMobile() {
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
   const x = useRef(0);
-
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   useAnimationFrame((_, delta) => {
     if (paused || !marqueeRef.current) return;
     const speed = 45;
@@ -30,26 +26,20 @@ export default function FullCycleSupportMobile() {
     }
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
   });
-
   const handlePause = () => {
     if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
     setPaused(true);
   };
-
   const handleResume = () => {
     resumeTimeoutRef.current = setTimeout(() => {
       setPaused(false);
     }, 300);
   };
-
   const handleScroll = (direction: "left" | "right") => {
     if (!marqueeRef.current) return;
-
     handlePause();
-
     const scrollAmount = 176;
     const loopWidth = marqueeRef.current.scrollWidth / 2;
-
     if (direction === "left") {
       x.current += scrollAmount;
       if (x.current > 0) {
@@ -61,11 +51,9 @@ export default function FullCycleSupportMobile() {
         x.current += loopWidth;
       }
     }
-
     marqueeRef.current.style.transform = `translate3d(${x.current}px,0,0)`;
     handleResume();
   };
-
   return (
     <section className="w-full py-12 overflow-hidden relative rounded-[8px] bg-white/40 ">
       <motion.div
@@ -85,7 +73,6 @@ export default function FullCycleSupportMobile() {
           align="center"
         />
       </div>
-
       <div className="relative z-10 overflow-hidden py-2 group">
         <motion.div
           ref={marqueeRef}
@@ -99,7 +86,6 @@ export default function FullCycleSupportMobile() {
             <div key={copy} className="flex gap-4 pr-4 shrink-0">
               {fullCycleSupportData.supportItems.map((item, idx) => {
                 const Icon = item.icon;
-
                 return (
                   <motion.div
                     key={`${copy}-${idx}`}
@@ -116,11 +102,9 @@ export default function FullCycleSupportMobile() {
                     >
                       <Icon size={20} strokeWidth={2} className="text-white" />
                     </motion.div>
-
                     <h4 className="text-[#0a1128] dark:text-white font-bold text-[14px] mb-1.5 whitespace-nowrap tracking-tight">
                       {item.title}
                     </h4>
-
                     <p className="text-gray-600 dark:text-gray-300 text-[12px] font-medium leading-snug line-clamp-2">
                       {item.description}
                     </p>
@@ -130,10 +114,8 @@ export default function FullCycleSupportMobile() {
             </div>
           ))}
         </motion.div>
-
         <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#f9fafb]/80 dark:from-[#050b14]/80 to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#f9fafb]/80 dark:from-[#050b14]/80 to-transparent z-10" />
-
         <button
           onClick={() => handleScroll("left")}
           onPointerEnter={handlePause}
@@ -145,7 +127,6 @@ export default function FullCycleSupportMobile() {
         >
           <ChevronLeft size={18} strokeWidth={2.5} />
         </button>
-
         <button
           onClick={() => handleScroll("right")}
           onPointerEnter={handlePause}

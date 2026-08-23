@@ -9,7 +9,6 @@ export interface LeadershipMember {
   quote: string;
   education?: string;
 }
-
 export const leadershipData = {
   sectionLabel: "LEADERSHIP",
   title: "Meet the Minds Behind the Brand",

@@ -5,7 +5,6 @@ import {
   DualToneTag,
   DualToneUsers,
 } from "../../components/DualToneIcons";
-
 export const whyInvestData = {
   tag: "WHY CREMP FOR DEVELOPERS & OWNERS",
   titleHighlight: "Property Ecosystem.",

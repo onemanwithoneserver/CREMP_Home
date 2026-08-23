@@ -12,7 +12,6 @@ import {
   User,
   Wallet,
 } from "lucide-react";
-
 export const BuyersAndSellersProfileData = {
   tag: "YOUR PROFILE",
   titleBase: "Your Profile.",

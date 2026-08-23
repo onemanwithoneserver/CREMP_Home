@@ -7,17 +7,14 @@ import { useAnnouncement } from "../context/AnnouncementContext";
 import logo from "../../Logo/CREMP.png";
 import logoLight from "../../Logo/CREMP_Light.png";
 import { useTheme } from "../ThemeContext";
-
 export default function Desktop() {
   const { theme, toggleTheme } = useTheme();
   const { showSticky } = useAnnouncement();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 40);
   });
-
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
@@ -59,13 +56,11 @@ export default function Desktop() {
             <CrempTextLogo className="h-6 w-auto text-[#0a1128] dark:text-white sm:h-9" />
           </div>
         </motion.a>
-
         <div className="pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
           <div className="pointer-events-auto hidden lg:block">
             <HeaderStickyBanner isVisible={showSticky} />
           </div>
         </div>
-
         <div className="flex items-center gap-4">
           <motion.button
             onClick={toggleTheme}
@@ -95,7 +90,6 @@ export default function Desktop() {
               )}
             </motion.div>
           </motion.button>
-
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

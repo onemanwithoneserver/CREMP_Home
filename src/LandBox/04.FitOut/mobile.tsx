@@ -8,10 +8,8 @@ import {
   staggerContainer,
   itemReveal,
 } from "../components/animations";
-
 export default function Mobile() {
   const [isIncludedOpen, setIsIncludedOpen] = useState(true);
-
   return (
     <motion.div
       initial="hidden"
@@ -29,7 +27,6 @@ export default function Mobile() {
           title={fitOutData.title}
           icon={Sofa}
         />
-
         <div className="px-5 py-5 flex flex-col gap-4 mx-0">
           <div className="border border-transparent rounded-[4px] overflow-hidden bg-white shadow-sm mt-1">
             <button
@@ -47,7 +44,6 @@ export default function Mobile() {
                 }`}
               />
             </button>
-
             <AnimatePresence initial={false}>
               {isIncludedOpen && (
                 <motion.div
@@ -78,7 +74,6 @@ export default function Mobile() {
               )}
             </AnimatePresence>
           </div>
-
           <motion.div
             variants={staggerContainer}
             initial="hidden"

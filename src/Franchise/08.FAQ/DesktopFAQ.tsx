@@ -3,7 +3,6 @@ import { Minus, Plus, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Container } from "../../components/layout";
 import { faqData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -12,7 +11,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,7 +18,6 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -28,10 +25,8 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function DesktopFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-
   const midPoint = Math.ceil(faqData.faqs.length / 2);
   const leftColFaQS = faqData.faqs
     .slice(0, midPoint)
@@ -39,10 +34,8 @@ export default function DesktopFAQ() {
   const rightColFaQS = faqData.faqs
     .slice(midPoint)
     .map((faq, i) => ({ ...faq, originalIdx: i + midPoint }));
-
   const renderFaqCard = (faq: any) => {
     const isOpen = openIdx === faq.originalIdx;
-
     return (
       <motion.div
         key={faq.originalIdx}
@@ -79,7 +72,6 @@ export default function DesktopFAQ() {
               />
             </motion.div>
           </div>
-
           <div className="flex flex-1 flex-col pt-1">
             <div className="flex items-center justify-between gap-4">
               <h4
@@ -106,7 +98,6 @@ export default function DesktopFAQ() {
                 />
               </div>
             </div>
-
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
@@ -126,7 +117,6 @@ export default function DesktopFAQ() {
       </motion.div>
     );
   };
-
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-white/40 pt-4 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <motion.div
@@ -139,7 +129,6 @@ export default function DesktopFAQ() {
         animate="animate"
         className="pointer-events-none absolute bottom-0 right-0 h-[800px] w-[800px] translate-x-1/3 translate-y-1/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent dark:from-blue-500/10"
       />
-
       <Container className="relative z-10 flex flex-col items-center">
         <motion.div
           variants={staggerContainer}
@@ -164,14 +153,12 @@ export default function DesktopFAQ() {
               {faqData.tag}
             </span>
           </motion.div>
-
           <motion.h2
             variants={fadeInUp}
             className="mb-6 text-[3rem] font-semibold leading-[1.05] tracking-tight text-gray-900 dark:text-white sm:text-[3.5rem] lg:text-[4rem]"
           >
             {faqData.title}
           </motion.h2>
-
           <motion.p
             variants={fadeInUp}
             className="text-lg font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -179,7 +166,6 @@ export default function DesktopFAQ() {
             {faqData.desc}
           </motion.p>
         </motion.div>
-
         <div className="mb-16 grid w-full grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8 xl:px-8">
           <div className="flex w-full flex-col gap-6">
             {leftColFaQS.map(renderFaqCard)}
@@ -188,7 +174,6 @@ export default function DesktopFAQ() {
             {rightColFaQS.map(renderFaqCard)}
           </div>
         </div>
-
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -207,7 +192,6 @@ export default function DesktopFAQ() {
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             className="absolute -bottom-32 -right-32 h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[100px]"
           />
-
           <div className="absolute right-0 top-0 h-full w-1/2 opacity-[0.03]">
             <svg
               viewBox="0 0 200 200"
@@ -231,7 +215,6 @@ export default function DesktopFAQ() {
               </defs>
             </svg>
           </div>
-
           <div className="relative z-10 mb-8 flex items-center gap-8 lg:mb-0">
             <motion.div
               whileHover={{ rotate: 360, scale: 1.1 }}
@@ -254,7 +237,6 @@ export default function DesktopFAQ() {
               </p>
             </div>
           </div>
-
           <div className="relative z-10 flex w-full flex-col sm:w-auto sm:flex-row sm:items-center">
             <motion.button
               whileHover={{ scale: 1.05 }}

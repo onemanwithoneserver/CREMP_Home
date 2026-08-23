@@ -1,6 +1,5 @@
 import DesktopDeveloperProfile from "./DesktopDeveloperProfile";
 import MobileDeveloperProfile from "./MobileDeveloperProfile";
-
 export default function DeveloperAndOwnerProfile({
   isMobile,
 }: {

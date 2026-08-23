@@ -5,7 +5,6 @@ import {
   MapPin,
   ShieldCheck,
 } from "lucide-react";
-
 export const heroData = {
   tag: "FOR DEVELOPERS & OWNERS • MAXIMIZE ASSET VALUE",
   titleHighlight: "Property Potential.",

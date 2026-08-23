@@ -10,7 +10,6 @@ import {
   ShoppingBag,
   Store,
 } from "lucide-react";
-
 export const networkCategories = [
   {
     icon: Building2,
@@ -43,7 +42,6 @@ export const networkCategories = [
     colorFamily: "cyan",
   },
 ];
-
 export const vendorBenefits = [
   {
     icon: Clock,

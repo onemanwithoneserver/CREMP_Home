@@ -1,6 +1,5 @@
 import DesktopYourInvestors from "./DesktopYourInvestors";
 import MobileYourInvestors from "./MobileYourInvestors";
-
 export default function FranchiseYourInvestors({
   isMobile,
 }: {

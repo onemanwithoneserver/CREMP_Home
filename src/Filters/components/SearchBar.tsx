@@ -6,7 +6,6 @@ import { searchLocations, DEFAULT_LOCATIONS } from "./searchData";
 import type { LocationResult } from "./searchData";
 import type { FilterState } from "./data";
 import BasicFilters from "./BasicFilters";
-
 interface SearchBarProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
@@ -15,13 +14,11 @@ interface SearchBarProps {
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
 }
-
 const typeIcons: Record<LocationResult["type"], typeof MapPin> = {
   locality: MapPin,
   landmark: Sparkles,
   hub: Building2,
 };
-
 export default function SearchBar({
   searchQuery,
   onSearchChange,
@@ -34,15 +31,12 @@ export default function SearchBar({
   const [results, setResults] = useState<LocationResult[]>(DEFAULT_LOCATIONS);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
   const updateResults = useCallback((query: string) => {
     setResults(searchLocations(query));
   }, []);
-
   useEffect(() => {
     updateResults(searchQuery);
   }, [searchQuery, updateResults]);
-
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
@@ -55,9 +49,7 @@ export default function SearchBar({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
   const showDropdown = isFocused;
-
   return (
     <div className="relative w-full" ref={containerRef}>
       <div
@@ -125,7 +117,6 @@ export default function SearchBar({
           )}
         </AnimatePresence>
       </div>
-
       <AnimatePresence>
         {showDropdown && (
           <motion.div
@@ -136,13 +127,11 @@ export default function SearchBar({
             className="absolute z-50 w-full mt-2.5 bg-white/70 dark:bg-[#0e172f]/85 backdrop-blur-2xl border border-gray-200/50 dark:border-white/10 rounded-xl shadow-[0_12px_40px_rgba(11,27,66,0.14),0_4px_12px_rgba(0,0,0,0.05)] overflow-visible"
           >
             <div className="h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-70" />
-
             <div className="px-3 pt-2.5 pb-1">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-1">
                 {searchQuery ? "Search Results" : "Popular Locations"}
               </p>
             </div>
-
             <div className="px-2 pb-1">
               {results.length > 0 ? (
                 results.map((result, index) => {
@@ -213,9 +202,7 @@ export default function SearchBar({
                 </div>
               )}
             </div>
-
             <div className="mx-3 h-px bg-gradient-to-r from-transparent via-gray-200/60 dark:via-white/10 to-transparent" />
-
             <div className="px-3 py-3 relative z-[100] overflow-visible">
               <BasicFilters
                 activeTab={activeTab}

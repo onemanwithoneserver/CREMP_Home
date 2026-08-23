@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { Equal, Globe2, Plus, Target } from "lucide-react";
 import { Container } from "../../components/layout";
 import { ecosystemData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -13,7 +12,6 @@ const staggerContainer: Variants = {
     },
   },
 };
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -22,7 +20,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 const drawLine: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
   show: {
@@ -31,7 +28,6 @@ const drawLine: Variants = {
     transition: { duration: 1.5, ease: "easeInOut", delay: 0.5 },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -39,7 +35,6 @@ const pulseGlow: Variants = {
     transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const floatAnimation: Variants = {
   animate: {
     y: [-8, 8, -8],
@@ -50,7 +45,6 @@ const floatAnimation: Variants = {
     },
   },
 };
-
 export default function DesktopEcosystem() {
   return (
     <div className="relative w-full overflow-hidden rounded-[8px] bg-white/40 py-16 shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-xl border border-white/40 transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
@@ -64,7 +58,6 @@ export default function DesktopEcosystem() {
         animate="animate"
         className="pointer-events-none absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
       />
-
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
         <div className="mb-12 flex items-start justify-between">
           <motion.div
@@ -82,7 +75,6 @@ export default function DesktopEcosystem() {
                 {ecosystemData.tag}
               </span>
             </motion.div>
-
             <motion.h2
               variants={fadeInUp}
               className="mb-3 text-[2.75rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.2rem]"
@@ -93,14 +85,12 @@ export default function DesktopEcosystem() {
                 {ecosystemData.titleHighlight}
               </span>
             </motion.h2>
-
             <motion.p
               variants={fadeInUp}
               className="mb-6 text-[0.9rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
             >
               {ecosystemData.subtitle}
             </motion.p>
-
             <motion.div
               variants={fadeInUp}
               className="mb-8 flex flex-col gap-2.5"
@@ -124,7 +114,6 @@ export default function DesktopEcosystem() {
                 </motion.div>
               ))}
             </motion.div>
-
             <motion.p
               variants={fadeInUp}
               className="text-[1rem] font-bold tracking-wide text-gray-900 dark:text-white"
@@ -135,7 +124,6 @@ export default function DesktopEcosystem() {
               </span>
             </motion.p>
           </motion.div>
-
           <div className="relative w-[50%] pl-2 pt-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -195,7 +183,6 @@ export default function DesktopEcosystem() {
                   </motion.div>
                 ))}
               </div>
-
               <div className="relative z-0 -mt-[12px] h-[90px] w-[90%]">
                 <svg
                   className="absolute inset-0 h-full w-full drop-shadow-md"
@@ -271,7 +258,6 @@ export default function DesktopEcosystem() {
                   />
                 </svg>
               </div>
-
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
@@ -279,7 +265,6 @@ export default function DesktopEcosystem() {
               >
                 <Equal size={20} strokeWidth={3} />
               </motion.div>
-
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -289,7 +274,6 @@ export default function DesktopEcosystem() {
                 className="relative z-10 -mt-[14px] flex w-[240px] items-center justify-center gap-5 rounded-[8px] bg-gradient-to-br from-[#0f172a] to-[#020617] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] ring-1 ring-white/10 dark:from-[#121c33] dark:to-[#0a1128]"
               >
                 <div className="absolute inset-0 rounded-[8px] bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-60 dark:from-[#D4AF37]/20 flex justify-end" />
-
                 <motion.div
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -302,7 +286,6 @@ export default function DesktopEcosystem() {
                     strokeWidth={1.5}
                   />
                 </motion.div>
-
                 <div className="relative z-10 flex flex-col">
                   <span className="text-[1rem] font-bold text-gray-300">
                     One Connected
@@ -315,7 +298,6 @@ export default function DesktopEcosystem() {
             </motion.div>
           </div>
         </div>
-
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}

@@ -6,7 +6,6 @@ import {
   LayoutGrid,
   MapPin,
 } from "lucide-react";
-
 export const commercialData = {
   tabs: ["Sale", "Lease / Rent"],
   tabData: {

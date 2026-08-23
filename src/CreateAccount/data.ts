@@ -7,7 +7,6 @@ import {
   Clock,
   Headphones,
 } from "lucide-react";
-
 export const heroFeatures = [
   {
     icon: BarChart3,
@@ -30,7 +29,6 @@ export const heroFeatures = [
     color: "#d4af37",
   },
 ];
-
 export const socialProviders = [
   {
     name: "Google",
@@ -45,13 +43,11 @@ export const socialProviders = [
     svg: `<svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.19 2.31-.88 3.5-.84 1.54.07 2.85.74 3.69 1.95-3.04 1.77-2.53 5.92.51 7.15-.65 1.6-1.57 3.03-2.78 3.91zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>`,
   },
 ];
-
 export const footerBadges = [
   { icon: Shield, label: "Bank-Level", sublabel: "Security" },
   { icon: Clock, label: "99.9%", sublabel: "Uptime" },
   { icon: Headphones, label: "24/7", sublabel: "Support" },
 ];
-
 export const countryCodes = [
   { code: "+91", flag: "IN", country: "India" },
   { code: "+1", flag: "US", country: "USA" },

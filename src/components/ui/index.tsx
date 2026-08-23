@@ -8,14 +8,12 @@ import React, {
 } from "react";
 import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-
 export interface AnimatedCounterProps extends HTMLAttributes<HTMLSpanElement> {
   end: number;
   duration?: number;
   prefix?: string;
   suffix?: string;
 }
-
 export const AnimatedCounter = forwardRef<
   HTMLSpanElement,
   AnimatedCounterProps
@@ -35,11 +33,9 @@ export const AnimatedCounter = forwardRef<
       threshold: 0.3,
     });
     const { count, play } = useAnimatedCounter({ end, duration });
-
     useEffect(() => {
       if (isVisible) play();
     }, [isVisible, play]);
-
     return (
       <span
         ref={(node) => {
@@ -60,17 +56,14 @@ export const AnimatedCounter = forwardRef<
   },
 );
 AnimatedCounter.displayName = "AnimatedCounter";
-
 export type BadgeVariant =
   "default" | "success" | "warning" | "info" | "accent" | "error";
-
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode;
   variant?: BadgeVariant;
   icon?: ReactNode;
   pulse?: boolean;
 }
-
 const badgeVariantStyles: Record<BadgeVariant, string> = {
   default: "bg-cremp-surface-alt text-cremp-text-secondary border-cremp-border",
   success: "bg-success-light text-success border-success/20",
@@ -79,7 +72,6 @@ const badgeVariantStyles: Record<BadgeVariant, string> = {
   accent: "bg-[#fdf6e3] text-cremp-accent-dark border-cremp-accent/20",
   error: "bg-error-light text-error border-error/20",
 };
-
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {
@@ -111,10 +103,8 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   },
 );
 Badge.displayName = "Badge";
-
 export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
-
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -123,7 +113,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   fullWidth?: boolean;
 }
-
 const buttonVariantStyles: Record<ButtonVariant, string> = {
   primary:
     "gradient-accent text-cremp-navy font-bold shadow-elevation-2 hover:shadow-glow-accent hover:brightness-110 active:brightness-95",
@@ -134,13 +123,11 @@ const buttonVariantStyles: Record<ButtonVariant, string> = {
   ghost:
     "bg-transparent text-cremp-text-secondary font-semibold hover:bg-cremp-surface-alt hover:text-cremp-text-primary active:bg-cremp-border/30",
 };
-
 const buttonSizeStyles: Record<ButtonSize, string> = {
   sm: "px-4 py-2 text-xs gap-1.5",
   md: "px-6 py-2.5 text-sm gap-2",
   lg: "px-8 py-3.5 text-base gap-2.5",
 };
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -208,9 +195,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 Button.displayName = "Button";
-
 export type CardVariant = "default" | "glass" | "gradient" | "outlined";
-
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
   hover?: boolean;
@@ -218,20 +203,17 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   footer?: ReactNode;
   padding?: "sm" | "md" | "lg";
 }
-
 const cardVariantStyles: Record<CardVariant, string> = {
   default: "bg-white border border-cremp-border shadow-elevation-1",
   glass: "glass",
   gradient: "gradient-border bg-white shadow-elevation-2",
   outlined: "bg-transparent border border-cremp-border",
 };
-
 const cardPaddingStyles = {
   sm: "p-4",
   md: "p-6",
   lg: "p-8",
 };
-
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
     {
@@ -268,14 +250,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   },
 );
 Card.displayName = "Card";
-
 export interface EmptyStateProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode;
   title: string;
   description?: string;
   action?: ReactNode;
 }
-
 export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   ({ icon, title, description, action, className = "", ...props }, ref) => {
     return (
@@ -301,14 +281,12 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   },
 );
 EmptyState.displayName = "EmptyState";
-
 export interface FeatureCardProps extends HTMLAttributes<HTMLDivElement> {
   icon: ReactNode;
   title: string;
   description: string;
   accentColor?: string;
 }
-
 export const FeatureCard = forwardRef<HTMLDivElement, FeatureCardProps>(
   (
     {
@@ -343,7 +321,6 @@ export const FeatureCard = forwardRef<HTMLDivElement, FeatureCardProps>(
   },
 );
 FeatureCard.displayName = "FeatureCard";
-
 export const LoadingCard = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
@@ -363,7 +340,6 @@ export const LoadingCard = forwardRef<
   </div>
 ));
 LoadingCard.displayName = "LoadingCard";
-
 export const LoadingHero = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
@@ -390,7 +366,6 @@ export const LoadingHero = forwardRef<
   </div>
 ));
 LoadingHero.displayName = "LoadingHero";
-
 export const LoadingStats = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement> & { count?: number }
@@ -415,7 +390,6 @@ export const LoadingStats = forwardRef<
   </div>
 ));
 LoadingStats.displayName = "LoadingStats";
-
 export const LoadingTimeline = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement> & { count?: number }
@@ -443,7 +417,6 @@ export const LoadingTimeline = forwardRef<
   </div>
 ));
 LoadingTimeline.displayName = "LoadingTimeline";
-
 export interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
   value: number;
   max?: number;
@@ -453,7 +426,6 @@ export interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
   size?: "sm" | "md";
   animated?: boolean;
 }
-
 const progressBarVariantColors: Record<string, string> = {
   primary: "bg-cremp-primary",
   accent: "gradient-accent",
@@ -461,7 +433,6 @@ const progressBarVariantColors: Record<string, string> = {
   info: "bg-info",
   warning: "bg-warning",
 };
-
 export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
   (
     {
@@ -478,7 +449,6 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
     ref,
   ) => {
     const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
-
     return (
       <div ref={ref} className={className} {...props}>
         {(label || showPercentage) && (
@@ -513,12 +483,10 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
   },
 );
 ProgressBar.displayName = "ProgressBar";
-
 export interface SearchBarProps extends React.InputHTMLAttributes<HTMLInputElement> {
   showShortcut?: boolean;
   containerClassName?: string;
 }
-
 export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   (
     {
@@ -559,7 +527,6 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   },
 );
 SearchBar.displayName = "SearchBar";
-
 export interface SectionHeaderProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   "title"
@@ -570,7 +537,6 @@ export interface SectionHeaderProps extends Omit<
   subtitle?: string;
   align?: "left" | "center";
 }
-
 const sectionHeaderBadgeStyles: Record<string, string> = {
   primary: "bg-cremp-primary/10 text-cremp-primary",
   accent: "bg-[#fdf6e3] text-cremp-accent-dark",
@@ -578,7 +544,6 @@ const sectionHeaderBadgeStyles: Record<string, string> = {
   success: "bg-success-light text-success",
   warning: "bg-warning-light text-warning",
 };
-
 export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
   (
     {
@@ -620,7 +585,6 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
   },
 );
 SectionHeader.displayName = "SectionHeader";
-
 export interface StatCardProps extends HTMLAttributes<HTMLDivElement> {
   icon: ReactNode;
   label: string;
@@ -629,7 +593,6 @@ export interface StatCardProps extends HTMLAttributes<HTMLDivElement> {
   suffix?: string;
   trend?: { value: number; positive: boolean };
 }
-
 export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(
   (
     {
@@ -674,7 +637,6 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(
   },
 );
 StatCard.displayName = "StatCard";
-
 export interface TimelineItem {
   icon: ReactNode;
   title: string;
@@ -682,23 +644,19 @@ export interface TimelineItem {
   time: string;
   status?: "completed" | "active" | "pending";
 }
-
 export interface TimelineProps extends HTMLAttributes<HTMLDivElement> {
   items: TimelineItem[];
 }
-
 const timelineStatusColors: Record<string, string> = {
   completed: "bg-success text-white",
   active: "bg-cremp-primary text-white",
   pending: "bg-cremp-surface-alt text-cremp-text-muted",
 };
-
 const timelineLineColors: Record<string, string> = {
   completed: "bg-success",
   active: "bg-cremp-primary",
   pending: "bg-cremp-border",
 };
-
 export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
   ({ items, className = "", ...props }, ref) => {
     return (

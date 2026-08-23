@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Star,
 } from "lucide-react";
-
 export const faqData = {
   tag: "FREQUENTLY ASKED QUESTIONS",
   title: "Frequently Asked Questions",

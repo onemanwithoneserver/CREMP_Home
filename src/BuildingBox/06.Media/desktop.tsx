@@ -10,10 +10,8 @@ import {
 import { mediaData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer, gridItem } from "../components/animations";
-
 export default function Desktop() {
   const [activeTab, setActiveTab] = useState(mediaData.tabs[0].label);
-
   return (
     <motion.div
       initial="hidden"
@@ -31,7 +29,6 @@ export default function Desktop() {
           title={mediaData.title}
           icon={ImageIcon}
         />
-
         <div className="px-4 mt-4 mb-1 flex justify-center w-full">
           <div className="grid grid-cols-4 gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.04)] relative overflow-hidden w-full">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none opacity-60" />
@@ -60,7 +57,6 @@ export default function Desktop() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-
                 <div className="flex items-center gap-1.5 relative z-10 min-w-0 justify-center">
                   <div
                     className={`w-6 h-6 rounded-[3px] flex items-center justify-center transition-all duration-300 backdrop-blur-sm shrink-0 ${
@@ -83,7 +79,6 @@ export default function Desktop() {
             ))}
           </div>
         </div>
-
         <div className="px-4 py-4">
           <AnimatePresence mode="wait">
             <motion.div
@@ -135,7 +130,6 @@ export default function Desktop() {
                   ))}
                 </motion.div>
               )}
-
               {activeTab === "Floor Plan" && (
                 <motion.div
                   variants={staggerContainer}
@@ -183,7 +177,6 @@ export default function Desktop() {
                   ))}
                 </motion.div>
               )}
-
               {(activeTab === "Virtual Tour" || activeTab === "3D Tour") && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -231,7 +224,6 @@ export default function Desktop() {
                   </div>
                 </motion.div>
               )}
-
               {activeTab === "Photos" && (
                 <motion.div
                   variants={staggerContainer}
@@ -259,7 +251,6 @@ export default function Desktop() {
                       </div>
                     </motion.div>
                   ))}
-
                   <motion.div
                     variants={gridItem}
                     whileHover={{ scale: 1.04 }}

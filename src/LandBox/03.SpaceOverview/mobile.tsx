@@ -3,7 +3,6 @@ import { LayoutGrid } from "lucide-react";
 import { spaceOverviewData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Mobile() {
   return (
     <motion.div
@@ -22,7 +21,6 @@ export default function Mobile() {
           title={spaceOverviewData.title}
           icon={LayoutGrid}
         />
-
         <div className="px-5 py-5 flex flex-col mx-0">
           <div className="flex flex-col gap-3">
             {spaceOverviewData.details.map((detail, idx) => (

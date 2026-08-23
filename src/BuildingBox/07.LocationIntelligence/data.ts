@@ -9,7 +9,6 @@ import {
   Train,
   Building2,
 } from "lucide-react";
-
 export const locationIntelligenceData = {
   title: "Location Intelligence",
   subtitle: "AI-Powered Insights",

@@ -8,7 +8,6 @@ import {
 } from "../utils/theme";
 import { idealPartnerData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
-
 const ambientGlow: Variants = {
   animate: {
     scale: [1, 1.2, 1],
@@ -17,7 +16,6 @@ const ambientGlow: Variants = {
     transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
@@ -25,7 +23,6 @@ const staggerContainer = {
     transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
-
 const fadeSlideUp = {
   hidden: { opacity: 0, y: 20, scale: 0.98 },
   show: {
@@ -40,13 +37,11 @@ const fadeSlideUp = {
     },
   },
 };
-
 export default function IdealPartnerMobile() {
   return (
     <section className="w-full px-2 py-12 relative overflow-hidden bg-gray-50/50 dark:bg-[#060d20] rounded-[4px]">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-
         <motion.div
           variants={ambientGlow}
           animate="animate"
@@ -58,7 +53,6 @@ export default function IdealPartnerMobile() {
           className="absolute right-[-20%] bottom-[10%] h-[300px] w-[300px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-[#D4AF37]/10"
         />
       </div>
-
       <div className="relative z-10 w-full max-w-md mx-auto">
         <SectionHeader
           overline={idealPartnerData.sectionLabel}
@@ -66,7 +60,6 @@ export default function IdealPartnerMobile() {
           subtitle={idealPartnerData.subtitle}
           align="center"
         />
-
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -86,7 +79,6 @@ export default function IdealPartnerMobile() {
                 )}
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/80 dark:via-[#d4af37]/30 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-
                 <div className="flex items-center gap-3.5 mb-5 pb-4 border-b border-gray-200/50 dark:border-white/10">
                   <div
                     className={clsx(
@@ -104,10 +96,8 @@ export default function IdealPartnerMobile() {
                     {item.title}
                   </h4>
                 </div>
-
                 <div className="flex flex-col gap-0 relative">
                   <div className="absolute left-[11px] top-2 bottom-4 w-px bg-gradient-to-b from-gray-300 via-gray-200 to-transparent dark:from-gray-700 dark:via-gray-800 pointer-events-none" />
-
                   {item.items.map((subItem, idx) => {
                     const badgeStyles = getCheckBadgeStyles(item.intent);
                     return (
@@ -141,7 +131,6 @@ export default function IdealPartnerMobile() {
             );
           })}
         </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -169,11 +158,9 @@ export default function IdealPartnerMobile() {
                   >
                     <Icon size={18} strokeWidth={2.2} className="text-white" />
                   </div>
-
                   <span className="text-[#0a1128] dark:text-white font-black text-[13px] leading-tight mb-1 group-hover:text-[#d4af37] transition-colors duration-300 whitespace-nowrap">
                     {item.value}
                   </span>
-
                   <span className="text-gray-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-widest leading-tight">
                     {item.title}
                   </span>
@@ -182,7 +169,6 @@ export default function IdealPartnerMobile() {
             })}
           </motion.div>
         </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -197,7 +183,6 @@ export default function IdealPartnerMobile() {
             <div className="absolute top-4 right-4 text-[#d4af37]/40 group-hover:text-[#d4af37] group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
               <Sparkles size={32} strokeWidth={1.5} />
             </div>
-
             <div className="flex items-center gap-3.5 relative z-10">
               <div className="w-12 h-12 rounded-[4px] bg-gradient-to-br from-[#d4af37]/20 to-transparent border border-[#d4af37]/50 text-[#d4af37] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-md group-hover:scale-105 transition-transform duration-500">
                 <idealPartnerData.additionalExpectations.icon
@@ -209,7 +194,6 @@ export default function IdealPartnerMobile() {
                 {idealPartnerData.additionalExpectations.title}
               </h4>
             </div>
-
             <p className="text-gray-300 font-medium text-[14px] leading-relaxed relative z-10 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
               {idealPartnerData.additionalExpectations.text}
             </p>

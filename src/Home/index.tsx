@@ -3,11 +3,9 @@ import Onboarding from "./02_Onboarding";
 import StakeHolders from "./03_StakeHolder1";
 import Footer from "./04_footer";
 import { AnnouncementProvider } from "./context/AnnouncementContext";
-
 interface HomeProps {
   isMobile: boolean;
 }
-
 export default function Home({ isMobile }: HomeProps) {
   return (
     <AnnouncementProvider>

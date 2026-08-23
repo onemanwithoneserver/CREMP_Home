@@ -3,15 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { commercialData } from "./data";
 import SectionHeader from "../components/SectionHeader";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Mobile() {
   const [activeTab, setActiveTab] = useState<
     (typeof commercialData.tabs)[number]
   >(commercialData.tabs[0]);
-
   const currentData =
     commercialData.tabData[activeTab as keyof typeof commercialData.tabData];
-
   const listItemVariants = {
     hidden: { opacity: 0, y: 10 },
     show: (i: number) => ({
@@ -29,7 +26,6 @@ export default function Mobile() {
       transition: { duration: 0.15 },
     },
   };
-
   return (
     <motion.div
       initial="hidden"
@@ -47,7 +43,6 @@ export default function Mobile() {
           title={currentData.title}
           icon={currentData.headerIcon}
         />
-
         <div className="px-4 mt-5 mb-1 flex justify-center w-full">
           <div
             className={`flex gap-1.5 bg-white/70 backdrop-blur-xl rounded-[4px] p-1.5 border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mx-auto ${commercialData.tabs.length < 3 ? "w-3/4" : "w-full"}`}
@@ -78,7 +73,6 @@ export default function Mobile() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-8 bg-[#d4af37]/20 rounded-full blur-lg pointer-events-none" />
                   </motion.div>
                 )}
-
                 <span
                   className={`relative z-10 font-semibold text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
                     activeTab === tab ? "text-white" : "text-[#17274c]"
@@ -90,7 +84,6 @@ export default function Mobile() {
             ))}
           </div>
         </div>
-
         <div className="px-5 py-5">
           <AnimatePresence mode="wait">
             <motion.div
@@ -127,7 +120,6 @@ export default function Mobile() {
                   }}
                   className="absolute -bottom-12 -left-12 w-32 h-32 bg-gradient-to-tr from-blue-500/15 to-transparent rounded-full blur-2xl pointer-events-none"
                 />
-
                 <div className="relative z-10 flex justify-between items-center w-full gap-4">
                   <div className="flex flex-col gap-1.5">
                     <motion.span
@@ -139,7 +131,6 @@ export default function Mobile() {
                       <span className="w-1.5 h-1.5 rounded-[2px] bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                       {currentData.primaryAmountLabel}
                     </motion.span>
-
                     {currentData.primarySub && (
                       <motion.p
                         initial={{ opacity: 0 }}
@@ -151,7 +142,6 @@ export default function Mobile() {
                       </motion.p>
                     )}
                   </div>
-
                   <div className="flex flex-col gap-0.5 text-right items-end pl-2">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95, originX: 1 }}
@@ -166,7 +156,6 @@ export default function Mobile() {
                     >
                       {currentData.primaryAmount}
                     </motion.div>
-
                     {currentData.primaryDesc && (
                       <motion.p
                         initial={{ opacity: 0 }}
@@ -180,7 +169,6 @@ export default function Mobile() {
                   </div>
                 </div>
               </div>
-
               <div className="flex flex-col gap-3">
                 {currentData.details.map((detail, idx) => (
                   <motion.div

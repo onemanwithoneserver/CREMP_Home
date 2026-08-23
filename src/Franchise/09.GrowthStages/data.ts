@@ -1,5 +1,4 @@
 import { Building2, Rocket, TrendingUp } from "lucide-react";
-
 export const growthStagesData = {
   tag: "Growth Roadmap",
   titleBase: "Built for Every Stage of",

@@ -2,7 +2,6 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Check, Gem, ShieldCheck, Star } from "lucide-react";
 import { Container } from "../../components/layout";
 import { foundingData } from "./data";
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -11,14 +10,12 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 300, damping: 25 },
   },
 };
-
 const rocketFloat: Variants = {
   animate: {
     y: [-6, 6, -6],
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const flameFlicker: Variants = {
   animate: {
     scaleY: [1, 1.25, 0.9, 1.15, 1],
@@ -26,7 +23,6 @@ const flameFlicker: Variants = {
     transition: { duration: 0.4, repeat: Infinity, ease: "linear" },
   },
 };
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -34,10 +30,8 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function DesktopFoundingPartner() {
   const Btn1Icon = foundingData.buttons[0].icon;
-
   return (
     <div className="relative w-full overflow-hidden bg-white/40 backdrop-blur-xl border-y border-white/40 py-12 shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-colors duration-700 dark:bg-[#0b1b42]/60 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <motion.div
@@ -50,7 +44,6 @@ export default function DesktopFoundingPartner() {
         animate="animate"
         className="pointer-events-none absolute bottom-0 left-0 h-[500px] w-[500px] -translate-x-1/4 translate-y-1/4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent opacity-50 blur-3xl"
       />
-
       <Container className="relative z-10 mx-auto max-w-7xl px-4 xl:px-0">
         <div className="relative flex w-full flex-col overflow-hidden backdrop-blur-xl lg:flex-row lg:items-stretch lg:p-4">
           <div className="relative flex w-full flex-col p-8 pt-10 lg:w-[48%] lg:px-10 lg:py-12">
@@ -79,14 +72,12 @@ export default function DesktopFoundingPartner() {
                   {foundingData.tag}
                 </span>
               </motion.div>
-
               <motion.h2
                 variants={fadeInUp}
                 className="mb-6 whitespace-pre-line text-[2.8rem] font-black leading-[1.05] tracking-tight text-gray-900 dark:text-white xl:text-[3.2rem]"
               >
                 {foundingData.title}
               </motion.h2>
-
               <motion.p
                 variants={fadeInUp}
                 className="max-w-md text-[1.05rem] font-medium leading-relaxed text-gray-600 dark:text-gray-400"
@@ -94,7 +85,6 @@ export default function DesktopFoundingPartner() {
                 {foundingData.desc}
               </motion.p>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -109,20 +99,16 @@ export default function DesktopFoundingPartner() {
             >
               <div className="absolute bottom-0 left-1/2 w-[340px] -translate-x-1/2">
                 <div className="absolute -bottom-8 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-[100%] bg-[#D4AF37]/20 blur-xl dark:bg-[#D4AF37]/15" />
-
                 <div className="absolute bottom-0 left-1/2 z-30 flex h-14 w-full -translate-x-1/2 items-end justify-center rounded-[100%] border border-[#D4AF37]/30 bg-white pb-2 shadow-[0_15px_30px_rgba(178,127,28,0.15)] dark:border-[#D4AF37]/30 dark:bg-[#121c33] dark:shadow-[0_15px_30px_rgba(246,178,59,0.15)]">
                   <span className="-translate-x-[0.5em] pl-[0.3em] text-[0.7rem] font-black tracking-[0.3em] text-[#D4AF37] dark:text-[#D4AF37]">
                     FOUNDING PARTNER
                   </span>
                 </div>
-
                 <div className="absolute bottom-4 left-1/2 z-20 h-12 w-[290px] -translate-x-1/2 rounded-[100%] border-t border-[#D4AF37]/40 bg-gray-50 dark:border-[#D4AF37]/40 dark:bg-[#111827]" />
-
                 <div className="absolute bottom-8 left-1/2 z-10 flex h-10 w-[240px] -translate-x-1/2 items-center justify-center rounded-[100%] border border-white/50 bg-gradient-to-b from-white/60 to-white/30 backdrop-blur-md shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] dark:border-white/10 dark:from-black/40 dark:to-black/20">
                   <div className="h-[60%] w-[60%] rounded-[100%] border border-white/50 dark:border-white/20" />
                 </div>
               </div>
-
               <motion.div
                 variants={rocketFloat}
                 initial="animate"
@@ -130,16 +116,13 @@ export default function DesktopFoundingPartner() {
               >
                 <div className="relative h-44 w-16 overflow-hidden rounded-b-[4px] rounded-t-[100%] bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#fde68a] shadow-[0_20px_40px_rgba(178,127,28,0.4)] dark:shadow-[0_20px_40px_rgba(246,178,59,0.2)]">
                   <div className="absolute right-0 top-0 h-full w-1/2 bg-white/25" />
-
                   <div className="absolute left-1/2 top-12 h-8 w-8 -translate-x-1/2 rounded-full border-[3px] border-yellow-100 bg-sky-100 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] dark:border-yellow-400 dark:bg-[#121c33]">
                     <div className="absolute right-1 top-1 h-2 w-3 -rotate-45 rounded-full bg-white/60" />
                   </div>
                 </div>
-
                 <div className="absolute -left-7 bottom-2 h-16 w-8 -skew-y-12 rounded-br-[4px] rounded-tl-[100%] bg-gradient-to-tr from-[#92400e] to-[#d97706] shadow-lg" />
                 <div className="absolute -right-7 bottom-2 h-16 w-8 skew-y-12 rounded-bl-[4px] rounded-tr-[100%] bg-gradient-to-tl from-[#92400e] to-[#d97706] shadow-lg" />
                 <div className="absolute bottom-0 z-50 h-12 w-4 rounded-t-full bg-gradient-to-t from-[#78350f] to-[#b45309]" />
-
                 <motion.div
                   variants={flameFlicker}
                   initial="animate"
@@ -152,11 +135,9 @@ export default function DesktopFoundingPartner() {
                   className="absolute -bottom-8 z-20 h-16 w-10 origin-top rounded-full bg-gradient-to-t from-transparent via-red-500 to-yellow-300 opacity-60 blur-[4px]"
                 />
               </motion.div>
-
               {foundingData.rocketNodes.map((node, idx) => {
                 const isLeft = node.pos.includes("left");
                 const isTop = node.pos.includes("top");
-
                 return (
                   <motion.div
                     key={idx}
@@ -178,7 +159,6 @@ export default function DesktopFoundingPartner() {
                         strokeWidth={2}
                         className="transition-transform group-hover:scale-110"
                       />
-
                       <svg
                         className={`pointer-events-none absolute ${isLeft ? "left-full" : "right-full"} ${isTop ? "top-1/2" : "bottom-1/2"}`}
                         style={{ width: "113px", height: "48px" }}
@@ -190,14 +170,11 @@ export default function DesktopFoundingPartner() {
                           const iconY = isTop ? 0 : 48;
                           const rocketX = isLeft ? 113 : 0;
                           const rocketY = isTop ? 48 : 0;
-
                           const getPoint = (t: number) => ({
                             cx: iconX + (rocketX - iconX) * t,
                             cy: iconY + (rocketY - iconY) * t,
                           });
-
                           const dots = [0.15, 0.5, 1.0].map(getPoint);
-
                           return (
                             <>
                               <line
@@ -235,7 +212,6 @@ export default function DesktopFoundingPartner() {
               })}
             </motion.div>
           </div>
-
           <div className="relative z-10 flex w-full flex-col rounded-xl border border-white/40 bg-white/40 p-8 shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-black/30 lg:w-[52%] lg:p-12">
             <div className="mb-8 flex items-center gap-4 border-b border-gray-200/60 pb-6 dark:border-gray-800/60">
               <motion.div
@@ -253,10 +229,8 @@ export default function DesktopFoundingPartner() {
                 {foundingData.benefitsTitle}
               </h3>
             </div>
-
             <div className="relative mb-10 flex flex-1 flex-col gap-3">
               <div className="pointer-events-none absolute left-[26px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-[#D4AF37]/20" />
-
               {foundingData.benefits.map((benefit, idx) => (
                 <motion.div
                   key={idx}
@@ -274,7 +248,6 @@ export default function DesktopFoundingPartner() {
                   <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#D4AF37] bg-white text-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37] group-hover:text-white dark:bg-[#0b1b42] dark:group-hover:text-[#0a1128]">
                     <Check size={12} strokeWidth={3} />
                   </div>
-
                   <motion.div
                     whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
                     transition={{ duration: 0.3 }}
@@ -282,14 +255,12 @@ export default function DesktopFoundingPartner() {
                   >
                     <benefit.icon size={18} strokeWidth={1.5} />
                   </motion.div>
-
                   <span className="text-[1.05rem] font-bold text-gray-900 transition-colors group-hover:text-[#D4AF37] dark:text-white dark:group-hover:text-[#D4AF37]">
                     {benefit.text}
                   </span>
                 </motion.div>
               ))}
             </div>
-
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-stretch">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -320,7 +291,6 @@ export default function DesktopFoundingPartner() {
                 />
               </motion.button>
             </div>
-
             <div className="flex items-center justify-center gap-2">
               <ShieldCheck
                 size={14}

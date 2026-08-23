@@ -2,13 +2,11 @@ import { motion } from "framer-motion";
 import { MapPin, BadgeCheck, Sparkles, Building2 } from "lucide-react";
 import { heroData } from "./data";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Mobile() {
   return (
     <div className="relative w-full bg-[#0b1b42] text-white pt-5 pb-4 px-4 flex flex-col border-b border-[#d4af37]/20 shadow-lg overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent pointer-events-none" />
       <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-2xl pointer-events-none" />
-
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -24,7 +22,6 @@ export default function Mobile() {
               <Sparkles size={10} className="text-[#d4af37]" />
               {heroData.badges[0] || "GRADE A"}
             </span>
-
             <div className="relative flex items-center">
               <select
                 defaultValue="Entire Building"
@@ -56,14 +53,12 @@ export default function Mobile() {
             </div>
           </motion.div>
         </div>
-
         <motion.h1
           variants={fadeInUp}
           className="text-xl font-semibold tracking-tight text-white leading-tight"
         >
           {heroData.title}
         </motion.h1>
-
         <div className="flex justify-between items-center w-full gap-2 pt-0.5">
           <motion.div
             variants={fadeInUp}
@@ -76,7 +71,6 @@ export default function Mobile() {
               {heroData.location}
             </span>
           </motion.div>
-
           {heroData.verified && (
             <motion.div
               variants={fadeInUp}

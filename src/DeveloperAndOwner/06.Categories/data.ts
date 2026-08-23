@@ -12,7 +12,6 @@ import {
   Store,
   Warehouse,
 } from "lucide-react";
-
 export const categoriesData = {
   tag: "PROJECT CATEGORIES",
   title: "Explore Every Development Category",

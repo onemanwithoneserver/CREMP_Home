@@ -14,7 +14,6 @@ import {
   Layers,
   Percent,
 } from "lucide-react";
-
 export const commercialData = {
   tabs: [
     "Full Lease",
@@ -68,7 +67,6 @@ export const commercialData = {
           icon: Calendar,
           bgClass: "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9]",
         },
-
         {
           label: "Units Available",
           value: "4 Floors / Full Bldg",

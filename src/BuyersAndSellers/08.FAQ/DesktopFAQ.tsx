@@ -3,7 +3,6 @@ import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Container } from "../../components/layout";
 import { faqData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -19,12 +18,10 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function DesktopFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
   const Btn1Icon = faqData.banner.btn1.icon;
   const Btn2Icon = faqData.banner.btn2.icon;
-
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 py-24 transition-colors duration-700 dark:bg-[#0b1b42]">
       <Container className="relative z-10 max-w-7xl px-4 xl:px-0">
@@ -57,7 +54,6 @@ export default function DesktopFAQ() {
                 {faqData.desc}
               </motion.p>
             </motion.div>
-
             <div className="flex flex-col border-t border-gray-200 dark:border-gray-800">
               {faqData.faqs.map((faq, idx) => {
                 const isOpen = openIdx === idx;
@@ -106,7 +102,6 @@ export default function DesktopFAQ() {
               })}
             </div>
           </div>
-
           <div className="w-[45%]">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -117,11 +112,9 @@ export default function DesktopFAQ() {
             >
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay"></div>
               <div className="absolute -top-[20%] -left-[20%] h-[300px] w-[300px] rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] blur-[100px] pointer-events-none opacity-40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"></div>
-
               <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 backdrop-blur-md">
                 <faqData.banner.icon size={32} className="text-[#D4AF37]" />
               </div>
-
               <div className="relative z-10">
                 <h3 className="whitespace-pre-line text-[2.2rem] font-black leading-tight text-white mb-4">
                   {faqData.banner.title}
@@ -130,7 +123,6 @@ export default function DesktopFAQ() {
                   {faqData.banner.desc}
                 </p>
               </div>
-
               <div className="relative z-10 flex w-full flex-col gap-4">
                 <motion.button
                   whileHover={{ scale: 1.03 }}

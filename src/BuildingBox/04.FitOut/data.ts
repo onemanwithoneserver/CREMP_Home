@@ -1,5 +1,4 @@
 import { Box, Armchair, Monitor, Coffee } from "lucide-react";
-
 export const fitOutData = {
   title: "Fit-out & Furniture",
   subtitle: "Core essentials",

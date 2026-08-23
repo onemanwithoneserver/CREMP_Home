@@ -1,7 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 import { testimonialsData } from "./data";
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -17,11 +16,9 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileTestimonials() {
   const Btn1Icon = testimonialsData.buttons[0].icon;
   const Btn2Icon = testimonialsData.buttons[1].icon;
-
   return (
     <div className="relative w-full overflow-hidden bg-white px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
       <motion.div
@@ -63,7 +60,6 @@ export default function MobileTestimonials() {
             {testimonialsData.desc}
           </motion.p>
         </div>
-
         <motion.div
           variants={fadeInUp}
           className="w-full rounded-[8px] bg-gray-50 p-6 shadow-inner dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 mb-8 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
@@ -76,7 +72,6 @@ export default function MobileTestimonials() {
               {testimonialsData.benefitsTitle}
             </h3>
           </div>
-
           <div className="flex flex-col gap-3">
             {testimonialsData.benefits.map((benefit, idx) => (
               <div
@@ -104,7 +99,6 @@ export default function MobileTestimonials() {
             ))}
           </div>
         </motion.div>
-
         <motion.div variants={fadeInUp} className="flex w-full flex-col gap-3">
           <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] py-4 text-[0.9rem] font-bold text-white shadow-lg dark:from-[#D4AF37] dark:to-[#b38728] dark:text-[#0a1128]">
             <Btn1Icon size={18} />
@@ -118,7 +112,6 @@ export default function MobileTestimonials() {
             {testimonialsData.buttons[1].title}
           </button>
         </motion.div>
-
         <motion.p
           variants={fadeInUp}
           className="mt-6 text-center text-[0.7rem] font-medium text-gray-400"

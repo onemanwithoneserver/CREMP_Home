@@ -4,15 +4,12 @@ import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "luc
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
-
 const sortOptions = [
   { value: "latest", label: "Latest" },
   { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
-
 const ITEMS_PER_PAGE = 8;
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -20,7 +17,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -28,7 +24,6 @@ const containerVariants = {
     transition: { staggerChildren: 0.06, delayChildren: 0.1 },
   },
 };
-
 const cardVariants = {
   hidden: { opacity: 0, scale: 0.92, y: 15 },
   show: {
@@ -38,7 +33,6 @@ const cardVariants = {
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
-
 export default function VideoSearchMobile() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -46,7 +40,6 @@ export default function VideoSearchMobile() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [sortBy, setSortBy] = useState("latest");
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
-
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
       v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -55,7 +48,6 @@ export default function VideoSearchMobile() {
       activeCategory === "All" || v.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
-
   const sortedVideos = [...filteredVideos].sort((a, b) => {
     if (sortBy === "popular") {
       const parseViews = (views: string) => {
@@ -71,10 +63,8 @@ export default function VideoSearchMobile() {
     }
     return b.id.localeCompare(a.id);
   });
-
   const displayedVideos = sortedVideos.slice(0, visibleCount);
   const hasMore = visibleCount < sortedVideos.length;
-
   const handleLoadMore = () => {
     setIsLoadingMore(true);
     setTimeout(() => {
@@ -82,12 +72,10 @@ export default function VideoSearchMobile() {
       setIsLoadingMore(false);
     }, 600);
   };
-
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
     setVisibleCount(ITEMS_PER_PAGE);
   };
-
   return (
     <div className="w-full min-h-screen bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white overflow-x-hidden font-sans pb-20 relative">
       <motion.div
@@ -100,7 +88,6 @@ export default function VideoSearchMobile() {
         animate="animate"
         className="pointer-events-none absolute bottom-[20%] right-[-10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/8 blur-[80px] dark:bg-[#D4AF37]/8"
       />
-
       <div className="sticky top-0 z-40 bg-white dark:bg-[#0b1b42] p-3 sm:p-4 flex flex-col shrink-0 relative overflow-hidden rounded-b-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
         <div className="flex items-center justify-between mb-2.5">
           <div className="flex items-center gap-2">
@@ -120,7 +107,6 @@ export default function VideoSearchMobile() {
             {filteredVideos.length} videos
           </span>
         </div>
-
         <div className="relative w-full">
           <input
             type="text"
@@ -138,7 +124,6 @@ export default function VideoSearchMobile() {
           />
         </div>
       </div>
-
       <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2.5 flex items-center gap-2 border-b border-gray-100 dark:border-white/5 bg-white/80 dark:bg-transparent">
         <div className="flex items-center gap-1.5 mr-1 text-gray-400 shrink-0">
           <Filter size={12} />
@@ -159,7 +144,6 @@ export default function VideoSearchMobile() {
             {cat}
           </button>
         ))}
-
         <div className="ml-auto flex items-center pl-3 border-l border-gray-200 dark:border-gray-700 shrink-0 z-20">
           <CustomSelect
             options={sortOptions}
@@ -170,7 +154,6 @@ export default function VideoSearchMobile() {
           />
         </div>
       </div>
-
       <div className="px-3 py-3 relative z-10">
         <motion.div
           variants={containerVariants}
@@ -197,13 +180,11 @@ export default function VideoSearchMobile() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1b42]/90 via-[#0b1b42]/20 to-transparent opacity-70 transition-opacity duration-500" />
-
                 <div className="absolute top-2 right-2">
                   <span className="flex w-fit items-center rounded-[2px] border border-white/20 bg-black/50 backdrop-blur-md px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-widest text-white">
                     {video.category}
                   </span>
                 </div>
-
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-9 h-9 rounded-full bg-[#0b1b42] border border-white/10 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.4)] group-active:scale-90 transition-transform duration-300">
                     <Play
@@ -213,7 +194,6 @@ export default function VideoSearchMobile() {
                     />
                   </div>
                 </div>
-
                 <div className="absolute bottom-0 left-0 right-0 p-3 flex flex-col justify-end z-10">
                   <span className="text-[#d4af37] text-[8px] font-bold uppercase tracking-widest mb-1 drop-shadow-md">
                     {video.brand}
@@ -236,7 +216,6 @@ export default function VideoSearchMobile() {
             ))}
           </AnimatePresence>
         </motion.div>
-
         {hasMore && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -257,7 +236,6 @@ export default function VideoSearchMobile() {
             </button>
           </motion.div>
         )}
-
         {filteredVideos.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -274,7 +252,6 @@ export default function VideoSearchMobile() {
           </motion.div>
         )}
       </div>
-
       {selectedVideoId && (
         <OpenVideo 
           initialVideoId={selectedVideoId} 

@@ -1,7 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { categoriesData } from "./data";
-
 const categoryColors = [
   "#7C3AED",
   "#059669",
@@ -10,7 +9,6 @@ const categoryColors = [
   "#DB2777",
   "#0891B2",
 ];
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -26,7 +24,6 @@ const fadeInUp: Variants = {
     transition: { type: "spring", stiffness: 400, damping: 30 },
   },
 };
-
 export default function MobileCategories() {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50 px-4 py-16 transition-colors duration-700 dark:bg-[#0b1b42]">
@@ -58,7 +55,6 @@ export default function MobileCategories() {
             {categoriesData.desc}
           </motion.p>
         </div>
-
         <motion.div variants={fadeInUp} className="mb-8 grid grid-cols-2 gap-3">
           {categoriesData.categories.map((cat, idx) => (
             <div
@@ -80,7 +76,6 @@ export default function MobileCategories() {
             </div>
           ))}
         </motion.div>
-
         <motion.div variants={fadeInUp} className="flex flex-col gap-4">
           <button className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-gray-900 py-3.5 text-[0.9rem] font-bold text-white shadow-lg dark:bg-white dark:text-gray-900">
             {categoriesData.button.text}

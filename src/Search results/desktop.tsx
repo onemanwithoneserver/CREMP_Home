@@ -12,7 +12,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { franchises, getMeta, tagColors, type Franchise } from "./data";
-
 const stagger = {
   hidden: { opacity: 0 },
   show: {
@@ -28,7 +27,6 @@ const fadeUp = {
     transition: { type: "spring" as const, stiffness: 350, damping: 28 },
   },
 };
-
 function MapPopup({
   franchise,
   onClose,
@@ -38,7 +36,6 @@ function MapPopup({
 }) {
   const meta = getMeta(franchise.category);
   const Icon = meta.icon;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 10, x: "-50%", scale: 0.95 }}
@@ -47,7 +44,6 @@ function MapPopup({
       className="absolute bottom-[calc(100%+12px)] left-1/2 w-[300px] glass-strong rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/10 p-4 z-50"
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
-
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -57,7 +53,6 @@ function MapPopup({
       >
         <X className="w-4 h-4" strokeWidth={2.5} />
       </button>
-
       <div className="flex items-center gap-3.5 mb-4">
         <div className="w-12 h-12 rounded-[6px] overflow-hidden border border-gray-100 dark:border-white/10 flex-shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
           <img
@@ -76,7 +71,6 @@ function MapPopup({
           </p>
         </div>
       </div>
-
       <div className="grid grid-cols-3 gap-2 mb-4">
         <div className="flex flex-col justify-center items-center p-2 rounded-[6px] bg-white/50 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.02)] min-h-[56px]">
           <span className="text-[9px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">
@@ -103,7 +97,6 @@ function MapPopup({
           </span>
         </div>
       </div>
-
       <div className="flex items-center justify-between gap-2">
         <div
           className={clsx(
@@ -120,12 +113,10 @@ function MapPopup({
           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>
-
       <div className="absolute -bottom-[8px] left-1/2 -translate-x-1/2 w-4 h-4 glass-strong border-r border-b border-gray-200/80 dark:border-white/10 rotate-45 [clip-path:polygon(100%_0,100%_100%,0_100%)]" />
     </motion.div>
   );
 }
-
 export default function SearchResultsDesktop() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -134,7 +125,6 @@ export default function SearchResultsDesktop() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-
   const handleLoadMore = () => {
     setIsLoadingMore(true);
     setTimeout(() => {
@@ -142,11 +132,9 @@ export default function SearchResultsDesktop() {
       setIsLoadingMore(false);
     }, 600);
   };
-
   useEffect(() => {
     setVisibleCount(5);
   }, [searchQuery]);
-
   const toggleFavorite = (id: number) => {
     setFavorites((prev) => {
       const newFavs = new Set(prev);
@@ -155,11 +143,9 @@ export default function SearchResultsDesktop() {
       return newFavs;
     });
   };
-
   const handleMarkerClick = (id: number) => {
     setSelectedMarker(selectedMarker === id ? null : id);
   };
-
   const uniquePlaces = useMemo(() => {
     const places = franchises.map((f) => f.location);
     return Array.from(new Set(places)).filter(
@@ -167,7 +153,6 @@ export default function SearchResultsDesktop() {
         !searchQuery || p.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }, [searchQuery]);
-
   const matchingFranchises = useMemo(() => {
     return franchises.filter(
       (f) =>
@@ -175,12 +160,10 @@ export default function SearchResultsDesktop() {
         f.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }, [searchQuery]);
-
   const displayPlaces = searchQuery ? uniquePlaces : uniquePlaces.slice(0, 3);
   const displayFranchises = searchQuery
     ? matchingFranchises
     : matchingFranchises.slice(0, 3);
-
   const filtered = useMemo(() => {
     return franchises.filter((f) => {
       const matchesSearch =
@@ -191,7 +174,6 @@ export default function SearchResultsDesktop() {
       return matchesSearch;
     });
   }, [searchQuery]);
-
   return (
     <div className="flex flex-row w-full h-full bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300">
       {}
@@ -211,7 +193,6 @@ export default function SearchResultsDesktop() {
               <div className="absolute inset-y-1.5 right-1.5 w-9 flex items-center justify-center bg-[#0a1128] dark:bg-[#d4af37]/20 rounded-[4px] text-white dark:text-[#d4af37] shadow-sm pointer-events-none">
                 <Search className="h-4 w-4" />
               </div>
-
               <AnimatePresence>
                 {isSearchFocused &&
                   (searchQuery ||
@@ -260,7 +241,6 @@ export default function SearchResultsDesktop() {
               </AnimatePresence>
             </div>
           </div>
-
           <svg
             className="absolute inset-0 w-full h-full opacity-[0.07] dark:opacity-[0.05] pointer-events-none"
             xmlns="http://www.w3.org/2000/svg"
@@ -315,7 +295,6 @@ export default function SearchResultsDesktop() {
               className="text-slate-500"
             />
           </svg>
-
           <svg
             className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none"
             xmlns="http://www.w3.org/2000/svg"
@@ -335,7 +314,6 @@ export default function SearchResultsDesktop() {
               strokeDasharray="5 7"
             />
           </svg>
-
           {filtered.map((f, i) => {
             const isActive = hoveredCard === f.id || selectedMarker === f.id;
             const meta = getMeta(f.category);
@@ -405,7 +383,6 @@ export default function SearchResultsDesktop() {
                     />
                   </div>
                 </motion.div>
-
                 <AnimatePresence>
                   {selectedMarker === f.id && (
                     <MapPopup
@@ -417,7 +394,6 @@ export default function SearchResultsDesktop() {
               </motion.div>
             );
           })}
-
           <div className="absolute bottom-5 right-5 flex flex-col gap-1.5 z-10">
             {["+", "−"].map((label) => (
               <motion.button
@@ -432,7 +408,6 @@ export default function SearchResultsDesktop() {
           </div>
         </div>
       </div>
-
       {}
       <div className="w-[35%] h-full flex flex-col bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden border-l border-white/50 dark:border-white/5 z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.03)]">
         <div className="flex-1 overflow-y-auto scrollbar-hide relative bg-white dark:bg-[#0b1b42]">
@@ -476,7 +451,6 @@ export default function SearchResultsDesktop() {
                     }}
                     className="absolute left-0 top-0 w-[3px] h-full bg-gradient-to-b from-[#d4af37] to-[#aa8922] origin-top rounded-r-full shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                   />
-
                   <div className="p-4 pl-4">
                     <div className="flex gap-3.5">
                       <div
@@ -493,7 +467,6 @@ export default function SearchResultsDesktop() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div className="min-w-0">
@@ -532,7 +505,6 @@ export default function SearchResultsDesktop() {
                             />
                           </motion.button>
                         </div>
-
                         <div className="flex items-center gap-2 mt-2">
                           <span className="text-[12px] font-extrabold text-[#0b1b42] dark:text-[#d4af37]">
                             {f.investment}
@@ -557,7 +529,6 @@ export default function SearchResultsDesktop() {
                         </div>
                       </div>
                     </div>
-
                     <div className="flex items-center justify-between mt-2.5 gap-2 pl-[84px]">
                       <div className="flex items-center gap-1.5 flex-wrap min-w-0">
                         {f.tags.slice(0, 2).map((tag) => (
@@ -573,7 +544,6 @@ export default function SearchResultsDesktop() {
                           </span>
                         ))}
                       </div>
-
                       <motion.button
                         whileTap={{ scale: 0.95 }}
                         className="flex-shrink-0 flex items-center gap-1 text-[10px] font-semibold px-3.5 py-1.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_20px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 transition-all group whitespace-nowrap relative overflow-hidden"
@@ -590,7 +560,6 @@ export default function SearchResultsDesktop() {
               );
             })}
           </motion.div>
-
           {visibleCount < filtered.length && (
             <div className="px-5 py-8 flex justify-center ml-5">
               <motion.button

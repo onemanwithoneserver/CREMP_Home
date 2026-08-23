@@ -10,7 +10,6 @@ import {
   Car,
   Wrench,
 } from "lucide-react";
-
 export interface Franchise {
   id: number;
   name: string;
@@ -28,7 +27,6 @@ export interface Franchise {
   tags: string[];
   description: string;
 }
-
 export const categories = [
   "All",
   "Food & Beverage",
@@ -41,7 +39,6 @@ export const categories = [
   "Automotive",
   "Home Services",
 ] as const;
-
 export const franchises: Franchise[] = [
   {
     id: 1,
@@ -260,7 +257,6 @@ export const franchises: Franchise[] = [
       "On-demand home services aggregator franchise covering cleaning, plumbing, electrical & appliance repair.",
   },
 ];
-
 export const categoryMeta: Record<
   string,
   { icon: React.ElementType; bg: string; text: string; glow: string }
@@ -320,7 +316,6 @@ export const categoryMeta: Record<
     glow: "shadow-[0_0_20px_rgba(20,184,166,0.4)]",
   },
 };
-
 export const defaultMeta = {
   icon: Store,
   bg: "bg-[#d4af37]/10",
@@ -328,7 +323,6 @@ export const defaultMeta = {
   glow: "shadow-[0_0_15px_rgba(212,175,55,0.4)]",
 };
 export const getMeta = (cat: string) => categoryMeta[cat] || defaultMeta;
-
 export const tagColors: Record<string, string> = {
   "Top Rated":
     "bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/20",

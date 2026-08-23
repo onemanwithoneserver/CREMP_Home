@@ -12,7 +12,6 @@ import {
 import { franchiseNetworkData, type CityNode } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import mapBg from "../../assets/map_bg.png";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.08, 1],
@@ -20,7 +19,6 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
@@ -28,12 +26,10 @@ const staggerContainer = {
     transition: { staggerChildren: 0.1 },
   },
 };
-
 const fadeUp = {
   hidden: { opacity: 0, y: 10 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
-
 export default function FranchiseNetworkDesktop() {
   const [hoveredCity, setHoveredCity] = useState<CityNode | null>(null);
   const [activeCity, setActiveCity] = useState<CityNode>(
@@ -42,7 +38,6 @@ export default function FranchiseNetworkDesktop() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [bookedOpps, setBookedOpps] = useState<Set<string>>(new Set());
   const dropdownRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -55,7 +50,6 @@ export default function FranchiseNetworkDesktop() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
   return (
     <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px]">
       <motion.div
@@ -68,7 +62,6 @@ export default function FranchiseNetworkDesktop() {
         animate="animate"
         className="pointer-events-none absolute bottom-[10%] right-[5%] w-[600px] h-[600px] rounded-full bg-[#3b82f6]/10 blur-[140px] dark:bg-[#3b82f6]/15"
       />
-
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-12">
         <SectionHeader
           overline={franchiseNetworkData.sectionLabel}
@@ -76,7 +69,6 @@ export default function FranchiseNetworkDesktop() {
           subtitle={franchiseNetworkData.subtitle}
           align="center"
         />
-
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -98,7 +90,6 @@ export default function FranchiseNetworkDesktop() {
               "bg-[#f4b400]/10 text-[#f4b400]",
               "bg-[#0088cc]/10 text-[#0088cc]",
             ];
-
             return (
               <motion.div
                 key={stat.label}
@@ -113,7 +104,6 @@ export default function FranchiseNetworkDesktop() {
                 >
                   <Icon size={26} strokeWidth={2} />
                 </div>
-
                 <div className="flex flex-col flex-1 min-w-0 items-start">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
                     {stat.label}
@@ -134,7 +124,6 @@ export default function FranchiseNetworkDesktop() {
             );
           })}
         </motion.div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           <div className="lg:col-span-7 relative min-h-[580px] bg-[#070d1e] rounded-[8px] border border-gray-800/80 overflow-hidden shadow-2xl flex flex-col p-6 group">
             <div className="absolute inset-0 pointer-events-none opacity-50 mix-blend-luminosity overflow-hidden transition-opacity duration-700 group-hover:opacity-70">
@@ -146,7 +135,6 @@ export default function FranchiseNetworkDesktop() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#070d1e] via-[#070d1e]/40 to-[#070d1e]/80" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#070d1e]/90 via-transparent to-transparent" />
             </div>
-
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-70">
               <defs>
                 <linearGradient
@@ -208,7 +196,6 @@ export default function FranchiseNetworkDesktop() {
                 />
               </g>
             </svg>
-
             <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 mb-6">
               <div className="flex items-center gap-2.5 px-3.5 py-2 bg-[#0b1b42]/90 backdrop-blur-xl border border-[#d4af37]/40 rounded-[2px] shadow-[0_0_15px_rgba(212,175,55,0.15)]">
                 <Globe2
@@ -220,7 +207,6 @@ export default function FranchiseNetworkDesktop() {
                 </span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse ml-1" />
               </div>
-
               <div className="flex items-center gap-3 bg-[#0b1b42]/80 backdrop-blur-xl px-4 py-2 rounded-[4px] border border-gray-700/60 shadow-lg">
                 {franchiseNetworkData.legend.map((l) => (
                   <div
@@ -240,19 +226,16 @@ export default function FranchiseNetworkDesktop() {
                 ))}
               </div>
             </div>
-
             <div className="absolute inset-0 z-20 mt-[80px]">
               {franchiseNetworkData.cities.map((city) => {
                 const isSelected = activeCity.id === city.id;
                 const isHovered = hoveredCity?.id === city.id;
-
                 const nodeColor =
                   city.status === "active"
                     ? "bg-emerald-500 border-emerald-300 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
                     : city.status === "expansion"
                       ? "bg-[#d4af37] border-amber-200 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                       : "bg-blue-500 border-blue-300 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.4)]";
-
                 return (
                   <div
                     key={city.id}
@@ -273,7 +256,6 @@ export default function FranchiseNetworkDesktop() {
                       )}
                       style={{ animationDuration: "3s" }}
                     />
-
                     <motion.div
                       whileHover={{ scale: 1.3 }}
                       whileTap={{ scale: 0.9 }}
@@ -299,7 +281,6 @@ export default function FranchiseNetworkDesktop() {
                         className="drop-shadow-md"
                       />
                     </motion.div>
-
                     <div
                       className={clsx(
                         "absolute left-1/2 -translate-x-1/2 top-full mt-2.5 whitespace-nowrap px-2.5 py-1 rounded-[2px] text-[11px] font-black tracking-wide shadow-xl border transition-all duration-300 pointer-events-none z-50",
@@ -326,7 +307,6 @@ export default function FranchiseNetworkDesktop() {
                 );
               })}
             </div>
-
             <div className="relative z-20 mt-auto flex items-center justify-between text-[11px] font-bold tracking-wide text-gray-400 border-t border-gray-800/80 pt-4 bg-gradient-to-t from-[#070d1e] to-transparent">
               <span className="flex items-center gap-2">
                 <Navigation size={14} className="text-[#d4af37]" />
@@ -357,7 +337,6 @@ export default function FranchiseNetworkDesktop() {
                     EXISTING CITY
                   </span>
                 </div>
-
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -388,7 +367,6 @@ export default function FranchiseNetworkDesktop() {
                       )}
                     />
                   </button>
-
                   <AnimatePresence>
                     {isDropdownOpen && (
                       <motion.div
@@ -432,7 +410,6 @@ export default function FranchiseNetworkDesktop() {
                   </AnimatePresence>
                 </div>
               </motion.div>
-
               <motion.div
                 key={`opps-${activeCity.id}`}
                 initial={{ opacity: 0, y: 10 }}
@@ -451,7 +428,6 @@ export default function FranchiseNetworkDesktop() {
                     {activeCity.opportunities?.length || 0} CIRCLES OPEN
                   </span>
                 </div>
-
                 <div className="flex items-center justify-between px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-[#17274c] rounded-[4px] shadow-sm">
                   <span className="flex-1">CIRCLE NAME</span>
                   <span className="w-[150px] text-center">FORMAT</span>
@@ -459,7 +435,6 @@ export default function FranchiseNetworkDesktop() {
                     TERRITORY STATUS
                   </span>
                 </div>
-
                 <div className="flex flex-col max-h-[190px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gray-400 dark:hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
                   {activeCity.opportunities?.map((opp, idx) => {
                     return (
@@ -485,13 +460,11 @@ export default function FranchiseNetworkDesktop() {
                             </span>
                           )}
                         </div>
-
                         <div className="w-[150px] text-center px-1">
                           <span className="inline-block whitespace-nowrap px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest rounded-[2px] bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 max-w-full">
                             {opp.format}
                           </span>
                         </div>
-
                         <div className="w-[120px] flex justify-center px-1">
                           <motion.button
                             onClick={(e) => {

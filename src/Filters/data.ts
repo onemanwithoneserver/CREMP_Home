@@ -6,21 +6,18 @@ export interface MapPin {
   color: "purple" | "orange" | "blue" | "green" | "red";
   listingsCount?: number;
 }
-
 export interface PropertyTypeOption {
   id: string;
   name: string;
   iconName: string;
   color: string;
 }
-
 export interface IndustryOption {
   id: string;
   name: string;
   iconName: string;
   color: string;
 }
-
 export const CITIES = [
   "Hyderabad",
   "Bengaluru",
@@ -30,7 +27,6 @@ export const CITIES = [
   "Chennai",
   "Kolkata",
 ];
-
 export const COMMERCIAL_PROPERTY_TYPES: PropertyTypeOption[] = [
   {
     id: "commercial-plot",
@@ -63,7 +59,6 @@ export const COMMERCIAL_PROPERTY_TYPES: PropertyTypeOption[] = [
     color: "#2563eb",
   },
 ];
-
 export const BUSINESS_INDUSTRIES: IndustryOption[] = [
   {
     id: "food-beverage",
@@ -126,7 +121,6 @@ export const BUSINESS_INDUSTRIES: IndustryOption[] = [
     color: "#64748b",
   },
 ];
-
 export const COMMERCIAL_BUDGET_PRESETS = [
   { label: "Under 50L", min: 0, max: 50 },
   { label: "50L - 1Cr", min: 50, max: 100 },
@@ -134,7 +128,6 @@ export const COMMERCIAL_BUDGET_PRESETS = [
   { label: "3 - 5 Cr", min: 300, max: 500 },
   { label: "5 Cr+", min: 500, max: 1000 },
 ];
-
 export const BUSINESS_BUDGET_PRESETS = [
   { label: "Under ₹10 L", min: 0, max: 10 },
   { label: "₹10 L - ₹25 L", min: 10, max: 25 },
@@ -142,7 +135,6 @@ export const BUSINESS_BUDGET_PRESETS = [
   { label: "₹50 L - ₹1 Cr", min: 50, max: 100 },
   { label: "₹1 Cr+", min: 100, max: 500 },
 ];
-
 export const FIT_OUT_OPTIONS = [
   "Any",
   "Bare Shell",
@@ -150,23 +142,19 @@ export const FIT_OUT_OPTIONS = [
   "Semi-Fitted",
   "Fully Fitted",
 ];
-
 export const OCCUPANCY_OPTIONS = [
   "Any",
   "Pre-Leased",
   "Vacant",
   "Partial Occupied",
 ];
-
 export const CONSTRUCTION_STAGE_OPTIONS = [
   "Any",
   "Ready to Move",
   "Under Construction",
   "Planned",
 ];
-
 export const SIZE_UNITS = ["Sq Ft", "Sq Yds", "Acres"] as const;
-
 export const MAP_AREAS = [
   { name: "HITEC CITY", x: 18, y: 35 },
   { name: "GACHIBOWLI", x: 22, y: 55 },
@@ -177,7 +165,6 @@ export const MAP_AREAS = [
   { name: "KUKATPALLY", x: 72, y: 44 },
   { name: "LB NAGAR", x: 68, y: 80 },
 ];
-
 export const MAP_PINS: MapPin[] = [
   { id: "p1", name: "HITEC City Hub", x: 15, y: 43, color: "purple" },
   { id: "p2", name: "Knowledge City", x: 30, y: 44, color: "orange" },

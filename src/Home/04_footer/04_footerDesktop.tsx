@@ -1,14 +1,11 @@
 import { motion } from "framer-motion";
 import CrempTextLogo from "../../components/CrempTextLogo";
 import { footerLinks, socialLinks } from "./data";
-
 export default function Desktop(_props: { hideCTA?: boolean }) {
   const currentYear = new Date().getFullYear();
-
   return (
     <div className="w-full flex flex-col">
       {}
-
       <div className="w-full bg-white dark:bg-[#17274C] dark:border-white/10 py-4 px-4 flex flex-col items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-6">
@@ -20,7 +17,6 @@ export default function Desktop(_props: { hideCTA?: boolean }) {
               © {currentYear} CREMP. All rights reserved.
             </span>
           </div>
-
           <nav className="flex items-center gap-8">
             {footerLinks.map((link) => (
               <a
@@ -32,7 +28,6 @@ export default function Desktop(_props: { hideCTA?: boolean }) {
               </a>
             ))}
           </nav>
-
           <div className="flex items-center gap-3">
             {socialLinks.map((social) => (
               <motion.a

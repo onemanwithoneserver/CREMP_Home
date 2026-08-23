@@ -2,14 +2,12 @@ import { motion } from "framer-motion";
 import { MapPin, BadgeCheck, Sparkles, Building2 } from "lucide-react";
 import { heroData } from "./data";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Desktop() {
   return (
     <div className="relative w-full bg-[#0b1b42] text-white pt-6 pb-5 px-[var(--panel-px,1rem)] flex flex-col border-b border-[#d4af37]/20 shadow-lg overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent pointer-events-none" />
       <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -25,7 +23,6 @@ export default function Desktop() {
               <Sparkles size={11} className="text-[#d4af37]" />
               {heroData.badges[0] || "GRADE A"}
             </span>
-
             <div className="relative flex items-center">
               <select
                 defaultValue="Entire Building"
@@ -57,7 +54,6 @@ export default function Desktop() {
             </div>
           </motion.div>
         </div>
-
         <div className="flex justify-between items-end w-full gap-4 pt-1">
           <div className="flex flex-col gap-1.5 min-w-0">
             <motion.h1
@@ -66,7 +62,6 @@ export default function Desktop() {
             >
               {heroData.title}
             </motion.h1>
-
             <motion.div variants={fadeInUp} className="flex items-center gap-2">
               <div className="w-5 h-5 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/30 flex items-center justify-center shrink-0">
                 <MapPin size={12} className="text-[#d4af37]" />
@@ -76,7 +71,6 @@ export default function Desktop() {
               </span>
             </motion.div>
           </div>
-
           {heroData.verified && (
             <motion.div
               variants={fadeInUp}

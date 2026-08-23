@@ -1,5 +1,4 @@
 import { Compass, Layers, Maximize2, MoveHorizontal } from "lucide-react";
-
 export const heroData = {
   badges: ["COMMERCIAL", "CLEAR TITLE", "CORNER PLOT"],
   title: "Premium Commercial Land Plot",

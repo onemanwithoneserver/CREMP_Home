@@ -1,5 +1,4 @@
 import { Layers, Grid3X3, MapPin } from "lucide-react";
-
 export const spaceOverviewData = {
   title: "Plot Overview",
   tags: [

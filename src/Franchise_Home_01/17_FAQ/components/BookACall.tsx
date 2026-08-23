@@ -10,7 +10,6 @@ import {
   Headset,
 } from "lucide-react";
 import clsx from "clsx";
-
 const SCHEDULE_DATA = [
   {
     id: "date-0",
@@ -62,7 +61,6 @@ const SCHEDULE_DATA = [
     isPast: false,
   },
 ];
-
 export function BookACall() {
   const todayDateStr = new Date().toLocaleDateString("en-US", {
     month: "short",
@@ -72,23 +70,18 @@ export function BookACall() {
     SCHEDULE_DATA.find((d) => d.date === todayDateStr) ||
     SCHEDULE_DATA.find((d) => !d.isPast && d.slots.length > 0) ||
     SCHEDULE_DATA[1];
-
   const [selectedDateId, setSelectedDateId] = useState<string>(defaultDate.id);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [bookingState, setBookingState] = useState<
     "idle" | "booking" | "success"
   >("idle");
-
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-
   const selectedDateObj = SCHEDULE_DATA.find((d) => d.id === selectedDateId);
-
   useEffect(() => {
     setSelectedSlot(null);
   }, [selectedDateId]);
-
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
@@ -96,21 +89,17 @@ export function BookACall() {
       setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth - 5);
     }
   };
-
   useEffect(() => {
     checkScroll();
     window.addEventListener("resize", checkScroll);
     setTimeout(checkScroll, 100);
     return () => window.removeEventListener("resize", checkScroll);
   }, []);
-
   const handleBook = () => {
     if (selectedSlot) {
       setBookingState("booking");
-
       setTimeout(() => {
         setBookingState("success");
-
         setTimeout(() => {
           setBookingState("idle");
           setSelectedSlot(null);
@@ -118,7 +107,6 @@ export function BookACall() {
       }, 1500);
     }
   };
-
   const scrollDates = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const scrollAmount = 140;
@@ -128,7 +116,6 @@ export function BookACall() {
       });
     }
   };
-
   return (
     <div className="w-full relative flex flex-col p-4 sm:p-5 bg-white/40 dark:bg-[#0b1b42]/30 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-[8px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden transition-all duration-500 min-h-[320px] justify-center group/container">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[8px] z-0">
@@ -143,9 +130,7 @@ export function BookACall() {
           className="absolute -bottom-10 -left-10 w-56 h-56 bg-[#d4af37]/20 dark:bg-[#d4af37]/15 rounded-full blur-[60px] mix-blend-multiply dark:mix-blend-screen"
         />
       </div>
-
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent z-10" />
-
       <div className="flex flex-col gap-1 relative z-10 w-full">
         <div className="flex flex-col items-center justify-center text-center gap-2 w-full">
           <div className="relative flex items-center justify-center mt-1 mb-1">
@@ -183,7 +168,6 @@ export function BookACall() {
               </motion.div>
             </div>
           </div>
-
           <div className="flex flex-col gap-1">
             <h3 className="text-[20px] sm:text-[24px] font-black text-gray-900 dark:text-white tracking-tight leading-tight">
               Let's get to know{" "}
@@ -197,7 +181,6 @@ export function BookACall() {
             </p>
           </div>
         </div>
-
         <div className="flex flex-col gap-3 border-t border-gray-200/60 dark:border-white/10 pt-3 mt-1">
           <div className="flex flex-col gap-1.5 relative">
             <div className="flex justify-between items-center px-1">
@@ -205,7 +188,6 @@ export function BookACall() {
                 Available Dates
               </span>
             </div>
-
             <AnimatePresence>
               {canScrollLeft && (
                 <motion.button
@@ -219,7 +201,6 @@ export function BookACall() {
                 </motion.button>
               )}
             </AnimatePresence>
-
             <AnimatePresence>
               {canScrollRight && (
                 <motion.button
@@ -233,7 +214,6 @@ export function BookACall() {
                 </motion.button>
               )}
             </AnimatePresence>
-
             <div
               ref={scrollRef}
               onScroll={checkScroll}
@@ -244,7 +224,6 @@ export function BookACall() {
                 const isPast = item.isPast;
                 const hasSlots = item.slots.length > 0;
                 const isDisabled = isPast || !hasSlots;
-
                 return (
                   <button
                     key={item.id}
@@ -282,7 +261,6 @@ export function BookACall() {
                     >
                       {item.date.split(" ")[1]}
                     </span>
-
                     {isDisabled && (
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <div className="h-[1.5px] w-8 bg-gray-400/80 dark:bg-gray-500/80 rotate-45 rounded-full" />
@@ -293,7 +271,6 @@ export function BookACall() {
               })}
             </div>
           </div>
-
           <div className="flex flex-col gap-2 min-h-[90px] bg-white/30 dark:bg-black/20 backdrop-blur-md rounded-[8px] p-3 border border-white/50 dark:border-white/5 shadow-inner">
             <div className="flex justify-between items-end px-1">
               <span className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
@@ -303,7 +280,6 @@ export function BookACall() {
                 {selectedDateObj?.date}
               </span>
             </div>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedDateId}
@@ -363,7 +339,6 @@ export function BookACall() {
             </AnimatePresence>
           </div>
         </div>
-
         <div className="flex justify-center w-full mt-0 pt-0">
           <button
             onClick={handleBook}
@@ -390,7 +365,6 @@ export function BookACall() {
           </button>
         </div>
       </div>
-
       <AnimatePresence>
         {bookingState !== "idle" && (
           <motion.div
@@ -432,7 +406,6 @@ export function BookACall() {
                 </span>
               </motion.div>
             )}
-
             {bookingState === "success" && (
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -450,7 +423,6 @@ export function BookACall() {
                     <div className="absolute top-0 inset-x-0 h-[1px] bg-white/40" />
                     <CheckCircle2 size={32} strokeWidth={2.5} />
                   </motion.div>
-
                   <motion.div
                     animate={{
                       y: [-10, -20],
@@ -474,7 +446,6 @@ export function BookACall() {
                     <Sparkles size={12} fill="currentColor" />
                   </motion.div>
                 </div>
-
                 <div className="flex flex-col gap-1 items-center">
                   <h4 className="text-[18px] font-black text-gray-900 dark:text-white tracking-tight leading-none">
                     Booking Confirmed!

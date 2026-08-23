@@ -1,6 +1,5 @@
 import DesktopBuyersAndSellersProfile from "./DesktopBuyersAndSellersProfile";
 import MobileBuyersAndSellersProfile from "./MobileBuyersAndSellersProfile";
-
 export default function BuyersAndSellersProfile({
   isMobile,
 }: {

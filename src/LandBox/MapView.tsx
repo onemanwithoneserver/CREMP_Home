@@ -1,5 +1,4 @@
 import { Map } from "lucide-react";
-
 export default function MapView() {
   return (
     <div className="w-full h-full bg-gray-50 relative overflow-hidden flex items-center justify-center">

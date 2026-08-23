@@ -3,7 +3,6 @@ import { Building2 } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 import { spaceOverviewData } from "./data";
 import { fadeInUp, staggerContainer } from "../components/animations";
-
 export default function Desktop() {
   return (
     <motion.div
@@ -22,7 +21,6 @@ export default function Desktop() {
           title={spaceOverviewData.title}
           icon={Building2}
         />
-
         <div className="px-[var(--panel-px,1rem)] mt-4">
           <div className="grid grid-cols-2 gap-2.5">
             {spaceOverviewData.specs.map((item, idx) => {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, CheckCircle2, Loader2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import mobileBg from "../assets/mobileBg.jpg";
-
 const countryCodes = [
   { code: "+91", flag: "IN", country: "India" },
   { code: "+1", flag: "US", country: "USA" },
@@ -10,7 +9,6 @@ const countryCodes = [
   { code: "+971", flag: "AE", country: "UAE" },
   { code: "+65", flag: "SG", country: "Singapore" },
 ];
-
 export default function LoginMobile() {
   const [loginMethod, setLoginMethod] = useState<"email" | "phone">("phone");
   const [formData, setFormData] = useState({
@@ -21,15 +19,12 @@ export default function LoginMobile() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
-
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -40,7 +35,6 @@ export default function LoginMobile() {
       });
     }
   };
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (loginMethod === "email") {
@@ -54,22 +48,18 @@ export default function LoginMobile() {
       if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
       else if (formData.phone.length < 10) newErrors.phone = "Enter a valid 10-digit number";
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
     }, 2000);
   };
-
   return (
     <div className="min-h-screen flex flex-col font-sans relative overflow-hidden transition-colors duration-300">
       <div
@@ -100,7 +90,6 @@ export default function LoginMobile() {
             className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
             style={{ animation: "shimmer 3s linear infinite" }}
           />
-
           <AnimatePresence mode="wait">
             {isSuccess ? (
               <motion.div
@@ -139,7 +128,6 @@ export default function LoginMobile() {
                     Sign in to your account to continue
                   </p>
                 </div>
-
                 <div className="w-[85%] mx-auto flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-4 border border-gray-200/50 dark:border-transparent">
                   <button
                     onClick={() => {
@@ -170,7 +158,6 @@ export default function LoginMobile() {
                     Phone & OTP
                   </button>
                 </div>
-
                 <form className="w-[85%] mx-auto space-y-3" onSubmit={handleSubmit} noValidate>
                   <AnimatePresence mode="wait">
                     {loginMethod === "email" ? (
@@ -333,7 +320,6 @@ export default function LoginMobile() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-
                   <div className="flex items-center justify-between pt-1">
                     <label className="flex items-center gap-1.5 cursor-pointer group">
                       <div className="relative w-3.5 h-3.5 rounded-[3px] border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#121c33] group-hover:border-[#d4af37] transition-colors flex items-center justify-center">
@@ -356,7 +342,6 @@ export default function LoginMobile() {
                       Forgot Password?
                     </a>
                   </div>
-
                   <motion.div className="flex justify-center pt-1">
                     <button 
                       type="submit"
@@ -381,7 +366,6 @@ export default function LoginMobile() {
                     </button>
                   </motion.div>
                 </form>
-
                 <div className="relative mt-5 mb-5 w-[85%] mx-auto">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
@@ -392,7 +376,6 @@ export default function LoginMobile() {
                     </span>
                   </div>
                 </div>
-
                 <div className="grid grid-cols-3 gap-2 w-[85%] mx-auto">
                   <button className="flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white">
                     <svg
@@ -440,7 +423,6 @@ export default function LoginMobile() {
                     Apple
                   </button>
                 </div>
-
                 <p className="text-center mt-5 mb-1 text-[12px] font-medium text-gray-500 dark:text-gray-400">
                   Don't have an account?{" "}
                   <a

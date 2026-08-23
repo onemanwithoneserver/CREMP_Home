@@ -10,7 +10,6 @@ import {
   Truck,
   Users,
 } from "lucide-react";
-
 export const fullCycleSupportData = {
   sectionLabel: "SUPPORT SESSIONS",
   title: "Full-cycle partner support — from Day 0 to Daily Operations",

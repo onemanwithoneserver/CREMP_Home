@@ -5,7 +5,6 @@ import { HelpCircle, Minus, Plus } from "lucide-react";
 import { faqData } from "./data";
 import { SectionHeader } from "../components/SectionHeader";
 import { BookACall } from "./components/BookACall";
-
 const pulseGlow: Variants = {
   animate: {
     scale: [1, 1.05, 1],
@@ -13,13 +12,11 @@ const pulseGlow: Variants = {
     transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
   },
 };
-
 export default function FAQDesktop() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [expandedId, setExpandedId] = useState<string | null>(
     faqData.questions[0].id,
   );
-
   const filteredQuestions = useMemo(() => {
     if (!searchQuery.trim()) return faqData.questions;
     const q = searchQuery.toLowerCase();
@@ -31,7 +28,6 @@ export default function FAQDesktop() {
       );
     });
   }, [searchQuery]);
-
   return (
     <section className="w-full py-16 pb-20 px-6 relative overflow-hidden rounded-[8px] bg-white/40 ">
       <motion.div
@@ -44,7 +40,6 @@ export default function FAQDesktop() {
         animate="animate"
         className="pointer-events-none absolute bottom-[15%] left-[5%] w-[500px] h-[500px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
       />
-
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-12 relative z-10">
         <div className="w-full lg:w-[440px] shrink-0 sticky top-24 self-start flex flex-col gap-6">
           <div>
@@ -54,10 +49,8 @@ export default function FAQDesktop() {
               align="left"
             />
           </div>
-
           <BookACall />
         </div>
-
         <div className="flex-1 w-full min-w-0 flex flex-col gap-4">
           <motion.div layout className="flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
@@ -90,7 +83,6 @@ export default function FAQDesktop() {
               ) : (
                 filteredQuestions.map((q, index) => {
                   const isExpanded = expandedId === q.id;
-
                   return (
                     <motion.div
                       layout
@@ -116,7 +108,6 @@ export default function FAQDesktop() {
                           isExpanded ? "opacity-100" : "opacity-0",
                         )}
                       />
-
                       <button
                         onClick={() => setExpandedId(isExpanded ? null : q.id)}
                         className="w-full flex items-start justify-between px-5 pt-3 pb-1  text-left relative z-10 gap-4"
@@ -133,7 +124,6 @@ export default function FAQDesktop() {
                             {q.question}
                           </h4>
                         </div>
-
                         <motion.div
                           animate={{ rotate: isExpanded ? 180 : 0 }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -151,7 +141,6 @@ export default function FAQDesktop() {
                           )}
                         </motion.div>
                       </button>
-
                       <AnimatePresence initial={false}>
                         {isExpanded && (
                           <motion.div

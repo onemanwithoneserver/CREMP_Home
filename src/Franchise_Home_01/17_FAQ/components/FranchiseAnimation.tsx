@@ -10,18 +10,15 @@ import {
   Activity,
   Cpu,
 } from "lucide-react";
-
 export function FranchiseAnimation() {
   const [activeNode, setActiveNode] = useState<number>(0);
   const [tick, setTick] = useState<number>(0);
-
   useEffect(() => {
     const timer = setInterval(() => {
       setTick((prev) => (prev + 1) % 100);
     }, 120);
     return () => clearInterval(timer);
   }, []);
-
   const orbitingSatellites = [
     {
       id: 0,
@@ -64,14 +61,12 @@ export function FranchiseAnimation() {
       angle: 270,
     },
   ];
-
   return (
     <div className="w-full relative rounded-[4px] overflow-hidden bg-gradient-to-br from-[#070d1e] via-[#0a142c] to-[#040813] border border-gray-800/90 shadow-2xl p-6 flex flex-col justify-between select-none group">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#d4af37]/10 rounded-full blur-[100px]" />
         <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-blue-500/10 rounded-full blur-[80px]" />
         <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-emerald-500/10 rounded-full blur-[80px]" />
-
         <div
           className="absolute inset-0 opacity-[0.07] mix-blend-overlay"
           style={{
@@ -82,7 +77,6 @@ export function FranchiseAnimation() {
           }}
         />
       </div>
-
       <div className="relative z-10 flex items-center justify-between border-b border-gray-800/80 pb-3 mb-2">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -95,7 +89,6 @@ export function FranchiseAnimation() {
           <span>v4.2 PRO ENGINE</span>
         </div>
       </div>
-
       <div className="relative w-full h-[320px] flex items-center justify-center my-2">
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -111,7 +104,6 @@ export function FranchiseAnimation() {
               <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
             </linearGradient>
           </defs>
-
           <circle
             cx="160"
             cy="160"
@@ -150,7 +142,6 @@ export function FranchiseAnimation() {
             strokeWidth="1.5"
             opacity="0.6"
           />
-
           <line
             x1="160"
             y1="10"
@@ -171,7 +162,6 @@ export function FranchiseAnimation() {
             strokeDasharray="2 4"
             opacity="0.3"
           />
-
           <g className="origin-[160px_160px] animate-spin-slow">
             <path
               d="M 160 160 L 300 160 A 140 140 0 0 0 258 62 Z"
@@ -189,7 +179,6 @@ export function FranchiseAnimation() {
             />
           </g>
         </svg>
-
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
@@ -198,7 +187,6 @@ export function FranchiseAnimation() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#d4af37] shadow-[0_0_12px_#d4af37]" />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_#60a5fa]" />
         </motion.div>
-
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -207,14 +195,12 @@ export function FranchiseAnimation() {
           <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
           <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]" />
         </motion.div>
-
         <motion.div
           whileHover={{ scale: 1.08 }}
           className="relative z-20 w-24 h-24 rounded-full bg-gradient-to-tr from-[#0a1128] via-[#16254c] to-[#0a1128] border-2 border-[#d4af37] shadow-[0_0_40px_rgba(212,175,55,0.4)] flex flex-col items-center justify-center cursor-pointer group/core"
         >
           <div className="absolute -inset-2 rounded-full border border-[#d4af37]/40 animate-ping pointer-events-none" />
           <div className="absolute -inset-4 rounded-full border border-[#d4af37]/20 pointer-events-none" />
-
           <Coffee
             size={28}
             className="text-[#d4af37] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] group-hover/core:scale-110 transition-transform"
@@ -224,18 +210,15 @@ export function FranchiseAnimation() {
           </span>
           <span className="text-[7px] text-[#d4af37] font-bold">HUB 360°</span>
         </motion.div>
-
         {orbitingSatellites.map((node, i) => {
           const isSelected = activeNode === node.id;
           const Icon = node.icon;
-
           const positions = [
             "top-2 left-2",
             "top-2 right-2",
             "bottom-2 left-2",
             "bottom-2 right-2",
           ];
-
           return (
             <motion.div
               key={node.id}
@@ -269,7 +252,6 @@ export function FranchiseAnimation() {
           );
         })}
       </div>
-
       <div className="relative z-10 bg-gray-950/70 border border-gray-800/80 rounded-[4px] p-3 flex flex-col gap-2 mt-1">
         <div className="flex items-center justify-between text-[10px] text-gray-400">
           <span className="flex items-center gap-1.5 text-gray-300 font-bold">
@@ -278,12 +260,10 @@ export function FranchiseAnimation() {
           </span>
           <span className="text-emerald-400 font-bold">99.8% EFFICIENCY</span>
         </div>
-
         <div className="flex items-end gap-1 h-7 w-full overflow-hidden px-1">
           {Array.from({ length: 24 }).map((_, barIdx) => {
             const heightFactor = Math.sin((tick + barIdx * 4) * 0.2) * 45 + 50;
             const isGold = barIdx % 3 === 0;
-
             return (
               <motion.div
                 key={barIdx}
@@ -295,7 +275,6 @@ export function FranchiseAnimation() {
             );
           })}
         </div>
-
         <div className="text-[10px] text-gray-400 flex items-center justify-between border-t border-gray-800/60 pt-1.5">
           <span className="truncate flex items-center gap-1">
             <Sparkles size={10} className="text-[#d4af37]" />
