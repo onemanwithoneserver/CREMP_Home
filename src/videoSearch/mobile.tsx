@@ -256,6 +256,7 @@ export default function VideoSearchMobile() {
         <OpenVideo 
           initialVideoId={selectedVideoId} 
           onClose={() => setSelectedVideoId(null)} 
+          isMobile={true}
         />
       )}
     </div>

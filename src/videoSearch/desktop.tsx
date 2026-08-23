@@ -249,6 +249,7 @@ export default function VideoSearchDesktop() {
         <OpenVideo 
           initialVideoId={selectedVideoId} 
           onClose={() => setSelectedVideoId(null)} 
+          isMobile={false}
         />
       )}
     </section>
