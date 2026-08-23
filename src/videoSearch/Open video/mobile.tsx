@@ -132,28 +132,25 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           {!isClearScreen && (
             <>
               <button className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all">
-                <div className="w-11 h-11 rounded-[8px] bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:border-[#d4af37]/50 active:bg-white active:text-[#d4af37] active:-translate-y-1 transition-all">
-                  <Share2 className="w-5 h-5" />
-                </div>
+                <Share2 className="w-6 h-6 text-[#0a1128] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]" />
                 <span className="text-[#0a1128] text-[10px] font-bold drop-shadow-sm tracking-widest uppercase">Share</span>
               </button>
               <button onClick={() => setIsSaved(!isSaved)} className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all">
-                <div className={`w-11 h-11 rounded-[8px] backdrop-blur-2xl border flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:-translate-y-1 transition-all ${isSaved ? 'bg-[#0a1128]/95 border-[#d4af37]/50 text-[#d4af37]' : 'bg-white/70 border-white text-[#0a1128] active:border-[#d4af37]/50 active:bg-white active:text-[#d4af37]'}`}>
-                  <Bookmark className="w-5 h-5" fill={isSaved ? "currentColor" : "none"} />
-                </div>
+                <Bookmark className={`w-6 h-6 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-colors ${isSaved ? 'text-[#d4af37]' : 'text-[#0a1128]'}`} fill={isSaved ? "currentColor" : "none"} />
                 <span className={`text-[10px] font-bold drop-shadow-sm tracking-widest uppercase transition-colors ${isSaved ? 'text-[#d4af37]' : 'text-[#0a1128]'}`}>{isSaved ? 'Saved' : 'Save'}</span>
-              </button>
-              <button className="w-11 h-11 rounded-[8px] bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-gray-700 pointer-events-auto active:scale-90 active:bg-white transition-all mt-1">
-                <MoreVertical className="w-5 h-5" />
               </button>
             </>
           )}
-          {/* Clear Screen Button (Square) */}
+          {/* Clear Screen Button (Bare Icon) */}
           <button
             onClick={() => setIsClearScreen(!isClearScreen)}
-            className="w-11 h-11 rounded-[8px] bg-white/70 backdrop-blur-2xl flex items-center justify-center text-[#0a1128] pointer-events-auto active:scale-90 active:bg-white transition-all overflow-hidden border border-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] mt-1"
+            className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all mt-2"
           >
-            {isClearScreen ? <Minimize2 className="w-5 h-5 text-[#d4af37]" /> : <Maximize2 className="w-5 h-5 text-[#d4af37]" />}
+            {isClearScreen ? (
+              <Minimize2 className="w-6 h-6 text-[#0a1128] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]" />
+            ) : (
+              <Maximize2 className="w-6 h-6 text-[#0a1128] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]" />
+            )}
           </button>
         </div>
 

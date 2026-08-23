@@ -13,10 +13,11 @@ export const navLinks: NavItem[] = [
     ]
   },
   { label: "Business Opportunity", href: "#" },
-  { label: "Video search", href: "#" },
+  { label: "Hire Broker", href: "#" },
   { 
     label: "Collections", 
     subItems: [
+      { label: "Video search", href: "#" },
       { label: "Saved Properties", href: "#" },
       { label: "Hand Picked", href: "#" }
     ]
