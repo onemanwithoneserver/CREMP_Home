@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "lucide-react";
+import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw, ChevronDown } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 
 const ITEMS_PER_PAGE = 8;
@@ -133,6 +133,18 @@ export default function VideoSearchMobile() {
             {cat}
           </button>
         ))}
+
+        <div className="ml-auto flex items-center gap-2 pl-3 border-l border-gray-200 dark:border-gray-700 shrink-0 relative">
+          <span className="text-[8px] uppercase tracking-widest font-bold text-gray-400">Sort:</span>
+          <select className="bg-transparent text-[9px] font-bold text-[#0a1128] dark:text-white focus:outline-none cursor-pointer uppercase tracking-wider appearance-none pr-4 relative z-10">
+            <option value="latest">Latest</option>
+            <option value="popular">Popular</option>
+            <option value="oldest">Oldest</option>
+          </select>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 z-0">
+            <ChevronDown size={10} strokeWidth={3} />
+          </div>
+        </div>
       </div>
 
       <div className="px-3 py-3 relative z-10">

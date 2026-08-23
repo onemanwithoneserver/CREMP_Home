@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw } from "lucide-react";
+import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, ChevronDown } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 
 const ITEMS_PER_PAGE = 10;
@@ -63,7 +63,7 @@ export default function VideoSearchDesktop() {
   };
 
   return (
-    <section className="w-full px-6 py-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#0b1b42] min-h-screen font-sans">
+    <section className="w-full px-6 pt-32 pb-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#0b1b42] min-h-screen font-sans">
       <motion.div
         variants={pulseGlow}
         animate="animate"
@@ -119,6 +119,18 @@ export default function VideoSearchDesktop() {
                 {cat}
               </button>
             ))}
+
+            <div className="relative ml-auto flex items-center gap-2 bg-white dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 rounded-[4px] px-3 py-1.5 shadow-sm">
+              <span className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Sort by:</span>
+              <select className="bg-transparent text-[10px] font-bold text-[#0a1128] dark:text-white focus:outline-none cursor-pointer uppercase tracking-wider appearance-none pr-4 relative z-10">
+                <option value="latest">Latest</option>
+                <option value="popular">Popular</option>
+                <option value="oldest">Oldest</option>
+              </select>
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 z-0">
+                <ChevronDown size={12} strokeWidth={3} />
+              </div>
+            </div>
           </div>
         </motion.div>
 
