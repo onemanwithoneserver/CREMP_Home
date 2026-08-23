@@ -22,8 +22,8 @@ export default function Mobile() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 z-50 flex w-full flex-col gap-2 px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${
         scrolled
-          ? "bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#17274C]/85 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-          : "bg-white dark:bg-[#17274C] border-b border-transparent"
+          ? "bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0b1b42]/85 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          : "bg-white dark:bg-[#0b1b42] border-b border-transparent"
       }`}
     >
       <div className="flex w-full items-center justify-between">
@@ -88,7 +88,7 @@ export default function Mobile() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.35 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative flex items-center justify-center gap-1.5 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-3.5 py-1.5 text-xs font-semibold text-black transition-all active:shadow-lg duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
+            className="group relative flex items-center justify-center gap-1.5 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] px-3.5 py-1.5 text-xs font-semibold text-black transition-all active:shadow-lg duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 ease-out group-active:translate-x-full" />
             <span className="relative">Get Started</span>

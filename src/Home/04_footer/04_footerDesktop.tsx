@@ -6,7 +6,7 @@ export default function Desktop(_props: { hideCTA?: boolean }) {
   return (
     <div className="w-full flex flex-col">
       {}
-      <div className="w-full bg-white dark:bg-[#17274C] dark:border-white/10 py-4 px-4 flex flex-col items-center">
+      <div className="w-full bg-white dark:bg-[#0b1b42] dark:border-white/10 py-4 px-4 flex flex-col items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-6">
             <div className="flex items-center">

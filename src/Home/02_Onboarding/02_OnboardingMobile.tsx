@@ -63,7 +63,7 @@ const getTheme = (id: string) => {
         activeText: "text-white dark:text-white",
         activeGlow:
           "shadow-[0_0_15px_rgba(178,127,28,0.2)] dark:shadow-[0_0_15px_rgba(246,178,59,0.5)]",
-        bgPing: "bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B]",
+        bgPing: "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]",
       };
   }
 };
@@ -112,8 +112,8 @@ export default function Mobile() {
     return () => clearInterval(interval);
   }, [allStakeholders]);
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#17274C] px-5 pb-10 pt-20 text-[#0a1128] dark:text-white">
-      <div className="absolute inset-0 bg-gray-50 dark:bg-[#17274C] z-0" />
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 dark:bg-[#0b1b42] px-5 pb-10 pt-20 text-[#0a1128] dark:text-white">
+      <div className="absolute inset-0 bg-gray-50 dark:bg-[#0b1b42] z-0" />
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -131,7 +131,7 @@ export default function Mobile() {
         animate={{ scale: 1, opacity: 0.15 }}
         transition={{ duration: 2, ease: "easeOut" }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#17274C]/90 dark:via-[#17274C]/95 dark:to-[#17274C] pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-50/90 via-gray-50/95 to-gray-50 dark:from-[#0b1b42]/90 dark:via-[#0b1b42]/95 dark:to-[#0b1b42] pointer-events-none" />
       <div className="relative z-10 flex w-full flex-col gap-8">
         <div className="flex flex-col z-10">
           <InlineAnnouncement
@@ -191,7 +191,7 @@ export default function Mobile() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.4 }}
           viewport={{ once: false, margin: "-20px" }}
-          className="relative mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#121c33]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+          className="relative mt-4 overflow-hidden rounded-[8px] border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-[#121c33]/95 shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-xl"
         >
           <div
             className="absolute inset-0 z-0 opacity-30 dark:opacity-20"
@@ -234,10 +234,10 @@ export default function Mobile() {
                 viewport={{ once: false }}
                 className="absolute inset-[24%] rounded-full border border-[#121c33] dark:border-gray-600/50"
               >
-                <div className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
-                <div className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
-                <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
-                <div className="absolute right-0 top-1/2 h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_10px_#D4AF37]" />
+                <div className="absolute right-0 top-1/2 h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_10px_#D4AF37]" />
               </motion.div>
               <motion.div
                 initial={{ scale: 0 }}
@@ -356,7 +356,7 @@ export default function Mobile() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ ...springAnim, delay: 0.5 }}
           viewport={{ once: false }}
-          className="mt-2 flex flex-col gap-4 rounded-xl border border-gray-800 bg-[#121c33] p-5 shadow-lg"
+          className="mt-2 flex flex-col gap-4 rounded-[8px] border border-gray-800 bg-[#121c33] p-5 shadow-lg"
         >
           <div className="text-center text-xs font-bold uppercase tracking-wider text-gray-200">
             Founding Vendor Benefits

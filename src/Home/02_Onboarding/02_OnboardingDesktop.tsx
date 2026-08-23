@@ -62,7 +62,7 @@ const getTheme = (id: string) => {
         activeText: "text-white dark:text-white",
         activeGlow:
           "shadow-[0_0_30px_rgba(178,127,28,0.2)] dark:shadow-[0_0_30px_rgba(246,178,59,0.5)]",
-        bgPing: "bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B]",
+        bgPing: "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]",
       };
   }
 };
@@ -120,7 +120,7 @@ export default function Desktop() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-8 pt-28 text-[#0a1128] dark:bg-[#17274C] dark:text-white lg:pt-28 xl:pt-32"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-8 pt-28 text-[#0a1128] dark:bg-[#0b1b42] dark:text-white lg:pt-28 xl:pt-32"
     >
       <motion.div
         animate={{ rotate: 360 }}
@@ -153,7 +153,7 @@ export default function Desktop() {
           }}
         />
       </motion.div>
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#17274C] dark:via-[#17274C]/95 lg:via-gray-50/80 dark:lg:via-[#17274C]/80" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#0b1b42] dark:via-[#0b1b42]/95 lg:via-gray-50/80 dark:lg:via-[#0b1b42]/80" />
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
           <div className="z-10 flex w-full flex-col lg:w-[50%] xl:w-[55%]">
@@ -231,10 +231,10 @@ export default function Desktop() {
                 viewport={{ once: false }}
                 className="absolute inset-[18%] rounded-full border border-[#121c33]"
               >
-                <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
-                <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
-                <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
-                <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
+                <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
               </motion.div>
               <motion.div
                 initial={{ scale: 0 }}
@@ -338,7 +338,7 @@ export default function Desktop() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.6 }}
             viewport={{ once: false }}
-            className="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-800 bg-[#121c33] px-6 py-4 shadow-lg lg:flex-row"
+            className="flex flex-col items-center justify-between gap-4 rounded-[8px] border border-gray-800 bg-[#121c33] px-6 py-4 shadow-lg lg:flex-row"
           >
             <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-gray-200">
               Founding Vendor Benefits

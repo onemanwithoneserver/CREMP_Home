@@ -63,7 +63,7 @@ export default function Mobile() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 flex w-fit items-center justify-center gap-2 self-center rounded-full border border-[#D4AF37]/30 bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] dark:shadow-[0_0_15px_rgba(246,178,59,0.15)]"
+          className="mb-8 flex w-fit items-center justify-center gap-2 self-center rounded-[8px] border border-[#D4AF37]/30 bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-md dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/10 dark:text-[#D4AF37] dark:shadow-[0_0_15px_rgba(246,178,59,0.15)]"
         >
           <span>For Every Stakeholder</span>
         </motion.div>
@@ -166,7 +166,7 @@ export default function Mobile() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: idx * 0.1 }}
-                className={`overflow-hidden rounded-3xl border transition-all duration-300 ${
+                className={`overflow-hidden rounded-[8px] border transition-all duration-300 ${
                   isOpen
                     ? "border-[#D4AF37]/40 bg-white/90 shadow-[0_15px_40px_rgba(178,127,28,0.1)] backdrop-blur-xl dark:border-[#D4AF37]/40 dark:bg-[#0a0f25]/90 dark:shadow-[0_15px_40px_rgba(246,178,59,0.15)]"
                     : "border-gray-200 bg-white/60 shadow-sm hover:border-[#D4AF37]/20 dark:border-gray-800/60 dark:bg-[#0a0f25]/40 dark:hover:border-[#D4AF37]/20"
@@ -184,7 +184,7 @@ export default function Mobile() {
                       transition={{ duration: 0.3 }}
                       className={`flex h-12 w-12 items-center justify-center rounded-[4px] transition-colors duration-300 ${
                         isOpen
-                          ? "bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] text-white shadow-lg dark:bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] dark:text-[#0a1128]"
+                          ? "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-lg dark:bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] dark:text-[#0a1128]"
                           : "bg-gray-100 text-[#D4AF37] dark:bg-gray-800/80 dark:text-[#D4AF37]"
                       }`}
                     >
@@ -236,7 +236,7 @@ export default function Mobile() {
                           {stakeholder.features.map((feature, fIdx) => (
                             <div
                               key={fIdx}
-                              className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-gray-50/80 p-4 text-center shadow-sm transition-colors hover:border-[#D4AF37]/20 dark:border-gray-800/60 dark:bg-[#0b1b42]/60 dark:hover:border-[#D4AF37]/20 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                              className="group flex flex-col items-center gap-2 rounded-[8px] border border-gray-100 bg-gray-50/80 p-4 text-center shadow-sm transition-colors hover:border-[#D4AF37]/20 dark:border-gray-800/60 dark:bg-[#0b1b42]/60 dark:hover:border-[#D4AF37]/20 transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                             >
                               <motion.div
                                 initial={{ scale: 1, rotate: 0 }}
@@ -267,7 +267,7 @@ export default function Mobile() {
                               repeat: Infinity,
                               ease: "easeInOut",
                             }}
-                            className="relative flex h-36 w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#D4AF37]/5 to-transparent dark:from-[#D4AF37]/5"
+                            className="relative flex h-36 w-full items-center justify-center overflow-hidden rounded-[8px] bg-gradient-to-b from-[#D4AF37]/5 to-transparent dark:from-[#D4AF37]/5"
                           >
                             <img
                               src={stakeholderGraphic}
@@ -280,7 +280,7 @@ export default function Mobile() {
                           {stakeholder.stats?.map((stat, sIdx) => (
                             <div
                               key={sIdx}
-                              className="flex flex-1 flex-col items-center justify-center rounded-xl border border-gray-100 bg-white py-3 shadow-sm dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
+                              className="flex flex-1 flex-col items-center justify-center rounded-[8px] border border-gray-100 bg-white py-3 shadow-sm dark:border-gray-800 dark:bg-[#121c33] transition-all duration-300 hover:shadow-lg hover:border-[#D4AF37]/50"
                             >
                               <stat.icon
                                 className="mb-1 h-4 w-4 text-[#D4AF37] dark:text-[#D4AF37]"
@@ -295,8 +295,8 @@ export default function Mobile() {
                             </div>
                           ))}
                         </div>
-                        <button className="group relative flex w-full items-center justify-between overflow-hidden rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#b38728] p-3 text-[#0a1128] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
+                        <button className="group relative flex w-full items-center justify-between overflow-hidden rounded-[8px] bg-gradient-to-r from-[#D4AF37] to-[#b38728] p-3 text-[#0a1128] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-white/20 backdrop-blur-sm">
                             <Sparkles className="h-5 w-5" />
                           </div>
                           <span className="text-[15px] font-bold">

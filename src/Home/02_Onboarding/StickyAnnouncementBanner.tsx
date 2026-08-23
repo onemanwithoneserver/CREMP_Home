@@ -59,7 +59,7 @@ export const InlineAnnouncement = forwardRef<
       initial={{ opacity: 0, y: 15, scale: 0.95 }}
       animate={{ opacity: hiddenVisually ? 0 : 1, y: 0, scale: 1 }}
       transition={springAnim}
-      className="mb-4 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#D4AF37]/20 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#D4AF37]/20 dark:from-[#D4AF37]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
+      className="mb-4 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-[8px] border border-[#D4AF37]/20 bg-gradient-to-r from-[#D4AF37]/10 to-transparent px-3 py-1.5 text-xs shadow-[0_0_15px_rgba(178,127,28,0.1)] backdrop-blur-md sm:gap-3 sm:px-4 sm:text-sm dark:border-[#D4AF37]/20 dark:from-[#D4AF37]/10 dark:shadow-[0_0_15px_rgba(246,178,59,0.1)]"
     >
       <DesktopAnnouncementContent />
     </motion.div>
@@ -93,7 +93,7 @@ export default function HeaderStickyBanner({
           <div
             className={`
                             flex items-center justify-center whitespace-nowrap
-                            rounded-full border border-[#D4AF37]/20
+                            rounded-[8px] border border-[#D4AF37]/20
                             bg-gradient-to-r from-[#D4AF37]/10 to-transparent
                             backdrop-blur-md
                             shadow-[0_0_15px_rgba(178,127,28,0.1)]

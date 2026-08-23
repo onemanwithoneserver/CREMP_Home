@@ -45,7 +45,7 @@ const b1Themes = [
     mainShadow:
       "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
     iconWrapper:
-      "bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#17274C]",
+      "bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#0b1b42]",
     titleText: "text-blue-950 dark:text-white",
     titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
     subtitle: "text-blue-600 dark:text-blue-400",
@@ -54,11 +54,11 @@ const b1Themes = [
     featureBg:
       "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-blue-500 group-hover/feature:to-blue-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-blue-400 dark:group-hover/feature:to-blue-600 transition-all",
     featureIcon:
-      "text-blue-500 group-hover/feature:text-white dark:text-blue-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+      "text-blue-500 group-hover/feature:text-white dark:text-blue-400 dark:group-hover/feature:text-[#0b1b42] transition-colors",
     featureText:
       "text-slate-700 font-semibold group-hover/feature:text-blue-600 dark:text-slate-300 dark:group-hover/feature:text-blue-400 transition-colors",
     buttonBg:
-      "bg-gradient-to-r from-blue-500 to-blue-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#17274C]",
+      "bg-gradient-to-r from-blue-500 to-blue-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] dark:from-blue-400 dark:to-blue-600 dark:text-[#0b1b42]",
     imageBg: "bg-blue-50/40 dark:bg-transparent",
     imageGlow: "hidden",
   },
@@ -67,7 +67,7 @@ const b1Themes = [
     mainShadow:
       "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
     iconWrapper:
-      "bg-gradient-to-br from-violet-500 to-violet-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#17274C]",
+      "bg-gradient-to-br from-violet-500 to-violet-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#0b1b42]",
     titleText: "text-violet-950 dark:text-white",
     titleHover: "group-hover:text-violet-600 dark:group-hover:text-violet-400",
     subtitle: "text-violet-600 dark:text-violet-400",
@@ -76,11 +76,11 @@ const b1Themes = [
     featureBg:
       "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-violet-500 group-hover/feature:to-violet-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-violet-400 dark:group-hover/feature:to-violet-600 transition-all",
     featureIcon:
-      "text-violet-500 group-hover/feature:text-white dark:text-violet-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+      "text-violet-500 group-hover/feature:text-white dark:text-violet-400 dark:group-hover/feature:text-[#0b1b42] transition-colors",
     featureText:
       "text-slate-700 font-semibold group-hover/feature:text-violet-600 dark:text-slate-300 dark:group-hover/feature:text-violet-400 transition-colors",
     buttonBg:
-      "bg-gradient-to-r from-violet-500 to-violet-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#17274C]",
+      "bg-gradient-to-r from-violet-500 to-violet-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] dark:from-violet-400 dark:to-violet-600 dark:text-[#0b1b42]",
     imageBg: "bg-violet-50/40 dark:bg-transparent",
     imageGlow: "hidden",
   },
@@ -91,7 +91,7 @@ const b2Themes = [
     mainShadow:
       "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
     iconWrapper:
-      "bg-gradient-to-br from-cyan-500 to-cyan-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#17274C]",
+      "bg-gradient-to-br from-cyan-500 to-cyan-700 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#0b1b42]",
     titleText: "text-slate-900 dark:text-white",
     titleHover: "group-hover:text-cyan-600 dark:group-hover:text-cyan-400",
     subtitle: "text-cyan-600 dark:text-cyan-400",
@@ -100,11 +100,11 @@ const b2Themes = [
     featureBg:
       "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-cyan-500 group-hover/feature:to-cyan-700 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-cyan-400 dark:group-hover/feature:to-cyan-600 transition-all",
     featureIcon:
-      "text-cyan-600 group-hover/feature:text-white dark:text-cyan-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+      "text-cyan-600 group-hover/feature:text-white dark:text-cyan-400 dark:group-hover/feature:text-[#0b1b42] transition-colors",
     featureText:
       "text-slate-700 font-semibold group-hover/feature:text-cyan-600 dark:text-slate-300 dark:group-hover/feature:text-cyan-400 transition-colors",
     buttonBg:
-      "bg-gradient-to-r from-cyan-500 to-cyan-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#17274C]",
+      "bg-gradient-to-r from-cyan-500 to-cyan-700 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] dark:from-cyan-400 dark:to-cyan-600 dark:text-[#0b1b42]",
     imageBg: "bg-cyan-50 dark:bg-transparent",
     imageGlow: "hidden",
   },
@@ -113,7 +113,7 @@ const b2Themes = [
     mainShadow:
       "shadow-lg hover:shadow-xl dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
     iconWrapper:
-      "bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#17274C]",
+      "bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-md group-hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#0b1b42]",
     titleText: "text-slate-900 dark:text-white",
     titleHover: "group-hover:text-orange-500 dark:group-hover:text-orange-400",
     subtitle: "text-orange-600 dark:text-orange-400",
@@ -122,11 +122,11 @@ const b2Themes = [
     featureBg:
       "bg-slate-50 border-slate-200 group-hover/feature:bg-gradient-to-r group-hover/feature:from-orange-400 group-hover/feature:to-orange-600 group-hover/feature:border-transparent dark:bg-white/5 dark:border-white/10 dark:group-hover/feature:from-orange-400 dark:group-hover/feature:to-orange-500 transition-all",
     featureIcon:
-      "text-orange-500 group-hover/feature:text-white dark:text-orange-400 dark:group-hover/feature:text-[#17274C] transition-colors",
+      "text-orange-500 group-hover/feature:text-white dark:text-orange-400 dark:group-hover/feature:text-[#0b1b42] transition-colors",
     featureText:
       "text-slate-700 font-semibold group-hover/feature:text-orange-600 dark:text-slate-300 dark:group-hover/feature:text-orange-400 transition-colors",
     buttonBg:
-      "bg-gradient-to-r from-orange-400 to-orange-600 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#17274C]",
+      "bg-gradient-to-r from-orange-400 to-orange-600 font-semibold text-white shadow-md hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] dark:from-orange-400 dark:to-orange-500 dark:text-[#0b1b42]",
     imageBg: "bg-orange-50 dark:bg-transparent",
     imageGlow: "hidden",
   },
@@ -141,14 +141,14 @@ export default function DesktopStakeHolder1() {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-[#17274C]"
+      className="flex flex-col gap-8 py-8 px-4 md:px-6 w-full max-w-[1300px] mx-auto dark:bg-[#0b1b42]"
     >
       <div className="flex flex-col items-center text-center gap-3 mt-2">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false }}
-          className="flex items-center gap-2 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] shadow-sm tracking-wider uppercase border border-transparent dark:border-white/20 backdrop-blur-md"
+          className="flex items-center gap-2 bg-[#0b1b42] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] shadow-sm tracking-wider uppercase border border-transparent dark:border-white/20 backdrop-blur-md"
         >
           <Users size={14} strokeWidth={2.5} />
           {block1.tag}
@@ -286,7 +286,7 @@ export default function DesktopStakeHolder1() {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false }}
-          className="flex items-center gap-2 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] uppercase tracking-wider shadow-sm backdrop-blur-md"
+          className="flex items-center gap-2 bg-[#0b1b42] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] uppercase tracking-wider shadow-sm backdrop-blur-md"
         >
           <Sparkles size={14} strokeWidth={2.5} />
           {block2.tag}
@@ -422,7 +422,7 @@ export default function DesktopStakeHolder1() {
       >
         <div className="p-6 lg:p-10 flex-1 flex flex-col justify-center gap-5 z-10 w-full lg:w-3/5 bg-slate-50 dark:bg-slate-900">
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 bg-[#17274C] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] w-fit tracking-widest uppercase shadow-sm backdrop-blur-md">
+            <div className="flex items-center gap-2 bg-[#0b1b42] dark:bg-white/10 text-white dark:text-white text-[11px] font-semibold px-4 py-1.5 rounded-[4px] w-fit tracking-widest uppercase shadow-sm backdrop-blur-md">
               <ShieldCheck size={14} strokeWidth={2.5} />
               {block3.tag}
             </div>

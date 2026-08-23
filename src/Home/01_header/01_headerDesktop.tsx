@@ -22,8 +22,8 @@ export default function Desktop() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 z-50 flex w-full items-center justify-center px-6 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white lg:px-12 ${
         scrolled
-          ? "bg-white/70 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#17274C]/80 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-          : "bg-white dark:bg-[#17274C] border-b border-transparent"
+          ? "bg-white/70 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0b1b42]/80 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          : "bg-white dark:bg-[#0b1b42] border-b border-transparent"
       }`}
     >
       <div className="relative flex w-full max-w-7xl items-center justify-between">
@@ -96,7 +96,7 @@ export default function Desktop() {
             transition={{ delay: 0.6, duration: 0.4, ease: "easeOut" }}
             whileHover={{ scale: 1.03, y: -1 }}
             whileTap={{ scale: 0.97 }}
-            className="group relative flex items-center gap-2 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] to-[#F59E0B] px-6 py-2.5 text-sm font-semibold text-black transition-all hover:shadow-[0_6px_20px_rgba(246,178,59,0.4)] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
+            className="group relative flex items-center gap-2 overflow-hidden rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] px-6 py-2.5 text-sm font-semibold text-black transition-all hover:shadow-[0_6px_20px_rgba(246,178,59,0.4)] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95"
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
             <span className="relative">Get Started</span>
