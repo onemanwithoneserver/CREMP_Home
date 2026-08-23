@@ -85,32 +85,50 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
               {navLinks.map((link) => {
                 const isActive = activeNav === link.label;
                 return (
-                  <a
-                    key={link.label}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setActiveNav(link.label);
-                    }}
-                    className={`relative text-[14px] font-semibold tracking-wide transition-colors py-2 ${
-                      isActive
-                        ? "text-[#d4af37]"
-                        : "text-gray-600 dark:text-gray-300 hover:text-[#0a1128] dark:hover:text-white"
-                    }`}
-                    href={link.href}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]"
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
+                  <div key={link.label} className="relative group">
+                    <a
+                      onClick={(e) => {
+                        if (!link.href) e.preventDefault();
+                        setActiveNav(link.label);
+                      }}
+                      className={`flex items-center gap-1.5 relative text-[14px] font-semibold tracking-wide transition-colors py-2 cursor-pointer ${
+                        isActive
+                          ? "text-[#d4af37]"
+                          : "text-gray-600 dark:text-gray-300 hover:text-[#0a1128] dark:hover:text-white"
+                      }`}
+                      href={link.href || "#"}
+                    >
+                      {link.label}
+                      {link.subItems && <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180" />}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]"
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                    </a>
+                    
+                    {link.subItems && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div className="min-w-[160px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.3)] overflow-hidden py-1">
+                          {link.subItems.map(subItem => (
+                            <a
+                              key={subItem.label}
+                              href={subItem.href}
+                              className="block px-4 py-2.5 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#d4af37] dark:hover:text-[#d4af37] transition-colors"
+                            >
+                              {subItem.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                  </a>
+                  </div>
                 );
               })}
             </nav>

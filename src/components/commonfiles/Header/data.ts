@@ -1,7 +1,18 @@
-export const navLinks = [
+export type NavItem = {
+  label: string;
+  href?: string;
+  subItems?: { label: string; href: string }[];
+};
+
+export const navLinks: NavItem[] = [
   { label: "Home", href: "#" },
-  { label: "Invest", href: "#" },
-  { label: "Lease", href: "#" },
+  { 
+    label: "Commercial Listing", 
+    subItems: [
+      { label: "Lease", href: "#" },
+      { label: "Buy", href: "#" }
+    ]
+  },
   { label: "Business Opportunity", href: "#" },
   { label: "Videos", href: "#" },
   { label: "Saved", href: "#" },

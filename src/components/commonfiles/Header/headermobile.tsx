@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { LogIn, UserPlus, ChevronDown, ChevronRight, X } from "lucide-react";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -23,6 +24,8 @@ export default function HeaderMobile({
   selectedCity,
   setSelectedCity,
 }: HeaderMobileProps) {
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
   if (!mobileMenuOpen) return null;
 
   return (
@@ -90,19 +93,55 @@ export default function HeaderMobile({
           <p className="px-2 text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Menu</p>
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.href + link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-4 py-3.5 rounded-lg text-sm font-semibold transition-all ${
-                  currentPage === link.href
-                    ? "bg-gradient-to-r from-[#d4af37]/10 to-transparent text-[#d4af37] border-l-2 border-[#d4af37]"
-                    : "text-[#0a1128] dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 border-l-2 border-transparent"
-                }`}
-              >
-                {link.label}
-                <ChevronRight size={16} className="text-gray-300 dark:text-gray-600" />
-              </a>
+              <div key={link.label} className="flex flex-col">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (link.subItems) {
+                      setOpenSubMenu(openSubMenu === link.label ? null : link.label);
+                    } else if (link.href) {
+                      window.location.href = link.href;
+                      setMobileMenuOpen(false);
+                    }
+                  }}
+                  className={`flex items-center justify-between px-4 py-3.5 rounded-lg text-sm font-semibold transition-all ${
+                    currentPage === link.href || openSubMenu === link.label
+                      ? "bg-gradient-to-r from-[#d4af37]/10 to-transparent text-[#d4af37] border-l-2 border-[#d4af37]"
+                      : "text-[#0a1128] dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 border-l-2 border-transparent"
+                  }`}
+                >
+                  {link.label}
+                  {link.subItems ? (
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${openSubMenu === link.label ? "rotate-180 text-[#d4af37]" : "text-gray-400"}`} />
+                  ) : (
+                    <ChevronRight size={16} className="text-gray-300 dark:text-gray-600" />
+                  )}
+                </button>
+                
+                <AnimatePresence>
+                  {link.subItems && openSubMenu === link.label && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-col gap-1 pl-4 py-1 pr-2">
+                        {link.subItems.map((sub) => (
+                          <a
+                            key={sub.label}
+                            href={sub.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block px-4 py-2.5 rounded-lg text-[13px] font-semibold text-gray-600 dark:text-gray-400 hover:text-[#d4af37] dark:hover:text-[#d4af37] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                          >
+                            {sub.label}
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
           </nav>
         </div>
