@@ -304,11 +304,20 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
 
           <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-[calc(100%-32px)] max-w-[600px] backdrop-blur-2xl bg-white/50 dark:bg-[#0a1128]/60 border border-white/70 dark:border-white/10 rounded shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.7)] p-3 transition-all duration-300`}>
             
-            <div className="flex items-center justify-between w-full relative z-40 mb-3">
-              <a href="#" className="flex items-center shrink-0 pl-1">
-                <img src={logoLight} alt="CREMP" className="h-7 w-auto dark:hidden drop-shadow-sm" />
-                <img src={logo} alt="CREMP" className="hidden h-7 w-auto dark:block drop-shadow-md" />
-              </a>
+            <div className="flex items-center justify-between w-full relative z-40">
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(true)}
+                  className="w-8 h-8 rounded bg-white/60 dark:bg-white/5 border border-white/50 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-gray-300 shadow-sm transition-colors hover:bg-white/80 dark:hover:bg-white/10"
+                >
+                  <Menu size={16} strokeWidth={2.5} />
+                </button>
+                <a href="#" className="flex items-center shrink-0">
+                  <img src={logoLight} alt="CREMP" className="h-7 w-auto dark:hidden drop-shadow-sm" />
+                  <img src={logo} alt="CREMP" className="hidden h-7 w-auto dark:block drop-shadow-md" />
+                </a>
+              </div>
 
               <div className="flex items-center gap-2">
                 <div className="relative">
@@ -370,33 +379,46 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                   </AnimatePresence>
                 </div>
 
-                <div className="w-8 h-8 rounded-full bg-white dark:bg-[#1a294d] border border-gray-200/80 dark:border-white/10 flex items-center justify-center text-gray-500 shadow-sm shrink-0">
-                   <User size={14} strokeWidth={2.5} />
+                <div className="relative">
+                  <button
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                    className="w-8 h-8 rounded-full bg-white dark:bg-[#1a294d] border border-gray-200/80 dark:border-white/10 flex items-center justify-center text-gray-500 shadow-sm shrink-0 focus:outline-none hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
+                  >
+                    <User size={14} strokeWidth={2.5} />
+                  </button>
+
+                  <AnimatePresence>
+                    {showProfileDropdown && (
+                      <>
+                        <div className="fixed inset-0 z-40" onClick={() => setShowProfileDropdown(false)} />
+                        <motion.div
+                          variants={liquidDropdownVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="exit"
+                          className="absolute top-full right-0 mt-3 w-[200px] bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50 py-1.5 overflow-hidden"
+                        >
+                          <div className="py-1 border-b border-gray-100/50 dark:border-white/10">
+                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
+                              <User size={14} className="text-gray-400 group-hover:text-[#d4af37]" />
+                              <span className="text-[13px] font-semibold text-[#0a1128] dark:text-gray-200">Profile</span>
+                            </a>
+                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
+                              <Settings size={14} className="text-gray-400 group-hover:text-[#d4af37]" />
+                              <span className="text-[13px] font-semibold text-[#0a1128] dark:text-gray-200">Settings</span>
+                            </a>
+                          </div>
+                          <div className="py-1">
+                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-red-50/80 dark:hover:bg-red-900/10 transition-colors group">
+                              <LogOut size={14} className="text-red-400 group-hover:text-red-500" />
+                              <span className="text-[13px] font-semibold text-red-500">Sign out</span>
+                            </a>
+                          </div>
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(true)}
-                  className="w-8 h-8 rounded bg-white/60 dark:bg-white/5 border border-white/50 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-gray-300 shadow-sm transition-colors hover:bg-white/80 dark:hover:bg-white/10"
-                >
-                  <Menu size={16} strokeWidth={2.5} />
-                </button>
-              </div>
-            </div>
-
-            <div className="relative z-30">
-              <div className="flex items-center bg-white/60 dark:bg-white/5 border border-white/60 dark:border-white/10 rounded h-11 px-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] focus-within:bg-white/90 dark:focus-within:bg-[#0b1b42]/80 focus-within:border-[#d4af37]/50 focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.15)] transition-all duration-300">
-                <Search size={15} className="text-gray-500/80 shrink-0 focus-within:text-[#d4af37]" strokeWidth={2.5} />
-                <input
-                  type="text"
-                  placeholder="Search properties, builders..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 bg-transparent px-3 text-[13px] font-bold text-[#0a1128] dark:text-white outline-none placeholder:text-gray-500/70"
-                />
-                <button type="button" className="text-gray-400 hover:text-[#d4af37] shrink-0 p-1.5 bg-white/50 dark:bg-white/10 rounded shadow-sm transition-colors">
-                  <SlidersHorizontal size={14} strokeWidth={2.5} />
-                </button>
               </div>
             </div>
           </div>

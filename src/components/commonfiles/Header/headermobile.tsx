@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LogIn, UserPlus, Plus, Minus, X } from "lucide-react";
+import { LogIn, UserPlus, Plus, Minus, X, Search, SlidersHorizontal } from "lucide-react";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -21,6 +21,7 @@ export default function HeaderMobile({
   currentPage,
 }: HeaderMobileProps) {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (!mobileMenuOpen) return null;
 
@@ -66,6 +67,22 @@ export default function HeaderMobile({
           >
             <UserPlus size={16} className="text-[#d4af37]" strokeWidth={2.5} /> Register
           </a>
+        </div>
+
+        <div className="px-6 py-3">
+          <div className="flex items-center bg-white/60 dark:bg-white/5 border border-white/60 dark:border-white/10 rounded h-11 px-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] focus-within:bg-white/90 dark:focus-within:bg-[#0b1b42]/80 focus-within:border-[#d4af37]/50 focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.15)] transition-all duration-300">
+            <Search size={15} className="text-gray-500/80 shrink-0 focus-within:text-[#d4af37]" strokeWidth={2.5} />
+            <input
+              type="text"
+              placeholder="Search properties, builders..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="flex-1 bg-transparent px-3 text-[13px] font-bold text-[#0a1128] dark:text-white outline-none placeholder:text-gray-500/70"
+            />
+            <button type="button" className="text-gray-400 hover:text-[#d4af37] shrink-0 p-1.5 bg-white/50 dark:bg-white/10 rounded shadow-sm transition-colors">
+              <SlidersHorizontal size={14} strokeWidth={2.5} />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 px-4 py-2 mt-2">
