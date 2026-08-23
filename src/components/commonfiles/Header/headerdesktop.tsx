@@ -114,15 +114,16 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                           />
                         )}
                         
-                        {isActive && (
-                          <motion.div
-                            layoutId="nav-underline"
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[2.5px] bg-[#d4af37] dark:bg-[#f3cd52] rounded-t shadow-[0_0_8px_rgba(212,175,55,0.5)] z-0"
-                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                          />
-                        )}
-                        
-                        <span className="relative z-10 drop-shadow-sm">{link.label}</span>
+                        <span className="relative z-10 drop-shadow-sm flex flex-col items-center">
+                          {link.label}
+                          {!link.subItems && isActive && (
+                            <motion.div
+                              layoutId="nav-underline"
+                              className="absolute -bottom-[9px] left-0 right-0 h-[2.5px] bg-[#d4af37] dark:bg-[#f3cd52] rounded-t shadow-[0_0_8px_rgba(212,175,55,0.5)] z-0"
+                              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                            />
+                          )}
+                        </span>
                         
                         {link.subItems && (
                           <ChevronDown size={14} className={`relative z-10 transition-transform duration-500 group-hover/nav:rotate-180 ${isActive || isHovered ? 'opacity-100' : 'opacity-60'}`} strokeWidth={2.5} />
