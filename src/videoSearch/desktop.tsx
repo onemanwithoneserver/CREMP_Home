@@ -153,7 +153,7 @@ export default function VideoSearchDesktop() {
                 animate="show"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 key={video.id}
-                className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-md hover:shadow-2xl cursor-pointer transition-all duration-500"
+                className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] cursor-pointer transition-all duration-500"
               >
                 <img
                   src={video.thumbnail}
@@ -170,10 +170,10 @@ export default function VideoSearchDesktop() {
 
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <motion.div
-                    whileHover={{ scale: 1.15 }}
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-all duration-500 group-hover:bg-[#d4af37]/90 group-hover:border-[#d4af37] pointer-events-auto opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100"
+                    whileHover={{ scale: 1.1 }}
+                    className="flex items-center justify-center w-11 h-11 rounded-full bg-[#0b1b42] border border-white/10 text-white shadow-[0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-500 pointer-events-auto opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100"
                   >
-                    <Play size={20} className="ml-0.5" fill="currentColor" />
+                    <Play size={16} className="ml-0.5" fill="currentColor" />
                   </motion.div>
                 </div>
 

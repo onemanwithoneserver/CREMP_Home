@@ -75,8 +75,8 @@ export default function VideoSearchMobile() {
         className="pointer-events-none absolute bottom-[20%] right-[-10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/8 blur-[80px] dark:bg-[#D4AF37]/8"
       />
 
-      <div className="sticky top-0 z-40 bg-white dark:bg-[#0b1b42] p-4 sm:p-5 flex flex-col shrink-0 relative overflow-hidden rounded-b-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.1)] min-h-[82px]">
-        <div className="flex items-center justify-between mb-3">
+      <div className="sticky top-0 z-40 bg-white dark:bg-[#0b1b42] p-3 sm:p-4 flex flex-col shrink-0 relative overflow-hidden rounded-b-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+        <div className="flex items-center justify-between mb-2.5">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#0a1128] dark:bg-[#121c33] hover:bg-[#0b1b42] dark:hover:bg-[#0b1b42] transition-colors duration-300 cursor-pointer rounded-[2px] border border-[#d4af37]/30 flex items-center justify-center shadow-sm">
               <Video className="text-[#d4af37]" size={15} />
@@ -107,13 +107,13 @@ export default function VideoSearchMobile() {
             className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 text-[#0a1128] dark:text-white placeholder-gray-400 shadow-sm transition-all"
           />
           <Search
-            size={15}
+            size={14}
             className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
           />
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto scrollbar-hide px-4 py-3 flex items-center gap-2 bg-white/80 dark:bg-transparent">
+      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2.5 flex items-center gap-2 border-b border-gray-100 dark:border-white/5 bg-white/80 dark:bg-transparent">
         <div className="flex items-center gap-1.5 mr-1 text-gray-400 shrink-0">
           <Filter size={12} />
           <span className="text-[8px] uppercase tracking-widest font-bold">
@@ -135,13 +135,13 @@ export default function VideoSearchMobile() {
         ))}
       </div>
 
-      <div className="px-4 py-4 relative z-10">
+      <div className="px-3 py-3 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
           key={activeCategory + searchQuery}
-          className="grid grid-cols-2 gap-3"
+          className="grid grid-cols-2 gap-2.5"
         >
           <AnimatePresence mode="popLayout">
             {displayedVideos.map((video) => (
@@ -152,7 +152,7 @@ export default function VideoSearchMobile() {
                 animate="show"
                 exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                 key={video.id}
-                className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-sm active:shadow-lg transition-all duration-300"
+                className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_15px_rgba(0,0,0,0.3)] active:shadow-md transition-all duration-300"
               >
                 <img
                   src={video.thumbnail}
@@ -168,9 +168,9 @@ export default function VideoSearchMobile() {
                 </div>
 
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg">
+                  <div className="w-9 h-9 rounded-full bg-[#0b1b42] border border-white/10 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.4)] group-active:scale-90 transition-transform duration-300">
                     <Play
-                      size={14}
+                      size={12}
                       className="text-white ml-0.5"
                       fill="currentColor"
                     />
