@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Mail,Lock,Eye,EyeOff,Globe,ChevronDown,Shield,ArrowRight,CheckCircle2,Loader2,Check } from "lucide-react";
+import { User, Mail,Lock,Eye,EyeOff,Globe,ChevronDown,Shield,ArrowRight,CheckCircle2,Loader2,Check,Briefcase,Store,TrendingUp,Users,Building } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "../assets/LoginandCreateBG.png";
 import {heroFeatures,countryCodes,} from "./data";
@@ -98,71 +98,47 @@ export default function CreateAccountDesktop() {
           animate="show"
           className="max-w-xl pl-10 xl:pl-16 2xl:pl-20 pointer-events-auto"
         >
-          <motion.div variants={item} className="inline-block mb-5">
-            <span className="text-[12px] font-semibold text-[#d4af37] tracking-[0.2em] uppercase">
-              Welcome to Smarter Real Estate
-            </span>
-            <div className="h-0.5 w-14 bg-gradient-to-r from-[#bf953f] to-[#b38728] mt-2 rounded-full" />
-          </motion.div>
+
           <motion.h1
             variants={item}
-            className="text-4xl xl:text-5xl font-semibold text-white mb-4 leading-[1.15]"
+            className="text-4xl xl:text-5xl font-bold text-white mb-3 leading-[1.15]"
           >
-            India's Most Intelligent{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37]">
-              Real Estate
+            India's 1st Integrated{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37] block">
+              Commercial Real Estate
             </span>{" "}
-            Platform
+            Marketplace
           </motion.h1>
-          <motion.p
-            variants={item}
-            className="text-lg text-gray-300 font-medium leading-relaxed max-w-md mb-8"
-          >
-            Real-time insights. Smarter decisions.
-            <br />
-            Billionaire-grade experience.
-          </motion.p>
+          <motion.div variants={item} className="inline-block mb-4">
+            <span className="text-[13px] font-semibold text-white/90 tracking-wide">
+              Commercial Properties <span className="text-[#d4af37] mx-2">•</span> Franchise Models <span className="text-[#d4af37] mx-2">•</span> Investments
+            </span>
+          </motion.div>
+
           <motion.div
             variants={item}
-            className="grid grid-cols-2 gap-4 max-w-md mb-8"
+            className="flex flex-wrap gap-3 max-w-lg"
           >
-            {heroFeatures.map((feature, i) => (
+            {[
+              { icon: Briefcase, label: "Franchise Consultants" },
+              { icon: Store, label: "Franchisors" },
+              { icon: TrendingUp, label: "Investors" },
+              { icon: Users, label: "Buyers & Sellers" },
+              { icon: Building, label: "Developers & Property Owners" },
+            ].map((feature, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.03, y: -2 }}
-                className="flex items-center gap-3 group cursor-default"
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-2.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors cursor-default backdrop-blur-sm shadow-lg"
               >
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                  style={{ backgroundColor: featureColors[i % featureColors.length] }}
-                >
-                  <feature.icon
-                    size={18}
-                    className="text-white"
-                    strokeWidth={2}
-                  />
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                  <feature.icon size={14} className="text-white" strokeWidth={2} />
                 </div>
-                <span className="text-[13px] font-semibold text-white/90 group-hover:text-white transition-colors">
+                <span className="text-[11px] font-semibold text-white/90">
                   {feature.label}
                 </span>
               </motion.div>
             ))}
-          </motion.div>
-          <motion.div variants={item} className="max-w-md">
-            <div className="border border-white/20 p-4 rounded-2xl flex gap-3 items-start bg-black/40 backdrop-blur-md shadow-2xl hover:bg-black/50 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#bf953f] via-[#d4af37] to-[#b38728] flex items-center justify-center shrink-0 shadow-lg">
-                <Shield className="text-white" size={20} strokeWidth={2} />
-              </div>
-              <div>
-                <h3 className="text-white font-semibold text-sm mb-0.5">
-                  Enterprise Grade Security
-                </h3>
-                <p className="text-gray-300 text-[12px] leading-relaxed">
-                  Your data is protected with bank-level encryption and advanced
-                  security protocols.
-                </p>
-              </div>
-            </div>
           </motion.div>
         </motion.div>
       </div>
