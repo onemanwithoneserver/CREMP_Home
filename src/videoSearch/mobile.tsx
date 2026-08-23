@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw, ChevronDown } from "lucide-react";
+import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
+import OpenVideo from "./Open video";
 
 const sortOptions = [
   { value: "latest", label: "Latest" },
@@ -44,6 +45,7 @@ export default function VideoSearchMobile() {
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [sortBy, setSortBy] = useState("latest");
+  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
@@ -186,6 +188,7 @@ export default function VideoSearchMobile() {
                 animate="show"
                 exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                 key={video.id}
+                onClick={() => setSelectedVideoId(video.id)}
                 className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_15px_rgba(0,0,0,0.3)] active:shadow-md transition-all duration-300"
               >
                 <img
@@ -271,6 +274,13 @@ export default function VideoSearchMobile() {
           </motion.div>
         )}
       </div>
+
+      {selectedVideoId && (
+        <OpenVideo 
+          initialVideoId={selectedVideoId} 
+          onClose={() => setSelectedVideoId(null)} 
+        />
+      )}
     </div>
   );
 }

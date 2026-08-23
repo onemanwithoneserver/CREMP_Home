@@ -3,6 +3,7 @@ import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
+import OpenVideo from "./Open video";
 
 const sortOptions = [
   { value: "latest", label: "Latest" },
@@ -44,6 +45,7 @@ export default function VideoSearchDesktop() {
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [sortBy, setSortBy] = useState("latest");
+  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
@@ -179,6 +181,7 @@ export default function VideoSearchDesktop() {
                 animate="show"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 key={video.id}
+                onClick={() => setSelectedVideoId(video.id)}
                 className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] cursor-pointer transition-all duration-500"
               >
                 <img
@@ -265,6 +268,13 @@ export default function VideoSearchDesktop() {
           </motion.div>
         )}
       </div>
+
+      {selectedVideoId && (
+        <OpenVideo 
+          initialVideoId={selectedVideoId} 
+          onClose={() => setSelectedVideoId(null)} 
+        />
+      )}
     </section>
   );
 }
