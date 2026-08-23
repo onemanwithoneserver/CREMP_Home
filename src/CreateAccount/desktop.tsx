@@ -245,12 +245,7 @@ export default function CreateAccountDesktop() {
                     <h1 className="text-[24px] font-semibold text-[#0a1128] dark:text-white mb-1">
                       Create Account
                     </h1>
-                    <p className="text-[13px] font-medium text-gray-500 dark:text-gray-400 px-4">
-                      Join thousands of professionals making smarter real estate decisions.
-                    </p>
                   </motion.div>
-                  
-                  {/* Form Container bounded to 80% of card width for the "75% of content area" request */}
                   <form className="w-[85%] mx-auto space-y-3.5" onSubmit={handleSubmit} noValidate>
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
