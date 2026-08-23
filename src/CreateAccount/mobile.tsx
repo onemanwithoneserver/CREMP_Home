@@ -49,16 +49,12 @@ export default function CreateAccountMobile() {
             <h1 className="text-xl font-extrabold text-[#0a1128] dark:text-white mb-1.5">
               Create Account
             </h1>
-            <p className="text-[12px] font-medium text-gray-500 dark:text-gray-400">
-              Join thousands of professionals making smarter real estate
-              decisions.
-            </p>
           </div>
 
           <form className="space-y-3.5" onSubmit={(e) => e.preventDefault()}>
             <div className="grid grid-cols-2 gap-2.5">
               <div className="space-y-1.5">
-                <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                   Full Name
                 </label>
                 <div className="relative group">
@@ -73,7 +69,7 @@ export default function CreateAccountMobile() {
                 </div>
               </div>
               <div className="space-y-1.5">
-                <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+                <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                   Email Address
                 </label>
                 <div className="relative group">
@@ -90,7 +86,7 @@ export default function CreateAccountMobile() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+              <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                 Phone Number
               </label>
               <div className="relative group flex">
@@ -147,7 +143,7 @@ export default function CreateAccountMobile() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+              <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                 Password
               </label>
               <div className="relative group">
@@ -174,7 +170,7 @@ export default function CreateAccountMobile() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[12px] font-bold text-[#0a1128] dark:text-white ml-1">
+              <label className="text-[12px] font-semibold text-[#0a1128] dark:text-white ml-1">
                 Confirm Password
               </label>
               <div className="relative group">
@@ -215,14 +211,14 @@ export default function CreateAccountMobile() {
                   I agree to the{" "}
                   <a
                     href="#"
-                    className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors"
+                    className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors"
                   >
                     Terms of Service
                   </a>{" "}
                   and{" "}
                   <a
                     href="#"
-                    className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors"
+                    className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors"
                   >
                     Privacy Policy
                   </a>
@@ -230,7 +226,7 @@ export default function CreateAccountMobile() {
               </label>
             </div>
 
-            <button className="w-full py-3 mt-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-bold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_10px_25px_rgba(212,175,55,0.4)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
+            <button className="w-full py-3 mt-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-semibold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_10px_25px_rgba(212,175,55,0.4)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
               <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               <span className="relative z-10">Create Account</span>
               <ArrowRight
@@ -245,7 +241,7 @@ export default function CreateAccountMobile() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
             </div>
-            <div className="relative flex justify-center text-[10px] font-bold uppercase tracking-widest">
+            <div className="relative flex justify-center text-[10px] font-semibold uppercase tracking-widest">
               <span className="bg-white dark:bg-[#0b1b42] px-3 text-gray-400">
                 Or sign up with
               </span>
@@ -256,7 +252,7 @@ export default function CreateAccountMobile() {
             {socialProviders.map((provider) => (
               <button
                 key={provider.name}
-                className="flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group shadow-sm text-[12px] font-bold text-[#0a1128] dark:text-white"
+                className="flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white"
               >
                 <span
                   className="w-3.5 h-3.5 group-hover:scale-110 transition-transform [&>svg]:w-full [&>svg]:h-full"
@@ -286,7 +282,7 @@ export default function CreateAccountMobile() {
                 );
                 window.location.reload();
               }}
-              className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+              className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
             >
               Login
             </a>

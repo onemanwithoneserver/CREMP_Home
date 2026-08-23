@@ -50,39 +50,36 @@ export default function LoginDesktop() {
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
 
   return (
-    <div className="min-h-screen flex font-sans relative overflow-hidden bg-white dark:bg-[#0a1128] transition-colors duration-300">
-      <div className="hidden lg:flex w-[55%] xl:w-[60%] relative flex-col justify-between p-12 xl:p-16 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128]/90 via-[#0a1128]/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-transparent to-transparent" />
-
-        <div className="relative z-10 flex justify-end">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[8px] text-sm font-medium text-white hover:bg-white/20 transition-all shadow-sm">
-            <Globe size={16} />
-            English
-            <ChevronDown size={14} className="text-white/60" />
-          </button>
-        </div>
-
+    <div className="h-screen w-full relative overflow-hidden font-sans">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] hover:scale-105"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128]/85 via-[#0a1128]/40 to-[#0a1128]/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 via-transparent to-[#0a1128]/30" />
+      <div className="absolute top-6 left-8 z-30">
+        <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[8px] text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-sm">
+          <Globe size={16} />
+          English
+          <ChevronDown size={14} className="text-white/60" />
+        </button>
+      </div>
+      <div className="absolute inset-0 flex items-center z-10 pointer-events-none">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="relative z-10 max-w-xl"
+          className="max-w-xl pl-10 xl:pl-16 2xl:pl-20 pointer-events-auto"
         >
-          <motion.div variants={item} className="inline-block mb-6">
-            <span className="text-[12px] font-bold text-[#d4af37] tracking-[0.2em] uppercase">
+          <motion.div variants={item} className="inline-block mb-5">
+            <span className="text-[12px] font-semibold text-[#d4af37] tracking-[0.2em] uppercase">
               Welcome Back
             </span>
             <div className="h-0.5 w-12 bg-gradient-to-r from-[#bf953f] to-[#b38728] mt-2 rounded-full" />
           </motion.div>
           <motion.h1
             variants={item}
-            className="text-4xl xl:text-5xl font-extrabold text-white mb-5 leading-[1.15]"
+            className="text-4xl xl:text-5xl font-semibold text-white mb-4 leading-[1.15]"
           >
             India's Most Intelligent{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37]">
@@ -92,28 +89,30 @@ export default function LoginDesktop() {
           </motion.h1>
           <motion.p
             variants={item}
-            className="text-lg text-gray-300 font-medium leading-relaxed max-w-md mb-10"
+            className="text-lg text-gray-300 font-medium leading-relaxed max-w-md mb-8"
           >
             Real-time insights. Smarter decisions.
             <br />
             Billionaire-grade experience.
           </motion.p>
-
-          <motion.div variants={item} className="flex flex-wrap gap-6">
+          <motion.div variants={item} className="flex flex-wrap gap-6 mb-8">
             {[
-              { icon: BarChart3, label: "Real-time\nAnalytics" },
-              { icon: Brain, label: "AI-Powered\nInsights" },
-              { icon: ShieldCheck, label: "Enterprise Grade\nSecurity" },
+              { icon: BarChart3, label: "Real-time\nAnalytics", color: "#F97316" },
+              { icon: Brain, label: "AI-Powered\nInsights", color: "#0EA5E9" },
+              { icon: ShieldCheck, label: "Enterprise Grade\nSecurity", color: "#8B5CF6" },
             ].map((feature, i) => (
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.05, y: -3 }}
                 className="flex flex-col items-center gap-2 group cursor-default"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#d4af37]/15 flex items-center justify-center group-hover:bg-[#d4af37]/25 transition-colors">
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                  style={{ backgroundColor: feature.color }}
+                >
                   <feature.icon
                     size={20}
-                    className="text-[#d4af37]"
+                    className="text-white"
                     strokeWidth={2}
                   />
                 </div>
@@ -123,65 +122,50 @@ export default function LoginDesktop() {
               </motion.div>
             ))}
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="relative z-10 mt-auto max-w-md"
-        >
-          <div className="glass border border-white/20 p-5 rounded-2xl flex gap-4 items-start bg-black/40 backdrop-blur-md shadow-2xl hover:bg-black/50 transition-colors">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#bf953f] via-[#d4af37] to-[#b38728] flex items-center justify-center shrink-0 shadow-lg">
-              <Shield className="text-white" size={22} strokeWidth={2} />
+          <motion.div variants={item} className="max-w-md">
+            <div className="border border-white/20 p-4 rounded-2xl flex gap-3 items-start bg-black/40 backdrop-blur-md shadow-2xl hover:bg-black/50 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#bf953f] via-[#d4af37] to-[#b38728] flex items-center justify-center shrink-0 shadow-lg">
+                <Shield className="text-white" size={20} strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-sm mb-0.5">
+                  Enterprise Grade Security
+                </h3>
+                <p className="text-gray-300 text-[12px] leading-relaxed">
+                  Your data is protected with bank-level encryption and advanced
+                  security protocols.
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-white font-bold text-base mb-1">
-                Enterprise Grade Security
-              </h3>
-              <p className="text-gray-300 text-[13px] leading-relaxed">
-                Your data is protected with bank-level encryption and advanced
-                security protocols.
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
-
-      <div className="w-full lg:w-[45%] xl:w-[40%] flex flex-col relative z-20 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] dark:shadow-none dark:border-l border-white/5 bg-white dark:bg-[#0b1b42]">
-        <div className="absolute top-6 right-6 z-30 lg:hidden">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm">
-            <Globe size={16} />
-            English
-            <ChevronDown size={14} className="text-gray-400" />
-          </button>
-        </div>
-
-        <div className="flex-1 flex flex-col justify-center px-8 sm:px-16 lg:px-12 xl:px-20 pt-20 pb-10 overflow-y-auto">
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="w-full max-w-[420px] mx-auto"
-          >
+      <div className="absolute right-6 xl:right-10 2xl:right-16 top-1/2 -translate-y-1/2 z-20 w-full max-w-[440px]">
+        <motion.div
+          initial={{ opacity: 0, x: 40, scale: 0.97 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 180, damping: 22 }}
+          className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
+        >
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]" />
+          <div className="px-8 pt-8 pb-6 xl:px-10 xl:pt-9 xl:pb-7">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-center mb-7"
+              className="text-center mb-6"
             >
-              <h1 className="text-[28px] font-extrabold text-[#0a1128] dark:text-white mb-2">
+              <h1 className="text-[26px] font-semibold text-[#0a1128] dark:text-white mb-1.5">
                 Welcome Back!
               </h1>
-              <p className="text-[14px] font-medium text-gray-500 dark:text-gray-400">
+              <p className="text-[13px] font-medium text-gray-500 dark:text-gray-400">
                 Sign in to your account to continue
               </p>
             </motion.div>
-
-            <div className="flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-7 border border-gray-200/50 dark:border-transparent">
+            <div className="flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-6 border border-gray-200/50 dark:border-transparent">
               <button
                 onClick={() => setLoginMethod("email")}
-                className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-bold rounded-[8px] transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-semibold rounded-[8px] transition-all ${
                   loginMethod === "email"
                     ? "bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
                     : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -192,7 +176,7 @@ export default function LoginDesktop() {
               </button>
               <button
                 onClick={() => setLoginMethod("phone")}
-                className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-bold rounded-[8px] transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-semibold rounded-[8px] transition-all ${
                   loginMethod === "phone"
                     ? "bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
                     : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -202,8 +186,7 @@ export default function LoginDesktop() {
                 Phone & OTP
               </button>
             </div>
-
-            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
               <AnimatePresence mode="wait">
                 {loginMethod === "email" ? (
                   <motion.div
@@ -212,36 +195,35 @@ export default function LoginDesktop() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 15 }}
                     transition={{ duration: 0.25 }}
-                    className="space-y-5"
+                    className="space-y-4"
                   >
-                    <div className="space-y-2">
-                      <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">
+                    <div className="space-y-1.5">
+                      <label className="text-[13px] font-semibold text-[#0a1128] dark:text-white ml-1">
                         Email Address
                       </label>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#d4af37] transition-colors">
-                          <Mail size={18} strokeWidth={2.5} />
+                          <Mail size={17} strokeWidth={2.5} />
                         </div>
                         <input
                           type="email"
                           placeholder="Enter your email address"
-                          className="w-full pl-11 pr-4 py-3.5 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-[14px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all shadow-sm font-medium"
+                          className="w-full pl-11 pr-4 py-3 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all shadow-sm font-medium"
                         />
                       </div>
                     </div>
-
-                    <div className="space-y-2">
-                      <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">
+                    <div className="space-y-1.5">
+                      <label className="text-[13px] font-semibold text-[#0a1128] dark:text-white ml-1">
                         Password
                       </label>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#d4af37] transition-colors">
-                          <Lock size={18} strokeWidth={2.5} />
+                          <Lock size={17} strokeWidth={2.5} />
                         </div>
                         <input
                           type={showPassword ? "text" : "password"}
                           placeholder="Enter your password"
-                          className="w-full pl-11 pr-11 py-3.5 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-[14px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all shadow-sm font-medium"
+                          className="w-full pl-11 pr-11 py-3 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all shadow-sm font-medium"
                         />
                         <button
                           type="button"
@@ -249,9 +231,9 @@ export default function LoginDesktop() {
                           className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors outline-none"
                         >
                           {showPassword ? (
-                            <EyeOff size={18} strokeWidth={2.5} />
+                            <EyeOff size={17} strokeWidth={2.5} />
                           ) : (
-                            <Eye size={18} strokeWidth={2.5} />
+                            <Eye size={17} strokeWidth={2.5} />
                           )}
                         </button>
                       </div>
@@ -264,10 +246,10 @@ export default function LoginDesktop() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -15 }}
                     transition={{ duration: 0.25 }}
-                    className="space-y-5"
+                    className="space-y-4"
                   >
-                    <div className="space-y-2">
-                      <label className="text-[13px] font-bold text-[#0a1128] dark:text-white ml-1">
+                    <div className="space-y-1.5">
+                      <label className="text-[13px] font-semibold text-[#0a1128] dark:text-white ml-1">
                         Phone Number
                       </label>
                       <div className="relative group flex">
@@ -277,7 +259,7 @@ export default function LoginDesktop() {
                             onClick={() =>
                               setShowCountryDropdown(!showCountryDropdown)
                             }
-                            className="flex items-center gap-1.5 px-3 py-3.5 bg-gray-50 dark:bg-[#0d1730] border border-gray-200 dark:border-white/10 border-r-0 rounded-l-[8px] text-[13px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[90px]"
+                            className="flex items-center gap-1.5 px-3 py-3 bg-gray-50 dark:bg-[#0d1730] border border-gray-200 dark:border-white/10 border-r-0 rounded-l-[8px] text-[13px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[90px]"
                           >
                             <span className="text-lg">
                               {selectedCountry.flag}
@@ -322,15 +304,14 @@ export default function LoginDesktop() {
                         <input
                           type="tel"
                           placeholder="Enter your 10-digit mobile number"
-                          className="flex-1 pl-4 pr-4 py-3.5 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-r-[8px] text-[14px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all shadow-sm font-medium"
+                          className="flex-1 pl-4 pr-4 py-3 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-r-[8px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all shadow-sm font-medium"
                         />
                       </div>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center justify-between pt-1">
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <div className="relative w-4 h-4 rounded-[4px] border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#121c33] group-hover:border-[#d4af37] transition-colors flex items-center justify-center">
                     <input
@@ -339,19 +320,18 @@ export default function LoginDesktop() {
                     />
                     <div className="opacity-0 peer-checked:opacity-100 w-2.5 h-2.5 bg-[#d4af37] rounded-[2px] transition-opacity" />
                   </div>
-                  <span className="text-[13px] font-semibold text-gray-600 dark:text-gray-400 group-hover:text-[#0a1128] dark:group-hover:text-white transition-colors">
+                  <span className="text-[12px] font-semibold text-gray-600 dark:text-gray-400 group-hover:text-[#0a1128] dark:group-hover:text-white transition-colors">
                     Remember me
                   </span>
                 </label>
                 <a
                   href="#"
-                  className="text-[13px] font-bold text-[#d4af37] hover:text-[#b38728] transition-colors underline-offset-4 hover:underline"
+                  className="text-[12px] font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors underline-offset-4 hover:underline"
                 >
                   Forgot Password?
                 </a>
               </div>
-
-              <button className="w-full py-4 mt-4 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-bold text-[15px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
+              <button className="w-full py-3.5 mt-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-semibold text-[14px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex items-center justify-center gap-2">
                 <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                 <span className="relative z-10">
                   {loginMethod === "phone" ? "Send OTP" : "Login"}
@@ -363,20 +343,18 @@ export default function LoginDesktop() {
                 />
               </button>
             </form>
-
-            <div className="relative mt-8 mb-8">
+            <div className="relative mt-6 mb-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-white/10"></div>
               </div>
-              <div className="relative flex justify-center text-[11px] font-bold uppercase tracking-widest">
-                <span className="bg-white dark:bg-[#0b1b42] px-4 text-gray-400">
+              <div className="relative flex justify-center text-[11px] font-semibold uppercase tracking-widest">
+                <span className="bg-white/95 dark:bg-[#0b1b42]/92 px-4 text-gray-400">
                   Or continue with
                 </span>
               </div>
             </div>
-
             <div className="grid grid-cols-3 gap-3">
-              <button className="flex items-center justify-center gap-2 py-3 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[13px] font-bold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5">
+              <button className="flex items-center justify-center gap-2 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5">
                 <svg
                   className="w-4 h-4 group-hover:scale-110 transition-transform"
                   viewBox="0 0 24 24"
@@ -400,7 +378,7 @@ export default function LoginDesktop() {
                 </svg>
                 Google
               </button>
-              <button className="flex items-center justify-center gap-2 py-3 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[13px] font-bold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5">
+              <button className="flex items-center justify-center gap-2 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5">
                 <svg
                   className="w-4 h-4 group-hover:scale-110 transition-transform"
                   viewBox="0 0 21 21"
@@ -412,7 +390,7 @@ export default function LoginDesktop() {
                 </svg>
                 Microsoft
               </button>
-              <button className="flex items-center justify-center gap-2 py-3 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[13px] font-bold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5">
+              <button className="flex items-center justify-center gap-2 py-2.5 border border-gray-200 dark:border-white/10 rounded-[8px] hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm text-[12px] font-semibold text-[#0a1128] dark:text-white hover:shadow-md hover:-translate-y-0.5">
                 <svg
                   className="w-4 h-4 group-hover:scale-110 transition-transform fill-[#0a1128] dark:fill-white"
                   viewBox="0 0 24 24"
@@ -422,8 +400,7 @@ export default function LoginDesktop() {
                 Apple
               </button>
             </div>
-
-            <p className="text-center mt-10 text-[13px] font-medium text-gray-500 dark:text-gray-400">
+            <p className="text-center mt-6 text-[13px] font-medium text-gray-500 dark:text-gray-400">
               Don't have an account?{" "}
               <a
                 href="#"
@@ -436,54 +413,13 @@ export default function LoginDesktop() {
                   );
                   window.location.reload();
                 }}
-                className="font-bold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
+                className="font-semibold text-[#d4af37] hover:text-[#b38728] transition-colors hover:underline underline-offset-4"
               >
                 Create Account
               </a>
             </p>
-          </motion.div>
-        </div>
-
-        <div className="mt-auto bg-gray-50 dark:bg-[#121c33]/50 border-t border-gray-100 dark:border-white/5 p-4 sm:p-6 flex justify-center gap-6 sm:gap-12">
-          <div className="flex flex-col items-center text-center gap-2 group cursor-default">
-            <Shield
-              className="text-[#64748b] dark:text-gray-400 group-hover:text-[#d4af37] transition-colors"
-              size={20}
-              strokeWidth={1.5}
-            />
-            <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 uppercase tracking-wider leading-tight transition-colors">
-              Bank-Level
-              <br />
-              Security
-            </span>
           </div>
-          <div className="w-px bg-gray-200 dark:bg-white/10" />
-          <div className="flex flex-col items-center text-center gap-2 group cursor-default">
-            <Clock
-              className="text-[#64748b] dark:text-gray-400 group-hover:text-[#d4af37] transition-colors"
-              size={20}
-              strokeWidth={1.5}
-            />
-            <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 uppercase tracking-wider leading-tight transition-colors">
-              99.9%
-              <br />
-              Uptime
-            </span>
-          </div>
-          <div className="w-px bg-gray-200 dark:bg-white/10" />
-          <div className="flex flex-col items-center text-center gap-2 group cursor-default">
-            <Headphones
-              className="text-[#64748b] dark:text-gray-400 group-hover:text-[#d4af37] transition-colors"
-              size={20}
-              strokeWidth={1.5}
-            />
-            <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 uppercase tracking-wider leading-tight transition-colors">
-              24/7
-              <br />
-              Support
-            </span>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
