@@ -3,19 +3,18 @@ import {
   Search,
   SlidersHorizontal,
   LocateFixed,
-  MapPin,
   ChevronDown,
   Menu,
-  UserPlus,
-  LogIn,
   User,
+  Settings,
+  LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import CrempTextLogo from "../../CrempTextLogo";
 import HeaderMobile from "./headermobile";
-import { navLinks, cities } from "./data";
+import { navLinks } from "./data";
 
 interface SiteHeaderProps {
   currentPage?: string;
@@ -24,8 +23,6 @@ interface SiteHeaderProps {
 
 export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderProps) {
   const [activeNav, setActiveNav] = useState("Home");
-  const [selectedCity, setSelectedCity] = useState("All cities");
-  const [showCityDropdown, setShowCityDropdown] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -177,50 +174,6 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
 
           <div className="flex shrink-0 items-center gap-4">
             <div className="flex items-center bg-gray-50 dark:bg-[#121c33]/80 border border-gray-200 dark:border-white/10 p-1 rounded-xl shadow-sm hover:shadow-md hover:border-[#d4af37]/30 transition-all duration-300 relative z-50">
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={() => setShowCityDropdown(!showCityDropdown)}
-                  className="flex h-9 items-center gap-2 rounded-lg px-4 text-[#0a1128] dark:text-white transition-all hover:bg-white dark:hover:bg-[#1a294d] focus-visible:outline-none"
-                >
-                  <MapPin className="h-3.5 w-3.5 text-[#d4af37]" />
-                  <span className="text-[13px] font-semibold">{selectedCity}</span>
-                  <ChevronDown className={`h-3 w-3 text-gray-400 transition-transform ${showCityDropdown ? "rotate-180" : ""}`} />
-                </button>
-
-                <AnimatePresence>
-                  {showCityDropdown && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-full left-0 mt-2 w-[180px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-xl z-50 py-2 overflow-hidden"
-                    >
-                      {cities.map((city) => (
-                        <button
-                          key={city}
-                          type="button"
-                          onClick={() => {
-                            setSelectedCity(city);
-                            setShowCityDropdown(false);
-                          }}
-                          className={`w-full text-left px-4 py-2.5 text-[13px] font-medium transition-colors flex items-center justify-between ${
-                            selectedCity === city
-                              ? "text-[#d4af37] bg-[#d4af37]/10 font-bold"
-                              : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5"
-                          }`}
-                        >
-                          {city}
-                          {selectedCity === city && <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <div className="w-px h-5 bg-gray-200 dark:bg-white/10 mx-1" />
-              
               <div className="relative ml-1">
                 <button
                   type="button"
@@ -238,16 +191,34 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       className="absolute top-full right-0 mt-2 w-[220px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.3)] z-50 py-2 overflow-hidden"
                     >
-                      <div className="px-4 py-2 border-b border-gray-100 dark:border-white/10 mb-1">
-                        <p className="text-sm font-bold text-[#0a1128] dark:text-white">Welcome, Guest</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Please login to continue</p>
+                      <div className="px-4 py-3 border-b border-gray-100 dark:border-white/10">
+                        <p className="text-[15px] font-bold text-[#0a1128] dark:text-white">Alex Mitchell</p>
+                        <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-0.5 font-medium">alex.mitchell@example.com</p>
                       </div>
-                      <a href="#" className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-[#d4af37] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <LogIn size={14} /> Login
-                      </a>
-                      <a href="#" className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-[#d4af37] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <UserPlus size={14} /> Register
-                      </a>
+                      
+                      <div className="py-2 border-b border-gray-100 dark:border-white/10">
+                        <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
+                          <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 dark:border-white/5 dark:bg-[#1a294d] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-[#d4af37] transition-colors">
+                            <User size={16} strokeWidth={2} />
+                          </div>
+                          <span className="text-[14px] font-semibold text-[#0a1128] dark:text-gray-200">My Profile</span>
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
+                          <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 dark:border-white/5 dark:bg-[#1a294d] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-[#d4af37] transition-colors">
+                            <Settings size={16} strokeWidth={2} />
+                          </div>
+                          <span className="text-[14px] font-semibold text-[#0a1128] dark:text-gray-200">Account Settings</span>
+                        </a>
+                      </div>
+
+                      <div className="py-2">
+                        <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors group">
+                          <div className="w-8 h-8 rounded-lg bg-red-50 border border-red-100 dark:border-red-900/30 dark:bg-red-900/20 flex items-center justify-center text-red-500 group-hover:text-red-600 transition-colors">
+                            <LogOut size={16} strokeWidth={2} />
+                          </div>
+                          <span className="text-[14px] font-semibold text-red-500 group-hover:text-red-600">Sign out</span>
+                        </a>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -292,50 +263,6 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
               <div className="relative z-50">
                 <button
                   type="button"
-                  onClick={() => setShowCityDropdown(!showCityDropdown)}
-                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-[6px] border border-gray-200/80 dark:border-white/10 bg-white dark:bg-[#121c33] text-[#334155] dark:text-gray-200 transition-colors hover:bg-gray-50 dark:hover:bg-white/5"
-                >
-                  <div className="w-5 h-5 rounded-full bg-slate-50 dark:bg-white/5 flex items-center justify-center shrink-0">
-                    <MapPin className="h-3 w-3 text-slate-400" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-[13px] font-semibold tracking-wide hidden sm:inline-block max-w-[90px] truncate">{selectedCity}</span>
-                  <ChevronDown className="h-3.5 w-3.5 text-slate-400" strokeWidth={2} />
-                </button>
-
-                <AnimatePresence>
-                  {showCityDropdown && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-full right-0 mt-2 w-[160px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-xl z-50 py-2 overflow-hidden"
-                    >
-                      {cities.map((city) => (
-                        <button
-                          key={city}
-                          type="button"
-                          onClick={() => {
-                            setSelectedCity(city);
-                            setShowCityDropdown(false);
-                          }}
-                          className={`w-full text-left px-4 py-2.5 text-[13px] font-medium transition-colors flex items-center justify-between ${
-                            selectedCity === city
-                              ? "text-[#d4af37] bg-[#d4af37]/10 font-bold"
-                              : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5"
-                          }`}
-                        >
-                          {city}
-                          {selectedCity === city && <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <div className="relative z-50">
-                <button
-                  type="button"
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                   className="flex items-center gap-1.5 p-1 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors focus:outline-none"
                 >
@@ -356,16 +283,34 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       className="absolute top-full right-0 mt-2 w-[220px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-xl border border-gray-200 dark:border-[#d4af37]/20 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.3)] z-50 py-2 overflow-hidden"
                     >
-                      <div className="px-4 py-2 border-b border-gray-100 dark:border-white/10 mb-1">
-                        <p className="text-sm font-bold text-[#0a1128] dark:text-white">Welcome, Guest</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Please login to continue</p>
+                      <div className="px-4 py-3 border-b border-gray-100 dark:border-white/10">
+                        <p className="text-[15px] font-bold text-[#0a1128] dark:text-white">Alex Mitchell</p>
+                        <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-0.5 font-medium">alex.mitchell@example.com</p>
                       </div>
-                      <a href="#" className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-[#d4af37] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <LogIn size={14} /> Login
-                      </a>
-                      <a href="#" className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-[#d4af37] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <UserPlus size={14} /> Register
-                      </a>
+                      
+                      <div className="py-2 border-b border-gray-100 dark:border-white/10">
+                        <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
+                          <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 dark:border-white/5 dark:bg-[#1a294d] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-[#d4af37] transition-colors">
+                            <User size={16} strokeWidth={2} />
+                          </div>
+                          <span className="text-[14px] font-semibold text-[#0a1128] dark:text-gray-200">My Profile</span>
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
+                          <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 dark:border-white/5 dark:bg-[#1a294d] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-[#d4af37] transition-colors">
+                            <Settings size={16} strokeWidth={2} />
+                          </div>
+                          <span className="text-[14px] font-semibold text-[#0a1128] dark:text-gray-200">Account Settings</span>
+                        </a>
+                      </div>
+
+                      <div className="py-2">
+                        <a href="#" className="flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors group">
+                          <div className="w-8 h-8 rounded-lg bg-red-50 border border-red-100 dark:border-red-900/30 dark:bg-red-900/20 flex items-center justify-center text-red-500 group-hover:text-red-600 transition-colors">
+                            <LogOut size={16} strokeWidth={2} />
+                          </div>
+                          <span className="text-[14px] font-semibold text-red-500 group-hover:text-red-600">Sign out</span>
+                        </a>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -381,8 +326,6 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
             mobileMenuOpen={mobileMenuOpen} 
             setMobileMenuOpen={setMobileMenuOpen} 
             currentPage={currentPage}
-            selectedCity={selectedCity}
-            setSelectedCity={setSelectedCity}
           />
         )}
       </AnimatePresence>

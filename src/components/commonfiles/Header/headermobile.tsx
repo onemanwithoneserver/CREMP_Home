@@ -7,22 +7,18 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
-import { navLinks, cities } from "./data";
+import { navLinks } from "./data";
 
 interface HeaderMobileProps {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
   currentPage: string;
-  selectedCity: string;
-  setSelectedCity: (city: string) => void;
 }
 
 export default function HeaderMobile({
   mobileMenuOpen,
   setMobileMenuOpen,
   currentPage,
-  selectedCity,
-  setSelectedCity,
 }: HeaderMobileProps) {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
 
@@ -71,25 +67,7 @@ export default function HeaderMobile({
           </a>
         </div>
 
-        <div className="px-6 py-4">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Location</p>
-          <div className="relative">
-            <select
-              value={selectedCity}
-              onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full appearance-none bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-lg py-3 px-4 text-sm font-semibold text-[#0a1128] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50"
-            >
-              {cities.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
-          </div>
-        </div>
-
-        <div className="flex-1 px-4 py-2">
+        <div className="flex-1 px-4 py-2 mt-4">
           <p className="px-2 text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Menu</p>
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
