@@ -103,9 +103,7 @@ export default function VideoSearchMobile() {
               </p>
             </div>
           </div>
-          <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400">
-            {filteredVideos.length} videos
-          </span>
+
         </div>
         <div className="relative w-full">
           <input

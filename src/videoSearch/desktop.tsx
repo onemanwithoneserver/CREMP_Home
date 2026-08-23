@@ -141,12 +141,7 @@ export default function VideoSearchDesktop() {
             </div>
           </div>
         </motion.div>
-        <div className="flex items-center justify-between">
-          <p className="text-xs font-medium text-gray-400 dark:text-gray-500">
-            Showing <span className="text-[#0a1128] dark:text-white font-semibold">{displayedVideos.length}</span> of{" "}
-            <span className="text-[#0a1128] dark:text-white font-semibold">{filteredVideos.length}</span> videos
-          </p>
-        </div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"

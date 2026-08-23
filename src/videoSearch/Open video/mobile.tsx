@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import {
   Share2,
-  MoreVertical,
   Volume2,
   VolumeX,
   ChevronLeft,
@@ -99,7 +98,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           playsInline
         />
 
-        {/* Top Header */}
+
         {!isClearScreen && (
           <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none">
             <button
@@ -118,7 +117,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </div>
         )}
 
-        {/* Play Overlay */}
+
         {!isPlaying && !isClearScreen && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110] bg-white/20 backdrop-blur-[2px]">
             <div className="w-20 h-20 bg-white/70 backdrop-blur-2xl rounded-full border border-white shadow-[0_8px_32px_rgba(0,0,0,0.1)] flex items-center justify-center animate-pulse">
@@ -127,7 +126,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </div>
         )}
 
-        {/* Right Side Buttons */}
+
         <div className="absolute right-3 bottom-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[120] flex flex-col items-center gap-6 pointer-events-none">
           {!isClearScreen && (
             <>
@@ -141,7 +140,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
               </button>
             </>
           )}
-          {/* Clear Screen Button (Bare Icon) */}
+          
           <button
             onClick={() => setIsClearScreen(!isClearScreen)}
             className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all mt-2"
@@ -154,7 +153,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </button>
         </div>
 
-        {/* Bottom Left Info */}
+
         {!isClearScreen && (
           <div className="absolute bottom-0 left-0 right-0 p-4 pr-[70px] pb-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[115] bg-gradient-to-t from-white/95 via-white/80 to-transparent pointer-events-none">
             <div className="flex items-center gap-3 mb-2 mt-4">
@@ -184,7 +183,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </div>
         )}
 
-        {/* Progress Bar */}
+
         {!isClearScreen && (
           <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gray-200/60 z-[125]">
             <div
