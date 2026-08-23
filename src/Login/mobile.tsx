@@ -68,7 +68,7 @@ export default function LoginMobile() {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/60 to-[#0a1128]/30 dark:from-[#0a1128] dark:via-[#0a1128]/80 dark:to-[#0a1128]/60" />
       <div className="absolute top-4 right-4 z-20">
-        <button className="flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[8px] text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm">
+        <button className="flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-[#121c33]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-[4px] text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm">
           <Globe size={14} />
           English
           <ChevronDown size={14} className="text-gray-400" />
@@ -103,7 +103,7 @@ export default function LoginMobile() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", damping: 12, delay: 0.2 }}
-                  className="w-16 h-16 bg-[#d4af37]/20 rounded-full flex items-center justify-center mb-5"
+                  className="w-16 h-16 bg-[#d4af37]/20 rounded-[4px] flex items-center justify-center mb-5"
                 >
                   <CheckCircle2 className="w-8 h-8 text-[#d4af37]" strokeWidth={2.5} />
                 </motion.div>
@@ -128,13 +128,13 @@ export default function LoginMobile() {
                     Sign in to your account to continue
                   </p>
                 </div>
-                <div className="w-[85%] mx-auto flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-4 border border-gray-200/50 dark:border-transparent">
+                <div className="w-[85%] mx-auto flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[4px] mb-4 border border-gray-200/50 dark:border-transparent">
                   <button
                     onClick={() => {
                       setLoginMethod("email");
                       setErrors({});
                     }}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-semibold rounded-[8px] transition-all ${
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-semibold rounded-[4px] transition-all ${
                       loginMethod === "email"
                         ? "bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
                         : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -148,7 +148,7 @@ export default function LoginMobile() {
                       setLoginMethod("phone");
                       setErrors({});
                     }}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-semibold rounded-[8px] transition-all ${
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-semibold rounded-[4px] transition-all ${
                       loginMethod === "phone"
                         ? "bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
                         : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -182,7 +182,7 @@ export default function LoginMobile() {
                               value={formData.email}
                               onChange={(e) => handleInputChange("email", e.target.value)}
                               placeholder="Enter your email address"
-                              className={`w-full pl-10 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                              className={`w-full pl-10 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                                 errors.email 
                                   ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                   : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -210,7 +210,7 @@ export default function LoginMobile() {
                               value={formData.password}
                               onChange={(e) => handleInputChange("password", e.target.value)}
                               placeholder="Enter your password"
-                              className={`w-full pl-10 pr-10 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                              className={`w-full pl-10 pr-10 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                                 errors.password 
                                   ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                   : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -257,7 +257,7 @@ export default function LoginMobile() {
                                 onClick={() =>
                                   setShowCountryDropdown(!showCountryDropdown)
                                 }
-                                className={`flex items-center gap-1 px-2.5 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
+                                className={`flex items-center gap-1 px-2.5 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[4px] text-[12px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[65px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
                               >
                                 <span>{selectedCountry.code}</span>
                                 <ChevronDown size={10} className="text-gray-400" />
@@ -269,7 +269,7 @@ export default function LoginMobile() {
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, y: -5, scale: 0.97 }}
                                     transition={{ duration: 0.15 }}
-                                    className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] shadow-xl z-50 min-w-[160px] py-1 overflow-hidden"
+                                    className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[4px] shadow-xl z-50 min-w-[160px] py-1 overflow-hidden"
                                   >
                                     {countryCodes.map((c) => (
                                       <button
@@ -302,7 +302,7 @@ export default function LoginMobile() {
                               onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
                               maxLength={10}
                               placeholder="10-digit mobile number"
-                              className={`flex-1 pl-3.5 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                              className={`flex-1 pl-3.5 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-r-[4px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                                 errors.phone 
                                   ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                   : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -346,7 +346,7 @@ export default function LoginMobile() {
                     <button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-[55%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-semibold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"
+                      className="w-[55%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] font-semibold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"
                     >
                       <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                       {isSubmitting ? (

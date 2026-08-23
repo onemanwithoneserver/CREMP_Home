@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, Shield, ArrowRight, BarChart3, Brain, ShieldCheck, CheckCircle2, Loader2, Check, Briefcase, Store, TrendingUp, Users, Building } from "lucide-react";
+import { Mail, Phone, Lock, Eye, EyeOff, Globe, ChevronDown, ArrowRight, BarChart3, Brain, ShieldCheck, CheckCircle2, Loader2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "../assets/LoginandCreateBG.png";
 const countryCodes = [
@@ -84,7 +84,7 @@ export default function LoginDesktop() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128]/85 via-[#0a1128]/40 to-[#0a1128]/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 via-transparent to-[#0a1128]/30" />
       <div className="absolute top-6 left-8 z-30">
-        <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[8px] text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-sm">
+        <button className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-[4px] text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-sm">
           <Globe size={16} />
           English
           <ChevronDown size={14} className="text-white/60" />
@@ -98,47 +98,62 @@ export default function LoginDesktop() {
           className="max-w-xl pl-10 xl:pl-16 2xl:pl-20 pointer-events-auto"
         >
 
-          <motion.h1
-            variants={item}
-            className="text-4xl xl:text-5xl font-bold text-white mb-3 leading-[1.15]"
-          >
-            India's 1st Integrated{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37] block">
-              Commercial Real Estate
-            </span>{" "}
-            Marketplace
-          </motion.h1>
-          <motion.div variants={item} className="inline-block mb-4">
-            <span className="text-[13px] font-semibold text-white/90 tracking-wide">
-              Commercial Properties <span className="text-[#d4af37] mx-2">•</span> Franchise Models <span className="text-[#d4af37] mx-2">•</span> Investments
-            </span>
-          </motion.div>
-
-          <motion.div
-            variants={item}
-            className="flex flex-wrap gap-3 max-w-lg"
-          >
-            {[
-              { icon: Briefcase, label: "Franchise Consultants" },
-              { icon: Store, label: "Franchisors" },
-              { icon: TrendingUp, label: "Investors" },
-              { icon: Users, label: "Buyers & Sellers" },
-              { icon: Building, label: "Developers & Property Owners" },
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors cursor-default backdrop-blur-sm shadow-lg"
-              >
-                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                  <feature.icon size={14} className="text-white" strokeWidth={2} />
-                </div>
-                <span className="text-[11px] font-semibold text-white/90">
-                  {feature.label}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] opacity-80" />
+            
+            <motion.div variants={item} className="inline-block mb-4">
+              <span className="text-[12px] font-bold text-[#d4af37] tracking-[0.25em] uppercase">
+                Welcome Back
+              </span>
+            </motion.div>
+            
+            <motion.h1
+              variants={item}
+              className="text-4xl xl:text-[42px] font-bold text-white mb-4 leading-[1.2]"
+            >
+              Access Your{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37] block mt-1">
+                Real Estate Command Center
+              </span>
+            </motion.h1>
+            
+            <motion.div variants={item} className="inline-block mb-6">
+              <span className="text-[13px] font-semibold text-white/80 tracking-wide">
+                Manage Properties <span className="text-[#d4af37] mx-2">•</span> Track Investments <span className="text-[#d4af37] mx-2">•</span> Expand Franchises
+              </span>
+            </motion.div>
+            
+            <motion.p
+              variants={item}
+              className="text-[14px] text-gray-300 font-medium leading-relaxed max-w-lg mb-8"
+            >
+              Log in to CREMP to resume your journey. Discover tailored real estate opportunities, manage your listed properties, monitor franchise applications, and connect directly with key industry players—all from one powerful dashboard.
+            </motion.p>
+            
+            <motion.div
+              variants={item}
+              className="flex flex-wrap gap-3 max-w-lg"
+            >
+              {[
+                { icon: BarChart3, label: "Real-time Analytics" },
+                { icon: Brain, label: "AI Insights" },
+                { icon: ShieldCheck, label: "Enterprise Security" },
+              ].map((feature, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-2.5 px-4 py-2.5 bg-[#0a1128]/80 hover:bg-[#d4af37]/10 border border-white/10 hover:border-[#d4af37]/30 rounded-[4px] transition-all cursor-default shadow-lg group"
+                >
+                  <div className="w-7 h-7 rounded-[4px] bg-white/5 group-hover:bg-[#d4af37]/20 flex items-center justify-center shrink-0 transition-colors">
+                    <feature.icon size={14} className="text-white group-hover:text-[#d4af37] transition-colors" strokeWidth={2} />
+                  </div>
+                  <span className="text-[11px] font-semibold text-white/90 group-hover:text-white transition-colors">
+                    {feature.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
       </div>
       <div className="absolute right-6 xl:right-10 2xl:right-16 top-1/2 -translate-y-1/2 z-20 w-full max-w-[440px]">
@@ -146,7 +161,7 @@ export default function LoginDesktop() {
           initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.6, type: "spring", stiffness: 180, damping: 22 }}
-          className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
+          className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-[4px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
         >
           <div 
             className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
@@ -166,7 +181,7 @@ export default function LoginDesktop() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 12, delay: 0.2 }}
-                    className="w-16 h-16 bg-[#d4af37]/20 rounded-full flex items-center justify-center mb-5"
+                    className="w-16 h-16 bg-[#d4af37]/20 rounded-[4px] flex items-center justify-center mb-5"
                   >
                     <CheckCircle2 className="w-8 h-8 text-[#d4af37]" strokeWidth={2.5} />
                   </motion.div>
@@ -196,13 +211,13 @@ export default function LoginDesktop() {
                       Sign in to your account to continue
                     </p>
                   </motion.div>
-                  <div className="w-[85%] mx-auto flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[10px] mb-6 border border-gray-200/50 dark:border-transparent">
+                  <div className="w-[85%] mx-auto flex p-1 bg-gray-100 dark:bg-[#121c33] rounded-[4px] mb-6 border border-gray-200/50 dark:border-transparent">
                     <button
                       onClick={() => {
                         setLoginMethod("email");
                         setErrors({});
                       }}
-                      className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-semibold rounded-[8px] transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-semibold rounded-[4px] transition-all ${
                         loginMethod === "email"
                           ? "bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
                           : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -216,7 +231,7 @@ export default function LoginDesktop() {
                         setLoginMethod("phone");
                         setErrors({});
                       }}
-                      className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-semibold rounded-[8px] transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[13px] font-semibold rounded-[4px] transition-all ${
                         loginMethod === "phone"
                           ? "bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
                           : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -250,7 +265,7 @@ export default function LoginDesktop() {
                                 value={formData.email}
                                 onChange={(e) => handleInputChange("email", e.target.value)}
                                 placeholder="Enter your email address"
-                                className={`w-full pl-11 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                                className={`w-full pl-11 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                                   errors.email 
                                     ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                     : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -278,7 +293,7 @@ export default function LoginDesktop() {
                                 value={formData.password}
                                 onChange={(e) => handleInputChange("password", e.target.value)}
                                 placeholder="Enter your password"
-                                className={`w-full pl-11 pr-11 py-2 bg-white dark:bg-[#121c33] border rounded-[8px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                                className={`w-full pl-11 pr-11 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                                   errors.password 
                                     ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                     : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -325,7 +340,7 @@ export default function LoginDesktop() {
                                   onClick={() =>
                                     setShowCountryDropdown(!showCountryDropdown)
                                   }
-                                  className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[8px] text-[13px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[70px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
+                                  className={`flex items-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-[#0d1730] border border-r-0 rounded-l-[4px] text-[13px] font-semibold text-[#0a1128] dark:text-white hover:bg-gray-100 dark:hover:bg-[#121c33] transition-all min-w-[70px] ${errors.phone ? 'border-red-500/60' : 'border-gray-200 dark:border-white/10'}`}
                                 >
                                   <span>{selectedCountry.code}</span>
                                   <ChevronDown size={12} className="text-gray-400" />
@@ -337,7 +352,7 @@ export default function LoginDesktop() {
                                       animate={{ opacity: 1, y: 0, scale: 1 }}
                                       exit={{ opacity: 0, y: -5, scale: 0.97 }}
                                       transition={{ duration: 0.15 }}
-                                      className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[8px] shadow-xl z-50 min-w-[180px] py-1 overflow-hidden"
+                                      className="absolute top-full left-0 mt-1 bg-white dark:bg-[#121c33] border border-gray-200 dark:border-white/10 rounded-[4px] shadow-xl z-50 min-w-[180px] py-1 overflow-hidden"
                                     >
                                       {countryCodes.map((c) => (
                                         <button
@@ -370,7 +385,7 @@ export default function LoginDesktop() {
                                 onChange={(e) => handleInputChange("phone", e.target.value.replace(/\D/g, ''))}
                                 maxLength={10}
                                 placeholder="10-digit mobile number"
-                                className={`flex-1 pl-4 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-r-[8px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
+                                className={`flex-1 pl-4 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-r-[4px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
                                   errors.phone 
                                     ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
                                     : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
@@ -414,7 +429,7 @@ export default function LoginDesktop() {
                       <button 
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-[55%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[8px] font-semibold text-[14px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"
+                        className="w-[55%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] font-semibold text-[14px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"
                       >
                         <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                         {isSubmitting ? (
