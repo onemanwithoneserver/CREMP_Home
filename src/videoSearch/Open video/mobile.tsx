@@ -100,28 +100,28 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
       onTouchEnd={handleTouchEnd}
       onClick={resetControlsTimeout}
     >
-      {}
+      
       <div className="absolute inset-0 bg-black flex items-center justify-center">
         <video
           ref={videoRef}
           src={video.videoUrl}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover"
           loop
           muted={isMuted}
           onClick={togglePlay}
           playsInline
         />
       </div>
-      {}
+      
       <div className={`absolute top-0 left-0 right-0 px-4 py-4 z-[120] flex items-center justify-between pointer-events-none transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-        {}
+        
         <button
           onClick={onClose}
           className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-white flex items-center justify-center text-black pointer-events-auto active:scale-90 transition-transform shadow-md"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
-        {}
+        
         <button
           onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
           className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-white flex items-center justify-center text-black pointer-events-auto active:scale-90 transition-transform shadow-md"
@@ -129,7 +129,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           {isMuted ? <VolumeX className="w-[18px] h-[18px]" /> : <Volume2 className="w-[18px] h-[18px]" />}
         </button>
       </div>
-      {}
+      
       {!isPlaying && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110]">
           <div className="w-16 h-16 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg">
@@ -137,9 +137,9 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </div>
         </div>
       )}
-      {}
+      
       <div className={`absolute bottom-0 left-0 right-16 p-4 pb-6 z-[115] bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-        {}
+        
         <div className="flex items-center gap-3 mb-2.5 pointer-events-auto">
           <div className="relative w-10 h-10 rounded-full p-[2px] bg-gradient-to-br from-[#d4af37] via-[#f59e0b] to-[#ec4899] shrink-0">
             <div className="w-full h-full rounded-full border-[2px] border-white overflow-hidden bg-gray-100">
@@ -158,12 +158,12 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
             Follow
           </button>
         </div>
-        {}
+        
         <p className="text-white text-[13px] font-medium leading-snug drop-shadow-md">
           {video.description}
         </p>
       </div>
-      {}
+      
       <div className={`absolute right-3 bottom-24 z-[120] flex flex-col items-center gap-5 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <button className="flex flex-col items-center gap-1 active:scale-90 transition-transform">
           <div className="w-11 h-11 rounded-full bg-white/70 backdrop-blur-md border border-white flex items-center justify-center text-black shadow-md">
@@ -193,7 +193,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           <MoreVertical className="w-5 h-5" />
         </button>
       </div>
-      {}
+      
       <div className={`absolute bottom-0 left-0 right-0 h-[3px] bg-white/20 z-[120] transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
         <div
           className="h-full bg-white transition-[width] duration-200"

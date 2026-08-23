@@ -74,131 +74,146 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
   }, [isPlaying]);
   const content = (
     <div 
-      className="fixed inset-0 z-[100000] bg-white flex overflow-hidden select-none"
+      className="fixed inset-0 z-[100000] bg-[#FAFAFA] flex items-center justify-center overflow-hidden select-none gap-6 md:gap-12"
       style={{ height: '100dvh' }}
-      onMouseMove={resetControlsTimeout}
-      onClick={resetControlsTimeout}
     >
-      {}
-      <div className={`w-[320px] flex flex-col p-6 shrink-0 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        {}
-        <button
-          onClick={onClose}
-          className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-700 hover:text-black hover:bg-gray-200 active:scale-90 transition-all duration-300 mb-8"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        {}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="relative w-12 h-12 rounded-full p-[2px] bg-gradient-to-br from-[#d4af37] via-[#f59e0b] to-[#ec4899] shrink-0">
-            <div className="w-full h-full rounded-full border-[2px] border-white overflow-hidden bg-gray-100">
-              <img src={video.profilePic} alt={video.username} className="w-full h-full object-cover" />
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-black text-[16px] font-bold">
-              {video.username}
-            </span>
-            <svg className="w-4 h-4 text-[#60a5fa] shrink-0" viewBox="0 0 24 24" fill="currentColor">
-              <path d="m23 12-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69zm-12.91 4.72-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48z"/>
-            </svg>
-          </div>
+      
+      {/* ─── LEFT COLUMN: Navigation & Info ─── */}
+      <div className="h-[calc(100dvh-64px)] w-[300px] flex flex-col justify-between py-2">
+        
+        {/* Top: Back Button */}
+        <div>
+          <button
+            onClick={onClose}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 text-gray-700 font-semibold text-sm hover:shadow-[0_4px_15px_rgba(0,0,0,0.08)] active:scale-95 transition-all duration-300"
+          >
+            <ChevronLeft className="w-5 h-5" />
+            Back to Search
+          </button>
         </div>
-        {}
-        <p className="text-gray-700 text-[14px] font-medium leading-snug">
-          {video.description}
-        </p>
-      </div>
-      {}
-      <div className="flex-1 flex items-center justify-center h-full py-4">
-        {}
-        <div
-          className="relative rounded-lg overflow-hidden shadow-2xl bg-black"
-          style={{
-            height: 'calc(100dvh - 32px)',
-            aspectRatio: '9/16',
-          }}
-        >
-          <video
-            ref={videoRef}
-            src={video.videoUrl}
-            className="w-full h-full object-cover cursor-pointer"
-            loop
-            muted={isMuted}
-            onClick={togglePlay}
-            playsInline
-          />
-          {}
-          {!isPlaying && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110]">
-              <div className="w-16 h-16 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg">
-                <Play className="w-7 h-7 ml-1 text-black" fill="currentColor" />
+
+        {/* Bottom: Profile & Description Card */}
+        <div className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col gap-4">
+          <div className="flex items-center gap-3">
+            {/* Avatar with Gradient Border */}
+            <div className="relative w-14 h-14 rounded-full p-[2.5px] bg-gradient-to-tr from-[#d4af37] via-[#f59e0b] to-[#ec4899] shrink-0 shadow-sm">
+              <div className="w-full h-full rounded-full border-[2.5px] border-white overflow-hidden bg-gray-100">
+                <img src={video.profilePic} alt={video.username} className="w-full h-full object-cover" />
               </div>
             </div>
-          )}
-          {}
-          <div className={`absolute bottom-0 left-0 right-0 h-[3px] bg-white/20 z-[115] transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-            <div
-              className="h-full bg-white transition-[width] duration-200"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
-        {}
-        <div className={`flex flex-col items-center gap-5 ml-4 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          {}
-          <div className="flex flex-col bg-gray-100 rounded-xl overflow-hidden border border-gray-200">
-            <button
-              onClick={onPrev}
-              disabled={!hasPrev}
-              className={`p-3 transition-all duration-200 ${
-                hasPrev
-                  ? 'text-gray-700 hover:text-black hover:bg-gray-200'
-                  : 'text-gray-300 cursor-not-allowed'
-              }`}
-            >
-              <ChevronUp className="w-5 h-5" />
-            </button>
-            <div className="h-px bg-gray-200" />
-            <button
-              onClick={onNext}
-              disabled={!hasNext}
-              className={`p-3 transition-all duration-200 ${
-                hasNext
-                  ? 'text-gray-700 hover:text-black hover:bg-gray-200'
-                  : 'text-gray-300 cursor-not-allowed'
-              }`}
-            >
-              <ChevronDown className="w-5 h-5" />
-            </button>
-          </div>
-          {}
-          <button className="flex flex-col items-center gap-1.5 group">
-            <div className="w-11 h-11 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-700 group-hover:text-black group-hover:bg-gray-200 active:scale-90 transition-all duration-200">
-              <Share2 className="w-[18px] h-[18px]" />
+            {/* Name & Badge */}
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-1.5">
+                <span className="text-gray-900 text-[17px] font-extrabold tracking-tight">
+                  {video.username}
+                </span>
+                <svg className="w-[18px] h-[18px] text-blue-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="m23 12-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69zm-12.91 4.72-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48z"/>
+                </svg>
+              </div>
+              <span className="text-gray-400 text-[12px] font-medium mt-0.5">Top Contributor</span>
             </div>
-            <span className="text-[11px] font-semibold text-gray-600 group-hover:text-black transition-colors">Share</span>
-          </button>
-          {}
-          <button className="flex flex-col items-center gap-1.5 group">
-            <div className="w-11 h-11 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-700 group-hover:text-black group-hover:bg-gray-200 active:scale-90 transition-all duration-200">
-              <Bookmark className="w-[18px] h-[18px]" />
-            </div>
-            <span className="text-[11px] font-semibold text-gray-600 group-hover:text-black transition-colors">Save</span>
-          </button>
-          {}
-          <button className="w-11 h-11 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-700 hover:text-black hover:bg-gray-200 active:scale-90 transition-all duration-200">
-            <MoreVertical className="w-[18px] h-[18px]" />
-          </button>
-          {}
-          <button
-            onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
-            className="w-11 h-11 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-700 hover:text-black hover:bg-gray-200 active:scale-90 transition-all duration-200 mt-2"
-          >
-            {isMuted ? <VolumeX className="w-[18px] h-[18px]" /> : <Volume2 className="w-[18px] h-[18px]" />}
-          </button>
+          </div>
+          
+          <div className="h-px w-full bg-gray-100/80 my-1" />
+
+          {/* Description */}
+          <p className="text-gray-600 text-[14px] font-medium leading-relaxed">
+            {video.description}
+          </p>
         </div>
       </div>
+
+      {/* ─── CENTER COLUMN: Portrait Video ─── */}
+      <div
+        className="relative h-[calc(100dvh-64px)] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-black ring-1 ring-white/10"
+        onMouseMove={resetControlsTimeout}
+        onClick={resetControlsTimeout}
+      >
+        <video
+          ref={videoRef}
+          src={video.videoUrl}
+          className="w-full h-full object-cover cursor-pointer"
+          loop
+          muted={isMuted}
+          onClick={togglePlay}
+          playsInline
+        />
+
+        {/* Play/Pause Overlay */}
+        {!isPlaying && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110] bg-black/10 transition-colors">
+            <div className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl">
+              <Play className="w-9 h-9 ml-1.5 text-white drop-shadow-md" fill="currentColor" />
+            </div>
+          </div>
+        )}
+
+        {/* Progress Bar */}
+        <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-white/20 z-[115] transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+          <div
+            className="h-full bg-white transition-[width] duration-200 rounded-r-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+
+      {/* ─── RIGHT COLUMN: Actions ─── */}
+      <div className="h-[calc(100dvh-64px)] w-[70px] flex flex-col justify-center items-start gap-5">
+        
+        {/* Navigation Pill */}
+        <div className="flex flex-col bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] rounded-full overflow-hidden border border-gray-100">
+          <button
+            onClick={onPrev}
+            disabled={!hasPrev}
+            className={`p-3.5 transition-all duration-300 active:scale-90 ${
+              hasPrev ? 'text-gray-700 hover:bg-gray-50' : 'text-gray-300 cursor-not-allowed'
+            }`}
+          >
+            <ChevronUp className="w-[22px] h-[22px]" />
+          </button>
+          <div className="h-[1px] w-8 mx-auto bg-gray-100" />
+          <button
+            onClick={onNext}
+            disabled={!hasNext}
+            className={`p-3.5 transition-all duration-300 active:scale-90 ${
+              hasNext ? 'text-gray-700 hover:bg-gray-50' : 'text-gray-300 cursor-not-allowed'
+            }`}
+          >
+            <ChevronDown className="w-[22px] h-[22px]" />
+          </button>
+        </div>
+
+        {/* Share */}
+        <button className="flex flex-col items-center gap-1.5 group transition-transform duration-300 active:scale-90">
+          <div className="w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center justify-center text-gray-700 group-hover:bg-gray-50 transition-colors">
+            <Share2 className="w-[20px] h-[20px]" />
+          </div>
+          <span className="text-[11px] font-bold text-gray-500">Share</span>
+        </button>
+
+        {/* Save */}
+        <button className="flex flex-col items-center gap-1.5 group transition-transform duration-300 active:scale-90">
+          <div className="w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center justify-center text-gray-700 group-hover:bg-gray-50 transition-colors">
+            <Bookmark className="w-[20px] h-[20px]" />
+          </div>
+          <span className="text-[11px] font-bold text-gray-500">Save</span>
+        </button>
+
+        {/* More */}
+        <button className="w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center justify-center text-gray-700 transition-all duration-300 active:scale-90 hover:bg-gray-50 mt-1">
+          <MoreVertical className="w-[20px] h-[20px]" />
+        </button>
+        
+        {/* Volume Toggle */}
+        <button
+          onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
+          className="w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center justify-center text-gray-700 transition-all duration-300 active:scale-90 hover:bg-gray-50 mt-3"
+        >
+          {isMuted ? <VolumeX className="w-[20px] h-[20px]" /> : <Volume2 className="w-[20px] h-[20px]" />}
+        </button>
+      </div>
+
     </div>
   );
   return createPortal(content, document.body);
