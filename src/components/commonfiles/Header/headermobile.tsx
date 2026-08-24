@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Plus, Minus, X, Search, SlidersHorizontal } from "lucide-react";
+import { Plus, Minus, X } from "lucide-react";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import { navLinks } from "./data";
@@ -14,7 +14,6 @@ export default function HeaderMobile({
   currentPage,
 }: HeaderMobileProps) {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -59,27 +58,7 @@ export default function HeaderMobile({
           </button>
         </div>
         <div className="flex-1 overflow-y-auto overflow-x-hidden pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          <div className="px-5 flex flex-col min-h-full">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-              className="mt-6 mb-8"
-            >
-              <div className="relative group">
-                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#d4af37] transition-colors" strokeWidth={2.5} />
-                <input
-                  type="text"
-                  placeholder="Search properties..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-11 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl pl-9 pr-10 text-[13px] font-medium text-[#0a1128] dark:text-white outline-none focus:border-[#d4af37] focus:ring-4 focus:ring-[#d4af37]/10 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 shadow-sm focus:bg-white dark:focus:bg-[#0b1b42]"
-                />
-                <button type="button" className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-white dark:bg-white/10 flex items-center justify-center text-gray-500 hover:text-[#d4af37] transition-colors shadow-sm">
-                  <SlidersHorizontal size={14} strokeWidth={2.5} />
-                </button>
-              </div>
-            </motion.div>
+          <div className="px-5 flex flex-col min-h-full pt-4">
             <motion.nav 
               variants={containerVariants}
               initial="hidden"

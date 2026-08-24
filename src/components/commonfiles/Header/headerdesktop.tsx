@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { 
-  Search, 
-  SlidersHorizontal, 
   MapPin, 
   ChevronDown, 
   Menu, 
@@ -28,9 +26,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [currentLocation, setCurrentLocation] = useState("Lakshmipuram");
   
   const recentLocations = ["Hyderabad", "Bengaluru", "Chennai", "Kurnool"];
@@ -157,36 +153,6 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                 })}
               </nav>
               <div className="flex items-center gap-2 pr-1 shrink-0 flex-1 justify-end">
-                <motion.div
-                  initial={false}
-                  animate={{ width: isSearchFocused ? 280 : 200 }}
-                  className="relative flex items-center h-10 px-3.5 rounded transition-all duration-300 bg-white/50 dark:bg-white/5 border border-white/50 dark:border-white/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] hover:bg-white/70 dark:hover:bg-white/10 focus-within:bg-white/95 dark:focus-within:bg-[#0b1b42]/95 focus-within:border-[#d4af37]/50 focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.15)]"
-                >
-                  <Search size={15} className={`shrink-0 transition-colors duration-300 ${isSearchFocused ? "text-[#d4af37]" : "text-gray-500/80 dark:text-gray-400"}`} strokeWidth={2.5} />
-                  <input
-                    type="text"
-                    placeholder="Search properties..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onBlur={() => setIsSearchFocused(false)}
-                    className="w-full ml-3 bg-transparent text-[13px] font-bold text-[#0a1128] dark:text-white outline-none placeholder:text-gray-500/70 dark:placeholder:text-gray-400/70 placeholder:font-semibold"
-                  />
-                  <AnimatePresence>
-                    {isSearchFocused && (
-                      <motion.button
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        type="button"
-                        className="p-1.5 -mr-1.5 rounded text-[#d4af37] hover:bg-[#d4af37]/10 transition-colors shrink-0"
-                      >
-                        <SlidersHorizontal size={14} strokeWidth={2.5} />
-                      </motion.button>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-                <div className="w-[1px] h-5 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent opacity-60 mx-1.5" />
                 <div className="relative">
                   <button
                     type="button"
