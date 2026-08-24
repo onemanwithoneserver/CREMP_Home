@@ -77,7 +77,7 @@ export default function VideoSearchDesktop() {
     setVisibleCount(ITEMS_PER_PAGE);
   };
   return (
-    <section className="w-full px-6 pt-32 pb-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#0b1b42] min-h-screen font-sans">
+    <section className="w-full px-6 pt-8 pb-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#0b1b42] min-h-screen font-sans">
       <motion.div
         variants={pulseGlow}
         animate="animate"

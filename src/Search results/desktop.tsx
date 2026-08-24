@@ -175,7 +175,7 @@ export default function SearchResultsDesktop() {
     });
   }, [searchQuery]);
   return (
-    <div className="flex flex-row w-full h-full bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300">
+    <div className="flex flex-row w-full h-[calc(100vh-72px)] min-h-[calc(100vh-72px)] bg-white dark:bg-[#0b1b42] overflow-hidden font-sans transition-colors duration-300">
       {}
       <div className="w-[65%] h-full flex flex-col relative border-r border-gray-200/60 dark:border-gray-800 z-10 bg-white dark:bg-[#0b1b42]">
         <div className="flex-1 relative bg-gradient-to-br from-[#eef2f6] via-[#e8edf4] to-[#dfe5ee] dark:from-[#0a1128] dark:via-[#0d1730] dark:to-[#0a1128] overflow-hidden">

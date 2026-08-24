@@ -383,7 +383,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
           </div>
         </div>
       </header>
-      <div className={`transition-all duration-500 ${isMobile ? "h-[80px]" : " "}`} />
+      <div className={`transition-all duration-500 ${isMobile ? "h-[80px]" : "h-[68px] sm:h-[72px]"}`} />
       <AnimatePresence>
         {mobileMenuOpen && (
           <HeaderMobile
