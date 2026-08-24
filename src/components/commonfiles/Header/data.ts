@@ -4,9 +4,8 @@ export type NavItem = {
   subItems?: { label: string; href: string }[];
 };
 export const navLinks: NavItem[] = [
-  { label: "Home", href: "#" },
   { 
-    label: "Commercial Listing", 
+    label: "Commercial Properties", 
     subItems: [
       { label: "Lease", href: "#" },
       { label: "Buy", href: "#" }
@@ -17,11 +16,12 @@ export const navLinks: NavItem[] = [
   { 
     label: "Collections", 
     subItems: [
-      { label: "Video search", href: "#" },
+/*       { label: "Video search", href: "#" }, */
       { label: "Saved Properties", href: "#" },
       { label: "Hand Picked", href: "#" }
     ]
   },
+    { label: "Video search", href: "#" },
 ];
 export const cities = [
   "All cities",
