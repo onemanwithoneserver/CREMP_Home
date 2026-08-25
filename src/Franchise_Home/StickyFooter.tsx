@@ -26,7 +26,7 @@ const Tooltip = ({
 export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
   const [isSaved, setIsSaved] = useState(false);
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
+    <div className="sticky bottom-0 left-0 w-full z-50 bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
       <div className="max-w-[1440px] w-full flex items-center justify-between gap-2 md:gap-4 relative z-10">
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
@@ -93,7 +93,7 @@ export default function StickyFooter({ isMobile }: { isMobile: boolean }) {
           whileTap={{ scale: 0.92 }}
           className={clsx(
             "h-11 flex items-center justify-center gap-2 rounded-[4px] font-bold transition-all duration-300 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] border border-[#f9df9f]/50 ml-auto",
-            isMobile ? "w-3/5 px-2 text-[13px]" : "px-8 text-sm shrink-0",
+            isMobile ? "px-6 text-[13px]" : "px-8 text-sm shrink-0",
           )}
         >
           <Calendar size={18} strokeWidth={2} />

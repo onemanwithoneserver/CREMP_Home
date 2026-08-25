@@ -26,7 +26,7 @@ export const sampleVideos: VideoResult[] = [
     views: "1.2k",
     thumbnail:
       "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80",
-    category: "Franchise Models",
+    category: "New Franchises",
   },
   {
     id: "v2",
@@ -36,7 +36,7 @@ export const sampleVideos: VideoResult[] = [
     views: "3.5k",
     thumbnail:
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
-    category: "Success Stories",
+    category: "Running Businesses",
   },
   {
     id: "v3",
@@ -46,7 +46,7 @@ export const sampleVideos: VideoResult[] = [
     views: "856",
     thumbnail:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
-    category: "Webinars",
+    category: "Investments",
   },
   {
     id: "v4",
@@ -56,7 +56,7 @@ export const sampleVideos: VideoResult[] = [
     views: "2.1k",
     thumbnail:
       "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-    category: "Interviews",
+    category: "Distribution",
   },
   {
     id: "v5",
@@ -66,7 +66,7 @@ export const sampleVideos: VideoResult[] = [
     views: "5.4k",
     thumbnail:
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-    category: "Webinars",
+    category: "Pre-Leased",
   },
   {
     id: "v6",
@@ -76,7 +76,7 @@ export const sampleVideos: VideoResult[] = [
     views: "930",
     thumbnail:
       "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80",
-    category: "Success Stories",
+    category: "Fractional",
   },
   {
     id: "v7",
@@ -86,7 +86,7 @@ export const sampleVideos: VideoResult[] = [
     views: "4.8k",
     thumbnail:
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
-    category: "Franchise Models",
+    category: "New Franchises",
   },
   {
     id: "v8",
@@ -96,7 +96,7 @@ export const sampleVideos: VideoResult[] = [
     views: "1.9k",
     thumbnail:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    category: "Webinars",
+    category: "Investments",
   },
   {
     id: "v9",
@@ -106,7 +106,7 @@ export const sampleVideos: VideoResult[] = [
     views: "2.7k",
     thumbnail:
       "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
-    category: "Success Stories",
+    category: "Running Businesses",
   },
   {
     id: "v10",
@@ -116,7 +116,7 @@ export const sampleVideos: VideoResult[] = [
     views: "6.2k",
     thumbnail:
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
-    category: "Franchise Models",
+    category: "Movable Assets",
   },
   {
     id: "v11",
@@ -126,7 +126,7 @@ export const sampleVideos: VideoResult[] = [
     views: "3.1k",
     thumbnail:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    category: "Interviews",
+    category: "Distribution",
   },
   {
     id: "v12",
@@ -136,7 +136,7 @@ export const sampleVideos: VideoResult[] = [
     views: "1.5k",
     thumbnail:
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
-    category: "Webinars",
+    category: "Fractional",
   },
   {
     id: "v13",
@@ -146,7 +146,7 @@ export const sampleVideos: VideoResult[] = [
     views: "7.3k",
     thumbnail:
       "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80",
-    category: "Success Stories",
+    category: "Pre-Leased",
   },
   {
     id: "v14",
@@ -156,7 +156,7 @@ export const sampleVideos: VideoResult[] = [
     views: "890",
     thumbnail:
       "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-    category: "Webinars",
+    category: "Movable Assets",
   },
   {
     id: "v15",
@@ -166,7 +166,7 @@ export const sampleVideos: VideoResult[] = [
     views: "2.4k",
     thumbnail:
       "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=800&q=80",
-    category: "Interviews",
+    category: "New Franchises",
   },
   {
     id: "v16",
@@ -176,7 +176,7 @@ export const sampleVideos: VideoResult[] = [
     views: "1.8k",
     thumbnail:
       "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80",
-    category: "Franchise Models",
+    category: "Investments",
   },
   {
     id: "v17",
@@ -186,7 +186,7 @@ export const sampleVideos: VideoResult[] = [
     views: "4.1k",
     thumbnail:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-    category: "Webinars",
+    category: "Running Businesses",
   },
   {
     id: "v18",
@@ -196,6 +196,6 @@ export const sampleVideos: VideoResult[] = [
     views: "5.9k",
     thumbnail:
       "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
-    category: "Interviews",
+    category: "Pre-Leased",
   },
 ];

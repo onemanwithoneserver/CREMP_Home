@@ -1,3 +1,5 @@
+import { sampleVideos } from '../data';
+
 export interface ReelData {
   id: string;
   videoUrl: string;
@@ -46,17 +48,23 @@ export const reelsData: ReelData[] = [
   },
 ];
 export const getReelData = (id: string): ReelData => {
+  const sample = sampleVideos.find(v => v.id === id);
+  const category = sample ? sample.category : "Pre-Leased";
+
   const found = reelsData.find(r => r.id === id);
-  if (found) return found;
+  if (found) {
+    return { ...found, category };
+  }
   return {
     id,
     videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
-    username: "user_" + id,
-    description: "Explore the possibilities with our new franchise models! ✨",
+    thumbnail: sample ? sample.thumbnail : "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+    username: sample ? sample.brand : "user_" + id,
+    description: sample ? sample.title : "Explore the possibilities with our new franchise models! ✨",
     likes: "1,234",
     comments: "56",
     shares: "12",
-    profilePic: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80"
+    profilePic: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80",
+    category
   };
 };
