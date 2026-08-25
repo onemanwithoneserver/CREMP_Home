@@ -21,8 +21,9 @@ const SectionLoader = () => (
     style={{ width: "calc(100% - 1.25rem)" }}
   />
 );
-export default function AllBuildingBox() {
-  const { viewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
+export default function AllBuildingBox({ viewModeProp }: { viewModeProp?: "desktop" | "mobile" }) {
+  const { viewMode: paramViewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
+  const viewMode = viewModeProp || paramViewMode || "desktop";
   const [dialogWidth, setDialogWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
   const [panelPadding, setPanelPadding] = useState("1rem");

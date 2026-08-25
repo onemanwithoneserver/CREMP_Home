@@ -1,6 +1,10 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Share2, MoreVertical, ChevronUp, ChevronDown, ChevronLeft, Bookmark, Play, Volume2, VolumeX } from 'lucide-react';
+import FranchiseHome from '../../Franchise_Home';
+import LandBox from '../../LandBox';
+import AllBuildingBox from '../../AllBuildingBox';
+import BuildingBox from '../../BuildingBox';
 import type { ReelData } from './data';
 
 interface DesktopProps { video: ReelData; onClose: () => void; onNext: () => void; onPrev: () => void; hasNext: boolean; hasPrev: boolean; }
@@ -58,15 +62,31 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
     }
   };
 
-  const content = (
-    <div className="fixed inset-0 z-[100000] bg-gray-50 flex items-center justify-center overflow-hidden select-none gap-6 transition-colors duration-500">
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#d4af37]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "8s" }} />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[#c69a54]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "12s", animationDelay: "2s" }} />
-      </div>
+  const getRightPanelComponent = (category?: string) => {
+    const cat = (category || "").toLowerCase();
+    if (cat.includes("franchise") || cat.includes("running")) {
+      return <FranchiseHome isMobile={true} />;
+    }
+    if (cat.includes("land") || cat.includes("investment")) {
+      return <LandBox viewModeProp="mobile" />;
+    }
+    if (cat.includes("pre-leased") || cat.includes("fractional")) {
+      return <AllBuildingBox viewModeProp="mobile" />;
+    }
+    return <BuildingBox viewModeProp="mobile" />;
+  };
 
-      <div className="relative z-10 w-[280px] h-[85vh] max-h-[850px] flex flex-col justify-between py-2">
-        <button onClick={onClose} className="relative z-10 flex items-center gap-2 px-5 py-2.5 w-fit rounded-[8px] bg-white/70 backdrop-blur-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-white text-[#0a1128] font-bold text-xs uppercase tracking-widest hover:border-[#d4af37]/50 hover:bg-white hover:shadow-[0_8px_25px_rgba(212,175,55,0.15)] transition-all duration-300 group">
+  const content = (
+    <div className="fixed inset-0 z-[100000] bg-gray-50 flex overflow-hidden select-none transition-colors duration-500">
+      <div className="w-[65%] h-full flex items-center justify-center relative shrink-0">
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#d4af37]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "8s" }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[#c69a54]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "12s", animationDelay: "2s" }} />
+        </div>
+        
+        <div className="relative z-10 w-full max-w-5xl h-[85vh] max-h-[850px] flex justify-center gap-6 py-2 px-8">
+          <div className="relative z-10 w-[280px] h-[85vh] max-h-[850px] flex flex-col justify-between py-2">
+            <button onClick={onClose} className="relative z-10 flex items-center gap-2 px-5 py-2.5 w-fit rounded-[8px] bg-white/70 backdrop-blur-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-white text-[#0a1128] font-bold text-xs uppercase tracking-widest hover:border-[#d4af37]/50 hover:bg-white hover:shadow-[0_8px_25px_rgba(212,175,55,0.15)] transition-all duration-300 group">
           <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300 text-[#d4af37]" /> Back
         </button>
 
@@ -140,6 +160,13 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
           </button>
         </div>
       </div>
+        </div>
+      </div>
+
+      <div className="w-[35%] h-full bg-white dark:bg-[#0b1b42] overflow-y-auto relative z-[100] shadow-[-8px_0_30px_rgba(0,0,0,0.1)] shrink-0 select-auto">
+        {getRightPanelComponent(video.category)}
+      </div>
+
     </div>
   );
 

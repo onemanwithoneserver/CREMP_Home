@@ -41,8 +41,9 @@ const SectionLoader = () => (
     </div>
   </div>
 );
-export default function LandBox() {
-  const { viewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
+export default function LandBox({ viewModeProp }: { viewModeProp?: "desktop" | "mobile" }) {
+  const { viewMode: paramViewMode } = useParams<{ viewMode: "desktop" | "mobile" }>();
+  const viewMode = viewModeProp || paramViewMode || "desktop";
   const [dialogWidth, setDialogWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);

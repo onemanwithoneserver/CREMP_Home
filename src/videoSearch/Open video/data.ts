@@ -8,6 +8,7 @@ export interface ReelData {
   comments: string;
   shares: string;
   profilePic: string;
+  category?: string;
 }
 export const reelsData: ReelData[] = [
   {
