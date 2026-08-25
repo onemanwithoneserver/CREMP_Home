@@ -20,11 +20,12 @@ export default function Mobile() {
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 z-50 flex w-full flex-col gap-2 px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${
+      className={`fixed z-50 flex w-full flex-col gap-2 px-5 py-3.5 text-[#0a1128] transition-all duration-500 dark:text-white ${
         scrolled
-          ? "bg-white/75 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-md border-b border-white/40 dark:bg-[#0b1b42]/85 dark:border-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          ? "bg-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] border-b border-gray-200 dark:bg-[#0b1b42] dark:border-white/10 dark:shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
           : "bg-white dark:bg-[#0b1b42] border-b border-transparent"
       }`}
+      style={{ top: "var(--top-bar-height, 0px)" }}
     >
       <div className="flex w-full items-center justify-between">
         <motion.a

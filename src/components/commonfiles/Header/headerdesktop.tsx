@@ -70,7 +70,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
+      <header className="fixed inset-x-0 z-50 pointer-events-none" style={{ top: "var(--top-bar-height, 0px)" }}>
         <div className={`transition-all duration-500 ease-out flex justify-center w-full ${scrolled ? "pt-4" : "pt-0"}`}>
           {!isMobile && (
             <div
@@ -78,12 +78,11 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                 pointer-events-auto 
                 flex items-center justify-between gap-4 
                 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] 
-                backdrop-blur-xl bg-white/45 dark:bg-[#0a1128]/55 
-                shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.7)] 
-                dark:shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_1px_rgba(255,255,255,0.06)] 
+                backdrop-blur-none bg-white dark:bg-[#0a1128] 
+                shadow-sm dark:shadow-[0_4px_16px_rgba(0,0,0,0.4)]
                 ${scrolled 
-                  ? "max-w-[1400px] w-[calc(100%-32px)] px-3 py-2.5 rounded border border-white/70 dark:border-white/10" 
-                  : "w-full px-6 py-3 border-b border-white/70 dark:border-white/10 rounded-none"
+                  ? "max-w-[1400px] w-[calc(100%-32px)] px-3 py-2.5 rounded border border-gray-200 dark:border-white/10" 
+                  : "w-full px-6 py-3 border-b border-gray-200 dark:border-white/10 rounded-none"
                 }
               `}
             >
@@ -115,7 +114,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                         {isHovered && !isActive && (
                           <motion.div
                             layoutId="nav-hover"
-                            className="absolute inset-0 bg-white/40 dark:bg-white/5 rounded -z-10 backdrop-blur-md"
+                            className="absolute inset-0 bg-gray-100 dark:bg-white/5 rounded -z-10"
                             transition={{ type: "spring", stiffness: 400, damping: 30 }}
                           />
                         )}
@@ -135,7 +134,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                       </a>
                       {link.subItems && (
                         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
-                          <div className="min-w-[200px] p-2 backdrop-blur-2xl bg-white/75 dark:bg-[#0b1b42]/80 border border-white/60 dark:border-white/10 rounded shadow-[0_16px_40px_rgba(0,0,0,0.1)]">
+                          <div className="min-w-[200px] p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-lg">
                             {link.subItems.map((subItem) => (
                               <a
                                 key={subItem.label}
@@ -178,7 +177,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full right-0 mt-4 w-[260px] p-2 backdrop-blur-2xl bg-white/85 dark:bg-[#0b1b42]/90 border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50 overflow-hidden"
+                          className="absolute top-full right-0 mt-4 w-[260px] p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50 overflow-hidden"
                         >
                           <div className="mb-2">
                             <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-blue-50/90 dark:hover:bg-blue-500/10 transition-colors text-left group/loc border border-transparent hover:border-blue-100/50 dark:hover:border-blue-500/20">
@@ -239,7 +238,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full right-0 mt-4 w-[200px] bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50 py-1.5 overflow-hidden"
+                          className="absolute top-full right-0 mt-4 w-[200px] bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50 py-1.5 overflow-hidden"
                         >
                           <div className="py-1 border-b border-gray-100/50 dark:border-white/10">
                             <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
@@ -265,7 +264,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
               </div>
             </div>
           )}
-          <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-full backdrop-blur-2xl bg-white/50 dark:bg-[#0a1128]/60 border-b border-white/70 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-3 transition-all duration-300`}>
+          <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-full bg-white dark:bg-[#0a1128] border-b border-gray-200 dark:border-white/10 shadow-sm p-3 transition-all duration-300`}>
             <div className="flex items-center justify-between w-full relative z-40">
               <div className="flex items-center gap-2">
                 <button
@@ -300,7 +299,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full left-0 sm:-left-4 mt-3 w-[240px] p-2 backdrop-blur-2xl bg-white/95 dark:bg-[#0b1b42]/95 border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.15)] z-50"
+                          className="absolute top-full left-0 sm:-left-4 mt-3 w-[240px] p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50"
                         >
                           <div className="mb-1">
                             <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-blue-50/80 dark:hover:bg-blue-500/10 text-left transition-colors">
@@ -355,7 +354,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full right-0 mt-3 w-[200px] bg-white/90 dark:bg-[#0b1b42]/95 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50 py-1.5 overflow-hidden"
+                          className="absolute top-full right-0 mt-3 w-[200px] bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50 py-1.5 overflow-hidden"
                         >
                           <div className="py-1 border-b border-gray-100/50 dark:border-white/10">
                             <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">

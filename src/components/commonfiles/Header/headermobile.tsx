@@ -36,14 +36,16 @@ export default function HeaderMobile({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={() => setMobileMenuOpen(false)}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90]"
+        className="fixed inset-0 bg-black/60 z-[90]"
+        style={{ top: "var(--top-bar-height, 0px)" }}
       />
       <motion.div
         initial={{ opacity: 0, y: "-100%" }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: "-100%" }}
         transition={{ type: "spring", damping: 30, stiffness: 250 }}
-        className="fixed top-0 left-0 w-full h-auto max-h-[100dvh] rounded-b-[8px] bg-white dark:bg-[#0a1128] z-[100] flex flex-col overflow-hidden shadow-2xl border-b border-gray-100 dark:border-white/10"
+        className="fixed left-0 w-full h-auto max-h-[100dvh] rounded-b-[8px] bg-white dark:bg-[#0a1128] z-[100] flex flex-col overflow-hidden shadow-2xl border-b border-gray-100 dark:border-white/10"
+        style={{ top: "var(--top-bar-height, 0px)", maxHeight: "calc(100dvh - var(--top-bar-height, 0px))" }}
       >
         <div className="flex items-center justify-between p-5 shrink-0 relative z-10 border-b border-gray-100 dark:border-white/10">
           <a href="#" className="flex items-center">

@@ -49,7 +49,7 @@ function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
   return (
-    <div className="flex flex-col h-screen w-full bg-cremp-background">
+    <div className="flex flex-col h-screen w-full bg-cremp-background" style={{ "--top-bar-height": showHeader ? "56px" : "0px" } as React.CSSProperties}>
       {showHeader && (
         <Header
           viewMode={viewMode}
