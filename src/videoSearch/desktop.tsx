@@ -95,13 +95,13 @@ export default function VideoSearchDesktop() {
           transition={{ delay: 0.2 }}
           className="flex flex-col gap-6"
         >
-          <div className="flex flex-col items-center text-center mt-4 mb-2">
-            <span className="flex w-fit mx-auto items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-white/60 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/5 mb-4">
+          <div className="flex flex-col items-center text-center mt-2 mb-2 px-4">
+            <span className="flex w-fit mx-auto items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/40 bg-white/60 px-4 py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/40 dark:bg-[#D4AF37]/5 mb-4">
               EXPLORE. DISCOVER. CONNECT.
             </span>
-            <p className="text-lg md:text-xl font-medium text-[#0a1128]/80 dark:text-white/80 mb-2">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#2d3748] dark:text-white leading-snug">
               Commercial Properties &middot; Business Opportunities &middot; Expert Brokers
-            </p>
+            </h1>
           </div>
           <div className="relative w-full max-w-2xl mx-auto group">
             <input

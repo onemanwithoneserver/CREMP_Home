@@ -9,10 +9,13 @@ export interface VideoResult {
 }
 export const videoCategories = [
   "All",
-  "Franchise Models",
-  "Success Stories",
-  "Interviews",
-  "Webinars",
+  "Pre-Leased",
+  "Investments",
+  "Fractional",
+  "New Franchises",
+  "Running Businesses",
+  "Distribution",
+  "Movable Assets",
 ];
 export const sampleVideos: VideoResult[] = [
   {

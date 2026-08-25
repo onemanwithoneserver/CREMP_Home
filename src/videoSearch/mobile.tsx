@@ -89,18 +89,12 @@ export default function VideoSearchMobile() {
         className="pointer-events-none absolute bottom-[20%] right-[-10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/8 blur-[80px] dark:bg-[#D4AF37]/8"
       />
       <div className="pt-6 pb-4 px-4 flex flex-col items-center text-center relative z-10">
-        <span className="flex w-fit items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/30 bg-white/60 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/30 dark:bg-[#D4AF37]/5 mb-3">
-          VIDEO SEARCH
-        </span>
-        <h1 className="text-2xl font-bold tracking-tight text-[#0a1128] dark:text-white mb-3">
+        <span className="flex w-fit items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/40 bg-white/60 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/40 dark:bg-[#D4AF37]/5 mb-3">
           EXPLORE. DISCOVER. CONNECT.
-        </h1>
-        <p className="text-[12px] font-medium text-[#0a1128]/80 dark:text-white/80 leading-tight mb-2">
+        </span>
+        <h1 className="text-[17px] sm:text-xl font-bold tracking-tight text-[#2d3748] dark:text-white leading-snug mb-1">
           Commercial Properties &middot; Business Opportunities &middot; Expert Brokers
-        </p>
-        <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-snug">
-          Pre-Leased &middot; Investments &middot; Fractional &middot; New Franchises &middot; Running Businesses &middot; Distribution &middot; Movable Assets
-        </p>
+        </h1>
       </div>
       <div className="sticky top-0 z-40 bg-white dark:bg-[#0b1b42] p-3 sm:p-4 flex flex-col shrink-0 relative overflow-hidden rounded-b-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
         <div className="flex items-center justify-between mb-2.5">
