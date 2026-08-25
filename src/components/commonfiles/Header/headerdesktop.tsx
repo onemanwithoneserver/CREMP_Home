@@ -14,6 +14,7 @@ import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import HeaderMobile from "./headermobile";
 import { navLinks } from "./data";
+import CrempTextLogo from "../../CrempTextLogo";
 
 interface SiteHeaderProps {
   currentPage?: string;
@@ -87,9 +88,12 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
               `}
             >
               <div className="flex items-center shrink-0 pl-3 pr-2">
-                <a href="#" className="flex items-center group focus:outline-none" aria-label="CREMP home">
-                  <img src={logoLight} alt="CREMP" className="h-8 w-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-sm" />
-                  <img src={logo} alt="CREMP" className="hidden h-8 w-auto object-contain dark:block transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
+                <a href="#" className="flex items-center gap-2 group focus:outline-none" aria-label="CREMP home">
+                  <img src={logoLight} alt="CREMP Logo" className="h-8 w-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-sm" />
+                  <img src={logo} alt="CREMP Logo" className="hidden h-8 w-auto object-contain dark:block transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
+                  <div className="flex flex-col justify-center">
+                    <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white sm:h-6" />
+                  </div>
                 </a>
               </div>
               <nav className="flex items-center gap-1.5" onMouseLeave={() => setHoveredNav(null)}>
@@ -274,9 +278,12 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                 >
                   <Menu size={16} strokeWidth={2.5} />
                 </button>
-                <a href="#" className="flex items-center shrink-0">
-                  <img src={logoLight} alt="CREMP" className="h-7 w-auto dark:hidden drop-shadow-sm" />
-                  <img src={logo} alt="CREMP" className="hidden h-7 w-auto dark:block drop-shadow-md" />
+                <a href="#" className="flex items-center gap-1.5 shrink-0">
+                  <img src={logoLight} alt="CREMP Logo" className="h-7 w-auto dark:hidden drop-shadow-sm" />
+                  <img src={logo} alt="CREMP Logo" className="hidden h-7 w-auto dark:block drop-shadow-md" />
+                  <div className="flex flex-col justify-center">
+                    <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white" />
+                  </div>
                 </a>
                 <div className="hidden sm:block w-[1px] h-4 bg-gray-200/80 dark:bg-gray-700/80 mx-1"></div>
                 <div className="relative">

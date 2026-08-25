@@ -4,6 +4,7 @@ import { Plus, Minus, X } from "lucide-react";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import { navLinks } from "./data";
+import CrempTextLogo from "../../CrempTextLogo";
 interface HeaderMobileProps {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
@@ -48,9 +49,12 @@ export default function HeaderMobile({
         style={{ top: "var(--top-bar-height, 0px)", maxHeight: "calc(100dvh - var(--top-bar-height, 0px))" }}
       >
         <div className="flex items-center justify-between p-5 shrink-0 relative z-10 border-b border-gray-100 dark:border-white/10">
-          <a href="#" className="flex items-center">
-            <img src={logo} alt="CREMP" className="h-8 w-auto dark:block hidden drop-shadow-md" />
-            <img src={logoLight} alt="CREMP" className="h-8 w-auto dark:hidden block drop-shadow-sm" />
+          <a href="#" className="flex items-center gap-2">
+            <img src={logo} alt="CREMP Logo" className="h-8 w-auto dark:block hidden drop-shadow-md" />
+            <img src={logoLight} alt="CREMP Logo" className="h-8 w-auto dark:hidden block drop-shadow-sm" />
+            <div className="flex flex-col justify-center">
+              <CrempTextLogo className="h-6 w-auto text-[#0a1128] dark:text-white" />
+            </div>
           </a>
           <button
             onClick={() => setMobileMenuOpen(false)}
