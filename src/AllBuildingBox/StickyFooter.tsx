@@ -24,7 +24,7 @@ export default function StickyFooter() {
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className="absolute bottom-full left-0 w-full px-3 pb-2"
             >
-              <div className="w-full max-w-md mx-auto relative shadow-2xl rounded-[4px] overflow-hidden">
+              <div className="w-full relative shadow-2xl rounded-[4px] overflow-hidden">
                 <button
                   onClick={() => setIsBookingOpen(false)}
                   className="absolute -top-11 right-2 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xl border border-gray-200/60 flex items-center justify-center text-[#17274c] shadow-lg z-10 hover:bg-white transition-colors"

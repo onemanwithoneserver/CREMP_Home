@@ -24,7 +24,7 @@ export default function StickyFooter() {
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className="absolute bottom-full left-0 w-full px-3 pb-2"
             >
-              <div className="w-full max-w-md mx-auto relative shadow-2xl rounded-[4px] overflow-hidden">
+              <div className="w-full relative shadow-2xl rounded-[4px] overflow-hidden">
                 <button
                   onClick={() => setIsBookingOpen(false)}
                   className="absolute -top-11 right-2 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xl border border-gray-200/60 flex items-center justify-center text-[#0a1128] shadow-lg z-10 hover:bg-white transition-colors"
@@ -38,7 +38,7 @@ export default function StickyFooter() {
         </AnimatePresence>
         <div className="relative z-50 w-full bg-[#0b1b42]/95 backdrop-blur-2xl border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)] px-4 py-3 pb-[max(calc(env(safe-area-inset-bottom)+0.75rem),0.75rem)] flex items-center justify-center">
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
-          <div className="w-full flex items-center gap-2 relative z-10 max-w-[480px] mx-auto">
+          <div className="w-full flex items-center gap-2 relative z-10">
             <div className="flex items-center gap-2 shrink-0">
               <motion.button
                 whileHover={{ scale: 1.02 }}

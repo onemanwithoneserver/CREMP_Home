@@ -146,7 +146,7 @@ export default function BuildingBox({ viewModeProp }: { viewModeProp?: "desktop"
           </div>
         </div>
       ) : (
-        <div className="w-full h-full flex flex-col max-w-[480px] mx-auto bg-white shadow-xl relative z-20">
+        <div className="w-full h-full flex flex-col bg-white shadow-xl relative z-20">
           {content}
         </div>
       )}
