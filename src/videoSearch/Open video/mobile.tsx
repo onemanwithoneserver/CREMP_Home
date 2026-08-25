@@ -1,4 +1,9 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback, Suspense, lazy } from 'react';
+
+const BuildingBox = lazy(() => import('../../BuildingBox'));
+const AllBuildingBox = lazy(() => import('../../AllBuildingBox'));
+const LandBox = lazy(() => import('../../LandBox'));
+const FranchiseHome = lazy(() => import('../../Franchise_Home'));
 import {
   Share2,
   Volume2,
@@ -8,6 +13,7 @@ import {
   Bookmark,
   Maximize2,
   Minimize2,
+  ExternalLink,
 } from 'lucide-react';
 import type { ReelData } from './data';
 
@@ -20,6 +26,18 @@ interface MobileProps {
   hasPrev: boolean;
 }
 
+const getPopupConfig = (category?: string) => {
+  const lowerCat = category?.toLowerCase() || "";
+  if (lowerCat.includes("franchise") || lowerCat.includes("distribution")) {
+    return { id: 'franchise' };
+  } else if (lowerCat.includes("land") || lowerCat.includes("plot") || lowerCat.includes("farm")) {
+    return { id: 'land' };
+  } else if (lowerCat.includes("running") || lowerCat.includes("fractional") || lowerCat.includes("pre-leased")) {
+    return { id: 'all' };
+  }
+  return { id: 'commercial' };
+};
+
 export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNext, hasPrev }: MobileProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -27,6 +45,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
   const [progress, setProgress] = useState(0);
   const [isClearScreen, setIsClearScreen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [activePopup, setActivePopup] = useState<string | null>(null);
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
 
@@ -82,41 +101,56 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
 
 
   const content = (
-    <div
-      className="fixed inset-0 z-[100000] bg-gray-50 flex flex-col overflow-hidden transition-colors duration-500"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <video
-          ref={videoRef}
-          src={video.videoUrl}
-          className="absolute inset-0 w-full h-full object-cover"
-          loop
-          muted={isMuted}
-          onClick={togglePlay}
-          playsInline
-        />
+    <>
+      <div
+        className="fixed inset-0 z-[100000] bg-gray-50 flex flex-col overflow-hidden transition-colors duration-500"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <video
+            ref={videoRef}
+            src={video.videoUrl}
+            className="absolute inset-0 w-full h-full object-cover"
+            loop
+            muted={isMuted}
+            onClick={togglePlay}
+            playsInline
+          />
 
 
-        {!isClearScreen && (
-          <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none">
-            <button
-              onClick={onClose}
-              className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37]"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+          {!isClearScreen && (
+            <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none">
+              <button
+                onClick={onClose}
+                className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37] shrink-0"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
 
-            <button
-              onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
-              className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37]"
-            >
-              {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
-          </div>
-        )}
+              <div className="flex pointer-events-auto mx-2">
+                {(() => {
+                  const config = getPopupConfig(video.category);
+                  return (
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setActivePopup(config.id); }}
+                      className="h-10 px-4 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 flex items-center justify-center gap-2 text-white active:scale-95 transition-all bg-[#0b1b42]"
+                    >
+                      <span className="text-[13px] font-bold">View</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </button>
+                  );
+                })()}
+              </div>
 
+              <button
+                onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
+                className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37] shrink-0"
+              >
+                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+              </button>
+            </div>
+          )}
 
         {!isPlaying && !isClearScreen && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[110] bg-white/20 backdrop-blur-[2px]">
@@ -192,7 +226,27 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
             />
           </div>
         )}
-    </div>
+      </div>
+
+      {/* Full-screen popup modal */}
+      {activePopup && (
+        <div className="fixed inset-0 z-[200000] bg-white flex flex-col">
+          <div className="absolute top-4 left-4 z-[300000]">
+             <button onClick={() => setActivePopup(null)} className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md border border-gray-200 flex items-center justify-center text-[#0a1128] hover:bg-gray-50 transition-colors">
+               <ChevronLeft className="w-6 h-6" />
+             </button>
+          </div>
+          <div className="flex-1 w-full h-full relative">
+            <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-500 font-medium">Loading...</div>}>
+              {activePopup === 'commercial' && <BuildingBox viewModeProp="mobile" />}
+              {activePopup === 'all' && <AllBuildingBox viewModeProp="mobile" />}
+              {activePopup === 'land' && <LandBox viewModeProp="mobile" />}
+              {activePopup === 'franchise' && <FranchiseHome isMobile={true} />}
+            </Suspense>
+          </div>
+        </div>
+      )}
+    </>
   );
 
   return content;
