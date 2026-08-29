@@ -424,10 +424,10 @@ export default function FranchiseSearchResultsMobile() {
                         <motion.button
                           whileTap={{ scale: 0.92 }}
                           onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                          className="w-7 h-7 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
+                          className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
                           title="View Details"
                         >
-                          <Eye size={12} strokeWidth={2.5} />
+                          <Eye size={14} strokeWidth={2.5} />
                         </motion.button>
                         <motion.button
                           whileTap={{ scale: 0.92 }}
@@ -551,10 +551,10 @@ export default function FranchiseSearchResultsMobile() {
                       <motion.button
                         whileTap={{ scale: 0.92 }}
                         onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                        className="w-7 h-7 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
+                        className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
                         title="View Details"
                       >
-                        <Eye size={12} strokeWidth={2.5} />
+                        <Eye size={14} strokeWidth={2.5} />
                       </motion.button>
                       <motion.button
                         whileTap={{ scale: 0.92 }}

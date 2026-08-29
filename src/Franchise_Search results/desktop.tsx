@@ -133,14 +133,15 @@ function MapPopup({
         ))}
       </div>
       <div className="flex items-center justify-between gap-2">
-        <motion.button
-          onClick={(e) => { e.stopPropagation(); onView(); }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-8 h-8 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
-        >
-          <Eye size={14} strokeWidth={2.5} />
-        </motion.button>
+          <motion.button
+            onClick={(e) => { e.stopPropagation(); onView(); }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+            title="View Details"
+          >
+            <Eye size={16} strokeWidth={2.5} />
+          </motion.button>
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
@@ -708,10 +709,10 @@ export default function FranchiseSearchResultsDesktop() {
                                 whileTap={{ scale: 0.93 }}
                                 whileHover={{ scale: 1.04 }}
                                 onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                className="w-8 h-8 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:border-[#0b1b42]/20 hover:bg-[#0b1b42]/[0.02] transition-all"
+                                className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
                                 title="View Details"
                               >
-                                <Eye size={14} strokeWidth={2.5} />
+                                <Eye size={16} strokeWidth={2.5} />
                               </motion.button>
                               <motion.button
                                 whileTap={{ scale: 0.93 }}
