@@ -40,7 +40,7 @@ const fadeUp = {
 function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
   return (
     <motion.div
-      className="absolute rounded-full pointer-events-none"
+      className="absolute rounded-lg pointer-events-none"
       style={{
         left: x,
         top: y,
@@ -93,7 +93,7 @@ function MapPopup({
       />
       <button
         onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-[#0b1b42]/[0.04] hover:bg-[#0b1b42]/[0.08] text-[#0b1b42]/40 hover:text-[#0b1b42] transition-all hover:rotate-90 duration-300"
+        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-lg bg-[#0b1b42]/[0.04] hover:bg-[#0b1b42]/[0.08] text-[#0b1b42]/40 hover:text-[#0b1b42] transition-all hover:rotate-90 duration-300"
       >
         <X className="w-3.5 h-3.5" strokeWidth={2.5} />
       </button>
@@ -305,7 +305,7 @@ export default function FranchiseSearchResultsDesktop() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 mb-3"
             >
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#d4af37]/30 bg-[#d4af37]/10">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#d4af37]/30 bg-[#d4af37]/10">
                 <Sparkles size={13} className="text-[#d4af37]" strokeWidth={2.5} />
                 <span className="text-[11px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Franchise Discovery</span>
               </div>
@@ -438,7 +438,7 @@ export default function FranchiseSearchResultsDesktop() {
                 {["Food & Beverages", "Retail", "Education", "Healthcare", "+ More"].map((tag) => (
                   <button
                     key={tag}
-                    className="px-3 py-1.5 rounded-full border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
+                    className="px-3 py-1.5 rounded-lg border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
                   >
                     {tag}
                   </button>
@@ -490,12 +490,12 @@ export default function FranchiseSearchResultsDesktop() {
                   {isActive && (
                     <>
                       <motion.div
-                        className={clsx("absolute w-14 h-14 rounded-full border-2", `border-current ${meta.text} opacity-40`)}
+                        className={clsx("absolute w-14 h-14 rounded-lg border-2", `border-current ${meta.text} opacity-40`)}
                         animate={{ scale: [0.5, 1.4], opacity: [0.6, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
                       />
                       <motion.div
-                        className={clsx("absolute w-14 h-14 rounded-full border", `border-current ${meta.text} opacity-20`)}
+                        className={clsx("absolute w-14 h-14 rounded-lg border", `border-current ${meta.text} opacity-20`)}
                         animate={{ scale: [0.8, 1.8], opacity: [0.3, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
                       />
@@ -567,14 +567,14 @@ export default function FranchiseSearchResultsDesktop() {
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.92 }}
                   onClick={() => setShowFranchiseView(false)}
-                  className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
                 >
                   <ArrowLeft size={16} strokeWidth={2.5} />
                 </motion.button>
                 <span className="text-[13px] font-bold text-white tracking-tight">Franchise Details</span>
                 <div className="flex-1" />
                 <motion.div
-                  className="w-2 h-2 rounded-full bg-[#d4af37]"
+                  className="w-2 h-2 rounded-lg bg-[#d4af37]"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
@@ -597,7 +597,7 @@ export default function FranchiseSearchResultsDesktop() {
                 <div className="flex items-center justify-between px-4 pt-3 pb-3">
                   <div className="flex items-center gap-2.5">
                     <div
-                      className="w-1 h-5 rounded-full"
+                      className="w-1 h-5 rounded-lg"
                       style={{ background: "linear-gradient(to bottom, #d4af37, #b38728)" }}
                     />
                     <h2 className="text-[15px] font-extrabold text-[#0a1128] tracking-tight">
@@ -679,7 +679,7 @@ export default function FranchiseSearchResultsDesktop() {
                                   whileTap={{ scale: 1.4 }}
                                   whileHover={{ scale: 1.2 }}
                                   onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                  className="p-1.5 flex-shrink-0 transition-colors rounded-full hover:bg-red-50"
+                                  className="p-1.5 flex-shrink-0 transition-colors rounded-lg hover:bg-red-50"
                                 >
                                   <Heart
                                     className={clsx(
@@ -713,7 +713,7 @@ export default function FranchiseSearchResultsDesktop() {
                               {f.tags.slice(0, 2).map((tag) => (
                                 <span
                                   key={tag}
-                                  className={clsx("px-2.5 py-0.5 rounded-full text-[10px] font-semibold border", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-200/30")}
+                                  className={clsx("px-2.5 py-0.5 rounded-lg text-[10px] font-semibold border", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-200/30")}
                                 >
                                   {tag}
                                 </span>
@@ -772,7 +772,7 @@ export default function FranchiseSearchResultsDesktop() {
                       {isLoadingMore ? (
                         <div className="flex gap-1.5 items-center justify-center">
                           {[0, 0.12, 0.24].map((delay, i) => (
-                            <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded-full" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
+                            <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded-lg" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
                           ))}
                         </div>
                       ) : (

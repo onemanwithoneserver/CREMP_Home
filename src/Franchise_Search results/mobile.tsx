@@ -40,7 +40,7 @@ const spring = { type: "spring" as const, stiffness: 400, damping: 28 };
 function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
   return (
     <motion.div
-      className="absolute rounded-full pointer-events-none"
+      className="absolute rounded pointer-events-none"
       style={{
         left: x, top: y, width: size, height: size,
         background: "radial-gradient(circle, rgba(212,175,55,0.35), transparent)",
@@ -120,14 +120,14 @@ export default function FranchiseSearchResultsMobile() {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setShowFranchiseView(false)}
-                className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
+                className="w-8 h-8 rounded flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
               >
                 <ArrowLeft size={16} strokeWidth={2.5} />
               </motion.button>
               <span className="text-[13px] font-bold text-white tracking-tight">Franchise Home</span>
               <div className="flex-1" />
               <motion.div
-                className="w-2 h-2 rounded-full bg-[#d4af37]"
+                className="w-2 h-2 rounded bg-[#d4af37]"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -246,7 +246,7 @@ export default function FranchiseSearchResultsMobile() {
               {["Food & Beverages", "Retail", "Education", "Healthcare"].map((tag) => (
                 <button
                   key={tag}
-                  className="px-2.5 py-1 rounded-full border border-white/20 text-white/80 hover:bg-white/10 hover:text-white transition-all font-medium shrink-0 whitespace-nowrap"
+                  className="px-2.5 py-1 rounded border border-white/20 text-white/80 hover:bg-white/10 hover:text-white transition-all font-medium shrink-0 whitespace-nowrap"
                 >
                   {tag}
                 </button>
@@ -362,12 +362,12 @@ export default function FranchiseSearchResultsMobile() {
                     {isActive && (
                       <>
                         <motion.div
-                          className={clsx("absolute w-12 h-12 rounded-full border-2", `border-current ${meta.text} opacity-30`)}
+                          className={clsx("absolute w-12 h-12 rounded border-2", `border-current ${meta.text} opacity-30`)}
                           animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
                           transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
                         />
                         <motion.div
-                          className={clsx("absolute w-12 h-12 rounded-full border", `border-current ${meta.text} opacity-15`)}
+                          className={clsx("absolute w-12 h-12 rounded border", `border-current ${meta.text} opacity-15`)}
                           animate={{ scale: [0.8, 1.8], opacity: [0.3, 0] }}
                           transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
                         />
@@ -431,10 +431,10 @@ export default function FranchiseSearchResultsMobile() {
                           </div>
                         </div>
                         <div className="flex items-center gap-0.5 shrink-0 ml-1">
-                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded-full hover:bg-rose-50 transition-all">
+                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-rose-50 transition-all">
                             <Heart className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-red-500 text-red-500" : "text-[#0b1b42]/15")} />
                           </motion.button>
-                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded-full hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/25 hover:text-[#0b1b42] transition-all">
+                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/25 hover:text-[#0b1b42] transition-all">
                             <X className="w-3.5 h-3.5" />
                           </motion.button>
                         </div>
@@ -482,7 +482,7 @@ export default function FranchiseSearchResultsMobile() {
           className="px-4 pt-2.5 pb-1.5 flex items-center gap-2.5"
         >
           <motion.div
-            className="w-1 h-3.5 rounded-full"
+            className="w-1 h-3.5 rounded"
             style={{ background: "linear-gradient(to bottom, #d4af37, #b38728)" }}
             animate={{ scaleY: [0.8, 1.2, 0.8] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -624,7 +624,7 @@ export default function FranchiseSearchResultsMobile() {
               {isLoadingMore ? (
                 <div className="flex gap-1.5 items-center">
                   {[0, 0.12, 0.24].map((delay, i) => (
-                    <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded-full" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
+                    <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
                   ))}
                 </div>
               ) : (
