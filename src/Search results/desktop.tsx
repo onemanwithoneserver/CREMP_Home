@@ -14,7 +14,6 @@ import clsx from "clsx";
 import { franchises, getMeta, tagColors, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
-import FooterMobile from "../components/commonfiles/Footer/footermobile";
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -661,7 +660,6 @@ export default function SearchResultsDesktop() {
                     </motion.button>
                   </div>
                 )}
-                <FooterMobile />
               </div>
             </motion.div>
           )}
