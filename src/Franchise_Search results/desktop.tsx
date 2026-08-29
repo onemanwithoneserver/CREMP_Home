@@ -40,7 +40,7 @@ const fadeUp = {
 function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
   return (
     <motion.div
-      className="absolute rounded-lg pointer-events-none"
+      className="absolute rounded pointer-events-none"
       style={{
         left: x,
         top: y,
@@ -78,14 +78,14 @@ function MapPopup({
       animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
       exit={{ opacity: 0, y: 10, x: "-50%", scale: 0.9 }}
       transition={{ type: "spring", stiffness: 380, damping: 24 }}
-      className="absolute bottom-[calc(100%+16px)] left-1/2 w-[300px] rounded-lg shadow-2xl border border-[#0b1b42]/[0.08] p-4 z-50"
+      className="absolute bottom-[calc(100%+16px)] left-1/2 w-[300px] rounded shadow-2xl border border-[#0b1b42]/[0.08] p-4 z-50"
       style={{
         background: "rgba(255,255,255,0.98)",
         backdropFilter: "blur(28px) saturate(180%)",
       }}
     >
       <motion.div
-        className="absolute top-0 left-0 right-0 h-[3px] rounded-t-lg overflow-hidden"
+        className="absolute top-0 left-0 right-0 h-[3px] rounded-t overflow-hidden"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
@@ -93,7 +93,7 @@ function MapPopup({
       />
       <button
         onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-lg bg-[#0b1b42]/[0.04] hover:bg-[#0b1b42]/[0.08] text-[#0b1b42]/40 hover:text-[#0b1b42] transition-all hover:rotate-90 duration-300"
+        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] hover:bg-[#0b1b42]/[0.08] text-[#0b1b42]/40 hover:text-[#0b1b42] transition-all hover:rotate-90 duration-300"
       >
         <X className="w-3.5 h-3.5" strokeWidth={2.5} />
       </button>
@@ -102,7 +102,7 @@ function MapPopup({
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="w-12 h-12 rounded-lg overflow-hidden border border-[#0b1b42]/[0.08] flex-shrink-0 shadow-sm"
+          className="w-12 h-12 rounded overflow-hidden border border-[#0b1b42]/[0.08] flex-shrink-0 shadow-sm"
         >
           <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
         </motion.div>
@@ -125,7 +125,7 @@ function MapPopup({
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 + i * 0.05 }}
-            className="flex flex-col justify-center items-center p-2.5 rounded-lg bg-[#0b1b42]/[0.02] border border-[#0b1b42]/[0.05] min-h-[56px]"
+            className="flex flex-col justify-center items-center p-2.5 rounded bg-[#0b1b42]/[0.02] border border-[#0b1b42]/[0.05] min-h-[56px]"
           >
             <span className="text-[9px] font-bold text-[#0b1b42]/35 uppercase tracking-wider mb-1">{item.label}</span>
             <span className={`text-[11px] font-extrabold ${item.color} text-center leading-[1.2]`}>{item.value}</span>
@@ -137,14 +137,14 @@ function MapPopup({
           onClick={(e) => { e.stopPropagation(); onView(); }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
+          className="w-8 h-8 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
         >
           <Eye size={14} strokeWidth={2.5} />
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center justify-center gap-1.5 text-[12px] font-bold text-white px-5 py-2 rounded-lg transition-all group min-w-[100px] shadow-[0_4px_14px_rgba(212,175,55,0.3)] relative overflow-hidden"
+          className="flex items-center justify-center gap-1.5 text-[12px] font-bold text-white px-5 py-2 rounded transition-all group min-w-[100px] shadow-[0_4px_14px_rgba(212,175,55,0.3)] relative overflow-hidden"
           style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
         >
           <div className="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -305,7 +305,7 @@ export default function FranchiseSearchResultsDesktop() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 mb-3"
             >
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#d4af37]/30 bg-[#d4af37]/10">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-[#d4af37]/30 bg-[#d4af37]/10">
                 <Sparkles size={13} className="text-[#d4af37]" strokeWidth={2.5} />
                 <span className="text-[11px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Franchise Discovery</span>
               </div>
@@ -338,12 +338,12 @@ export default function FranchiseSearchResultsDesktop() {
               
               <div
                 className={clsx(
-                  "absolute -inset-[1.5px] rounded-lg transition-opacity duration-500",
+                  "absolute -inset-[1.5px] rounded transition-opacity duration-500",
                   isSearchFocused ? "opacity-100" : "opacity-0",
                 )}
                 style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
               />
-              <div className="relative w-full bg-white rounded-lg flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
+              <div className="relative w-full bg-white rounded flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
                 <input
                   type="text"
                   value={searchQuery}
@@ -356,7 +356,7 @@ export default function FranchiseSearchResultsDesktop() {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="shrink-0 w-11 h-11 flex items-center justify-center rounded-lg text-white transition-all relative overflow-hidden"
+                  className="shrink-0 w-11 h-11 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
                   style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
                   <motion.div
@@ -377,7 +377,7 @@ export default function FranchiseSearchResultsDesktop() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -6, scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="absolute top-[calc(100%+8px)] left-0 right-0 rounded-lg shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[100]"
+                    className="absolute top-[calc(100%+8px)] left-0 right-0 rounded shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[100]"
                     style={{
                       background: "rgba(255,255,255,0.99)",
                       backdropFilter: "blur(28px)",
@@ -399,9 +399,9 @@ export default function FranchiseSearchResultsDesktop() {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: i * 0.04 }}
                               onClick={() => setSearchQuery(f.name)}
-                              className="px-3 py-3 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded-lg flex items-center gap-3 transition-all duration-200 mx-0.5 my-0.5 group"
+                              className="px-3 py-3 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 mx-0.5 my-0.5 group"
                             >
-                              <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm">
+                              <div className="w-10 h-10 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm">
                                 <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                               </div>
                               <div className="flex flex-col min-w-0 justify-center flex-1">
@@ -438,7 +438,7 @@ export default function FranchiseSearchResultsDesktop() {
                 {["Food & Beverages", "Retail", "Education", "Healthcare", "+ More"].map((tag) => (
                   <button
                     key={tag}
-                    className="px-3 py-1.5 rounded-lg border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
+                    className="px-3 py-1.5 rounded border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
                   >
                     {tag}
                   </button>
@@ -490,12 +490,12 @@ export default function FranchiseSearchResultsDesktop() {
                   {isActive && (
                     <>
                       <motion.div
-                        className={clsx("absolute w-14 h-14 rounded-lg border-2", `border-current ${meta.text} opacity-40`)}
+                        className={clsx("absolute w-14 h-14 rounded border-2", `border-current ${meta.text} opacity-40`)}
                         animate={{ scale: [0.5, 1.4], opacity: [0.6, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
                       />
                       <motion.div
-                        className={clsx("absolute w-14 h-14 rounded-lg border", `border-current ${meta.text} opacity-20`)}
+                        className={clsx("absolute w-14 h-14 rounded border", `border-current ${meta.text} opacity-20`)}
                         animate={{ scale: [0.8, 1.8], opacity: [0.3, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
                       />
@@ -504,7 +504,7 @@ export default function FranchiseSearchResultsDesktop() {
                   <motion.div
                     whileHover={{ scale: 1.15, y: -2 }}
                     className={clsx(
-                      "w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300",
+                      "w-10 h-10 rounded flex items-center justify-center transition-all duration-300",
                       isActive
                         ? `${meta.bg} ${meta.glow} shadow-lg`
                         : "bg-white border border-[#0b1b42]/[0.06] shadow-md hover:shadow-lg",
@@ -527,7 +527,7 @@ export default function FranchiseSearchResultsDesktop() {
                 key={label}
                 whileTap={{ scale: 0.85 }}
                 whileHover={{ scale: 1.08, y: -1 }}
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg font-medium hover:text-[#d4af37] hover:border-[#d4af37]/30 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="w-9 h-9 flex items-center justify-center rounded bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg font-medium hover:text-[#d4af37] hover:border-[#d4af37]/30 transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 {label}
               </motion.button>
@@ -539,7 +539,7 @@ export default function FranchiseSearchResultsDesktop() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="absolute top-3 left-3 z-10 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/90 backdrop-blur-md border border-[#0b1b42]/[0.06] shadow-lg"
+            className="absolute top-3 left-3 z-10 flex items-center gap-2 px-3 py-2 rounded bg-white/90 backdrop-blur-md border border-[#0b1b42]/[0.06] shadow-lg"
           >
             <Building2 size={14} className="text-[#d4af37]" strokeWidth={2} />
             <span className="text-[11px] font-bold text-[#0b1b42]/60">{filtered.length} locations</span>
@@ -567,14 +567,14 @@ export default function FranchiseSearchResultsDesktop() {
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.92 }}
                   onClick={() => setShowFranchiseView(false)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
+                  className="w-8 h-8 rounded flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
                 >
                   <ArrowLeft size={16} strokeWidth={2.5} />
                 </motion.button>
                 <span className="text-[13px] font-bold text-white tracking-tight">Franchise Details</span>
                 <div className="flex-1" />
                 <motion.div
-                  className="w-2 h-2 rounded-lg bg-[#d4af37]"
+                  className="w-2 h-2 rounded bg-[#d4af37]"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
@@ -593,20 +593,6 @@ export default function FranchiseSearchResultsDesktop() {
               className="h-full flex flex-col"
             >
               
-              <div className="shrink-0 ">
-                <div className="flex items-center justify-between px-4 pt-3 pb-3">
-                  <div className="flex items-center gap-2.5">
-                    <div
-                      className="w-1 h-5 rounded-lg"
-                      style={{ background: "linear-gradient(to bottom, #d4af37, #b38728)" }}
-                    />
-                    <h2 className="text-[15px] font-extrabold text-[#0a1128] tracking-tight">
-                      {filtered.length} Result{filtered.length !== 1 ? "s" : ""}
-                    </h2>
-                  </div>
-                </div>
-              </div>
-
               
               <div className="flex-1 overflow-y-auto scrollbar-hide">
                 <motion.div
@@ -631,7 +617,7 @@ export default function FranchiseSearchResultsDesktop() {
                           transition: { type: "spring", stiffness: 400, damping: 25 },
                         }}
                         className={clsx(
-                          "relative cursor-pointer transition-all duration-300 hover:z-10 rounded-lg my-1 mx-3 border overflow-hidden group",
+                          "relative cursor-pointer transition-all duration-300 hover:z-10 rounded my-1 mx-3 border overflow-hidden group",
                           isActive
                             ? "bg-gradient-to-r from-[#faf8f0] to-white shadow-[0_8px_32px_rgba(212,175,55,0.1)] border-transparent"
                             : "bg-white border-transparent hover:shadow-[0_12px_40px_rgba(11,27,66,0.06)] hover:border-[#0b1b42]/[0.12]",
@@ -641,7 +627,7 @@ export default function FranchiseSearchResultsDesktop() {
 
                         
                         <motion.div
-                          className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-lg"
+                          className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l"
                           animate={{
                             opacity: isActive ? 1 : 0,
                             scaleY: isActive ? 1 : 0,
@@ -655,7 +641,7 @@ export default function FranchiseSearchResultsDesktop() {
                             
                             <motion.div
                               animate={isActive ? { scale: 1.04 } : { scale: 1 }}
-                              className="w-[80px] h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-[#f8f9fc]"
+                              className="w-[80px] h-[80px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-[#f8f9fc]"
                             >
                               <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                             </motion.div>
@@ -679,7 +665,7 @@ export default function FranchiseSearchResultsDesktop() {
                                   whileTap={{ scale: 1.4 }}
                                   whileHover={{ scale: 1.2 }}
                                   onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                  className="p-1.5 flex-shrink-0 transition-colors rounded-lg hover:bg-red-50"
+                                  className="p-1.5 flex-shrink-0 transition-colors rounded hover:bg-red-50"
                                 >
                                   <Heart
                                     className={clsx(
@@ -713,7 +699,7 @@ export default function FranchiseSearchResultsDesktop() {
                               {f.tags.slice(0, 2).map((tag) => (
                                 <span
                                   key={tag}
-                                  className={clsx("px-2.5 py-0.5 rounded-lg text-[10px] font-semibold border", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-200/30")}
+                                  className={clsx("px-2.5 py-0.5 rounded text-[10px] font-semibold border", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-200/30")}
                                 >
                                   {tag}
                                 </span>
@@ -730,15 +716,15 @@ export default function FranchiseSearchResultsDesktop() {
                                 whileTap={{ scale: 0.93 }}
                                 whileHover={{ scale: 1.04 }}
                                 onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                className="flex items-center gap-1 text-[11px] font-semibold px-3.5 py-1.5 rounded-lg border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:border-[#0b1b42]/20 hover:bg-[#0b1b42]/[0.02] transition-all whitespace-nowrap"
+                                className="w-8 h-8 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:border-[#0b1b42]/20 hover:bg-[#0b1b42]/[0.02] transition-all"
+                                title="View Details"
                               >
-                                <Eye size={12} strokeWidth={2.5} />
-                                View
+                                <Eye size={14} strokeWidth={2.5} />
                               </motion.button>
                               <motion.button
                                 whileTap={{ scale: 0.93 }}
                                 whileHover={{ scale: 1.04, boxShadow: "0 0 18px rgba(212,175,55,0.3)" }}
-                                className="flex items-center gap-1 text-[11px] font-bold px-4 py-1.5 rounded-lg text-white transition-all whitespace-nowrap relative overflow-hidden shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
+                                className="flex items-center gap-1 text-[11px] font-bold px-4 py-1.5 rounded text-white transition-all whitespace-nowrap relative overflow-hidden shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
                                 style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
                               >
                                 <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -760,7 +746,7 @@ export default function FranchiseSearchResultsDesktop() {
                       disabled={isLoadingMore}
                       whileTap={{ scale: 0.95 }}
                       whileHover={{ y: -2, boxShadow: "0 8px 28px rgba(10,17,40,0.18)" }}
-                      className="flex items-center justify-center min-w-[160px] px-8 py-3 rounded-lg text-[12px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all uppercase tracking-[0.12em] disabled:opacity-80 relative overflow-hidden"
+                      className="flex items-center justify-center min-w-[160px] px-8 py-3 rounded text-[12px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all uppercase tracking-[0.12em] disabled:opacity-80 relative overflow-hidden"
                       style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
                     >
                       <motion.div
@@ -772,7 +758,7 @@ export default function FranchiseSearchResultsDesktop() {
                       {isLoadingMore ? (
                         <div className="flex gap-1.5 items-center justify-center">
                           {[0, 0.12, 0.24].map((delay, i) => (
-                            <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded-lg" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
+                            <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
                           ))}
                         </div>
                       ) : (
@@ -789,7 +775,7 @@ export default function FranchiseSearchResultsDesktop() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col items-center justify-center py-12 px-6"
                   >
-                    <div className="w-16 h-16 rounded-lg bg-[#0b1b42]/[0.04] flex items-center justify-center mb-2">
+                    <div className="w-16 h-16 rounded bg-[#0b1b42]/[0.04] flex items-center justify-center mb-2">
                       <Search size={24} className="text-[#0b1b42]/20" />
                     </div>
                     <p className="text-[14px] font-semibold text-[#0b1b42]/40 text-center">No franchises found</p>

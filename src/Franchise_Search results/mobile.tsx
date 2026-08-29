@@ -17,7 +17,6 @@ import clsx from "clsx";
 import { franchises, getMeta, tagColors } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
-import FooterMobile from "../components/commonfiles/Footer/footermobile";
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -162,25 +161,27 @@ export default function FranchiseSearchResultsMobile() {
           <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
         </div>
 
-        <div className="relative z-20 px-4 pt-4 pb-3 max-w-[70%]">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-1.5 mb-2 pb-1 border-b border-[#d4af37]/40"
-          >
-            <Store size={12} className="text-[#d4af37]" strokeWidth={2} />
-            <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-2"
-          >
-            Find your perfect<br />
-            <span className="text-[#d4af37]">franchise</span> opportunity.
-          </motion.h2>
+        <div className="relative z-20 px-4 pt-4 pb-3 w-full sm:w-[90%]">
+          <div className="max-w-[65%]">
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-1.5 mb-2 pb-1 border-b border-[#d4af37]/40"
+            >
+              <Store size={12} className="text-[#d4af37]" strokeWidth={2} />
+              <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-3"
+            >
+              Find your perfect<br />
+              <span className="text-[#d4af37]">franchise</span> opportunity.
+            </motion.h2>
+          </div>
           
           <motion.div
             initial={{ opacity: 0, y: 8 }}
@@ -202,23 +203,23 @@ export default function FranchiseSearchResultsMobile() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search franchise, industry, or location..."
-                className="flex-1 bg-transparent border-none outline-none text-[13px] font-medium text-[#0a1128] placeholder-[#0b1b42]/40 pl-3"
+                className="flex-1 bg-transparent border-none outline-none text-[12px] font-medium text-[#0a1128] placeholder-[#0b1b42]/40 pl-3 py-1"
               />
               <div className="flex gap-1 shrink-0 ml-1">
                 <motion.button
                   whileTap={{ scale: 0.88 }}
                   onClick={() => setShowMap(!showMap)}
                   className={clsx(
-                    "w-9 h-9 flex items-center justify-center rounded-[4px] transition-all duration-200",
+                    "w-8 h-8 flex items-center justify-center rounded-[4px] transition-all duration-200",
                     showMap ? "text-white" : "bg-[#0b1b42]/[0.05] text-[#0b1b42]/40",
                   )}
                   style={showMap ? { background: "linear-gradient(135deg, #bf953f, #d4af37)" } : undefined}
                 >
-                  <Map className="h-4 w-4" />
+                  <Map className="h-[14px] w-[14px]" />
                 </motion.button>
                 <motion.button
                   whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden"
+                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden"
                   style={{ background: "#0b1b42" }}
                 >
                   <motion.div
@@ -227,7 +228,7 @@ export default function FranchiseSearchResultsMobile() {
                     animate={{ x: ["-100%", "200%"] }}
                     transition={{ duration: 2, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
                   />
-                  <Search className="h-4 w-4 relative z-10" />
+                  <Search className="h-[14px] w-[14px] relative z-10" />
                 </motion.button>
               </div>
             </div>
@@ -427,7 +428,15 @@ export default function FranchiseSearchResultsMobile() {
                           {f.location}
                         </span>
                       </div>
-                      <div className="flex justify-end mt-2">
+                      <div className="flex justify-end gap-2 mt-2">
+                        <motion.button
+                          whileTap={{ scale: 0.92 }}
+                          onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                          className="w-7 h-7 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
+                          title="View Details"
+                        >
+                          <Eye size={12} strokeWidth={2.5} />
+                        </motion.button>
                         <motion.button
                           whileTap={{ scale: 0.92 }}
                           onClick={(e) => e.stopPropagation()}
@@ -455,23 +464,7 @@ export default function FranchiseSearchResultsMobile() {
       </AnimatePresence>
 
       <div className="flex-1 overflow-y-auto scrollbar-hide relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="px-3 pt-2 pb-1 flex items-center gap-2.5"
-        >
-          <motion.div
-            className="w-1 h-3.5 rounded"
-            style={{ background: "linear-gradient(to bottom, #d4af37, #b38728)" }}
-            animate={{ scaleY: [0.8, 1.2, 0.8] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <p className="text-[10px] font-bold text-[#0b1b42]/35 uppercase tracking-[0.15em] whitespace-nowrap">
-            {filtered.length} Franchise{filtered.length !== 1 ? "s" : ""} found
-          </p>
-          <div className="h-px flex-1 bg-gradient-to-r from-[#0b1b42]/8 to-transparent" />
-        </motion.div>
+
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -566,10 +559,10 @@ export default function FranchiseSearchResultsMobile() {
                       <motion.button
                         whileTap={{ scale: 0.92 }}
                         onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                        className="flex items-center gap-0.5 text-[10px] font-semibold px-2.5 py-1.5 rounded border border-[#0b1b42]/20 text-[#0b1b42]/70 hover:text-[#0b1b42] transition-all whitespace-nowrap"
+                        className="w-7 h-7 flex items-center justify-center rounded border border-[#0b1b42]/[0.1] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.02] transition-all"
+                        title="View Details"
                       >
-                        <Eye size={10} strokeWidth={2.5} />
-                        View
+                        <Eye size={12} strokeWidth={2.5} />
                       </motion.button>
                       <motion.button
                         whileTap={{ scale: 0.92 }}
@@ -613,7 +606,6 @@ export default function FranchiseSearchResultsMobile() {
             </motion.button>
           </div>
         )}
-        <FooterMobile />
       </div>
     </div>
   );
