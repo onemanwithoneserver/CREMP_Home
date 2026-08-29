@@ -1,22 +1,19 @@
-import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw } from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, Sparkles } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
+import clsx from "clsx";
+import SearchImage from "./VideoSearchHero.jpg";
+
 const sortOptions = [
   { value: "latest", label: "Latest" },
   { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
 const ITEMS_PER_PAGE = 10;
-const pulseGlow: Variants = {
-  animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-  },
-};
+
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -33,6 +30,33 @@ const cardVariants = {
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
+
+function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
+  return (
+    <motion.div
+      className="absolute rounded pointer-events-none"
+      style={{
+        left: x,
+        top: y,
+        width: size,
+        height: size,
+        background: "radial-gradient(circle, rgba(212,175,55,0.35), transparent)",
+      }}
+      animate={{
+        y: [0, -18, 0],
+        opacity: [0.15, 0.5, 0.15],
+        scale: [1, 1.4, 1],
+      }}
+      transition={{
+        duration: 4.5 + Math.random() * 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay,
+      }}
+    />
+  );
+}
+
 export default function VideoSearchDesktop() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -40,6 +64,22 @@ export default function VideoSearchDesktop() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [sortBy, setSortBy] = useState("latest");
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  const heroRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleHeroMouseMove = (e: React.MouseEvent) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
+  const spotlightX = useSpring(mouseX, { stiffness: 200, damping: 30 });
+  const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
+
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
       v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -77,78 +117,177 @@ export default function VideoSearchDesktop() {
     setVisibleCount(ITEMS_PER_PAGE);
   };
   return (
-    <section className="w-full px-6 pt-8 pb-16 relative overflow-hidden rounded-[8px] backdrop-blur-sm transition-colors duration-700 dark:bg-[#0b1b42] min-h-screen font-sans">
-      <motion.div
-        variants={pulseGlow}
-        animate="animate"
-        className="pointer-events-none absolute top-[5%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/15"
-      />
-      <motion.div
-        variants={pulseGlow}
-        animate="animate"
-        className="pointer-events-none absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/10 blur-[120px] dark:bg-[#D4AF37]/10"
-      />
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-8">
+    <section className="w-full min-h-screen font-sans bg-[#f8f9fc]">
+
+      {/* Hero Section — matches Franchise Search Results */}
+      <div
+        ref={heroRef}
+        onMouseMove={handleHeroMouseMove}
+        className="relative w-full overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
+      >
+        {/* Spotlight */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col gap-6"
+          className="absolute inset-0 opacity-[0.15] pointer-events-none"
+          style={{
+            background: useTransform(
+              [spotlightX, spotlightY],
+              ([x, y]) => `radial-gradient(450px circle at ${x}px ${y}px, rgba(212,175,55,0.18), transparent 60%)`
+            ),
+          }}
+        />
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="video-hero-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#video-hero-grid)" />
+          </svg>
+        </div>
+
+        {/* Hero Image */}
+        <div
+          className="absolute inset-y-0 right-0 w-[42%] z-0 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, black 20%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%)",
+          }}
         >
-          <div className="flex flex-col items-center text-center mt-2 mb-2 px-4">
-            <span className="flex w-fit mx-auto items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/40 bg-white/60 px-4 py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/40 dark:bg-[#D4AF37]/5 mb-4">
-              EXPLORE. DISCOVER. CONNECT.
-            </span>
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#2d3748] dark:text-white leading-snug">
-              Commercial Properties &middot; Business Opportunities &middot; Expert Brokers
-            </h1>
-          </div>
-          <div className="relative w-full max-w-2xl mx-auto group">
-            <input
-              type="text"
-              placeholder="Search by brand, title, or keyword..."
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setVisibleCount(ITEMS_PER_PAGE);
-              }}
-              className="w-full pl-5 pr-14 py-3.5 bg-white/40 dark:bg-[#0b1b42]/30 backdrop-blur-xl border border-gray-200/60 dark:border-white/5 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 transition-all text-[#0a1128] dark:text-white placeholder-gray-400 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+          <img src={SearchImage} alt="Video Search hero" className="w-full h-full object-cover object-left opacity-90" />
+        </div>
+
+        {/* Floating Particles */}
+        <FloatingParticle delay={0} x="10%" y="20%" size={6} />
+        <FloatingParticle delay={1.2} x="75%" y="30%" size={4} />
+        <FloatingParticle delay={0.6} x="50%" y="65%" size={5} />
+        <FloatingParticle delay={2} x="25%" y="75%" size={3} />
+        <FloatingParticle delay={1.5} x="65%" y="15%" size={5} />
+
+        {/* Hero Content */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-8 pt-10 pb-8 flex flex-col items-start text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-[#d4af37]/30 bg-[#d4af37]/10">
+              <Sparkles size={13} className="text-[#d4af37]" strokeWidth={2.5} />
+              <span className="text-[11px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Video Library</span>
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-white font-extrabold text-[42px] leading-[1.08] tracking-[-0.02em] mb-3"
+          >
+            Explore our{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+            >
+              video
+            </span>{" "}
+            collection.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-white/50 text-[15px] font-medium mb-6 max-w-lg"
+          >
+            Commercial Properties · Business Opportunities · Expert Brokers
+          </motion.p>
+
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative w-full max-w-[520px] z-50"
+          >
+            <div
+              className={clsx(
+                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
+                isSearchFocused ? "opacity-100" : "opacity-0",
+              )}
+              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
             />
-            <div className="absolute inset-y-2 right-2 w-11 flex items-center justify-center bg-[#0a1128] dark:bg-[#d4af37]/20 rounded-[4px] text-white dark:text-[#d4af37] shadow-sm pointer-events-none">
-              <Search size={17} />
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <div className="flex items-center gap-2 mr-3 text-gray-400">
-              <Filter size={14} />
-              <span className="text-[10px] uppercase tracking-widest font-bold">
-                Filters:
-              </span>
-            </div>
-            {videoCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className={`px-4 py-1.5 rounded-[4px] text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border ${
-                  activeCategory === cat
-                    ? "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white border-transparent shadow-[0_4px_12px_rgba(212,175,55,0.3)]"
-                    : "bg-white dark:bg-[#121c33] text-gray-600 dark:text-gray-300 border-gray-100 dark:border-gray-800 hover:border-[#d4af37]/50 shadow-sm"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-            <div className="ml-auto flex items-center z-20">
-              <CustomSelect
-                options={sortOptions}
-                value={sortBy}
-                onChange={setSortBy}
-                label="Sort by:"
-                className="min-w-[140px]"
+            <div className="relative w-full bg-white rounded flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(ITEMS_PER_PAGE);
+                }}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                placeholder="Search by brand, title, or keyword..."
+                className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-4"
               />
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="shrink-0 w-11 h-11 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
+                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+              >
+                <motion.div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent)" }}
+                  animate={{ x: ["-100%", "200%"] }}
+                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "linear" }}
+                />
+                <Search className="h-4 w-4 relative z-10" />
+              </motion.button>
             </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Filters Row */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6 pb-2">
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="flex items-center gap-2 mr-3 text-[#0b1b42]/40">
+            <Filter size={14} />
+            <span className="text-[10px] uppercase tracking-widest font-bold">
+              Filters:
+            </span>
           </div>
-        </motion.div>
+          {videoCategories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => handleCategoryChange(cat)}
+              className={`px-4 py-1.5 rounded-[4px] text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border ${
+                activeCategory === cat
+                  ? "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white border-transparent shadow-[0_4px_12px_rgba(212,175,55,0.3)]"
+                  : "bg-white text-[#0b1b42]/60 border-[#0b1b42]/[0.08] hover:border-[#d4af37]/50 shadow-sm"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+          <div className="ml-auto flex items-center z-20">
+            <CustomSelect
+              options={sortOptions}
+              value={sortBy}
+              onChange={setSortBy}
+              label="Sort by:"
+              className="min-w-[140px]"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Video Grid */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-16 flex flex-col gap-8">
 
         <motion.div
           variants={containerVariants}

@@ -1,22 +1,19 @@
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw, Sparkles } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
+import clsx from "clsx";
+import SearchImage from "./VideoSearchHero.jpg";
+
 const sortOptions = [
   { value: "latest", label: "Latest" },
   { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
 const ITEMS_PER_PAGE = 8;
-const pulseGlow: Variants = {
-  animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-  },
-};
+
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -33,6 +30,33 @@ const cardVariants = {
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
+
+function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
+  return (
+    <motion.div
+      className="absolute rounded pointer-events-none"
+      style={{
+        left: x,
+        top: y,
+        width: size,
+        height: size,
+        background: "radial-gradient(circle, rgba(212,175,55,0.35), transparent)",
+      }}
+      animate={{
+        y: [0, -12, 0],
+        opacity: [0.15, 0.5, 0.15],
+        scale: [1, 1.3, 1],
+      }}
+      transition={{
+        duration: 4.5 + Math.random() * 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay,
+      }}
+    />
+  );
+}
+
 export default function VideoSearchMobile() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -40,6 +64,8 @@ export default function VideoSearchMobile() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [sortBy, setSortBy] = useState("latest");
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
   const filteredVideos = sampleVideos.filter((v) => {
     const matchesSearch =
       v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -77,61 +103,121 @@ export default function VideoSearchMobile() {
     setVisibleCount(ITEMS_PER_PAGE);
   };
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white overflow-x-hidden font-sans pb-20 relative">
-      <motion.div
-        variants={pulseGlow}
-        animate="animate"
-        className="pointer-events-none absolute top-[10%] left-[-15%] w-[300px] h-[300px] rounded-full bg-[#D4AF37]/8 blur-[80px] dark:bg-[#D4AF37]/12"
-      />
-      <motion.div
-        variants={pulseGlow}
-        animate="animate"
-        className="pointer-events-none absolute bottom-[20%] right-[-10%] w-[250px] h-[250px] rounded-full bg-[#D4AF37]/8 blur-[80px] dark:bg-[#D4AF37]/8"
-      />
-      <div className="pt-6 pb-4 px-4 flex flex-col items-center text-center relative z-10">
-        <span className="flex w-fit items-center justify-center gap-2 rounded-[2px] border border-[#D4AF37]/40 bg-white/60 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-[#D4AF37] shadow-sm backdrop-blur-xl dark:border-[#D4AF37]/40 dark:bg-[#D4AF37]/5 mb-3">
-          EXPLORE. DISCOVER. CONNECT.
-        </span>
-        <h1 className="text-[17px] sm:text-xl font-bold tracking-tight text-[#2d3748] dark:text-white leading-snug mb-1">
-          Commercial Properties &middot; Business Opportunities &middot; Expert Brokers
-        </h1>
-      </div>
-      <div className="sticky top-0 z-40 bg-white dark:bg-[#0b1b42] p-3 sm:p-4 flex flex-col shrink-0 relative overflow-hidden rounded-b-[4px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-        <div className="flex items-center justify-between mb-2.5">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#0a1128] dark:bg-[#121c33] hover:bg-[#0b1b42] dark:hover:bg-[#0b1b42] transition-colors duration-300 cursor-pointer rounded-[2px] border border-[#d4af37]/30 flex items-center justify-center shadow-sm">
-              <Video className="text-[#d4af37]" size={15} />
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold uppercase tracking-tight text-[#0a1128] dark:text-white leading-none">
-                Video Library
-              </h1>
-              <p className="text-[9px] font-bold uppercase tracking-widest text-[#d4af37] mt-0.5">
-                Discover Opportunities
-              </p>
-            </div>
-          </div>
+    <div className="w-full min-h-screen bg-[#f8f9fc] text-[#0a1128] overflow-x-hidden font-sans pb-20 relative">
 
+      {/* Hero Section */}
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
+      >
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-10">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="video-hero-grid-m" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#video-hero-grid-m)" />
+          </svg>
         </div>
-        <div className="relative w-full">
-          <input
-            type="text"
-            placeholder="Search videos..."
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setVisibleCount(ITEMS_PER_PAGE);
-            }}
-            className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-[#121c33] border border-gray-200 dark:border-gray-800 rounded-[4px] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50 text-[#0a1128] dark:text-white placeholder-gray-400 shadow-sm transition-all"
-          />
-          <Search
-            size={14}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-          />
+
+        {/* Hero Image */}
+        <div 
+          className="absolute inset-0 w-full h-[60%] z-0"
+          style={{
+            maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
+          }}
+        >
+          <img src={SearchImage} alt="Video Search hero" className="w-full h-full object-cover object-center opacity-40" />
+        </div>
+
+        {/* Floating Particles */}
+        <FloatingParticle delay={0} x="8%" y="25%" size={4} />
+        <FloatingParticle delay={1} x="80%" y="35%" size={3} />
+        <FloatingParticle delay={0.5} x="45%" y="70%" size={4} />
+
+        {/* Hero Content */}
+        <div className="relative z-10 px-5 pt-7 pb-6 flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-1.5 mb-3"
+          >
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#d4af37]/30 bg-[#d4af37]/10">
+              <Sparkles size={11} className="text-[#d4af37]" strokeWidth={2.5} />
+              <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Video Library</span>
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-white font-extrabold text-[22px] leading-[1.12] tracking-[-0.02em] mb-2"
+          >
+            Explore our{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+            >
+              video
+            </span>{" "}
+            collection.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-white/40 text-[11px] font-medium mb-4"
+          >
+            Properties · Opportunities · Brokers
+          </motion.p>
+
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="relative w-full max-w-[360px] z-50"
+          >
+            <div
+              className={clsx(
+                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
+                isSearchFocused ? "opacity-100" : "opacity-0",
+              )}
+              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+            />
+            <div className="relative w-full bg-white rounded flex items-center p-1 shadow-[0_6px_30px_rgba(0,0,0,0.3)]">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(ITEMS_PER_PAGE);
+                }}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                placeholder="Search videos..."
+                className="flex-1 bg-transparent border-none outline-none text-[13px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-3"
+              />
+              <div
+                className="shrink-0 w-9 h-9 flex items-center justify-center rounded text-white"
+                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+              >
+                <Search className="h-3.5 w-3.5" />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
-      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2.5 flex items-center gap-2 border-b border-gray-100 dark:border-white/5 bg-white/80 dark:bg-transparent">
-        <div className="flex items-center gap-1.5 mr-1 text-gray-400 shrink-0">
+
+      {/* Filters */}
+      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/80">
+        <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
           <Filter size={12} />
           <span className="text-[8px] uppercase tracking-widest font-bold">
             Filter:
@@ -144,13 +230,13 @@ export default function VideoSearchMobile() {
             className={`shrink-0 px-3 py-1.5 rounded-[4px] text-[9px] font-bold uppercase tracking-widest transition-all border ${
               activeCategory === cat
                 ? "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white border-transparent shadow-[0_2px_8px_rgba(212,175,55,0.4)]"
-                : "bg-white dark:bg-[#121c33] text-gray-600 dark:text-gray-300 border-gray-100 dark:border-gray-800"
+                : "bg-white text-[#0b1b42]/50 border-[#0b1b42]/[0.08]"
             }`}
           >
             {cat}
           </button>
         ))}
-        <div className="ml-auto flex items-center pl-3 border-l border-gray-200 dark:border-gray-700 shrink-0 z-20">
+        <div className="ml-auto flex items-center pl-3 border-l border-[#0b1b42]/[0.08] shrink-0 z-20">
           <CustomSelect
             options={sortOptions}
             value={sortBy}
