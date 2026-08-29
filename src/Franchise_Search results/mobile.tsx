@@ -140,7 +140,7 @@ export default function FranchiseSearchResultsMobile() {
       </AnimatePresence>
 
       <div
-        className="relative shrink-0 overflow-hidden mx-3 mt-3 mb-1 rounded shadow-sm z-30"
+        className="relative shrink-0 overflow-hidden rounded shadow-sm z-30"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
       >
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
@@ -202,7 +202,7 @@ export default function FranchiseSearchResultsMobile() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search franchise, industry, or location..."
-                className="flex-1 bg-transparent border-none outline-none text-[13px] font-medium text-[#0a1128] placeholder-[#0b1b42]/40 pl-3 sm:pl-0"
+                className="flex-1 bg-transparent border-none outline-none text-[13px] font-medium text-[#0a1128] placeholder-[#0b1b42]/40 pl-3"
               />
               <div className="flex gap-1 shrink-0 ml-1">
                 <motion.button
