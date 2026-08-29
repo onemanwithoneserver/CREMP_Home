@@ -44,7 +44,7 @@ export default function FooterMobile() {
           >
             <div className="flex flex-col gap-2 py-1 pl-2">
               {quickLinks.map((link) => (
-                <a key={link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-[#d4af37] transition-colors">
+                <a key={link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-[#d4af37] transition-colors w-fit underline decoration-dotted decoration-gray-400/40 underline-offset-[6px] hover:decoration-[#d4af37]">
                   {link.label}
                 </a>
               ))}
@@ -57,7 +57,7 @@ export default function FooterMobile() {
           >
             <div className="flex flex-col gap-2 py-1 pl-2">
               {resources.map((link) => (
-                <a key={link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-[#d4af37] transition-colors">
+                <a key={link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-[#d4af37] transition-colors w-fit underline decoration-dotted decoration-gray-400/40 underline-offset-[6px] hover:decoration-[#d4af37]">
                   {link.label}
                 </a>
               ))}

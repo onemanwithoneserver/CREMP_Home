@@ -49,7 +49,7 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-gray-400 hover:text-[#d4af37] transition-colors w-fit"
+                  className="text-sm text-gray-400 hover:text-[#d4af37] transition-colors w-fit underline decoration-dotted decoration-gray-400/40 underline-offset-[6px] hover:decoration-[#d4af37]"
                 >
                   {link.label}
                 </a>
@@ -65,7 +65,7 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-gray-400 hover:text-[#d4af37] transition-colors w-fit"
+                  className="text-sm text-gray-400 hover:text-[#d4af37] transition-colors w-fit underline decoration-dotted decoration-gray-400/40 underline-offset-[6px] hover:decoration-[#d4af37]"
                 >
                   {link.label}
                 </a>
