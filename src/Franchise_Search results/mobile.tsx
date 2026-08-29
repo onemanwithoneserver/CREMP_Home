@@ -114,7 +114,7 @@ export default function FranchiseSearchResultsMobile() {
             style={{ top: "var(--top-bar-height, 0px)" }}
           >
             <div
-              className="shrink-0 flex items-center gap-3 px-4 py-3 border-b border-[#0b1b42]/[0.06]"
+              className="shrink-0 flex items-center gap-2 px-4 py-3 border-b border-[#0b1b42]/[0.06]"
               style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
             >
               <motion.button
@@ -158,16 +158,16 @@ export default function FranchiseSearchResultsMobile() {
         <FloatingDot delay={1} x="75%" y="15%" size={4} />
         <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
 
-        <div className="absolute inset-y-0 right-0 w-[45%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
+        <div className="absolute inset-y-0 right-0 w-[35%] sm:w-[40%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
           <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
         </div>
 
-        <div className="relative z-20 px-4 pt-5 pb-4 max-w-[75%]">
+        <div className="relative z-20 px-4 pt-4 pb-3 max-w-[70%]">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-1.5 mb-3 pb-1.5 border-b border-[#d4af37]/40"
+            className="inline-flex items-center gap-1.5 mb-2 pb-1 border-b border-[#d4af37]/40"
           >
             <Store size={12} className="text-[#d4af37]" strokeWidth={2} />
             <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
@@ -181,14 +181,7 @@ export default function FranchiseSearchResultsMobile() {
             Find your perfect<br />
             <span className="text-[#d4af37]">franchise</span> opportunity.
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="text-white/70 text-[12px] font-medium mb-5"
-          >
-            Search franchises near you by name, industry, or location.
-          </motion.p>
+          
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -200,10 +193,8 @@ export default function FranchiseSearchResultsMobile() {
               isSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
             
-            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-              <div className="pl-3 pr-2 text-[#0b1b42]/40 hidden sm:block">
-                <Search className="h-4 w-4" />
-              </div>
+            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              
               <input
                 type="text"
                 value={searchQuery}
@@ -241,17 +232,6 @@ export default function FranchiseSearchResultsMobile() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 mt-4 text-[10px] overflow-x-auto scrollbar-hide pb-1">
-              <span className="text-white/60 font-medium shrink-0">Popular:</span>
-              {["Food & Beverages", "Retail", "Education", "Healthcare"].map((tag) => (
-                <button
-                  key={tag}
-                  className="px-2.5 py-1 rounded border border-white/20 text-white/80 hover:bg-white/10 hover:text-white transition-all font-medium shrink-0 whitespace-nowrap"
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
             <AnimatePresence>
               {isSearchFocused && (searchQuery || suggestions.length > 0) && (
                 <motion.div
@@ -479,7 +459,7 @@ export default function FranchiseSearchResultsMobile() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="px-4 pt-2.5 pb-1.5 flex items-center gap-2.5"
+          className="px-3 pt-2 pb-1 flex items-center gap-2.5"
         >
           <motion.div
             className="w-1 h-3.5 rounded"
@@ -496,7 +476,7 @@ export default function FranchiseSearchResultsMobile() {
           variants={stagger}
           initial="hidden"
           animate="show"
-          className="flex flex-col gap-1.5 px-2.5 pb-3"
+          className="flex flex-col gap-1 px-2 pb-2"
         >
           {filtered.slice(0, visibleCount).map((f) => {
             const isActive = activeCard === f.id || selectedMarker === f.id;
@@ -528,8 +508,8 @@ export default function FranchiseSearchResultsMobile() {
                   className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top z-[3]"
                   style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
                 />
-                <div className="p-3.5 relative z-[2]">
-                  <div className="flex gap-3">
+                <div className="p-3 relative z-[2]">
+                  <div className="flex gap-2">
                     <motion.div
                       animate={isActive ? { scale: 1.03 } : { scale: 1 }}
                       className="w-[64px] h-[64px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
@@ -574,7 +554,7 @@ export default function FranchiseSearchResultsMobile() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-3 pl-[76px]">
+                  <div className="flex items-center justify-between mt-2 pl-[76px]">
                     <div className="flex items-center gap-1 flex-wrap min-w-0">
                       {f.tags.slice(0, 1).map((tag) => (
                         <span key={tag} className={clsx("px-1.5 py-0.5 rounded text-[9px] font-bold border tracking-wide", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-100")}>

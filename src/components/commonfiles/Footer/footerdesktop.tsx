@@ -8,7 +8,7 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
     return <FooterMobile />;
   }
   return (
-    <footer className="relative bg-[#050b14] border-t border-white/5 pt-16 pb-8 overflow-hidden font-sans">
+    <footer className="relative bg-[#0a1128] border-t border-white/5 pt-16 pb-8 overflow-hidden font-sans">
       <div className="pointer-events-none absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#d4af37]/5 blur-[120px] dark:bg-[#d4af37]/10" />
       <div className="pointer-events-none absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#d4af37]/5 blur-[100px] dark:bg-[#d4af37]/10" />
       <div className="w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
