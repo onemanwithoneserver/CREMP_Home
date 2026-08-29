@@ -38,7 +38,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "all-building-box": "Full commercial building",
   "building-box": "Commercial listing",
   "land-box": "Commercial listing land",
-  "franchise-search-results": "Franchise_Search results",
+  "franchise-search-results": "Franchise Search Results",
   login: "Login",
   "create-account": "Create Account",
   "video-search": "Video Search",
@@ -64,35 +64,11 @@ export default function Header({
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-  const activePage: Page = location.pathname.includes("franchise-home-01")
-    ? "franchise-home-01"
-    : location.pathname.includes("franchise-home")
-      ? "franchise-home"
-      : location.pathname.includes("franchise")
-        ? "franchise"
-        : location.pathname.includes("investors")
-          ? "investors"
-          : location.pathname.includes("buyers-and-sellers")
-            ? "buyers-and-sellers"
-            : location.pathname.includes("developer-and-owner")
-              ? "developer-and-owner"
-              : location.pathname.includes("filters")
-                ? "filters"
-                : location.pathname.includes("all-building-box")
-                  ? "all-building-box"
-                  : location.pathname.includes("building-box")
-                    ? "building-box"
-                    : location.pathname.includes("land-box")
-                      ? "land-box"
-                      : location.pathname.includes("franchise-search-results")
-                        ? "franchise-search-results"
-                        : location.pathname.includes("create-account")
-                          ? "create-account"
-                          : location.pathname.includes("login")
-                            ? "login"
-                            : location.pathname.includes("video-search")
-                              ? "video-search"
-                              : "home";
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const pageFromPath = pathParts[2] || "home";
+  const activePage: Page = Object.keys(PAGE_LABELS).includes(pageFromPath)
+    ? (pageFromPath as Page)
+    : "home";
   const handleNavigate = useCallback(
     (page: string) => {
       navigate(`/${theme}/${viewMode}/${page}`);
