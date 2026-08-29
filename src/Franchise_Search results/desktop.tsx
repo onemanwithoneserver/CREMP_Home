@@ -245,10 +245,10 @@ export default function FranchiseSearchResultsDesktop() {
   const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
 
   return (
-    <div className="flex flex-row w-full h-[calc(100vh-72px)] min-h-[calc(100vh-72px)] bg-[#f8f9fc] overflow-hidden font-sans">
+    <div className="flex flex-row w-full bg-[#f8f9fc] font-sans">
 
       
-      <div className="w-[62%] h-full flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
+      <div className="w-[62%] sticky top-[72px] h-[calc(100vh-72px)] flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
 
         
         <div
@@ -549,7 +549,7 @@ export default function FranchiseSearchResultsDesktop() {
       </div>
 
       
-      <div className="w-[38%] h-full flex flex-col bg-white overflow-hidden z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)]">
+      <div className="w-[38%] flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)]">
         <AnimatePresence mode="wait">
           {showFranchiseView ? (
             <motion.div
@@ -560,7 +560,7 @@ export default function FranchiseSearchResultsDesktop() {
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
               className="h-full flex flex-col relative"
             >
-              <div className="flex-1 overflow-y-auto scrollbar-hide bg-white relative z-0">
+              <div className="flex-1 bg-white relative z-0">
                 <FranchiseHome isMobile={true} />
               </div>
               <div
@@ -587,7 +587,7 @@ export default function FranchiseSearchResultsDesktop() {
             >
               
               
-              <div className="flex-1 overflow-y-auto scrollbar-hide">
+              <div className="flex-1">
                 <motion.div
                   variants={stagger}
                   initial="hidden"
