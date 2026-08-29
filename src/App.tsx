@@ -29,11 +29,12 @@ function App() {
   const navigate = useNavigate();
   const [showHeader, setShowHeader] = useState(true);
   const pathParts = location.pathname.split("/").filter(Boolean);
-  const viewMode: ViewMode = pathParts[0] === "mobile" ? "mobile" : "desktop";
+  const themeMode = pathParts[0] === "light" ? "light" : "dark";
+  const viewMode: ViewMode = pathParts[1] === "mobile" ? "mobile" : "desktop";
   const isMobile = viewMode === "mobile";
   const handleViewModeChange = (newMode: ViewMode) => {
-    const page = pathParts[1] || "home";
-    navigate(`/${newMode}/${page}`);
+    const page = pathParts[2] || "home";
+    navigate(`/${themeMode}/${newMode}/${page}`);
   };
   const handleClose = () => {
     setShowHeader(false);
@@ -66,62 +67,62 @@ function App() {
           >
             <Routes location={location}>
               <Route
-                path="/:viewMode/home"
+                path="/:themeMode/:viewMode/home"
                 element={<Home isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/franchise"
+                path="/:themeMode/:viewMode/franchise"
                 element={<Franchise isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/investors"
+                path="/:themeMode/:viewMode/investors"
                 element={<Investors isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/buyers-and-sellers"
+                path="/:themeMode/:viewMode/buyers-and-sellers"
                 element={<BuyersAndSellers isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/developer-and-owner"
+                path="/:themeMode/:viewMode/developer-and-owner"
                 element={<DeveloperAndOwner isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/franchise-home"
+                path="/:themeMode/:viewMode/franchise-home"
                 element={<FranchiseHome isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/franchise-home-01"
+                path="/:themeMode/:viewMode/franchise-home-01"
                 element={<FranchiseHome01 isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/filters"
+                path="/:themeMode/:viewMode/filters"
                 element={<Filters isMobile={isMobile} />}
               />
-              <Route path="/:viewMode/building-box" element={<BuildingBox />} />
+              <Route path="/:themeMode/:viewMode/building-box" element={<BuildingBox />} />
               <Route
-                path="/:viewMode/all-building-box"
+                path="/:themeMode/:viewMode/all-building-box"
                 element={<AllBuildingBox />}
               />
-              <Route path="/:viewMode/land-box" element={<LandBox />} />
+              <Route path="/:themeMode/:viewMode/land-box" element={<LandBox />} />
               <Route
-                path="/:viewMode/franchise-search-results"
+                path="/:themeMode/:viewMode/franchise-search-results"
                 element={<FranchiseSearchResults isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/login"
+                path="/:themeMode/:viewMode/login"
                 element={<Login isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/create-account"
+                path="/:themeMode/:viewMode/create-account"
                 element={<CreateAccount isMobile={isMobile} />}
               />
               <Route
-                path="/:viewMode/video-search"
+                path="/:themeMode/:viewMode/video-search"
                 element={<VideoSearch isMobile={isMobile} />}
               />
               <Route
                 path="*"
-                element={<Navigate to="/desktop/home" replace />}
+                element={<Navigate to="/light/desktop/home" replace />}
               />
             </Routes>
           </PageTransition>

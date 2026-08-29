@@ -85,9 +85,9 @@ const b2Themes = [
 export default function MobileStakeHolder1() {
   const { block1, block2, block3 } = stakeholderData;
   const navigate = useNavigate();
-  const viewMode = window.location.pathname.startsWith("/mobile")
-    ? "mobile"
-    : "desktop";
+      const pathParts = window.location.pathname.split("/").filter(Boolean);
+    const themeMode = pathParts[0] === "light" ? "light" : "dark";
+    const viewMode = pathParts[1] === "mobile" ? "mobile" : "desktop";
   return (
     <div className="flex flex-col gap-8 py-2 px-2 w-full min-h-screen overflow-x-hidden bg-white dark:bg-[#0b1b42] ">
       <motion.section
@@ -177,7 +177,7 @@ export default function MobileStakeHolder1() {
                     ))}
                   </div>
                   <button
-                    onClick={() => navigate(`/${viewMode}${card.route}`)}
+                    onClick={() => navigate(`/${themeMode}/${viewMode}${card.route}`)}
                     className={`w-full font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors ${theme.buttonBg}`}
                   >
                     {card.buttonText}
@@ -303,7 +303,7 @@ export default function MobileStakeHolder1() {
                   ))}
                 </div>
                 <button
-                  onClick={() => navigate(`/${viewMode}${card.route}`)}
+                  onClick={() => navigate(`/${themeMode}/${viewMode}${card.route}`)}
                   className={`w-full font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm transition-colors ${theme.buttonBg}`}
                 >
                   {card.buttonText}
@@ -363,7 +363,7 @@ export default function MobileStakeHolder1() {
           </motion.div>
           <motion.button
             variants={fadeUpText}
-            onClick={() => navigate(`/${viewMode}${block3.route}`)}
+            onClick={() => navigate(`/${themeMode}/${viewMode}${block3.route}`)}
             className="w-full bg-emerald-600 active:bg-emerald-700 text-white font-bold py-3.5 rounded-[4px] flex items-center justify-center gap-2 shadow-sm text-sm mt-2 transition-colors"
           >
             {block3.buttonText}

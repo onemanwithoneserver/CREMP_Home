@@ -1,28 +1,36 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 type Theme = "dark" | "light";
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
 }
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("cremp-theme") as Theme;
-      if (savedTheme) {
-        return savedTheme;
-      }
-    }
-    return "dark";
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const theme: Theme = pathParts[0] === "light" ? "light" : "dark";
+
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
     localStorage.setItem("cremp-theme", theme);
   }, [theme]);
+
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    const newTheme = theme === "dark" ? "light" : "dark";
+    const newParts = [...pathParts];
+    if (newParts.length > 0 && (newParts[0] === "light" || newParts[0] === "dark")) {
+      newParts[0] = newTheme;
+    } else {
+      newParts.unshift(newTheme);
+    }
+    navigate(`/${newParts.join("/")}`);
   };
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

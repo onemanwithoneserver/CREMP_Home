@@ -6,10 +6,10 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider>
-      <BrowserRouter basename="/CREMP_Home/">
+    <BrowserRouter basename="/CREMP_Home/">
+      <ThemeProvider>
         <App />
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </StrictMode>,
 );

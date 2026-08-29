@@ -95,9 +95,9 @@ export default function Header({
                               : "home";
   const handleNavigate = useCallback(
     (page: string) => {
-      navigate(`/${viewMode}/${page}`);
+      navigate(`/${theme}/${viewMode}/${page}`);
     },
-    [navigate, viewMode],
+    [navigate, theme, viewMode],
   );
   const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
   useEffect(() => {
