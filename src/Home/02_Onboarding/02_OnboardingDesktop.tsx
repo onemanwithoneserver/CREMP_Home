@@ -120,7 +120,7 @@ export default function Desktop() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 px-4 pb-8 pt-28 text-[#0a1128] dark:bg-[#0b1b42] dark:text-white lg:pt-28 xl:pt-32"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#f8fafc] px-4 pb-8 pt-28 text-[#0f172a] dark:bg-[#060b17] dark:text-white lg:pt-28 xl:pt-32"
     >
       <motion.div
         animate={{ rotate: 360 }}
@@ -153,7 +153,7 @@ export default function Desktop() {
           }}
         />
       </motion.div>
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-gray-50 via-gray-50/95 to-transparent dark:from-[#0b1b42] dark:via-[#0b1b42]/95 lg:via-gray-50/80 dark:lg:via-[#0b1b42]/80" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-[#f8fafc] via-[#f8fafc]/95 to-transparent dark:from-[#060b17] dark:via-[#060b17]/95 lg:via-[#f8fafc]/80 dark:lg:via-[#060b17]/80" />
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
           <div className="z-10 flex w-full flex-col lg:w-[50%] xl:w-[55%]">
@@ -162,10 +162,10 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.1 }}
-              className="mb-4 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#0a1128] dark:text-white lg:text-5xl xl:text-6xl"
+              className="mb-4 text-5xl font-extrabold leading-[1.1] tracking-tight text-[#0f172a] dark:text-white lg:text-5xl xl:text-6xl"
             >
               India's 1st Integrated <br />
-              <span className="animate-pulse bg-gradient-to-r from-[#D4AF37] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
+              <span className="animate-pulse bg-gradient-to-r from-[#C5A059] to-[#b38728] bg-clip-text text-transparent dark:from-[#D4AF37] dark:to-[#f9d08b]">
                 Commercial Real Estate
               </span>
               {""}
@@ -176,7 +176,7 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2 text-base font-bold text-[#0a1128]/80 dark:text-white/80"
+              className="flex flex-wrap items-center gap-2 text-base font-bold text-[#0f172a]/80 dark:text-white/80"
             >
               <span>Commercial Properties</span>
               <span className="text-[#D4AF37]">•</span>
@@ -188,7 +188,7 @@ export default function Desktop() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springAnim, delay: 0.3 }}
-              className="mt-4 max-w-[95%] text-base leading-relaxed text-gray-600 dark:text-gray-400 xl:text-lg"
+              className="mt-4 max-w-[95%] text-base leading-relaxed text-[#334155] dark:text-gray-400 xl:text-lg"
             >
               CREMP redefines how commercial opportunities are discovered and
               connected. From commercial properties and retail spaces to
@@ -211,14 +211,14 @@ export default function Desktop() {
                   rotate: { repeat: Infinity, duration: 60, ease: "linear" },
                 }}
                 viewport={{ once: false }}
-                className="absolute inset-0 rounded-full border border-dashed border-gray-800/80"
+                className="absolute inset-0 rounded-full border border-dashed border-[#0f172a]/20 dark:border-gray-600/50"
               />
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
                 viewport={{ once: false }}
-                className="absolute inset-[9%] rounded-full border border-gray-700/30"
+                className="absolute inset-[9%] rounded-full border border-[#0f172a]/10 dark:border-gray-700/50"
               />
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -229,7 +229,7 @@ export default function Desktop() {
                   rotate: { repeat: Infinity, duration: 30, ease: "linear" },
                 }}
                 viewport={{ once: false }}
-                className="absolute inset-[18%] rounded-full border border-[#121c33]"
+                className="absolute inset-[18%] rounded-full border border-[#0f172a]/30 dark:border-gray-500/50"
               >
                 <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
                 <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_15px_#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(251,191,36,0.25)] active:scale-95" />
@@ -241,7 +241,7 @@ export default function Desktop() {
                 whileInView={{ scale: 1 }}
                 transition={{ type: "spring", duration: 1, delay: 0.6 }}
                 viewport={{ once: false }}
-                className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-gray-800 dark:border-white bg-[#0b1b42] dark:bg-white shadow-[0_0_20px_rgba(246,178,59,0.1)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#0a0f25] dark:before:from-white/50 before:to-transparent group-hover/orbit:shadow-[0_0_30px_rgba(246,178,59,0.15)]"
+                className="relative z-10 flex h-[38%] w-[38%] flex-col items-center justify-center rounded-full border border-[#D4AF37]/30 bg-[#0f172a] dark:border-[#D4AF37]/40 dark:bg-[#060b17] shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-shadow duration-700 before:absolute before:inset-[-10px] before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-[#D4AF37]/10 before:to-transparent group-hover/orbit:shadow-[0_0_40px_rgba(212,175,55,0.3)]"
               >
                 <div className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37]/10 opacity-20 duration-[3000ms]" />
                 <img
@@ -338,9 +338,9 @@ export default function Desktop() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springAnim, delay: 0.6 }}
             viewport={{ once: false }}
-            className="flex flex-col items-center justify-between gap-4 rounded-[8px] border border-gray-800 bg-[#121c33] px-6 py-4 shadow-lg lg:flex-row"
+            className="flex flex-col items-center justify-between gap-4 rounded-[8px] border border-[#0f172a]/20 bg-[#060b17] dark:border-gray-800 dark:bg-[#060b17] px-6 py-4 shadow-lg lg:flex-row"
           >
-            <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-gray-200">
+            <div className="flex-shrink-0 text-sm font-bold uppercase tracking-wider text-white dark:text-gray-200">
               Founding Vendor Benefits
             </div>
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
@@ -350,7 +350,7 @@ export default function Desktop() {
                   whileHover={{ y: -2 }}
                   className="flex items-center gap-2.5"
                 >
-                  <div className="rounded-[4px] border border-gray-700 bg-[#121c33] p-1.5 text-[#D4AF37] shadow-sm">
+                  <div className="rounded-[4px] border border-gray-700/50 bg-[#0f172a] p-1.5 text-[#D4AF37] shadow-sm">
                     <motion.div
                       initial={{ scale: 1, rotate: 0 }}
                       animate={{ scale: 1, rotate: 0 }}
@@ -360,7 +360,7 @@ export default function Desktop() {
                       <benefit.icon className="h-4 w-4" />
                     </motion.div>
                   </div>
-                  <span className="text-sm font-medium text-gray-300">
+                  <span className="text-sm font-medium text-gray-300 dark:text-gray-300">
                     {benefit.title}
                   </span>
                 </motion.div>
