@@ -245,7 +245,7 @@ export default function FranchiseSearchResultsDesktop() {
   return (
     <div className="flex flex-row w-full bg-[#f8f9fc] font-sans">
 
-      <div className="w-[62%] sticky top-[53px] h-[calc(100vh-53px)] flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
+      <div className="w-[62%] top-[53px] h-[calc(100vh-53px)] flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
 
         <div
           ref={heroRef}
