@@ -47,11 +47,11 @@ export default function HeroGalleryMobile() {
           style={{ animationDuration: "14s", animationDelay: "2s" }}
         />
       </div>
-      <motion.div variants={item} className="w-full relative h-[350px] z-10">
+      <motion.div variants={item} className="w-full relative z-10">
         <img
           src={mainCupImg}
           alt="Hero Media"
-          className="w-full h-full object-cover"
+          className="w-full h-auto object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 via-transparent to-transparent" />
         <button

@@ -557,30 +557,22 @@ export default function FranchiseSearchResultsDesktop() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
-              className="h-full flex flex-col"
+              className="h-full flex flex-col relative"
             >
+              <div className="flex-1 overflow-y-auto scrollbar-hide bg-white relative z-0">
+                <FranchiseHome isMobile={true} />
+              </div>
               <div
-                className="shrink-0 flex items-center gap-3 px-5 py-3.5 border-b border-[#0b1b42]/[0.06]"
-                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
+                className="absolute top-0 left-0 right-0 z-[9999] flex items-center px-5 py-3.5 pointer-events-none bg-gradient-to-b from-black/60 via-black/30 to-transparent"
               >
                 <motion.button
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.92 }}
                   onClick={() => setShowFranchiseView(false)}
-                  className="w-8 h-8 rounded flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
+                  className="w-8 h-8 rounded flex items-center justify-center bg-black/30 hover:bg-black/50 text-white backdrop-blur-md transition-all pointer-events-auto shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
                 >
                   <ArrowLeft size={16} strokeWidth={2.5} />
                 </motion.button>
-                <span className="text-[13px] font-bold text-white tracking-tight">Franchise Details</span>
-                <div className="flex-1" />
-                <motion.div
-                  className="w-2 h-2 rounded bg-[#d4af37]"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </div>
-              <div className="flex-1 overflow-y-auto scrollbar-hide bg-white">
-                <FranchiseHome isMobile={true} />
               </div>
             </motion.div>
           ) : (
