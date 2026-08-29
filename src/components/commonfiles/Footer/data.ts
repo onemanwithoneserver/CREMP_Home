@@ -3,10 +3,10 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 export const brandLinks = [
-  { icon: FacebookIcon, href: "#" },
-  { icon: TwitterIcon, href: "#" },
-  { icon: InstagramIcon, href: "#" },
-  { icon: LinkedInIcon, href: "#" },
+  { icon: FacebookIcon, href: "#", hoverColor: "hover:text-white", hoverBorder: "hover:border-[#1877F2]", hoverBg: "hover:bg-[#1877F2]" },
+  { icon: TwitterIcon, href: "#", hoverColor: "hover:text-black", hoverBorder: "hover:border-white", hoverBg: "hover:bg-white" },
+  { icon: InstagramIcon, href: "#", hoverColor: "hover:text-white", hoverBorder: "hover:border-[#E4405F]", hoverBg: "hover:bg-[#E4405F]" },
+  { icon: LinkedInIcon, href: "#", hoverColor: "hover:text-white", hoverBorder: "hover:border-[#0A66C2]", hoverBg: "hover:bg-[#0A66C2]" },
 ];
 export const quickLinks = [
   { label: "Properties for Sale", href: "#" },

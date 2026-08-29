@@ -32,7 +32,7 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
                   <a
                     key={i}
                     href={link.href}
-                    className="w-9 h-9 rounded-full bg-[#121c33] flex items-center justify-center text-gray-400 hover:bg-[#d4af37] hover:text-white transition-all duration-300 shadow-sm"
+                    className={`w-9 h-9 rounded-full bg-[#121c33] border border-transparent flex items-center justify-center text-gray-400 transition-all duration-300 shadow-sm ${link.hoverBg} ${link.hoverColor} ${link.hoverBorder}`}
                   >
                     <Icon sx={{ fontSize: 18 }} />
                   </a>

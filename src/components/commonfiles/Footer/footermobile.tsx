@@ -28,7 +28,7 @@ export default function FooterMobile() {
                 <a
                   key={i}
                   href={link.href}
-                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#d4af37] hover:border-[#d4af37] transition-all shadow-sm"
+                  className={`w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 transition-all shadow-sm ${link.hoverBg} ${link.hoverColor} ${link.hoverBorder}`}
                 >
                   <Icon sx={{ fontSize: 16 }} />
                 </a>
