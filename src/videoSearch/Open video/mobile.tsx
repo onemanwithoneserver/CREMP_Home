@@ -99,7 +99,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
     }
   }, [isPlaying]);
 
-
   const content = (
     <>
       <div
@@ -117,7 +116,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
             onClick={togglePlay}
             playsInline
           />
-
 
           {!isClearScreen && (
             <div className="absolute top-0 left-0 right-0 px-4 pt-[env(safe-area-inset-top,12px)] pb-2 z-[120] flex items-center justify-between pointer-events-none">
@@ -160,7 +158,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </div>
         )}
 
-
         <div className="absolute right-3 bottom-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[120] flex flex-col items-center gap-6 pointer-events-none">
           {!isClearScreen && (
             <>
@@ -186,7 +183,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
             )}
           </button>
         </div>
-
 
         {!isClearScreen && (
           <div className="absolute bottom-0 left-0 right-0 p-4 pr-[70px] pb-[calc(env(safe-area-inset-bottom,8px)+24px)] z-[115] bg-gradient-to-t from-white/95 via-white/80 to-transparent pointer-events-none">
@@ -217,7 +213,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
           </div>
         )}
 
-
         {!isClearScreen && (
           <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gray-200/60 z-[125]">
             <div
@@ -228,7 +223,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
         )}
       </div>
 
-      {/* Full-screen popup modal */}
+      
       {activePopup && (
         <div className="fixed inset-0 z-[200000] bg-white flex flex-col">
           <div className="absolute top-4 left-4 z-[300000]">
