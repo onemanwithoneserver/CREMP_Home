@@ -243,9 +243,9 @@ export default function FranchiseSearchResultsDesktop() {
   const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
 
   return (
-    <div className="flex flex-row w-full bg-[#f8f9fc] font-sans">
+    <div className="flex flex-row w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden">
 
-      <div className="w-[62%] top-[53px] h-[calc(100vh-53px)] flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
+      <div className="w-[62%] h-full flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
 
         <div
           ref={heroRef}
@@ -533,7 +533,7 @@ export default function FranchiseSearchResultsDesktop() {
         </div>
       </div>
 
-      <div className="w-[38%] flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)]">
+      <div className="w-[38%] h-full flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide">
         <AnimatePresence mode="wait">
           {showFranchiseView ? (
             <motion.div
