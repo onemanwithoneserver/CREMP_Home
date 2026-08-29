@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback, Suspense } from 'react';
 import { createPortal } from 'react-dom';
-import { Share2, MoreVertical, ChevronUp, ChevronDown, ChevronLeft, Bookmark, Play, Volume2, VolumeX, ExternalLink } from 'lucide-react';
+import { Share2, MoreVertical, ChevronUp, ChevronDown, ChevronLeft, Bookmark, Play, Volume2, VolumeX, ExternalLink, X } from 'lucide-react';
 import FranchiseHome from '../../Franchise_Home';
 import LandBox from '../../LandBox';
 import AllBuildingBox from '../../AllBuildingBox';
@@ -75,9 +75,23 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
     return { id: 'commercial' };
   };
 
+  const getRightPanelComponent = (category?: string) => {
+    const cat = (category || "").toLowerCase();
+    if (cat.includes("franchise") || cat.includes("running")) {
+      return <FranchiseHome isMobile={true} />;
+    }
+    if (cat.includes("land") || cat.includes("investment")) {
+      return <LandBox viewModeProp="mobile" />;
+    }
+    if (cat.includes("pre-leased") || cat.includes("fractional")) {
+      return <AllBuildingBox viewModeProp="mobile" />;
+    }
+    return <BuildingBox viewModeProp="mobile" />;
+  };
+
   const content = (
     <div className="fixed inset-0 z-[100000] bg-gray-50 flex overflow-hidden select-none transition-colors duration-500">
-      <div className="w-full h-full flex items-center justify-center relative shrink-0">
+      <div className={`h-full flex items-center justify-center relative shrink-0 transition-all duration-500 ease-in-out ${activePopup ? 'w-[65%]' : 'w-full'}`}>
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#d4af37]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "8s" }} />
           <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[#c69a54]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "12s", animationDelay: "2s" }} />
@@ -113,20 +127,23 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
       <div className="relative z-10 h-[85vh] max-h-[850px] aspect-[9/16] rounded-[8px] overflow-hidden bg-black shadow-[0_16px_40px_rgba(0,0,0,0.15)] border border-white/50 group" onMouseMove={resetControlsTimeout} onClick={resetControlsTimeout}>
         <video ref={videoRef} src={video.videoUrl} className="w-full h-full object-cover cursor-pointer" loop muted={isMuted} onClick={togglePlay} playsInline />
 
-        <div className={`absolute top-4 right-4 z-50 flex items-center gap-3 transition-all duration-300 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-          {(() => {
+        <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+          {!activePopup && (() => {
             const config = getPopupConfig(video.category);
             return (
               <button 
-                onClick={(e) => { e.stopPropagation(); setActivePopup(config.id); }}
-                className="h-10 px-4 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 flex items-center justify-center gap-2 text-white hover:scale-105 active:scale-95 transition-all bg-[#0b1b42]"
+                onClick={(e) => { 
+                  e.stopPropagation(); 
+                  setActivePopup(config.id); 
+                }}
+                className="h-8 px-3 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 flex items-center justify-center gap-1.5 text-white hover:scale-105 active:scale-95 transition-all bg-[#0b1b42]"
               >
-                <span className="text-[13px] font-bold">View</span>
-                <ExternalLink className="w-4 h-4" />
+                <span className="text-xs font-bold">View</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </button>
             );
           })()}
-          <button onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }} className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-[#d4af37]/40 border border-white/30 hover:border-[#d4af37]/80 shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-105">
+          <button onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }} className={`w-10 h-10 rounded-full bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-[#d4af37]/40 border border-white/30 hover:border-[#d4af37]/80 shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-105 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
         </div>
@@ -177,20 +194,18 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
       </div>
 
       {activePopup && (
-        <div className="fixed inset-0 z-[200000] bg-white flex flex-col">
-          <div className="absolute top-4 left-4 z-[300000]">
-             <button onClick={() => setActivePopup(null)} className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md border border-gray-200 flex items-center justify-center text-[#0a1128] hover:bg-gray-50 transition-colors">
-               <ChevronLeft className="w-6 h-6" />
-             </button>
+        <div className="w-[35%] h-full bg-white dark:bg-[#0b1b42] overflow-y-auto relative z-[100] shadow-[-8px_0_30px_rgba(0,0,0,0.1)] shrink-0 select-auto border-l border-[#0b1b42]/10">
+          <div className="sticky top-4 z-[200] flex justify-start w-full h-0 pointer-events-none">
+            <button 
+              onClick={() => setActivePopup(null)} 
+              className="pointer-events-auto ml-4 w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-[#132254] shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-[#1a2d72] transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
-          <div className="flex-1 w-full h-full relative">
-            <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-500 font-medium">Loading...</div>}>
-              {activePopup === 'commercial' && <BuildingBox viewModeProp="mobile" />}
-              {activePopup === 'all' && <AllBuildingBox viewModeProp="mobile" />}
-              {activePopup === 'land' && <LandBox viewModeProp="mobile" />}
-              {activePopup === 'franchise' && <FranchiseHome isMobile={true} />}
-            </Suspense>
-          </div>
+          <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-500 font-medium">Loading...</div>}>
+            {getRightPanelComponent(video.category)}
+          </Suspense>
         </div>
       )}
 
