@@ -3,8 +3,6 @@ import {
   Heart,
   MapPin,
   Search,
-  TrendingUp,
-  Calendar,
   Store,
   Map,
   Maximize,
@@ -19,6 +17,7 @@ import clsx from "clsx";
 import { franchises, getMeta, tagColors } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
+import FooterMobile from "../components/commonfiles/Footer/footermobile";
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -141,7 +140,7 @@ export default function SearchResultsMobile() {
       </AnimatePresence>
 
       <div
-        className="relative shrink-0 overflow-hidden mx-3 mt-3 mb-1 rounded-[4px] shadow-sm"
+        className="relative shrink-0 overflow-hidden mx-3 mt-3 mb-1 rounded-xl shadow-sm z-30"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
       >
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
@@ -159,16 +158,16 @@ export default function SearchResultsMobile() {
         <FloatingDot delay={1} x="75%" y="15%" size={4} />
         <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
 
-        <div className="absolute inset-y-0 right-0 w-[50%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
+        <div className="absolute inset-y-0 right-0 w-[45%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
           <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
         </div>
 
-        <div className="relative z-10 px-4 pt-5 pb-4 max-w-[70%]">
+        <div className="relative z-20 px-4 pt-5 pb-4 max-w-[75%]">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded border border-[#d4af37]/30 bg-[#0a1128]/40"
+            className="inline-flex items-center gap-1.5 mb-3 pb-1.5 border-b border-[#d4af37]/40"
           >
             <Store size={12} className="text-[#d4af37]" strokeWidth={2} />
             <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
@@ -177,7 +176,7 @@ export default function SearchResultsMobile() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-white font-extrabold text-[28px] leading-[1.1] tracking-tight mb-2"
+            className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-2"
           >
             Find your perfect<br />
             <span className="text-[#d4af37]">franchise</span> opportunity.
@@ -186,7 +185,7 @@ export default function SearchResultsMobile() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="text-white/70 text-[13px] font-medium mb-5"
+            className="text-white/70 text-[12px] font-medium mb-5"
           >
             Search franchises near you by name, industry, or location.
           </motion.p>
@@ -197,11 +196,11 @@ export default function SearchResultsMobile() {
             className="relative"
           >
             <div className={clsx(
-              "absolute -inset-[1px] rounded-full transition-opacity duration-500",
+              "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
               isSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
             
-            <div className="relative w-full bg-white rounded-full flex items-center p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
               <div className="pl-3 pr-2 text-[#0b1b42]/40 hidden sm:block">
                 <Search className="h-4 w-4" />
               </div>
@@ -219,7 +218,7 @@ export default function SearchResultsMobile() {
                   whileTap={{ scale: 0.88 }}
                   onClick={() => setShowMap(!showMap)}
                   className={clsx(
-                    "w-9 h-9 flex items-center justify-center rounded-full transition-all duration-200",
+                    "w-9 h-9 flex items-center justify-center rounded-[4px] transition-all duration-200",
                     showMap ? "text-white" : "bg-[#0b1b42]/[0.05] text-[#0b1b42]/40",
                   )}
                   style={showMap ? { background: "linear-gradient(135deg, #bf953f, #d4af37)" } : undefined}
@@ -228,7 +227,7 @@ export default function SearchResultsMobile() {
                 </motion.button>
                 <motion.button
                   whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 flex items-center justify-center rounded-full text-white relative overflow-hidden"
+                  className="w-9 h-9 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden"
                   style={{ background: "#0b1b42" }}
                 >
                   <motion.div
@@ -441,12 +440,12 @@ export default function SearchResultsMobile() {
                         </div>
                       </div>
                       <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                        <span className="text-[10px] font-extrabold text-[#0b1b42]">{f.investment}</span>
-                        <span className="w-px h-2.5 bg-[#0b1b42]/[0.06]" />
-                        <div className="flex items-center gap-0.5">
-                          <TrendingUp size={9} className="text-emerald-500" />
-                          <span className="text-[9px] font-bold text-emerald-600">{f.roi}</span>
-                        </div>
+                        <span className="text-[10px] font-bold text-[#0b1b42]">INV. {f.investment}</span>
+                        <span className="text-[10px] font-semibold text-emerald-500">{f.roi}</span>
+                        <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
+                          <MapPin size={9} className="text-blue-500" />
+                          {f.location}
+                        </span>
                       </div>
                       <div className="flex justify-end mt-2">
                         <motion.button
@@ -526,27 +525,28 @@ export default function SearchResultsMobile() {
                   initial={false}
                   animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                   transition={{ type: "spring" as const, stiffness: 500, damping: 28 }}
-                  className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top"
+                  className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top z-[3]"
                   style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
                 />
-                <div className="p-3 pl-3.5 relative z-[2]">
+                <div className="p-3.5 relative z-[2]">
                   <div className="flex gap-3">
                     <motion.div
-                      animate={isActive ? { scale: 1.02 } : { scale: 1 }}
-                      className={clsx(
-                        "w-[52px] h-[52px] rounded-lg overflow-hidden shrink-0 border-2 transition-all duration-300",
-                        isActive ? "border-[#d4af37]/40 shadow-[0_4px_14px_rgba(212,175,55,0.15)]" : "border-[#0b1b42]/[0.06] shadow-sm",
-                      )}
+                      animate={isActive ? { scale: 1.03 } : { scale: 1 }}
+                      className="w-[64px] h-[64px] rounded-lg overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
                     >
                       <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                     </motion.div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-1.5">
+                    <div className="flex-1 min-w-0 flex flex-col justify-between">
+                      <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
-                          <h3 className="font-extrabold text-[12px] leading-tight truncate text-[#0a1128]">{f.name}</h3>
-                          <p className="text-[9px] text-[#0b1b42]/35 flex items-center gap-0.5 font-medium mt-0.5">
-                            <MapPin className="w-2.5 h-2.5 shrink-0 text-[#d4af37]/50" />
-                            <span className="truncate">{f.location}</span>
+                          <h3 className={clsx(
+                            "font-bold text-[13px] leading-tight truncate transition-colors duration-300",
+                            isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
+                          )}>
+                            {f.name}
+                          </h3>
+                          <p className="text-[10px] text-[#0b1b42]/50 font-medium mt-0.5 truncate">
+                            {f.category}
                           </p>
                         </div>
                         <motion.button
@@ -559,57 +559,44 @@ export default function SearchResultsMobile() {
                               "w-3.5 h-3.5 transition-all duration-300",
                               favorites.has(f.id)
                                 ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
-                                : "text-[#0b1b42]/15",
+                                : "text-[#0b1b42]/20",
                             )}
                           />
                         </motion.button>
                       </div>
-                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                        <span className="text-[10px] font-extrabold text-[#0b1b42]">{f.investment}</span>
-                        <span className="w-px h-3 bg-[#0b1b42]/[0.06]" />
-                        <div className="flex items-center gap-0.5">
-                          <TrendingUp size={9} className="text-emerald-500" />
-                          <span className="text-[9px] font-bold text-emerald-600">{f.roi}</span>
-                        </div>
-                        <span className="w-px h-3 bg-[#0b1b42]/[0.06]" />
-                        <div className="flex items-center gap-0.5">
-                          <Calendar size={9} className="text-blue-500" />
-                          <span className="text-[9px] font-bold text-blue-600">{f.breakeven}</span>
-                        </div>
+                      <div className="flex items-center gap-1.5 mt-2 flex-wrap">
+                        <span className="text-[10px] font-bold text-[#0b1b42]">INV. {f.investment}</span>
+                        <span className="text-[10px] font-semibold text-emerald-500">{f.roi}</span>
+                        <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
+                          <MapPin size={9} className="text-blue-500" />
+                          {f.location}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-2 pl-[64px]">
+                  <div className="flex items-center justify-between mt-3 pl-[76px]">
                     <div className="flex items-center gap-1 flex-wrap min-w-0">
-                      {f.tags.slice(0, 2).map((tag) => (
-                        <span key={tag} className={clsx("px-1.5 py-0.5 rounded text-[8px] font-bold border tracking-wide", tagColors[tag] || "bg-[#0b1b42]/[0.03] text-[#0b1b42]/45 border-[#0b1b42]/[0.05]")}>
+                      {f.tags.slice(0, 1).map((tag) => (
+                        <span key={tag} className={clsx("px-1.5 py-0.5 rounded text-[9px] font-bold border tracking-wide", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-100")}>
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-1 shrink-0">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <motion.button
                         whileTap={{ scale: 0.92 }}
                         onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                        className="flex items-center gap-0.5 text-[9px] font-bold px-2 py-1.5 rounded-md border border-[#0b1b42]/[0.07] text-[#0b1b42]/55 hover:text-[#0b1b42] hover:bg-[#0b1b42]/[0.03] transition-all whitespace-nowrap"
+                        className="flex items-center gap-0.5 text-[10px] font-semibold px-2.5 py-1.5 rounded-md border border-[#0b1b42]/20 text-[#0b1b42]/70 hover:text-[#0b1b42] transition-all whitespace-nowrap"
                       >
                         <Eye size={10} strokeWidth={2.5} />
                         View
                       </motion.button>
                       <motion.button
                         whileTap={{ scale: 0.92 }}
-                        className="shrink-0 flex items-center gap-0.5 text-[9px] font-bold px-2.5 py-1.5 rounded-md text-white shadow-sm border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
+                        className="shrink-0 flex items-center gap-0.5 text-[10px] font-semibold px-3 py-1.5 rounded-md text-white border border-[#f9df9f]/40 whitespace-nowrap"
                         style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
                       >
-                        <motion.div
-                          className="absolute inset-0"
-                          style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)" }}
-                          animate={{ x: ["-100%", "200%"] }}
-                          transition={{ duration: 2, repeat: Infinity, repeatDelay: 6, ease: "linear" }}
-                        />
-                        <span className="relative z-10 flex items-center gap-0.5">
-                          Enquire <ArrowRight className="w-2.5 h-2.5" strokeWidth={2.5} />
-                        </span>
+                        Enquire
                       </motion.button>
                     </div>
                   </div>
@@ -646,6 +633,7 @@ export default function SearchResultsMobile() {
             </motion.button>
           </div>
         )}
+        <FooterMobile />
       </div>
     </div>
   );

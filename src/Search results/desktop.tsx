@@ -5,8 +5,6 @@ import {
   Search,
   ChevronRight,
   X,
-  TrendingUp,
-  Calendar,
   Store,
   Eye,
   ArrowLeft,
@@ -16,6 +14,7 @@ import clsx from "clsx";
 import { franchises, getMeta, tagColors, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
+import FooterMobile from "../components/commonfiles/Footer/footermobile";
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -240,7 +239,7 @@ export default function SearchResultsDesktop() {
         <div
           ref={heroRef}
           onMouseMove={handleHeroMouseMove}
-          className="relative overflow-hidden shrink-0 mx-4 mt-4 mb-2 rounded-[4px] shadow-sm"
+          className="relative overflow-hidden shrink-0 mx- rounded-[4px] shadow-sm"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
         >
           <motion.div
@@ -278,7 +277,7 @@ export default function SearchResultsDesktop() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded border border-[#d4af37]/30 bg-[#0a1128]/40"
+              className="inline-flex items-center gap-2 mb-4 pb-1.5 border-b border-[#d4af37]/40"
             >
               <Store size={14} className="text-[#d4af37]" strokeWidth={2} />
               <span className="text-[11px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
@@ -305,13 +304,13 @@ export default function SearchResultsDesktop() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative max-w-[640px]"
+              className="relative max-w-[440px]"
             >
               <div className={clsx(
-                "absolute -inset-[1px] rounded-full transition-opacity duration-500",
+                "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
                 isSearchFocused ? "opacity-100" : "opacity-0",
               )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
-              <div className="relative w-full bg-white rounded-full flex items-center p-2 shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
+              <div className="relative w-full bg-white rounded-[4px] flex items-center p-2 shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
                 <div className="pl-4 pr-3 text-[#0b1b42]/40">
                   <Search className="h-5 w-5" />
                 </div>
@@ -327,7 +326,7 @@ export default function SearchResultsDesktop() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="shrink-0 px-6 py-3 ml-2 flex items-center justify-center gap-2 rounded-full text-white text-[14px] font-bold transition-all relative overflow-hidden"
+                  className="shrink-0 px-6 py-3 ml-2 flex items-center justify-center gap-2 rounded-[4px] text-white text-[14px] font-bold transition-all relative overflow-hidden"
                   style={{ background: "#0b1b42" }}
                 >
                   <motion.div
@@ -564,108 +563,78 @@ export default function SearchResultsDesktop() {
                         )}
                       >
                         <CardShimmer />
-                        <motion.div
-                          initial={false}
-                          animate={{
-                            scaleY: isActive ? 1 : 0,
-                            opacity: isActive ? 1 : 0,
-                          }}
-                          transition={{ type: "spring" as const, stiffness: 500, damping: 28 }}
-                          className="absolute left-0 top-0 w-[3px] h-full origin-top rounded-r-full"
-                          style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
-                        />
-                        <div className="p-3 pl-3.5 relative z-[2]">
-                          <div className="flex gap-3">
+                        <div className="p-4 relative z-[2]">
+                          <div className="flex gap-4">
                             <motion.div
                               animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-                              className={clsx(
-                                "w-[68px] h-[52px] rounded-md overflow-hidden flex-shrink-0 border transition-all duration-300",
-                                isActive
-                                  ? "border-[#d4af37]/40 shadow-[0_4px_16px_rgba(212,175,55,0.15)]"
-                                  : "border-[#0b1b42]/[0.06] shadow-sm",
-                              )}
+                              className="w-[72px] h-[72px] rounded-lg overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
                             >
                               <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                             </motion.div>
-                            <div className="flex-1 min-w-0">
+                            <div className="flex-1 min-w-0 flex flex-col justify-between">
                               <div className="flex items-start justify-between gap-2">
                                 <div className="min-w-0">
                                   <h3 className={clsx(
-                                    "font-bold text-[13px] leading-tight truncate transition-colors duration-300",
+                                    "font-bold text-[14px] leading-tight truncate transition-colors duration-300",
                                     isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
                                   )}>
                                     {f.name}
                                   </h3>
-                                  <p className="text-[10px] text-[#0b1b42]/35 flex items-center gap-1 font-medium mt-0.5">
-                                    <MapPin className="w-3 h-3 flex-shrink-0 text-[#d4af37]/60" />
-                                    <span className="truncate">{f.location}</span>
+                                  <p className="text-[11px] text-[#0b1b42]/50 font-medium mt-0.5 truncate">
+                                    {f.category}
                                   </p>
                                 </div>
                                 <motion.button
                                   whileTap={{ scale: 1.4 }}
                                   whileHover={{ scale: 1.15 }}
                                   onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                  className="p-1 flex-shrink-0 rounded-md hover:bg-rose-50 transition-colors"
+                                  className="p-1 flex-shrink-0 transition-colors"
                                 >
                                   <Heart
                                     className={clsx(
                                       "w-4 h-4 transition-all duration-300",
                                       favorites.has(f.id)
                                         ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
-                                        : "text-[#0b1b42]/15 hover:text-red-300",
+                                        : "text-[#0b1b42]/20 hover:text-red-300",
                                     )}
                                   />
                                 </motion.button>
                               </div>
-                              <div className="flex items-center gap-2 mt-1.5">
-                                <span className="text-[11px] font-extrabold text-[#0b1b42]">{f.investment}</span>
-                                <span className="w-px h-3 bg-[#0b1b42]/[0.06]" />
-                                <div className="flex items-center gap-0.5">
-                                  <TrendingUp size={10} className="text-emerald-500" />
-                                  <span className="text-[10px] font-semibold text-emerald-600">{f.roi}</span>
-                                </div>
-                                <span className="w-px h-3 bg-[#0b1b42]/[0.06]" />
-                                <div className="flex items-center gap-0.5">
-                                  <Calendar size={10} className="text-blue-500" />
-                                  <span className="text-[10px] font-semibold text-blue-600">{f.breakeven}</span>
-                                </div>
+                              <div className="flex items-center gap-2 mt-2 flex-wrap">
+                                <span className="text-[11px] font-bold text-[#0b1b42]">INV. {f.investment}</span>
+                                <span className="text-[11px] font-semibold text-emerald-500">{f.roi}</span>
+                                <span className="text-[11px] font-medium text-blue-600 flex items-center gap-0.5">
+                                  <MapPin size={10} className="text-blue-500" />
+                                  {f.location}
+                                </span>
                               </div>
                             </div>
                           </div>
-                          <div className="flex items-center justify-between mt-2 gap-2 pl-[80px]">
-                            <div className="flex items-center gap-1 flex-wrap min-w-0">
+                          <div className="flex items-center justify-between mt-3 gap-2">
+                            <div className="flex items-center gap-1.5 flex-wrap min-w-0 pl-[88px]">
                               {f.tags.slice(0, 2).map((tag) => (
-                                <span key={tag} className={clsx("px-2 py-0.5 rounded text-[9px] font-semibold border", tagColors[tag] || "bg-[#0b1b42]/[0.03] text-[#0b1b42]/50 border-[#0b1b42]/[0.05]")}>
+                                <span key={tag} className={clsx("px-2 py-0.5 rounded text-[10px] font-semibold", tagColors[tag] || "bg-indigo-50 text-indigo-600")}>
                                   {tag}
                                 </span>
                               ))}
                             </div>
-                            <div className="flex items-center gap-1.5 shrink-0">
+                            <div className="flex items-center gap-2 shrink-0">
                               <motion.button
                                 whileTap={{ scale: 0.93 }}
-                                whileHover={{ scale: 1.04, backgroundColor: "rgba(11,27,66,0.04)" }}
+                                whileHover={{ scale: 1.04, backgroundColor: "rgba(11,27,66,0.02)" }}
                                 onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                className="flex items-center gap-1 text-[10px] font-bold px-2.5 py-1.5 rounded-md border border-[#0b1b42]/[0.08] text-[#0b1b42]/60 hover:text-[#0b1b42] hover:border-[#0b1b42]/15 transition-all whitespace-nowrap"
+                                className="flex items-center gap-1 text-[11px] font-semibold px-3 py-1.5 rounded border border-[#0b1b42]/20 text-[#0b1b42]/70 hover:text-[#0b1b42] transition-all whitespace-nowrap"
                               >
                                 <Eye size={12} strokeWidth={2.5} />
                                 View
                               </motion.button>
                               <motion.button
                                 whileTap={{ scale: 0.93 }}
-                                whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(212,175,55,0.35)" }}
-                                className="flex items-center gap-1 text-[10px] font-bold px-3 py-1.5 rounded-md text-white border border-[#f9df9f]/40 transition-all group whitespace-nowrap relative overflow-hidden"
+                                whileHover={{ scale: 1.04, boxShadow: "0 0 15px rgba(212,175,55,0.3)" }}
+                                className="flex items-center gap-1 text-[11px] font-semibold px-4 py-1.5 rounded text-white border border-[#f9df9f]/40 transition-all whitespace-nowrap"
                                 style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
                               >
-                                <motion.div
-                                  className="absolute inset-0"
-                                  style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)" }}
-                                  animate={{ x: ["-100%", "200%"] }}
-                                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 5, ease: "linear" }}
-                                />
-                                <span className="relative z-10 flex items-center gap-1">
-                                  Enquire
-                                  <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                                </span>
+                                Enquire
                               </motion.button>
                             </div>
                           </div>
@@ -702,6 +671,7 @@ export default function SearchResultsDesktop() {
                     </motion.button>
                   </div>
                 )}
+                <FooterMobile />
               </div>
             </motion.div>
           )}
