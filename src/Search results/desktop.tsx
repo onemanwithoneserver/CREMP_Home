@@ -239,7 +239,7 @@ export default function SearchResultsDesktop() {
         <div
           ref={heroRef}
           onMouseMove={handleHeroMouseMove}
-          className="relative overflow-hidden shrink-0 mx- rounded-[4px] shadow-sm"
+          className="relative overflow-hidden shrink-0 rounded-[4px] shadow-sm"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
         >
           <motion.div
@@ -291,14 +291,6 @@ export default function SearchResultsDesktop() {
               Find your perfect<br />
               <span className="text-[#d4af37]">franchise</span> opportunity.
             </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-white/70 text-[16px] font-medium mb-6"
-            >
-              Search franchises near you by name, industry, or location.
-            </motion.p>
             
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -312,7 +304,6 @@ export default function SearchResultsDesktop() {
               )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
               <div className="relative w-full bg-white rounded-[4px] flex items-center p-2 shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
                 <div className="pl-4 pr-3 text-[#0b1b42]/40">
-                  <Search className="h-5 w-5" />
                 </div>
                 <input
                   type="text"
@@ -336,17 +327,16 @@ export default function SearchResultsDesktop() {
                     transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "linear" }}
                   />
                   <Search className="h-4 w-4 relative z-10" />
-                  <span className="relative z-10">Search</span>
                 </motion.button>
               </div>
 
-              <div className="flex items-center gap-3 mt-4 text-[12px]">
+              <div className="flex items-center gap-3 mt-4 text-[10px]">
                 <span className="text-white/60 font-medium">Popular searches:</span>
                 <div className="flex items-center gap-2">
                   {["Food & Beverages", "Retail", "Education", "Healthcare", "+ More"].map((tag) => (
                     <button
                       key={tag}
-                      className="px-3 py-1.5 rounded-full border border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40 hover:text-white transition-all font-medium"
+                      className="px-3 py-1.5 rounded-[4px] border border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40 hover:text-white transition-all font-medium"
                     >
                       {tag}
                     </button>
