@@ -100,13 +100,13 @@ export default function LoginDesktop() {
 
           <div className="">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] opacity-80" />
-            
+
             <motion.div variants={item} className="inline-block mb-4">
               <span className="text-[12px] font-bold text-[#d4af37] tracking-[0.25em] uppercase">
                 Welcome Back
               </span>
             </motion.div>
-            
+
             <motion.h1
               variants={item}
               className="text-4xl xl:text-[42px] font-bold text-white mb-4 leading-[1.2]"
@@ -116,20 +116,20 @@ export default function LoginDesktop() {
                 Real Estate Command Center
               </span>
             </motion.h1>
-            
+
             <motion.div variants={item} className="inline-block mb-6">
               <span className="text-[13px] font-semibold text-white/80 tracking-wide">
                 Manage Properties <span className="text-[#d4af37] mx-2">•</span> Track Investments <span className="text-[#d4af37] mx-2">•</span> Expand Franchises
               </span>
             </motion.div>
-            
+
             <motion.p
               variants={item}
               className="text-[14px] text-gray-300 font-medium leading-relaxed max-w-lg mb-8"
             >
               Log in to CREMP to resume your journey. Discover tailored real estate opportunities, manage your listed properties, monitor franchise applications, and connect directly with key industry players—all from one powerful dashboard.
             </motion.p>
-            
+
             <motion.div
               variants={item}
               className="flex flex-wrap gap-3 max-w-lg"
@@ -163,7 +163,7 @@ export default function LoginDesktop() {
           transition={{ duration: 0.6, type: "spring", stiffness: 180, damping: 22 }}
           className="bg-white/95 dark:bg-[#0b1b42]/92 backdrop-blur-2xl rounded-[4px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6),0_0_50px_rgba(0,0,0,0.3)] border border-white/30 dark:border-white/10 relative overflow-hidden"
         >
-          <div 
+          <div
             className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
             style={{ animation: "shimmer 3s linear infinite" }}
           />
@@ -266,8 +266,8 @@ export default function LoginDesktop() {
                                 onChange={(e) => handleInputChange("email", e.target.value)}
                                 placeholder="Enter your email address"
                                 className={`w-full pl-11 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                                  errors.email 
-                                    ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
+                                  errors.email
+                                    ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20'
                                     : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                                 }`}
                               />
@@ -294,8 +294,8 @@ export default function LoginDesktop() {
                                 onChange={(e) => handleInputChange("password", e.target.value)}
                                 placeholder="Enter your password"
                                 className={`w-full pl-11 pr-11 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                                  errors.password 
-                                    ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
+                                  errors.password
+                                    ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20'
                                     : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                                 }`}
                               />
@@ -386,8 +386,8 @@ export default function LoginDesktop() {
                                 maxLength={10}
                                 placeholder="10-digit mobile number"
                                 className={`flex-1 pl-4 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-r-[4px] text-[13px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                                  errors.phone 
-                                    ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
+                                  errors.phone
+                                    ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20'
                                     : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                                 }`}
                               />
@@ -426,7 +426,7 @@ export default function LoginDesktop() {
                       </a>
                     </div>
                     <motion.div className="flex justify-center pt-1">
-                      <button 
+                      <button
                         type="submit"
                         disabled={isSubmitting}
                         className="w-[55%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] font-semibold text-[14px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"

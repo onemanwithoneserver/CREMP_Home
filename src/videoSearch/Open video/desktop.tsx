@@ -96,7 +96,7 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
           <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#d4af37]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "8s" }} />
           <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[#c69a54]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: "12s", animationDelay: "2s" }} />
         </div>
-        
+
         <div className="relative z-10 w-full max-w-5xl h-[85vh] max-h-[850px] flex justify-center gap-6 py-2 px-8">
           <div className="relative z-10 w-[280px] h-[85vh] max-h-[850px] flex flex-col justify-between py-2">
             <button onClick={onClose} className="relative z-10 flex items-center gap-2 px-5 py-2.5 w-fit rounded-[8px] bg-white/70 backdrop-blur-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-white text-[#0a1128] font-bold text-xs uppercase tracking-widest hover:border-[#d4af37]/50 hover:bg-white hover:shadow-[0_8px_25px_rgba(212,175,55,0.15)] transition-all duration-300 group">
@@ -117,9 +117,9 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
               <span className="text-[#d4af37] text-[10px] font-bold uppercase tracking-wider mt-0.5">Top Contributor</span>
             </div>
           </div>
-          
+
           <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-          
+
           <p className="text-gray-600 text-sm leading-relaxed break-words line-clamp-4 font-medium">{video.description}</p>
         </div>
       </div>
@@ -131,10 +131,10 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
           {!activePopup && (() => {
             const config = getPopupConfig(video.category);
             return (
-              <button 
-                onClick={(e) => { 
-                  e.stopPropagation(); 
-                  setActivePopup(config.id); 
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActivePopup(config.id);
                 }}
                 className="h-8 px-3 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 flex items-center justify-center gap-1.5 text-white hover:scale-105 active:scale-95 transition-all bg-[#0b1b42]"
               >
@@ -196,8 +196,8 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
       {activePopup && (
         <div className="w-[35%] h-full bg-white dark:bg-[#0b1b42] overflow-y-auto relative z-[100] shadow-[-8px_0_30px_rgba(0,0,0,0.1)] shrink-0 select-auto border-l border-[#0b1b42]/10">
           <div className="sticky top-4 z-[200] flex justify-start w-full h-0 pointer-events-none">
-            <button 
-              onClick={() => setActivePopup(null)} 
+            <button
+              onClick={() => setActivePopup(null)}
               className="pointer-events-auto ml-4 w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-[#132254] shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-[#1a2d72] transition-colors"
             >
               <X className="w-4 h-4" />

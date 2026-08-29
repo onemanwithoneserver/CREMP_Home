@@ -213,7 +213,6 @@ export default function FranchiseSearchResultsDesktop() {
     setSelectedMarker((prev) => (prev === id ? null : id));
   }, []);
 
-  
   const matchingFranchises = useMemo(() => {
     return franchises.filter(
       (f) => !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -222,7 +221,6 @@ export default function FranchiseSearchResultsDesktop() {
 
   const displayFranchises = searchQuery ? matchingFranchises : matchingFranchises.slice(0, 4);
 
-  
   const filtered = useMemo(() => {
     return franchises.filter((f) => {
       const matchesSearch =
@@ -247,17 +245,15 @@ export default function FranchiseSearchResultsDesktop() {
   return (
     <div className="flex flex-row w-full bg-[#f8f9fc] font-sans">
 
-      
       <div className="w-[62%] sticky top-[53px] h-[calc(100vh-53px)] flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
 
-        
         <div
           ref={heroRef}
           onMouseMove={handleHeroMouseMove}
           className="relative shrink-0"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
         >
-          
+
           <motion.div
             className="absolute inset-0 opacity-[0.15] pointer-events-none"
             style={{
@@ -268,7 +264,6 @@ export default function FranchiseSearchResultsDesktop() {
             }}
           />
 
-          
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -280,14 +275,12 @@ export default function FranchiseSearchResultsDesktop() {
             </svg>
           </div>
 
-          
           <FloatingParticle delay={0} x="8%" y="18%" size={6} />
           <FloatingParticle delay={1.2} x="78%" y="28%" size={4} />
           <FloatingParticle delay={0.6} x="48%" y="62%" size={5} />
           <FloatingParticle delay={2} x="22%" y="72%" size={3} />
           <FloatingParticle delay={1.5} x="68%" y="12%" size={5} />
 
-          
           <div
             className="absolute inset-y-0 right-0 w-[42%] z-0 overflow-hidden"
             style={{
@@ -298,7 +291,6 @@ export default function FranchiseSearchResultsDesktop() {
             <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
           </div>
 
-          
           <div className="relative z-50 px-8 pt-6 pb-4 max-w-[62%]">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -328,7 +320,6 @@ export default function FranchiseSearchResultsDesktop() {
               opportunity.
             </motion.h1>
 
-            
             <motion.div
               ref={searchContainerRef}
               initial={{ opacity: 0, y: 10 }}
@@ -336,7 +327,7 @@ export default function FranchiseSearchResultsDesktop() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="relative max-w-[480px] z-50"
             >
-              
+
               <div
                 className={clsx(
                   "absolute -inset-[1.5px] rounded transition-opacity duration-500",
@@ -370,7 +361,6 @@ export default function FranchiseSearchResultsDesktop() {
                 </motion.button>
               </div>
 
-              
               <AnimatePresence>
                 {isSearchFocused && (searchQuery || displayFranchises.length > 0) && (
                   <motion.div
@@ -427,7 +417,6 @@ export default function FranchiseSearchResultsDesktop() {
               </AnimatePresence>
             </motion.div>
 
-            
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -449,9 +438,8 @@ export default function FranchiseSearchResultsDesktop() {
           </div>
         </div>
 
-        
         <div className="flex-1 relative bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2]">
-          
+
           <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="topo-d" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -468,7 +456,6 @@ export default function FranchiseSearchResultsDesktop() {
             <path d="M 50,300 Q 250,250 450,350 T 800,280" fill="none" stroke="#0b1b42" strokeWidth="1.5" strokeDasharray="5 7" />
           </svg>
 
-          
           {filtered.map((f, i) => {
             const isActive = hoveredCard === f.id || selectedMarker === f.id;
             const meta = getMeta(f.category);
@@ -521,7 +508,6 @@ export default function FranchiseSearchResultsDesktop() {
             );
           })}
 
-          
           <div className="absolute bottom-4 right-4 flex flex-col gap-1.5 z-10">
             {["+", "−"].map((label) => (
               <motion.button
@@ -535,7 +521,6 @@ export default function FranchiseSearchResultsDesktop() {
             ))}
           </div>
 
-          
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -548,7 +533,6 @@ export default function FranchiseSearchResultsDesktop() {
         </div>
       </div>
 
-      
       <div className="w-[38%] flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)]">
         <AnimatePresence mode="wait">
           {showFranchiseView ? (
@@ -585,8 +569,7 @@ export default function FranchiseSearchResultsDesktop() {
               transition={{ duration: 0.2 }}
               className="h-full flex flex-col"
             >
-              
-              
+
               <div className="flex-1">
                 <motion.div
                   variants={stagger}
@@ -618,7 +601,6 @@ export default function FranchiseSearchResultsDesktop() {
                       >
                         <CardShimmer />
 
-                        
                         <motion.div
                           className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l"
                           animate={{
@@ -631,7 +613,7 @@ export default function FranchiseSearchResultsDesktop() {
 
                         <div className="p-3 relative z-[2]">
                           <div className="flex gap-2.5">
-                            
+
                             <motion.div
                               animate={isActive ? { scale: 1.04 } : { scale: 1 }}
                               className="w-[80px] h-[80px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-[#f8f9fc]"
@@ -639,7 +621,6 @@ export default function FranchiseSearchResultsDesktop() {
                               <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                             </motion.div>
 
-                            
                             <div className="flex-1 min-w-0 flex flex-col">
                               <div className="flex items-start justify-between gap-2">
                                 <div className="min-w-0">
@@ -671,7 +652,6 @@ export default function FranchiseSearchResultsDesktop() {
                                 </motion.button>
                               </div>
 
-                              
                               <div className="flex items-center gap-3 mt-2">
                                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0a1128]">
                                   <TrendingUp size={10} className="text-[#d4af37]" strokeWidth={2.5} />
@@ -686,7 +666,6 @@ export default function FranchiseSearchResultsDesktop() {
                             </div>
                           </div>
 
-                          
                           <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#0b1b42]/[0.04] gap-2">
                             <div className="flex items-center gap-1.5 flex-wrap min-w-0">
                               {f.tags.slice(0, 2).map((tag) => (
@@ -731,7 +710,6 @@ export default function FranchiseSearchResultsDesktop() {
                   })}
                 </motion.div>
 
-                
                 {visibleCount < filtered.length && (
                   <div className="px-4 py-4 flex justify-center">
                     <motion.button
@@ -761,7 +739,6 @@ export default function FranchiseSearchResultsDesktop() {
                   </div>
                 )}
 
-                
                 {filtered.length === 0 && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}

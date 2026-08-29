@@ -5,8 +5,8 @@ export type NavItem = {
 };
 export const navLinks: NavItem[] = [
   { label: "Video search", href: "#" },
-  { 
-    label: "Commercial Properties", 
+  {
+    label: "Commercial Properties",
     subItems: [
       { label: "Lease", href: "#" },
       { label: "Buy", href: "#" }
@@ -14,8 +14,8 @@ export const navLinks: NavItem[] = [
   },
   { label: "Business Opportunity", href: "#" },
   { label: "Hire Broker", href: "#" },
-  { 
-    label: "Collections", 
+  {
+    label: "Collections",
     subItems: [
       { label: "Saved Properties", href: "#" },
       { label: "Hand Picked", href: "#" }

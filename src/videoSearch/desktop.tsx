@@ -119,14 +119,13 @@ export default function VideoSearchDesktop() {
   return (
     <section className="w-full min-h-screen font-sans bg-[#f8f9fc]">
 
-      {/* Hero Section — matches Franchise Search Results */}
       <div
         ref={heroRef}
         onMouseMove={handleHeroMouseMove}
         className="relative w-full overflow-hidden"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
       >
-        {/* Spotlight */}
+
         <motion.div
           className="absolute inset-0 opacity-[0.15] pointer-events-none"
           style={{
@@ -137,7 +136,6 @@ export default function VideoSearchDesktop() {
           }}
         />
 
-        {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -149,7 +147,6 @@ export default function VideoSearchDesktop() {
           </svg>
         </div>
 
-        {/* Hero Image */}
         <div
           className="absolute inset-y-0 right-0 w-[42%] z-0 overflow-hidden"
           style={{
@@ -160,14 +157,12 @@ export default function VideoSearchDesktop() {
           <img src={SearchImage} alt="Video Search hero" className="w-full h-full object-cover object-left opacity-90" />
         </div>
 
-        {/* Floating Particles */}
         <FloatingParticle delay={0} x="10%" y="20%" size={6} />
         <FloatingParticle delay={1.2} x="75%" y="30%" size={4} />
         <FloatingParticle delay={0.6} x="50%" y="65%" size={5} />
         <FloatingParticle delay={2} x="25%" y="75%" size={3} />
         <FloatingParticle delay={1.5} x="65%" y="15%" size={5} />
 
-        {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-8 pt-10 pb-8 flex flex-col items-start text-left">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -206,7 +201,6 @@ export default function VideoSearchDesktop() {
             Commercial Properties · Business Opportunities · Expert Brokers
           </motion.p>
 
-          {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -252,7 +246,6 @@ export default function VideoSearchDesktop() {
         </div>
       </div>
 
-      {/* Filters Row */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6 pb-2">
         <div className="flex flex-wrap items-center justify-center gap-2">
           <div className="flex items-center gap-2 mr-3 text-[#0b1b42]/40">
@@ -286,7 +279,6 @@ export default function VideoSearchDesktop() {
         </div>
       </div>
 
-      {/* Video Grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-16 flex flex-col gap-8">
 
         <motion.div
@@ -388,9 +380,9 @@ export default function VideoSearchDesktop() {
         )}
       </div>
       {selectedVideoId && (
-        <OpenVideo 
-          initialVideoId={selectedVideoId} 
-          onClose={() => setSelectedVideoId(null)} 
+        <OpenVideo
+          initialVideoId={selectedVideoId}
+          onClose={() => setSelectedVideoId(null)}
           isMobile={false}
         />
       )}

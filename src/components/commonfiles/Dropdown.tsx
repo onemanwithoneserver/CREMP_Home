@@ -111,7 +111,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             w-full flex items-center justify-between gap-2
             ${sizeClasses[size]}
             bg-white/80 dark:bg-cremp-surface/80 backdrop-blur-md
-            border border-cremp-border rounded-lg font-semibold text-cremp-text-primary 
+            border border-cremp-border rounded-lg font-semibold text-cremp-text-primary
             shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cremp-primary/50 focus-visible:border-cremp-primary
             disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-sm

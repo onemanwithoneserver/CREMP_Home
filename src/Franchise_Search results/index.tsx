@@ -8,7 +8,7 @@ export default function FranchiseSearchResults({ isMobile }: { isMobile?: boolea
     return (
       <div className="flex flex-col w-full bg-white dark:bg-[#0b1b42] min-h-screen relative [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         <SiteHeader isMobile={isMobile} />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}

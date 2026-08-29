@@ -86,7 +86,7 @@ export default function LoginMobile() {
           }}
           className="w-full max-w-[460px] bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-2xl p-2 rounded-[4px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-white/60 dark:border-white/10 relative overflow-hidden"
         >
-          <div 
+          <div
             className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] bg-[length:200%_auto]"
             style={{ animation: "shimmer 3s linear infinite" }}
           />
@@ -183,8 +183,8 @@ export default function LoginMobile() {
                               onChange={(e) => handleInputChange("email", e.target.value)}
                               placeholder="Enter your email address"
                               className={`w-full pl-10 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                                errors.email 
-                                  ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
+                                errors.email
+                                  ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20'
                                   : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                               }`}
                             />
@@ -211,8 +211,8 @@ export default function LoginMobile() {
                               onChange={(e) => handleInputChange("password", e.target.value)}
                               placeholder="Enter your password"
                               className={`w-full pl-10 pr-10 py-2 bg-white dark:bg-[#121c33] border rounded-[4px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                                errors.password 
-                                  ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
+                                errors.password
+                                  ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20'
                                   : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                               }`}
                             />
@@ -303,8 +303,8 @@ export default function LoginMobile() {
                               maxLength={10}
                               placeholder="10-digit mobile number"
                               className={`flex-1 pl-3.5 pr-4 py-2 bg-white dark:bg-[#121c33] border rounded-r-[4px] text-[12px] text-[#0a1128] dark:text-white placeholder-gray-400 focus:outline-none transition-all shadow-sm font-medium ${
-                                errors.phone 
-                                  ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20' 
+                                errors.phone
+                                  ? 'border-red-500/60 focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20'
                                   : 'border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37]/50'
                               }`}
                             />
@@ -343,7 +343,7 @@ export default function LoginMobile() {
                     </a>
                   </div>
                   <motion.div className="flex justify-center pt-1">
-                    <button 
+                    <button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-[55%] py-2.5 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white rounded-[4px] font-semibold text-[13px] shadow-[0_8px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_28px_rgba(212,175,55,0.45)] transition-all hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0 relative overflow-hidden group flex items-center justify-center gap-2"

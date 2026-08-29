@@ -37,9 +37,9 @@ export default function FooterMobile() {
           </div>
         </div>
         <div className="flex flex-col mt-2">
-          <AccordionItem 
-            title="Quick Links" 
-            isOpen={openSection === "quick"} 
+          <AccordionItem
+            title="Quick Links"
+            isOpen={openSection === "quick"}
             onToggle={() => toggleSection("quick")}
           >
             <div className="flex flex-col gap-2 py-1 pl-2">
@@ -50,9 +50,9 @@ export default function FooterMobile() {
               ))}
             </div>
           </AccordionItem>
-          <AccordionItem 
-            title="Resources" 
-            isOpen={openSection === "resources"} 
+          <AccordionItem
+            title="Resources"
+            isOpen={openSection === "resources"}
             onToggle={() => toggleSection("resources")}
           >
             <div className="flex flex-col gap-2 py-1 pl-2">
@@ -63,9 +63,9 @@ export default function FooterMobile() {
               ))}
             </div>
           </AccordionItem>
-          <AccordionItem 
-            title="Contact Us" 
-            isOpen={openSection === "contact"} 
+          <AccordionItem
+            title="Contact Us"
+            isOpen={openSection === "contact"}
             onToggle={() => toggleSection("contact")}
           >
             <div className="flex flex-col gap-3 py-1 pl-2">
@@ -111,7 +111,7 @@ interface AccordionItemProps {
 function AccordionItem({ title, isOpen, onToggle, children }: AccordionItemProps) {
   return (
     <div className="border-b border-white/10 overflow-hidden">
-      <button 
+      <button
         className="w-full py-3 flex items-center justify-between text-left focus:outline-none group"
         onClick={onToggle}
       >

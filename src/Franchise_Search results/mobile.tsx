@@ -174,7 +174,7 @@ export default function FranchiseSearchResultsMobile() {
               <span className="text-[#d4af37]">franchise</span> opportunity.
             </motion.h2>
           </div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -185,9 +185,9 @@ export default function FranchiseSearchResultsMobile() {
               "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
               isSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
-            
+
             <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-              
+
               <input
                 type="text"
                 value={searchQuery}

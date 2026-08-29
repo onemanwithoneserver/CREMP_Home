@@ -130,7 +130,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
                 {(() => {
                   const config = getPopupConfig(video.category);
                   return (
-                    <button 
+                    <button
                       onClick={(e) => { e.stopPropagation(); setActivePopup(config.id); }}
                       className="h-10 px-4 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 flex items-center justify-center gap-2 text-white active:scale-95 transition-all bg-[#0b1b42]"
                     >
@@ -171,7 +171,7 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
               </button>
             </>
           )}
-          
+
           <button
             onClick={() => setIsClearScreen(!isClearScreen)}
             className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all mt-2"
@@ -223,7 +223,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
         )}
       </div>
 
-      
       {activePopup && (
         <div className="fixed inset-0 z-[200000] bg-white flex flex-col">
           <div className="absolute top-4 left-4 z-[300000]">

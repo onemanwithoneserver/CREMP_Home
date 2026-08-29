@@ -105,12 +105,11 @@ export default function VideoSearchMobile() {
   return (
     <div className="w-full min-h-screen bg-[#f8f9fc] text-[#0a1128] overflow-x-hidden font-sans pb-20 relative">
 
-      {/* Hero Section */}
       <div
         className="relative w-full overflow-hidden"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
       >
-        {/* Grid Pattern */}
+
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-10">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -122,8 +121,7 @@ export default function VideoSearchMobile() {
           </svg>
         </div>
 
-        {/* Hero Image */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-[60%] z-0"
           style={{
             maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
@@ -133,12 +131,10 @@ export default function VideoSearchMobile() {
           <img src={SearchImage} alt="Video Search hero" className="w-full h-full object-cover object-center opacity-40" />
         </div>
 
-        {/* Floating Particles */}
         <FloatingParticle delay={0} x="8%" y="25%" size={4} />
         <FloatingParticle delay={1} x="80%" y="35%" size={3} />
         <FloatingParticle delay={0.5} x="45%" y="70%" size={4} />
 
-        {/* Hero Content */}
         <div className="relative z-10 px-5 pt-7 pb-6 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -177,7 +173,6 @@ export default function VideoSearchMobile() {
             Properties · Opportunities · Brokers
           </motion.p>
 
-          {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -215,7 +210,6 @@ export default function VideoSearchMobile() {
         </div>
       </div>
 
-      {/* Filters */}
       <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/80">
         <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
           <Filter size={12} />
@@ -345,9 +339,9 @@ export default function VideoSearchMobile() {
         )}
       </div>
       {selectedVideoId && (
-        <OpenVideo 
-          initialVideoId={selectedVideoId} 
-          onClose={() => setSelectedVideoId(null)} 
+        <OpenVideo
+          initialVideoId={selectedVideoId}
+          onClose={() => setSelectedVideoId(null)}
           isMobile={true}
         />
       )}

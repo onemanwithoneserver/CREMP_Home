@@ -36,7 +36,7 @@ export default function OpenVideo({ onClose, initialVideoId, isMobile: isMobileP
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
-  const currentVideo = (currentIndex === 0 && initialVideoId && !reelsData.find(r => r.id === initialVideoId)) 
+  const currentVideo = (currentIndex === 0 && initialVideoId && !reelsData.find(r => r.id === initialVideoId))
     ? getReelData(initialVideoId)
     : reelsData[currentIndex] || reelsData[0];
 
