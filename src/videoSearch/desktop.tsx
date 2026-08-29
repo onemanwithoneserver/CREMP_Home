@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, Sparkles } from "lucide-react";
+import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, Sparkles, Film, ChevronRight } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
@@ -29,6 +29,19 @@ const cardVariants = {
     y: 0,
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
+};
+
+const getCategoryColor = (category: string) => {
+  const cat = category.toLowerCase();
+  if (cat.includes("franchise")) return "bg-rose-600/90 border-rose-400/30 text-white";
+  if (cat.includes("invest")) return "bg-emerald-600/90 border-emerald-400/30 text-white";
+  if (cat.includes("fractional")) return "bg-purple-600/90 border-purple-400/30 text-white";
+  if (cat.includes("pre-leased") || cat.includes("commercial")) return "bg-blue-600/90 border-blue-400/30 text-white";
+  if (cat.includes("running")) return "bg-amber-600/90 border-amber-400/30 text-white";
+  if (cat.includes("distribution")) return "bg-cyan-600/90 border-cyan-400/30 text-white";
+  if (cat.includes("land") || cat.includes("plot")) return "bg-teal-600/90 border-teal-400/30 text-white";
+  if (cat.includes("movable") || cat.includes("asset")) return "bg-orange-600/90 border-orange-400/30 text-white";
+  return "bg-indigo-600/90 border-indigo-400/30 text-white";
 };
 
 function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
@@ -254,19 +267,28 @@ export default function VideoSearchDesktop() {
               Filters:
             </span>
           </div>
-          {videoCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => handleCategoryChange(cat)}
-              className={`px-4 py-1.5 rounded-[4px] text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border ${
-                activeCategory === cat
-                  ? "bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white border-transparent shadow-[0_4px_12px_rgba(212,175,55,0.3)]"
-                  : "bg-white text-[#0b1b42]/60 border-[#0b1b42]/[0.08] hover:border-[#d4af37]/50 shadow-sm"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {videoCategories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => handleCategoryChange(cat)}
+                className={`relative px-4 py-2 rounded-[6px] text-xs font-semibold tracking-normal transition-all duration-300 border flex flex-col items-center justify-center ${
+                  isActive
+                    ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
+                    : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10 hover:border-[#d4af37]/50 hover:text-[#0b1b42] dark:hover:text-white shadow-sm"
+                }`}
+              >
+                <span>{cat}</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="activeFilterUnderline"
+                    className="absolute bottom-1 inset-x-0 mx-auto w-5 h-[2.5px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_6px_rgba(212,175,55,0.6)]"
+                  />
+                )}
+              </button>
+            );
+          })}
           <div className="ml-auto flex items-center z-20">
             <CustomSelect
               options={sortOptions}
@@ -279,14 +301,13 @@ export default function VideoSearchDesktop() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-16 flex flex-col gap-8">
-
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-16 flex flex-col gap-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
           key={activeCategory + searchQuery}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-5"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 lg:gap-6"
         >
           <AnimatePresence mode="popLayout">
             {displayedVideos.map((video) => (
@@ -298,42 +319,62 @@ export default function VideoSearchDesktop() {
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 key={video.id}
                 onClick={() => setSelectedVideoId(video.id)}
-                className="group relative flex flex-col aspect-[9/16] bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-white/5 rounded-[4px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] cursor-pointer transition-all duration-500"
+                className="group relative flex flex-col aspect-[9/16] bg-[#0a1128] border border-gray-200/80 dark:border-white/10 rounded-[8px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1.5 hover:border-white/60 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.7)] cursor-pointer transition-all duration-500"
               >
                 <img
                   src={video.thumbnail}
                   alt={video.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1b42]/90 via-[#0b1b42]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                <div className="absolute top-3 right-3">
-                  <span className="flex w-fit items-center gap-2 rounded-[2px] border border-white/20 bg-black/50 backdrop-blur-md px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white shadow-sm">
-                    {video.category}
-                  </span>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-80 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/75 via-45% to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
+
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-20" />
+
+                {activeCategory === "All" && (
+                  <div className="absolute top-2.5 left-2.5 z-20">
+                    <span className={clsx(
+                      "flex items-center gap-1 px-2 py-0.5 rounded-[3px] backdrop-blur-md border text-white text-[8.5px] font-bold uppercase tracking-wider shadow-sm",
+                      getCategoryColor(video.category)
+                    )}>
+                      {video.category}
+                    </span>
+                  </div>
+                )}
+
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="flex items-center justify-center w-11 h-11 rounded-full bg-[#0b1b42] border border-white/10 text-white shadow-[0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-500 pointer-events-auto opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100"
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/50 group-hover:bg-white group-hover:border-white group-hover:text-[#0a1128] shadow-[0_8px_30px_rgba(0,0,0,0.5)] text-white transition-all duration-300 pointer-events-auto opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100"
                   >
-                    <Play size={16} className="ml-0.5" fill="currentColor" />
+                    <Play size={18} className="ml-0.5" fill="currentColor" />
                   </motion.div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[#d4af37] text-[10px] font-bold uppercase tracking-widest mb-1.5 drop-shadow-md">
-                    {video.brand}
-                  </span>
-                  <h3 className="text-[14px] font-semibold text-white leading-tight mb-2.5 line-clamp-2 drop-shadow-lg">
+
+                <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
+                    <span className="text-white/85 text-[11px] font-bold uppercase tracking-wider drop-shadow-md truncate">
+                      {video.brand}
+                    </span>
+                  </div>
+                  <h3 className="text-[14.5px] font-bold text-white leading-snug mb-3 line-clamp-2 drop-shadow-lg">
                     {video.title}
                   </h3>
-                  <div className="flex items-center gap-3">
-                    <span className="flex items-center gap-1 px-2 py-0.5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-[2px] text-white text-[9px] font-semibold tracking-wider">
-                      <Clock size={10} />
-                      {video.duration}
-                    </span>
-                    <span className="flex items-center gap-1 text-white/70 text-[9px] font-medium">
-                      <Eye size={10} />
-                      {video.views} views
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="flex items-center gap-1 px-2 py-0.5 bg-black/40 backdrop-blur-md border border-white/20 rounded-[3px] text-white text-[9.5px] font-semibold tracking-wider shadow-sm">
+                        <Clock size={10} className="text-white/80" />
+                        {video.duration}
+                      </span>
+                      <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
+                        <Eye size={10} className="text-white/70" />
+                        {video.views}
+                      </span>
+                    </div>
+                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-[3px] bg-white text-[#0a1128] text-[10px] font-bold shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-1 group-hover:translate-x-0">
+                      Watch <ChevronRight size={11} />
                     </span>
                   </div>
                 </div>
@@ -341,41 +382,52 @@ export default function VideoSearchDesktop() {
             ))}
           </AnimatePresence>
         </motion.div>
+
         {hasMore && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex justify-center pt-4"
+            className="flex justify-center pt-6"
           >
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleLoadMore}
               disabled={isLoadingMore}
-              className="group flex items-center justify-center gap-2.5 px-8 py-3 bg-[#0b1b42] rounded-[4px] text-sm font-semibold text-white hover:bg-[#0a1128] hover:shadow-[0_12px_30px_rgba(11,27,66,0.25)] transition-all duration-300 shadow-md disabled:opacity-60 border-none"
+              className="group relative flex items-center justify-center gap-3 px-9 py-3.5 bg-[#0b1b42] hover:bg-[#0a1128] border border-[#d4af37]/40 hover:border-[#d4af37] rounded-[6px] text-sm font-bold text-white shadow-[0_8px_25px_rgba(11,27,66,0.2)] hover:shadow-[0_12px_35px_rgba(212,175,55,0.25)] transition-all duration-300 disabled:opacity-60 overflow-hidden"
             >
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
               {isLoadingMore ? (
-                <Loader2 size={16} className="animate-spin text-white" />
+                <Loader2 size={16} className="animate-spin text-[#d4af37]" />
               ) : (
-                <RefreshCw size={16} className="text-white/80 group-hover:rotate-180 transition-transform duration-500" />
+                <RefreshCw size={16} className="text-[#d4af37] group-hover:rotate-180 transition-transform duration-500" />
               )}
-              <span>{isLoadingMore ? "Loading..." : "Load More Videos"}</span>
+              <span className="tracking-wide">{isLoadingMore ? "Loading More Videos..." : "Load More Videos"}</span>
             </motion.button>
           </motion.div>
         )}
+
         {filteredVideos.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-dashed border-gray-200/60 dark:border-[#d4af37]/20 rounded-[4px]"
+            className="text-center py-20 bg-white/70 dark:bg-[#0b1b42]/70 backdrop-blur-xl border border-dashed border-gray-200/80 dark:border-[#d4af37]/20 rounded-[8px] shadow-sm max-w-2xl mx-auto w-full my-6"
           >
-            <Video size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4 opacity-50" />
-            <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-              No videos found matching your criteria.
+            <div className="w-16 h-16 rounded-full bg-[#0b1b42]/10 dark:bg-[#d4af37]/10 flex items-center justify-center mx-auto mb-4 border border-[#d4af37]/20">
+              <Video size={32} className="text-[#0b1b42] dark:text-[#d4af37]" />
+            </div>
+            <h3 className="text-base font-bold text-gray-800 dark:text-white">
+              No videos found matching your criteria
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">
+              Try searching with different keywords or switch categories to explore more commercial opportunities.
             </p>
-            <p className="text-xs text-gray-400 mt-1">
-              Try adjusting your search or filter settings.
-            </p>
+            <button
+              onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+              className="mt-5 px-5 py-2 rounded-[4px] bg-[#0b1b42] text-white text-xs font-bold hover:bg-[#0a1128] border border-[#d4af37]/30 transition-all"
+            >
+              Reset Filters
+            </button>
           </motion.div>
         )}
       </div>
