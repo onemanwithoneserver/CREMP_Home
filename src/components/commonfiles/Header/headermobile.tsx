@@ -1,20 +1,30 @@
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Plus, Minus, X } from "lucide-react";
+import { Plus, Minus, X, User, Heart, Settings, LogOut } from "lucide-react";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 import { navLinks } from "./data";
 import CrempTextLogo from "../../CrempTextLogo";
+
 interface HeaderMobileProps {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
   currentPage: string;
 }
+
+const profileMenuItems = [
+  { label: "My Account", icon: User, href: "#" },
+  { label: "Saved Properties", icon: Heart, href: "#" },
+  { label: "Settings", icon: Settings, href: "#" },
+  { label: "Logout", icon: LogOut, href: "#", danger: true },
+];
+
 export default function HeaderMobile({
   setMobileMenuOpen,
   currentPage,
 }: HeaderMobileProps) {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -25,10 +35,12 @@ export default function HeaderMobile({
       }
     }
   };
+
   const itemVariants: Variants = {
     hidden: { opacity: 0, x: 20 },
     show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
+
   return (
     <>
       <motion.div
@@ -37,7 +49,7 @@ export default function HeaderMobile({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={() => setMobileMenuOpen(false)}
-        className="fixed inset-0 bg-black/60 z-[90]"
+        className="fixed inset-0 bg-[#0a1128]/60 z-[90]"
         style={{ top: "var(--top-bar-height, 0px)" }}
       />
       <motion.div
@@ -45,10 +57,16 @@ export default function HeaderMobile({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: "-100%" }}
         transition={{ type: "spring", damping: 30, stiffness: 250 }}
-        className="fixed left-0 w-full h-auto max-h-[100dvh] rounded-b-[8px] bg-white dark:bg-[#0a1128] z-[100] flex flex-col overflow-hidden shadow-2xl border-b border-gray-100 dark:border-white/10"
-        style={{ top: "var(--top-bar-height, 0px)", maxHeight: "calc(100dvh - var(--top-bar-height, 0px))" }}
+        className="fixed left-0 w-full h-auto max-h-[100dvh] rounded-b-[8px] z-[100] flex flex-col overflow-hidden shadow-2xl"
+        style={{
+          top: "var(--top-bar-height, 0px)",
+          maxHeight: "calc(100dvh - var(--top-bar-height, 0px))",
+          background: "rgba(255,255,255,0.97)",
+          backdropFilter: "blur(24px)",
+          borderBottom: "2px solid rgba(212,175,55,0.15)",
+        }}
       >
-        <div className="flex items-center justify-between p-5 shrink-0 relative z-10 border-b border-gray-100 dark:border-white/10">
+        <div className="flex items-center justify-between p-5 shrink-0 relative z-10 border-b border-[#0b1b42]/[0.06]">
           <a href="#" className="flex items-center gap-2">
             <img src={logo} alt="CREMP Logo" className="h-8 w-auto dark:block hidden drop-shadow-md" />
             <img src={logoLight} alt="CREMP Logo" className="h-8 w-auto dark:hidden block drop-shadow-sm" />
@@ -58,14 +76,14 @@ export default function HeaderMobile({
           </a>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-[#d4af37] hover:text-white dark:hover:bg-[#d4af37] dark:hover:text-[#0a1128] transition-all group focus:outline-none"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-[#0b1b42]/[0.04] text-[#0b1b42]/60 hover:bg-[#d4af37] hover:text-white transition-all group focus:outline-none"
           >
             <X className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" strokeWidth={2} />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto overflow-x-hidden pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <div className="px-5 flex flex-col min-h-full pt-4">
-            <motion.nav 
+            <motion.nav
               variants={containerVariants}
               initial="hidden"
               animate="show"
@@ -90,14 +108,14 @@ export default function HeaderMobile({
                     >
                       <div className="flex items-center gap-3">
                         <span className={`text-[14px] font-bold tracking-tight transition-colors duration-300 ${
-                          isActive || isSubOpen 
-                            ? "text-[#d4af37]" 
-                            : "text-[#0a1128] dark:text-white hover:text-[#d4af37] dark:hover:text-[#d4af37]"
+                          isActive || isSubOpen
+                            ? "text-[#0a1128]"
+                            : "text-[#0b1b42]/70 hover:text-[#0a1128]"
                         }`}>
                           {link.label}
                         </span>
                         {(isActive || isSubOpen) && (
-                          <motion.div 
+                          <motion.div
                             layoutId="mobile-nav-indicator"
                             className="w-1.5 h-1.5 rounded-full bg-[#d4af37]"
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -106,7 +124,9 @@ export default function HeaderMobile({
                       </div>
                       {link.subItems && (
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isSubOpen ? "bg-white text-[#0a1128] shadow-md" : "bg-gray-50 dark:bg-white/5 text-gray-400 dark:text-gray-500"
+                          isSubOpen
+                            ? "bg-[#0b1b42] text-white shadow-md"
+                            : "bg-[#0b1b42]/[0.04] text-[#0b1b42]/40"
                         }`}>
                           {isSubOpen ? <Minus size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
                         </div>
@@ -121,7 +141,7 @@ export default function HeaderMobile({
                           transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
                           className="overflow-hidden"
                         >
-                          <div className="flex flex-col gap-3 pt-2 pb-3 pl-4 border-l-2 border-gray-100 dark:border-white/10 ml-2 mt-1">
+                          <div className="flex flex-col gap-3 pt-2 pb-3 pl-4 border-l-2 border-[#d4af37]/20 ml-2 mt-1">
                             {link.subItems.map((sub, j) => (
                               <motion.a
                                 initial={{ opacity: 0, x: -10 }}
@@ -130,7 +150,7 @@ export default function HeaderMobile({
                                 key={sub.label}
                                 href={sub.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="text-[13px] font-semibold text-gray-500 dark:text-gray-400 hover:text-[#d4af37] dark:hover:text-[#d4af37] transition-colors"
+                                className="text-[13px] font-semibold text-[#0b1b42]/50 hover:text-[#0a1128] transition-colors"
                               >
                                 {sub.label}
                               </motion.a>
@@ -143,6 +163,43 @@ export default function HeaderMobile({
                 );
               })}
             </motion.nav>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
+              className="mt-6 pt-4 border-t border-[#0b1b42]/[0.06]"
+            >
+              <div className="flex items-center gap-3 mb-4 px-1">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 ring-2 ring-[#d4af37]/30 ring-offset-1"
+                  style={{ background: "linear-gradient(135deg, #0b1b42, #1a2d5e)" }}
+                >
+                  <span className="text-sm font-bold text-white">U</span>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[14px] font-bold text-[#0a1128]">User</span>
+                  <span className="text-[12px] font-semibold text-[#0b1b42]/40">user@cremp.com</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                {profileMenuItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-bold transition-all duration-200 ${
+                      item.danger
+                        ? "text-rose-500 hover:bg-rose-50"
+                        : "text-[#0b1b42]/60 hover:bg-[#0b1b42]/[0.04] hover:text-[#0a1128]"
+                    }`}
+                  >
+                    <item.icon size={16} strokeWidth={2} className={item.danger ? "" : "text-[#0b1b42]/30"} />
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>

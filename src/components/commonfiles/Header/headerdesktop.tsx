@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
-import { 
-  MapPin, 
-  ChevronDown, 
-  Menu, 
-  User, 
-  Settings, 
-  LogOut, 
-  LocateFixed, 
-  History 
+import { useState, useEffect, useRef } from "react";
+import {
+  MapPin,
+  ChevronDown,
+  Menu,
+  LocateFixed,
+  History,
+  User,
+  Heart,
+  Settings,
+  LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import logo from "../../../Logo/CREMP.png";
@@ -21,24 +22,23 @@ interface SiteHeaderProps {
   isMobile?: boolean;
 }
 
+const profileMenuItems = [
+  { label: "My Account", icon: User, href: "#" },
+  { label: "Saved Properties", icon: Heart, href: "#" },
+  { label: "Settings", icon: Settings, href: "#" },
+  { label: "Logout", icon: LogOut, href: "#", danger: true },
+];
+
 export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderProps) {
   const [activeNav, setActiveNav] = useState("Home");
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
-  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [currentLocation, setCurrentLocation] = useState("Lakshmipuram");
-  
-  const recentLocations = ["Hyderabad", "Bengaluru", "Chennai", "Kurnool"];
+  const profileRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const recentLocations = ["Hyderabad", "Bengaluru", "Chennai", "Kurnool"];
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -51,20 +51,28 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
     };
   }, [mobileMenuOpen]);
 
-  const liquidDropdownVariants: Variants = {
-    hidden: { opacity: 0, y: 12, scale: 0.98, filter: "blur(8px)" },
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setShowProfileDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const dropdownVariants: Variants = {
+    hidden: { opacity: 0, y: 8, scale: 0.96 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
-      transition: { type: "spring" as const, stiffness: 400, damping: 28, mass: 0.8 },
+      transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] },
     },
     exit: {
       opacity: 0,
-      y: 8,
-      scale: 0.98,
-      filter: "blur(4px)",
+      y: 6,
+      scale: 0.97,
       transition: { duration: 0.15, ease: "easeIn" },
     },
   };
@@ -72,35 +80,33 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
   return (
     <>
       <header className="fixed inset-x-0 z-50 pointer-events-none" style={{ top: "var(--top-bar-height, 0px)" }}>
-        <div className={`transition-all duration-500 ease-out flex justify-center w-full ${scrolled ? "pt-4" : "pt-0"}`}>
+        <div className="transition-all duration-500 ease-out flex justify-center w-full">
           {!isMobile && (
             <div
-              className={`
-                pointer-events-auto 
-                flex items-center justify-between gap-4 
-                transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] 
-                backdrop-blur-none bg-white dark:bg-[#0a1128] 
-                shadow-sm dark:shadow-[0_4px_16px_rgba(0,0,0,0.4)]
-                ${scrolled 
-                  ? "max-w-[1400px] w-[calc(100%-32px)] px-3 py-2.5 rounded border border-gray-200 dark:border-white/10" 
-                  : "w-full px-6 py-3 border-b border-gray-200 dark:border-white/10 rounded-none"
-                }
-              `}
+              className="pointer-events-auto flex items-center gap-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] w-full px-6 py-2.5 rounded-none"
+              style={{
+                background: "rgba(255,255,255,0.82)",
+                backdropFilter: "blur(20px) saturate(180%)",
+                WebkitBackdropFilter: "blur(20px) saturate(180%)",
+                borderBottom: "1px solid rgba(11,27,66,0.08)",
+                boxShadow: "0 1px 3px rgba(11,27,66,0.06), inset 0 -1px 0 rgba(212,175,55,0.12)",
+              }}
             >
-              <div className="flex items-center shrink-0 pl-3 pr-2">
-                <a href="#" className="flex items-center gap-2 group focus:outline-none" aria-label="CREMP home">
-                  <img src={logoLight} alt="CREMP Logo" className="h-8 w-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-sm" />
-                  <img src={logo} alt="CREMP Logo" className="hidden h-8 w-auto object-contain dark:block transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
+              <div className="flex items-center shrink-0 pl-2 gap-3 min-w-[180px]">
+                <a href="#" className="flex items-center gap-2.5 group focus:outline-none" aria-label="CREMP home">
+                  <img src={logoLight} alt="CREMP Logo" className="h-8 w-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105" />
+                  <img src={logo} alt="CREMP Logo" className="hidden h-8 w-auto object-contain dark:block transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]" />
                   <div className="flex flex-col justify-center">
                     <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white sm:h-6" />
                   </div>
                 </a>
               </div>
-              <nav className="flex items-center gap-1.5" onMouseLeave={() => setHoveredNav(null)}>
+
+              <nav className="flex-1 flex items-center justify-center gap-1" onMouseLeave={() => setHoveredNav(null)}>
                 {navLinks.map((link) => {
                   const isActive = activeNav === link.label;
                   const isHovered = hoveredNav === link.label;
-                  
+
                   return (
                     <div key={link.label} className="relative group/nav" onMouseEnter={() => setHoveredNav(link.label)}>
                       <a
@@ -110,40 +116,51 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                         }}
                         className={`relative flex items-center gap-1.5 px-4 py-2 text-[13px] font-bold tracking-wide transition-colors duration-300 z-10 cursor-pointer rounded ${
                           isActive || isHovered
-                            ? "text-[#d4af37] dark:text-[#f3cd52]"
-                            : "text-gray-700/80 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                            ? "text-[#0a1128] dark:text-[#d4af37]"
+                            : "text-[#0b1b42]/70 dark:text-gray-300 hover:text-[#0a1128] dark:hover:text-white"
                         }`}
                         href={link.href || "#"}
                       >
                         {isHovered && !isActive && (
                           <motion.div
                             layoutId="nav-hover"
-                            className="absolute inset-0 bg-gray-100 dark:bg-white/5 rounded -z-10"
+                            className="absolute inset-0 bg-[#0b1b42]/[0.04] dark:bg-[#d4af37]/[0.06] rounded -z-10"
                             transition={{ type: "spring", stiffness: 400, damping: 30 }}
                           />
                         )}
                         <span className="relative z-10 drop-shadow-sm flex flex-col items-center">
                           {link.label}
-                          {!link.subItems && isActive && (
+                          {isActive && (
                             <motion.div
                               layoutId="nav-underline"
-                              className="absolute -bottom-[9px] left-0 right-0 h-[2.5px] bg-[#d4af37] dark:bg-[#f3cd52] rounded-t shadow-[0_0_8px_rgba(212,175,55,0.5)] z-0"
+                              className="absolute -bottom-[9px] left-0 right-0 h-[2.5px] rounded-t z-0"
+                              style={{
+                                background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)",
+                                boxShadow: "0 0 10px rgba(212,175,55,0.4)",
+                              }}
                               transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             />
                           )}
                         </span>
                         {link.subItems && (
-                          <ChevronDown size={14} className={`relative z-10 transition-transform duration-500 group-hover/nav:rotate-180 ${isActive || isHovered ? 'opacity-100' : 'opacity-60'}`} strokeWidth={2.5} />
+                          <ChevronDown size={14} className={`relative z-10 transition-transform duration-500 group-hover/nav:rotate-180 ${isActive || isHovered ? 'opacity-100 text-[#d4af37]' : 'opacity-50'}`} strokeWidth={2.5} />
                         )}
                       </a>
                       {link.subItems && (
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
-                          <div className="min-w-[200px] p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-lg">
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
+                          <div
+                            className="min-w-[210px] p-1.5 rounded shadow-xl overflow-hidden"
+                            style={{
+                              background: "rgba(255,255,255,0.95)",
+                              backdropFilter: "blur(20px)",
+                              border: "1px solid rgba(11,27,66,0.08)",
+                            }}
+                          >
                             {link.subItems.map((subItem) => (
                               <a
                                 key={subItem.label}
                                 href={subItem.href}
-                                className="block px-4 py-2.5 text-[13px] font-bold text-gray-700 dark:text-gray-200 hover:bg-white/60 dark:hover:bg-white/10 rounded hover:text-[#d4af37] transition-all duration-200"
+                                className="block px-4 py-2.5 text-[13px] font-bold text-[#0b1b42]/70 hover:bg-[#0b1b42]/[0.04] rounded hover:text-[#0a1128] transition-all duration-200"
                               >
                                 {subItem.label}
                               </a>
@@ -155,49 +172,55 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                   );
                 })}
               </nav>
-              <div className="flex items-center gap-2 pr-1 shrink-0 flex-1 justify-end">
+
+              <div className="flex items-center gap-2 pr-2 shrink-0 min-w-[180px] justify-end">
                 <div className="relative">
                   <button
                     type="button"
                     onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-                    className={`flex items-center gap-2 h-10 px-3.5 rounded transition-all duration-300 border ${
+                    className={`flex items-center gap-2 h-9 px-3 rounded-full transition-all duration-300 border text-[13px] font-bold ${
                       showLocationDropdown
-                        ? "bg-white/95 dark:bg-[#0b1b42]/95 border-[#d4af37]/50 shadow-[0_0_0_3px_rgba(212,175,55,0.15)] text-[#d4af37]"
-                        : "bg-transparent border-transparent hover:bg-white/50 dark:hover:bg-white/5 text-gray-700/90 dark:text-gray-300"
+                        ? "bg-[#0b1b42]/[0.06] border-[#d4af37]/40 shadow-[0_0_0_3px_rgba(212,175,55,0.1)] text-[#0a1128]"
+                        : "bg-transparent border-transparent hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/70"
                     }`}
                   >
-                    <MapPin size={15} className={showLocationDropdown ? "text-[#d4af37]" : "text-gray-500/90 dark:text-gray-400"} strokeWidth={2.5} />
-                    <span className="font-bold text-[13px] tracking-tight truncate max-w-[100px]">
+                    <MapPin size={14} className={showLocationDropdown ? "text-[#d4af37]" : "text-[#0b1b42]/50"} strokeWidth={2.5} />
+                    <span className="tracking-tight truncate max-w-[90px]">
                       {currentLocation}
                     </span>
-                    <ChevronDown size={14} className={`transition-transform duration-500 ${showLocationDropdown ? "rotate-180" : "opacity-60"}`} strokeWidth={2.5} />
+                    <ChevronDown size={13} className={`transition-transform duration-500 ${showLocationDropdown ? "rotate-180 text-[#d4af37]" : "opacity-50"}`} strokeWidth={2.5} />
                   </button>
                   <AnimatePresence>
                     {showLocationDropdown && (
                       <>
                         <div className="fixed inset-0 z-40" onClick={() => setShowLocationDropdown(false)} />
                         <motion.div
-                          variants={liquidDropdownVariants}
+                          variants={dropdownVariants}
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full right-0 mt-4 w-[260px] p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50 overflow-hidden"
+                          className="absolute top-full right-0 mt-3 w-[260px] p-2 rounded shadow-xl z-50 overflow-hidden"
+                          style={{
+                            background: "rgba(255,255,255,0.97)",
+                            backdropFilter: "blur(24px)",
+                            border: "1px solid rgba(11,27,66,0.08)",
+                          }}
                         >
                           <div className="mb-2">
-                            <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-blue-50/90 dark:hover:bg-blue-500/10 transition-colors text-left group/loc border border-transparent hover:border-blue-100/50 dark:hover:border-blue-500/20">
-                              <div className="w-9 h-9 rounded bg-blue-100/60 dark:bg-blue-500/20 flex items-center justify-center group-hover/loc:scale-110 group-hover/loc:rotate-6 transition-transform duration-500">
-                                <LocateFixed size={16} className="text-blue-600 dark:text-blue-400" />
+                            <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-[#0b1b42]/[0.04] transition-colors text-left group/loc border border-transparent hover:border-[#0b1b42]/[0.06]">
+                              <div className="w-9 h-9 rounded-full bg-[#0b1b42]/[0.06] flex items-center justify-center group-hover/loc:scale-110 transition-transform duration-500">
+                                <LocateFixed size={16} className="text-[#0b1b42]" />
                               </div>
                               <div className="flex flex-col">
-                                <span className="text-[13px] font-bold text-blue-700 dark:text-blue-400">Detect Location</span>
-                                <span className="text-[11px] text-blue-600/70 dark:text-blue-400/70 font-semibold">Using precise GPS</span>
+                                <span className="text-[13px] font-bold text-[#0b1b42]">Detect Location</span>
+                                <span className="text-[11px] text-[#0b1b42]/50 font-semibold">Using precise GPS</span>
                               </div>
                             </button>
                           </div>
-                          <div className="px-3 pb-1 pt-2 border-t border-gray-200/50 dark:border-white/10">
-                            <span className="text-[10px] font-extrabold text-gray-400/80 uppercase tracking-widest">Recent</span>
+                          <div className="px-3 pb-1 pt-2 border-t border-[#0b1b42]/[0.06]">
+                            <span className="text-[10px] font-extrabold text-[#0b1b42]/40 uppercase tracking-widest">Recent</span>
                           </div>
-                          <div className="flex flex-col gap-1 mt-1">
+                          <div className="flex flex-col gap-0.5 mt-1">
                             {recentLocations.map((loc) => (
                               <button
                                 key={loc}
@@ -205,10 +228,10 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                                   setCurrentLocation(loc);
                                   setShowLocationDropdown(false);
                                 }}
-                                className="flex items-center gap-3 w-full px-3 py-2.5 rounded hover:bg-white/80 dark:hover:bg-white/10 transition-colors text-left group/item"
+                                className="flex items-center gap-3 w-full px-3 py-2.5 rounded hover:bg-[#0b1b42]/[0.04] transition-colors text-left group/item"
                               >
-                                <History size={14} className="text-gray-400/80 group-hover/item:text-[#d4af37] transition-colors" />
-                                <span className="text-[13px] font-bold text-gray-600 dark:text-gray-300 group-hover/item:text-gray-900 dark:group-hover/item:text-white transition-colors">
+                                <History size={14} className="text-[#0b1b42]/30 group-hover/item:text-[#d4af37] transition-colors" />
+                                <span className="text-[13px] font-bold text-[#0b1b42]/60 group-hover/item:text-[#0a1128] transition-colors">
                                   {loc}
                                 </span>
                               </button>
@@ -219,62 +242,94 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="w-[1px] h-5 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent opacity-60 mx-1.5" />
-                <div className="relative">
+
+                <div className="w-px h-5 bg-[#0b1b42]/[0.08] mx-0.5" />
+
+                <div className="relative" ref={profileRef}>
                   <button
                     type="button"
                     onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                    className="flex items-center gap-2 group focus:outline-none h-10 px-2 rounded hover:bg-white/50 dark:hover:bg-white/5 transition-colors"
+                    className={`relative flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300 group ${
+                      showProfileDropdown
+                        ? "ring-2 ring-[#d4af37] ring-offset-1 ring-offset-white"
+                        : "hover:ring-2 hover:ring-[#d4af37]/30 hover:ring-offset-1 hover:ring-offset-white"
+                    }`}
+                    style={{
+                      background: "linear-gradient(135deg, #0b1b42, #1a2d5e)",
+                    }}
                   >
-                    <div className="flex items-center gap-2">
-                      <span className="text-[13px] font-bold text-gray-700 dark:text-gray-200 group-hover:text-[#d4af37] transition-colors pl-1">Alex</span>
-                      <div className="w-7 h-7 rounded-full bg-white dark:bg-[#1a294d] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 group-hover:border-[#d4af37] group-hover:text-[#d4af37] transition-colors shadow-sm">
-                        <User size={13} strokeWidth={2.5} />
-                      </div>
-                    </div>
+                    <span className="text-[13px] font-bold text-white tracking-tight select-none">U</span>
+                    <div
+                      className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full border-2 border-white"
+                      style={{ background: "#22c55e" }}
+                    />
                   </button>
                   <AnimatePresence>
                     {showProfileDropdown && (
-                      <>
-                        <div className="fixed inset-0 z-40" onClick={() => setShowProfileDropdown(false)} />
-                        <motion.div
-                          variants={liquidDropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="absolute top-full right-0 mt-4 w-[200px] bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50 py-1.5 overflow-hidden"
-                        >
-                          <div className="py-1 border-b border-gray-100/50 dark:border-white/10">
-                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
-                              <User size={14} className="text-gray-400 group-hover:text-[#d4af37]" />
-                              <span className="text-[13px] font-semibold text-[#0a1128] dark:text-gray-200">Profile</span>
-                            </a>
-                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
-                              <Settings size={14} className="text-gray-400 group-hover:text-[#d4af37]" />
-                              <span className="text-[13px] font-semibold text-[#0a1128] dark:text-gray-200">Settings</span>
-                            </a>
+                      <motion.div
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="absolute top-full right-0 mt-3 w-[220px] p-1.5 rounded shadow-xl z-50 overflow-hidden"
+                        style={{
+                          background: "rgba(255,255,255,0.97)",
+                          backdropFilter: "blur(24px)",
+                          border: "1px solid rgba(11,27,66,0.08)",
+                        }}
+                      >
+                        <div className="px-3 py-3 border-b border-[#0b1b42]/[0.06] mb-1">
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                              style={{ background: "linear-gradient(135deg, #0b1b42, #1a2d5e)" }}
+                            >
+                              <span className="text-sm font-bold text-white">U</span>
+                            </div>
+                            <div className="flex flex-col min-w-0">
+                              <span className="text-[13px] font-bold text-[#0a1128] truncate">User</span>
+                              <span className="text-[11px] font-semibold text-[#0b1b42]/50 truncate">user@cremp.com</span>
+                            </div>
                           </div>
-                          <div className="py-1">
-                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-red-50/80 dark:hover:bg-red-900/10 transition-colors group">
-                              <LogOut size={14} className="text-red-400 group-hover:text-red-500" />
-                              <span className="text-[13px] font-semibold text-red-500">Sign out</span>
+                        </div>
+                        <div className="flex flex-col gap-0.5">
+                          {profileMenuItems.map((item) => (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              className={`flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-bold transition-all duration-200 ${
+                                item.danger
+                                  ? "text-rose-500 hover:bg-rose-50 hover:text-rose-600"
+                                  : "text-[#0b1b42]/70 hover:bg-[#0b1b42]/[0.04] hover:text-[#0a1128]"
+                              }`}
+                              onClick={() => setShowProfileDropdown(false)}
+                            >
+                              <item.icon size={15} strokeWidth={2} className={item.danger ? "" : "text-[#0b1b42]/40"} />
+                              {item.label}
                             </a>
-                          </div>
-                        </motion.div>
-                      </>
+                          ))}
+                        </div>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
               </div>
             </div>
           )}
-          <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-full bg-white dark:bg-[#0a1128] border-b border-gray-200 dark:border-white/10 shadow-sm p-3 transition-all duration-300`}>
+          <div className={`${isMobile ? "flex" : "flex xl:hidden"} pointer-events-auto flex-col w-full shadow-sm p-3 transition-all duration-300`}
+            style={{
+              background: "rgba(255,255,255,0.88)",
+              backdropFilter: "blur(20px) saturate(180%)",
+              WebkitBackdropFilter: "blur(20px) saturate(180%)",
+              borderBottom: "1px solid rgba(11,27,66,0.08)",
+            }}
+          >
             <div className="flex items-center justify-between w-full relative z-40">
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(true)}
-                  className="w-8 h-8 rounded bg-white/60 dark:bg-white/5 border border-white/50 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-gray-300 shadow-sm transition-colors hover:bg-white/80 dark:hover:bg-white/10 shrink-0"
+                  className="w-8 h-8 rounded-full bg-[#0b1b42]/[0.05] border border-[#0b1b42]/[0.08] flex items-center justify-center text-[#0b1b42] shadow-sm transition-colors hover:bg-[#0b1b42]/[0.08] shrink-0"
                 >
                   <Menu size={16} strokeWidth={2.5} />
                 </button>
@@ -285,43 +340,49 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                     <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white" />
                   </div>
                 </a>
-                <div className="hidden sm:block w-[1px] h-4 bg-gray-200/80 dark:bg-gray-700/80 mx-1"></div>
+              </div>
+              <div className="flex items-center gap-2">
                 <div className="relative">
                   <button
                     onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white/60 dark:bg-white/5 rounded text-gray-700 dark:text-gray-200 border border-white/50 dark:border-white/10 shadow-sm transition-all"
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 bg-[#0b1b42]/[0.04] rounded-full text-[#0b1b42] border border-[#0b1b42]/[0.06] shadow-sm transition-all text-[12px] font-bold"
                   >
                     <MapPin size={13} className="text-[#d4af37]" strokeWidth={3} />
-                    <span className="font-bold text-[12px] truncate max-w-[65px] sm:max-w-[100px]">
+                    <span className="truncate max-w-[65px] sm:max-w-[100px]">
                       {currentLocation}
                     </span>
-                    <ChevronDown size={13} className={`text-gray-400 transition-transform duration-300 ${showLocationDropdown ? "rotate-180" : ""}`} strokeWidth={3} />
+                    <ChevronDown size={13} className={`text-[#0b1b42]/40 transition-transform duration-300 ${showLocationDropdown ? "rotate-180" : ""}`} strokeWidth={3} />
                   </button>
                   <AnimatePresence>
                     {showLocationDropdown && (
                       <>
                         <div className="fixed inset-0 z-40" onClick={() => setShowLocationDropdown(false)} />
                         <motion.div
-                          variants={liquidDropdownVariants}
+                          variants={dropdownVariants}
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="absolute top-full left-0 sm:-left-4 mt-3 w-[240px] p-2 bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50"
+                          className="absolute top-full right-0 mt-3 w-[240px] p-2 rounded shadow-xl z-50"
+                          style={{
+                            background: "rgba(255,255,255,0.97)",
+                            backdropFilter: "blur(24px)",
+                            border: "1px solid rgba(11,27,66,0.08)",
+                          }}
                         >
                           <div className="mb-1">
-                            <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-blue-50/80 dark:hover:bg-blue-500/10 text-left transition-colors">
-                              <div className="w-8 h-8 rounded bg-blue-100/60 dark:bg-blue-500/20 flex items-center justify-center">
-                                <LocateFixed size={15} className="text-blue-600 dark:text-blue-400" />
+                            <button className="flex items-center gap-3 w-full p-2.5 rounded hover:bg-[#0b1b42]/[0.04] text-left transition-colors">
+                              <div className="w-8 h-8 rounded-full bg-[#0b1b42]/[0.06] flex items-center justify-center">
+                                <LocateFixed size={15} className="text-[#0b1b42]" />
                               </div>
                               <div className="flex flex-col">
-                                <span className="text-[13px] font-bold text-blue-700 dark:text-blue-400">Detect Location</span>
+                                <span className="text-[13px] font-bold text-[#0b1b42]">Detect Location</span>
                               </div>
                             </button>
                           </div>
-                          <div className="px-3 pb-1 pt-2 border-t border-gray-200/50 dark:border-white/10">
-                            <span className="text-[10px] font-extrabold text-gray-400/80 uppercase tracking-widest">Recent</span>
+                          <div className="px-3 pb-1 pt-2 border-t border-[#0b1b42]/[0.06]">
+                            <span className="text-[10px] font-extrabold text-[#0b1b42]/40 uppercase tracking-widest">Recent</span>
                           </div>
-                          <div className="flex flex-col gap-1">
+                          <div className="flex flex-col gap-0.5">
                             {recentLocations.map((loc) => (
                               <button
                                 key={loc}
@@ -329,10 +390,10 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                                   setCurrentLocation(loc);
                                   setShowLocationDropdown(false);
                                 }}
-                                className="flex items-center gap-3 w-full px-3 py-2 rounded hover:bg-white/80 dark:hover:bg-white/5 text-left transition-colors"
+                                className="flex items-center gap-3 w-full px-3 py-2 rounded hover:bg-[#0b1b42]/[0.04] text-left transition-colors group/item"
                               >
-                                <History size={13} className="text-gray-400/80" />
-                                <span className="text-[13px] font-bold text-gray-700 dark:text-gray-300">
+                                <History size={13} className="text-[#0b1b42]/30 group-hover/item:text-[#d4af37] transition-colors" />
+                                <span className="text-[13px] font-bold text-[#0b1b42]/60 group-hover/item:text-[#0a1128] transition-colors">
                                   {loc}
                                 </span>
                               </button>
@@ -343,53 +404,27 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                     )}
                   </AnimatePresence>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="relative">
-                  <button
-                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                    className="w-8 h-8 rounded-full bg-white dark:bg-[#1a294d] border border-gray-200/80 dark:border-white/10 flex items-center justify-center text-gray-500 shadow-sm shrink-0 focus:outline-none hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
-                  >
-                    <User size={14} strokeWidth={2.5} />
-                  </button>
-                  <AnimatePresence>
-                    {showProfileDropdown && (
-                      <>
-                        <div className="fixed inset-0 z-40" onClick={() => setShowProfileDropdown(false)} />
-                        <motion.div
-                          variants={liquidDropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="absolute top-full right-0 mt-3 w-[200px] bg-white dark:bg-[#0b1b42] border border-gray-200 dark:border-white/10 rounded shadow-xl z-50 py-1.5 overflow-hidden"
-                        >
-                          <div className="py-1 border-b border-gray-100/50 dark:border-white/10">
-                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
-                              <User size={14} className="text-gray-400 group-hover:text-[#d4af37]" />
-                              <span className="text-[13px] font-semibold text-[#0a1128] dark:text-gray-200">Profile</span>
-                            </a>
-                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-colors group">
-                              <Settings size={14} className="text-gray-400 group-hover:text-[#d4af37]" />
-                              <span className="text-[13px] font-semibold text-[#0a1128] dark:text-gray-200">Settings</span>
-                            </a>
-                          </div>
-                          <div className="py-1">
-                            <a href="#" className="flex items-center gap-2.5 px-4 py-2 hover:bg-red-50/80 dark:hover:bg-red-900/10 transition-colors group">
-                              <LogOut size={14} className="text-red-400 group-hover:text-red-500" />
-                              <span className="text-[13px] font-semibold text-red-500">Sign out</span>
-                            </a>
-                          </div>
-                        </motion.div>
-                      </>
-                    )}
-                  </AnimatePresence>
-                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                  className="relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 shrink-0"
+                  style={{
+                    background: "linear-gradient(135deg, #0b1b42, #1a2d5e)",
+                  }}
+                >
+                  <span className="text-[12px] font-bold text-white select-none">U</span>
+                  <div
+                    className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full border-[1.5px] border-white"
+                    style={{ background: "#22c55e" }}
+                  />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </header>
-      <div className={`transition-all duration-500 ${isMobile ? "h-[80px]" : "h-[68px] sm:h-[72px]"}`} />
+      <div className={`transition-all duration-500 ${isMobile ? "h-[80px]" : "h-[64px] sm:h-[68px]"}`} />
       <AnimatePresence>
         {mobileMenuOpen && (
           <HeaderMobile

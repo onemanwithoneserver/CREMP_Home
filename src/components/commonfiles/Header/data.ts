@@ -17,7 +17,6 @@ export const navLinks: NavItem[] = [
   { 
     label: "Collections", 
     subItems: [
-/*       { label: "Video search", href: "#" }, */
       { label: "Saved Properties", href: "#" },
       { label: "Hand Picked", href: "#" }
     ]
