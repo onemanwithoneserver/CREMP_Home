@@ -20,7 +20,7 @@ import Investors from "./Investors";
 import BuildingBox from "./BuildingBox";
 import AllBuildingBox from "./AllBuildingBox";
 import LandBox from "./LandBox";
-import SearchResults from "./Search results";
+import FranchiseSearchResults from "./Franchise_Search results";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
 import VideoSearch from "./videoSearch";
@@ -104,8 +104,8 @@ function App() {
               />
               <Route path="/:viewMode/land-box" element={<LandBox />} />
               <Route
-                path="/:viewMode/search-results"
-                element={<SearchResults isMobile={isMobile} />}
+                path="/:viewMode/franchise-search-results"
+                element={<FranchiseSearchResults isMobile={isMobile} />}
               />
               <Route
                 path="/:viewMode/login"

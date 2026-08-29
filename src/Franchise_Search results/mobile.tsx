@@ -51,7 +51,7 @@ function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: strin
   );
 }
 
-export default function SearchResultsMobile() {
+export default function FranchiseSearchResultsMobile() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
@@ -140,7 +140,7 @@ export default function SearchResultsMobile() {
       </AnimatePresence>
 
       <div
-        className="relative shrink-0 overflow-hidden mx-3 mt-3 mb-1 rounded-xl shadow-sm z-30"
+        className="relative shrink-0 overflow-hidden mx-3 mt-3 mb-1 rounded shadow-sm z-30"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
       >
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
@@ -259,7 +259,7 @@ export default function SearchResultsMobile() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.97 }}
                   transition={spring}
-                  className="absolute top-full left-0 right-0 mt-2 rounded-lg overflow-hidden z-50 shadow-2xl"
+                  className="absolute top-full left-0 right-0 mt-2 rounded overflow-hidden z-50 shadow-2xl"
                   style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", border: "1px solid rgba(11,27,66,0.06)" }}
                 >
                   <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
@@ -272,9 +272,9 @@ export default function SearchResultsMobile() {
                           transition={{ delay: i * 0.03 }}
                           whileTap={{ scale: 0.97 }}
                           onClick={() => setSearchQuery(f.name)}
-                          className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded-md flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
+                          className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
+                          <div className="w-8 h-8 rounded bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
                             <Store size={13} strokeWidth={1.5} />
                           </div>
                           <div className="flex flex-col min-w-0">
@@ -325,7 +325,7 @@ export default function SearchResultsMobile() {
                 whileTap={{ scale: 0.85 }}
                 whileHover={{ scale: 1.1 }}
                 onClick={() => setIsListCollapsed(!isListCollapsed)}
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white text-[#0b1b42] shadow-lg border border-[#0b1b42]/[0.06] transition-all relative overflow-hidden"
+                className="w-9 h-9 flex items-center justify-center rounded bg-white text-[#0b1b42] shadow-lg border border-[#0b1b42]/[0.06] transition-all relative overflow-hidden"
               >
                 <AnimatePresence mode="wait">
                   {isListCollapsed ? (
@@ -376,7 +376,7 @@ export default function SearchResultsMobile() {
                     <motion.div
                       whileHover={{ scale: 1.1 }}
                       className={clsx(
-                        "w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200",
+                        "w-9 h-9 rounded flex items-center justify-center transition-all duration-200",
                         isActive ? `${meta.bg} ${meta.glow} shadow-lg` : "bg-white border border-[#0b1b42]/[0.06] shadow-md",
                       )}
                     >
@@ -406,7 +406,7 @@ export default function SearchResultsMobile() {
                       width: "260px",
                       transformOrigin: f.lat < 40 ? "top center" : "bottom center",
                     }}
-                    className="rounded-lg shadow-2xl z-40 pointer-events-auto overflow-hidden"
+                    className="rounded shadow-2xl z-40 pointer-events-auto overflow-hidden"
                     onClick={() => handleCardTap(f.id)}
                   >
                     <motion.div
@@ -419,7 +419,7 @@ export default function SearchResultsMobile() {
                     <div className="p-3 bg-white border border-[#0b1b42]/[0.05]">
                       <div className="flex items-start justify-between mb-1">
                         <div className="flex gap-2.5 items-center min-w-0">
-                          <div className="w-[48px] h-[48px] rounded-lg overflow-hidden shrink-0 border border-[#0b1b42]/[0.06] shadow-sm">
+                          <div className="w-[48px] h-[48px] rounded overflow-hidden shrink-0 border border-[#0b1b42]/[0.06] shadow-sm">
                             <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                           </div>
                           <div className="min-w-0">
@@ -451,7 +451,7 @@ export default function SearchResultsMobile() {
                         <motion.button
                           whileTap={{ scale: 0.92 }}
                           onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-1 text-[9px] font-bold px-3 py-1.5 rounded-md text-white shadow-sm border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
+                          className="flex items-center gap-1 text-[9px] font-bold px-3 py-1.5 rounded text-white shadow-sm border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
                           style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
                         >
                           <motion.div
@@ -508,7 +508,7 @@ export default function SearchResultsMobile() {
                 onClick={() => handleCardTap(f.id)}
                 layout
                 className={clsx(
-                  "relative cursor-pointer rounded-lg transition-all duration-300 overflow-hidden border",
+                  "relative cursor-pointer rounded transition-all duration-300 overflow-hidden border",
                   isActive
                     ? "bg-gradient-to-r from-[#0b1b42]/[0.02] to-white border-[#d4af37]/25 shadow-[0_8px_28px_rgba(11,27,66,0.07)]"
                     : "bg-white border-[#0b1b42]/[0.05] shadow-sm hover:shadow-md",
@@ -532,7 +532,7 @@ export default function SearchResultsMobile() {
                   <div className="flex gap-3">
                     <motion.div
                       animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-                      className="w-[64px] h-[64px] rounded-lg overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
+                      className="w-[64px] h-[64px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
                     >
                       <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                     </motion.div>
@@ -586,14 +586,14 @@ export default function SearchResultsMobile() {
                       <motion.button
                         whileTap={{ scale: 0.92 }}
                         onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                        className="flex items-center gap-0.5 text-[10px] font-semibold px-2.5 py-1.5 rounded-md border border-[#0b1b42]/20 text-[#0b1b42]/70 hover:text-[#0b1b42] transition-all whitespace-nowrap"
+                        className="flex items-center gap-0.5 text-[10px] font-semibold px-2.5 py-1.5 rounded border border-[#0b1b42]/20 text-[#0b1b42]/70 hover:text-[#0b1b42] transition-all whitespace-nowrap"
                       >
                         <Eye size={10} strokeWidth={2.5} />
                         View
                       </motion.button>
                       <motion.button
                         whileTap={{ scale: 0.92 }}
-                        className="shrink-0 flex items-center gap-0.5 text-[10px] font-semibold px-3 py-1.5 rounded-md text-white border border-[#f9df9f]/40 whitespace-nowrap"
+                        className="shrink-0 flex items-center gap-0.5 text-[10px] font-semibold px-3 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap"
                         style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
                       >
                         Enquire
@@ -612,7 +612,7 @@ export default function SearchResultsMobile() {
               disabled={isLoadingMore}
               whileTap={{ scale: 0.95 }}
               whileHover={{ y: -2 }}
-              className="flex items-center justify-center min-w-[130px] px-6 py-2.5 rounded-lg text-[10px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all uppercase tracking-[0.15em] disabled:opacity-80 relative overflow-hidden"
+              className="flex items-center justify-center min-w-[130px] px-6 py-2.5 rounded text-[10px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all uppercase tracking-[0.15em] disabled:opacity-80 relative overflow-hidden"
               style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
             >
               <motion.div

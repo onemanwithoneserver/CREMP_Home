@@ -11,8 +11,8 @@ export default function SiteFooter({ isMobile = false }: { isMobile?: boolean })
     <footer className="relative bg-[#050b14] border-t border-white/5 pt-16 pb-8 overflow-hidden font-sans">
       <div className="pointer-events-none absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#d4af37]/5 blur-[120px] dark:bg-[#d4af37]/10" />
       <div className="pointer-events-none absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#d4af37]/5 blur-[100px] dark:bg-[#d4af37]/10" />
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mb-16">
+      <div className="w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
+        <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap justify-between gap-10 lg:gap-8 mb-16">
           <div className="flex flex-col gap-6">
             <a href="#" className="flex items-center group w-fit">
               <img

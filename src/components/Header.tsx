@@ -15,7 +15,7 @@ export type Page =
   | "building-box"
   | "all-building-box"
   | "land-box"
-  | "search-results"
+  | "franchise-search-results"
   | "login"
   | "create-account"
   | "video-search";
@@ -38,7 +38,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "all-building-box": "Full commercial building",
   "building-box": "Commercial listing",
   "land-box": "Commercial listing land",
-  "search-results": "Search Results",
+  "franchise-search-results": "Franchise_Search results",
   login: "Login",
   "create-account": "Create Account",
   "video-search": "Video Search",
@@ -84,8 +84,8 @@ export default function Header({
                     ? "building-box"
                     : location.pathname.includes("land-box")
                       ? "land-box"
-                      : location.pathname.includes("search-results")
-                        ? "search-results"
+                      : location.pathname.includes("franchise-search-results")
+                        ? "franchise-search-results"
                         : location.pathname.includes("create-account")
                           ? "create-account"
                           : location.pathname.includes("login")

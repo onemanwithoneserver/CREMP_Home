@@ -72,8 +72,6 @@ function MapPopup({
   onClose: () => void;
   onView: () => void;
 }) {
-  const meta = getMeta(franchise.category);
-  const Icon = meta.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 14, x: "-50%", scale: 0.88 }}
@@ -99,7 +97,7 @@ function MapPopup({
       >
         <X className="w-3.5 h-3.5" strokeWidth={2.5} />
       </button>
-      <div className="flex items-center gap-3.5 mb-4">
+      <div className="flex items-center gap-2.5 mb-2">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -116,7 +114,7 @@ function MapPopup({
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-2 mb-4">
+      <div className="grid grid-cols-3 gap-2 mb-2">
         {[
           { label: "Investment", value: franchise.investment, color: "text-[#d4af37]" },
           { label: "ROI", value: franchise.roi, color: "text-emerald-500" },
@@ -175,7 +173,7 @@ function CardShimmer() {
   );
 }
 
-export default function SearchResultsDesktop() {
+export default function FranchiseSearchResultsDesktop() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
@@ -300,12 +298,12 @@ export default function SearchResultsDesktop() {
           </div>
 
           
-          <div className="relative z-50 px-10 pt-10 pb-8 max-w-[62%]">
+          <div className="relative z-50 px-8 pt-6 pb-4 max-w-[62%]">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 mb-5"
+              className="inline-flex items-center gap-2 mb-3"
             >
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#d4af37]/30 bg-[#d4af37]/10">
                 <Sparkles size={13} className="text-[#d4af37]" strokeWidth={2.5} />
@@ -317,7 +315,7 @@ export default function SearchResultsDesktop() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-white font-extrabold text-[46px] leading-[1.08] tracking-[-0.02em] mb-4"
+              className="text-white font-extrabold text-[46px] leading-[1.08] tracking-[-0.02em] mb-2"
             >
               Find your perfect<br />
               <span
@@ -358,7 +356,7 @@ export default function SearchResultsDesktop() {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="shrink-0 px-7 py-3 ml-1 flex items-center justify-center gap-2 rounded-lg text-white text-[13px] font-bold transition-all relative overflow-hidden"
+                  className="shrink-0 w-11 h-11 flex items-center justify-center rounded-lg text-white transition-all relative overflow-hidden"
                   style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
                   <motion.div
@@ -433,7 +431,7 @@ export default function SearchResultsDesktop() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 mt-5 text-[10px]"
+              className="flex items-center gap-3 mt-3 text-[10px]"
             >
               <span className="text-white/50 font-medium">Popular:</span>
               <div className="flex items-center gap-2">
@@ -523,7 +521,7 @@ export default function SearchResultsDesktop() {
           })}
 
           
-          <div className="absolute bottom-5 right-5 flex flex-col gap-1.5 z-10">
+          <div className="absolute bottom-4 right-4 flex flex-col gap-1.5 z-10">
             {["+", "−"].map((label) => (
               <motion.button
                 key={label}
@@ -541,7 +539,7 @@ export default function SearchResultsDesktop() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/90 backdrop-blur-md border border-[#0b1b42]/[0.06] shadow-lg"
+            className="absolute top-3 left-3 z-10 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/90 backdrop-blur-md border border-[#0b1b42]/[0.06] shadow-lg"
           >
             <Building2 size={14} className="text-[#d4af37]" strokeWidth={2} />
             <span className="text-[11px] font-bold text-[#0b1b42]/60">{filtered.length} locations</span>
@@ -596,7 +594,7 @@ export default function SearchResultsDesktop() {
             >
               
               <div className="shrink-0 ">
-                <div className="flex items-center justify-between px-5 pt-4 pb-4">
+                <div className="flex items-center justify-between px-4 pt-3 pb-3">
                   <div className="flex items-center gap-2.5">
                     <div
                       className="w-1 h-5 rounded-full"
@@ -633,7 +631,7 @@ export default function SearchResultsDesktop() {
                           transition: { type: "spring", stiffness: 400, damping: 25 },
                         }}
                         className={clsx(
-                          "relative cursor-pointer transition-all duration-300 hover:z-10 rounded-lg my-1.5 mx-4 border overflow-hidden group",
+                          "relative cursor-pointer transition-all duration-300 hover:z-10 rounded-lg my-1 mx-3 border overflow-hidden group",
                           isActive
                             ? "bg-gradient-to-r from-[#faf8f0] to-white shadow-[0_8px_32px_rgba(212,175,55,0.1)] border-transparent"
                             : "bg-white border-transparent hover:shadow-[0_12px_40px_rgba(11,27,66,0.06)] hover:border-[#0b1b42]/[0.12]",
@@ -652,8 +650,8 @@ export default function SearchResultsDesktop() {
                           style={{ background: "linear-gradient(to bottom, #d4af37, #b38728)" }}
                         />
 
-                        <div className="p-4 relative z-[2]">
-                          <div className="flex gap-3.5">
+                        <div className="p-3 relative z-[2]">
+                          <div className="flex gap-2.5">
                             
                             <motion.div
                               animate={isActive ? { scale: 1.04 } : { scale: 1 }}
@@ -695,7 +693,7 @@ export default function SearchResultsDesktop() {
                               </div>
 
                               
-                              <div className="flex items-center gap-3 mt-2.5">
+                              <div className="flex items-center gap-3 mt-2">
                                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0a1128]">
                                   <TrendingUp size={10} className="text-[#d4af37]" strokeWidth={2.5} />
                                   {f.investment}
@@ -710,7 +708,7 @@ export default function SearchResultsDesktop() {
                           </div>
 
                           
-                          <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#0b1b42]/[0.04] gap-2">
+                          <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#0b1b42]/[0.04] gap-2">
                             <div className="flex items-center gap-1.5 flex-wrap min-w-0">
                               {f.tags.slice(0, 2).map((tag) => (
                                 <span
@@ -756,7 +754,7 @@ export default function SearchResultsDesktop() {
 
                 
                 {visibleCount < filtered.length && (
-                  <div className="px-5 py-6 flex justify-center">
+                  <div className="px-4 py-4 flex justify-center">
                     <motion.button
                       onClick={handleLoadMore}
                       disabled={isLoadingMore}
@@ -789,9 +787,9 @@ export default function SearchResultsDesktop() {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex flex-col items-center justify-center py-16 px-8"
+                    className="flex flex-col items-center justify-center py-12 px-6"
                   >
-                    <div className="w-16 h-16 rounded-lg bg-[#0b1b42]/[0.04] flex items-center justify-center mb-4">
+                    <div className="w-16 h-16 rounded-lg bg-[#0b1b42]/[0.04] flex items-center justify-center mb-2">
                       <Search size={24} className="text-[#0b1b42]/20" />
                     </div>
                     <p className="text-[14px] font-semibold text-[#0b1b42]/40 text-center">No franchises found</p>
