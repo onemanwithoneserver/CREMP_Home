@@ -393,7 +393,7 @@ export default function FranchiseSearchResultsDesktop() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -6, scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="absolute top-[calc(100%+8px)] left-0 right-0 rounded shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[100]"
+                    className="absolute top-[calc(100%+8px)] left-0 w-[80%] max-w-[480px] rounded shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[100]"
                     style={{
                       background: "rgba(255,255,255,0.99)",
                       backdropFilter: "blur(28px)",
@@ -403,7 +403,7 @@ export default function FranchiseSearchResultsDesktop() {
                     <div className="px-3 pt-2.5 pb-1.5 border-b border-[#0b1b42]/[0.04]">
                       <span className="text-[10px] font-bold text-[#0b1b42]/30 uppercase tracking-[0.1em]">Suggestions</span>
                     </div>
-                    <div className="overflow-y-auto p-1.5 max-h-[260px] scrollbar-hide grid grid-cols-1 md:grid-cols-2 gap-1">
+                    <div className="overflow-y-auto p-1.5 max-h-[260px] scrollbar-hide flex flex-col gap-1">
                       {displayFranchises.length > 0 ? (
                         displayFranchises.map((f, i) => {
                           const fMeta = getMeta(f.category);
