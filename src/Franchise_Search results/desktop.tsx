@@ -242,6 +242,30 @@ export default function FranchiseSearchResultsDesktop() {
   const spotlightX = useSpring(mouseX, { stiffness: 200, damping: 30 });
   const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
 
+  const getHeroImageStyles = () => {
+    if (showFranchiseView) {
+      return {
+        wrapperClass: "absolute inset-y-0 right-0 w-[45%] z-0 overflow-hidden transition-all duration-500",
+        maskStyle: {
+          maskImage: "linear-gradient(to right, transparent 0%, black 25%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)",
+        },
+        imageClass: "w-full h-full object-cover object-center transition-all duration-500"
+      };
+    } else {
+      return {
+        wrapperClass: "absolute inset-y-0 right-0 w-[30%] z-0 overflow-hidden transition-all duration-500",
+        maskStyle: {
+          maskImage: "linear-gradient(to right, transparent 0%, black 15%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%)",
+        },
+        imageClass: "w-full h-full object-cover object-right transition-all duration-500"
+      };
+    }
+  };
+
+  const heroImg = getHeroImageStyles();
+
   return (
     <div 
       className="w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden grid"
@@ -252,7 +276,7 @@ export default function FranchiseSearchResultsDesktop() {
         ref={heroRef}
         onMouseMove={handleHeroMouseMove}
         className={clsx(
-          "relative shrink-0 w-full z-30 border-b border-[#e2e6ef]",
+          "relative shrink-0 w-full z-30 border-b border-[#e2e6ef] transition-all duration-500",
           showFranchiseView ? "col-start-1 col-end-2 row-start-1 border-r" : "col-span-2 row-start-1"
         )}
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
@@ -286,13 +310,10 @@ export default function FranchiseSearchResultsDesktop() {
         <FloatingParticle delay={1.5} x="68%" y="12%" size={5} />
 
         <div
-          className="absolute inset-y-0 right-0 w-[45%] z-0 overflow-hidden"
-          style={{
-            maskImage: "linear-gradient(to right, transparent 0%, black 25%)",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)",
-          }}
+          className={heroImg.wrapperClass}
+          style={heroImg.maskStyle}
         >
-          <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-center" />
+          <img src={SearchImage} alt="Search results hero" className={heroImg.imageClass} />
         </div>
 
         <div className="relative z-50 px-8 pt-4 pb-3 max-w-[75%]">
