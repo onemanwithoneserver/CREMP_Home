@@ -286,13 +286,13 @@ export default function FranchiseSearchResultsDesktop() {
         <FloatingParticle delay={1.5} x="68%" y="12%" size={5} />
 
         <div
-          className="absolute inset-y-0 right-0 w-[55%] z-0 overflow-hidden"
+          className="absolute inset-y-0 right-0 w-[45%] z-0 overflow-hidden"
           style={{
-            maskImage: "linear-gradient(to right, transparent 0%, black 35%)",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 35%)",
+            maskImage: "linear-gradient(to right, transparent 0%, black 25%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)",
           }}
         >
-          <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-right" />
+          <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-center" />
         </div>
 
         <div className="relative z-50 px-8 pt-4 pb-3 max-w-[75%]">
