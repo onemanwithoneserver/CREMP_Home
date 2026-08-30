@@ -24,6 +24,7 @@ import FranchiseSearchResults from "./Franchise_Search results";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
 import VideoSearch from "./videoSearch";
+import BuySearchResults from "./Buy Search results";
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -115,6 +116,10 @@ function App() {
               <Route
                 path="/:themeMode/:viewMode/create-account"
                 element={<CreateAccount isMobile={isMobile} />}
+              />
+              <Route
+                path="/:themeMode/:viewMode/buy-search-results"
+                element={<BuySearchResults isMobile={isMobile} />}
               />
               <Route
                 path="/:themeMode/:viewMode/video-search"

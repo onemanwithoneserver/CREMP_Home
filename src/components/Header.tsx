@@ -16,6 +16,7 @@ export type Page =
   | "all-building-box"
   | "land-box"
   | "franchise-search-results"
+  | "buy-search-results"
   | "login"
   | "create-account"
   | "video-search";
@@ -39,6 +40,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "building-box": "Commercial listing",
   "land-box": "Commercial listing land",
   "franchise-search-results": "Franchise Search Results",
+  "buy-search-results": "Buy Search Results",
   login: "Login",
   "create-account": "Create Account",
   "video-search": "Video Search",
