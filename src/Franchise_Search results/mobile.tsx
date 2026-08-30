@@ -130,27 +130,29 @@ export default function FranchiseSearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      <div
-        className="relative shrink-0 overflow-hidden rounded shadow-sm z-30"
-        style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
-      >
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="hero-grid-m2" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hero-grid-m2)" />
-          </svg>
-        </div>
+      <div className="relative shrink-0 w-full z-40 rounded shadow-sm">
+        <div 
+          className="absolute inset-0 overflow-hidden rounded"
+          style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
+        >
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="hero-grid-m2" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#hero-grid-m2)" />
+            </svg>
+          </div>
 
-        <FloatingDot delay={0} x="8%" y="25%" size={5} />
-        <FloatingDot delay={1} x="75%" y="15%" size={4} />
-        <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
+          <FloatingDot delay={0} x="8%" y="25%" size={5} />
+          <FloatingDot delay={1} x="75%" y="15%" size={4} />
+          <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
 
-        <div className="absolute inset-y-0 right-0 w-[35%] sm:w-[40%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
-          <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
+          <div className="absolute inset-y-0 right-0 w-[35%] sm:w-[40%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
+            <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
+          </div>
         </div>
 
         <div className="relative z-20 px-4 pt-4 pb-3 w-full sm:w-[90%]">
