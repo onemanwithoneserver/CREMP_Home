@@ -243,55 +243,59 @@ export default function FranchiseSearchResultsDesktop() {
   const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
 
   return (
-    <div className="flex flex-row w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden">
+    <div 
+      className="w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden grid"
+      style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
+    >
 
-      <div className="w-[62%] h-full flex flex-col relative border-r border-[#e2e6ef] z-30 bg-[#f8f9fc]">
+      <div
+        ref={heroRef}
+        onMouseMove={handleHeroMouseMove}
+        className={clsx(
+          "relative shrink-0 w-full z-30 border-b border-[#e2e6ef]",
+          showFranchiseView ? "col-start-1 col-end-2 row-start-1 border-r" : "col-span-2 row-start-1"
+        )}
+        style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
+      >
+
+        <motion.div
+          className="absolute inset-0 opacity-[0.15] pointer-events-none"
+          style={{
+            background: useTransform(
+              [spotlightX, spotlightY],
+              ([x, y]) => `radial-gradient(450px circle at ${x}px ${y}px, rgba(212,175,55,0.18), transparent 60%)`
+            ),
+          }}
+        />
+
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hero-grid-d" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hero-grid-d)" />
+          </svg>
+        </div>
+
+        <FloatingParticle delay={0} x="8%" y="18%" size={6} />
+        <FloatingParticle delay={1.2} x="78%" y="28%" size={4} />
+        <FloatingParticle delay={0.6} x="48%" y="62%" size={5} />
+        <FloatingParticle delay={2} x="22%" y="72%" size={3} />
+        <FloatingParticle delay={1.5} x="68%" y="12%" size={5} />
 
         <div
-          ref={heroRef}
-          onMouseMove={handleHeroMouseMove}
-          className="relative shrink-0"
-          style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
+          className="absolute inset-y-0 right-0 w-[55%] z-0 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, black 35%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 35%)",
+          }}
         >
+          <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-right" />
+        </div>
 
-          <motion.div
-            className="absolute inset-0 opacity-[0.15] pointer-events-none"
-            style={{
-              background: useTransform(
-                [spotlightX, spotlightY],
-                ([x, y]) => `radial-gradient(450px circle at ${x}px ${y}px, rgba(212,175,55,0.18), transparent 60%)`
-              ),
-            }}
-          />
-
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="hero-grid-d" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#hero-grid-d)" />
-            </svg>
-          </div>
-
-          <FloatingParticle delay={0} x="8%" y="18%" size={6} />
-          <FloatingParticle delay={1.2} x="78%" y="28%" size={4} />
-          <FloatingParticle delay={0.6} x="48%" y="62%" size={5} />
-          <FloatingParticle delay={2} x="22%" y="72%" size={3} />
-          <FloatingParticle delay={1.5} x="68%" y="12%" size={5} />
-
-          <div
-            className="absolute inset-y-0 right-0 w-[42%] z-0 overflow-hidden"
-            style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 20%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%)",
-            }}
-          >
-            <img src={SearchImage} alt="Search results hero" className="w-full h-full object-cover object-left" />
-          </div>
-
-          <div className="relative z-50 px-8 pt-6 pb-4 max-w-[62%]">
+        <div className="relative z-50 px-8 pt-4 pb-3 max-w-[75%]">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -325,7 +329,7 @@ export default function FranchiseSearchResultsDesktop() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative max-w-[480px] z-50"
+              className="relative w-full max-w-[680px] z-50"
             >
 
               <div
@@ -375,10 +379,10 @@ export default function FranchiseSearchResultsDesktop() {
                       border: "1px solid rgba(11,27,66,0.08)",
                     }}
                   >
-                    <div className="px-3 pt-2.5 pb-1.5">
+                    <div className="px-3 pt-2.5 pb-1.5 border-b border-[#0b1b42]/[0.04]">
                       <span className="text-[10px] font-bold text-[#0b1b42]/30 uppercase tracking-[0.1em]">Suggestions</span>
                     </div>
-                    <div className="overflow-y-auto px-1.5 pb-1.5 max-h-[260px] scrollbar-hide">
+                    <div className="overflow-y-auto p-1.5 max-h-[260px] scrollbar-hide grid grid-cols-1 md:grid-cols-2 gap-1">
                       {displayFranchises.length > 0 ? (
                         displayFranchises.map((f, i) => {
                           const fMeta = getMeta(f.category);
@@ -386,13 +390,13 @@ export default function FranchiseSearchResultsDesktop() {
                           return (
                             <motion.div
                               key={f.id}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: i * 0.04 }}
+                              initial={{ opacity: 0, y: 4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: i * 0.03 }}
                               onClick={() => setSearchQuery(f.name)}
-                              className="px-3 py-3 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 mx-0.5 my-0.5 group"
+                              className="px-3 py-2.5 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 group border border-transparent hover:border-[#0b1b42]/[0.05]"
                             >
-                              <div className="w-10 h-10 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm">
+                              <div className="w-10 h-10 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm bg-white">
                                 <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                               </div>
                               <div className="flex flex-col min-w-0 justify-center flex-1">
@@ -402,14 +406,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <span className="truncate">{f.location}</span>
                                 </span>
                               </div>
-                              <div className={clsx("flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold", fMeta.bg, fMeta.text)}>
+                              <div className={clsx("flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold shrink-0", fMeta.bg, fMeta.text)}>
                                 <FIcon size={11} strokeWidth={2.5} />
                               </div>
                             </motion.div>
                           );
                         })
                       ) : (
-                        <div className="p-4 text-center text-xs text-[#0b1b42]/35">No franchises found</div>
+                        <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No franchises found</div>
                       )}
                     </div>
                   </motion.div>
@@ -438,9 +442,9 @@ export default function FranchiseSearchResultsDesktop() {
           </div>
         </div>
 
-        <div className="flex-1 relative bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2]">
+        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-2">
 
-          <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="topo-d" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <circle cx="100" cy="100" r="80" fill="none" stroke="#0b1b42" strokeWidth="0.5" />
@@ -531,10 +535,12 @@ export default function FranchiseSearchResultsDesktop() {
             <span className="text-[11px] font-bold text-[#0b1b42]/60">{filtered.length} locations</span>
           </motion.div>
         </div>
-      </div>
 
-      <div className="w-[38%] h-full flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide">
-        <AnimatePresence mode="wait">
+        <div className={clsx(
+          "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide",
+          showFranchiseView ? "col-start-2 col-end-3 row-start-1 row-span-2" : "col-start-2 col-end-3 row-start-2 row-span-1"
+        )}>
+          <AnimatePresence mode="wait">
           {showFranchiseView ? (
             <motion.div
               key="franchise-view"
