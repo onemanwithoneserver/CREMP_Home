@@ -1,4 +1,8 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
+
+import BuildingBox from "../BuildingBox";
+import LandBox from "../LandBox";
+import AllBuildingBox from "../AllBuildingBox";
 import {
   Heart,
   MapPin,
@@ -14,8 +18,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-import { properties, getMeta, tagColors } from "./data";
-import BuyersAndSellers from "../BuyersAndSellers";
+import { properties, getMeta, tagColors, type Property } from "./data";
 import SearchImage from "./BuySearchResults.png";
 
 const stagger = {
@@ -60,7 +63,11 @@ export default function BuySearchResultsMobile() {
   const [visibleCount, setVisibleCount] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
-  const [showPropertyView, setShowPropertyView] = useState(false);
+  const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
+
+  const handleViewProperty = useCallback((property: Property) => {
+    setSelectedPropertyForView(property);
+  }, []);
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
@@ -102,9 +109,10 @@ export default function BuySearchResultsMobile() {
 
   return (
     <div className="flex flex-col w-full h-full bg-[#fafbfd] overflow-hidden font-sans transition-colors duration-300 relative">
-      <AnimatePresence>
-        {showPropertyView && (
+      <AnimatePresence mode="wait">
+        {selectedPropertyForView && (
           <motion.div
+            key="property-view-mobile"
             initial={{ x: "100%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
@@ -113,14 +121,20 @@ export default function BuySearchResultsMobile() {
             style={{ top: "var(--top-bar-height, 0px)" }}
           >
             <div className="flex-1 overflow-y-auto scrollbar-hide bg-white relative z-0">
-              <BuyersAndSellers isMobile={true} />
+                {selectedPropertyForView.category === "Plot / Land" ? (
+                  <LandBox viewModeProp="mobile" />
+                ) : ["Warehouse", "Industrial"].includes(selectedPropertyForView.category) ? (
+                  <AllBuildingBox viewModeProp="mobile" />
+                ) : (
+                  <BuildingBox viewModeProp="mobile" />
+                )}
             </div>
             <div
               className="absolute top-0 left-0 right-0 z-[9999] flex items-center px-4 py-3 pointer-events-none bg-gradient-to-b from-black/60 via-black/30 to-transparent"
             >
               <motion.button
                 whileTap={{ scale: 0.9 }}
-                onClick={() => setShowPropertyView(false)}
+                onClick={() => setSelectedPropertyForView(null)}
                 className="w-8 h-8 rounded flex items-center justify-center bg-black/30 hover:bg-black/50 text-white backdrop-blur-md transition-all pointer-events-auto shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
               >
                 <ArrowLeft size={16} strokeWidth={2.5} />
@@ -128,9 +142,7 @@ export default function BuySearchResultsMobile() {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
-
-      <div className="relative shrink-0 w-full z-40 rounded shadow-sm">
+      </AnimatePresence>      <div className="relative shrink-0 w-full z-40 rounded shadow-sm">
         <div 
           className="absolute inset-0 overflow-hidden rounded"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
@@ -425,7 +437,7 @@ export default function BuySearchResultsMobile() {
                       <div className="flex justify-end gap-2 mt-2">
                         <motion.button
                           whileTap={{ scale: 0.92 }}
-                          onClick={(e) => { e.stopPropagation(); setShowPropertyView(true); }}
+                          onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
                           className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
                           title="View Details"
                         >
@@ -552,7 +564,7 @@ export default function BuySearchResultsMobile() {
                     <div className="flex items-center gap-1.5 shrink-0">
                       <motion.button
                         whileTap={{ scale: 0.92 }}
-                        onClick={(e) => { e.stopPropagation(); setShowPropertyView(true); }}
+                        onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
                         className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
                         title="View Details"
                       >

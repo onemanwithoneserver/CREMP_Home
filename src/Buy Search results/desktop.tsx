@@ -1,4 +1,8 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+
+import BuildingBox from "../BuildingBox";
+import LandBox from "../LandBox";
+import AllBuildingBox from "../AllBuildingBox";
 import {
   Heart,
   MapPin,
@@ -16,7 +20,6 @@ import {
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import clsx from "clsx";
 import { properties, getMeta, tagColors, type Property } from "./data";
-import BuyersAndSellers from "../BuyersAndSellers";
 import SearchImage from "./BuySearchResults.png";
 
 const stagger = {
@@ -182,11 +185,15 @@ export default function BuySearchResultsDesktop() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [showPropertyView, setShowPropertyView] = useState(false);
+  const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleViewProperty = useCallback((property: Property) => {
+    setSelectedPropertyForView(property);
+  }, []);
 
   const handleLoadMore = useCallback(() => {
     setIsLoadingMore(true);
@@ -243,7 +250,7 @@ export default function BuySearchResultsDesktop() {
   const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
 
   const getHeroImageStyles = () => {
-    if (showPropertyView) {
+    if (selectedPropertyForView) {
       return {
         wrapperClass: "absolute inset-y-0 right-0 w-[45%] z-0 overflow-hidden transition-all duration-500",
         maskStyle: {
@@ -277,7 +284,7 @@ export default function BuySearchResultsDesktop() {
         onMouseMove={handleHeroMouseMove}
         className={clsx(
           "relative shrink-0 w-full z-30 border-b border-[#e2e6ef] transition-all duration-500",
-          showPropertyView ? "col-start-1 col-end-2 row-start-1 border-r" : "col-span-2 row-start-1"
+          selectedPropertyForView ? "col-start-1 col-end-2 row-start-1 border-r" : "col-span-2 row-start-1"
         )}
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
       >
@@ -526,7 +533,7 @@ export default function BuySearchResultsDesktop() {
                   </motion.div>
                 </motion.div>
                 <AnimatePresence>
-                  {selectedMarker === f.id && <MapPopup property={f} onClose={() => setSelectedMarker(null)} onView={() => setShowPropertyView(true)} />}
+                  {selectedMarker === f.id && <MapPopup property={f} onClose={() => setSelectedMarker(null)} onView={() => handleViewProperty(f)} />}
                 </AnimatePresence>
               </motion.div>
             );
@@ -558,32 +565,36 @@ export default function BuySearchResultsDesktop() {
 
         <div className={clsx(
           "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide",
-          showPropertyView ? "col-start-2 col-end-3 row-start-1 row-span-2" : "col-start-2 col-end-3 row-start-2 row-span-1"
+          selectedPropertyForView ? "col-start-2 col-end-3 row-start-1 row-span-2" : "col-start-2 col-end-3 row-start-2 row-span-1"
         )}>
           <AnimatePresence mode="wait">
-          {showPropertyView ? (
+          {selectedPropertyForView ? (
             <motion.div
               key="property-view"
               initial={{ x: "100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
-              className="h-full flex flex-col relative"
+              className="h-full flex flex-col relative w-full overflow-hidden bg-white"
             >
-              <div className="flex-1 bg-white relative z-0">
-                <BuyersAndSellers isMobile={true} />
-              </div>
-              <div
-                className="absolute top-0 left-0 right-0 z-[9999] flex items-center px-5 py-3.5 pointer-events-none bg-gradient-to-b from-black/60 via-black/30 to-transparent"
-              >
+              <div className="absolute top-0 left-0 right-0 z-[9999] flex items-center px-5 py-3.5 pointer-events-none bg-gradient-to-b from-black/60 via-black/30 to-transparent">
                 <motion.button
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.92 }}
-                  onClick={() => setShowPropertyView(false)}
+                  onClick={() => setSelectedPropertyForView(null)}
                   className="w-8 h-8 rounded flex items-center justify-center bg-black/30 hover:bg-black/50 text-white backdrop-blur-md transition-all pointer-events-auto shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
                 >
                   <ArrowLeft size={16} strokeWidth={2.5} />
                 </motion.button>
+              </div>
+              <div className="flex-1 overflow-y-auto scrollbar-hide relative z-0">
+                {selectedPropertyForView.category === "Plot / Land" ? (
+                  <LandBox viewModeProp="mobile" />
+                ) : ["Warehouse", "Industrial"].includes(selectedPropertyForView.category) ? (
+                  <AllBuildingBox viewModeProp="mobile" />
+                ) : (
+                  <BuildingBox viewModeProp="mobile" />
+                )}
               </div>
             </motion.div>
           ) : (
@@ -595,14 +606,13 @@ export default function BuySearchResultsDesktop() {
               transition={{ duration: 0.2 }}
               className="h-full flex flex-col"
             >
-
               <div className="flex-1">
-                <motion.div
-                  variants={stagger}
-                  initial="hidden"
-                  animate="show"
-                  className="flex flex-col py-2"
-                >
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                animate="show"
+                className="flex flex-col py-2"
+              >
                   {filtered.slice(0, visibleCount).map((f) => {
                     const isActive = hoveredCard === f.id || selectedMarker === f.id;
                     const meta = getMeta(f.category);
@@ -716,7 +726,7 @@ export default function BuySearchResultsDesktop() {
                               <motion.button
                                 whileTap={{ scale: 0.93 }}
                                 whileHover={{ scale: 1.04 }}
-                                onClick={(e) => { e.stopPropagation(); setShowPropertyView(true); }}
+                                onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
                                 className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
                                 title="View Details"
                               >
@@ -784,7 +794,7 @@ export default function BuySearchResultsDesktop() {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
+          </AnimatePresence>
       </div>
     </div>
   );
