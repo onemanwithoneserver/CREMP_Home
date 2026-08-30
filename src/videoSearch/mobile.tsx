@@ -167,23 +167,25 @@ export default function VideoSearchMobile() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-white font-extrabold text-[22px] leading-[1.12] tracking-[-0.02em] mb-2"
           >
-            Explore our{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
-            >
-              video
-            </span>{" "}
-            collection.
+            India's 1st Integrated Commercial Real Estate Marketplace
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-white/40 text-[11px] font-medium mb-4"
+            className="text-[#d4af37] text-[10px] font-bold mb-1 tracking-widest"
           >
-            Properties · Opportunities · Brokers
+            EXPLORE. DISCOVER. CONNECT.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-white/60 text-[11px] font-medium mb-4"
+          >
+            Commercial Properties · Business Opportunities · Expert Brokers
           </motion.p>
 
           <motion.div

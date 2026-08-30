@@ -193,23 +193,25 @@ export default function VideoSearchDesktop() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white font-extrabold text-[42px] leading-[1.08] tracking-[-0.02em] mb-3"
+            className="text-white font-extrabold text-[42px] leading-[1.08] tracking-[-0.02em] mb-3 max-w-[800px]"
           >
-            Explore our{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
-            >
-              video
-            </span>{" "}
-            collection.
+            India's 1st Integrated Commercial Real Estate Marketplace
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-white/50 text-[15px] font-medium mb-6 max-w-lg"
+            className="text-[#d4af37] text-[16px] font-bold mb-1 tracking-widest"
+          >
+            EXPLORE. DISCOVER. CONNECT.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-white/60 text-[15px] font-medium mb-6 max-w-lg"
           >
             Commercial Properties · Business Opportunities · Expert Brokers
           </motion.p>
