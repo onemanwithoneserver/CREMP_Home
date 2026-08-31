@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 import SiteHeader from "../components/commonfiles/Header/headerdesktop";
 import SiteFooter from "../components/commonfiles/Footer/footerdesktop";
-interface VideoSearchProps {
+interface ExploreProps {
   isMobile?: boolean;
 }
 const Desktop = lazy(() => import("./desktop"));
 const Mobile = lazy(() => import("./mobile"));
-export default function VideoSearch({ isMobile = false }: VideoSearchProps) {
+export default function Explore({ isMobile = false }: ExploreProps) {
   if (isMobile) {
     return (
       <div className="flex flex-col w-full bg-white dark:bg-[#0b1b42] min-h-screen relative [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">

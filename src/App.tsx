@@ -23,7 +23,7 @@ import LandBox from "./LandBox";
 import FranchiseSearchResults from "./Franchise_Search results";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
-import VideoSearch from "./videoSearch";
+import Explore from "./explore";
 import BuySearchResults from "./Buy Search results";
 function App() {
   const location = useLocation();
@@ -122,8 +122,8 @@ function App() {
                 element={<BuySearchResults isMobile={isMobile} />}
               />
               <Route
-                path="/:themeMode/:viewMode/video-search"
-                element={<VideoSearch isMobile={isMobile} />}
+                path="/:themeMode/:viewMode/explore"
+                element={<Explore isMobile={isMobile} />}
               />
               <Route
                 path="*"

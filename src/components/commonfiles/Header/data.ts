@@ -4,7 +4,7 @@ export type NavItem = {
   subItems?: { label: string; href: string }[];
 };
 export const navLinks: NavItem[] = [
-  { label: "Video search", href: "#" },
+  { label: "Explore", href: "#" },
   {
     label: "Commercial Properties",
     subItems: [

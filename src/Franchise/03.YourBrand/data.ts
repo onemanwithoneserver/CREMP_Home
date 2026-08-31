@@ -26,7 +26,7 @@ export const brandData = {
     { icon: Award, text: "Success Stories" },
     { icon: HelpCircle, text: "Investor FAQs" },
     { icon: PlaySquare, text: "Educational Videos" },
-    { icon: Search, text: "Dedicated Video Search" },
+    { icon: Search, text: "Dedicated Explore" },
   ],
   tabletStats: [
     { value: "150+", label: "Outlets" },

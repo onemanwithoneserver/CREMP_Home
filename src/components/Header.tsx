@@ -19,7 +19,7 @@ export type Page =
   | "buy-search-results"
   | "login"
   | "create-account"
-  | "video-search";
+  | "explore";
 export type ViewMode = "desktop" | "mobile";
 export interface HeaderProps {
   viewMode: ViewMode;
@@ -43,7 +43,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "buy-search-results": "Buy Search Results",
   login: "Login",
   "create-account": "Create Account",
-  "video-search": "Video Search",
+  explore: "Explore",
 };
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
   .filter(

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw, Sparkles } from "lucide-react";
+import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
 import clsx from "clsx";
-import SearchImage from "./VideoSearchHero.jpg";
+import SearchImage from "./ExploreHero.jpg";
 
 const sortOptions = [
   { value: "latest", label: "Latest" },
@@ -70,7 +70,7 @@ function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: 
   );
 }
 
-export default function VideoSearchMobile() {
+export default function ExploreMobile() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
@@ -141,7 +141,7 @@ export default function VideoSearchMobile() {
             WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
           }}
         >
-          <img src={SearchImage} alt="Video Search hero" className="w-full h-full object-cover object-center opacity-40" />
+          <img src={SearchImage} alt="Explore hero" className="w-full h-full object-cover object-center opacity-40" />
         </div>
 
         <FloatingParticle delay={0} x="8%" y="25%" size={4} />
@@ -149,17 +149,6 @@ export default function VideoSearchMobile() {
         <FloatingParticle delay={0.5} x="45%" y="70%" size={4} />
 
         <div className="relative z-10 px-5 pt-7 pb-6 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-1.5 mb-3"
-          >
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#d4af37]/30 bg-[#d4af37]/10">
-              <Sparkles size={11} className="text-[#d4af37]" strokeWidth={2.5} />
-              <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Video Library</span>
-            </div>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
