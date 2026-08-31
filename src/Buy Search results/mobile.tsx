@@ -155,7 +155,48 @@ export default function BuySearchResultsMobile() {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>      <div className="relative shrink-0 w-full z-40 bg-[#0a1128]">
+      </AnimatePresence>      {/* Sticky Header on Scroll */}
+      <AnimatePresence>
+        {isSticky && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-[56px] left-0 right-0 z-50 bg-[#0a1128]/95 backdrop-blur-md shadow-md py-2 px-4"
+          >
+            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                placeholder="Search by property type, location, or keyword..."
+                className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
+              />
+              <div className="flex gap-1 shrink-0 ml-1">
+                <button
+                  onClick={() => setShowMap(!showMap)}
+                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
+                  style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
+                >
+                  <Map className="h-[14px] w-[14px]" />
+                </button>
+                <div
+                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
+                  style={{ background: "rgb(11, 27, 66)" }}
+                >
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)", transform: "translateX(200%)" }} />
+                  <Search className="h-[14px] w-[14px] relative z-10" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="relative shrink-0 w-full z-40 bg-[#0a1128] overflow-hidden">
         <div
           className="absolute inset-0 overflow-hidden"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
@@ -175,13 +216,13 @@ export default function BuySearchResultsMobile() {
           <FloatingDot delay={1} x="75%" y="15%" size={4} />
           <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
 
-          <div className="absolute top-8 bottom-0 right-0 w-[35%] sm:w-[40%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
-            <img src={SearchImage} alt="Buy search results hero" className="w-full h-full object-cover object-bottom" />
+          <div className="absolute inset-y-0 right-0 w-[50%] z-0 overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 25%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)" }}>
+            <img src={SearchImage} alt="Buy search results hero" className="w-full h-full object-cover object-left" />
           </div>
         </div>
 
-        <div className="relative z-20 px-4 pt-4 pb-8 w-full sm:w-[90%]">
-          <div className="max-w-[65%]">
+        <div className="relative z-20 px-4 pt-4 pb-3.5 w-full flex flex-col gap-3">
+          <div className="max-w-[62%]">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -195,44 +236,25 @@ export default function BuySearchResultsMobile() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-3"
+              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight"
             >
               Find your ideal<br />
               <span className="text-[#d4af37]">commercial property</span>.
             </motion.h2>
           </div>
-        </div>
-      </div>
 
-      <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
-
-      <div
-        className={clsx(
-          "sticky top-[56px] shrink-0 w-full z-40 transition-colors duration-300",
-          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent -mt-6"
-        )}
-      >
-        <div
-          className={clsx(
-            "w-full px-4 flex justify-center transition-all duration-300",
-            isSticky ? "py-2 sm:py-2.5" : "py-2"
-          )}
-        >
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative w-full z-50"
+            className="relative w-full z-30"
           >
             <div className={clsx(
               "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
               isSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
 
-            <div className={clsx(
-              "relative w-full bg-white rounded-[4px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] transition-all duration-300",
-              isSticky ? "p-0.5" : "p-1"
-            )}>
+            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
               <input
                 type="text"
                 value={searchQuery}
@@ -240,34 +262,23 @@ export default function BuySearchResultsMobile() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search by property type, location, or keyword..."
-                className={clsx(
-                  "flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] transition-all duration-300",
-                  isSticky ? "text-[11.5px] sm:text-[12.5px] py-1 pl-2.5 placeholder-[#0b1b42]/35" : "text-[12px] sm:text-[13px] py-1 pl-3 placeholder-[#0b1b42]/40"
-                )}
+                className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
               />
               <div className="flex gap-1 shrink-0 ml-1">
-                {!isSticky && (
-                  <motion.button
-                    whileTap={{ scale: 0.88 }}
-                    onClick={() => setShowMap(!showMap)}
-                    className={clsx(
-                      "w-8 h-8 flex items-center justify-center rounded-[4px] transition-all duration-200",
-                      showMap ? "text-white" : "text-white",
-                    )}
-                    style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
-                  >
-                    <Map className="h-[14px] w-[14px]" />
-                  </motion.button>
-                )}
+                <motion.button
+                  whileTap={{ scale: 0.88 }}
+                  onClick={() => setShowMap(!showMap)}
+                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
+                  style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
+                >
+                  <Map className="h-[14px] w-[14px]" />
+                </motion.button>
                 <div
-                  className={clsx(
-                    "flex items-center justify-center rounded-[4px] text-white transition-all duration-300 shrink-0 relative overflow-hidden",
-                    isSticky ? "w-7 h-7 sm:w-8 sm:h-8" : "w-8 h-8"
-                  )}
+                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
                   style={{ background: "rgb(11, 27, 66)" }}
                 >
                   <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)", transform: "translateX(200%)" }} />
-                  <Search className={isSticky ? "h-3 w-3 sm:h-[14px] sm:w-[14px] relative z-10" : "h-[14px] w-[14px] relative z-10"} />
+                  <Search className="h-[14px] w-[14px] relative z-10" />
                 </div>
               </div>
             </div>
@@ -279,7 +290,7 @@ export default function BuySearchResultsMobile() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.97 }}
                   transition={spring}
-                  className="absolute top-full left-0 right-0 mt-2 rounded overflow-hidden z-50 shadow-2xl"
+                  className="absolute top-full left-0 right-0 mt-2 rounded-[4px] overflow-hidden z-50 shadow-2xl"
                   style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", border: "1px solid rgba(11,27,66,0.06)" }}
                 >
                   <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
@@ -316,6 +327,8 @@ export default function BuySearchResultsMobile() {
           </motion.div>
         </div>
       </div>
+
+      <div ref={sentinelRef} className="w-full h-[1px]" />
 
       <AnimatePresence>
         {showMap && (
@@ -502,7 +515,7 @@ export default function BuySearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      <div className="flex-1 relative z-10 pb-16">
+      <div className="flex-1 relative z-10 pb-16 pt-3">
 
         <motion.div
           variants={stagger}
