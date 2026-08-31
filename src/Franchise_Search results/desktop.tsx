@@ -190,16 +190,22 @@ export default function FranchiseSearchResultsDesktop() {
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleWinScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleWinScroll);
-    return () => window.removeEventListener("scroll", handleWinScroll);
-  }, []);
+    if (!searchContainerRef.current) return;
 
-  const handleListScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    setIsScrolled(e.currentTarget.scrollTop > 50);
-  };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Floating search bar appears ONLY when the hero search bar has scrolled out of view
+        setIsScrolled(!entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+        rootMargin: "-53px 0px 0px 0px",
+      }
+    );
+
+    observer.observe(searchContainerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleLoadMore = useCallback(() => {
     setIsLoadingMore(true);
@@ -664,7 +670,6 @@ export default function FranchiseSearchResultsDesktop() {
         </div>
 
         <div
-          onScroll={handleListScroll}
           className={clsx(
           "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide min-h-[950px] h-[950px]",
           showFranchiseView ? "col-start-2 col-end-3 row-start-1 row-span-2 min-h-[1100px] h-full" : "col-start-2 col-end-3 row-start-2 row-span-1"
