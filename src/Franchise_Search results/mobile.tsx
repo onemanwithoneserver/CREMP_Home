@@ -143,9 +143,9 @@ export default function FranchiseSearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      <div className="relative shrink-0 w-full z-40 rounded shadow-sm">
+      <div className="relative shrink-0 w-full z-40">
         <div
-          className="absolute inset-0 overflow-hidden rounded"
+          className="absolute inset-0 overflow-hidden"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
         >
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
@@ -168,7 +168,7 @@ export default function FranchiseSearchResultsMobile() {
           </div>
         </div>
 
-        <div className="relative z-20 px-4 pt-4 pb-16 w-full sm:w-[90%]">
+        <div className="relative z-20 px-4 pt-4 pb-8 w-full sm:w-[90%]">
           <div className="max-w-[65%]">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -197,7 +197,7 @@ export default function FranchiseSearchResultsMobile() {
       <div
         className={clsx(
           "sticky top-[56px] shrink-0 w-full z-40 transition-colors duration-300",
-          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent -mt-14"
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent -mt-6"
         )}
       >
         <div
@@ -217,7 +217,10 @@ export default function FranchiseSearchResultsMobile() {
               isSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
 
-            <div className="relative w-full bg-white rounded flex items-center p-0.5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+            <div className={clsx(
+              "relative w-full bg-white rounded flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] transition-all duration-300",
+              isSticky ? "p-0.5" : "p-1"
+            )}>
               <input
                 type="text"
                 value={searchQuery}
@@ -225,27 +228,33 @@ export default function FranchiseSearchResultsMobile() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search franchise, industry, or location..."
-                className="flex-1 bg-transparent border-none outline-none text-[11.5px] sm:text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 sm:py-1.5 pl-2.5"
+                className={clsx(
+                  "flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] placeholder-[#0b1b42]/35 transition-all duration-300",
+                  isSticky ? "text-[11.5px] sm:text-[12.5px] py-1.5 sm:py-1.5 pl-2.5" : "text-[12px] sm:text-[13px] py-2 pl-3"
+                )}
               />
-              <div className="flex gap-1 shrink-0 ml-1">
+              <div className="flex gap-1.5 shrink-0 ml-1">
                 {!isSticky && (
                   <motion.button
                     whileTap={{ scale: 0.88 }}
                     onClick={() => setShowMap(!showMap)}
                     className={clsx(
-                      "w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded transition-all duration-200",
+                      "w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded transition-all duration-200",
                       showMap ? "text-white" : "bg-[#0b1b42]/[0.05] text-[#0b1b42]/40",
                     )}
                     style={showMap ? { background: "linear-gradient(135deg, #bf953f, #d4af37)" } : undefined}
                   >
-                    <Map className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                    <Map className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </motion.button>
                 )}
                 <div
-                  className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded text-white"
+                  className={clsx(
+                    "flex items-center justify-center rounded text-white transition-all duration-300 shrink-0",
+                    isSticky ? "w-7 h-7 sm:w-8 sm:h-8" : "w-8 h-8 sm:w-9 sm:h-9"
+                  )}
                   style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
-                  <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                  <Search className={isSticky ? "h-3 w-3 sm:h-3.5 sm:w-3.5" : "h-3.5 w-3.5 sm:h-4 sm:w-4"} />
                 </div>
               </div>
             </div>
