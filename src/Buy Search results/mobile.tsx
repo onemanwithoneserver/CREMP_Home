@@ -20,6 +20,46 @@ import clsx from "clsx";
 import { properties, getMeta, tagColors, type Property } from "./data";
 import SearchImage from "./BuySearchResults.png";
 
+const MAP_THEMES = {
+  blue: {
+    id: "blue",
+    name: "Classic Blue",
+    dot: "#0b1b42",
+    bgGradient: "linear-gradient(135deg, #f0f3f8 0%, #eaeef5 50%, #e4e9f2 100%)",
+    stroke: "#0b1b42",
+  },
+  gold: {
+    id: "gold",
+    name: "Royal Gold",
+    dot: "#d4af37",
+    bgGradient: "linear-gradient(135deg, #fcf9f2 0%, #f7f0e1 50%, #ede0c4 100%)",
+    stroke: "#b38728",
+  },
+  dark: {
+    id: "dark",
+    name: "Midnight",
+    dot: "#0a1128",
+    bgGradient: "linear-gradient(135deg, #0a1128 0%, #0e1b3d 50%, #142758 100%)",
+    stroke: "#ffffff",
+  },
+  emerald: {
+    id: "emerald",
+    name: "Emerald Green",
+    dot: "#059669",
+    bgGradient: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)",
+    stroke: "#059669",
+  },
+  slate: {
+    id: "slate",
+    name: "Slate Modern",
+    dot: "#475569",
+    bgGradient: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)",
+    stroke: "#475569",
+  },
+} as const;
+
+type MapThemeKey = keyof typeof MAP_THEMES;
+
 const stagger = {
   hidden: { opacity: 0 },
   show: {
@@ -203,7 +243,8 @@ export default function BuySearchResultsMobile() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [isListCollapsed, setIsListCollapsed] = useState(false);
+  const [mapTheme, setMapTheme] = useState<MapThemeKey>("blue");
+  const [isMapFullscreen, setIsMapFullscreen] = useState(false);
   const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
 
   const handleViewProperty = useCallback((property: Property) => {
@@ -349,43 +390,56 @@ export default function BuySearchResultsMobile() {
         {showMap && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: isListCollapsed ? "100vh" : "34vh", opacity: 1 }}
+            animate={{
+              height: isMapFullscreen ? "100dvh" : "34vh",
+              opacity: 1
+            }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring" as const, stiffness: 280, damping: 28 }}
-            className="w-full relative bg-gradient-to-br from-[#f4f6f9] via-[#eef1f6] to-[#e8ecf2] overflow-hidden flex-shrink-0 border-b border-[#0b1b42]/[0.05]"
+            className={clsx(
+              "w-full overflow-hidden flex-shrink-0 border-b border-[#0b1b42]/[0.05] transition-colors duration-500",
+              isMapFullscreen ? "fixed inset-0 z-[150]" : "relative"
+            )}
+            style={{ background: MAP_THEMES[mapTheme].bgGradient }}
           >
-            <svg className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="topo-buy-m" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
-                  <circle cx="75" cy="75" r="60" fill="none" stroke="#0b1b42" strokeWidth="0.5" />
-                  <circle cx="75" cy="75" r="40" fill="none" stroke="#0b1b42" strokeWidth="0.4" />
-                  <circle cx="75" cy="75" r="20" fill="none" stroke="#0b1b42" strokeWidth="0.3" />
+                <pattern id="topo-m2" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
+                  <circle cx="75" cy="75" r="60" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.5" strokeOpacity="0.07" />
+                  <circle cx="75" cy="75" r="40" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.4" strokeOpacity="0.06" />
+                  <circle cx="75" cy="75" r="20" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.3" strokeOpacity="0.05" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#topo-buy-m)" />
+              <rect width="100%" height="100%" fill="url(#topo-m2)" />
             </svg>
-            <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 0,80 Q 100,120 200,60 T 400,130" fill="none" stroke="#0b1b42" strokeWidth="2" strokeDasharray="6 4" />
-              <path d="M 30,180 Q 150,150 250,200 T 400,170" fill="none" stroke="#0b1b42" strokeWidth="1.5" strokeDasharray="4 6" />
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M -50,60 Q 100,90 200,50 T 400,100" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="2" strokeDasharray="6 4" strokeOpacity="0.06" />
+              <path d="M 25,150 Q 125,125 225,175 T 400,140" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="1.5" strokeDasharray="4 5" strokeOpacity="0.05" />
             </svg>
-            <div className="absolute bottom-14 right-3 z-10">
+            <div className="absolute top-2 right-2 z-10 flex flex-col gap-2">
+              <div className="flex items-center gap-1.5 p-1.5 bg-white/90 backdrop-blur-md rounded shadow-md border border-[#0b1b42]/[0.06]">
+                {(Object.keys(MAP_THEMES) as MapThemeKey[]).map((key) => {
+                  const theme = MAP_THEMES[key];
+                  return (
+                    <motion.button
+                      key={theme.id}
+                      whileTap={{ scale: 0.85 }}
+                      onClick={(e) => { e.stopPropagation(); setMapTheme(key); }}
+                      className={clsx(
+                        "w-4 h-4 rounded-full transition-all flex items-center justify-center",
+                        mapTheme === key ? "ring-2 ring-[#0b1b42] scale-110 shadow-sm" : "opacity-60"
+                      )}
+                      style={{ background: theme.dot }}
+                    />
+                  );
+                })}
+              </div>
               <motion.button
                 whileTap={{ scale: 0.85 }}
-                whileHover={{ scale: 1.1 }}
-                onClick={() => setIsListCollapsed(!isListCollapsed)}
-                className="w-9 h-9 flex items-center justify-center rounded bg-white text-[#0b1b42] shadow-lg border border-[#0b1b42]/[0.06] transition-all relative overflow-hidden"
+                onClick={() => setIsMapFullscreen((prev) => !prev)}
+                className="w-8 h-8 ml-auto flex items-center justify-center rounded bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg shadow-md"
               >
-                <AnimatePresence mode="wait">
-                  {isListCollapsed ? (
-                    <motion.div key="min" initial={{ scale: 0.5, rotate: 90, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} exit={{ scale: 0.5, rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                      <Minimize size={16} strokeWidth={2.5} />
-                    </motion.div>
-                  ) : (
-                    <motion.div key="max" initial={{ scale: 0.5, rotate: -90, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} exit={{ scale: 0.5, rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                      <Maximize size={16} strokeWidth={2.5} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isMapFullscreen ? <Minimize size={14} /> : <Maximize size={14} />}
               </motion.button>
             </div>
             {filtered.map((f, i) => {
@@ -410,28 +464,28 @@ export default function BuySearchResultsMobile() {
                     {isActive && (
                       <>
                         <motion.div
-                          className={clsx("absolute w-12 h-12 rounded border-2", `border-current ${meta.text} opacity-30`)}
-                          animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+                          className={clsx("absolute w-12 h-12 rounded border-2", `border-current ${meta.text} opacity-40`)}
+                          animate={{ scale: [0.5, 1.4], opacity: [0.6, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
                         />
                         <motion.div
-                          className={clsx("absolute w-12 h-12 rounded border", `border-current ${meta.text} opacity-15`)}
-                          animate={{ scale: [0.3, 1.8], opacity: [0.3, 0] }}
-                          transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
+                          className={clsx("absolute w-12 h-12 rounded border", `border-current ${meta.text} opacity-20`)}
+                          animate={{ scale: [0.8, 1.8], opacity: [0.3, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
                         />
                       </>
                     )}
-                    <div
+                    <motion.div
+                      whileHover={{ scale: 1.15, y: -2 }}
                       className={clsx(
-                        "w-8 h-8 rounded flex items-center justify-center shadow-lg transition-all duration-300 relative border-2",
+                        "w-8 h-8 rounded flex items-center justify-center transition-all duration-300 relative",
                         isActive
-                          ? "bg-[#0b1b42] text-white border-white shadow-xl scale-110"
-                          : `${meta.bg} ${meta.text} border-white/80 hover:scale-105`,
+                          ? `${meta.bg} ${meta.glow} shadow-lg scale-110 z-10`
+                          : "bg-white border border-[#0b1b42]/[0.06] shadow-md hover:shadow-lg",
                       )}
                     >
-                      <Icon size={14} strokeWidth={isActive ? 2.5 : 2} />
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rotate-45 bg-inherit border-r border-b border-inherit" />
-                    </div>
+                      <Icon size={14} strokeWidth={2.5} className={isActive ? meta.text : "text-[#0b1b42]/30"} />
+                    </motion.div>
                     {isActive && (
                       <motion.div
                         initial={{ opacity: 0, y: 4, scale: 0.9 }}
