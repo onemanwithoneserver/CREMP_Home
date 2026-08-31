@@ -70,6 +70,143 @@ function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: 
   );
 }
 
+interface VideoSearchHeaderProps {
+  searchQuery: string;
+  setSearchQuery: (val: string) => void;
+  activeCategory: string;
+  setActiveCategory: (val: string) => void;
+  setVisibleCount: (val: number | ((prev: number) => number)) => void;
+  sortBy: string;
+  setSortBy: (val: string) => void;
+  isSearchFocused: boolean;
+  setIsSearchFocused: (val: boolean) => void;
+}
+
+const VideoSearchHeader = ({
+  searchQuery,
+  setSearchQuery,
+  activeCategory,
+  setActiveCategory,
+  setVisibleCount,
+  sortBy,
+  setSortBy,
+  isSearchFocused,
+  setIsSearchFocused
+}: VideoSearchHeaderProps) => {
+  const [isSticky, setIsSticky] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSticky(entry.boundingClientRect.top <= 56);
+      },
+      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+    );
+    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
+
+      <div
+        className={clsx(
+          "sticky top-[56px] z-30 w-full flex flex-col transition-colors duration-300",
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
+        )}
+      >
+        <div
+          className={clsx(
+            "w-full px-4 flex justify-center transition-all duration-300",
+            isSticky ? "pt-2.5 pb-2" : "pt-2 pb-2"
+          )}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="relative w-full max-w-[540px] z-50"
+          >
+            <div
+              className={clsx(
+                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
+                isSearchFocused ? "opacity-100" : "opacity-0",
+              )}
+              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+            />
+            <div className="relative w-full bg-white rounded flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(ITEMS_PER_PAGE);
+                }}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                placeholder="Search videos..."
+                className="flex-1 bg-transparent border-none outline-none text-[13px] lg:text-[14px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 px-3"
+              />
+              <div
+                className="shrink-0 w-8 h-8 flex items-center justify-center rounded text-white"
+                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+              >
+                <Search className="h-3.5 w-3.5" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="w-full overflow-x-auto scrollbar-hide px-4 lg:px-8 py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/95 backdrop-blur-md justify-start md:justify-center">
+          <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
+            <Filter size={12} />
+            <span className="text-[8px] uppercase tracking-widest font-bold">
+              Filter:
+            </span>
+          </div>
+
+          {videoCategories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setVisibleCount(ITEMS_PER_PAGE);
+                }}
+                className={`shrink-0 relative px-3.5 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
+                  isActive
+                    ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
+                    : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10 hover:border-[#d4af37]/50 hover:text-[#0b1b42]"
+                }`}
+              >
+                <span>{cat}</span>
+                {isActive && (
+                  <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+                )}
+              </button>
+            );
+          })}
+
+          <div className="w-px h-4 bg-[#0b1b42]/10 mx-0.5 shrink-0" />
+
+          <div className="shrink-0">
+            <CustomSelect
+              options={sortOptions}
+              value={sortBy}
+              onChange={setSortBy}
+              label="Sort:"
+              className="min-w-[110px]"
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default function ExploreDesktop() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -171,20 +308,15 @@ export default function ExploreDesktop() {
 
     return () => observer.disconnect();
   }, [hasMore, handleLoadMore, isLoadingMore]);
-  const handleCategoryChange = (cat: string) => {
-    setActiveCategory(cat);
-    setVisibleCount(ITEMS_PER_PAGE);
-  };
+
   return (
     <section className="w-full min-h-screen font-sans bg-[#f8f9fc]">
-
       <div
         ref={heroRef}
         onMouseMove={handleHeroMouseMove}
         className="relative w-full overflow-hidden"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
       >
-
         <motion.div
           className="absolute inset-0 opacity-[0.15] pointer-events-none"
           style={{
@@ -223,7 +355,6 @@ export default function ExploreDesktop() {
         <FloatingParticle delay={1.5} x="65%" y="15%" size={5} />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-8 pt-10 pb-8 flex flex-col items-start text-left">
-
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -246,97 +377,24 @@ export default function ExploreDesktop() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-white/60 text-[15px] font-medium mb-6 max-w-lg"
+            className="text-white/60 text-[15px] font-medium max-w-lg"
           >
             Commercial Properties · Business Opportunities · Expert Brokers
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative w-full max-w-[520px] z-50"
-          >
-            <div
-              className={clsx(
-                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
-                isSearchFocused ? "opacity-100" : "opacity-0",
-              )}
-              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
-            />
-            <div className="relative w-full bg-white rounded flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setVisibleCount(ITEMS_PER_PAGE);
-                }}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                placeholder="Search by brand, title, or keyword..."
-                className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-4"
-              />
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="shrink-0 w-11 h-11 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
-                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
-              >
-                <motion.div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent)" }}
-                  animate={{ x: ["-100%", "200%"] }}
-                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "linear" }}
-                />
-                <Search className="h-4 w-4 relative z-10" />
-              </motion.button>
-            </div>
-          </motion.div>
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6 pb-2">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <div className="flex items-center gap-2 mr-3 text-[#0b1b42]/40">
-            <Filter size={14} />
-            <span className="text-[10px] uppercase tracking-widest font-bold">
-              Filters:
-            </span>
-          </div>
-          {videoCategories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className={`relative px-4 py-2 rounded-[6px] text-xs font-semibold tracking-normal transition-all duration-300 border flex flex-col items-center justify-center ${
-                  isActive
-                    ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
-                    : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10 hover:border-[#d4af37]/50 hover:text-[#0b1b42] dark:hover:text-white shadow-sm"
-                }`}
-              >
-                <span>{cat}</span>
-                {isActive && (
-                  <motion.span
-                    layoutId="activeFilterUnderline"
-                    className="absolute bottom-1 inset-x-0 mx-auto w-5 h-[2.5px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_6px_rgba(212,175,55,0.6)]"
-                  />
-                )}
-              </button>
-            );
-          })}
-          <div className="ml-auto flex items-center z-20">
-            <CustomSelect
-              options={sortOptions}
-              value={sortBy}
-              onChange={setSortBy}
-              label="Sort by:"
-              className="min-w-[140px]"
-            />
-          </div>
-        </div>
-      </div>
+      <VideoSearchHeader
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+        setVisibleCount={setVisibleCount}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        isSearchFocused={isSearchFocused}
+        setIsSearchFocused={setIsSearchFocused}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-3 md:px-4 pt-2 pb-16 flex flex-col gap-4">
         <motion.div
