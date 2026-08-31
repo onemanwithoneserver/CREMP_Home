@@ -356,9 +356,8 @@ export default function BuySearchResultsDesktop() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative w-full max-w-[680px] z-50"
+              className="relative w-full max-w-[520px] z-50"
             >
-
               <div
                 className={clsx(
                   "absolute -inset-[1.5px] rounded transition-opacity duration-500",
@@ -366,7 +365,7 @@ export default function BuySearchResultsDesktop() {
                 )}
                 style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
               />
-              <div className="relative w-full bg-white rounded flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
+              <div className="relative w-full bg-white rounded flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <input
                   type="text"
                   value={searchQuery}
@@ -374,22 +373,14 @@ export default function BuySearchResultsDesktop() {
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                   placeholder="Search property type, area, or location..."
-                  className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-4"
+                  className="flex-1 bg-transparent border-none outline-none text-[13px] lg:text-[14px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 pl-3.5"
                 />
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="shrink-0 w-11 h-11 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
+                <div
+                  className="shrink-0 w-8 h-8 lg:w-9 lg:h-9 flex items-center justify-center rounded text-white"
                   style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
-                  <motion.div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent)" }}
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "linear" }}
-                  />
-                  <Search className="h-4 w-4 relative z-10" />
-                </motion.button>
+                  <Search className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
+                </div>
               </div>
 
               <AnimatePresence>

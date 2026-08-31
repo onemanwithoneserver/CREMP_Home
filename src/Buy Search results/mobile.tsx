@@ -193,15 +193,17 @@ export default function BuySearchResultsMobile() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative"
+            className="relative max-w-[340px] z-50"
           >
-            <div className={clsx(
-              "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
-              isSearchFocused ? "opacity-100" : "opacity-0",
-            )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
+            <div
+              className={clsx(
+                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
+                isSearchFocused ? "opacity-100" : "opacity-0",
+              )}
+              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+            />
 
-            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-
+            <div className="relative w-full bg-white rounded flex items-center p-0.5 sm:p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
               <input
                 type="text"
                 value={searchQuery}
@@ -209,33 +211,26 @@ export default function BuySearchResultsMobile() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search property type, area, or location..."
-                className="flex-1 bg-transparent border-none outline-none text-[12px] font-medium text-[#0a1128] placeholder-[#0b1b42]/40 pl-3 py-1"
+                className="flex-1 bg-transparent border-none outline-none text-[11.5px] sm:text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 pl-2.5 py-1.5"
               />
               <div className="flex gap-1 shrink-0 ml-1">
                 <motion.button
                   whileTap={{ scale: 0.88 }}
                   onClick={() => setShowMap(!showMap)}
                   className={clsx(
-                    "w-8 h-8 flex items-center justify-center rounded-[4px] transition-all duration-200",
+                    "w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded transition-all duration-200",
                     showMap ? "text-white" : "bg-[#0b1b42]/[0.05] text-[#0b1b42]/40",
                   )}
                   style={showMap ? { background: "linear-gradient(135deg, #bf953f, #d4af37)" } : undefined}
                 >
-                  <Map className="h-[14px] w-[14px]" />
+                  <Map className="h-3.5 w-3.5" />
                 </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden"
-                  style={{ background: "#0b1b42" }}
+                <div
+                  className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded text-white"
+                  style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
-                  <motion.div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }}
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
-                  />
-                  <Search className="h-[14px] w-[14px] relative z-10" />
-                </motion.button>
+                  <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                </div>
               </div>
             </div>
 
