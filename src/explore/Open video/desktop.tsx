@@ -136,7 +136,7 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
         {!activePopup && (() => {
           const config = getPopupConfig(video.category);
           return (
-            <div className={`absolute bottom-5 right-4 z-40 transition-all duration-300 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+            <div className="absolute bottom-5 right-4 z-40">
               <button
                 onClick={(e) => {
                   e.stopPropagation();

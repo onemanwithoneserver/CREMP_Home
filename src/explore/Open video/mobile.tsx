@@ -14,6 +14,7 @@ import {
   Maximize2,
   Minimize2,
   ExternalLink,
+  MoreVertical,
 } from 'lucide-react';
 import type { ReelData } from './data';
 
@@ -153,6 +154,10 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
               <button onClick={() => setIsSaved(!isSaved)} className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all">
                 <Bookmark className={`w-6 h-6 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-colors ${isSaved ? 'text-[#d4af37]' : 'text-[#0a1128]'}`} fill={isSaved ? "currentColor" : "none"} />
                 <span className={`text-[10px] font-bold drop-shadow-sm tracking-widest uppercase transition-colors ${isSaved ? 'text-[#d4af37]' : 'text-[#0a1128]'}`}>{isSaved ? 'Saved' : 'Save'}</span>
+              </button>
+              <button className="flex flex-col items-center gap-1.5 pointer-events-auto active:scale-90 transition-all">
+                <MoreVertical className="w-6 h-6 text-[#0a1128] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]" />
+                <span className="text-[#0a1128] text-[10px] font-bold drop-shadow-sm tracking-widest uppercase">More</span>
               </button>
             </>
           )}
