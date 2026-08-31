@@ -70,6 +70,140 @@ function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: 
   );
 }
 
+interface VideoSearchHeaderProps {
+  searchQuery: string;
+  setSearchQuery: (val: string) => void;
+  activeCategory: string;
+  setActiveCategory: (val: string) => void;
+  setVisibleCount: (val: number | ((prev: number) => number)) => void;
+  sortBy: string;
+  setSortBy: (val: string) => void;
+  isSearchFocused: boolean;
+  setIsSearchFocused: (val: boolean) => void;
+}
+
+const VideoSearchHeader = ({
+  searchQuery,
+  setSearchQuery,
+  activeCategory,
+  setActiveCategory,
+  setVisibleCount,
+  sortBy,
+  setSortBy,
+  isSearchFocused,
+  setIsSearchFocused
+}: VideoSearchHeaderProps) => {
+  const [isSticky, setIsSticky] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSticky(entry.boundingClientRect.top <= 56);
+      },
+      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+    );
+    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      {/* Sentinel element to detect when header becomes sticky */}
+      <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
+      
+      <div 
+        className={clsx(
+          "sticky top-[56px] z-30 w-full flex flex-col transition-colors duration-300",
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
+        )}
+      >
+        <div 
+          className={clsx(
+            "w-full px-4 flex justify-center transition-all duration-300",
+            isSticky ? "pt-2 pb-2 sm:py-2.5" : "pt-1 pb-1.5 sm:py-2"
+          )}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="relative w-full max-w-[340px] z-50"
+          >
+            <div
+              className={clsx(
+                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
+                isSearchFocused ? "opacity-100" : "opacity-0",
+              )}
+              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+            />
+            <div className="relative w-full bg-white rounded flex items-center p-0.5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(ITEMS_PER_PAGE);
+                }}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                placeholder="Search videos..."
+                className="flex-1 bg-transparent border-none outline-none text-[11.5px] sm:text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 sm:py-1.5 pl-2.5"
+              />
+              <div
+                className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded text-white"
+                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+              >
+                <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2 sm:py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/95 backdrop-blur-md">
+        <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
+          <Filter size={12} />
+          <span className="text-[8px] uppercase tracking-widest font-bold">
+            Filter:
+          </span>
+        </div>
+        {videoCategories.map((cat) => {
+          const isActive = activeCategory === cat;
+          return (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setVisibleCount(ITEMS_PER_PAGE);
+              }}
+              className={`shrink-0 relative px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[4px] text-[10px] sm:text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
+                isActive
+                  ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
+                  : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10"
+              }`}
+            >
+              <span>{cat}</span>
+              {isActive && (
+                <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+              )}
+            </button>
+          );
+        })}
+        <div className="ml-auto flex items-center pl-3 border-l border-[#0b1b42]/[0.08] shrink-0 z-20">
+          <CustomSelect
+            options={sortOptions}
+            value={sortBy}
+            onChange={setSortBy}
+            label="Sort:"
+            className="min-w-[100px] sm:min-w-[120px]"
+          />
+        </div>
+      </div>
+      </div>
+    </>
+  );
+};
+
 export default function ExploreMobile() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -151,19 +285,29 @@ export default function ExploreMobile() {
 
     return () => observer.disconnect();
   }, [hasMore, handleLoadMore, isLoadingMore]);
-  const handleCategoryChange = (cat: string) => {
-    setActiveCategory(cat);
-    setVisibleCount(ITEMS_PER_PAGE);
-  };
-  return (
-    <div className="w-full min-h-screen bg-[#f8f9fc] text-[#0a1128] overflow-x-hidden font-sans pb-20 relative">
 
-      <div
-        className="relative w-full overflow-hidden"
+  useEffect(() => {
+      const handleScroll = () => {
+        const isAtBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.offsetHeight - 500;
+      if (isAtBottom && !isLoadingMore && hasMore) {
+        handleLoadMore();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasMore, handleLoadMore, isLoadingMore]);
+
+  return (
+    <div 
+      className="w-full min-h-screen text-[#0a1128] bg-[#f8f9fc] font-sans flex flex-col relative"
+    >
+      <div 
+        className="absolute top-0 left-0 w-full h-[500px] overflow-hidden pointer-events-none z-0"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
       >
-
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-10">
+        <div className="absolute inset-0 opacity-[0.04]">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="video-hero-grid-m" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -175,7 +319,7 @@ export default function ExploreMobile() {
         </div>
 
         <div
-          className="absolute inset-0 w-full h-[60%] z-0"
+          className="absolute inset-0 w-full h-[70%] z-0"
           style={{
             maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
             WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
@@ -187,110 +331,50 @@ export default function ExploreMobile() {
         <FloatingParticle delay={0} x="8%" y="25%" size={4} />
         <FloatingParticle delay={1} x="80%" y="35%" size={3} />
         <FloatingParticle delay={0.5} x="45%" y="70%" size={4} />
-
-        <div className="relative z-10 px-5 pt-7 pb-6 flex flex-col items-center text-center">
-
-          <motion.h1
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white font-extrabold text-[22px] leading-[1.12] tracking-[-0.02em] mb-2"
-          >
-            India's 1st Integrated Commercial Real Estate Marketplace
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-[#d4af37] text-[10px] font-bold mb-1 tracking-widest"
-          >
-            EXPLORE. DISCOVER. CONNECT.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-white/60 text-[11px] font-medium mb-4"
-          >
-            Commercial Properties · Business Opportunities · Expert Brokers
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="relative w-full max-w-[360px] z-50"
-          >
-            <div
-              className={clsx(
-                "absolute -inset-[1.5px] rounded transition-opacity duration-500",
-                isSearchFocused ? "opacity-100" : "opacity-0",
-              )}
-              style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
-            />
-            <div className="relative w-full bg-white rounded flex items-center p-1 shadow-[0_6px_30px_rgba(0,0,0,0.3)]">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setVisibleCount(ITEMS_PER_PAGE);
-                }}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                placeholder="Search videos..."
-                className="flex-1 bg-transparent border-none outline-none text-[13px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-3"
-              />
-              <div
-                className="shrink-0 w-9 h-9 flex items-center justify-center rounded text-white"
-                style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
-              >
-                <Search className="h-3.5 w-3.5" />
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </div>
 
-      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/80">
-        <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
-          <Filter size={12} />
-          <span className="text-[8px] uppercase tracking-widest font-bold">
-            Filter:
-          </span>
-        </div>
-        {videoCategories.map((cat) => {
-          const isActive = activeCategory === cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => handleCategoryChange(cat)}
-              className={`shrink-0 relative px-3.5 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
-                isActive
-                  ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
-                  : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10"
-              }`}
-            >
-              <span>{cat}</span>
-              {isActive && (
-                <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
-              )}
-            </button>
-          );
-        })}
-        <div className="ml-auto flex items-center pl-3 border-l border-[#0b1b42]/[0.08] shrink-0 z-20">
-          <CustomSelect
-            options={sortOptions}
-            value={sortBy}
-            onChange={setSortBy}
-            label="Sort:"
-            className="min-w-[120px]"
-          />
-        </div>
+      <div className="relative z-10 px-4 pt-6 pb-2 sm:pt-7 sm:pb-4 flex flex-col items-center text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-white font-extrabold text-[19px] sm:text-[22px] leading-[1.12] tracking-[-0.02em] mb-1.5 sm:mb-2"
+        >
+          India's 1st Integrated Commercial Real Estate Marketplace
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-[#d4af37] text-[9px] sm:text-[10px] font-bold mb-1 tracking-widest"
+        >
+          EXPLORE. DISCOVER. CONNECT.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-white/60 text-[11px] sm:text-[12px] font-medium"
+        >
+          Commercial Properties · Business Opportunities · Expert Brokers
+        </motion.p>
       </div>
-      <div className="px-2 py-2 relative z-10">
+
+      <VideoSearchHeader
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+        setVisibleCount={setVisibleCount}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        isSearchFocused={isSearchFocused}
+        setIsSearchFocused={setIsSearchFocused}
+      />
+
+      <div className="relative z-20 w-full flex-1 bg-[#f8f9fc] pb-20">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -431,6 +515,7 @@ export default function ExploreMobile() {
           </motion.div>
         )}
       </div>
+      
       {selectedVideoId && (
         <OpenVideo
           initialVideoId={selectedVideoId}
