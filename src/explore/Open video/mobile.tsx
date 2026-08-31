@@ -126,21 +126,6 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
                 <ChevronLeft className="w-6 h-6" />
               </button>
 
-              <div className="flex pointer-events-auto mx-2">
-                {(() => {
-                  const config = getPopupConfig(video.category);
-                  return (
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setActivePopup(config.id); }}
-                      className="h-10 px-4 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 flex items-center justify-center gap-2 text-white active:scale-95 transition-all bg-[#0b1b42]"
-                    >
-                      <span className="text-[13px] font-bold">View</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </button>
-                  );
-                })()}
-              </div>
-
               <button
                 onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
                 className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-2xl border border-white flex items-center justify-center text-[#0a1128] shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto active:scale-90 active:border-white/80 active:bg-white transition-all hover:text-[#d4af37] shrink-0"
@@ -207,9 +192,22 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
               </div>
             </div>
 
-            <p className="text-gray-700 text-[13px] font-medium leading-relaxed">
+            <p className="text-gray-700 text-[13px] font-medium leading-relaxed mb-3">
               {video.description}
             </p>
+
+            {(() => {
+              const config = getPopupConfig(video.category);
+              return (
+                <button
+                  onClick={(e) => { e.stopPropagation(); setActivePopup(config.id); }}
+                  className="pointer-events-auto h-8 px-3.5 rounded-[4px] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 inline-flex items-center justify-center gap-1.5 text-white active:scale-95 transition-all bg-[#0b1b42]"
+                >
+                  <span className="text-xs font-bold">View</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </button>
+              );
+            })()}
           </div>
         )}
 

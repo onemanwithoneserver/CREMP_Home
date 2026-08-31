@@ -128,9 +128,15 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
         <video ref={videoRef} src={video.videoUrl} className="w-full h-full object-cover cursor-pointer" loop muted={isMuted} onClick={togglePlay} playsInline />
 
         <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
-          {!activePopup && (() => {
-            const config = getPopupConfig(video.category);
-            return (
+          <button onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }} className={`w-10 h-10 rounded-full bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-[#d4af37]/40 border border-white/30 hover:border-[#d4af37]/80 shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-105 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
+            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {!activePopup && (() => {
+          const config = getPopupConfig(video.category);
+          return (
+            <div className={`absolute bottom-5 right-4 z-40 transition-all duration-300 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -141,12 +147,9 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
                 <span className="text-xs font-bold">View</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </button>
-            );
-          })()}
-          <button onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }} className={`w-10 h-10 rounded-full bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-[#d4af37]/40 border border-white/30 hover:border-[#d4af37]/80 shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-105 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-          </button>
-        </div>
+            </div>
+          );
+        })()}
 
         {!isPlaying && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 bg-black/40 backdrop-blur-[2px]">
