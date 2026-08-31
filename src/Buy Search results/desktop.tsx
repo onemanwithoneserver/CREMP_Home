@@ -293,7 +293,7 @@ export default function BuySearchResultsDesktop() {
 
   return (
     <div
-      className="w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden grid"
+      className="w-full min-h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans grid"
       style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
       {/* Floating Top Search Bar while scrolling */}
@@ -428,16 +428,16 @@ export default function BuySearchResultsDesktop() {
           <img src={SearchImage} alt="Buy search results hero" className={heroImg.imageClass} />
         </div>
 
-        <div className="relative z-50 px-8 pt-4 pb-3 max-w-[75%]">
+        <div className="relative z-50 px-8 pt-3 pb-2.5 max-w-[75%]">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 mb-3"
+              className="inline-flex items-center gap-2 mb-1.5"
             >
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-[#d4af37]/30 bg-[#d4af37]/10">
-                <Sparkles size={13} className="text-[#d4af37]" strokeWidth={2.5} />
-                <span className="text-[11px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Property Discovery</span>
+              <div className="flex items-center gap-2 px-2.5 py-1 rounded border border-[#d4af37]/30 bg-[#d4af37]/10">
+                <Sparkles size={12} className="text-[#d4af37]" strokeWidth={2.5} />
+                <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-[0.12em]">Property Discovery</span>
               </div>
             </motion.div>
 
@@ -445,9 +445,9 @@ export default function BuySearchResultsDesktop() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-white font-extrabold text-[46px] leading-[1.08] tracking-[-0.02em] mb-2"
+              className="text-white font-extrabold text-[28px] leading-tight tracking-[-0.02em] mb-1.5"
             >
-              Find your ideal<br />
+              Find your ideal{" "}
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
@@ -575,7 +575,7 @@ export default function BuySearchResultsDesktop() {
           </div>
         </div>
 
-        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-2">
+        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-2 min-h-[950px] h-[950px]">
 
             <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -672,8 +672,8 @@ export default function BuySearchResultsDesktop() {
         <div
           onScroll={handleListScroll}
           className={clsx(
-          "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide",
-          selectedPropertyForView ? "col-start-2 col-end-3 row-start-1 row-span-2" : "col-start-2 col-end-3 row-start-2 row-span-1"
+          "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide min-h-[950px] h-[950px]",
+          selectedPropertyForView ? "col-start-2 col-end-3 row-start-1 row-span-2 min-h-[1100px] h-full" : "col-start-2 col-end-3 row-start-2 row-span-1"
         )}>
           <AnimatePresence mode="wait">
           {selectedPropertyForView ? (

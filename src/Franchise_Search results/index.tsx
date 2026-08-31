@@ -21,17 +21,17 @@ export default function FranchiseSearchResults({ isMobile }: { isMobile?: boolea
     );
   }
   return (
-    <>
+    <div className="flex flex-col min-h-screen w-full bg-[#f8f9fc]">
       <SiteHeader />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-full flex-1 flex flex-col"
+        className="w-full flex-1 flex flex-col"
       >
         <Desktop />
       </motion.div>
       <SiteFooter />
-    </>
+    </div>
   );
 }
