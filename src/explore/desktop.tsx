@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, ChevronRight } from "lucide-react";
+import { Search, Play, Filter, Video, Eye, Clock, Loader2, ChevronRight } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
@@ -12,7 +12,7 @@ const sortOptions = [
   { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 50;
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -116,11 +116,31 @@ export default function ExploreDesktop() {
     }
     return b.id.localeCompare(a.id);
   });
-  const displayedVideos = Array.from({ length: visibleCount }).map((_, i) => {
-    if (sortedVideos.length === 0) return null;
-    const vid = sortedVideos[i % sortedVideos.length];
-    return { ...vid, uniqueId: `${vid.id}-${i}` };
-  }).filter(Boolean) as any[];
+  const displayedItems = useMemo(() => {
+    if (sortedVideos.length === 0) return [];
+    const items = [];
+    let videoIndex = 0;
+    
+    for (let i = 0; i < visibleCount; i++) {
+      if (i > 0 && i % 15 === 0) {
+        let adType = "normal";
+        if (i % 45 === 0) adType = "long-strip";
+        else if (i % 30 === 0) adType = "tall";
+
+        items.push({
+          isAd: true,
+          adType,
+          uniqueId: `ad-${i}`,
+          span: (i % 3) + 2,
+        });
+      } else {
+        const vid = sortedVideos[videoIndex % sortedVideos.length];
+        items.push({ ...vid, uniqueId: `vid-${vid.id}-${i}`, isAd: false });
+        videoIndex++;
+      }
+    }
+    return items;
+  }, [sortedVideos, visibleCount]);
   
   const hasMore = sortedVideos.length > 0;
   
@@ -318,17 +338,58 @@ export default function ExploreDesktop() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-16 flex flex-col gap-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 md:px-4 pt-2 pb-16 flex flex-col gap-4">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
           key={activeCategory + searchQuery}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 lg:gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4"
         >
           <AnimatePresence mode="popLayout">
-            {displayedVideos.map((video) => (
-              <motion.div
+            {displayedItems.map((item) => {
+              if (item.isAd) {
+                let spanClass = "";
+                let heightClass = "min-h-[240px]";
+                
+                if (item.adType === "long-strip") {
+                  spanClass = "col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5"; // Full row span
+                } else if (item.adType === "tall") {
+                  spanClass = "col-span-2 md:col-span-3"; // 3 columns wide
+                } else {
+                  spanClass = "col-span-2"; // 2 columns wide
+                }
+
+                return (
+                  <motion.div
+                    layout
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="show"
+                    exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                    key={item.uniqueId}
+                    className={`group relative flex flex-col items-center justify-center ${heightClass} bg-gradient-to-br from-white to-[#fdfbf6] border border-gray-200/80 rounded-[8px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:border-[#d4af37]/40 transition-all duration-500 cursor-pointer ${spanClass}`}
+                  >
+                    <div className="absolute top-3 left-3 bg-[#f3cd52]/20 border border-[#d4af37]/40 text-[#b38728] text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-[3px] shadow-sm z-10">
+                      Sponsored
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center p-6 text-center mt-2">
+                      <h3 className="text-xl md:text-2xl font-extrabold text-[#0a1128] mb-2 tracking-tight">
+                        Elevate Your Portfolio
+                      </h3>
+                      <p className="text-[13px] md:text-sm font-medium text-gray-500 mb-5 max-w-md">
+                        Discover exclusive high-yield commercial real estate and premium franchise opportunities.
+                      </p>
+                      <button className="px-6 py-2.5 bg-gradient-to-r from-[#0a1128] to-[#16254c] hover:from-[#d4af37] hover:to-[#b38728] text-white text-[13px] font-bold rounded-[4px] transition-all duration-500 shadow-md hover:shadow-[0_4px_15px_rgba(212,175,55,0.4)]">
+                        Explore Opportunities
+                      </button>
+                    </div>
+                  </motion.div>
+                );
+              }
+              const video = item as any;
+              return (
+                <motion.div
                 layout
                 variants={cardVariants}
                 initial="hidden"
@@ -396,7 +457,8 @@ export default function ExploreDesktop() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
           </AnimatePresence>
         </motion.div>
 

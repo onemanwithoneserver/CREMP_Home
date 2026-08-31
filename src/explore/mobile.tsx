@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "lucide-react";
+import { Search, Play, Video, Eye, Clock, Loader2, Filter } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
@@ -12,7 +12,7 @@ const sortOptions = [
   { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 20;
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -102,11 +102,25 @@ export default function ExploreMobile() {
     }
     return b.id.localeCompare(a.id);
   });
-  const displayedVideos = Array.from({ length: visibleCount }).map((_, i) => {
-    if (sortedVideos.length === 0) return null;
-    const vid = sortedVideos[i % sortedVideos.length];
-    return { ...vid, uniqueId: `${vid.id}-${i}` };
-  }).filter(Boolean) as any[];
+  const displayedItems = useMemo(() => {
+    if (sortedVideos.length === 0) return [];
+    const items = [];
+    let videoIndex = 0;
+    
+    for (let i = 0; i < visibleCount; i++) {
+      if (i > 0 && i % 10 === 0) {
+        items.push({
+          isAd: true,
+          uniqueId: `ad-${i}`,
+        });
+      } else {
+        const vid = sortedVideos[videoIndex % sortedVideos.length];
+        items.push({ ...vid, uniqueId: `vid-${vid.id}-${i}`, isAd: false });
+        videoIndex++;
+      }
+    }
+    return items;
+  }, [sortedVideos, visibleCount]);
   
   const hasMore = sortedVideos.length > 0;
   
@@ -276,17 +290,48 @@ export default function ExploreMobile() {
           />
         </div>
       </div>
-      <div className="px-3 py-3 relative z-10">
+      <div className="px-2 py-2 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
           key={activeCategory + searchQuery}
-          className="grid grid-cols-2 gap-3"
+          className="grid grid-cols-2 gap-2"
         >
           <AnimatePresence mode="popLayout">
-            {displayedVideos.map((video) => (
-              <motion.div
+            {displayedItems.map((item) => {
+              if (item.isAd) {
+                const spanClass = "col-span-2 min-h-[180px]";
+                return (
+                  <motion.div
+                    layout
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="show"
+                    exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+                    key={item.uniqueId}
+                    className={`relative flex flex-col items-center justify-center h-full bg-gradient-to-br from-white to-[#fdfbf6] border border-gray-200/80 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.06)] active:scale-[0.98] transition-all duration-300 ${spanClass}`}
+                  >
+                    <div className="absolute top-2 left-2 bg-[#f3cd52]/20 border border-[#d4af37]/40 text-[#b38728] text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-10">
+                      Ad
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center p-3 text-center w-full">
+                      <h3 className="text-sm font-extrabold text-[#0a1128] mb-1 tracking-tight">
+                        Grow Your Business
+                      </h3>
+                      <p className="text-[10px] font-medium text-gray-500 mb-3 line-clamp-2">
+                        Premium commercial real estate & franchises.
+                      </p>
+                      <button className="px-4 py-1.5 bg-gradient-to-r from-[#0a1128] to-[#16254c] text-white text-[10px] font-bold rounded-[3px] shadow-sm">
+                        Explore Now
+                      </button>
+                    </div>
+                  </motion.div>
+                );
+              }
+              const video = item as any;
+              return (
+                <motion.div
                 layout
                 variants={cardVariants}
                 initial="hidden"
@@ -348,7 +393,8 @@ export default function ExploreMobile() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
           </AnimatePresence>
         </motion.div>
 
