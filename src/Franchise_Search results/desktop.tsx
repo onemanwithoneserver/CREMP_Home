@@ -194,7 +194,7 @@ export default function FranchiseSearchResultsDesktop() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Floating search bar appears ONLY when the hero search bar has scrolled out of view
+
         setIsScrolled(!entry.isIntersecting);
       },
       {
@@ -278,7 +278,7 @@ export default function FranchiseSearchResultsDesktop() {
       };
     } else {
       return {
-        wrapperClass: "absolute inset-y-0 right-2 w-[20%] z-0 overflow-hidden transition-all duration-500",
+        wrapperClass: "absolute inset-y-0 right-0 w-fit z-0 overflow-hidden transition-all duration-500",
         maskStyle: {
           maskImage: "linear-gradient(to right, transparent 0%, black 15%)",
           WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%)",
@@ -295,7 +295,7 @@ export default function FranchiseSearchResultsDesktop() {
       className="w-full min-h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans grid"
       style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
-      {/* Floating Top Search Bar while scrolling */}
+
       <AnimatePresence>
         {isScrolled && (
           <motion.div

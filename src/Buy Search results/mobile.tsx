@@ -155,7 +155,7 @@ export default function BuySearchResultsMobile() {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>      {/* Sticky Header on Scroll */}
+      </AnimatePresence>
       <AnimatePresence>
         {isSticky && (
           <motion.div

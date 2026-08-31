@@ -197,7 +197,7 @@ export default function BuySearchResultsDesktop() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Floating search bar appears ONLY when the hero search bar has scrolled out of view
+
         setIsScrolled(!entry.isIntersecting);
       },
       {
@@ -302,7 +302,7 @@ export default function BuySearchResultsDesktop() {
       className="w-full min-h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans grid"
       style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
-      {/* Floating Top Search Bar while scrolling */}
+
       <AnimatePresence>
         {isScrolled && (
           <motion.div

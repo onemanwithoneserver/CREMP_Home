@@ -143,7 +143,6 @@ export default function FranchiseSearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      {/* Sticky Header on Scroll */}
       <AnimatePresence>
         {isSticky && (
           <motion.div
