@@ -183,13 +183,26 @@ export default function BuySearchResultsDesktop() {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(5);
+  const [visibleCount, setVisibleCount] = useState(15);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleWinScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleWinScroll);
+    return () => window.removeEventListener("scroll", handleWinScroll);
+  }, []);
+
+  const handleListScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    setIsScrolled(e.currentTarget.scrollTop > 50);
+  };
 
   const handleViewProperty = useCallback((property: Property) => {
     setSelectedPropertyForView(property);
@@ -198,13 +211,13 @@ export default function BuySearchResultsDesktop() {
   const handleLoadMore = useCallback(() => {
     setIsLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount((prev) => prev + 5);
+      setVisibleCount((prev) => prev + 10);
       setIsLoadingMore(false);
     }, 600);
   }, []);
 
   useEffect(() => {
-    setVisibleCount(5);
+    setVisibleCount(15);
   }, [searchQuery]);
 
   const toggleFavorite = useCallback((id: number) => {
@@ -221,22 +234,27 @@ export default function BuySearchResultsDesktop() {
   }, []);
 
   const matchingProperties = useMemo(() => {
+    if (!searchQuery.trim()) return properties;
+    const q = searchQuery.toLowerCase().trim();
     return properties.filter(
-      (f) => !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      (f) =>
+        f.name.toLowerCase().includes(q) ||
+        f.location.toLowerCase().includes(q) ||
+        f.category.toLowerCase().includes(q),
     );
   }, [searchQuery]);
 
-  const displayProperties = searchQuery ? matchingProperties : matchingProperties.slice(0, 4);
+  const displayProperties = searchQuery.trim() ? matchingProperties : matchingProperties.slice(0, 4);
 
   const filtered = useMemo(() => {
-    return properties.filter((f) => {
-      const matchesSearch =
-        !searchQuery ||
-        f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        f.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        f.category.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSearch;
-    });
+    if (!searchQuery.trim()) return properties;
+    const q = searchQuery.toLowerCase().trim();
+    return properties.filter(
+      (f) =>
+        f.name.toLowerCase().includes(q) ||
+        f.location.toLowerCase().includes(q) ||
+        f.category.toLowerCase().includes(q),
+    );
   }, [searchQuery]);
 
   const handleHeroMouseMove = (e: React.MouseEvent) => {
@@ -278,6 +296,93 @@ export default function BuySearchResultsDesktop() {
       className="w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden grid"
       style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
+      {/* Floating Top Search Bar while scrolling */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed top-[53px] left-0 right-0 z-[999] bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)] py-1.5 px-6 flex items-center justify-center border-b border-[#0b1b42]/40"
+          >
+            <div className="w-full max-w-[640px] relative">
+              <div className="relative w-full bg-white rounded flex items-center p-1 shadow-md">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  placeholder="Search property type, area, or location..."
+                  className="flex-1 bg-transparent border-none outline-none text-[13.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1 pl-3"
+                />
+                <button
+                  className="shrink-0 w-8 h-8 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
+                  style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+                >
+                  <Search className="h-3.5 w-3.5 relative z-10" />
+                </button>
+              </div>
+
+              <AnimatePresence>
+                {isSearchFocused && (searchQuery || displayProperties.length > 0) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute top-[calc(100%+8px)] left-0 w-full rounded shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[1000]"
+                    style={{
+                      background: "rgba(255,255,255,0.99)",
+                      backdropFilter: "blur(28px)",
+                      border: "1px solid rgba(11,27,66,0.08)",
+                    }}
+                  >
+                    <div className="px-3 pt-2.5 pb-1.5 border-b border-[#0b1b42]/[0.04]">
+                      <span className="text-[10px] font-bold text-[#0b1b42]/30 uppercase tracking-[0.1em]">Suggestions</span>
+                    </div>
+                    <div className="overflow-y-auto p-1.5 max-h-[260px] scrollbar-hide flex flex-col gap-1">
+                      {displayProperties.length > 0 ? (
+                        displayProperties.map((p, i) => {
+                          const pMeta = getMeta(p.category);
+                          const PIcon = pMeta.icon;
+                          return (
+                            <motion.div
+                              key={p.id}
+                              initial={{ opacity: 0, y: 4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: i * 0.03 }}
+                              onClick={() => setSearchQuery(p.name)}
+                              className="px-3 py-2.5 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 group border border-transparent hover:border-[#0b1b42]/[0.05]"
+                            >
+                              <div className="w-9 h-9 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm bg-white">
+                                <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
+                              </div>
+                              <div className="flex flex-col min-w-0 justify-center flex-1">
+                                <span className="truncate font-semibold text-[13px] leading-tight tracking-tight text-[#0a1128]">{p.name}</span>
+                                <span className="text-[10px] font-medium text-[#0b1b42]/40 flex items-center gap-1 mt-0.5">
+                                  <MapPin size={9} strokeWidth={2} />
+                                  <span className="truncate">{p.location}</span>
+                                </span>
+                              </div>
+                              <div className={clsx("flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold shrink-0", pMeta.bg, pMeta.text)}>
+                                <PIcon size={11} strokeWidth={2.5} />
+                              </div>
+                            </motion.div>
+                          );
+                        })
+                      ) : (
+                        <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No properties found</div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div
         ref={heroRef}
@@ -366,20 +471,20 @@ export default function BuySearchResultsDesktop() {
                 )}
                 style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
               />
-              <div className="relative w-full bg-white rounded flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
+              <div className="relative w-full bg-white rounded flex items-center p-1 shadow-[0_6px_30px_rgba(0,0,0,0.25)]">
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                  placeholder="Search property type, area, or location..."
-                  className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-4"
+                  placeholder="Search by property type, location, or keyword..."
+                  className="flex-1 bg-transparent border-none outline-none text-[14px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 pl-3.5"
                 />
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="shrink-0 w-11 h-11 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
+                  className="shrink-0 w-9 h-9 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
                   style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
                   <motion.div
@@ -388,7 +493,7 @@ export default function BuySearchResultsDesktop() {
                     animate={{ x: ["-100%", "200%"] }}
                     transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "linear" }}
                   />
-                  <Search className="h-4 w-4 relative z-10" />
+                  <Search className="h-3.5 w-3.5 relative z-10" />
                 </motion.button>
               </div>
 
@@ -421,20 +526,20 @@ export default function BuySearchResultsDesktop() {
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: i * 0.03 }}
                               onClick={() => setSearchQuery(f.name)}
-                              className="px-3 py-2.5 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 group border border-transparent hover:border-[#0b1b42]/[0.05]"
+                              className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 group border border-transparent hover:border-[#0b1b42]/[0.05]"
                             >
-                              <div className="w-10 h-10 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm bg-white">
+                              <div className="w-8 h-8 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm bg-white">
                                 <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                               </div>
                               <div className="flex flex-col min-w-0 justify-center flex-1">
-                                <span className="truncate font-semibold text-[13px] leading-tight tracking-tight text-[#0a1128]">{f.name}</span>
-                                <span className="text-[10px] font-medium text-[#0b1b42]/40 flex items-center gap-1 mt-0.5">
-                                  <MapPin size={9} strokeWidth={2} />
+                                <span className="truncate font-semibold text-[12.5px] leading-tight tracking-tight text-[#0a1128]">{f.name}</span>
+                                <span className="text-[9.5px] font-medium text-[#0b1b42]/40 flex items-center gap-1 mt-0.5">
+                                  <MapPin size={8.5} strokeWidth={2} />
                                   <span className="truncate">{f.location}</span>
                                 </span>
                               </div>
-                              <div className={clsx("flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold shrink-0", fMeta.bg, fMeta.text)}>
-                                <FIcon size={11} strokeWidth={2.5} />
+                              <div className={clsx("flex items-center gap-1 px-2 py-0.5 rounded text-[9.5px] font-bold shrink-0", fMeta.bg, fMeta.text)}>
+                                <FIcon size={10} strokeWidth={2.5} />
                               </div>
                             </motion.div>
                           );
@@ -452,14 +557,15 @@ export default function BuySearchResultsDesktop() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 mt-3 text-[10px]"
+              className="flex items-center gap-2.5 mt-2.5 text-[9.5px]"
             >
               <span className="text-white/50 font-medium">Popular:</span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 {["Office Space", "Retail", "Warehouse", "Co-working", "+ More"].map((tag) => (
                   <button
                     key={tag}
-                    className="px-3 py-1.5 rounded border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
+                    onClick={() => setSearchQuery(tag === "+ More" ? "" : tag)}
+                    className="px-2.5 py-1 rounded border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
                   >
                     {tag}
                   </button>
@@ -563,7 +669,9 @@ export default function BuySearchResultsDesktop() {
           </motion.div>
         </div>
 
-        <div className={clsx(
+        <div
+          onScroll={handleListScroll}
+          className={clsx(
           "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide",
           selectedPropertyForView ? "col-start-2 col-end-3 row-start-1 row-span-2" : "col-start-2 col-end-3 row-start-2 row-span-1"
         )}>
