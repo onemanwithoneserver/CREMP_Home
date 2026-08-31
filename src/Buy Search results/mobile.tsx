@@ -403,21 +403,45 @@ export default function BuySearchResultsMobile() {
                   onClick={() => setSelectedMarker(selectedMarker === f.id ? null : f.id)}
                 >
                   <motion.div
-                    animate={isActive ? { scale: 1.15 } : { scale: 1 }}
+                    animate={isActive ? { scale: 1.4 } : { scale: 1 }}
                     transition={spring}
-                    className={clsx(
-                      "relative flex items-center justify-center cursor-pointer transition-all duration-300",
-                      isActive ? "z-30" : "z-10"
-                    )}
+                    className={clsx("relative flex flex-col items-center cursor-pointer", isActive ? "z-30" : "z-10")}
                   >
+                    {isActive && (
+                      <>
+                        <motion.div
+                          className={clsx("absolute w-12 h-12 rounded border-2", `border-current ${meta.text} opacity-30`)}
+                          animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
+                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+                        />
+                        <motion.div
+                          className={clsx("absolute w-12 h-12 rounded border", `border-current ${meta.text} opacity-15`)}
+                          animate={{ scale: [0.3, 1.8], opacity: [0.3, 0] }}
+                          transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
+                        />
+                      </>
+                    )}
                     <div
                       className={clsx(
-                        "w-9 h-9 rounded-md flex items-center justify-center transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.08)] bg-white border border-[#0b1b42]/[0.04]",
-                        isActive ? "ring-2 ring-[#0b1b42]" : ""
+                        "w-8 h-8 rounded flex items-center justify-center shadow-lg transition-all duration-300 relative border-2",
+                        isActive
+                          ? "bg-[#0b1b42] text-white border-white shadow-xl scale-110"
+                          : `${meta.bg} ${meta.text} border-white/80 hover:scale-105`,
                       )}
                     >
-                      <Icon size={16} strokeWidth={isActive ? 2.5 : 2} className={clsx(isActive ? "text-[#0b1b42]" : "text-[#0b1b42]/60")} />
+                      <Icon size={14} strokeWidth={isActive ? 2.5 : 2} />
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rotate-45 bg-inherit border-r border-b border-inherit" />
                     </div>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        className="mt-2.5 px-2.5 py-1 rounded bg-[#0b1b42] text-white text-[10px] font-bold shadow-xl whitespace-nowrap flex items-center gap-1 z-40 border border-white/10"
+                      >
+                        <span>{f.name}</span>
+                        <span className="text-[#d4af37] font-extrabold">{f.price}</span>
+                      </motion.div>
+                    )}
                   </motion.div>
                 </motion.div>
               );
