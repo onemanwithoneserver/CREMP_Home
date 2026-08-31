@@ -167,18 +167,6 @@ const VideoSearchHeader = ({
           </span>
         </div>
 
-        <div className="shrink-0">
-          <CustomSelect
-            options={sortOptions}
-            value={sortBy}
-            onChange={setSortBy}
-            label="Sort:"
-            className="min-w-[100px] sm:min-w-[120px]"
-          />
-        </div>
-
-        <div className="w-px h-4 bg-[#0b1b42]/10 mx-0.5 shrink-0" />
-
         {videoCategories.map((cat) => {
           const isActive = activeCategory === cat;
           return (
@@ -201,6 +189,18 @@ const VideoSearchHeader = ({
             </button>
           );
         })}
+
+        <div className="w-px h-4 bg-[#0b1b42]/10 mx-0.5 shrink-0" />
+
+        <div className="shrink-0">
+          <CustomSelect
+            options={sortOptions}
+            value={sortBy}
+            onChange={setSortBy}
+            label="Sort:"
+            className="min-w-[100px] sm:min-w-[120px]"
+          />
+        </div>
       </div>
       </div>
     </>

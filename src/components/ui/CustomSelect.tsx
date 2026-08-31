@@ -21,12 +21,7 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // We must check both the container and the dropdown portal
-      // But since we are using a portal, event.target might not be in containerRef.
-      // Easiest is just checking if we click a button, but let's just close it if clicking outside container.
-      // Actually, if we click inside the portal, we manually call setIsOpen(false) in the options anyway.
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        // Only close if it's not the portal itself (hacky: we'll just close it)
         setIsOpen(false);
       }
     };
