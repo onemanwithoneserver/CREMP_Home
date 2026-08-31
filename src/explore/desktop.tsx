@@ -122,10 +122,10 @@ export default function ExploreDesktop() {
     let videoIndex = 0;
     
     for (let i = 0; i < visibleCount; i++) {
-      if (i > 0 && i % 15 === 0) {
+      if (i === 5 || (i > 5 && (i - 5) % 15 === 0)) {
         let adType = "normal";
-        if (i % 45 === 0) adType = "long-strip";
-        else if (i % 30 === 0) adType = "tall";
+        if (i === 5 || (i - 5) % 45 === 0) adType = "long-strip";
+        else if ((i - 5) % 30 === 0) adType = "tall";
 
         items.push({
           isAd: true,
@@ -374,15 +374,9 @@ export default function ExploreDesktop() {
                       Sponsored
                     </div>
                     <div className="relative z-10 flex flex-col items-center p-6 text-center mt-2">
-                      <h3 className="text-xl md:text-2xl font-extrabold text-[#0a1128] mb-2 tracking-tight">
-                        Elevate Your Portfolio
+                      <h3 className="text-xl md:text-2xl font-extrabold text-[#0a1128]/50 tracking-tight">
+                        Advertisement Text
                       </h3>
-                      <p className="text-[13px] md:text-sm font-medium text-gray-500 mb-5 max-w-md">
-                        Discover exclusive high-yield commercial real estate and premium franchise opportunities.
-                      </p>
-                      <button className="px-6 py-2.5 bg-gradient-to-r from-[#0a1128] to-[#16254c] hover:from-[#d4af37] hover:to-[#b38728] text-white text-[13px] font-bold rounded-[4px] transition-all duration-500 shadow-md hover:shadow-[0_4px_15px_rgba(212,175,55,0.4)]">
-                        Explore Opportunities
-                      </button>
                     </div>
                   </motion.div>
                 );

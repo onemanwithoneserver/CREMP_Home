@@ -315,16 +315,10 @@ export default function ExploreMobile() {
                     <div className="absolute top-2 left-2 bg-[#f3cd52]/20 border border-[#d4af37]/40 text-[#b38728] text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-10">
                       Ad
                     </div>
-                    <div className="relative z-10 flex flex-col items-center p-3 text-center w-full">
-                      <h3 className="text-sm font-extrabold text-[#0a1128] mb-1 tracking-tight">
-                        Grow Your Business
+                    <div className="relative z-10 flex flex-col items-center p-3 text-center w-full mt-1">
+                      <h3 className="text-sm font-extrabold text-[#0a1128]/50 tracking-tight">
+                        Advertisement Text
                       </h3>
-                      <p className="text-[10px] font-medium text-gray-500 mb-3 line-clamp-2">
-                        Premium commercial real estate & franchises.
-                      </p>
-                      <button className="px-4 py-1.5 bg-gradient-to-r from-[#0a1128] to-[#16254c] text-white text-[10px] font-bold rounded-[3px] shadow-sm">
-                        Explore Now
-                      </button>
                     </div>
                   </motion.div>
                 );
