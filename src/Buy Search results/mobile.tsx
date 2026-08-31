@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 
 import BuildingBox from "../BuildingBox";
 import LandBox from "../LandBox";
@@ -64,6 +64,19 @@ export default function BuySearchResultsMobile() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSticky(entry.boundingClientRect.top <= 56);
+      },
+      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+    );
+    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleViewProperty = useCallback((property: Property) => {
     setSelectedPropertyForView(property);
@@ -108,7 +121,7 @@ export default function BuySearchResultsMobile() {
   );
 
   return (
-    <div className="flex flex-col w-full h-full bg-[#fafbfd] overflow-hidden font-sans transition-colors duration-300 relative">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative">
       <AnimatePresence mode="wait">
         {selectedPropertyForView && (
           <motion.div
@@ -167,7 +180,7 @@ export default function BuySearchResultsMobile() {
           </div>
         </div>
 
-        <div className="relative z-20 px-4 pt-4 pb-3 w-full sm:w-[90%]">
+        <div className="relative z-20 px-4 pt-4 pb-2 w-full sm:w-[90%]">
           <div className="max-w-[65%]">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -182,26 +195,41 @@ export default function BuySearchResultsMobile() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-3"
+              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-2"
             >
               Find your ideal<br />
               <span className="text-[#d4af37]">commercial property</span>.
             </motion.h2>
           </div>
+        </div>
+      </div>
 
+      <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
+
+      <div
+        className={clsx(
+          "sticky top-[56px] shrink-0 w-full z-40 transition-colors duration-300",
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+        )}
+      >
+        <div
+          className={clsx(
+            "w-full px-3 flex justify-center transition-all duration-300",
+            isSticky ? "py-2 sm:py-2.5" : "py-2"
+          )}
+        >
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative"
+            className="relative w-full max-w-[340px] z-50"
           >
             <div className={clsx(
-              "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
+              "absolute -inset-[1.5px] rounded transition-opacity duration-500",
               isSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
 
-            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-
+            <div className="relative w-full bg-white rounded flex items-center p-0.5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
               <input
                 type="text"
                 value={searchQuery}
@@ -209,33 +237,28 @@ export default function BuySearchResultsMobile() {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 placeholder="Search property type, area, or location..."
-                className="flex-1 bg-transparent border-none outline-none text-[12px] font-medium text-[#0a1128] placeholder-[#0b1b42]/40 pl-3 py-1"
+                className="flex-1 bg-transparent border-none outline-none text-[11.5px] sm:text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 sm:py-1.5 pl-2.5"
               />
               <div className="flex gap-1 shrink-0 ml-1">
-                <motion.button
-                  whileTap={{ scale: 0.88 }}
-                  onClick={() => setShowMap(!showMap)}
-                  className={clsx(
-                    "w-8 h-8 flex items-center justify-center rounded-[4px] transition-all duration-200",
-                    showMap ? "text-white" : "bg-[#0b1b42]/[0.05] text-[#0b1b42]/40",
-                  )}
-                  style={showMap ? { background: "linear-gradient(135deg, #bf953f, #d4af37)" } : undefined}
+                {!isSticky && (
+                  <motion.button
+                    whileTap={{ scale: 0.88 }}
+                    onClick={() => setShowMap(!showMap)}
+                    className={clsx(
+                      "w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded transition-all duration-200",
+                      showMap ? "text-white" : "bg-[#0b1b42]/[0.05] text-[#0b1b42]/40",
+                    )}
+                    style={showMap ? { background: "linear-gradient(135deg, #bf953f, #d4af37)" } : undefined}
+                  >
+                    <Map className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                  </motion.button>
+                )}
+                <div
+                  className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded text-white"
+                  style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
-                  <Map className="h-[14px] w-[14px]" />
-                </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden"
-                  style={{ background: "#0b1b42" }}
-                >
-                  <motion.div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }}
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
-                  />
-                  <Search className="h-[14px] w-[14px] relative z-10" />
-                </motion.button>
+                  <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                </div>
               </div>
             </div>
 
@@ -469,7 +492,7 @@ export default function BuySearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      <div className="flex-1 overflow-y-auto scrollbar-hide relative z-10">
+      <div className="flex-1 relative z-10 pb-16">
 
         <motion.div
           variants={stagger}
