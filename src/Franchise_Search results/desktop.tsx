@@ -8,12 +8,10 @@ import {
   Store,
   Eye,
   ArrowLeft,
-  Building2,
-  Clock,
-  Sparkles,
   TrendingUp,
-  Maximize,
-  Minimize,
+  Clock,
+  Building2,
+  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import clsx from "clsx";
@@ -38,46 +36,6 @@ const fadeUp = {
     transition: { type: "spring" as const, stiffness: 260, damping: 22 },
   },
 };
-
-const MAP_THEMES = {
-  blue: {
-    id: "blue",
-    name: "Classic Blue",
-    dot: "#0b1b42",
-    bgGradient: "linear-gradient(135deg, #f0f3f8 0%, #eaeef5 50%, #e4e9f2 100%)",
-    stroke: "#0b1b42",
-  },
-  gold: {
-    id: "gold",
-    name: "Royal Gold",
-    dot: "#d4af37",
-    bgGradient: "linear-gradient(135deg, #fcf9f2 0%, #f7f0e1 50%, #ede0c4 100%)",
-    stroke: "#b38728",
-  },
-  dark: {
-    id: "dark",
-    name: "Midnight",
-    dot: "#0a1128",
-    bgGradient: "linear-gradient(135deg, #0a1128 0%, #0e1b3d 50%, #142758 100%)",
-    stroke: "#ffffff",
-  },
-  emerald: {
-    id: "emerald",
-    name: "Emerald Green",
-    dot: "#059669",
-    bgGradient: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)",
-    stroke: "#059669",
-  },
-  slate: {
-    id: "slate",
-    name: "Slate Modern",
-    dot: "#475569",
-    bgGradient: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)",
-    stroke: "#475569",
-  },
-} as const;
-
-type MapThemeKey = keyof typeof MAP_THEMES;
 
 function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
   return (
@@ -114,106 +72,89 @@ function MapPopup({
   onClose: () => void;
   onView: () => void;
 }) {
-  const isNearTop = franchise.lat < 36;
-  const isNearRight = franchise.lng > 72;
-  const isNearLeft = franchise.lng < 28;
-
-  let xPlacement = "-50%";
-  if (isNearRight) xPlacement = "-80%";
-  if (isNearLeft) xPlacement = "-20%";
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: isNearTop ? -14 : 14, x: xPlacement, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, x: xPlacement, scale: 1 }}
-      exit={{ opacity: 0, y: isNearTop ? -10 : 10, x: xPlacement, scale: 0.9 }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className={clsx(
-        "absolute w-[324px] rounded-2xl shadow-[0_20px_50px_rgba(11,27,66,0.18),0_4px_12px_rgba(11,27,66,0.06)] border border-slate-100 p-4 z-[9999] bg-white text-left",
-        isNearTop ? "top-[calc(100%+14px)]" : "bottom-[calc(100%+14px)]"
-      )}
-      style={{ left: "50%" }}
-      onClick={(e) => e.stopPropagation()}
+      initial={{ opacity: 0, y: 14, x: "-50%", scale: 0.88 }}
+      animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
+      exit={{ opacity: 0, y: 10, x: "-50%", scale: 0.9 }}
+      transition={{ type: "spring", stiffness: 380, damping: 24 }}
+      className="absolute bottom-[calc(100%+16px)] left-1/2 w-[300px] rounded shadow-2xl border border-[#0b1b42]/[0.08] p-4 z-50"
+      style={{
+        background: "rgba(255,255,255,0.98)",
+        backdropFilter: "blur(28px) saturate(180%)",
+      }}
     >
-      {/* Top Accent Gradient Bar */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl overflow-hidden"
-        style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #f3cd52, #d4af37, #b38728)" }}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[3px] rounded-t overflow-hidden"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+        style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #f3cd52, #d4af37, #b38728)", transformOrigin: "left" }}
       />
-
-      {/* Header: Logo, Title, Location, Close button */}
-      <div className="flex items-center gap-3 mb-3.5 pt-1">
-        <div className="w-12 h-12 rounded-xl overflow-hidden border border-slate-100 flex-shrink-0 shadow-sm bg-slate-50">
+      <button
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] hover:bg-[#0b1b42]/[0.08] text-[#0b1b42]/40 hover:text-[#0b1b42] transition-all hover:rotate-90 duration-300"
+      >
+        <X className="w-3.5 h-3.5" strokeWidth={2.5} />
+      </button>
+      <div className="flex items-center gap-2.5 mb-2">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="w-12 h-12 rounded overflow-hidden border border-[#0b1b42]/[0.08] flex-shrink-0 shadow-sm"
+        >
           <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
-        </div>
-        
-        <div className="flex-1 min-w-0 pr-1">
-          <h4 className="font-bold text-[#0a1128] text-[16px] leading-tight truncate" title={franchise.name}>
-            {franchise.name}
-          </h4>
-          <p className="text-[12.5px] text-[#64748b] flex items-center gap-1 font-normal mt-1">
-            <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-[#d4af37]" strokeWidth={2} />
+        </motion.div>
+        <div className="min-w-0 pr-6">
+          <h4 className="font-bold text-[#0a1128] text-[15px] leading-tight truncate mb-1">{franchise.name}</h4>
+          <p className="text-[12px] text-[#0b1b42]/50 flex items-center gap-1 font-medium">
+            <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-[#d4af37]" />
             <span className="truncate">{franchise.location}</span>
           </p>
         </div>
-
-        <button
-          onClick={(e) => { e.stopPropagation(); onClose(); }}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#64748b] hover:text-[#0a1128] transition-all flex-shrink-0"
-          title="Close"
-        >
-          <X className="w-4 h-4" strokeWidth={2} />
-        </button>
       </div>
-
-      {/* 3 Metric Cards */}
-      <div className="grid grid-cols-3 gap-2.5 mb-3.5">
+      <div className="grid grid-cols-3 gap-2 mb-2">
         {[
-          { label: "INVESTMENT", value: franchise.investment, color: "text-[#c59324]" },
-          { label: "ROI", value: franchise.roi, color: "text-[#059669]" },
-          { label: "BREAKEVEN", value: franchise.breakeven, color: "text-[#2563eb]" },
-        ].map((item) => (
-          <div
+          { label: "Investment", value: franchise.investment, color: "text-[#d4af37]" },
+          { label: "ROI", value: franchise.roi, color: "text-emerald-500" },
+          { label: "Breakeven", value: franchise.breakeven, color: "text-blue-500" },
+        ].map((item, i) => (
+          <motion.div
             key={item.label}
-            className="flex flex-col justify-center items-center py-2.5 px-1.5 rounded-xl bg-white border border-slate-200/70 shadow-[0_1px_3px_rgba(0,0,0,0.03)] min-h-[72px]"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 + i * 0.05 }}
+            className="flex flex-col justify-center items-center p-2.5 rounded bg-[#0b1b42]/[0.02] border border-[#0b1b42]/[0.05] min-h-[56px]"
           >
-            <span className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1 text-center">{item.label}</span>
-            <span className={`text-[13px] font-bold ${item.color} text-center leading-tight`}>{item.value}</span>
-          </div>
+            <span className="text-[9px] font-bold text-[#0b1b42]/35 uppercase tracking-wider mb-1">{item.label}</span>
+            <span className={`text-[11px] font-extrabold ${item.color} text-center leading-[1.2]`}>{item.value}</span>
+          </motion.div>
         ))}
       </div>
-
-      {/* Action Buttons */}
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-2">
+          <motion.button
+            onClick={(e) => { e.stopPropagation(); onView(); }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+            title="View Details"
+          >
+            <Eye size={16} strokeWidth={2.5} />
+          </motion.button>
         <motion.button
-          onClick={(e) => { e.stopPropagation(); onView(); }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#f8fafc] border border-slate-200 text-[#334155] hover:bg-[#0b1b42] hover:text-white hover:border-[#0b1b42] transition-all shadow-sm flex-shrink-0"
-          title="View Details"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="flex items-center justify-center gap-1.5 text-[12px] font-bold text-white px-5 py-2 rounded transition-all group min-w-[100px] shadow-[0_4px_14px_rgba(212,175,55,0.3)] relative overflow-hidden"
+          style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
         >
-          <Eye size={18} strokeWidth={2} />
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={(e) => e.stopPropagation()}
-          className="flex-1 flex items-center justify-center gap-1 text-[13.5px] font-bold text-white py-2.5 px-5 rounded-xl shadow-[0_4px_14px_rgba(180,135,40,0.35)] transition-all group relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #c59b27 0%, #d4af37 50%, #b38728 100%)" }}
-        >
-          <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+          <div className="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           <span className="relative z-10 flex items-center gap-1">
-            Enquire <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5} />
+            Enquire <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </span>
         </motion.button>
       </div>
-
-      {/* Pointer Arrow */}
-      {isNearTop ? (
-        <div className="absolute -top-[7px] w-3.5 h-3.5 bg-white border-l border-t border-slate-100 rotate-45" style={{ left: isNearRight ? "80%" : isNearLeft ? "20%" : "50%", transform: "translateX(-50%) rotate(45deg)" }} />
-      ) : (
-        <div className="absolute -bottom-[7px] w-3.5 h-3.5 bg-white border-r border-b border-slate-100 rotate-45" style={{ left: isNearRight ? "80%" : isNearLeft ? "20%" : "50%", transform: "translateX(-50%) rotate(45deg)" }} />
-      )}
+      <div className="absolute -bottom-[8px] left-1/2 -translate-x-1/2 w-4 h-4 border-r border-b border-[#0b1b42]/[0.06] rotate-45 [clip-path:polygon(100%_0,100%_100%,0_100%)]" style={{ background: "rgba(255,255,255,0.98)" }} />
     </motion.div>
   );
 }
@@ -242,9 +183,6 @@ export default function FranchiseSearchResultsDesktop() {
   const [visibleCount, setVisibleCount] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [showFranchiseView, setShowFranchiseView] = useState(false);
-  const [mapTheme, setMapTheme] = useState<MapThemeKey>("blue");
-  const [zoomLevel, setZoomLevel] = useState(1);
-  const [isMapFullscreen, setIsMapFullscreen] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -331,7 +269,7 @@ export default function FranchiseSearchResultsDesktop() {
   return (
     <div
       className="w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden grid"
-      style={{ gridTemplateColumns: isMapFullscreen ? '100% 0%' : '65% 35%', gridTemplateRows: 'auto 1fr' }}
+      style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
 
       <div
@@ -412,8 +350,9 @@ export default function FranchiseSearchResultsDesktop() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative w-full max-w-[520px] z-50"
+              className="relative w-full max-w-[680px] z-50"
             >
+
               <div
                 className={clsx(
                   "absolute -inset-[1.5px] rounded transition-opacity duration-500",
@@ -421,7 +360,7 @@ export default function FranchiseSearchResultsDesktop() {
                 )}
                 style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
               />
-              <div className="relative w-full bg-white rounded flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              <div className="relative w-full bg-white rounded flex items-center p-1.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
                 <input
                   type="text"
                   value={searchQuery}
@@ -429,14 +368,22 @@ export default function FranchiseSearchResultsDesktop() {
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                   placeholder="Search franchise name, industry, or location..."
-                  className="flex-1 bg-transparent border-none outline-none text-[13px] lg:text-[14px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 pl-3.5"
+                  className="flex-1 bg-transparent border-none outline-none text-[15px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-2 pl-4"
                 />
-                <div
-                  className="shrink-0 w-8 h-8 lg:w-9 lg:h-9 flex items-center justify-center rounded text-white"
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="shrink-0 w-11 h-11 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
                   style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                 >
-                  <Search className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
-                </div>
+                  <motion.div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent)" }}
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "linear" }}
+                  />
+                  <Search className="h-4 w-4 relative z-10" />
+                </motion.button>
               </div>
 
               <AnimatePresence>
@@ -516,34 +463,24 @@ export default function FranchiseSearchResultsDesktop() {
           </div>
         </div>
 
-        <div
-          className={clsx(
-            "relative border-r border-[#e2e6ef] col-start-1 col-end-2 row-start-2 overflow-hidden transition-colors duration-500",
-            isMapFullscreen ? "z-50" : "z-10"
-          )}
-          style={{ background: MAP_THEMES[mapTheme].bgGradient }}
-        >
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-2">
+
+            <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="topo-d" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                <circle cx="100" cy="100" r="80" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.5" strokeOpacity="0.07" />
-                <circle cx="100" cy="100" r="60" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.4" strokeOpacity="0.06" />
-                <circle cx="100" cy="100" r="40" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.3" strokeOpacity="0.05" />
-                <circle cx="100" cy="100" r="20" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="0.2" strokeOpacity="0.04" />
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#0b1b42" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="60" fill="none" stroke="#0b1b42" strokeWidth="0.4" />
+                <circle cx="100" cy="100" r="40" fill="none" stroke="#0b1b42" strokeWidth="0.3" />
+                <circle cx="100" cy="100" r="20" fill="none" stroke="#0b1b42" strokeWidth="0.2" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#topo-d)" />
           </svg>
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0,120 Q 200,180 400,100 T 800,200" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="2" strokeDasharray="8 6" strokeOpacity="0.06" />
-            <path d="M 50,300 Q 250,250 450,350 T 800,280" fill="none" stroke={MAP_THEMES[mapTheme].stroke} strokeWidth="1.5" strokeDasharray="5 7" strokeOpacity="0.05" />
+          <svg className="absolute inset-0 w-full h-full opacity-[0.025] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0,120 Q 200,180 400,100 T 800,200" fill="none" stroke="#0b1b42" strokeWidth="2" strokeDasharray="8 6" />
+            <path d="M 50,300 Q 250,250 450,350 T 800,280" fill="none" stroke="#0b1b42" strokeWidth="1.5" strokeDasharray="5 7" />
           </svg>
 
-          <motion.div
-            className="absolute inset-0 origin-center pointer-events-none"
-            animate={{ scale: zoomLevel }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          >
           {filtered.map((f, i) => {
             const isActive = hoveredCard === f.id || selectedMarker === f.id;
             const meta = getMeta(f.category);
@@ -554,10 +491,7 @@ export default function FranchiseSearchResultsDesktop() {
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3 + i * 0.04, type: "spring" as const, stiffness: 280, damping: 18 }}
-                className={clsx(
-                  "absolute pointer-events-auto",
-                  selectedMarker === f.id ? "z-[9999]" : hoveredCard === f.id ? "z-50" : "z-10"
-                )}
+                className="absolute"
                 style={{ top: `${f.lat}%`, left: `${f.lng}%`, transform: "translate(-50%, -50%)" }}
                 onClick={() => handleMarkerClick(f.id)}
               >
@@ -598,53 +532,18 @@ export default function FranchiseSearchResultsDesktop() {
               </motion.div>
             );
           })}
-          </motion.div>
-
-          <div className="absolute top-3 right-4 z-10 flex items-center gap-1.5 p-1.5 bg-white/90 backdrop-blur-md rounded shadow-md border border-[#0b1b42]/[0.06]">
-            {(Object.keys(MAP_THEMES) as MapThemeKey[]).map((key) => {
-              const theme = MAP_THEMES[key];
-              return (
-                <motion.button
-                  key={theme.id}
-                  whileTap={{ scale: 0.85 }}
-                  onClick={(e) => { e.stopPropagation(); setMapTheme(key); }}
-                  className={clsx(
-                    "w-4 h-4 rounded-full transition-all flex items-center justify-center",
-                    mapTheme === key ? "ring-2 ring-[#0b1b42] scale-110 shadow-sm" : "opacity-60 hover:opacity-100"
-                  )}
-                  style={{ background: theme.dot }}
-                  title={theme.name}
-                />
-              );
-            })}
-          </div>
 
           <div className="absolute bottom-4 right-4 flex flex-col gap-1.5 z-10">
-            <motion.button
-              whileTap={{ scale: 0.85 }}
-              whileHover={{ scale: 1.08, y: -1 }}
-              onClick={() => setIsMapFullscreen((prev) => !prev)}
-              className="w-9 h-9 flex items-center justify-center rounded bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg font-medium hover:text-[#d4af37] hover:border-[#d4af37]/30 transition-all duration-300 shadow-md hover:shadow-lg"
-              title={isMapFullscreen ? "Exit Fullscreen" : "Fullscreen Map"}
-            >
-              {isMapFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.85 }}
-              whileHover={{ scale: 1.08, y: -1 }}
-              onClick={() => setZoomLevel((z) => Math.min(z + 0.15, 1.45))}
-              className="w-9 h-9 flex items-center justify-center rounded bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg font-medium hover:text-[#d4af37] hover:border-[#d4af37]/30 transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              +
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.85 }}
-              whileHover={{ scale: 1.08, y: -1 }}
-              onClick={() => setZoomLevel((z) => Math.max(z - 0.15, 0.85))}
-              className="w-9 h-9 flex items-center justify-center rounded bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg font-medium hover:text-[#d4af37] hover:border-[#d4af37]/30 transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              −
-            </motion.button>
+            {["+", "−"].map((label) => (
+              <motion.button
+                key={label}
+                whileTap={{ scale: 0.85 }}
+                whileHover={{ scale: 1.08, y: -1 }}
+                className="w-9 h-9 flex items-center justify-center rounded bg-white border border-[#0b1b42]/[0.06] text-[#0b1b42]/45 text-lg font-medium hover:text-[#d4af37] hover:border-[#d4af37]/30 transition-all duration-300 shadow-md hover:shadow-lg"
+              >
+                {label}
+              </motion.button>
+            ))}
           </div>
 
           <motion.div
