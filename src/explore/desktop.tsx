@@ -353,11 +353,11 @@ export default function ExploreDesktop() {
                 let heightClass = "min-h-[240px]";
                 
                 if (item.adType === "long-strip") {
-                  spanClass = "col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5"; // Full row span
+                  spanClass = "col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5"; 
                 } else if (item.adType === "tall") {
-                  spanClass = "col-span-2 md:col-span-3"; // 3 columns wide
+                  spanClass = "col-span-2 md:col-span-3"; 
                 } else {
-                  spanClass = "col-span-2"; // 2 columns wide
+                  spanClass = "col-span-2"; 
                 }
 
                 return (
