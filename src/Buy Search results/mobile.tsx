@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 
 import BuildingBox from "../BuildingBox";
 import LandBox from "../LandBox";
@@ -11,7 +11,6 @@ import {
   Map,
   Maximize,
   Minimize,
-  X,
   ArrowRight,
   Eye,
   ArrowLeft,
@@ -53,147 +52,60 @@ function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: strin
   );
 }
 
-export default function BuySearchResultsMobile() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
-  const [favorites, setFavorites] = useState<Set<number>>(new Set());
-  const [showMap, setShowMap] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(5);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [isListCollapsed, setIsListCollapsed] = useState(false);
-  const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
+interface SearchHeaderProps {
+  searchQuery: string;
+  setSearchQuery: (val: string) => void;
+  isSearchFocused: boolean;
+  setIsSearchFocused: (val: boolean) => void;
+  showMap: boolean;
+  setShowMap: (val: boolean | ((prev: boolean) => boolean)) => void;
+  suggestions: typeof properties;
+}
 
-  const handleViewProperty = useCallback((property: Property) => {
-    setSelectedPropertyForView(property);
+const PropertySearchHeader = ({
+  searchQuery,
+  setSearchQuery,
+  isSearchFocused,
+  setIsSearchFocused,
+  showMap,
+  setShowMap,
+  suggestions,
+}: SearchHeaderProps) => {
+  const [isSticky, setIsSticky] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSticky(entry.boundingClientRect.top <= 56);
+      },
+      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+    );
+    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
   }, []);
 
-  const handleLoadMore = () => {
-    setIsLoadingMore(true);
-    setTimeout(() => {
-      setVisibleCount((p) => p + 5);
-      setIsLoadingMore(false);
-    }, 600);
-  };
-
-  useEffect(() => { setVisibleCount(5); }, [searchQuery]);
-
-  const toggleFavorite = (id: number) => {
-    setFavorites((prev) => {
-      const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
-      return next;
-    });
-  };
-
-  const handleCardTap = (id: number) => {
-    setActiveCard(activeCard === id ? null : id);
-    setSelectedMarker(id);
-  };
-
-  const suggestions = useMemo(() => {
-    const m = properties.filter(
-      (f) => !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
-    return searchQuery ? m : m.slice(0, 3);
-  }, [searchQuery]);
-
-  const filtered = useMemo(
-    () => properties.filter((f) => {
-      const q = searchQuery.toLowerCase();
-      return !searchQuery || f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q) || f.category.toLowerCase().includes(q);
-    }),
-    [searchQuery],
-  );
-
   return (
-    <div className="flex flex-col w-full h-full bg-[#fafbfd] overflow-hidden font-sans transition-colors duration-300 relative">
-      <AnimatePresence mode="wait">
-        {selectedPropertyForView && (
-          <motion.div
-            key="property-view-mobile"
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: "100%", opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 28 }}
-            className="fixed inset-0 z-[200] flex flex-col bg-white"
-            style={{ top: "var(--top-bar-height, 0px)" }}
-          >
-            <div className="flex-1 overflow-y-auto scrollbar-hide bg-white relative z-0">
-                {selectedPropertyForView.category === "Plot / Land" ? (
-                  <LandBox viewModeProp="mobile" />
-                ) : ["Warehouse", "Industrial"].includes(selectedPropertyForView.category) ? (
-                  <AllBuildingBox viewModeProp="mobile" />
-                ) : (
-                  <BuildingBox viewModeProp="mobile" />
-                )}
-            </div>
-            <div
-              className="absolute top-0 left-0 right-0 z-[9999] flex items-center px-4 py-3 pointer-events-none bg-gradient-to-b from-black/60 via-black/30 to-transparent"
-            >
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setSelectedPropertyForView(null)}
-                className="w-8 h-8 rounded flex items-center justify-center bg-black/30 hover:bg-black/50 text-white backdrop-blur-md transition-all pointer-events-auto shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
-              >
-                <ArrowLeft size={16} strokeWidth={2.5} />
-              </motion.button>
-            </div>
-          </motion.div>
+    <>
+      <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
+
+      <div
+        className={clsx(
+          "sticky top-[56px] z-30 w-full flex flex-col transition-colors duration-300",
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
         )}
-      </AnimatePresence>      <div className="relative shrink-0 w-full z-40 rounded shadow-sm">
+      >
         <div
-          className="absolute inset-0 overflow-hidden rounded"
-          style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
+          className={clsx(
+            "w-full px-4 flex justify-center transition-all duration-300",
+            isSticky ? "pt-2 pb-2 sm:py-2.5" : "pt-1 pb-1.5 sm:py-2"
+          )}
         >
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="hero-grid-buy-m" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#hero-grid-buy-m)" />
-            </svg>
-          </div>
-
-          <FloatingDot delay={0} x="8%" y="25%" size={5} />
-          <FloatingDot delay={1} x="75%" y="15%" size={4} />
-          <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
-
-          <div className="absolute inset-y-0 right-0 w-[35%] sm:w-[40%] z-0 overflow-hidden opacity-80" style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}>
-            <img src={SearchImage} alt="Buy search results hero" className="w-full h-full object-cover object-left" />
-          </div>
-        </div>
-
-        <div className="relative z-20 px-4 pt-4 pb-3 w-full sm:w-[90%]">
-          <div className="max-w-[65%]">
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 mb-2 pb-1 border-b border-[#d4af37]/40"
-            >
-              <Building2 size={12} className="text-[#d4af37]" strokeWidth={2} />
-              <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Property Discovery</span>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-3"
-            >
-              Find your ideal<br />
-              <span className="text-[#d4af37]">commercial property</span>.
-            </motion.h2>
-          </div>
-
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative max-w-[340px] z-50"
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="relative w-full max-w-[340px] z-50"
           >
             <div
               className={clsx(
@@ -278,6 +190,160 @@ export default function BuySearchResultsMobile() {
           </motion.div>
         </div>
       </div>
+    </>
+  );
+};
+
+export default function BuySearchResultsMobile() {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const [favorites, setFavorites] = useState<Set<number>>(new Set());
+  const [showMap, setShowMap] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(5);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isListCollapsed, setIsListCollapsed] = useState(false);
+  const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
+
+  const handleViewProperty = useCallback((property: Property) => {
+    setSelectedPropertyForView(property);
+  }, []);
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount((p) => p + 5);
+      setIsLoadingMore(false);
+    }, 600);
+  };
+
+  useEffect(() => { setVisibleCount(5); }, [searchQuery]);
+
+  const toggleFavorite = (id: number) => {
+    setFavorites((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const handleCardTap = (id: number) => {
+    setActiveCard(activeCard === id ? null : id);
+    setSelectedMarker(id);
+  };
+
+  const suggestions = useMemo(() => {
+    const m = properties.filter(
+      (f) => !searchQuery || f.name.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    return searchQuery ? m : m.slice(0, 3);
+  }, [searchQuery]);
+
+  const filtered = useMemo(
+    () => properties.filter((f) => {
+      const q = searchQuery.toLowerCase();
+      return !searchQuery || f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q) || f.category.toLowerCase().includes(q);
+    }),
+    [searchQuery],
+  );
+
+  return (
+    <div className="w-full min-h-screen text-[#0a1128] bg-[#fafbfd] font-sans flex flex-col relative">
+      <AnimatePresence mode="wait">
+        {selectedPropertyForView && (
+          <motion.div
+            key="property-view-mobile"
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "100%", opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 28 }}
+            className="fixed inset-0 z-[200] flex flex-col bg-white"
+            style={{ top: "var(--top-bar-height, 0px)" }}
+          >
+            <div className="flex-1 overflow-y-auto scrollbar-hide bg-white relative z-0">
+                {selectedPropertyForView.category === "Plot / Land" ? (
+                  <LandBox viewModeProp="mobile" />
+                ) : ["Warehouse", "Industrial"].includes(selectedPropertyForView.category) ? (
+                  <AllBuildingBox viewModeProp="mobile" />
+                ) : (
+                  <BuildingBox viewModeProp="mobile" />
+                )}
+            </div>
+            <div
+              className="absolute top-0 left-0 right-0 z-[9999] flex items-center px-4 py-3 pointer-events-none bg-gradient-to-b from-black/60 via-black/30 to-transparent"
+            >
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setSelectedPropertyForView(null)}
+                className="w-8 h-8 rounded flex items-center justify-center bg-black/30 hover:bg-black/50 text-white backdrop-blur-md transition-all pointer-events-auto shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+              >
+                <ArrowLeft size={16} strokeWidth={2.5} />
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div
+        className="absolute top-0 left-0 w-full h-[320px] overflow-hidden pointer-events-none z-0"
+        style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
+      >
+        <div className="absolute inset-0 opacity-[0.04]">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hero-grid-buy-m" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hero-grid-buy-m)" />
+          </svg>
+        </div>
+
+        <FloatingDot delay={0} x="8%" y="25%" size={5} />
+        <FloatingDot delay={1} x="75%" y="15%" size={4} />
+        <FloatingDot delay={0.5} x="55%" y="65%" size={3} />
+
+        <div
+          className="absolute inset-y-0 right-0 w-[40%] sm:w-[45%] z-0 overflow-hidden opacity-80"
+          style={{ maskImage: "linear-gradient(to right, transparent, black 30%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)" }}
+        >
+          <img src={SearchImage} alt="Buy search results hero" className="w-full h-full object-cover object-left" />
+        </div>
+      </div>
+
+      <div className="relative z-10 px-4 pt-5 pb-2 w-full sm:w-[90%] flex flex-col items-start text-left">
+        <div className="max-w-[65%]">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-1.5 mb-2 pb-1 border-b border-[#d4af37]/40"
+          >
+            <Building2 size={12} className="text-[#d4af37]" strokeWidth={2} />
+            <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Property Discovery</span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-2"
+          >
+            Find your ideal<br />
+            <span className="text-[#d4af37]">commercial property</span>.
+          </motion.h2>
+        </div>
+      </div>
+
+      <PropertySearchHeader
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        isSearchFocused={isSearchFocused}
+        setIsSearchFocused={setIsSearchFocused}
+        showMap={showMap}
+        setShowMap={setShowMap}
+        suggestions={suggestions}
+      />
 
       <AnimatePresence>
         {showMap && (
@@ -337,99 +403,57 @@ export default function BuySearchResultsMobile() {
                   onClick={() => setSelectedMarker(selectedMarker === f.id ? null : f.id)}
                 >
                   <motion.div
-                    animate={isActive ? { scale: 1.4 } : { scale: 1 }}
+                    animate={isActive ? { scale: 1.15 } : { scale: 1 }}
                     transition={spring}
-                    className={clsx("relative flex flex-col items-center cursor-pointer", isActive ? "z-30" : "z-10")}
-                  >
-                    {isActive && (
-                      <>
-                        <motion.div
-                          className={clsx("absolute w-12 h-12 rounded border-2", `border-current ${meta.text} opacity-30`)}
-                          animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-                        />
-                        <motion.div
-                          className={clsx("absolute w-12 h-12 rounded border", `border-current ${meta.text} opacity-15`)}
-                          animate={{ scale: [0.8, 1.8], opacity: [0.3, 0] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
-                        />
-                      </>
+                    className={clsx(
+                      "relative flex items-center justify-center cursor-pointer transition-all duration-300",
+                      isActive ? "z-30" : "z-10"
                     )}
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
+                  >
+                    <div
                       className={clsx(
-                        "w-9 h-9 rounded flex items-center justify-center transition-all duration-200",
-                        isActive ? `${meta.bg} ${meta.glow} shadow-lg` : "bg-white border border-[#0b1b42]/[0.06] shadow-md",
+                        "w-9 h-9 rounded-md flex items-center justify-center transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.08)] bg-white border border-[#0b1b42]/[0.04]",
+                        isActive ? "ring-2 ring-[#0b1b42]" : ""
                       )}
                     >
-                      <Icon size={15} strokeWidth={2.5} className={isActive ? meta.text : "text-[#0b1b42]/35"} />
-                    </motion.div>
+                      <Icon size={16} strokeWidth={isActive ? 2.5 : 2} className={clsx(isActive ? "text-[#0b1b42]" : "text-[#0b1b42]/60")} />
+                    </div>
                   </motion.div>
                 </motion.div>
               );
             })}
             <AnimatePresence>
-              {isListCollapsed && selectedMarker && (() => {
-                const f = filtered.find((x) => x.id === selectedMarker);
+              {selectedMarker && (() => {
+                const f = filtered.find((item) => item.id === selectedMarker);
                 if (!f) return null;
                 const meta = getMeta(f.category);
                 return (
                   <motion.div
                     key={`popup-${f.id}`}
-                    initial={{ opacity: 0, scale: 0.85, y: 12 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 12 }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 20, opacity: 0 }}
                     transition={spring}
-                    style={{
-                      position: "absolute",
-                      top: f.lat < 40 ? `calc(${f.lat}% + 28px)` : "auto",
-                      bottom: f.lat >= 40 ? `calc(${100 - f.lat}% + 28px)` : "auto",
-                      left: `max(12px, min(calc(${f.lng}% - 130px), calc(100% - 272px)))`,
-                      width: "260px",
-                      transformOrigin: f.lat < 40 ? "top center" : "bottom center",
-                    }}
-                    className="rounded shadow-2xl z-40 pointer-events-auto overflow-hidden"
-                    onClick={() => handleCardTap(f.id)}
+                    className="absolute bottom-2 left-2 right-14 z-20 bg-white/95 backdrop-blur-md rounded p-2.5 shadow-[0_8px_30px_rgba(11,27,66,0.12)] border border-[#0b1b42]/[0.08]"
                   >
-                    <motion.div
-                      className={clsx("h-[3px] w-full", meta.bg)}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                    <div className="p-3 bg-white border border-[#0b1b42]/[0.05]">
-                      <div className="flex items-start justify-between mb-1">
-                        <div className="flex gap-2.5 items-center min-w-0">
-                          <div className="w-[48px] h-[48px] rounded overflow-hidden shrink-0 border border-[#0b1b42]/[0.06] shadow-sm">
-                            <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                          </div>
-                          <div className="min-w-0">
-                            <h3 className="font-extrabold text-[13px] leading-tight truncate text-[#0a1128]">{f.name}</h3>
-                            <p className="text-[9px] text-[#0b1b42]/35 flex items-center gap-0.5 font-medium mt-0.5">
-                              <MapPin className="w-2.5 h-2.5 shrink-0 text-[#d4af37]/60" />
-                              <span className="truncate">{f.location}</span>
-                            </p>
-                          </div>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-10 h-10 rounded overflow-hidden border border-[#0b1b42]/[0.08] shrink-0 bg-slate-50">
+                        <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-bold text-[12px] text-[#0a1128] truncate">{f.name}</span>
+                          <span className={clsx("px-1.5 py-0.2 rounded text-[8px] font-bold", meta.bg, meta.text)}>
+                            {f.category}
+                          </span>
                         </div>
-                        <div className="flex items-center gap-0.5 shrink-0 ml-1">
-                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-rose-50 transition-all">
-                            <Heart className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-red-500 text-red-500" : "text-[#0b1b42]/15")} />
-                          </motion.button>
-                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/25 hover:text-[#0b1b42] transition-all">
-                            <X className="w-3.5 h-3.5" />
-                          </motion.button>
+                        <div className="flex items-center gap-2 mt-0.5 text-[10px]">
+                          <span className="font-bold text-[#0b1b42]">{f.price}</span>
+                          <span className="text-emerald-500 font-semibold">{f.area}</span>
+                          <span className="text-[#0b1b42]/40 truncate">{f.location}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                        <span className="text-[10px] font-bold text-[#0b1b42]">{f.price}</span>
-                        <span className="text-[10px] font-semibold text-emerald-500">{f.area}</span>
-                        <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
-                          <MapPin size={9} className="text-blue-500" />
-                          {f.location}
-                        </span>
-                      </div>
-                      <div className="flex justify-end gap-2 mt-2">
+                      <div className="flex gap-1 shrink-0">
                         <motion.button
                           whileTap={{ scale: 0.92 }}
                           onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
@@ -464,13 +488,12 @@ export default function BuySearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      <div className="flex-1 overflow-y-auto scrollbar-hide relative z-10">
-
+      <div className="w-full flex-1 px-2 pt-2 pb-6 relative z-10">
         <motion.div
           variants={stagger}
           initial="hidden"
           animate="show"
-          className="flex flex-col gap-1 px-2 pb-2"
+          className="flex flex-col gap-1"
         >
           {filtered.slice(0, visibleCount).map((f) => {
             const isActive = activeCard === f.id || selectedMarker === f.id;
@@ -499,16 +522,15 @@ export default function BuySearchResultsMobile() {
                   initial={false}
                   animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                   transition={{ type: "spring" as const, stiffness: 500, damping: 28 }}
-                  className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top z-[3]"
-                  style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
+                  className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#d4af37] via-[#f3cd52] to-[#d4af37] rounded-l origin-top"
                 />
-                <div className="p-3 relative z-[2]">
-                  <div className="flex gap-2">
+                <div className="p-3">
+                  <div className="flex gap-3">
                     <motion.div
-                      animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-                      className="w-[64px] h-[64px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
+                      whileHover={{ scale: 1.05 }}
+                      className="w-16 h-16 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 bg-slate-50 relative group"
                     >
-                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     </motion.div>
                     <div className="flex-1 min-w-0 flex flex-col justify-between">
                       <div className="flex items-start justify-between gap-2">

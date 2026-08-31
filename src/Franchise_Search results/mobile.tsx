@@ -324,34 +324,23 @@ export default function FranchiseSearchResultsMobile() {
                   style={{ top: `${f.lat}%`, left: `${f.lng}%`, transform: "translate(-50%, -50%)" }}
                   onClick={() => setSelectedMarker(selectedMarker === f.id ? null : f.id)}
                 >
+
                   <motion.div
-                    animate={isActive ? { scale: 1.4 } : { scale: 1 }}
+                    animate={isActive ? { scale: 1.15 } : { scale: 1 }}
                     transition={spring}
-                    className={clsx("relative flex flex-col items-center cursor-pointer", isActive ? "z-30" : "z-10")}
-                  >
-                    {isActive && (
-                      <>
-                        <motion.div
-                          className={clsx("absolute w-12 h-12 rounded border-2", `border-current ${meta.text} opacity-30`)}
-                          animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-                        />
-                        <motion.div
-                          className={clsx("absolute w-12 h-12 rounded border", `border-current ${meta.text} opacity-15`)}
-                          animate={{ scale: [0.8, 1.8], opacity: [0.3, 0] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
-                        />
-                      </>
+                    className={clsx(
+                      "relative flex items-center justify-center cursor-pointer transition-all duration-300",
+                      isActive ? "z-30" : "z-10"
                     )}
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
+                  >
+                    <div
                       className={clsx(
-                        "w-9 h-9 rounded flex items-center justify-center transition-all duration-200",
-                        isActive ? `${meta.bg} ${meta.glow} shadow-lg` : "bg-white border border-[#0b1b42]/[0.06] shadow-md",
+                        "w-9 h-9 rounded-md flex items-center justify-center transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.08)] bg-white border border-[#0b1b42]/[0.04]",
+                        isActive ? "ring-2 ring-[#0b1b42]" : ""
                       )}
                     >
-                      <Icon size={15} strokeWidth={2.5} className={isActive ? meta.text : "text-[#0b1b42]/35"} />
-                    </motion.div>
+                      <Icon size={16} strokeWidth={isActive ? 2.5 : 2} className={clsx(isActive ? "text-[#0b1b42]" : "text-[#0b1b42]/60")} />
+                    </div>
                   </motion.div>
                 </motion.div>
               );
