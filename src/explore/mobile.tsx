@@ -110,14 +110,14 @@ const VideoSearchHeader = ({
   return (
     <>
       <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
-      
-      <div 
+
+      <div
         className={clsx(
           "sticky top-[56px] z-30 w-full flex flex-col transition-colors duration-300",
           isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
         )}
       >
-        <div 
+        <div
           className={clsx(
             "w-full px-4 flex justify-center transition-all duration-300",
             isSticky ? "pt-2 pb-2 sm:py-2.5" : "pt-1 pb-1.5 sm:py-2"
@@ -243,7 +243,7 @@ export default function ExploreMobile() {
     if (sortedVideos.length === 0) return [];
     const items = [];
     let videoIndex = 0;
-    
+
     for (let i = 0; i < visibleCount; i++) {
       if (i > 0 && i % 10 === 0) {
         items.push({
@@ -258,9 +258,9 @@ export default function ExploreMobile() {
     }
     return items;
   }, [sortedVideos, visibleCount]);
-  
+
   const hasMore = sortedVideos.length > 0;
-  
+
   const handleLoadMore = useCallback(() => {
     if (isLoadingMore || !hasMore) return;
     setIsLoadingMore(true);
@@ -303,10 +303,10 @@ export default function ExploreMobile() {
   }, [hasMore, handleLoadMore, isLoadingMore]);
 
   return (
-    <div 
+    <div
       className="w-full min-h-screen text-[#0a1128] bg-[#f8f9fc] font-sans flex flex-col relative"
     >
-      <div 
+      <div
         className="absolute top-0 left-0 w-full h-[500px] overflow-hidden pointer-events-none z-0"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
       >
@@ -518,7 +518,7 @@ export default function ExploreMobile() {
           </motion.div>
         )}
       </div>
-      
+
       {selectedVideoId && (
         <OpenVideo
           initialVideoId={selectedVideoId}

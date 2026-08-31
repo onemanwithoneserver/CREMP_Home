@@ -143,7 +143,7 @@ export default function BuySearchResultsMobile() {
           </motion.div>
         )}
       </AnimatePresence>      <div className="relative shrink-0 w-full z-40 rounded shadow-sm">
-        <div 
+        <div
           className="absolute inset-0 overflow-hidden rounded"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
         >

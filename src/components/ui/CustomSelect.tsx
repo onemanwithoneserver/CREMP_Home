@@ -25,7 +25,7 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
         setIsOpen(false);
       }
     };
-    
+
     const handleScroll = () => {
       if (isOpen) setIsOpen(false);
     };
@@ -35,7 +35,7 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
       window.addEventListener("scroll", handleScroll, { capture: true });
       window.addEventListener("resize", handleScroll);
     }
-    
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("scroll", handleScroll, { capture: true });

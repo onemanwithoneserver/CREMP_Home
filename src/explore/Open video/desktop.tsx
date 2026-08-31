@@ -157,7 +157,6 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
           </div>
         )}
 
-        {/* Video Slider */}
         <div className={`absolute bottom-0 left-0 right-0 z-[60] transition-all duration-300 group/slider ${showControls ? 'h-[6px] bg-white/30' : 'h-[4px] bg-white/20'}`}>
           <div className="absolute top-0 left-0 h-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-[width] duration-100 ease-linear flex items-center justify-end" style={{ width: `${progress}%` }}>
             <div className={`w-3 h-3 bg-white rounded-full shadow-md transition-transform translate-x-1.5 ${showControls ? 'scale-100' : 'scale-0 group-hover/slider:scale-100'}`} />

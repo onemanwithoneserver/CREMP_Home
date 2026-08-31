@@ -120,7 +120,7 @@ export default function ExploreDesktop() {
     if (sortedVideos.length === 0) return [];
     const items = [];
     let videoIndex = 0;
-    
+
     for (let i = 0; i < visibleCount; i++) {
       if (i === 5 || (i > 5 && (i - 5) % 15 === 0)) {
         let adType = "normal";
@@ -141,9 +141,9 @@ export default function ExploreDesktop() {
     }
     return items;
   }, [sortedVideos, visibleCount]);
-  
+
   const hasMore = sortedVideos.length > 0;
-  
+
   const handleLoadMore = useCallback(() => {
     if (isLoadingMore || !hasMore) return;
     setIsLoadingMore(true);
@@ -351,13 +351,13 @@ export default function ExploreDesktop() {
               if (item.isAd) {
                 let spanClass = "";
                 let heightClass = "min-h-[240px]";
-                
+
                 if (item.adType === "long-strip") {
-                  spanClass = "col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5"; 
+                  spanClass = "col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5";
                 } else if (item.adType === "tall") {
-                  spanClass = "col-span-2 md:col-span-3"; 
+                  spanClass = "col-span-2 md:col-span-3";
                 } else {
-                  spanClass = "col-span-2"; 
+                  spanClass = "col-span-2";
                 }
 
                 return (

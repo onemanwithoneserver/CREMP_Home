@@ -267,7 +267,7 @@ export default function FranchiseSearchResultsDesktop() {
   const heroImg = getHeroImageStyles();
 
   return (
-    <div 
+    <div
       className="w-full h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans overflow-hidden grid"
       style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
