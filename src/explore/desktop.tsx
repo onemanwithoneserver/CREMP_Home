@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Search, Play, Filter, Video, Eye, Clock, Loader2, RefreshCw, ChevronRight } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
@@ -116,15 +116,41 @@ export default function ExploreDesktop() {
     }
     return b.id.localeCompare(a.id);
   });
-  const displayedVideos = sortedVideos.slice(0, visibleCount);
-  const hasMore = visibleCount < sortedVideos.length;
-  const handleLoadMore = () => {
+  const displayedVideos = Array.from({ length: visibleCount }).map((_, i) => {
+    if (sortedVideos.length === 0) return null;
+    const vid = sortedVideos[i % sortedVideos.length];
+    return { ...vid, uniqueId: `${vid.id}-${i}` };
+  }).filter(Boolean) as any[];
+  
+  const hasMore = sortedVideos.length > 0;
+  
+  const handleLoadMore = useCallback(() => {
+    if (isLoadingMore || !hasMore) return;
     setIsLoadingMore(true);
     setTimeout(() => {
       setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
       setIsLoadingMore(false);
     }, 600);
-  };
+  }, [isLoadingMore, hasMore]);
+
+  const observerTarget = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !isLoadingMore) {
+          handleLoadMore();
+        }
+      },
+      { threshold: 0.1, rootMargin: "400px" }
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasMore, handleLoadMore, isLoadingMore]);
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
     setVisibleCount(ITEMS_PER_PAGE);
@@ -308,7 +334,7 @@ export default function ExploreDesktop() {
                 initial="hidden"
                 animate="show"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                key={video.id}
+                key={video.uniqueId}
                 onClick={() => setSelectedVideoId(video.id)}
                 className="group relative flex flex-col aspect-[9/16] bg-[#0a1128] border border-gray-200/80 dark:border-white/10 rounded-[8px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1.5 hover:border-white/60 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.7)] cursor-pointer transition-all duration-500"
               >
@@ -375,27 +401,18 @@ export default function ExploreDesktop() {
         </motion.div>
 
         {hasMore && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex justify-center pt-6"
-          >
-            <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={handleLoadMore}
-              disabled={isLoadingMore}
-              className="group relative flex items-center justify-center gap-3 px-9 py-3.5 bg-[#0b1b42] hover:bg-[#0a1128] border border-[#d4af37]/40 hover:border-[#d4af37] rounded-[6px] text-sm font-bold text-white shadow-[0_8px_25px_rgba(11,27,66,0.2)] hover:shadow-[0_12px_35px_rgba(212,175,55,0.25)] transition-all duration-300 disabled:opacity-60 overflow-hidden"
-            >
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
-              {isLoadingMore ? (
-                <Loader2 size={16} className="animate-spin text-[#d4af37]" />
-              ) : (
-                <RefreshCw size={16} className="text-[#d4af37] group-hover:rotate-180 transition-transform duration-500" />
-              )}
-              <span className="tracking-wide">{isLoadingMore ? "Loading More Videos..." : "Load More Videos"}</span>
-            </motion.button>
-          </motion.div>
+          <div ref={observerTarget} className="flex justify-center pt-8 pb-4 w-full">
+            {isLoadingMore && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex items-center gap-3 px-6 py-2.5 bg-[#0b1b42]/80 backdrop-blur-md rounded-full border border-[#d4af37]/30 shadow-[0_4px_15px_rgba(0,0,0,0.1)]"
+              >
+                <Loader2 size={18} className="animate-spin text-[#d4af37]" />
+                <span className="text-[#d4af37] text-sm font-bold tracking-wide">Loading More...</span>
+              </motion.div>
+            )}
+          </div>
         )}
 
         {filteredVideos.length === 0 && (

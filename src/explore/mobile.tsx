@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Play, Video, Eye, Clock, Loader2, Filter, RefreshCw } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
@@ -102,15 +102,41 @@ export default function ExploreMobile() {
     }
     return b.id.localeCompare(a.id);
   });
-  const displayedVideos = sortedVideos.slice(0, visibleCount);
-  const hasMore = visibleCount < sortedVideos.length;
-  const handleLoadMore = () => {
+  const displayedVideos = Array.from({ length: visibleCount }).map((_, i) => {
+    if (sortedVideos.length === 0) return null;
+    const vid = sortedVideos[i % sortedVideos.length];
+    return { ...vid, uniqueId: `${vid.id}-${i}` };
+  }).filter(Boolean) as any[];
+  
+  const hasMore = sortedVideos.length > 0;
+  
+  const handleLoadMore = useCallback(() => {
+    if (isLoadingMore || !hasMore) return;
     setIsLoadingMore(true);
     setTimeout(() => {
       setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
       setIsLoadingMore(false);
     }, 600);
-  };
+  }, [isLoadingMore, hasMore]);
+
+  const observerTarget = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !isLoadingMore) {
+          handleLoadMore();
+        }
+      },
+      { threshold: 0.1, rootMargin: "400px" }
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasMore, handleLoadMore, isLoadingMore]);
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
     setVisibleCount(ITEMS_PER_PAGE);
@@ -266,7 +292,7 @@ export default function ExploreMobile() {
                 initial="hidden"
                 animate="show"
                 exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-                key={video.id}
+                key={video.uniqueId}
                 onClick={() => setSelectedVideoId(video.id)}
                 className="group relative flex flex-col aspect-[9/16] bg-[#0a1128] border border-gray-200/80 dark:border-white/10 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.08)] dark:shadow-[0_6px_20px_rgba(0,0,0,0.4)] active:scale-[0.98] active:border-white/60 transition-all duration-300"
               >
@@ -327,24 +353,18 @@ export default function ExploreMobile() {
         </motion.div>
 
         {hasMore && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex justify-center pt-5 pb-2"
-          >
-            <button
-              onClick={handleLoadMore}
-              disabled={isLoadingMore}
-              className="group flex items-center justify-center gap-2 px-7 py-2.5 bg-[#0b1b42] hover:bg-[#0a1128] border border-[#d4af37]/40 rounded-[5px] text-xs font-bold text-white transition-all duration-300 shadow-md active:scale-95 disabled:opacity-60"
-            >
-              {isLoadingMore ? (
-                <Loader2 size={14} className="animate-spin text-[#d4af37]" />
-              ) : (
-                <RefreshCw size={14} className="text-[#d4af37] group-active:rotate-180 transition-transform duration-500" />
-              )}
-              <span>{isLoadingMore ? "Loading..." : "Load More Videos"}</span>
-            </button>
-          </motion.div>
+          <div ref={observerTarget} className="flex justify-center pt-6 pb-4 w-full">
+            {isLoadingMore && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex items-center gap-2.5 px-5 py-2 bg-[#0b1b42]/80 backdrop-blur-md rounded-full border border-[#d4af37]/30 shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+              >
+                <Loader2 size={16} className="animate-spin text-[#d4af37]" />
+                <span className="text-[#d4af37] text-xs font-bold tracking-wide">Loading...</span>
+              </motion.div>
+            )}
+          </div>
         )}
 
         {filteredVideos.length === 0 && (

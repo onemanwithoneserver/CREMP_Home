@@ -217,11 +217,13 @@ export default function MobileOpenVideo({ video, onClose, onNext, onPrev, hasNex
         )}
 
         {!isClearScreen && (
-          <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gray-200/60 z-[125]">
+          <div className="absolute bottom-0 left-0 right-0 h-[4px] bg-white/30 z-[130]">
             <div
-              className="h-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] rounded-r-full shadow-[0_0_12px_rgba(212,175,55,0.6)] transition-[width] duration-200"
+              className="h-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-[width] duration-100 ease-linear flex items-center justify-end"
               style={{ width: `${progress}%` }}
-            />
+            >
+              <div className="w-2.5 h-2.5 bg-white rounded-full shadow-md translate-x-1" />
+            </div>
           </div>
         )}
       </div>
