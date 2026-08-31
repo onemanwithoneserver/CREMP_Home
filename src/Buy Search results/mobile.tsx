@@ -180,7 +180,7 @@ export default function BuySearchResultsMobile() {
           </div>
         </div>
 
-        <div className="relative z-20 px-4 pt-4 pb-2 w-full sm:w-[90%]">
+        <div className="relative z-20 px-4 pt-4 pb-16 w-full sm:w-[90%]">
           <div className="max-w-[65%]">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -209,12 +209,12 @@ export default function BuySearchResultsMobile() {
       <div
         className={clsx(
           "sticky top-[56px] shrink-0 w-full z-40 transition-colors duration-300",
-          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent -mt-14"
         )}
       >
         <div
           className={clsx(
-            "w-full px-3 flex justify-center transition-all duration-300",
+            "w-full px-4 flex justify-center transition-all duration-300",
             isSticky ? "py-2 sm:py-2.5" : "py-2"
           )}
         >
@@ -222,7 +222,7 @@ export default function BuySearchResultsMobile() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative w-full max-w-[340px] z-50"
+            className="relative w-full z-50"
           >
             <div className={clsx(
               "absolute -inset-[1.5px] rounded transition-opacity duration-500",
