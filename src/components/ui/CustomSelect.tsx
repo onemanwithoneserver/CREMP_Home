@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
 interface Option {
@@ -16,15 +17,47 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedOption = options.find((opt) => opt.value === value) || options[0];
+  const [coords, setCoords] = useState({ left: 0, top: 0, width: 0 });
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      // We must check both the container and the dropdown portal
+      // But since we are using a portal, event.target might not be in containerRef.
+      // Easiest is just checking if we click a button, but let's just close it if clicking outside container.
+      // Actually, if we click inside the portal, we manually call setIsOpen(false) in the options anyway.
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        // Only close if it's not the portal itself (hacky: we'll just close it)
         setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      window.addEventListener("scroll", handleScroll, { capture: true });
+      window.addEventListener("resize", handleScroll);
+    }
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, { capture: true });
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [isOpen]);
+
+  useLayoutEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setCoords({
+        left: rect.left,
+        top: rect.bottom + window.scrollY,
+        width: rect.width
+      });
+    }
+  }, [isOpen]);
   return (
     <div className={`relative ${className}`} ref={containerRef}>
       <button
@@ -43,37 +76,46 @@ export function CustomSelect({ options, value, onChange, label, className = "" }
           <ChevronDown size={12} strokeWidth={3} />
         </motion.div>
       </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 rounded-md shadow-lg z-50 overflow-hidden"
-          >
-            <div className="py-1">
-              {options.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => {
-                    onChange(option.value);
-                    setIsOpen(false);
-                  }}
-                  className={`flex items-center justify-between w-full px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-left transition-colors ${
-                    value === option.value
-                      ? "text-[#d4af37] bg-gray-50 dark:bg-gray-800/50"
-                      : "text-[#0a1128] dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50"
-                  }`}
-                >
-                  {option.label}
-                  {value === option.value && <Check size={12} strokeWidth={3} className="text-[#d4af37]" />}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                position: "absolute",
+                top: `${coords.top + 4}px`,
+                right: `${window.innerWidth - coords.left - coords.width}px`,
+              }}
+              className="w-36 bg-white dark:bg-[#121c33] border border-gray-100 dark:border-gray-800 rounded-md shadow-lg z-50 overflow-hidden"
+              onMouseDown={(e) => e.stopPropagation()}
+            >
+              <div className="py-1">
+                {options.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => {
+                      onChange(option.value);
+                      setIsOpen(false);
+                    }}
+                    className={`flex items-center justify-between w-full px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-left transition-colors ${
+                      value === option.value
+                        ? "text-[#d4af37] bg-gray-50 dark:bg-gray-800/50"
+                        : "text-[#0a1128] dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                    }`}
+                  >
+                    {option.label}
+                    {value === option.value && <Check size={12} strokeWidth={3} className="text-[#d4af37]" />}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }
