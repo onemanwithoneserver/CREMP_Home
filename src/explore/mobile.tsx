@@ -109,7 +109,6 @@ const VideoSearchHeader = ({
 
   return (
     <>
-      {/* Sentinel element to detect when header becomes sticky */}
       <div ref={sentinelRef} className="w-full h-[1px] -mt-[1px]" />
       
       <div 
@@ -160,36 +159,39 @@ const VideoSearchHeader = ({
           </motion.div>
         </div>
 
-      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2 sm:py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/95 backdrop-blur-md">
-        <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
-          <Filter size={12} />
-          <span className="text-[8px] uppercase tracking-widest font-bold">
-            Filter:
-          </span>
+      <div className="w-full flex items-stretch border-b border-[#0b1b42]/[0.06] bg-white/95 backdrop-blur-md">
+        <div className="flex-1 overflow-x-auto scrollbar-hide px-3 py-2 sm:py-2.5 flex items-center gap-2">
+          <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
+            <Filter size={12} />
+            <span className="text-[8px] uppercase tracking-widest font-bold">
+              Filter:
+            </span>
+          </div>
+          {videoCategories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setVisibleCount(ITEMS_PER_PAGE);
+                }}
+                className={`shrink-0 relative px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[4px] text-[10px] sm:text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
+                  isActive
+                    ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
+                    : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10"
+                }`}
+              >
+                <span>{cat}</span>
+                {isActive && (
+                  <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+                )}
+              </button>
+            );
+          })}
         </div>
-        {videoCategories.map((cat) => {
-          const isActive = activeCategory === cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat);
-                setVisibleCount(ITEMS_PER_PAGE);
-              }}
-              className={`shrink-0 relative px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[4px] text-[10px] sm:text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
-                isActive
-                  ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
-                  : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10"
-              }`}
-            >
-              <span>{cat}</span>
-              {isActive && (
-                <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
-              )}
-            </button>
-          );
-        })}
-        <div className="ml-auto flex items-center pl-3 border-l border-[#0b1b42]/[0.08] shrink-0 z-20">
+        
+        <div className="flex items-center px-3 border-l border-[#0b1b42]/[0.08] shrink-0 z-20">
           <CustomSelect
             options={sortOptions}
             value={sortBy}
