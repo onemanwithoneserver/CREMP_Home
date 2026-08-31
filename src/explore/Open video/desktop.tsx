@@ -165,13 +165,6 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
 
       <div className="relative z-10 w-[280px] h-[85vh] max-h-[850px] flex flex-col justify-center items-start">
         <div className="w-[60px] flex flex-col items-center gap-5">
-          <div className="flex flex-col bg-white/70 backdrop-blur-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] rounded-[8px] overflow-hidden border border-white relative group hover:border-[#d4af37]/40 transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/0 via-[#d4af37]/5 to-[#d4af37]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <button onClick={onPrev} disabled={!hasPrev} className={`p-3.5 relative z-10 transition-all duration-300 ${hasPrev ? 'text-[#0a1128] hover:text-[#d4af37] hover:bg-white/90' : 'text-gray-400 cursor-not-allowed'}`}><ChevronUp className="w-6 h-6" /></button>
-            <div className="h-px w-8 mx-auto bg-gray-200" />
-            <button onClick={onNext} disabled={!hasNext} className={`p-3.5 relative z-10 transition-all duration-300 ${hasNext ? 'text-[#0a1128] hover:text-[#d4af37] hover:bg-white/90' : 'text-gray-400 cursor-not-allowed'}`}><ChevronDown className="w-6 h-6" /></button>
-          </div>
-
           <button className="flex flex-col items-center gap-1.5 group">
             <div className="w-12 h-12 rounded-[8px] bg-white/70 backdrop-blur-2xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-white flex items-center justify-center text-[#0a1128] group-hover:border-[#d4af37]/50 group-hover:text-[#d4af37] group-hover:bg-white group-hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/0 via-[#d4af37]/10 to-[#d4af37]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -188,9 +181,20 @@ export default function DesktopOpenVideo({ video, onClose, onNext, onPrev, hasNe
             <span className={`text-[10px] font-bold tracking-widest uppercase transition-colors ${isSaved ? 'text-[#d4af37]' : 'text-gray-500 group-hover:text-[#d4af37]'}`}>{isSaved ? 'Saved' : 'Save'}</span>
           </button>
 
-          <button className="w-12 h-12 mt-1 rounded-[8px] bg-white/70 backdrop-blur-2xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-white flex items-center justify-center text-[#0a1128] hover:text-[#d4af37] hover:border-[#d4af37]/40 hover:bg-white transition-all duration-300">
-            <MoreVertical className="w-5 h-5" />
+          <button className="flex flex-col items-center gap-1.5 group">
+            <div className="w-12 h-12 rounded-[8px] bg-white/70 backdrop-blur-2xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-white flex items-center justify-center text-[#0a1128] group-hover:border-[#d4af37]/50 group-hover:text-[#d4af37] group-hover:bg-white group-hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/0 via-[#d4af37]/10 to-[#d4af37]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <MoreVertical className="w-5 h-5 relative z-10" />
+            </div>
+            <span className="text-[10px] font-bold text-gray-500 group-hover:text-[#d4af37] transition-colors tracking-widest uppercase">More</span>
           </button>
+
+          <div className="flex flex-col bg-white/70 backdrop-blur-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] rounded-[8px] overflow-hidden border border-white relative group hover:border-[#d4af37]/40 transition-colors mt-2">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/0 via-[#d4af37]/5 to-[#d4af37]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <button onClick={onPrev} disabled={!hasPrev} className={`p-3.5 relative z-10 transition-all duration-300 ${hasPrev ? 'text-[#0a1128] hover:text-[#d4af37] hover:bg-white/90' : 'text-gray-400 cursor-not-allowed'}`}><ChevronUp className="w-6 h-6" /></button>
+            <div className="h-px w-8 mx-auto bg-gray-200" />
+            <button onClick={onNext} disabled={!hasNext} className={`p-3.5 relative z-10 transition-all duration-300 ${hasNext ? 'text-[#0a1128] hover:text-[#d4af37] hover:bg-white/90' : 'text-gray-400 cursor-not-allowed'}`}><ChevronDown className="w-6 h-6" /></button>
+          </div>
         </div>
       </div>
         </div>
