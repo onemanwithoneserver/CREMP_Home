@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Play, Video, Loader2, Filter } from "lucide-react";
+import { Search, Play, Video, Loader2, Filter, ChevronRight } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
+import MobileStickyFooter from "../components/MobileStickyFooter";
 import clsx from "clsx";
 import SearchImage from "./ExploreHero.jpg";
 
@@ -293,7 +294,7 @@ export default function ExploreMobile() {
 
   return (
     <div
-      className="w-full min-h-screen text-[#0a1128] bg-[#f8f9fc] font-sans flex flex-col relative"
+      className="w-full min-h-screen text-[#0a1128] bg-[#f8f9fc] font-sans flex flex-col relative pb-20"
     >
       <div
         className="absolute top-0 left-0 w-full h-[500px] overflow-hidden pointer-events-none z-0"
@@ -448,14 +449,15 @@ export default function ExploreMobile() {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-2.5 flex flex-col justify-end z-20">
+                <div className="absolute bottom-0 left-0 right-0 p-2.5 flex flex-col justify-end z-20 transform translate-y-[24px] group-hover:translate-y-0 group-active:translate-y-0 transition-all duration-300 ease-out">
 
                   <h3 className="text-[11.5px] font-bold text-white leading-tight mb-2 line-clamp-2 drop-shadow-lg">
                     {video.title}
                   </h3>
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="text-[9px] text-gray-200 font-semibold bg-white/10 px-1.5 py-[2px] rounded-[2px] backdrop-blur-sm border border-white/20">
-                      {video.category}
+                  <div className="flex items-center justify-between gap-1 w-full">
+                    <div />
+                    <span className="flex items-center gap-0.5 px-1.5 py-[2px] rounded-[2px] bg-white text-[#0a1128] text-[9px] font-bold shadow-md opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 transform translate-x-1 group-hover:translate-x-0 group-active:translate-x-0">
+                      Watch <ChevronRight size={10} />
                     </span>
                   </div>
                 </div>
@@ -512,6 +514,9 @@ export default function ExploreMobile() {
           isMobile={true}
         />
       )}
+      <div className="fixed bottom-0 left-0 right-0 z-50">
+        <MobileStickyFooter />
+      </div>
     </div>
   );
 }

@@ -480,7 +480,7 @@ export default function ExploreDesktop() {
                   </motion.div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-20 transform translate-y-[34px] group-hover:translate-y-0 transition-all duration-500 ease-out">
 
                   <h3 className="text-[14.5px] font-bold text-white leading-snug mb-3 line-clamp-2 drop-shadow-lg">
                     {video.title}
