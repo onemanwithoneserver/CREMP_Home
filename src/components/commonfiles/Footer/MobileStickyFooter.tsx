@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../Logo/CREMP.png";
-import logoLight from "../Logo/CREMP_Light.png";
+import { useNavigate, useLocation } from "react-router-dom";
+import logo from "../../../Logo/CREMP.png";
+import logoLight from "../../../Logo/CREMP_Light.png";
+
 
 export interface MobileStickyFooterProps {
   activeTab?: "home" | "explore" | "saved" | "hire-broker" | "hand-picked" | "post-requirement" | string;
@@ -18,17 +20,28 @@ export default function MobileStickyFooter({
   activeTab = "explore",
   onTabChange,
 }: MobileStickyFooterProps) {
-  const [currentTab, setCurrentTab] = useState(activeTab);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const themeMode = pathParts[0] || "dark";
+  const viewMode = pathParts[1] || "mobile";
+  const currentPathPage = pathParts[2];
+  
+  const [currentTab, setCurrentTab] = useState(currentPathPage || activeTab);
   const [tapEffect, setTapEffect] = useState<string | null>(null);
 
   useEffect(() => {
-    setCurrentTab(activeTab);
-  }, [activeTab]);
+    setCurrentTab(currentPathPage || activeTab);
+  }, [activeTab, currentPathPage]);
 
   const handleNav = (tab: string) => {
     setCurrentTab(tab);
     setTapEffect(tab);
     setTimeout(() => setTapEffect(null), 400);
+    
+    // Navigate to the proper route
+    navigate(`/${themeMode}/${viewMode}/${tab}`);
+    
     if (onTabChange) {
       onTabChange(tab);
     }

@@ -5,6 +5,7 @@ import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
 import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
+import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
 import clsx from "clsx";
 import SearchImage from "./ExploreHero.jpg";
 
@@ -71,6 +72,8 @@ function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: 
 }
 
 interface VideoSearchHeaderProps {
+  exploreTab: "commercial" | "business";
+  setExploreTab: (val: "commercial" | "business") => void;
   searchQuery: string;
   setSearchQuery: (val: string) => void;
   activeCategory: string;
@@ -83,6 +86,8 @@ interface VideoSearchHeaderProps {
 }
 
 const VideoSearchHeader = ({
+  exploreTab,
+  setExploreTab,
   searchQuery,
   setSearchQuery,
   activeCategory,
@@ -114,13 +119,14 @@ const VideoSearchHeader = ({
       <div
         className={clsx(
           "sticky top-[56px] z-30 w-full flex flex-col transition-colors duration-300",
-          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-[#0b1b42]"
         )}
       >
+        <ExploreHeaderTabs activeTab={exploreTab} onChange={setExploreTab} />
         <div
           className={clsx(
             "w-full px-4 flex justify-center transition-all duration-300",
-            isSticky ? "pt-2 pb-2 sm:py-2.5" : "pt-1 pb-1.5 sm:py-2"
+            isSticky ? "pt-2 pb-2 sm:py-2.5" : "pt-2 pb-2 sm:py-2.5"
           )}
         >
           <motion.div
@@ -208,6 +214,7 @@ const VideoSearchHeader = ({
 };
 
 export default function ExploreMobile() {
+  const [exploreTab, setExploreTab] = useState<"commercial" | "business">("commercial");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
@@ -356,6 +363,8 @@ export default function ExploreMobile() {
       </div>
 
       <VideoSearchHeader
+        exploreTab={exploreTab}
+        setExploreTab={setExploreTab}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         activeCategory={activeCategory}
