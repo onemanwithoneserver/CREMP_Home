@@ -427,7 +427,7 @@ export default function FranchiseSearchResultsDesktop() {
           <img src={SearchImage} alt="Search results hero" className={heroImg.imageClass} />
         </div>
 
-        <div className="relative z-50 px-8 pt-3 pb-2.5 max-w-[75%]">
+        <div className="relative z-50 px-8 pt-12 pb-10 max-w-[75%]">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -446,7 +446,7 @@ export default function FranchiseSearchResultsDesktop() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-white font-extrabold text-[28px] leading-tight tracking-[-0.02em] mb-1.5"
             >
-              Find your perfect{" "}
+              Find your perfect <br />
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
