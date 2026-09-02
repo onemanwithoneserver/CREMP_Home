@@ -123,14 +123,22 @@ export default function MobileStickyFooter({
 
                 {/* Icon Container */}
                 <motion.div
-                  animate={{
-                    scale: isActive ? 1.1 : 1,
-                    y: isActive ? -0.5 : 0,
-                  }}
+                  animate={
+                    isActive
+                      ? {
+                          scale: 1.1,
+                          y: -0.5,
+                          rotate: [0, -20, 20, -10, 10, -5, 5, 0],
+                        }
+                      : {
+                          scale: 1,
+                          y: 0,
+                          rotate: 0,
+                        }
+                  }
                   transition={{
-                    type: "spring",
-                    stiffness: 450,
-                    damping: 26,
+                    rotate: { duration: 0.6, ease: "easeInOut" },
+                    default: { type: "spring", stiffness: 450, damping: 26 },
                   }}
                   className={`
                     flex items-center justify-center shrink-0 w-6 h-6 relative z-10
