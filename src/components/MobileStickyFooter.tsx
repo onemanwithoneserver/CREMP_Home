@@ -175,14 +175,35 @@ export default function MobileStickyFooter({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path d="M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6" />
-                      <polygon
-                        points="8 7.5 8 13.5 13 10.5"
-                        fill={isActive ? "rgba(212,175,55,0.35)" : "none"}
-                        stroke="currentColor"
+                      <motion.path
+                        d="M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6 Z"
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
                       />
-                      <circle cx="17.5" cy="17.5" r="3.5" />
-                      <path d="M20 20L22.5 22.5" />
+                      <motion.polygon
+                        points="8 7.5 8 13.5 13 10.5"
+                        initial={false}
+                        animate={{
+                          fill: isActive ? "#0b1b42" : "transparent",
+                          stroke: isActive ? "#0b1b42" : "currentColor",
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.circle
+                        cx="17.5"
+                        cy="17.5"
+                        r="3.5"
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.path
+                        d="M20 20L22.5 22.5"
+                        initial={false}
+                        animate={{ strokeWidth: isActive ? 2.5 : 1.8 }}
+                        transition={{ duration: 0.3 }}
+                      />
                     </svg>
                   )}
 
@@ -198,9 +219,11 @@ export default function MobileStickyFooter({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path
+                      <motion.path
                         d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                        fill={isActive ? "rgba(212,175,55,0.35)" : "none"}
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
                       />
                     </svg>
                   )}
@@ -217,20 +240,37 @@ export default function MobileStickyFooter({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <circle
+                      <motion.circle
                         cx="10"
                         cy="7"
                         r="4"
-                        fill={isActive ? "rgba(212,175,55,0.25)" : "none"}
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
                       />
-                      <path d="M3 21v-2a5.5 5.5 0 0 1 7.5-5.1" />
-                      <circle
+                      <motion.path
+                        d={isActive ? "M3 21v-2a5.5 5.5 0 0 1 7.5-5.1 L10.5 21 Z" : "M3 21v-2a5.5 5.5 0 0 1 7.5-5.1"}
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.circle
                         cx="17.5"
                         cy="16.5"
                         r="3.5"
-                        fill={isActive ? "rgba(212,175,55,0.3)" : "none"}
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
                       />
-                      <path d="M17.5 16.5v.01" strokeWidth="2.5" />
+                      <motion.path
+                        d="M17.5 16.5v.01"
+                        initial={false}
+                        animate={{
+                          stroke: isActive ? "#0b1b42" : "currentColor",
+                          strokeWidth: isActive ? 2.5 : 1.8,
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
                     </svg>
                   )}
 
@@ -246,10 +286,20 @@ export default function MobileStickyFooter({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path d="M12 2.5a1.5 1.5 0 0 1 1 .5l1.5 1.5a1.5 1.5 0 0 0 1 .5h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 0 .5 1l1.5 1.5a1.5 1.5 0 0 1 0 2l-1.5 1.5a1.5 1.5 0 0 0-.5 1v2a1.5 1.5 0 0 1-1.5 1.5h-2a1.5 1.5 0 0 0-1 .5l-1.5 1.5a1.5 1.5 0 0 1-2 0l-1.5-1.5a1.5 1.5 0 0 0-1-.5h-2a1.5 1.5 0 0 1-1.5-1.5v-2a1.5 1.5 0 0 0-.5-1l-1.5-1.5a1.5 1.5 0 0 1 0-2l1.5-1.5a1.5 1.5 0 0 0 .5-1v-2A1.5 1.5 0 0 1 5.5 6h2a1.5 1.5 0 0 0 1-.5l1.5-1.5a1.5 1.5 0 0 1 1-.5z" />
-                      <polygon
+                      <motion.path
+                        d="M12 2.5a1.5 1.5 0 0 1 1 .5l1.5 1.5a1.5 1.5 0 0 0 1 .5h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 0 .5 1l1.5 1.5a1.5 1.5 0 0 1 0 2l-1.5 1.5a1.5 1.5 0 0 0-.5 1v2a1.5 1.5 0 0 1-1.5 1.5h-2a1.5 1.5 0 0 0-1 .5l-1.5 1.5a1.5 1.5 0 0 1-2 0l-1.5-1.5a1.5 1.5 0 0 0-1-.5h-2a1.5 1.5 0 0 1-1.5-1.5v-2a1.5 1.5 0 0 0-.5-1l-1.5-1.5a1.5 1.5 0 0 1 0-2l1.5-1.5a1.5 1.5 0 0 0 .5-1v-2A1.5 1.5 0 0 1 5.5 6h2a1.5 1.5 0 0 0 1-.5l1.5-1.5a1.5 1.5 0 0 1 1-.5z"
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.polygon
                         points="12 7.5 13.5 10 16.5 10.5 14 12.5 14.5 15.5 12 14 9.5 15.5 10 12.5 7.5 10.5 10.5 10"
-                        fill={isActive ? "rgba(212,175,55,0.35)" : "none"}
+                        initial={false}
+                        animate={{
+                          fill: isActive ? "#0b1b42" : "transparent",
+                          stroke: isActive ? "#0b1b42" : "currentColor",
+                        }}
+                        transition={{ duration: 0.3 }}
                       />
                     </svg>
                   )}
@@ -266,17 +316,32 @@ export default function MobileStickyFooter({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path d="M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6" />
-                      <path d="M7 8h6" />
-                      <path d="M7 12h6" />
-                      <path d="M7 16h3" />
-                      <circle
+                      <motion.path
+                        d="M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6 Z"
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.path
+                        d="M7 8h6 M7 12h6 M7 16h3"
+                        initial={false}
+                        animate={{ stroke: isActive ? "#0b1b42" : "currentColor" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.circle
                         cx="17.5"
                         cy="16.5"
                         r="4"
-                        fill={isActive ? "rgba(212,175,55,0.25)" : "none"}
+                        initial={false}
+                        animate={{ fill: isActive ? "currentColor" : "transparent" }}
+                        transition={{ duration: 0.3 }}
                       />
-                      <path d="M17.5 14.5v4M15.5 16.5h4" />
+                      <motion.path
+                        d="M17.5 14.5v4M15.5 16.5h4"
+                        initial={false}
+                        animate={{ stroke: isActive ? "#0b1b42" : "currentColor" }}
+                        transition={{ duration: 0.3 }}
+                      />
                     </svg>
                   )}
                 </motion.div>
