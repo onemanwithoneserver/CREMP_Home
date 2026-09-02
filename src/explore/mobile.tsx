@@ -72,8 +72,6 @@ function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: 
 }
 
 interface VideoSearchHeaderProps {
-  exploreTab: "commercial" | "business";
-  setExploreTab: (val: "commercial" | "business") => void;
   searchQuery: string;
   setSearchQuery: (val: string) => void;
   activeCategory: string;
@@ -86,8 +84,6 @@ interface VideoSearchHeaderProps {
 }
 
 const VideoSearchHeader = ({
-  exploreTab,
-  setExploreTab,
   searchQuery,
   setSearchQuery,
   activeCategory,
@@ -104,9 +100,9 @@ const VideoSearchHeader = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSticky(entry.boundingClientRect.top <= 56);
+        setIsSticky(entry.boundingClientRect.top <= 48);
       },
-      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+      { threshold: [1], rootMargin: "-49px 0px 0px 0px" }
     );
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
@@ -118,11 +114,10 @@ const VideoSearchHeader = ({
 
       <div
         className={clsx(
-          "sticky top-[56px] z-30 w-full flex flex-col transition-colors duration-300",
-          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-[#0b1b42]"
+          "sticky top-[48px] z-30 w-full flex flex-col transition-colors duration-300",
+          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
         )}
       >
-        <ExploreHeaderTabs activeTab={exploreTab} onChange={setExploreTab} />
         <div
           className={clsx(
             "w-full px-4 flex justify-center transition-all duration-300",
@@ -303,6 +298,10 @@ export default function ExploreMobile() {
     <div
       className="w-full min-h-screen text-[#0a1128] bg-[#f8f9fc] font-sans flex flex-col relative pb-20"
     >
+      <div className="sticky top-0 z-40 w-full shadow-md">
+        <ExploreHeaderTabs activeTab={exploreTab} onChange={setExploreTab} />
+      </div>
+
       <div
         className="absolute top-0 left-0 w-full h-[500px] overflow-hidden pointer-events-none z-0"
         style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 35%, #132254 65%, #0d1a3a 100%)" }}
@@ -363,8 +362,6 @@ export default function ExploreMobile() {
       </div>
 
       <VideoSearchHeader
-        exploreTab={exploreTab}
-        setExploreTab={setExploreTab}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         activeCategory={activeCategory}
