@@ -128,16 +128,19 @@ export default function MobileStickyFooter({
                       ? {
                           scale: 1.1,
                           y: -0.5,
-                          rotate: [0, -20, 20, -10, 10, -5, 5, 0],
+                          rotateY: item.id !== "hand-picked" ? [0, -360, 0] : 0,
+                          rotate: item.id === "hand-picked" ? [0, -360, 0] : 0,
                         }
                       : {
                           scale: 1,
                           y: 0,
+                          rotateY: 0,
                           rotate: 0,
                         }
                   }
                   transition={{
-                    rotate: { duration: 0.6, ease: "easeInOut" },
+                    rotateY: { duration: 0.8, ease: "easeInOut" },
+                    rotate: { duration: 0.8, ease: "easeInOut" },
                     default: { type: "spring", stiffness: 450, damping: 26 },
                   }}
                   className={`
