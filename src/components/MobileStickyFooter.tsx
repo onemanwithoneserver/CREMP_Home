@@ -184,7 +184,7 @@ export default function MobileStickyFooter({
                       strokeLinejoin="round"
                     >
                       <motion.path
-                        d="M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6 Z"
+                        d={isActive ? "M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2Z" : "M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"}
                         initial={false}
                         animate={{ fill: isActive ? "currentColor" : "transparent" }}
                         transition={{ duration: 0.3 }}
@@ -257,7 +257,7 @@ export default function MobileStickyFooter({
                         transition={{ duration: 0.3 }}
                       />
                       <motion.path
-                        d={isActive ? "M3 21v-2a5.5 5.5 0 0 1 7.5-5.1 L10.5 21 Z" : "M3 21v-2a5.5 5.5 0 0 1 7.5-5.1"}
+                        d={isActive ? "M3 21v-2a5.5 5.5 0 0 1 11 0v2Z" : "M3 21v-2a5.5 5.5 0 0 1 7.5-5.1"}
                         initial={false}
                         animate={{ fill: isActive ? "currentColor" : "transparent" }}
                         transition={{ duration: 0.3 }}
@@ -325,7 +325,7 @@ export default function MobileStickyFooter({
                       strokeLinejoin="round"
                     >
                       <motion.path
-                        d="M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6 Z"
+                        d={isActive ? "M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2Z" : "M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"}
                         initial={false}
                         animate={{ fill: isActive ? "currentColor" : "transparent" }}
                         transition={{ duration: 0.3 }}
