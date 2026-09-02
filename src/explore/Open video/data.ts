@@ -59,7 +59,7 @@ export const getReelData = (id: string): ReelData => {
     id,
     videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     thumbnail: sample ? sample.thumbnail : "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
-    username: sample ? sample.brand : "user_" + id,
+    username: "user_" + id,
     description: sample ? sample.title : "Explore the possibilities with our new franchise models! ✨",
     likes: "1,234",
     comments: "56",

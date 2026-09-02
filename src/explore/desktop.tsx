@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { Search, Play, Filter, Video, Eye, Clock, Loader2, ChevronRight } from "lucide-react";
+import { Search, Play, Filter, Video, Loader2, ChevronRight } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
@@ -230,9 +230,7 @@ export default function ExploreDesktop() {
   const spotlightY = useSpring(mouseY, { stiffness: 200, damping: 30 });
 
   const filteredVideos = sampleVideos.filter((v) => {
-    const matchesSearch =
-      v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      v.brand.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = v.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory =
       activeCategory === "All" || v.category === activeCategory;
     return matchesSearch && matchesCategory;
@@ -399,7 +397,6 @@ export default function ExploreDesktop() {
             {displayedItems.map((item) => {
               if (item.isAd) {
                 let spanClass = "";
-                let heightClass = "min-h-[240px]";
 
                 if (item.adType === "long-strip") {
                   spanClass = "col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5";
@@ -417,15 +414,25 @@ export default function ExploreDesktop() {
                     animate="show"
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                     key={item.uniqueId}
-                    className={`group relative flex flex-col items-center justify-center ${heightClass} bg-gradient-to-br from-white to-[#fdfbf6] border border-gray-200/80 rounded-[8px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:border-[#d4af37]/40 transition-all duration-500 cursor-pointer ${spanClass}`}
+                    className={`group relative flex flex-col items-center justify-center bg-[#0a1128] border border-gray-200/80 rounded-[8px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-white/60 transition-all duration-500 cursor-pointer ${spanClass} aspect-video`}
                   >
-                    <div className="absolute top-3 left-3 bg-[#f3cd52]/20 border border-[#d4af37]/40 text-[#b38728] text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-[3px] shadow-sm z-10">
+                    <div className="absolute top-3 left-3 bg-black/80 border border-white/20 text-white text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-[3px] shadow-sm z-20 backdrop-blur-md">
                       Sponsored
                     </div>
-                    <div className="relative z-10 flex flex-col items-center p-6 text-center mt-2">
-                      <h3 className="text-xl md:text-2xl font-extrabold text-[#0a1128]/50 tracking-tight">
-                        Advertisement Text
-                      </h3>
+                    <img
+                      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+                      alt="Sponsored Video"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10 pointer-events-none" />
+                    
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        className="flex items-center justify-center w-14 h-14 rounded-full bg-black/50 backdrop-blur-md border border-white/50 group-hover:bg-white group-hover:border-white group-hover:text-[#0a1128] shadow-[0_8px_30px_rgba(0,0,0,0.5)] text-white transition-all duration-300 pointer-events-auto"
+                      >
+                        <Play size={22} className="ml-1" fill="currentColor" />
+                      </motion.div>
                     </div>
                   </motion.div>
                 );
@@ -480,6 +487,9 @@ export default function ExploreDesktop() {
                   </h3>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-gray-200 font-semibold bg-white/10 px-2 py-0.5 rounded-[3px] backdrop-blur-sm border border-white/20">
+                        {video.category}
+                      </span>
                     </div>
                     <span className="flex items-center gap-1 px-2 py-0.5 rounded-[3px] bg-white text-[#0a1128] text-[10px] font-bold shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-1 group-hover:translate-x-0">
                       Watch <ChevronRight size={11} />

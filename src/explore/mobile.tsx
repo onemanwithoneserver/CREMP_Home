@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Play, Video, Eye, Clock, Loader2, Filter } from "lucide-react";
+import { Search, Play, Video, Loader2, Filter } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
@@ -216,9 +216,7 @@ export default function ExploreMobile() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const filteredVideos = sampleVideos.filter((v) => {
-    const matchesSearch =
-      v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      v.brand.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = v.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory =
       activeCategory === "All" || v.category === activeCategory;
     return matchesSearch && matchesCategory;
@@ -388,15 +386,22 @@ export default function ExploreMobile() {
                     animate="show"
                     exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                     key={item.uniqueId}
-                    className={`relative flex flex-col items-center justify-center h-full bg-gradient-to-br from-white to-[#fdfbf6] border border-gray-200/80 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.06)] active:scale-[0.98] transition-all duration-300 ${spanClass}`}
+                    className={`group relative flex flex-col items-center justify-center bg-[#0a1128] border border-gray-200/80 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.06)] active:scale-[0.98] transition-all duration-300 ${spanClass} aspect-video cursor-pointer`}
                   >
-                    <div className="absolute top-2 left-2 bg-[#f3cd52]/20 border border-[#d4af37]/40 text-[#b38728] text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-10">
-                      Ad
+                    <div className="absolute top-2 left-2 bg-black/80 border border-white/20 text-white text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-20 backdrop-blur-md">
+                      Sponsored
                     </div>
-                    <div className="relative z-10 flex flex-col items-center p-3 text-center w-full mt-1">
-                      <h3 className="text-sm font-extrabold text-[#0a1128]/50 tracking-tight">
-                        Advertisement Text
-                      </h3>
+                    <img
+                      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+                      alt="Sponsored Video"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-active:bg-black/10 transition-colors duration-500 z-10 pointer-events-none" />
+                    
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                      <div className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/50 group-active:bg-white group-active:text-[#0a1128] group-active:border-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.4)] text-white group-active:scale-90 transition-all duration-300 pointer-events-auto">
+                        <Play size={16} className="ml-0.5" fill="currentColor" />
+                      </div>
                     </div>
                   </motion.div>
                 );
@@ -449,6 +454,9 @@ export default function ExploreMobile() {
                     {video.title}
                   </h3>
                   <div className="flex items-center justify-between gap-1">
+                    <span className="text-[9px] text-gray-200 font-semibold bg-white/10 px-1.5 py-[2px] rounded-[2px] backdrop-blur-sm border border-white/20">
+                      {video.category}
+                    </span>
                   </div>
                 </div>
               </motion.div>
