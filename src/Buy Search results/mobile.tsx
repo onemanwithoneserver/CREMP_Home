@@ -3,6 +3,9 @@ import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import BuildingBox from "../BuildingBox";
 import LandBox from "../LandBox";
 import AllBuildingBox from "../AllBuildingBox";
+import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
+import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
+import { useNavigate } from "react-router-dom";
 import {
   Heart,
   MapPin,
@@ -54,6 +57,16 @@ function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: strin
 }
 
 export default function BuySearchResultsMobile() {
+  const [exploreTab, setExploreTab] = useState<"explore" | "commercial" | "business">("commercial");
+  const navigate = useNavigate();
+
+  const handleTabChange = (tab: string) => {
+    setExploreTab(tab as "explore" | "commercial" | "business");
+    if (tab === "franchise") navigate("/franchise-search");
+    if (tab === "commercial") navigate("/buy-search");
+    if (tab === "broker") navigate("/expert-brokers");
+  };
+
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
@@ -121,7 +134,12 @@ export default function BuySearchResultsMobile() {
   );
 
   return (
-    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
+      {/* Sticky Header Tabs */}
+      <div className="sticky top-[53px] z-40 w-full shadow-md">
+        <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
+      </div>
+
       <AnimatePresence mode="wait">
         {selectedPropertyForView && (
           <motion.div
@@ -659,6 +677,7 @@ export default function BuySearchResultsMobile() {
           </div>
         )}
       </div>
+      <MobileStickyFooter />
     </div>
   );
 }
