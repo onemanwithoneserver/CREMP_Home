@@ -204,9 +204,9 @@ export default function ExploreHeaderTabs({
             <motion.div
               animate={{
                 scale: isActive ? 1 : 0.85,
-                opacity: isActive ? 1 : 0.4,
+                opacity: isActive ? 1 : 0.7,
               }}
-              whileHover={{ scale: isActive ? 1.05 : 0.95, opacity: isActive ? 1 : 0.7 }}
+              whileHover={{ scale: isActive ? 1.05 : 0.95, opacity: isActive ? 1 : 0.9 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="relative z-10 flex items-center justify-center"
             >
@@ -231,7 +231,7 @@ export default function ExploreHeaderTabs({
             {/* Label with staggered entrance */}
             <motion.div
               animate={{
-                opacity: isActive ? 1 : 0.4,
+                opacity: 1, // Removed inactive fade to keep it visible
                 x: isActive ? 0 : -1,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -240,7 +240,7 @@ export default function ExploreHeaderTabs({
               <motion.span
                 className="font-bold tracking-wide"
                 animate={{
-                  color: isActive ? "#d4af37" : "#ffffff",
+                  color: isActive ? "#d4af37" : "#e2e8f0", // Very light gray when inactive
                   letterSpacing: isActive ? "0.06em" : "0.04em",
                 }}
                 transition={{ duration: 0.3 }}
@@ -256,8 +256,8 @@ export default function ExploreHeaderTabs({
                 <motion.span
                   className="font-semibold"
                   animate={{
-                    color: isActive ? "#d4af37" : "#ffffff",
-                    opacity: isActive ? 0.9 : 0.4,
+                    color: isActive ? "#d4af37" : "#cbd5e1", // Light gray when inactive
+                    opacity: isActive ? 0.9 : 0.85, // Much higher opacity when inactive
                   }}
                   transition={{ duration: 0.3, delay: 0.05 }}
                   style={{

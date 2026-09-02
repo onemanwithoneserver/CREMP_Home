@@ -116,7 +116,7 @@ const VideoSearchHeader = ({
       <div
         className={clsx(
           "sticky top-[97px] z-30 w-full flex flex-col transition-colors duration-300",
-          isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
+          isSticky ? "bg-[#0b1b42] shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
         )}
       >
         <div
