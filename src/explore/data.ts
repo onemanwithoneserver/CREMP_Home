@@ -17,42 +17,42 @@ export const videoCategories = [
 export const sampleVideos: VideoResult[] = [
   {
     id: "v1",
-    title: "How to Start a Coffee Franchise",
+    title: "Top Commercial Properties for 2024",
     thumbnail:
       "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80",
     category: "New Franchises",
   },
   {
     id: "v2",
-    title: "Founder's Journey: From 1 to 100 Stores",
+    title: "Why you should Hire a Broker",
     thumbnail:
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
     category: "Running Businesses",
   },
   {
     id: "v3",
-    title: "Real Estate Market Trends 2024",
+    title: "Lucrative Business Opportunities",
     thumbnail:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
     category: "Investments",
   },
   {
     id: "v4",
-    title: "Behind the Scenes: Operations",
+    title: "Commercial Properties in Downtown",
     thumbnail:
       "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
     category: "Distribution",
   },
   {
     id: "v5",
-    title: "Scaling Your Franchise Fast",
+    title: "Hire a Broker for better deals",
     thumbnail:
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
     category: "Pre-Leased",
   },
   {
     id: "v6",
-    title: "Meeting the Ideal Partner",
+    title: "Small Business Opportunities",
     thumbnail:
       "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80",
     category: "Fractional",

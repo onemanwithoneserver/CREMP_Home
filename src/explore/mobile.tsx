@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Play, Video, Loader2, Filter, ChevronRight } from "lucide-react";
+import { Search, Play, Video, Loader2, Filter, ChevronRight, X } from "lucide-react";
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
@@ -151,6 +151,20 @@ const VideoSearchHeader = ({
                 placeholder="Search videos..."
                 className="flex-1 bg-transparent border-none outline-none text-[11.5px] sm:text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 sm:py-1.5 pl-2.5"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setVisibleCount(ITEMS_PER_PAGE);
+                  }}
+                  onMouseDown={(e) => e.preventDefault()}
+                  className="shrink-0 p-1 mr-1 text-[#0b1b42]/40 hover:text-[#0b1b42] active:scale-95 transition-all rounded-full hover:bg-gray-100 flex items-center justify-center cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
               <div
                 className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded text-white"
                 style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
@@ -158,6 +172,58 @@ const VideoSearchHeader = ({
                 <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
               </div>
             </div>
+
+            <AnimatePresence>
+              {isSearchFocused && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-0 right-0 mt-1.5 bg-white rounded-b-xl shadow-[0_12px_30px_-5px_rgba(11,27,66,0.15)] overflow-hidden z-[100]"
+                >
+                  <div className="flex flex-col bg-white py-1.5">
+                    {(() => {
+                      const allowedTopics = ["Commercial Properties", "Hire a Broker", "Business Opportunities"];
+                      // Only include videos related to the allowed topics
+                      const relatedVideos = sampleVideos.filter(v => 
+                        allowedTopics.some(topic => v.title.toLowerCase().includes(topic.toLowerCase()))
+                      );
+                      
+                      // Filter by user search query
+                      const filtered = relatedVideos.filter(v => 
+                        v.title.toLowerCase().includes(searchQuery.toLowerCase())
+                      ).slice(0, 6); // Max 6 suggestions
+                      
+                      if (filtered.length === 0) {
+                        return (
+                          <div className="px-4 py-3 text-[12.5px] font-medium text-[#0b1b42]/40 text-center">
+                            No matching videos
+                          </div>
+                        );
+                      }
+                      
+                      return filtered.map((video) => (
+                        <button
+                          key={video.id}
+                          className="w-full text-left px-4 py-2.5 hover:bg-[#f8f9fa] active:bg-[#f1f5f9] transition-colors"
+                          onMouseDown={(e) => {
+                            e.preventDefault(); // Prevent blur
+                            setSearchQuery(video.title);
+                            setIsSearchFocused(false);
+                            setVisibleCount(ITEMS_PER_PAGE);
+                          }}
+                        >
+                          <span className="text-[13px] font-semibold text-[#0a1128]/90 truncate block">
+                            {video.title}
+                          </span>
+                        </button>
+                      ));
+                    })()}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
 
