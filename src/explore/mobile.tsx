@@ -4,7 +4,7 @@ import { Search, Play, Video, Loader2, Filter, ChevronRight } from "lucide-react
 import { sampleVideos, videoCategories } from "./data";
 import { CustomSelect } from "../components/ui/CustomSelect";
 import OpenVideo from "./Open video";
-import MobileStickyFooter from "../components/MobileStickyFooter";
+import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
 import clsx from "clsx";
 import SearchImage from "./ExploreHero.jpg";
 
