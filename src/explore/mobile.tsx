@@ -8,6 +8,7 @@ import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFoo
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
 import clsx from "clsx";
 import SearchImage from "./ExploreHero.jpg";
+import SponsoredAdBg from "../assets/sponsored_ad_bg.jpg";
 
 const sortOptions = [
   { value: "latest", label: "Latest" },
@@ -393,21 +394,33 @@ export default function ExploreMobile() {
                     animate="show"
                     exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                     key={item.uniqueId}
+                    onClick={() => setSelectedVideoId("sponsored-ad")}
                     className={`group relative flex flex-col items-center justify-center bg-[#0a1128] border border-gray-200/80 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.06)] active:scale-[0.98] transition-all duration-300 ${spanClass} aspect-video cursor-pointer`}
                   >
                     <div className="absolute top-2 left-2 bg-black/80 border border-white/20 text-white text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-20 backdrop-blur-md">
                       Sponsored
                     </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
-                      alt="Sponsored Video"
+                    <video
+                      src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-105"
+                      poster={SponsoredAdBg}
                     />
-                    <div className="absolute inset-0 bg-black/20 group-active:bg-black/10 transition-colors duration-500 z-10 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/40 group-active:bg-black/30 transition-colors duration-500 z-10 pointer-events-none" />
                     
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                      <div className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/50 group-active:bg-white group-active:text-[#0a1128] group-active:border-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.4)] text-white group-active:scale-90 transition-all duration-300 pointer-events-auto">
-                        <Play size={16} className="ml-0.5" fill="currentColor" />
+                    {/* Sponsored Text Content */}
+                    <div className="absolute bottom-0 left-0 w-full p-4 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none flex flex-col items-start text-left">
+                      <h3 className="text-white font-bold text-sm sm:text-base leading-tight mb-1 tracking-wide shadow-sm">
+                        Premium Commercial Spaces
+                      </h3>
+                    </div>
+
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 pb-4">
+                      <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/40 group-active:bg-white group-active:text-[#0a1128] group-active:border-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.3)] text-white group-active:scale-90 transition-all duration-300 pointer-events-auto cursor-pointer">
+                        <Play size={18} className="ml-1" fill="currentColor" />
                       </div>
                     </div>
                   </motion.div>

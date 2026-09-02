@@ -46,6 +46,18 @@ export const reelsData: ReelData[] = [
     shares: "450",
     profilePic: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=150&q=80"
   },
+  {
+    id: "sponsored-ad",
+    videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    thumbnail: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+    username: "cremp_premium",
+    description: "Premium Commercial Spaces. Explore our exclusive hand-picked properties in prime locations.",
+    likes: "45K",
+    comments: "1.2K",
+    shares: "5K",
+    profilePic: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80",
+    category: "Sponsored"
+  },
 ];
 export const getReelData = (id: string): ReelData => {
   const sample = sampleVideos.find(v => v.id === id);
