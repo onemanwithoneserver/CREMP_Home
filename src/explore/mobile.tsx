@@ -9,7 +9,6 @@ import SearchImage from "./ExploreHero.jpg";
 
 const sortOptions = [
   { value: "latest", label: "Latest" },
-  { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
 const ITEMS_PER_PAGE = 20;
@@ -225,15 +224,7 @@ export default function ExploreMobile() {
     return matchesSearch && matchesCategory;
   });
   const sortedVideos = [...filteredVideos].sort((a, b) => {
-    if (sortBy === "popular") {
-      const parseViews = (views: string) => {
-        const val = parseFloat(views);
-        if (views.toLowerCase().endsWith('k')) return val * 1000;
-        if (views.toLowerCase().endsWith('m')) return val * 1000000;
-        return val;
-      };
-      return parseViews(b.views) - parseViews(a.views);
-    }
+
     if (sortBy === "oldest") {
       return a.id.localeCompare(b.id);
     }
@@ -453,24 +444,11 @@ export default function ExploreMobile() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-2.5 flex flex-col justify-end z-20">
-                  <div className="flex items-center gap-1 mb-1">
-                    <span className="w-1 h-1 rounded-full bg-white/80" />
-                    <span className="text-white/85 text-[8.5px] font-bold uppercase tracking-wider drop-shadow-md truncate">
-                      {video.brand}
-                    </span>
-                  </div>
+
                   <h3 className="text-[11.5px] font-bold text-white leading-tight mb-2 line-clamp-2 drop-shadow-lg">
                     {video.title}
                   </h3>
                   <div className="flex items-center justify-between gap-1">
-                    <span className="flex items-center gap-1 px-1.5 py-0.5 bg-black/40 backdrop-blur-md border border-white/20 rounded-[2px] text-white text-[8px] font-semibold tracking-wider">
-                      <Clock size={8} className="text-white/80" />
-                      {video.duration}
-                    </span>
-                    <span className="flex items-center gap-1 text-white/80 text-[8.5px] font-medium">
-                      <Eye size={8} className="text-white/70" />
-                      {video.views}
-                    </span>
                   </div>
                 </div>
               </motion.div>

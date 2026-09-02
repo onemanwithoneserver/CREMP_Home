@@ -9,7 +9,6 @@ import SearchImage from "./ExploreHero.jpg";
 
 const sortOptions = [
   { value: "latest", label: "Latest" },
-  { value: "popular", label: "Popular" },
   { value: "oldest", label: "Oldest" },
 ];
 const ITEMS_PER_PAGE = 50;
@@ -239,15 +238,7 @@ export default function ExploreDesktop() {
     return matchesSearch && matchesCategory;
   });
   const sortedVideos = [...filteredVideos].sort((a, b) => {
-    if (sortBy === "popular") {
-      const parseViews = (views: string) => {
-        const val = parseFloat(views);
-        if (views.toLowerCase().endsWith('k')) return val * 1000;
-        if (views.toLowerCase().endsWith('m')) return val * 1000000;
-        return val;
-      };
-      return parseViews(b.views) - parseViews(a.views);
-    }
+
     if (sortBy === "oldest") {
       return a.id.localeCompare(b.id);
     }
@@ -483,25 +474,12 @@ export default function ExploreDesktop() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end z-20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
-                    <span className="text-white/85 text-[11px] font-bold uppercase tracking-wider drop-shadow-md truncate">
-                      {video.brand}
-                    </span>
-                  </div>
+
                   <h3 className="text-[14.5px] font-bold text-white leading-snug mb-3 line-clamp-2 drop-shadow-lg">
                     {video.title}
                   </h3>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="flex items-center gap-1 px-2 py-0.5 bg-black/40 backdrop-blur-md border border-white/20 rounded-[3px] text-white text-[9.5px] font-semibold tracking-wider shadow-sm">
-                        <Clock size={10} className="text-white/80" />
-                        {video.duration}
-                      </span>
-                      <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
-                        <Eye size={10} className="text-white/70" />
-                        {video.views}
-                      </span>
                     </div>
                     <span className="flex items-center gap-1 px-2 py-0.5 rounded-[3px] bg-white text-[#0a1128] text-[10px] font-bold shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-1 group-hover:translate-x-0">
                       Watch <ChevronRight size={11} />
