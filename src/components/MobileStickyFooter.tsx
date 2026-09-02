@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import logo from "../Logo/CREMP.png";
 import logoLight from "../Logo/CREMP_Light.png";
 
@@ -7,11 +8,18 @@ export interface MobileStickyFooterProps {
   onTabChange?: (tab: string) => void;
 }
 
+interface NavItem {
+  id: string;
+  label: string;
+  isLogo?: boolean;
+}
+
 export default function MobileStickyFooter({
   activeTab = "explore",
   onTabChange,
 }: MobileStickyFooterProps) {
   const [currentTab, setCurrentTab] = useState(activeTab);
+  const [tapEffect, setTapEffect] = useState<string | null>(null);
 
   useEffect(() => {
     setCurrentTab(activeTab);
@@ -19,471 +27,278 @@ export default function MobileStickyFooter({
 
   const handleNav = (tab: string) => {
     setCurrentTab(tab);
+    setTapEffect(tab);
+    setTimeout(() => setTapEffect(null), 400);
     if (onTabChange) {
       onTabChange(tab);
     }
   };
 
-  const isHomeActive = currentTab === "home";
-  const isExploreActive = currentTab === "explore";
-  const isSavedActive = currentTab === "saved";
-  const isHireBrokerActive = currentTab === "hire-broker";
-  const isHandPickedActive = currentTab === "hand-picked";
-  const isPostReqActive = currentTab === "post-requirement";
-
-  const dividerClass = "self-stretch flex items-center py-2.5 shrink-0";
-  const dividerInnerClass =
-    "w-px h-6 bg-gradient-to-b from-transparent via-white/15 to-transparent";
+  const navItems: NavItem[] = [
+    { id: "home", label: "CREMP", isLogo: true },
+    { id: "explore", label: "Explore" },
+    { id: "saved", label: "Saved" },
+    { id: "hire-broker", label: "Hire Broker" },
+    { id: "hand-picked", label: "Hand Picked" },
+    { id: "post-requirement", label: "Post Req" },
+  ];
 
   return (
     <nav
       role="navigation"
-      aria-label="Main navigation"
+      aria-label="Main mobile navigation"
       className="
         relative left-0 right-0 z-50
-        flex flex-col w-full overflow-hidden
-        bg-[#0b1b42]/95 backdrop-blur-2xl
-        border-t border-white/10 shadow-[0_-15px_40px_rgba(0,0,0,0.6)]
+        flex flex-col w-full
+        bg-[#0b1b42]
+        border-t border-white/[0.08]
+        shadow-[0_-12px_36px_rgba(0,0,0,0.8)]
         select-none font-['Outfit',sans-serif]
+        pb-[max(calc(env(safe-area-inset-bottom)+0.2rem),0.4rem)]
       "
     >
-      {/* Top golden accent line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+      <div className="flex items-stretch justify-between w-full relative px-1 pt-1.5 pb-0.5">
+        {navItems.map((item, index) => {
+          const isActive = currentTab === item.id;
+          const isTapped = tapEffect === item.id;
 
-      <div className="flex items-stretch w-full relative px-0.5 py-0.5">
-        {/* 1. CREMP Home Logo */}
-        <button
-          type="button"
-          onClick={() => handleNav("home")}
-          className={`
-            relative group flex flex-1 min-w-0 flex-col items-center justify-center
-            gap-1 py-2 px-0.5
-            rounded-[4px] cursor-pointer outline-none
-            transition-all duration-300 ease-out
-            [-webkit-tap-highlight-color:transparent]
-            overflow-hidden
-            ${
-              isHomeActive
-                ? "bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                : "bg-transparent hover:bg-white/5 text-white/70 hover:text-white"
-            }
-          `}
-          aria-label="Go to CREMP home"
-        >
-          <div
-            className={`
-              absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-b-full
-              bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${isHomeActive ? "w-[40%] opacity-100 shadow-[0_2px_12px_rgba(212,175,55,0.9)]" : "w-0 opacity-0"}
-            `}
-          ></div>
-          <div className="w-6 h-6 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
-            <img
-              alt="CREMP Logo"
-              src={logo}
-              onError={(e) => {
-                const target = e.currentTarget;
-                if (target.src !== logoLight) {
-                  target.src = logoLight;
-                }
-              }}
-              className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
-            />
-          </div>
-          <span
-            className={`
-              block w-full text-center leading-tight whitespace-pre-wrap
-              transition-all duration-300 text-[0.55rem] tracking-wider uppercase
-              ${
-                isHomeActive
-                  ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-amber-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                  : "font-semibold text-white/90 group-hover:text-white"
-              }
-            `}
-          >
-            CREMP
-          </span>
-          {isHomeActive && (
-            <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.9)] animate-pulse"></div>
-          )}
-        </button>
+          return (
+            <div key={item.id} className="flex-1 flex items-stretch relative min-w-0">
+              {/* Vertical divider */}
+              {index > 0 && (
+                <div className="self-stretch flex items-center py-2.5 shrink-0 -ml-[0.5px]">
+                  <div className="w-[1px] h-6 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent opacity-60" />
+                </div>
+              )}
 
-        <div className={dividerClass}>
-          <div className={dividerInnerClass}></div>
-        </div>
+              <motion.button
+                type="button"
+                whileTap={{ scale: 0.92 }}
+                onClick={() => handleNav(item.id)}
+                aria-label={item.isLogo ? "Go to CREMP home" : item.label}
+                aria-current={isActive ? "page" : undefined}
+                className="
+                  relative group flex flex-1 min-w-0 flex-col items-center justify-center
+                  gap-1 py-1.5 px-0.5 rounded-[4px] cursor-pointer outline-none
+                  bg-transparent border-none
+                  transition-colors duration-300 ease-out
+                  [-webkit-tap-highlight-color:transparent]
+                  overflow-hidden
+                "
+              >
+                {/* Centered Top Golden Indicator Bar with Downward Shadow / Glow Effect */}
+                {isActive && (
+                  <div className="absolute top-0 inset-x-0 flex justify-center pointer-events-none z-20">
+                    {/* Soft downward radiating golden shadow beam */}
+                    <div className="absolute -top-1 w-16 h-10 bg-gradient-to-b from-[#d4af37]/35 via-[#d4af37]/10 to-transparent blur-md rounded-full pointer-events-none" />
+                    <motion.div
+                      layoutId="activeTopBar"
+                      transition={{
+                        type: "spring",
+                        stiffness: 450,
+                        damping: 32,
+                      }}
+                      className="
+                        h-[3px] w-8 rounded-b-full
+                        bg-gradient-to-r from-[#bf953f] via-[#fde047] to-[#b38728]
+                        shadow-[0_4px_18px_rgba(251,191,36,0.95),0_0_8px_rgba(245,158,11,0.85)]
+                        relative z-10
+                      "
+                    />
+                  </div>
+                )}
 
-        {/* 2. Explore (Beside the Logo) */}
-        <button
-          type="button"
-          onClick={() => handleNav("explore")}
-          aria-label="Explore"
-          aria-current={isExploreActive ? "page" : undefined}
-          className={`
-            relative group flex flex-1 min-w-0 flex-col items-center justify-center
-            gap-1 py-2 px-0.5
-            rounded-[4px] cursor-pointer outline-none
-            transition-all duration-300 ease-out
-            [-webkit-tap-highlight-color:transparent]
-            overflow-hidden
-            ${
-              isExploreActive
-                ? "bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                : "bg-transparent hover:bg-white/5 text-white/70 hover:text-white"
-            }
-          `}
-        >
-          <div
-            className={`
-              absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-b-full
-              bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${isExploreActive ? "w-[40%] opacity-100 shadow-[0_2px_12px_rgba(212,175,55,0.9)]" : "w-0 opacity-0"}
-            `}
-          ></div>
-          <div
-            className={`
-              flex items-center justify-center shrink-0 w-6 h-6
-              transition-all duration-300 ease-out will-change-transform
-              ${isExploreActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)] text-[#d4af37]" : "scale-100 group-hover:-translate-y-0.5 group-hover:scale-105 text-white/70 group-hover:text-white"}
-            `}
-          >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <defs>
-                <linearGradient id="goldGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#fef08a"></stop>
-                  <stop offset="50%" stopColor="#fbbf24"></stop>
-                  <stop offset="100%" stopColor="#f59e0b"></stop>
-                </linearGradient>
-              </defs>
-              <path d="M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"></path>
-              <polygon
-                points="8 7.5 8 13.5 13 10.5"
-                fill={isExploreActive ? "rgba(212,175,55,0.3)" : "none"}
-              ></polygon>
-              <circle cx="17.5" cy="17.5" r="3.5"></circle>
-              <path d="M20 20L22.5 22.5"></path>
-            </svg>
-          </div>
-          <span
-            className={`
-              block w-full text-center leading-tight whitespace-pre-wrap
-              transition-all duration-300 text-[0.55rem] tracking-wide
-              ${
-                isExploreActive
-                  ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-amber-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                  : "font-medium text-white/70 group-hover:text-white"
-              }
-            `}
-          >
-            Explore
-          </span>
-          {isExploreActive && (
-            <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.9)] animate-pulse"></div>
-          )}
-        </button>
+                {/* Tap micro ripple */}
+                <AnimatePresence>
+                  {isTapped && (
+                    <motion.span
+                      initial={{ scale: 0.2, opacity: 0.6 }}
+                      animate={{ scale: 2, opacity: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="absolute w-7 h-7 rounded-full bg-[#d4af37]/25 pointer-events-none"
+                    />
+                  )}
+                </AnimatePresence>
 
-        <div className={dividerClass}>
-          <div className={dividerInnerClass}></div>
-        </div>
+                {/* Icon Container */}
+                <motion.div
+                  animate={{
+                    scale: isActive ? 1.1 : 1,
+                    y: isActive ? -0.5 : 0,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 450,
+                    damping: 26,
+                  }}
+                  className={`
+                    flex items-center justify-center shrink-0 w-6 h-6 relative z-10
+                    transition-all duration-300
+                    ${
+                      isActive
+                        ? "text-[#d4af37] drop-shadow-[0_0_8px_rgba(212,175,55,0.7)]"
+                        : "text-white/65 group-hover:text-white"
+                    }
+                  `}
+                >
+                  {/* Item 1: CREMP Logo */}
+                  {item.id === "home" && (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img
+                        alt="CREMP Logo"
+                        src={logo}
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (target.src !== logoLight) {
+                            target.src = logoLight;
+                          }
+                        }}
+                        className={`w-full h-full object-contain transition-all duration-300 ${
+                          isActive
+                            ? "drop-shadow-[0_0_8px_rgba(246,178,59,0.75)] scale-105"
+                            : "drop-shadow-[0_0_4px_rgba(246,178,59,0.3)] opacity-90 group-hover:opacity-100"
+                        }`}
+                      />
+                    </div>
+                  )}
 
-        {/* 3. Saved */}
-        <button
-          type="button"
-          onClick={() => handleNav("saved")}
-          aria-label="Saved"
-          aria-current={isSavedActive ? "page" : undefined}
-          className={`
-            relative group flex flex-1 min-w-0 flex-col items-center justify-center
-            gap-1 py-2 px-0.5
-            rounded-[4px] cursor-pointer outline-none
-            transition-all duration-300 ease-out
-            [-webkit-tap-highlight-color:transparent]
-            overflow-hidden
-            ${
-              isSavedActive
-                ? "bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                : "bg-transparent hover:bg-white/5 text-white/70 hover:text-white"
-            }
-          `}
-        >
-          <div
-            className={`
-              absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-b-full
-              bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${isSavedActive ? "w-[40%] opacity-100 shadow-[0_2px_12px_rgba(212,175,55,0.9)]" : "w-0 opacity-0"}
-            `}
-          ></div>
-          <div
-            className={`
-              flex items-center justify-center shrink-0 w-6 h-6
-              transition-all duration-300 ease-out will-change-transform
-              ${isSavedActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)] text-[#d4af37]" : "scale-100 group-hover:-translate-y-0.5 group-hover:scale-105 text-white/70 group-hover:text-white"}
-            `}
-          >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className={`transition-all duration-300 ${isSavedActive ? "fill-[#d4af37]/30 text-[#d4af37]" : "fill-transparent text-current"}`}
-            >
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-          </div>
-          <span
-            className={`
-              block w-full text-center leading-tight whitespace-pre-wrap
-              transition-all duration-300 text-[0.55rem] tracking-wide
-              ${
-                isSavedActive
-                  ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-amber-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                  : "font-medium text-white/70 group-hover:text-white"
-              }
-            `}
-          >
-            Saved
-          </span>
-          {isSavedActive && (
-            <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.9)] animate-pulse"></div>
-          )}
-        </button>
+                  {/* Item 2: Explore (Video Frame + Search Glass) */}
+                  {item.id === "explore" && (
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M13 18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6" />
+                      <polygon
+                        points="8 7.5 8 13.5 13 10.5"
+                        fill={isActive ? "rgba(212,175,55,0.35)" : "none"}
+                        stroke="currentColor"
+                      />
+                      <circle cx="17.5" cy="17.5" r="3.5" />
+                      <path d="M20 20L22.5 22.5" />
+                    </svg>
+                  )}
 
-        <div className={dividerClass}>
-          <div className={dividerInnerClass}></div>
-        </div>
+                  {/* Item 3: Saved (Heart) */}
+                  {item.id === "saved" && (
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                        fill={isActive ? "rgba(212,175,55,0.35)" : "none"}
+                      />
+                    </svg>
+                  )}
 
-        {/* 4. Hire Broker */}
-        <button
-          type="button"
-          onClick={() => handleNav("hire-broker")}
-          aria-label="Hire Broker"
-          aria-current={isHireBrokerActive ? "page" : undefined}
-          className={`
-            relative group flex flex-1 min-w-0 flex-col items-center justify-center
-            gap-1 py-2 px-0.5
-            rounded-[4px] cursor-pointer outline-none
-            transition-all duration-300 ease-out
-            [-webkit-tap-highlight-color:transparent]
-            overflow-hidden
-            ${
-              isHireBrokerActive
-                ? "bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                : "bg-transparent hover:bg-white/5 text-white/70 hover:text-white"
-            }
-          `}
-        >
-          <div
-            className={`
-              absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-b-full
-              bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${isHireBrokerActive ? "w-[40%] opacity-100 shadow-[0_2px_12px_rgba(212,175,55,0.9)]" : "w-0 opacity-0"}
-            `}
-          ></div>
-          <div
-            className={`
-              flex items-center justify-center shrink-0 w-6 h-6
-              transition-all duration-300 ease-out will-change-transform
-              ${isHireBrokerActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)] text-[#d4af37]" : "scale-100 group-hover:-translate-y-0.5 group-hover:scale-105 text-white/70 group-hover:text-white"}
-            `}
-          >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="10" cy="7" r="4.5"></circle>
-              <path d="M3 21v-2a6 6 0 0 1 8-5.5"></path>
-              <circle cx="17.5" cy="16.5" r="3.5"></circle>
-              <path d="M17.5 16.5v.01"></path>
-            </svg>
-          </div>
-          <span
-            className={`
-              block w-full text-center leading-tight whitespace-pre-wrap
-              transition-all duration-300 text-[0.55rem] tracking-wide
-              ${
-                isHireBrokerActive
-                  ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-amber-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                  : "font-medium text-white/70 group-hover:text-white"
-              }
-            `}
-          >
-            Hire Broker
-          </span>
-          {isHireBrokerActive && (
-            <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.9)] animate-pulse"></div>
-          )}
-        </button>
+                  {/* Item 4: Hire Broker (User Profile + Badge) */}
+                  {item.id === "hire-broker" && (
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle
+                        cx="10"
+                        cy="7"
+                        r="4"
+                        fill={isActive ? "rgba(212,175,55,0.25)" : "none"}
+                      />
+                      <path d="M3 21v-2a5.5 5.5 0 0 1 7.5-5.1" />
+                      <circle
+                        cx="17.5"
+                        cy="16.5"
+                        r="3.5"
+                        fill={isActive ? "rgba(212,175,55,0.3)" : "none"}
+                      />
+                      <path d="M17.5 16.5v.01" strokeWidth="2.5" />
+                    </svg>
+                  )}
 
-        <div className={dividerClass}>
-          <div className={dividerInnerClass}></div>
-        </div>
+                  {/* Item 5: Hand Picked (Star Badge) */}
+                  {item.id === "hand-picked" && (
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12 2.5a1.5 1.5 0 0 1 1 .5l1.5 1.5a1.5 1.5 0 0 0 1 .5h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 0 .5 1l1.5 1.5a1.5 1.5 0 0 1 0 2l-1.5 1.5a1.5 1.5 0 0 0-.5 1v2a1.5 1.5 0 0 1-1.5 1.5h-2a1.5 1.5 0 0 0-1 .5l-1.5 1.5a1.5 1.5 0 0 1-2 0l-1.5-1.5a1.5 1.5 0 0 0-1-.5h-2a1.5 1.5 0 0 1-1.5-1.5v-2a1.5 1.5 0 0 0-.5-1l-1.5-1.5a1.5 1.5 0 0 1 0-2l1.5-1.5a1.5 1.5 0 0 0 .5-1v-2A1.5 1.5 0 0 1 5.5 6h2a1.5 1.5 0 0 0 1-.5l1.5-1.5a1.5 1.5 0 0 1 1-.5z" />
+                      <polygon
+                        points="12 7.5 13.5 10 16.5 10.5 14 12.5 14.5 15.5 12 14 9.5 15.5 10 12.5 7.5 10.5 10.5 10"
+                        fill={isActive ? "rgba(212,175,55,0.35)" : "none"}
+                      />
+                    </svg>
+                  )}
 
-        {/* 5. Hand Picked */}
-        <button
-          type="button"
-          onClick={() => handleNav("hand-picked")}
-          aria-label="Hand Picked"
-          aria-current={isHandPickedActive ? "page" : undefined}
-          className={`
-            relative group flex flex-1 min-w-0 flex-col items-center justify-center
-            gap-1 py-2 px-0.5
-            rounded-[4px] cursor-pointer outline-none
-            transition-all duration-300 ease-out
-            [-webkit-tap-highlight-color:transparent]
-            overflow-hidden
-            ${
-              isHandPickedActive
-                ? "bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                : "bg-transparent hover:bg-white/5 text-white/70 hover:text-white"
-            }
-          `}
-        >
-          <div
-            className={`
-              absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-b-full
-              bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${isHandPickedActive ? "w-[40%] opacity-100 shadow-[0_2px_12px_rgba(212,175,55,0.9)]" : "w-0 opacity-0"}
-            `}
-          ></div>
-          <div
-            className={`
-              flex items-center justify-center shrink-0 w-6 h-6
-              transition-all duration-300 ease-out will-change-transform
-              ${isHandPickedActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)] text-[#d4af37]" : "scale-100 group-hover:-translate-y-0.5 group-hover:scale-105 text-white/70 group-hover:text-white"}
-            `}
-          >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2.5a1.5 1.5 0 0 1 1 .5l1.5 1.5a1.5 1.5 0 0 0 1 .5h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 0 .5 1l1.5 1.5a1.5 1.5 0 0 1 0 2l-1.5 1.5a1.5 1.5 0 0 0-.5 1v2a1.5 1.5 0 0 1-1.5 1.5h-2a1.5 1.5 0 0 0-1 .5l-1.5 1.5a1.5 1.5 0 0 1-2 0l-1.5-1.5a1.5 1.5 0 0 0-1-.5h-2a1.5 1.5 0 0 1-1.5-1.5v-2a1.5 1.5 0 0 0-.5-1l-1.5-1.5a1.5 1.5 0 0 1 0-2l1.5-1.5a1.5 1.5 0 0 0 .5-1v-2A1.5 1.5 0 0 1 5.5 6h2a1.5 1.5 0 0 0 1-.5l1.5-1.5a1.5 1.5 0 0 1 1-.5z"></path>
-              <polygon
-                points="12 7.5 13.5 10 16.5 10.5 14 12.5 14.5 15.5 12 14 9.5 15.5 10 12.5 7.5 10.5 10.5 10"
-                fill={isHandPickedActive ? "rgba(212,175,55,0.3)" : "none"}
-              ></polygon>
-            </svg>
-          </div>
-          <span
-            className={`
-              block w-full text-center leading-tight whitespace-pre-wrap
-              transition-all duration-300 text-[0.55rem] tracking-wide
-              ${
-                isHandPickedActive
-                  ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-amber-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                  : "font-medium text-white/70 group-hover:text-white"
-              }
-            `}
-          >
-            Hand Picked
-          </span>
-          {isHandPickedActive && (
-            <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.9)] animate-pulse"></div>
-          )}
-        </button>
+                  {/* Item 6: Post Requirement (Document + Plus) */}
+                  {item.id === "post-requirement" && (
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6" />
+                      <path d="M7 8h6" />
+                      <path d="M7 12h6" />
+                      <path d="M7 16h3" />
+                      <circle
+                        cx="17.5"
+                        cy="16.5"
+                        r="4"
+                        fill={isActive ? "rgba(212,175,55,0.25)" : "none"}
+                      />
+                      <path d="M17.5 14.5v4M15.5 16.5h4" />
+                    </svg>
+                  )}
+                </motion.div>
 
-        <div className={dividerClass}>
-          <div className={dividerInnerClass}></div>
-        </div>
-
-        {/* 6. Post Requirement */}
-        <button
-          type="button"
-          onClick={() => handleNav("post-requirement")}
-          aria-label="Post Requirement"
-          aria-current={isPostReqActive ? "page" : undefined}
-          className={`
-            relative group flex flex-1 min-w-0 flex-col items-center justify-center
-            gap-1 py-2 px-0.5
-            rounded-[4px] cursor-pointer outline-none
-            transition-all duration-300 ease-out
-            [-webkit-tap-highlight-color:transparent]
-            overflow-hidden
-            ${
-              isPostReqActive
-                ? "bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                : "bg-transparent hover:bg-white/5 text-white/70 hover:text-white"
-            }
-          `}
-        >
-          <div
-            className={`
-              absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-b-full
-              bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728]
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${isPostReqActive ? "w-[40%] opacity-100 shadow-[0_2px_12px_rgba(212,175,55,0.9)]" : "w-0 opacity-0"}
-            `}
-          ></div>
-          <div
-            className={`
-              flex items-center justify-center shrink-0 w-6 h-6
-              transition-all duration-300 ease-out will-change-transform
-              ${isPostReqActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)] text-[#d4af37]" : "scale-100 group-hover:-translate-y-0.5 group-hover:scale-105 text-white/70 group-hover:text-white"}
-            `}
-          >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"></path>
-              <path d="M7 8h6"></path>
-              <path d="M7 12h6"></path>
-              <path d="M7 16h3"></path>
-              <circle cx="17.5" cy="16.5" r="4.5"></circle>
-              <path d="M17.5 14v5M15 16.5h5"></path>
-            </svg>
-          </div>
-          <span
-            className={`
-              block w-full text-center leading-tight whitespace-pre-wrap
-              transition-all duration-300 text-[0.55rem] tracking-wide
-              ${
-                isPostReqActive
-                  ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-amber-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                  : "font-medium text-white/70 group-hover:text-white"
-              }
-            `}
-          >
-            Post Requirement
-          </span>
-          {isPostReqActive && (
-            <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] shadow-[0_0_6px_rgba(212,175,55,0.9)] animate-pulse"></div>
-          )}
-        </button>
+                {/* Text Label */}
+                <span
+                  className={`
+                    block w-full text-center leading-tight whitespace-pre-wrap relative z-10
+                    transition-all duration-300 text-[0.56rem] tracking-tight
+                    ${
+                      isActive
+                        ? "bg-gradient-to-r from-yellow-200 via-amber-300 to-yellow-500 bg-clip-text text-transparent font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                        : "font-medium text-white/65 group-hover:text-white"
+                    }
+                  `}
+                >
+                  {item.label}
+                </span>
+              </motion.button>
+            </div>
+          );
+        })}
       </div>
     </nav>
   );
