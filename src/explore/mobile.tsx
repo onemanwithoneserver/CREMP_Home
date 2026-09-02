@@ -209,6 +209,65 @@ const VideoSearchHeader = ({
   );
 };
 
+const SponsoredAdCard = ({ spanClass, cardVariants }: { spanClass: string, cardVariants: any }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayClick = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  return (
+    <motion.div
+      layout
+      variants={cardVariants}
+      initial="hidden"
+      animate="show"
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+      className={`group relative flex flex-col items-center justify-center bg-[#0a1128] border border-gray-200/80 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all duration-300 ${spanClass} aspect-video`}
+    >
+      <div className="absolute top-2 left-2 bg-[#d4af37] border border-white/20 text-[#0a1128] text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-20 backdrop-blur-md">
+        Sponsored
+      </div>
+
+      <video
+        ref={videoRef}
+        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        loop
+        playsInline
+        controls={isPlaying}
+        className="absolute inset-0 w-full h-full object-cover"
+        poster={SponsoredAdBg}
+        onPause={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+      />
+
+      {!isPlaying && (
+        <div 
+          className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors z-10 cursor-pointer"
+          onClick={handlePlayClick}
+        >
+          <div className="w-10 h-10 rounded-full bg-[#1a1f2e]/90 border border-white/10 flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.4)] text-white group-hover:scale-110 transition-transform">
+            <Play size={14} className="ml-1" fill="currentColor" />
+          </div>
+        </div>
+      )}
+
+      {/* Gradient for text visibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 pointer-events-none z-[5]" />
+
+      <div className="absolute bottom-1 left-0 w-full p-3 z-10 pointer-events-none flex flex-col items-start text-left">
+        <h3 className="text-white font-bold text-sm sm:text-base leading-tight mb-1 tracking-wide shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+          Premium Commercial Spaces
+        </h3>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function ExploreMobile() {
   const [exploreTab, setExploreTab] = useState<"explore" | "commercial" | "business">("explore");
   const [searchQuery, setSearchQuery] = useState("");
@@ -386,45 +445,7 @@ export default function ExploreMobile() {
             {displayedItems.map((item) => {
               if (item.isAd) {
                 const spanClass = "col-span-2 min-h-[180px]";
-                return (
-                  <motion.div
-                    layout
-                    variants={cardVariants}
-                    initial="hidden"
-                    animate="show"
-                    exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-                    key={item.uniqueId}
-                    onClick={() => setSelectedVideoId("sponsored-ad")}
-                    className={`group relative flex flex-col items-center justify-center bg-[#0a1128] border border-gray-200/80 rounded-[6px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.06)] active:scale-[0.98] transition-all duration-300 ${spanClass} aspect-video cursor-pointer`}
-                  >
-                    <div className="absolute top-2 left-2 bg-black/80 border border-white/20 text-white text-[7px] font-extrabold uppercase tracking-widest px-1.5 py-[2px] rounded-[2px] shadow-sm z-20 backdrop-blur-md">
-                      Sponsored
-                    </div>
-                    <video
-                      src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-105"
-                      poster={SponsoredAdBg}
-                    />
-                    <div className="absolute inset-0 bg-black/40 group-active:bg-black/30 transition-colors duration-500 z-10 pointer-events-none" />
-                    
-                    {/* Sponsored Text Content */}
-                    <div className="absolute bottom-0 left-0 w-full p-4 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none flex flex-col items-start text-left">
-                      <h3 className="text-white font-bold text-sm sm:text-base leading-tight mb-1 tracking-wide shadow-sm">
-                        Premium Commercial Spaces
-                      </h3>
-                    </div>
-
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 pb-4">
-                      <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/40 group-active:bg-white group-active:text-[#0a1128] group-active:border-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.3)] text-white group-active:scale-90 transition-all duration-300 pointer-events-auto cursor-pointer">
-                        <Play size={18} className="ml-1" fill="currentColor" />
-                      </div>
-                    </div>
-                  </motion.div>
-                );
+                return <SponsoredAdCard key={item.uniqueId} spanClass={spanClass} cardVariants={cardVariants} />;
               }
               const video = item as any;
               return (
