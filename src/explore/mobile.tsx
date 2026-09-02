@@ -209,7 +209,7 @@ const VideoSearchHeader = ({
 };
 
 export default function ExploreMobile() {
-  const [exploreTab, setExploreTab] = useState<"commercial" | "business">("commercial");
+  const [exploreTab, setExploreTab] = useState<"explore" | "commercial" | "business">("explore");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);

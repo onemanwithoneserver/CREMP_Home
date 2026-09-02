@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 
@@ -20,11 +20,11 @@ export default function MobileStickyFooter({
   activeTab = "explore",
   onTabChange,
 }: MobileStickyFooterProps) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
   const pathParts = location.pathname.split("/").filter(Boolean);
-  const themeMode = pathParts[0] || "dark";
-  const viewMode = pathParts[1] || "mobile";
+  // const themeMode = pathParts[0] || "dark";
+  // const viewMode = pathParts[1] || "mobile";
   const currentPathPage = pathParts[2];
   
   const [currentTab, setCurrentTab] = useState(currentPathPage || activeTab);
@@ -39,8 +39,8 @@ export default function MobileStickyFooter({
     setTapEffect(tab);
     setTimeout(() => setTapEffect(null), 400);
     
-    // Navigate to the proper route
-    navigate(`/${themeMode}/${viewMode}/${tab}`);
+    // Navigate to the proper route (Disabled for demo)
+    // navigate(`/${themeMode}/${viewMode}/${tab}`);
     
     if (onTabChange) {
       onTabChange(tab);
@@ -49,7 +49,6 @@ export default function MobileStickyFooter({
 
   const navItems: NavItem[] = [
     { id: "home", label: "CREMP", isLogo: true },
-    { id: "explore", label: "Explore" },
     { id: "saved", label: "Saved" },
     { id: "hire-broker", label: "Hire Broker" },
     { id: "hand-picked", label: "Hand Picked" },

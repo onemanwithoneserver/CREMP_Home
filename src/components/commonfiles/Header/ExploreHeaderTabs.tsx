@@ -1,11 +1,32 @@
 import { motion } from "framer-motion";
 
 export interface ExploreHeaderTabsProps {
-  activeTab: "commercial" | "business";
-  onChange: (tab: "commercial" | "business") => void;
+  activeTab: "explore" | "commercial" | "business";
+  onChange: (tab: "explore" | "commercial" | "business") => void;
 }
 
 const tabs = [
+  {
+    id: "explore" as const,
+    label: "Explore",
+    sublabel: undefined,
+    icon: (active: boolean) => (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={active ? "#d4af37" : "#ffffff"}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        <path d="M2 12h20" />
+      </svg>
+    ),
+  },
   {
     id: "commercial" as const,
     label: "Commercial",
@@ -80,7 +101,7 @@ export default function ExploreHeaderTabs({
             className="flex-1 relative flex items-center justify-center gap-2.5 py-2.5 outline-none cursor-pointer"
             style={{
               borderRight:
-                idx === 0
+                idx < tabs.length - 1
                   ? "1px solid rgba(255,255,255,0.06)"
                   : undefined,
             }}
@@ -131,17 +152,19 @@ export default function ExploreHeaderTabs({
               >
                 {tab.label}
               </span>
-              <span
-                className="font-semibold tracking-wide"
-                style={{
-                  fontSize: "10.5px",
-                  lineHeight: "1.3",
-                  color: isActive ? "#d4af37" : "#ffffff",
-                  fontFamily: "'Outfit', sans-serif",
-                }}
-              >
-                {tab.sublabel}
-              </span>
+              {tab.sublabel && (
+                <span
+                  className="font-semibold tracking-wide"
+                  style={{
+                    fontSize: "10.5px",
+                    lineHeight: "1.3",
+                    color: isActive ? "#d4af37" : "#ffffff",
+                    fontFamily: "'Outfit', sans-serif",
+                  }}
+                >
+                  {tab.sublabel}
+                </span>
+              )}
             </motion.div>
 
             {/* Active underline indicator */}
