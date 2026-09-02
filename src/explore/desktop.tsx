@@ -515,11 +515,80 @@ export default function ExploreDesktop() {
           <AnimatePresence mode="popLayout">
             {displayedItems.map((item) => {
               if (item.isAd) {
-                let spanClass = "";
-
                 if (item.adType === "long-strip") {
-                  spanClass = "col-span-2 md:col-span-3";
-                } else if (item.adType === "tall") {
+                  return (
+                    <motion.div
+                      layout
+                      variants={cardVariants}
+                      initial="hidden"
+                      animate="show"
+                      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                      key={item.uniqueId}
+                      className="group relative flex flex-col md:flex-row col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(10,17,40,0.25)]"
+                      style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 50%, #132254 100%)" }}
+                    >
+                      {/* Left: Video Thumbnail */}
+                      <div className="relative w-full md:w-[52%] aspect-video shrink-0 overflow-hidden">
+                        <img
+                          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80"
+                          alt="Sponsored Content"
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                        />
+                        {/* Cinematic gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0a1128]/90 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-transparent pointer-events-none" />
+
+                        {/* Sponsored badge on video */}
+                        <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-[#d4af37] text-[#0a1128] text-[9px] font-extrabold uppercase tracking-[0.12em] px-2.5 py-1 rounded-[4px] shadow-[0_2px_12px_rgba(212,175,55,0.5)]">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          Sponsored
+                        </div>
+
+                        {/* Centered play button */}
+                        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                          <motion.div
+                            whileHover={{ scale: 1.15 }}
+                            className="w-16 h-16 rounded-full flex items-center justify-center pointer-events-auto transition-all duration-500 opacity-80 group-hover:opacity-100"
+                            style={{
+                              background: "radial-gradient(circle, rgba(212,175,55,0.95) 0%, rgba(179,135,40,0.9) 100%)",
+                              boxShadow: "0 0 0 4px rgba(212,175,55,0.25), 0 8px 32px rgba(0,0,0,0.5)",
+                            }}
+                          >
+                            <Play size={24} className="ml-1 text-[#0a1128]" fill="currentColor" />
+                          </motion.div>
+                        </div>
+
+                        {/* Duration badge */}
+                        <div className="absolute bottom-3 right-3 z-20 bg-black/80 backdrop-blur-sm text-white text-[11px] font-semibold px-2 py-0.5 rounded-[4px] tracking-wide">
+                          32:45
+                        </div>
+
+                        {/* Progress bar */}
+                        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white/10 z-20">
+                          <div className="h-full w-[35%] rounded-r-full" style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52)" }} />
+                        </div>
+                      </div>
+
+                      {/* Right: Content */}
+                      <div className="w-full md:w-[48%] p-6 lg:p-8 flex flex-col justify-center relative">
+                        {/* Subtle decorative glow */}
+                        <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-[0.07] pointer-events-none" style={{ background: "radial-gradient(circle, #d4af37, transparent 70%)" }} />
+
+
+
+                        {/* Title */}
+                        <h2 className="text-[20px] lg:text-[24px] font-bold text-white leading-[1.25] group-hover:text-[#d4af37] transition-colors duration-300 line-clamp-3">
+                          How to Build a Personal Brand That Attracts Clients
+                        </h2>
+
+
+                      </div>
+                    </motion.div>
+                  );
+                }
+
+                let spanClass = "";
+                if (item.adType === "tall") {
                   spanClass = "col-span-2 md:col-span-3";
                 } else {
                   spanClass = "col-span-2";
