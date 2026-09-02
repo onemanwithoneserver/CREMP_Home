@@ -100,9 +100,9 @@ const VideoSearchHeader = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSticky(entry.boundingClientRect.top <= 48);
+        setIsSticky(entry.boundingClientRect.top <= 109);
       },
-      { threshold: [1], rootMargin: "-49px 0px 0px 0px" }
+      { threshold: [1], rootMargin: "-110px 0px 0px 0px" }
     );
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
@@ -114,7 +114,7 @@ const VideoSearchHeader = ({
 
       <div
         className={clsx(
-          "sticky top-[48px] z-30 w-full flex flex-col transition-colors duration-300",
+          "sticky top-[109px] z-30 w-full flex flex-col transition-colors duration-300",
           isSticky ? "bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.2)]" : "bg-transparent"
         )}
       >
@@ -298,7 +298,7 @@ export default function ExploreMobile() {
     <div
       className="w-full min-h-screen text-[#0a1128] bg-[#f8f9fc] font-sans flex flex-col relative pb-20"
     >
-      <div className="sticky top-0 z-40 w-full shadow-md">
+      <div className="sticky top-[61px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={setExploreTab} />
       </div>
 
