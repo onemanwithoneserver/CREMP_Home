@@ -17,6 +17,9 @@ import clsx from "clsx";
 import { franchises, getMeta, tagColors } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
+import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
+import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -51,6 +54,24 @@ function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: strin
 }
 
 export default function FranchiseSearchResultsMobile() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const themeMode = pathParts[0] || "light";
+  const viewMode = pathParts[1] || "mobile";
+  const [exploreTab, setExploreTab] = useState<"explore" | "commercial" | "business">("business");
+
+  const handleTabChange = (tab: "explore" | "commercial" | "business") => {
+    setExploreTab(tab);
+    if (tab === "explore") {
+      navigate(`/${themeMode}/${viewMode}/explore`);
+    } else if (tab === "commercial") {
+      navigate(`/${themeMode}/${viewMode}/buy-search-results`);
+    } else if (tab === "business") {
+      navigate(`/${themeMode}/${viewMode}/franchise-search-results`);
+    }
+  };
+
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
@@ -67,9 +88,9 @@ export default function FranchiseSearchResultsMobile() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSticky(entry.boundingClientRect.top <= 56);
+        setIsSticky(entry.boundingClientRect.top <= 97);
       },
-      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+      { threshold: [1], rootMargin: "-98px 0px 0px 0px" }
     );
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
@@ -114,7 +135,12 @@ export default function FranchiseSearchResultsMobile() {
   );
 
   return (
-    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
+      {/* Sticky Header Tabs */}
+      <div className="sticky top-[53px] z-40 w-full shadow-md">
+        <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
+      </div>
+
       <AnimatePresence>
         {showFranchiseView && (
           <motion.div
@@ -150,7 +176,7 @@ export default function FranchiseSearchResultsMobile() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[56px] left-0 right-0 z-50 bg-[#0a1128]/95 backdrop-blur-md shadow-md py-2 px-4"
+            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0b1b42] shadow-[0_4px_20px_rgba(0,0,0,0.2)] py-2 px-4"
           >
             <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
               <input
@@ -162,6 +188,17 @@ export default function FranchiseSearchResultsMobile() {
                 placeholder="Search franchise, industry, or location..."
                 className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  onMouseDown={(e) => e.preventDefault()}
+                  className="shrink-0 p-1 mr-1 text-[#0b1b42]/40 hover:text-[#0b1b42] active:scale-95 transition-all rounded-full hover:bg-gray-100 flex items-center justify-center cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
               <div className="flex gap-1 shrink-0 ml-1">
                 <button
                   onClick={() => setShowMap(!showMap)}
@@ -179,14 +216,59 @@ export default function FranchiseSearchResultsMobile() {
                 </div>
               </div>
             </div>
+
+            <AnimatePresence>
+              {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                  transition={spring}
+                  className="absolute top-full left-4 right-4 mt-2 rounded-[4px] overflow-hidden z-[100] shadow-2xl bg-white border border-[#0b1b42]/[0.08]"
+                >
+                  <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
+                    {suggestions.length > 0 ? (
+                      suggestions.map((f, i) => (
+                        <motion.div
+                          key={f.id}
+                          initial={{ opacity: 0, x: -6 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.03 }}
+                          whileTap={{ scale: 0.97 }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setSearchQuery(f.name);
+                            setIsSearchFocused(false);
+                          }}
+                          className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
+                        >
+                          <div className="w-8 h-8 rounded bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
+                            <Store size={13} strokeWidth={1.5} />
+                          </div>
+                          <div className="flex flex-col min-w-0">
+                            <span className="truncate font-bold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
+                            <span className="text-[9px] font-medium text-[#0b1b42]/35 flex items-center gap-0.5 mt-0.5">
+                              <MapPin size={8} strokeWidth={2} />
+                              <span className="truncate">{f.location}</span>
+                            </span>
+                          </div>
+                        </motion.div>
+                      ))
+                    ) : (
+                      <div className="p-3 text-center text-[10px] text-[#0b1b42]/35 font-medium">No franchises found</div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="relative shrink-0 w-full z-40 bg-[#0a1128] overflow-hidden">
+      <div className="relative shrink-0 w-full z-40 bg-[#0b1b42]">
         <div
           className="absolute inset-0 overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
+          style={{ background: "linear-gradient(180deg, #0b1b42 0%, #0a1128 35%, #0d1a3a 100%)" }}
         >
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -234,7 +316,7 @@ export default function FranchiseSearchResultsMobile() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative w-full z-30"
+            className="relative w-full z-50"
           >
             <div className={clsx(
               "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
@@ -251,6 +333,17 @@ export default function FranchiseSearchResultsMobile() {
                 placeholder="Search franchise, industry, or location..."
                 className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  onMouseDown={(e) => e.preventDefault()}
+                  className="shrink-0 p-1 mr-1 text-[#0b1b42]/40 hover:text-[#0b1b42] active:scale-95 transition-all rounded-full hover:bg-gray-100 flex items-center justify-center cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
               <div className="flex gap-1 shrink-0 ml-1">
                 <motion.button
                   whileTap={{ scale: 0.88 }}
@@ -277,8 +370,7 @@ export default function FranchiseSearchResultsMobile() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.97 }}
                   transition={spring}
-                  className="absolute top-full left-0 right-0 mt-2 rounded-[4px] overflow-hidden z-50 shadow-2xl"
-                  style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", border: "1px solid rgba(11,27,66,0.06)" }}
+                  className="absolute top-full left-0 right-0 mt-2 rounded-[4px] overflow-hidden z-[100] shadow-2xl bg-white border border-[#0b1b42]/[0.08]"
                 >
                   <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
                     {suggestions.length > 0 ? (
@@ -289,7 +381,11 @@ export default function FranchiseSearchResultsMobile() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.03 }}
                           whileTap={{ scale: 0.97 }}
-                          onClick={() => setSearchQuery(f.name)}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setSearchQuery(f.name);
+                            setIsSearchFocused(false);
+                          }}
                           className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
                         >
                           <div className="w-8 h-8 rounded bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
@@ -646,6 +742,8 @@ export default function FranchiseSearchResultsMobile() {
           </div>
         )}
       </div>
+
+      <MobileStickyFooter />
     </div>
   );
 }

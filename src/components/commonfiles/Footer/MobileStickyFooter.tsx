@@ -60,7 +60,7 @@ export default function MobileStickyFooter({
       role="navigation"
       aria-label="Main mobile navigation"
       className="
-        relative left-0 right-0 z-50
+        fixed bottom-0 left-0 right-0 z-50
         flex flex-col w-full
         bg-[#0b1b42]
         border-t border-white/[0.08]
