@@ -8,9 +8,9 @@ import {
   Maximize,
   Minimize,
   X,
-  ArrowRight,
   Eye,
   ArrowLeft,
+  Filter,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
@@ -135,13 +135,20 @@ export default function FranchiseSearchResultsMobile() {
     return searchQuery ? m : m.slice(0, 3);
   }, [searchQuery]);
 
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = useMemo(() => {
+    return ["All", ...Array.from(new Set(franchises.map((f) => f.category)))];
+  }, []);
+
   const filtered = useMemo(
     () => franchises.filter((f) => {
       if (dismissed.has(f.id)) return false;
+      if (activeCategory !== "All" && f.category !== activeCategory) return false;
       const q = searchQuery.toLowerCase();
       return !searchQuery || f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q) || f.category.toLowerCase().includes(q);
     }),
-    [searchQuery, dismissed],
+    [searchQuery, dismissed, activeCategory],
   );
 
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -441,6 +448,37 @@ export default function FranchiseSearchResultsMobile() {
         </div>
       </div>
 
+      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2 sm:py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/95 backdrop-blur-md">
+        <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
+          <Filter size={12} />
+          <span className="text-[8px] uppercase tracking-widest font-bold">
+            Filter:
+          </span>
+        </div>
+
+        {categories.map((cat) => {
+          const isActive = activeCategory === cat;
+          return (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+              }}
+              className={`shrink-0 relative px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[4px] text-[10px] sm:text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
+                isActive
+                  ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
+                  : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10"
+              }`}
+            >
+              <span>{cat}</span>
+              {isActive && (
+                <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+              )}
+            </button>
+          );
+        })}
+      </div>
+
       <div ref={sentinelRef} className="w-full h-[1px]" />
 
       <AnimatePresence>
@@ -577,8 +615,8 @@ export default function FranchiseSearchResultsMobile() {
                           </div>
                         </div>
                         <div className="flex items-center gap-0.5 shrink-0 ml-1">
-                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-rose-50 transition-all">
-                            <Heart className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-red-500 text-red-500" : "text-[#0b1b42]/15")} />
+                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-amber-50 transition-all">
+                            <Bookmark className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-[#0b1b42]/20")} />
                           </motion.button>
                           <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/25 hover:text-[#0b1b42] transition-all">
                             <X className="w-3.5 h-3.5" />

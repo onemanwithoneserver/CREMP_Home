@@ -3,13 +3,13 @@ import {
   Bookmark,
   MapPin,
   Search,
-  ChevronRight,
   X,
   Store,
   Eye,
   ArrowLeft,
   Building2,
   Sparkles,
+  Filter,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import clsx from "clsx";
@@ -147,21 +147,6 @@ function MapPopup({
   );
 }
 
-function CardShimmer() {
-  return (
-    <motion.div
-      className="absolute inset-0 pointer-events-none z-[1]"
-      initial={{ x: "-100%" }}
-      animate={{ x: "200%" }}
-      transition={{ duration: 2.8, repeat: Infinity, repeatDelay: 5, ease: "linear" }}
-      style={{
-        background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.04), transparent)",
-        width: "50%",
-      }}
-    />
-  );
-}
-
 export default function FranchiseSearchResultsDesktop() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -246,11 +231,18 @@ export default function FranchiseSearchResultsDesktop() {
 
   const displayFranchises = searchQuery.trim() ? matchingFranchises : matchingFranchises.slice(0, 4);
 
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = useMemo(() => {
+    return ["All", ...Array.from(new Set(franchises.map((f) => f.category)))];
+  }, []);
+
   const filtered = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     return franchises.filter(
       (f) => {
         if (dismissed.has(f.id)) return false;
+        if (activeCategory !== "All" && f.category !== activeCategory) return false;
         if (!q) return true;
         return (
           f.name.toLowerCase().includes(q) ||
@@ -259,7 +251,7 @@ export default function FranchiseSearchResultsDesktop() {
         );
       }
     );
-  }, [searchQuery, dismissed]);
+  }, [searchQuery, dismissed, activeCategory]);
 
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -600,7 +592,38 @@ export default function FranchiseSearchResultsDesktop() {
           </div>
         </div>
 
-        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-2 min-h-[950px] h-[950px]">
+        <div className="col-span-2 row-start-2 z-30 bg-white/95 backdrop-blur-md border-b border-[#0b1b42]/[0.06] flex items-center px-6 py-2.5 shadow-sm">
+          <div className="flex items-center gap-1.5 mr-2 text-[#0b1b42]/40 shrink-0">
+            <Filter size={14} />
+            <span className="text-[10px] uppercase tracking-widest font-bold">
+              Filter:
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide ml-2">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center cursor-pointer ${
+                    isActive
+                      ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_8px_rgba(212,175,55,0.15)]"
+                      : "bg-white text-[#0b1b42]/70 border-[#0b1b42]/10 hover:bg-[#0b1b42]/[0.02]"
+                  }`}
+                >
+                  <span>{cat}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0.5 inset-x-0 mx-auto w-5 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-3 min-h-[950px] h-[950px]">
 
             <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -697,7 +720,7 @@ export default function FranchiseSearchResultsDesktop() {
         <div
           className={clsx(
           "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide min-h-[950px] h-[950px]",
-          showFranchiseView ? "col-start-2 col-end-3 row-start-1 row-span-2 min-h-[1100px] h-full" : "col-start-2 col-end-3 row-start-2 row-span-1"
+          showFranchiseView ? "col-start-2 col-end-3 row-start-1 row-span-3 min-h-[1100px] h-full" : "col-start-2 col-end-3 row-start-3 row-span-1"
         )}>
           <AnimatePresence mode="wait">
           {showFranchiseView ? (
