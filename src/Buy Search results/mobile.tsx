@@ -11,7 +11,6 @@ import {
   MapPin,
   Search,
   Building2,
-  Map,
   ArrowLeft,
   Filter,
   ChevronLeft,
@@ -56,7 +55,7 @@ export default function BuySearchResultsMobile() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
-  const [showMap, setShowMap] = useState(true);
+  const [showMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isCarouselOpen, setIsCarouselOpen] = useState(true);
@@ -246,13 +245,6 @@ export default function BuySearchResultsMobile() {
                   className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
                 />
                 <div className="flex gap-1 shrink-0 ml-1">
-                  <button
-                    onClick={() => setShowMap(!showMap)}
-                    className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
-                    style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
-                  >
-                    <Map className="h-[14px] w-[14px]" />
-                  </button>
                   <div
                     className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
                     style={{ background: "rgb(11, 27, 66)" }}
@@ -319,7 +311,7 @@ export default function BuySearchResultsMobile() {
         )}
       </AnimatePresence>
 
-      <div className="relative shrink-0 w-full z-40 bg-[#0a1128] overflow-hidden">
+      <div className="relative shrink-0 w-full z-[80] bg-[#0a1128]">
         <div
           className="absolute inset-0 overflow-hidden"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #0b1b42 40%, #132254 70%, #0d1a3a 100%)" }}
@@ -370,7 +362,7 @@ export default function BuySearchResultsMobile() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="relative w-full z-30"
+            className="relative w-full z-[60]"
           >
             <div className={clsx(
               "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
@@ -388,14 +380,16 @@ export default function BuySearchResultsMobile() {
                 className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
               />
               <div className="flex gap-1 shrink-0 ml-1">
-                <motion.button
-                  whileTap={{ scale: 0.88 }}
-                  onClick={() => setShowMap(!showMap)}
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
-                  style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
-                >
-                  <Map className="h-[14px] w-[14px]" />
-                </motion.button>
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    aria-label="Clear search"
+                    className="w-8 h-8 flex items-center justify-center rounded-[4px] text-[#0b1b42]/50 hover:bg-[#0b1b42]/[0.06] hover:text-[#0b1b42] transition-all duration-200"
+                  >
+                    <X className="h-[14px] w-[14px]" />
+                  </button>
+                )}
                 <div
                   className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
                   style={{ background: "rgb(11, 27, 66)" }}
@@ -413,7 +407,7 @@ export default function BuySearchResultsMobile() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.97 }}
                   transition={spring}
-                  className="absolute top-full left-0 right-0 mt-2 rounded-[4px] overflow-hidden z-50 shadow-2xl"
+                  className="absolute top-full left-0 right-0 mt-2 rounded-[4px] overflow-hidden z-[999] shadow-2xl"
                   style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", border: "1px solid rgba(11,27,66,0.06)" }}
                 >
                   <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
