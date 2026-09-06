@@ -8,14 +8,12 @@ import {
   Store,
   Eye,
   ArrowLeft,
-  TrendingUp,
-  Clock,
   Building2,
   Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import clsx from "clsx";
-import { franchises, getMeta, tagColors, type Franchise } from "./data";
+import { franchises, getMeta, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 
@@ -255,6 +253,26 @@ export default function FranchiseSearchResultsDesktop() {
         f.category.toLowerCase().includes(q),
     );
   }, [searchQuery]);
+
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (isLoadingMore) return;
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && visibleCount < filtered.length) {
+        handleLoadMore();
+      }
+    });
+
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current);
+    }
+
+    return () => observerRef.current?.disconnect();
+  }, [handleLoadMore, isLoadingMore, visibleCount, filtered.length]);
 
   const handleHeroMouseMove = (e: React.MouseEvent) => {
     if (!heroRef.current) return;
@@ -715,14 +733,31 @@ export default function FranchiseSearchResultsDesktop() {
                   variants={stagger}
                   initial="hidden"
                   animate="show"
-                  className="flex flex-col py-2"
+                  className="grid grid-cols-6 gap-3 px-3 py-2"
                 >
-                  {filtered.slice(0, visibleCount).map((f) => {
-                    const isActive = hoveredCard === f.id || selectedMarker === f.id;
-                    const meta = getMeta(f.category);
-                    const FIcon = meta.icon;
-                    return (
-                      <motion.div
+                  {(() => {
+                    const renderItems: React.ReactNode[] = [];
+                    const grouped = new Map<string, any[]>();
+                    filtered.slice(0, visibleCount).forEach((f) => {
+                      if (!grouped.has(f.category)) grouped.set(f.category, []);
+                      grouped.get(f.category)!.push(f);
+                    });
+
+                    grouped.forEach((items, category) => {
+                      renderItems.push(
+                        <div key={`heading-${category}`} className="col-span-6 mt-4 mb-1">
+                          <h2 className="text-[18px] font-semibold text-[#0a1128] pl-1">{category}</h2>
+                        </div>
+                      );
+
+                      items.forEach((f, index) => {
+                        const isActive = hoveredCard === f.id || selectedMarker === f.id;
+                        const isFullRow = index === 0;
+                        const isHalfRow = index === 1 || index === 2;
+                        const isThirdRow = index >= 3;
+
+                        renderItems.push(
+                          <motion.div
                         key={`card-${f.id}`}
                         variants={fadeUp}
                         onMouseEnter={() => setHoveredCard(f.id)}
@@ -733,10 +768,11 @@ export default function FranchiseSearchResultsDesktop() {
                           transition: { type: "spring", stiffness: 400, damping: 25 },
                         }}
                         className={clsx(
-                          "relative cursor-pointer transition-all duration-300 hover:z-10 rounded my-1 mx-3 border overflow-hidden group",
+                          "relative cursor-pointer transition-all duration-300 hover:z-10 rounded border overflow-hidden group flex flex-col",
                           isActive
                             ? "bg-gradient-to-r from-[#faf8f0] to-white shadow-[0_8px_32px_rgba(212,175,55,0.1)] border-transparent"
                             : "bg-white border-transparent hover:shadow-[0_12px_40px_rgba(11,27,66,0.06)] hover:border-[#0b1b42]/[0.12]",
+                          isFullRow ? "col-span-6" : isHalfRow ? "col-span-3" : "col-span-2"
                         )}
                       >
                         <CardShimmer />
@@ -751,131 +787,211 @@ export default function FranchiseSearchResultsDesktop() {
                           style={{ background: "linear-gradient(to bottom, #d4af37, #b38728)" }}
                         />
 
-                        <div className="p-3 relative z-[2]">
-                          <div className="flex gap-2.5">
+                        {isFullRow && (
+                          <div className="p-4 relative z-[2] flex-1 flex flex-col">
+                            <div className="flex gap-4">
+                              <motion.div
+                                animate={isActive ? { scale: 1.04 } : { scale: 1 }}
+                                className="w-[120px] h-[120px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-[#f8f9fc]"
+                              >
+                                <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                              </motion.div>
 
-                            <motion.div
-                              animate={isActive ? { scale: 1.04 } : { scale: 1 }}
-                              className="w-[80px] h-[80px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-[#f8f9fc]"
-                            >
-                              <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                            </motion.div>
-
-                            <div className="flex-1 min-w-0 flex flex-col">
-                              <div className="flex items-start justify-between gap-2">
-                                <div className="min-w-0">
-                                  <h3 className={clsx(
-                                    "font-bold text-[15px] leading-tight truncate transition-colors duration-300",
-                                    isActive ? "text-[#0a1128]" : "text-[#0a1128]/85",
-                                  )}>
-                                    {f.name}
-                                  </h3>
-                                  <p className="text-[11px] text-[#0b1b42]/45 font-medium mt-0.5 truncate flex items-center gap-1">
-                                    <FIcon size={11} strokeWidth={2} className="text-[#0b1b42]/30" />
-                                    {f.category}
-                                  </p>
+                              <div className="flex-1 min-w-0 flex flex-col justify-between">
+                                <div className="flex items-start justify-between gap-2">
+                                  <div className="min-w-0">
+                                    <h3 className={clsx(
+                                      "font-semibold text-[20px] leading-tight truncate transition-colors duration-300",
+                                      isActive ? "text-[#0a1128]" : "text-[#0a1128]/85",
+                                    )}>
+                                      {f.name}
+                                    </h3>
+                                    <p className="text-[14px] text-[#0b1b42]/45 font-medium mt-1.5 truncate flex items-center gap-1">
+                                      {f.category}
+                                    </p>
+                                  </div>
+                                  <motion.button
+                                    whileTap={{ scale: 1.4 }}
+                                    whileHover={{ scale: 1.2 }}
+                                    onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                    className="p-1.5 flex-shrink-0 transition-colors rounded hover:bg-red-50 -mt-1 -mr-1"
+                                  >
+                                    <Heart
+                                      className={clsx(
+                                        "w-5 h-5 transition-all duration-300",
+                                        favorites.has(f.id)
+                                          ? "fill-red-500 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]"
+                                          : "text-[#0b1b42]/20 hover:text-red-300",
+                                      )}
+                                    />
+                                  </motion.button>
                                 </div>
+
+                                <div className="flex items-center gap-4 mt-3 flex-wrap">
+                                  <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-[#0a1128]">
+                                    INV. {f.investment}
+                                  </span>
+                                  <span className="text-[13px] font-semibold text-emerald-500">{f.roi}</span>
+                                  <span className="text-[13px] font-medium text-[#446ce4] flex items-center gap-1">
+                                    <MapPin size={13} className="text-[#446ce4]" />
+                                    <span className="truncate">{f.location}</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center justify-between mt-4 gap-2">
+                              <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+                                <span className="px-3 py-1 rounded text-[12px] font-semibold border border-[#d4af37]/30 bg-[#d4af37]/10 text-[#d4af37]">
+                                  Top Rated
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2 shrink-0">
+                                <motion.button
+                                  whileTap={{ scale: 0.93 }}
+                                  whileHover={{ scale: 1.04 }}
+                                  onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                                  className="w-10 h-10 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+                                  title="View Details"
+                                >
+                                  <Eye size={18} strokeWidth={2.5} />
+                                </motion.button>
+                                <motion.button
+                                  whileTap={{ scale: 0.93 }}
+                                  whileHover={{ scale: 1.04, boxShadow: "0 0 18px rgba(212,175,55,0.3)" }}
+                                  className="flex items-center gap-1 text-[14px] font-semibold px-6 py-2 rounded text-white transition-all whitespace-nowrap relative overflow-hidden shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
+                                  style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
+                                >
+                                  <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                                  <span className="relative z-10">Enquire</span>
+                                </motion.button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {isHalfRow && (
+                          <div className="p-4 relative z-[2] flex-1 flex flex-col h-full justify-between">
+                            <div>
+                              <div className="flex justify-between items-start mb-3">
+                                <motion.div
+                                  animate={isActive ? { scale: 1.03 } : { scale: 1 }}
+                                  className="w-[80px] h-[80px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-[#f8f9fc]"
+                                >
+                                  <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                                </motion.div>
                                 <motion.button
                                   whileTap={{ scale: 1.4 }}
                                   whileHover={{ scale: 1.2 }}
                                   onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                  className="p-1.5 flex-shrink-0 transition-colors rounded hover:bg-red-50"
+                                  className="p-1.5 shrink-0 -mt-1 -mr-1 transition-colors rounded hover:bg-red-50"
                                 >
                                   <Heart
                                     className={clsx(
-                                      "w-4 h-4 transition-all duration-300",
+                                      "w-5 h-5 transition-all duration-300",
                                       favorites.has(f.id)
                                         ? "fill-red-500 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]"
-                                        : "text-[#0b1b42]/15 hover:text-red-300",
+                                        : "text-[#0b1b42]/20 hover:text-red-300",
                                     )}
                                   />
                                 </motion.button>
                               </div>
-
-                              <div className="flex items-center gap-3 mt-2">
-                                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0a1128]">
-                                  <TrendingUp size={10} className="text-[#d4af37]" strokeWidth={2.5} />
-                                  {f.investment}
+                              <div className="flex-1 min-w-0 flex flex-col">
+                                <h3 className={clsx(
+                                  "font-semibold text-[18px] leading-tight truncate transition-colors duration-300",
+                                  isActive ? "text-[#0a1128]" : "text-[#0a1128]/85",
+                                )}>
+                                  {f.name}
+                                </h3>
+                                <p className="text-[13px] text-[#0b1b42]/45 font-medium mt-1.5 truncate flex items-center gap-1">
+                                  {f.category}
+                                </p>
+                              </div>
+                              <div className="mt-4 flex flex-col gap-1.5">
+                                <span className="text-[14px] font-semibold text-[#0a1128]">
+                                  INV. {f.investment}
                                 </span>
-                                <span className="text-[11px] font-semibold text-emerald-500">{f.roi}</span>
-                                <span className="text-[10px] font-medium text-[#0b1b42]/40 flex items-center gap-0.5 ml-auto">
-                                  <MapPin size={10} className="text-[#0b1b42]/30" />
-                                  <span className="truncate max-w-[100px]">{f.location}</span>
-                                </span>
+                                <span className="text-[14px] font-semibold text-emerald-500">{f.roi}</span>
                               </div>
                             </div>
-                          </div>
-
-                          <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#0b1b42]/[0.04] gap-2">
-                            <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-                              {f.tags.slice(0, 2).map((tag) => (
-                                <span
-                                  key={tag}
-                                  className={clsx("px-2.5 py-0.5 rounded text-[10px] font-semibold border", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-200/30")}
+                            
+                            <div className="flex items-center justify-between mt-5 gap-2 w-full">
+                                <motion.button
+                                  whileTap={{ scale: 0.93 }}
+                                  whileHover={{ scale: 1.04 }}
+                                  onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                                  className="w-10 h-10 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+                                  title="View Details"
                                 >
-                                  {tag}
-                                </span>
-                              ))}
-                              {f.breakeven && (
-                                <span className="text-[10px] font-medium text-[#0b1b42]/30 flex items-center gap-0.5 ml-1">
-                                  <Clock size={9} strokeWidth={2} />
-                                  {f.breakeven}
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-2 shrink-0">
-                              <motion.button
-                                whileTap={{ scale: 0.93 }}
-                                whileHover={{ scale: 1.04 }}
-                                onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
-                                title="View Details"
-                              >
-                                <Eye size={16} strokeWidth={2.5} />
-                              </motion.button>
-                              <motion.button
-                                whileTap={{ scale: 0.93 }}
-                                whileHover={{ scale: 1.04, boxShadow: "0 0 18px rgba(212,175,55,0.3)" }}
-                                className="flex items-center gap-1 text-[11px] font-bold px-4 py-1.5 rounded text-white transition-all whitespace-nowrap relative overflow-hidden shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
-                                style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
-                              >
-                                <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                                <span className="relative z-10">Enquire</span>
-                              </motion.button>
+                                  <Eye size={18} strokeWidth={2.5} />
+                                </motion.button>
+                                <motion.button
+                                  whileTap={{ scale: 0.93 }}
+                                  whileHover={{ scale: 1.04, boxShadow: "0 0 18px rgba(212,175,55,0.3)" }}
+                                  className="flex-1 flex items-center justify-center gap-1 text-[14px] font-semibold px-4 py-2 rounded text-white transition-all whitespace-nowrap relative overflow-hidden shadow-[0_2px_10px_rgba(212,175,55,0.2)]"
+                                  style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
+                                >
+                                  <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                                  <span className="relative z-10">Enquire</span>
+                                </motion.button>
                             </div>
                           </div>
-                        </div>
+                        )}
+
+                        {isThirdRow && (
+                          <div className="p-4 relative z-[2] flex-1 flex flex-col items-center justify-center h-full">
+                            <div className="w-full flex justify-end absolute top-3 right-3">
+                              <motion.button
+                                whileTap={{ scale: 1.4 }}
+                                whileHover={{ scale: 1.2 }}
+                                onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                className="p-1.5 shrink-0 transition-colors rounded hover:bg-red-50"
+                              >
+                                <Heart
+                                  className={clsx(
+                                    "w-5 h-5 transition-all duration-300",
+                                    favorites.has(f.id)
+                                      ? "fill-red-500 text-red-500 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]"
+                                      : "text-[#0b1b42]/20 hover:text-red-300",
+                                  )}
+                                />
+                              </motion.button>
+                            </div>
+                            <motion.div
+                              animate={isActive ? { scale: 1.03 } : { scale: 1 }}
+                              className="w-[72px] h-[72px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-[#f8f9fc] mt-2 mb-3"
+                            >
+                              <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                            </motion.div>
+                            <div className="min-w-0 flex flex-col items-center text-center">
+                              <h3 className={clsx(
+                                "font-semibold text-[15px] leading-tight truncate transition-colors duration-300",
+                                isActive ? "text-[#0a1128]" : "text-[#0a1128]/85",
+                              )}>
+                                {f.name}
+                              </h3>
+                              <div className="mt-1.5 flex flex-col items-center justify-center z-10">
+                                <span className="text-[13px] font-semibold text-[#0a1128] truncate">{f.investment}</span>
+                              </div>
+                            </div>
+                            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#000000]/[0.04] to-transparent pointer-events-none rounded-b" />
+                          </div>
+                        )}
                       </motion.div>
-                    );
-                  })}
+                        );
+                      });
+                    });
+                    return renderItems;
+                  })()}
                 </motion.div>
 
                 {visibleCount < filtered.length && (
-                  <div className="px-4 py-4 flex justify-center">
-                    <motion.button
-                      onClick={handleLoadMore}
-                      disabled={isLoadingMore}
-                      whileTap={{ scale: 0.95 }}
-                      whileHover={{ y: -2, boxShadow: "0 8px 28px rgba(10,17,40,0.18)" }}
-                      className="flex items-center justify-center min-w-[160px] px-8 py-3 rounded text-[12px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all uppercase tracking-[0.12em] disabled:opacity-80 relative overflow-hidden"
-                      style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
-                    >
-                      <motion.div
-                        className="absolute inset-0"
-                        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent)" }}
-                        animate={{ x: ["-100%", "200%"] }}
-                        transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: "linear" }}
-                      />
-                      {isLoadingMore ? (
-                        <div className="flex gap-1.5 items-center justify-center">
-                          {[0, 0.12, 0.24].map((delay, i) => (
-                            <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
-                          ))}
-                        </div>
-                      ) : (
-                        <span className="relative z-10">Load More</span>
-                      )}
-                    </motion.button>
+                  <div ref={loadMoreRef} className="px-4 py-8 flex justify-center w-full">
+                    <div className="flex gap-1.5 items-center justify-center">
+                      {[0, 0.12, 0.24].map((delay, i) => (
+                        <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
+                      ))}
+                    </div>
                   </div>
                 )}
 

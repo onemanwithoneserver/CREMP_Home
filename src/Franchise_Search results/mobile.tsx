@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import {
   Heart,
   MapPin,
@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-import { franchises, getMeta, tagColors } from "./data";
+import { franchises, getMeta } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
@@ -78,7 +78,7 @@ export default function FranchiseSearchResultsMobile() {
   const [showMap, setShowMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(5);
+  const [visibleCount, setVisibleCount] = useState(6);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [showFranchiseView, setShowFranchiseView] = useState(false);
@@ -96,15 +96,15 @@ export default function FranchiseSearchResultsMobile() {
     return () => observer.disconnect();
   }, []);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     setIsLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount((p) => p + 5);
+      setVisibleCount((p) => p + 6);
       setIsLoadingMore(false);
     }, 600);
-  };
+  }, []);
 
-  useEffect(() => { setVisibleCount(5); }, [searchQuery]);
+  useEffect(() => { setVisibleCount(6); }, [searchQuery]);
 
   const toggleFavorite = (id: number) => {
     setFavorites((prev) => {
@@ -133,6 +133,26 @@ export default function FranchiseSearchResultsMobile() {
     }),
     [searchQuery],
   );
+
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (isLoadingMore) return;
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && visibleCount < filtered.length) {
+        handleLoadMore();
+      }
+    });
+
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current);
+    }
+
+    return () => observerRef.current?.disconnect();
+  }, [handleLoadMore, isLoadingMore, visibleCount, filtered.length]);
 
   return (
     <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
@@ -604,22 +624,42 @@ export default function FranchiseSearchResultsMobile() {
           variants={stagger}
           initial="hidden"
           animate="show"
-          className="flex flex-col gap-1 px-2 pb-2"
+          className="grid grid-cols-6 gap-2 px-2 pb-2"
         >
-          {filtered.slice(0, visibleCount).map((f) => {
-            const isActive = activeCard === f.id || selectedMarker === f.id;
-            return (
-              <motion.div
+          {(() => {
+            const renderItems: React.ReactNode[] = [];
+            const grouped = new globalThis.Map<string, any[]>();
+            filtered.slice(0, visibleCount).forEach((f) => {
+              if (!grouped.has(f.category)) grouped.set(f.category, []);
+              grouped.get(f.category)!.push(f);
+            });
+
+            grouped.forEach((items, category) => {
+              renderItems.push(
+                <div key={`heading-${category}`} className="col-span-6 mt-4 mb-1 px-1">
+                  <h2 className="text-[16px] font-semibold text-[#0a1128]">{category}</h2>
+                </div>
+              );
+
+              items.forEach((f, index) => {
+                const isActive = activeCard === f.id || selectedMarker === f.id;
+                const isFullRow = index === 0;
+                const isHalfRow = index === 1 || index === 2;
+                const isThirdRow = index >= 3;
+
+                renderItems.push(
+                  <motion.div
                 key={`card-${f.id}`}
                 variants={cardVariant}
                 whileTap={{ scale: 0.975 }}
                 onClick={() => handleCardTap(f.id)}
                 layout
                 className={clsx(
-                  "relative cursor-pointer rounded transition-all duration-300 overflow-hidden border",
+                  "relative cursor-pointer rounded transition-all duration-300 overflow-hidden border flex flex-col",
                   isActive
                     ? "bg-gradient-to-r from-[#0b1b42]/[0.02] to-white border-[#d4af37]/25 shadow-[0_8px_28px_rgba(11,27,66,0.07)]"
                     : "bg-white border-[#0b1b42]/[0.05] shadow-sm hover:shadow-md",
+                  isFullRow ? "col-span-6" : isHalfRow ? "col-span-3" : "col-span-2"
                 )}
               >
                 <motion.div
@@ -636,35 +676,99 @@ export default function FranchiseSearchResultsMobile() {
                   className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top z-[3]"
                   style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
                 />
-                <div className="p-3 relative z-[2]">
-                  <div className="flex gap-2">
-                    <motion.div
-                      animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-                      className="w-[64px] h-[64px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
-                    >
-                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                    </motion.div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-between">
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <h3 className={clsx(
-                            "font-bold text-[13px] leading-tight truncate transition-colors duration-300",
-                            isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
-                          )}>
-                            {f.name}
-                          </h3>
-                          <p className="text-[10px] text-[#0b1b42]/50 font-medium mt-0.5 truncate">
-                            {f.category}
-                          </p>
+                
+                {isFullRow && (
+                  <div className="p-3 relative z-[2] flex-1 flex flex-col">
+                    <div className="flex gap-3">
+                      <motion.div
+                        animate={isActive ? { scale: 1.03 } : { scale: 1 }}
+                        className="w-[100px] h-[100px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-white"
+                      >
+                        <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                      </motion.div>
+                      <div className="flex-1 min-w-0 flex flex-col justify-between">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <h3 className={clsx(
+                              "font-semibold text-[16px] leading-tight truncate transition-colors duration-300",
+                              isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
+                            )}>
+                              {f.name}
+                            </h3>
+                            <p className="text-[12px] text-[#0b1b42]/50 font-medium mt-1 truncate">
+                              {f.category}
+                            </p>
+                          </div>
+                          <motion.button
+                            whileTap={{ scale: 1.4 }}
+                            onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                            className="p-1.5 shrink-0 -mt-0.5 -mr-1"
+                          >
+                            <Heart
+                              className={clsx(
+                                "w-4 h-4 transition-all duration-300",
+                                favorites.has(f.id)
+                                  ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
+                                  : "text-[#0b1b42]/20",
+                              )}
+                            />
+                          </motion.button>
                         </div>
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          <span className="text-[11px] font-semibold text-[#0b1b42]">INV. {f.investment}</span>
+                          <span className="text-[11px] font-semibold text-emerald-500">{f.roi}</span>
+                          <span className="text-[11px] font-medium text-blue-600 flex items-center gap-1">
+                            <MapPin size={10} className="text-blue-500" />
+                            {f.location}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between mt-3 gap-2">
+                      <div className="flex items-center gap-1 flex-wrap min-w-0">
+                        <span className="px-2 py-1 rounded text-[10px] font-semibold border border-[#d4af37]/30 bg-[#d4af37]/10 text-[#d4af37]">
+                          Top Rated
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <motion.button
+                          whileTap={{ scale: 0.92 }}
+                          onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                          className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+                          title="View Details"
+                        >
+                          <Eye size={16} strokeWidth={2.5} />
+                        </motion.button>
+                        <motion.button
+                          whileTap={{ scale: 0.92 }}
+                          className="shrink-0 flex items-center gap-0.5 text-[12px] font-semibold px-4 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap"
+                          style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
+                        >
+                          Enquire
+                        </motion.button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {isHalfRow && (
+                  <div className="p-3 relative z-[2] flex-1 flex flex-col h-full justify-between">
+                    <div>
+                      <div className="flex justify-between items-start mb-3">
+                        <motion.div
+                          animate={isActive ? { scale: 1.05 } : { scale: 1 }}
+                          className="w-[60px] h-[60px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-white"
+                        >
+                          <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                        </motion.div>
                         <motion.button
                           whileTap={{ scale: 1.4 }}
                           onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                          className="p-1 shrink-0 -mt-0.5"
+                          className="p-1 shrink-0 -mt-1 -mr-1"
                         >
                           <Heart
                             className={clsx(
-                              "w-3.5 h-3.5 transition-all duration-300",
+                              "w-4 h-4 transition-all duration-300",
                               favorites.has(f.id)
                                 ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
                                 : "text-[#0b1b42]/20",
@@ -672,73 +776,97 @@ export default function FranchiseSearchResultsMobile() {
                           />
                         </motion.button>
                       </div>
-                      <div className="flex items-center gap-1.5 mt-2 flex-wrap">
-                        <span className="text-[10px] font-bold text-[#0b1b42]">INV. {f.investment}</span>
-                        <span className="text-[10px] font-semibold text-emerald-500">{f.roi}</span>
-                        <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
-                          <MapPin size={9} className="text-blue-500" />
-                          {f.location}
+                      <div className="flex-1 min-w-0 flex flex-col">
+                        <h3 className={clsx(
+                          "font-semibold text-[14px] leading-tight truncate transition-colors duration-300",
+                          isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
+                        )}>
+                          {f.name}
+                        </h3>
+                        <p className="text-[11px] text-[#0b1b42]/50 font-medium mt-1 truncate">
+                          {f.category}
+                        </p>
+                      </div>
+                      <div className="mt-3 flex flex-col gap-1">
+                        <span className="text-[12px] font-semibold text-[#0a1128]">
+                          INV. {f.investment}
                         </span>
+                        <span className="text-[12px] font-semibold text-emerald-500">{f.roi}</span>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-between mt-2 pl-[76px]">
-                    <div className="flex items-center gap-1 flex-wrap min-w-0">
-                      {f.tags.slice(0, 1).map((tag) => (
-                        <span key={tag} className={clsx("px-1.5 py-0.5 rounded text-[9px] font-bold border tracking-wide", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-100")}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
+                    
+                    <div className="mt-3 w-full flex items-center gap-2">
                       <motion.button
                         whileTap={{ scale: 0.92 }}
                         onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                        className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+                        className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm shrink-0"
                         title="View Details"
                       >
-                        <Eye size={14} strokeWidth={2.5} />
+                        <Eye size={15} strokeWidth={2.5} />
                       </motion.button>
                       <motion.button
-                        whileTap={{ scale: 0.92 }}
-                        className="shrink-0 flex items-center gap-0.5 text-[10px] font-semibold px-3 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap"
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 flex items-center justify-center gap-0.5 text-[11px] font-semibold px-3 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap shadow-sm"
                         style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
                       >
                         Enquire
                       </motion.button>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {isThirdRow && (
+                  <div className="p-2 relative z-[2] flex-1 flex flex-col items-center justify-center h-full">
+                    <div className="w-full flex justify-end absolute top-2 right-2">
+                      <motion.button
+                        whileTap={{ scale: 1.4 }}
+                        onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                        className="p-1 shrink-0 -mt-1 -mr-1"
+                      >
+                        <Heart
+                          className={clsx(
+                            "w-3.5 h-3.5 transition-all duration-300",
+                            favorites.has(f.id)
+                              ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
+                              : "text-[#0b1b42]/20",
+                          )}
+                        />
+                      </motion.button>
+                    </div>
+                    <motion.div
+                      animate={isActive ? { scale: 1.05 } : { scale: 1 }}
+                      className="w-[48px] h-[48px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-white mt-1 mb-2"
+                    >
+                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                    </motion.div>
+                    <div className="min-w-0 flex flex-col items-center text-center">
+                      <h3 className={clsx(
+                        "font-semibold text-[12px] leading-tight truncate transition-colors duration-300",
+                        isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
+                      )}>
+                        {f.name}
+                      </h3>
+                      <div className="mt-1 flex flex-col items-center justify-center z-10">
+                        <span className="text-[11px] font-semibold text-[#0a1128] truncate">{f.investment}</span>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#000000]/[0.04] to-transparent pointer-events-none rounded-b" />
+                  </div>
+                )}
               </motion.div>
-            );
-          })}
+                );
+              });
+            });
+            return renderItems;
+          })()}
         </motion.div>
         {visibleCount < filtered.length && (
-          <div className="px-4 py-4 flex justify-center">
-            <motion.button
-              onClick={handleLoadMore}
-              disabled={isLoadingMore}
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ y: -2 }}
-              className="flex items-center justify-center min-w-[130px] px-6 py-2.5 rounded text-[10px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all uppercase tracking-[0.15em] disabled:opacity-80 relative overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
-            >
-              <motion.div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent)" }}
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: "linear" }}
-              />
-              {isLoadingMore ? (
-                <div className="flex gap-1.5 items-center">
-                  {[0, 0.12, 0.24].map((delay, i) => (
-                    <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
-                  ))}
-                </div>
-              ) : (
-                <span className="relative z-10">Load More</span>
-              )}
-            </motion.button>
+          <div ref={loadMoreRef} className="px-4 py-8 flex justify-center w-full">
+            <div className="flex gap-1.5 items-center">
+              {[0, 0.12, 0.24].map((delay, i) => (
+                <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
+              ))}
+            </div>
           </div>
         )}
       </div>
