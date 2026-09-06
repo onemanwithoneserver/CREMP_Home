@@ -942,7 +942,7 @@ export default function FranchiseSearchResultsDesktop() {
                                         className={clsx(
                                           "w-6 h-6 transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]",
                                           favorites.has(f.id)
-                                            ? "fill-red-500 text-red-500"
+                                            ? "fill-[#d4af37] text-[#d4af37]"
                                             : "text-white",
                                         )}
                                       />
@@ -1007,7 +1007,7 @@ export default function FranchiseSearchResultsDesktop() {
                                         className={clsx(
                                           "w-5 h-5 transition-all duration-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.6)]",
                                           favorites.has(f.id)
-                                            ? "fill-red-500 text-red-500"
+                                            ? "fill-[#d4af37] text-[#d4af37]"
                                             : "text-white",
                                         )}
                                       />
@@ -1076,7 +1076,7 @@ export default function FranchiseSearchResultsDesktop() {
                                         className={clsx(
                                           "w-4 h-4 transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]",
                                           favorites.has(f.id)
-                                            ? "fill-red-500 text-red-500"
+                                            ? "fill-[#d4af37] text-[#d4af37]"
                                             : "text-white",
                                         )}
                                       />
