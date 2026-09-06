@@ -576,13 +576,17 @@ export default function BuySearchResultsMobile() {
                   animate={{ y: 0 }}
                   exit={{ y: "100%" }}
                   transition={{ type: "spring", damping: 28, stiffness: 260 }}
-                  className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-white/95 backdrop-blur-md rounded-t-[4px] shadow-[0_-4px_20px_rgba(10,17,40,0.1)] border-t border-[#0b1b42]/[0.06] flex flex-col max-h-[70vh]"
+                  className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-white/95 backdrop-blur-xl rounded-t-[4px] shadow-[0_-14px_40px_rgba(10,17,40,0.18),0_-2px_8px_rgba(10,17,40,0.08)] border-t border-[#0b1b42]/[0.06] flex flex-col max-h-[70vh]"
                 >
                   <div 
-                    className="w-full flex items-center justify-center py-1.5 cursor-pointer active:bg-gray-50 transition-colors shrink-0"
+                    className="w-full flex items-center justify-center py-1.5 cursor-pointer active:bg-gray-50 transition-colors shrink-0 group/handle"
                     onClick={() => setIsCarouselOpen(false)}
                   >
-                    <div className="w-8 h-[3px] rounded-full bg-[#0b1b42]/15" />
+                    <motion.div
+                      whileHover={{ scaleX: 1.3, opacity: 0.9 }}
+                      whileTap={{ scaleX: 0.85 }}
+                      className="w-8 h-[3px] rounded-full bg-[#0b1b42]/15 group-hover/handle:bg-[#0b1b42]/30 transition-colors"
+                    />
                   </div>
                   
                   <div className="w-full overflow-x-auto flex gap-2.5 px-4 scroll-px-4 pb-2 pt-0.5 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
@@ -607,13 +611,14 @@ export default function BuySearchResultsMobile() {
                                 initial={{ opacity: 0, y: 16, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 transition={{ delay: idx * 0.06, type: "spring", stiffness: 300, damping: 24 }}
+                                whileHover={{ y: -4 }}
                                 whileTap={{ scale: 0.96, y: 2 }}
                                 onClick={() => handleCardTap(f.id)}
                                 className={clsx(
-                                  "snap-start shrink-0 w-[62vw] max-w-[240px] relative cursor-pointer rounded-[4px] overflow-hidden flex flex-col select-none border transition-shadow duration-300",
+                                  "group snap-start shrink-0 w-[62vw] max-w-[240px] relative cursor-pointer rounded-[4px] overflow-hidden flex flex-col select-none border transition-all duration-300",
                                   isActive
-                                    ? "border-[#d4af37]/40 shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
-                                    : "border-[#0b1b42]/[0.06] shadow-sm",
+                                    ? "border-[#d4af37]/50 shadow-[0_10px_30px_rgba(212,175,55,0.25),0_2px_10px_rgba(10,17,40,0.1)]"
+                                    : "border-[#0b1b42]/[0.06] shadow-[0_2px_10px_rgba(10,17,40,0.07)] hover:shadow-[0_12px_32px_rgba(10,17,40,0.16)] hover:border-[#0b1b42]/[0.14]",
                                 )}
                                 style={{ background: "white" }}
                               >
@@ -621,19 +626,23 @@ export default function BuySearchResultsMobile() {
                                   <motion.img
                                     src={f.logo}
                                     alt={f.name}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                                     draggable={false}
                                     initial={{ scale: 1.1 }}
                                     animate={{ scale: 1 }}
                                     transition={{ duration: 0.6, ease: "easeOut" }}
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/70 via-[#0a1128]/10 to-transparent" />
+                                  {isActive && (
+                                    <div className="absolute inset-0 ring-2 ring-inset ring-[#d4af37]/60 pointer-events-none" />
+                                  )}
                                   
                                   <div className="absolute top-1.5 right-1.5 flex items-center gap-1">
                                     <motion.button
+                                      whileHover={{ scale: 1.15 }}
                                       whileTap={{ scale: 1.4, rotate: 15 }}
                                       onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                      className="p-0.5"
+                                      className="p-1 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/35 transition-colors duration-200"
                                     >
                                       <Bookmark
                                         className={clsx(
@@ -643,23 +652,24 @@ export default function BuySearchResultsMobile() {
                                       />
                                     </motion.button>
                                     <motion.button
+                                      whileHover={{ scale: 1.15 }}
                                       whileTap={{ scale: 1.3 }}
                                       onClick={(e) => { e.stopPropagation(); setIsCarouselOpen(false); }}
-                                      className="p-0.5"
+                                      className="p-1 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/35 transition-colors duration-200"
                                     >
                                       <X className="w-3.5 h-3.5 text-red-400 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" />
                                     </motion.button>
                                   </div>
                                   
                                   <div className="absolute bottom-1.5 left-2 right-2 flex items-end justify-between">
-                                    <span className="text-[12px] font-semibold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">{f.price}</span>
-                                    <span className="text-[9px] font-medium text-white/70 drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">{f.area}</span>
+                                    <span className="text-[12px] font-semibold text-emerald-400 bg-black/25 backdrop-blur-sm px-1.5 py-0.5 rounded-[3px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">{f.price}</span>
+                                    <span className="text-[9px] font-medium text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">{f.area}</span>
                                   </div>
                                 </div>
                                 
                                 <div className="px-2 py-1.5 flex items-center justify-between gap-1">
                                   <div className="min-w-0 flex-1">
-                                    <h3 className="font-semibold text-[12px] leading-tight text-[#0a1128] truncate">{f.name}</h3>
+                                    <h3 className="font-semibold text-[12px] leading-tight text-[#0a1128] truncate group-hover:text-[#0b1b42] transition-colors">{f.name}</h3>
                                     <span className="text-[9px] text-[#0a1128]/40 flex items-center gap-0.5 mt-px font-medium">
                                       <MapPin size={8} className="text-[#d4af37]" />
                                       {f.location}
@@ -667,7 +677,7 @@ export default function BuySearchResultsMobile() {
                                   </div>
                                   <motion.button
                                     whileTap={{ scale: 0.85, rotate: -10 }}
-                                    whileHover={{ scale: 1.05 }}
+                                    whileHover={{ scale: 1.08, boxShadow: "0 6px 18px rgba(212,175,55,0.45)" }}
                                     onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
                                     className="w-7 h-7 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(11,27,66,0.3)]"
                                     title="View Details"
@@ -704,13 +714,14 @@ export default function BuySearchResultsMobile() {
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: (gridIdx * 0.06) + (sIdx * 0.04), type: "spring", stiffness: 350, damping: 25 }}
+                                    whileHover={{ y: -3 }}
                                     whileTap={{ scale: 0.94 }}
                                     onClick={() => handleCardTap(f.id)}
                                     className={clsx(
-                                      "w-[100px] relative cursor-pointer rounded-[4px] overflow-hidden flex flex-col select-none border transition-shadow duration-300",
+                                      "group w-[100px] relative cursor-pointer rounded-[4px] overflow-hidden flex flex-col select-none border transition-all duration-300",
                                       isActive
-                                        ? "border-[#d4af37]/30 shadow-[0_2px_12px_rgba(212,175,55,0.12)]"
-                                        : "border-[#0b1b42]/[0.06] shadow-sm",
+                                        ? "border-[#d4af37]/40 shadow-[0_6px_18px_rgba(212,175,55,0.2)]"
+                                        : "border-[#0b1b42]/[0.06] shadow-[0_1px_6px_rgba(10,17,40,0.06)] hover:shadow-[0_8px_20px_rgba(10,17,40,0.14)]",
                                     )}
                                     style={{ background: "white" }}
                                   >
@@ -718,19 +729,22 @@ export default function BuySearchResultsMobile() {
                                       <motion.img
                                         src={f.logo}
                                         alt={f.name}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                                         draggable={false}
                                         initial={{ scale: 1.15 }}
                                         animate={{ scale: 1 }}
                                         transition={{ duration: 0.5, ease: "easeOut" }}
                                       />
                                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/50 to-transparent" />
+                                      {isActive && (
+                                        <div className="absolute inset-0 ring-2 ring-inset ring-[#d4af37]/50 pointer-events-none" />
+                                      )}
                                       
                                       <div className="absolute top-0.5 right-0.5 flex items-center gap-0.5">
                                         <motion.button
                                           whileTap={{ scale: 1.5 }}
                                           onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                          className="p-0.5"
+                                          className="p-0.5 rounded-full bg-black/20 backdrop-blur-sm"
                                         >
                                           <Bookmark
                                             className={clsx(
@@ -742,7 +756,7 @@ export default function BuySearchResultsMobile() {
                                         <motion.button
                                           whileTap={{ scale: 1.3 }}
                                           onClick={(e) => { e.stopPropagation(); setIsCarouselOpen(false); }}
-                                          className="p-0.5"
+                                          className="p-0.5 rounded-full bg-black/20 backdrop-blur-sm"
                                         >
                                           <X className="w-2.5 h-2.5 text-red-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]" />
                                         </motion.button>
@@ -754,7 +768,7 @@ export default function BuySearchResultsMobile() {
                                     </div>
                                     
                                     <div className="px-1.5 py-0.5 flex flex-col bg-white">
-                                      <h3 className="font-semibold text-[8px] leading-tight text-[#0a1128] truncate w-full">{f.name}</h3>
+                                      <h3 className="font-semibold text-[8px] leading-tight text-[#0a1128] truncate w-full group-hover:text-[#0b1b42] transition-colors">{f.name}</h3>
                                       <span className="text-[7px] text-[#0a1128]/35 flex items-center gap-0.5 font-medium">
                                         <MapPin size={6} className="text-[#d4af37]" />
                                         <span className="truncate">{f.location}</span>
