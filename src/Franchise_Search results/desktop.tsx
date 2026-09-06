@@ -399,7 +399,6 @@ export default function FranchiseSearchResultsDesktop() {
       className="w-full min-h-[calc(100vh-53px)] bg-[#f8f9fc] font-sans grid"
       style={{ gridTemplateColumns: '65% 35%', gridTemplateRows: 'auto 1fr' }}
     >
-
       <AnimatePresence>
         {isScrolled && (
           <motion.div
@@ -407,11 +406,70 @@ export default function FranchiseSearchResultsDesktop() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -50, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed top-[53px] left-0 right-0 z-[999] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+            className="fixed top-[53px] left-0 right-0 z-[999] flex flex-row h-[52px]"
+            style={{
+              background: "rgba(255,255,255,0.97)",
+              backdropFilter: "blur(20px)",
+              borderBottom: "1px solid rgba(11,27,66,0.08)",
+              boxShadow: "0 4px 24px rgba(10,17,40,0.10), 0 1px 0 rgba(212,175,55,0.12)",
+            }}
           >
-            <div className="bg-[#0a1128]/95 backdrop-blur-md py-1.5 px-6 flex items-center justify-center border-b border-[#0b1b42]/40">
-              <div className="w-full max-w-[640px] relative">
-                <div className="relative w-full bg-white rounded flex items-center p-1 shadow-md">
+            {/* Gold accent top border */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent pointer-events-none" />
+
+            {/* Sticky Category Filter (Left) */}
+            <div className="flex-1 flex items-center px-5 overflow-hidden gap-3">
+              <div className="flex items-center gap-1.5 text-[#0b1b42]/30 shrink-0">
+                <Filter size={13} strokeWidth={2} />
+                <span className="text-[9.5px] uppercase tracking-[0.12em] font-bold">Filter</span>
+              </div>
+
+              {/* Vertical divider */}
+              <div className="w-px h-5 bg-[#0b1b42]/10 shrink-0" />
+
+              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat;
+                  return (
+                    <motion.button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      whileTap={{ scale: 0.94 }}
+                      className={`shrink-0 relative px-3.5 py-1 rounded-[4px] text-[11px] font-semibold tracking-tight transition-all duration-200 border cursor-pointer ${
+                        isActive
+                          ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/30 shadow-[0_2px_10px_rgba(10,17,40,0.18)]"
+                          : "bg-white text-[#0b1b42]/70 border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:text-[#0b1b42]"
+                      }`}
+                    >
+                      {cat}
+                      {isActive && (
+                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Vertical divider */}
+            <div className="w-px h-7 my-auto bg-[#0b1b42]/[0.08] shrink-0" />
+
+            {/* Search Bar (Right) */}
+            <div className="w-[380px] shrink-0 flex items-center px-4 relative">
+              <div className="w-full relative">
+                <div
+                  className="relative w-full flex items-center rounded-[4px] overflow-hidden transition-all duration-200"
+                  style={{
+                    background: "#f4f6fb",
+                    border: "1px solid rgba(11,27,66,0.09)",
+                    boxShadow: "inset 0 1px 3px rgba(11,27,66,0.04)",
+                  }}
+                >
+                  {/* Gold glow on focus */}
+                  <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isSearchFocused ? "opacity-100" : "opacity-0"}`}
+                    style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.25), inset 0 0 0 1px rgba(212,175,55,0.15)" }}
+                  />
+                  <Search size={14} strokeWidth={2} className="ml-3 text-[#0b1b42]/30 shrink-0" />
                   <input
                     type="text"
                     value={searchQuery}
@@ -419,14 +477,16 @@ export default function FranchiseSearchResultsDesktop() {
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                     placeholder="Search franchise, industry, or location..."
-                    className="flex-1 bg-transparent border-none outline-none text-[13.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1 pl-3"
+                    className="flex-1 bg-transparent border-none outline-none text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/30 py-[7px] px-2.5"
                   />
-                  <button
-                    className="shrink-0 w-8 h-8 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
+                  <motion.button
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="shrink-0 w-7 h-7 mr-1 flex items-center justify-center rounded-[3px] text-white transition-all relative overflow-hidden"
                     style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
                   >
-                    <Search className="h-3.5 w-3.5 relative z-10" />
-                  </button>
+                    <Search className="h-3 w-3 relative z-10" />
+                  </motion.button>
                 </div>
 
                 <AnimatePresence>
@@ -483,38 +543,6 @@ export default function FranchiseSearchResultsDesktop() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
-            </div>
-
-            {/* Sticky Category Filter */}
-            <div className="bg-white/95 backdrop-blur-md border-b border-[#0b1b42]/[0.06] flex items-center px-6 py-2 shadow-sm">
-              <div className="flex items-center gap-1.5 mr-2 text-[#0b1b42]/40 shrink-0">
-                <Filter size={14} />
-                <span className="text-[10px] uppercase tracking-widest font-bold">
-                  Filter:
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide ml-2">
-                {categories.map((cat) => {
-                  const isActive = activeCategory === cat;
-                  return (
-                    <button
-                      key={cat}
-                      onClick={() => setActiveCategory(cat)}
-                      className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center cursor-pointer ${
-                        isActive
-                          ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_8px_rgba(212,175,55,0.15)]"
-                          : "bg-white text-[#0b1b42]/70 border-[#0b1b42]/10 hover:bg-[#0b1b42]/[0.02]"
-                      }`}
-                    >
-                      <span>{cat}</span>
-                      {isActive && (
-                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-5 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
-                      )}
-                    </button>
-                  );
-                })}
               </div>
             </div>
           </motion.div>
@@ -695,56 +723,35 @@ export default function FranchiseSearchResultsDesktop() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center gap-2.5 mt-2.5 text-[9.5px]"
+              className="flex items-center gap-3 mt-4"
             >
-              <span className="text-white/50 font-medium">Popular:</span>
-              <div className="flex items-center gap-1.5">
-                {["Food & Beverages", "Retail", "Education", "Healthcare", "+ More"].map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => setSearchQuery(tag === "+ More" ? "" : tag)}
-                    className="px-2.5 py-1 rounded border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
-                  >
-                    {tag}
-                  </button>
-                ))}
+              <div className="flex items-center gap-1.5 text-white/50 shrink-0">
+                <Filter size={14} />
+                <span className="text-[10px] uppercase tracking-widest font-bold">Filter:</span>
+              </div>
+              <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className={`shrink-0 relative px-3.5 py-1.5 rounded-[4px] text-[11px] font-medium transition-all border flex flex-col items-center justify-center cursor-pointer ${
+                        isActive
+                          ? "bg-white text-[#0a1128] border-white shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
+                          : "border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm"
+                      }`}
+                    >
+                      <span>{cat}</span>
+                    </button>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
         </div>
 
-        <div className="col-span-2 row-start-2 z-30 bg-white/95 backdrop-blur-md border-b border-[#0b1b42]/[0.06] flex items-center px-6 py-2.5 shadow-sm">
-          <div className="flex items-center gap-1.5 mr-2 text-[#0b1b42]/40 shrink-0">
-            <Filter size={14} />
-            <span className="text-[10px] uppercase tracking-widest font-bold">
-              Filter:
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide ml-2">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center cursor-pointer ${
-                    isActive
-                      ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_8px_rgba(212,175,55,0.15)]"
-                      : "bg-white text-[#0b1b42]/70 border-[#0b1b42]/10 hover:bg-[#0b1b42]/[0.02]"
-                  }`}
-                >
-                  <span>{cat}</span>
-                  {isActive && (
-                    <span className="absolute bottom-0.5 inset-x-0 mx-auto w-5 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-3 min-h-[950px] h-[950px]">
+        <div className="relative border-r border-[#e2e6ef] bg-gradient-to-br from-[#f0f3f8] via-[#eaeef5] to-[#e4e9f2] col-start-1 col-end-2 row-start-2 min-h-[950px] h-[950px]">
 
             <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -841,7 +848,7 @@ export default function FranchiseSearchResultsDesktop() {
         <div
           className={clsx(
           "flex flex-col bg-white z-20 shadow-[-8px_0_30px_rgba(0,0,0,0.04)] overflow-y-auto relative scrollbar-hide min-h-[950px] h-[950px]",
-          showFranchiseView ? "col-start-2 col-end-3 row-start-1 row-span-3 min-h-[1100px] h-full" : "col-start-2 col-end-3 row-start-3 row-span-1"
+          showFranchiseView ? "col-start-2 col-end-3 row-start-1 row-span-2 min-h-[1100px] h-full" : "col-start-2 col-end-3 row-start-2 row-span-1"
         )}>
           <AnimatePresence mode="wait">
           {showFranchiseView ? (
