@@ -12,37 +12,20 @@ import {
   Search,
   Building2,
   Map,
-  Maximize,
-  Minimize,
-  X,
-  ArrowRight,
   Eye,
   ArrowLeft,
   Filter,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  Layers,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-import { properties, getMeta, tagColors, type Property } from "./data";
+import { properties, getMeta, type Property } from "./data";
 import SearchImage from "./BuySearchResults.png";
 
-const stagger = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.12 },
-  },
-};
-const cardVariant = {
-  hidden: { opacity: 0, y: 18, scale: 0.96 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring" as const, stiffness: 320, damping: 24 },
-  },
-};
+
 const spring = { type: "spring" as const, stiffness: 400, damping: 28 };
 
 function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
@@ -76,9 +59,8 @@ export default function BuySearchResultsMobile() {
   const [showMap, setShowMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(5);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [isListCollapsed, setIsListCollapsed] = useState(false);
+  const [isCarouselOpen, setIsCarouselOpen] = useState(true);
+
   const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -170,15 +152,7 @@ export default function BuySearchResultsMobile() {
     setSelectedPropertyForView(property);
   }, []);
 
-  const handleLoadMore = () => {
-    setIsLoadingMore(true);
-    setTimeout(() => {
-      setVisibleCount((p) => p + 5);
-      setIsLoadingMore(false);
-    }, 600);
-  };
 
-  useEffect(() => { setVisibleCount(5); }, [searchQuery]);
 
   const toggleFavorite = (id: number) => {
     setFavorites((prev) => {
@@ -535,10 +509,10 @@ export default function BuySearchResultsMobile() {
         {showMap && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: isListCollapsed ? "100vh" : "34vh", opacity: 1 }}
+            animate={{ height: "100%", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring" as const, stiffness: 280, damping: 28 }}
-            className="w-full relative bg-gradient-to-br from-[#f4f6f9] via-[#eef1f6] to-[#e8ecf2] overflow-hidden flex-shrink-0 border-b border-[#0b1b42]/[0.05]"
+            className="w-full flex-1 relative bg-gradient-to-br from-[#f4f6f9] via-[#eef1f6] to-[#e8ecf2] overflow-hidden border-b border-[#0b1b42]/[0.05]"
           >
             <svg className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -554,26 +528,7 @@ export default function BuySearchResultsMobile() {
               <path d="M 0,80 Q 100,120 200,60 T 400,130" fill="none" stroke="#0b1b42" strokeWidth="2" strokeDasharray="6 4" />
               <path d="M 30,180 Q 150,150 250,200 T 400,170" fill="none" stroke="#0b1b42" strokeWidth="1.5" strokeDasharray="4 6" />
             </svg>
-            <div className="absolute bottom-14 right-3 z-10">
-              <motion.button
-                whileTap={{ scale: 0.85 }}
-                whileHover={{ scale: 1.1 }}
-                onClick={() => setIsListCollapsed(!isListCollapsed)}
-                className="w-9 h-9 flex items-center justify-center rounded bg-white text-[#0b1b42] shadow-lg border border-[#0b1b42]/[0.06] transition-all relative overflow-hidden"
-              >
-                <AnimatePresence mode="wait">
-                  {isListCollapsed ? (
-                    <motion.div key="min" initial={{ scale: 0.5, rotate: 90, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} exit={{ scale: 0.5, rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                      <Minimize size={16} strokeWidth={2.5} />
-                    </motion.div>
-                  ) : (
-                    <motion.div key="max" initial={{ scale: 0.5, rotate: -90, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} exit={{ scale: 0.5, rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                      <Maximize size={16} strokeWidth={2.5} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
-            </div>
+
             {filtered.map((f, i) => {
               const isActive = activeCard === f.id || selectedMarker === f.id;
               const meta = getMeta(f.category);
@@ -621,245 +576,106 @@ export default function BuySearchResultsMobile() {
               );
             })}
             <AnimatePresence>
-              {isListCollapsed && selectedMarker && (() => {
-                const f = filtered.find((x) => x.id === selectedMarker);
-                if (!f) return null;
-                const meta = getMeta(f.category);
-                return (
-                  <motion.div
-                    key={`popup-${f.id}`}
-                    initial={{ opacity: 0, scale: 0.85, y: 12 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 12 }}
-                    transition={spring}
-                    style={{
-                      position: "absolute",
-                      top: f.lat < 40 ? `calc(${f.lat}% + 28px)` : "auto",
-                      bottom: f.lat >= 40 ? `calc(${100 - f.lat}% + 28px)` : "auto",
-                      left: `max(12px, min(calc(${f.lng}% - 130px), calc(100% - 272px)))`,
-                      width: "260px",
-                      transformOrigin: f.lat < 40 ? "top center" : "bottom center",
-                    }}
-                    className="rounded shadow-2xl z-40 pointer-events-auto overflow-hidden"
-                    onClick={() => handleCardTap(f.id)}
+              {isCarouselOpen ? (
+                <motion.div
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%" }}
+                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                  className="absolute bottom-0 left-0 right-0 z-40 w-full bg-white/80 backdrop-blur-md rounded-t-[20px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] border-t border-white/50 pt-1"
+                >
+                  <div 
+                    className="w-full flex flex-col items-center justify-center py-2 cursor-pointer active:bg-gray-100/50 transition-colors rounded-t-[20px]"
+                    onClick={() => setIsCarouselOpen(false)}
                   >
-                    <motion.div
-                      className={clsx("h-[3px] w-full", meta.bg)}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                    <div className="p-3 bg-white border border-[#0b1b42]/[0.05]">
-                      <div className="flex items-start justify-between mb-1">
-                        <div className="flex gap-2.5 items-center min-w-0">
-                          <div className="w-[48px] h-[48px] rounded overflow-hidden shrink-0 border border-[#0b1b42]/[0.06] shadow-sm">
-                            <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                          </div>
-                          <div className="min-w-0">
-                            <h3 className="font-extrabold text-[13px] leading-tight truncate text-[#0a1128]">{f.name}</h3>
-                            <p className="text-[9px] text-[#0b1b42]/35 flex items-center gap-0.5 font-medium mt-0.5">
-                              <MapPin className="w-2.5 h-2.5 shrink-0 text-[#d4af37]/60" />
-                              <span className="truncate">{f.location}</span>
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-0.5 shrink-0 ml-1">
-                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-rose-50 transition-all">
-                            <Heart className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-red-500 text-red-500" : "text-[#0b1b42]/15")} />
-                          </motion.button>
-                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/25 hover:text-[#0b1b42] transition-all">
-                            <X className="w-3.5 h-3.5" />
-                          </motion.button>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                        <span className="text-[10px] font-bold text-[#0b1b42]">{f.price}</span>
-                        <span className="text-[10px] font-semibold text-emerald-500">{f.area}</span>
-                        <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
-                          <MapPin size={9} className="text-blue-500" />
-                          {f.location}
-                        </span>
-                      </div>
-                      <div className="flex justify-end gap-2 mt-2">
-                        <motion.button
-                          whileTap={{ scale: 0.92 }}
-                          onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
-                          className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
-                          title="View Details"
+                    <div className="w-10 h-1.5 rounded-full bg-gray-300" />
+                    <ChevronDown size={18} className="text-gray-400 mt-1" strokeWidth={2.5} />
+                  </div>
+                  <div className="w-full overflow-x-auto flex gap-3 px-4 pb-6 pt-1 snap-x scrollbar-hide" style={{ scrollSnapType: 'x mandatory' }}>
+                    {filtered.map((f) => {
+                      const isActive = activeCard === f.id || selectedMarker === f.id;
+                      return (
+                        <motion.div
+                          key={`hcard-${f.id}`}
+                          whileTap={{ scale: 0.97 }}
+                          onClick={() => handleCardTap(f.id)}
+                          className={clsx(
+                            "snap-center shrink-0 w-[65vw] max-w-[260px] relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 flex flex-col select-none",
+                            isActive
+                              ? "shadow-[0_8px_30px_rgba(10,17,40,0.15)] ring-2 ring-[#d4af37]/40"
+                              : "shadow-[0_4px_12px_rgba(10,17,40,0.08)] hover:shadow-[0_6px_16px_rgba(10,17,40,0.12)]",
+                          )}
+                          style={{ background: "white" }}
                         >
-                          <Eye size={14} strokeWidth={2.5} />
-                        </motion.button>
-                        <motion.button
-                          whileTap={{ scale: 0.92 }}
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-1 text-[9px] font-bold px-3 py-1.5 rounded text-white shadow-sm border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
-                          style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
-                        >
-                          <motion.div
-                            className="absolute inset-0"
-                            style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)" }}
-                            animate={{ x: ["-100%", "200%"] }}
-                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
-                          />
-                          <span className="relative z-10 flex items-center gap-1">
-                            Enquire <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
-                          </span>
-                        </motion.button>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })()}
+                          <div className="relative w-full h-[120px] overflow-hidden bg-gray-50">
+                            <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/70 via-transparent to-[#0a1128]/20" />
+                            
+                            <div className="absolute top-3 right-3 flex items-center gap-3.5">
+                              <motion.button
+                                whileTap={{ scale: 1.3 }}
+                                onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                className="p-0"
+                              >
+                                <Heart
+                                  className={clsx(
+                                    "w-[22px] h-[22px] transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
+                                    favorites.has(f.id) ? "fill-red-500 text-red-500" : "text-white/90"
+                                  )}
+                                />
+                              </motion.button>
+                            </div>
+                            
+                            <div className="absolute bottom-3 left-3">
+                              <span className="text-[15px] font-bold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{f.price}</span>
+                            </div>
+                            
+                            <div className="absolute bottom-3 right-3">
+                              <span className="text-[12px] font-semibold text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.area}</span>
+                            </div>
+                          </div>
+                          
+                          <div className="px-3 py-2.5 flex items-center justify-between gap-2">
+                            <div className="min-w-0 flex-1">
+                              <h3 className="font-bold text-[16px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
+                              <span className="text-[12px] text-[#0a1128]/50 flex items-center gap-1 mt-1 font-medium">
+                                <MapPin size={11} className="text-[#c69a54]" />
+                                {f.location}
+                              </span>
+                            </div>
+                            <motion.button
+                              whileTap={{ scale: 0.9 }}
+                              onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
+                              className="w-10 h-10 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
+                              title="View Details"
+                            >
+                              <Eye size={18} strokeWidth={2} className="text-white" />
+                            </motion.button>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.button
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsCarouselOpen(true)}
+                  className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 px-5 py-3 rounded-full bg-[#0b1b42] text-white flex items-center gap-2 shadow-xl border border-white/10"
+                >
+                  <Layers size={18} />
+                  <span className="text-[11px] font-bold tracking-wide uppercase">Properties</span>
+                </motion.button>
+              )}
             </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="flex-1 relative z-10 pb-16 pt-3">
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col gap-1 px-2 pb-2"
-        >
-          {filtered.slice(0, visibleCount).map((f) => {
-            const isActive = activeCard === f.id || selectedMarker === f.id;
-            return (
-              <motion.div
-                key={`card-${f.id}`}
-                variants={cardVariant}
-                whileTap={{ scale: 0.975 }}
-                onClick={() => handleCardTap(f.id)}
-                layout
-                className={clsx(
-                  "relative cursor-pointer rounded transition-all duration-300 overflow-hidden border",
-                  isActive
-                    ? "bg-gradient-to-r from-[#0b1b42]/[0.02] to-white border-[#d4af37]/25 shadow-[0_8px_28px_rgba(11,27,66,0.07)]"
-                    : "bg-white border-[#0b1b42]/[0.05] shadow-sm hover:shadow-md",
-                )}
-              >
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[1]"
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "200%" }}
-                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 5, ease: "linear" }}
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.03), transparent)", width: "50%" }}
-                />
-                <motion.div
-                  initial={false}
-                  animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
-                  transition={{ type: "spring" as const, stiffness: 500, damping: 28 }}
-                  className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top z-[3]"
-                  style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
-                />
-                <div className="p-3 relative z-[2]">
-                  <div className="flex gap-2">
-                    <motion.div
-                      animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-                      className="w-[64px] h-[64px] rounded overflow-hidden flex-shrink-0 border border-[#0b1b42]/[0.06] shadow-sm bg-white"
-                    >
-                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                    </motion.div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-between">
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <h3 className={clsx(
-                            "font-bold text-[13px] leading-tight truncate transition-colors duration-300",
-                            isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
-                          )}>
-                            {f.name}
-                          </h3>
-                          <p className="text-[10px] text-[#0b1b42]/50 font-medium mt-0.5 truncate">
-                            {f.category}
-                          </p>
-                        </div>
-                        <motion.button
-                          whileTap={{ scale: 1.4 }}
-                          onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                          className="p-1 shrink-0 -mt-0.5"
-                        >
-                          <Heart
-                            className={clsx(
-                              "w-3.5 h-3.5 transition-all duration-300",
-                              favorites.has(f.id)
-                                ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
-                                : "text-[#0b1b42]/20",
-                            )}
-                          />
-                        </motion.button>
-                      </div>
-                      <div className="flex items-center gap-1.5 mt-2 flex-wrap">
-                        <span className="text-[10px] font-bold text-[#0b1b42]">{f.price}</span>
-                        <span className="text-[10px] font-semibold text-emerald-500">{f.area}</span>
-                        <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
-                          <MapPin size={9} className="text-blue-500" />
-                          {f.location}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between mt-2 pl-[76px]">
-                    <div className="flex items-center gap-1 flex-wrap min-w-0">
-                      {f.tags.slice(0, 1).map((tag) => (
-                        <span key={tag} className={clsx("px-1.5 py-0.5 rounded text-[9px] font-bold border tracking-wide", tagColors[tag] || "bg-indigo-50 text-indigo-600 border-indigo-100")}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <motion.button
-                        whileTap={{ scale: 0.92 }}
-                        onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
-                        className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
-                        title="View Details"
-                      >
-                        <Eye size={14} strokeWidth={2.5} />
-                      </motion.button>
-                      <motion.button
-                        whileTap={{ scale: 0.92 }}
-                        className="shrink-0 flex items-center gap-0.5 text-[10px] font-semibold px-3 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap"
-                        style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
-                      >
-                        Enquire
-                      </motion.button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-        {visibleCount < filtered.length && (
-          <div className="px-4 py-4 flex justify-center">
-            <motion.button
-              onClick={handleLoadMore}
-              disabled={isLoadingMore}
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ y: -2 }}
-              className="flex items-center justify-center min-w-[130px] px-6 py-2.5 rounded text-[10px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all uppercase tracking-[0.15em] disabled:opacity-80 relative overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42, #132254)" }}
-            >
-              <motion.div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent)" }}
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: "linear" }}
-              />
-              {isLoadingMore ? (
-                <div className="flex gap-1.5 items-center">
-                  {[0, 0.12, 0.24].map((delay, i) => (
-                    <motion.div key={i} className="w-1.5 h-1.5 bg-[#d4af37] rounded" animate={{ y: [-3, 3, -3], opacity: [0.5, 1, 0.5] }} transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay }} />
-                  ))}
-                </div>
-              ) : (
-                <span className="relative z-10">Load More</span>
-              )}
-            </motion.button>
-          </div>
-        )}
-      </div>
       <MobileStickyFooter />
     </div>
   );
