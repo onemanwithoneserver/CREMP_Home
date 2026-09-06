@@ -99,9 +99,39 @@ export default function BuySearchResultsMobile() {
   const checkScroll = (ref: React.RefObject<HTMLDivElement | null>, setLeft: (val: boolean) => void, setRight: (val: boolean) => void) => {
     if (ref.current) {
       const { scrollLeft, scrollWidth, clientWidth } = ref.current;
-      setLeft(scrollLeft > 0);
-      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 1);
+      setLeft(scrollLeft > 2);
+      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 2);
     }
+  };
+
+  const centerCategoryTab = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    cat: string,
+    setLeft: (val: boolean) => void,
+    setRight: (val: boolean) => void
+  ) => {
+    const container = ref.current;
+    if (!container) return;
+    const targetBtn = container.querySelector<HTMLButtonElement>(`[data-category="${CSS.escape(cat)}"]`);
+    if (targetBtn) {
+      const containerWidth = container.clientWidth;
+      const btnLeft = targetBtn.offsetLeft;
+      const btnWidth = targetBtn.clientWidth;
+      const scrollTarget = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+      container.scrollTo({
+        left: Math.max(0, scrollTarget),
+        behavior: 'smooth',
+      });
+      setTimeout(() => {
+        checkScroll(ref, setLeft, setRight);
+      }, 350);
+    }
+  };
+
+  const handleSelectCategory = (cat: string) => {
+    setActiveCategory(cat);
+    centerCategoryTab(mainScrollRef, cat, setShowMainLeft, setShowMainRight);
+    centerCategoryTab(stickyScrollRef, cat, setShowStickyLeft, setShowStickyRight);
   };
 
   useEffect(() => {
@@ -113,6 +143,11 @@ export default function BuySearchResultsMobile() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [categories, isSticky]);
+
+  useEffect(() => {
+    centerCategoryTab(mainScrollRef, activeCategory, setShowMainLeft, setShowMainRight);
+    centerCategoryTab(stickyScrollRef, activeCategory, setShowStickyLeft, setShowStickyRight);
+  }, [activeCategory, isSticky]);
 
   const handleScroll = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (ref.current) {
@@ -222,96 +257,90 @@ export default function BuySearchResultsMobile() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0a1128]/95 backdrop-blur-md shadow-md py-2 px-4 flex flex-col"
+            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0b1b42] shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex flex-col"
           >
-            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md mb-2">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                placeholder="Search by property type, location, or keyword..."
-                className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
-              />
-              <div className="flex gap-1 shrink-0 ml-1">
-                <button
-                  onClick={() => setShowMap(!showMap)}
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
-                  style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
-                >
-                  <Map className="h-[14px] w-[14px]" />
-                </button>
-                <div
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
-                  style={{ background: "rgb(11, 27, 66)" }}
-                >
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)", transform: "translateX(200%)" }} />
-                  <Search className="h-[14px] w-[14px] relative z-10" />
+            <div className="py-2 px-4 relative">
+              <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  placeholder="Search by property type, location, or keyword..."
+                  className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
+                />
+                <div className="flex gap-1 shrink-0 ml-1">
+                  <button
+                    onClick={() => setShowMap(!showMap)}
+                    className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
+                    style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
+                  >
+                    <Map className="h-[14px] w-[14px]" />
+                  </button>
+                  <div
+                    className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
+                    style={{ background: "rgb(11, 27, 66)" }}
+                  >
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)", transform: "translateX(200%)" }} />
+                    <Search className="h-[14px] w-[14px] relative z-10" />
+                  </div>
                 </div>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      <AnimatePresence>
-        {isSticky && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[113px] left-0 right-0 z-40 bg-[#f8f9fc] border-b border-[#0b1b42]/[0.08] shadow-sm flex items-center"
-          >
-            {showStickyLeft && (
-              <button
-                onClick={() => handleScroll(stickyScrollRef, 'left')}
-                className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+            {/* Sticky Category Filter */}
+            <div className="w-full relative bg-[#f8f9fc] border-t border-[#0b1b42]/[0.08] flex items-center">
+              {showStickyLeft && (
+                <button
+                  onClick={() => handleScroll(stickyScrollRef, 'left')}
+                  className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+                >
+                  <ChevronLeft size={18} strokeWidth={2.5} />
+                </button>
+              )}
+              <div 
+                ref={stickyScrollRef} 
+                onScroll={() => checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight)}
+                className="w-full overflow-x-auto scrollbar-hide px-4 py-2 flex items-center gap-2 relative"
               >
-                <ChevronLeft size={18} strokeWidth={2.5} />
-              </button>
-            )}
-            <div 
-              ref={stickyScrollRef} 
-              onScroll={() => checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight)}
-              className="w-full overflow-x-auto scrollbar-hide px-4 py-2 flex items-center gap-2 relative"
-            >
-              <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
-                <Filter size={12} strokeWidth={2.5} />
-                <span className="text-[9px] uppercase tracking-widest font-bold">
-                  Filter:
-                </span>
+                <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
+                  <Filter size={12} strokeWidth={2.5} />
+                  <span className="text-[9px] uppercase tracking-widest font-bold">
+                    Filter:
+                  </span>
+                </div>
+
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      data-category={cat}
+                      onClick={() => handleSelectCategory(cat)}
+                      className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center cursor-pointer ${
+                        isActive
+                          ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
+                          : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      <span>{cat}</span>
+                      {isActive && (
+                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-3 h-[2px] rounded-full bg-[#d4af37]" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
-
-              {categories.map((cat) => {
-                const isActive = activeCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
-                      isActive
-                        ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
-                        : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
-                    }`}
-                  >
-                    <span>{cat}</span>
-                    {isActive && (
-                      <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
-                    )}
-                  </button>
-                );
-              })}
+              {showStickyRight && (
+                <button
+                  onClick={() => handleScroll(stickyScrollRef, 'right')}
+                  className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+                >
+                  <ChevronRight size={18} strokeWidth={2.5} />
+                </button>
+              )}
             </div>
-            {showStickyRight && (
-              <button
-                onClick={() => handleScroll(stickyScrollRef, 'right')}
-                className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
-              >
-                <ChevronRight size={18} strokeWidth={2.5} />
-              </button>
-            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -474,10 +503,9 @@ export default function BuySearchResultsMobile() {
             return (
               <button
                 key={cat}
-                onClick={() => {
-                  setActiveCategory(cat);
-                }}
-                className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                data-category={cat}
+                onClick={() => handleSelectCategory(cat)}
+                className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center cursor-pointer ${
                   isActive
                     ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
                     : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
@@ -485,7 +513,7 @@ export default function BuySearchResultsMobile() {
               >
                 <span>{cat}</span>
                 {isActive && (
-                  <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                  <span className="absolute bottom-0.5 inset-x-0 mx-auto w-3 h-[2px] rounded-full bg-[#d4af37]" />
                 )}
               </button>
             );

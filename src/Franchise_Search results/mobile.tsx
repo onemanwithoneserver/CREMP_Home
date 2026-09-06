@@ -173,9 +173,39 @@ export default function FranchiseSearchResultsMobile() {
   const checkScroll = (ref: React.RefObject<HTMLDivElement | null>, setLeft: (val: boolean) => void, setRight: (val: boolean) => void) => {
     if (ref.current) {
       const { scrollLeft, scrollWidth, clientWidth } = ref.current;
-      setLeft(scrollLeft > 0);
-      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 1);
+      setLeft(scrollLeft > 2);
+      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 2);
     }
+  };
+
+  const centerCategoryTab = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    cat: string,
+    setLeft: (val: boolean) => void,
+    setRight: (val: boolean) => void
+  ) => {
+    const container = ref.current;
+    if (!container) return;
+    const targetBtn = container.querySelector<HTMLButtonElement>(`[data-category="${CSS.escape(cat)}"]`);
+    if (targetBtn) {
+      const containerWidth = container.clientWidth;
+      const btnLeft = targetBtn.offsetLeft;
+      const btnWidth = targetBtn.clientWidth;
+      const scrollTarget = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+      container.scrollTo({
+        left: Math.max(0, scrollTarget),
+        behavior: 'smooth',
+      });
+      setTimeout(() => {
+        checkScroll(ref, setLeft, setRight);
+      }, 350);
+    }
+  };
+
+  const handleSelectCategory = (cat: string) => {
+    setActiveCategory(cat);
+    centerCategoryTab(mainScrollRef, cat, setShowMainLeft, setShowMainRight);
+    centerCategoryTab(stickyScrollRef, cat, setShowStickyLeft, setShowStickyRight);
   };
 
   useEffect(() => {
@@ -187,6 +217,11 @@ export default function FranchiseSearchResultsMobile() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [categories, isSticky]);
+
+  useEffect(() => {
+    centerCategoryTab(mainScrollRef, activeCategory, setShowMainLeft, setShowMainRight);
+    centerCategoryTab(stickyScrollRef, activeCategory, setShowStickyLeft, setShowStickyRight);
+  }, [activeCategory, isSticky]);
 
   const handleScroll = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (ref.current) {
@@ -446,8 +481,9 @@ export default function FranchiseSearchResultsMobile() {
                   return (
                     <button
                       key={cat}
-                      onClick={() => setActiveCategory(cat)}
-                      className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                      data-category={cat}
+                      onClick={() => handleSelectCategory(cat)}
+                      className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center cursor-pointer ${
                         isActive
                           ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
                           : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
@@ -455,7 +491,7 @@ export default function FranchiseSearchResultsMobile() {
                     >
                       <span>{cat}</span>
                       {isActive && (
-                        <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-3 h-[2px] rounded-full bg-[#d4af37]" />
                       )}
                     </button>
                   );
@@ -646,10 +682,9 @@ export default function FranchiseSearchResultsMobile() {
             return (
               <button
                 key={cat}
-                onClick={() => {
-                  setActiveCategory(cat);
-                }}
-                className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                data-category={cat}
+                onClick={() => handleSelectCategory(cat)}
+                className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center cursor-pointer ${
                   isActive
                     ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
                     : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
@@ -657,7 +692,7 @@ export default function FranchiseSearchResultsMobile() {
               >
                 <span>{cat}</span>
                 {isActive && (
-                  <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                  <span className="absolute bottom-0.5 inset-x-0 mx-auto w-3 h-[2px] rounded-full bg-[#d4af37]" />
                 )}
               </button>
             );
