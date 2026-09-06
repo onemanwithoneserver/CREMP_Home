@@ -441,7 +441,7 @@ export default function BuySearchResultsMobile() {
                         </motion.div>
                       ))
                     ) : (
-                      <div className="p-3 text-center text-[10px] text-[#0b1b42]/35 font-medium">No properties found</div>
+                      <div className="p-3 text-center text-[10px] text-[#0b1b42]/35 font-medium">No listings found</div>
                     )}
                   </div>
                 </motion.div>
@@ -750,7 +750,7 @@ export default function BuySearchResultsMobile() {
                   className="fixed bottom-[88px] left-0 z-40 px-4 py-2.5 rounded-r-[4px] bg-[#0b1b42] text-white flex items-center gap-2 shadow-[4px_4px_15px_rgba(0,0,0,0.2)] border border-white/10 border-l-0"
                 >
                   <Layers size={18} />
-                  <span className="text-[11px] font-bold tracking-wide uppercase">Properties</span>
+                  <span className="text-[11px] font-bold tracking-wide uppercase">Listings</span>
                 </motion.button>
               )}
             </AnimatePresence>

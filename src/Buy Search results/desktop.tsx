@@ -443,7 +443,7 @@ export default function BuySearchResultsDesktop() {
                             );
                           })
                         ) : (
-                          <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No properties found</div>
+                          <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No listings found</div>
                         )}
                       </div>
                     </motion.div>
@@ -616,7 +616,7 @@ export default function BuySearchResultsDesktop() {
                           );
                         })
                       ) : (
-                        <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No properties found</div>
+                        <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No listings found</div>
                       )}
                     </div>
                   </motion.div>
@@ -975,7 +975,7 @@ export default function BuySearchResultsDesktop() {
                     <div className="w-16 h-16 rounded bg-[#0b1b42]/[0.04] flex items-center justify-center mb-2">
                       <Search size={24} className="text-[#0b1b42]/20" />
                     </div>
-                    <p className="text-[14px] font-semibold text-[#0b1b42]/40 text-center">No properties found</p>
+                    <p className="text-[14px] font-semibold text-[#0b1b42]/40 text-center">No listings found</p>
                     <p className="text-[12px] text-[#0b1b42]/25 mt-1 text-center">Try adjusting your search or filters</p>
                   </motion.div>
                 )}
