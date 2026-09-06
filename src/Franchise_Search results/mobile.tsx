@@ -11,15 +11,83 @@ import {
   Eye,
   ArrowLeft,
   Filter,
+  Undo2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-import { franchises, getMeta } from "./data";
+import { franchises, getMeta, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
 import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
 import { useNavigate, useLocation } from "react-router-dom";
+
+/* ───── Undo Snackbar ───── */
+function UndoSnackbar({
+  franchise,
+  onUndo,
+  onDismiss,
+}: {
+  franchise: Franchise;
+  onUndo: () => void;
+  onDismiss: () => void;
+}) {
+  useEffect(() => {
+    const timer = setTimeout(onDismiss, 5000);
+    return () => clearTimeout(timer);
+  }, [onDismiss]);
+
+  return (
+    <motion.div
+      initial={{ y: 80, opacity: 0, scale: 0.92 }}
+      animate={{ y: 0, opacity: 1, scale: 1 }}
+      exit={{ y: 80, opacity: 0, scale: 0.92 }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[9999] flex items-center gap-2.5 px-4 py-2.5 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.3)] border border-white/10 w-[calc(100vw-32px)] max-w-[400px]"
+      style={{
+        background: "linear-gradient(135deg, #0a1128 0%, #132254 100%)",
+        backdropFilter: "blur(20px)",
+      }}
+    >
+      {/* Progress bar */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-[3px] rounded-b-xl"
+        style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+        initial={{ width: "100%" }}
+        animate={{ width: "0%" }}
+        transition={{ duration: 5, ease: "linear" }}
+      />
+      <div className="w-7 h-7 rounded-lg overflow-hidden border border-white/10 shrink-0 shadow-md">
+        <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
+      </div>
+      <div className="flex flex-col min-w-0 flex-1">
+        <span className="text-white/90 text-[11px] font-semibold truncate">
+          {franchise.name}
+        </span>
+        <span className="text-white/40 text-[9px] font-medium">Removed from results</span>
+      </div>
+      <motion.button
+        whileTap={{ scale: 0.92 }}
+        onClick={onUndo}
+        className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all shrink-0 cursor-pointer"
+        style={{
+          background: "linear-gradient(135deg, #d4af37, #f3cd52)",
+          color: "#0a1128",
+        }}
+      >
+        <Undo2 size={12} strokeWidth={2.5} />
+        Undo
+      </motion.button>
+      <motion.button
+        whileTap={{ scale: 0.85 }}
+        onClick={onDismiss}
+        className="p-1 rounded-full text-white/30 hover:text-white/60 transition-all shrink-0 cursor-pointer"
+      >
+        <X size={13} />
+      </motion.button>
+    </motion.div>
+  );
+}
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -84,6 +152,7 @@ export default function FranchiseSearchResultsMobile() {
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [showFranchiseView, setShowFranchiseView] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [undoItem, setUndoItem] = useState<Franchise | null>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,12 +185,28 @@ export default function FranchiseSearchResultsMobile() {
   };
 
   const toggleDismiss = (id: number) => {
+    const franchise = franchises.find((f) => f.id === id);
     setDismissed((prev) => {
       const next = new Set(prev);
-      next.add(id); // Usually dismiss is one-way from the feed, but we can toggle
+      next.add(id);
       return next;
     });
+    if (franchise) setUndoItem(franchise);
   };
+
+  const handleUndo = useCallback(() => {
+    if (!undoItem) return;
+    setDismissed((prev) => {
+      const next = new Set(prev);
+      next.delete(undoItem.id);
+      return next;
+    });
+    setUndoItem(null);
+  }, [undoItem]);
+
+  const handleUndoDismiss = useCallback(() => {
+    setUndoItem(null);
+  }, []);
 
   const handleCardTap = (id: number) => {
     setActiveCard(activeCard === id ? null : id);
@@ -877,6 +962,18 @@ export default function FranchiseSearchResultsMobile() {
           </div>
         )}
       </div>
+
+      {/* Undo Snackbar */}
+      <AnimatePresence>
+        {undoItem && (
+          <UndoSnackbar
+            key={undoItem.id}
+            franchise={undoItem}
+            onUndo={handleUndo}
+            onDismiss={handleUndoDismiss}
+          />
+        )}
+      </AnimatePresence>
 
       <MobileStickyFooter />
     </div>

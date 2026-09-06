@@ -10,12 +10,82 @@ import {
   Building2,
   Sparkles,
   Filter,
+  Undo2,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import clsx from "clsx";
 import { franchises, getMeta, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
+
+/* ───── Undo Snackbar ───── */
+function UndoSnackbar({
+  franchise,
+  onUndo,
+  onDismiss,
+}: {
+  franchise: Franchise;
+  onUndo: () => void;
+  onDismiss: () => void;
+}) {
+  useEffect(() => {
+    const timer = setTimeout(onDismiss, 5000);
+    return () => clearTimeout(timer);
+  }, [onDismiss]);
+
+  return (
+    <motion.div
+      initial={{ y: 80, opacity: 0, scale: 0.92 }}
+      animate={{ y: 0, opacity: 1, scale: 1 }}
+      exit={{ y: 80, opacity: 0, scale: 0.92 }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] flex items-center gap-3 px-5 py-3 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.25)] border border-white/10"
+      style={{
+        background: "linear-gradient(135deg, #0a1128 0%, #132254 100%)",
+        backdropFilter: "blur(20px)",
+      }}
+    >
+      {/* Progress bar */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-[3px] rounded-b-xl"
+        style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
+        initial={{ width: "100%" }}
+        animate={{ width: "0%" }}
+        transition={{ duration: 5, ease: "linear" }}
+      />
+      <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/10 shrink-0 shadow-md">
+        <img src={franchise.logo} alt={franchise.name} className="w-full h-full object-cover" />
+      </div>
+      <div className="flex flex-col min-w-0">
+        <span className="text-white/90 text-[12px] font-semibold truncate max-w-[180px]">
+          {franchise.name}
+        </span>
+        <span className="text-white/40 text-[10px] font-medium">Removed from results</span>
+      </div>
+      <motion.button
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
+        onClick={onUndo}
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ml-2 cursor-pointer"
+        style={{
+          background: "linear-gradient(135deg, #d4af37, #f3cd52)",
+          color: "#0a1128",
+        }}
+      >
+        <Undo2 size={13} strokeWidth={2.5} />
+        Undo
+      </motion.button>
+      <motion.button
+        whileHover={{ scale: 1.1, rotate: 90 }}
+        whileTap={{ scale: 0.85 }}
+        onClick={onDismiss}
+        className="ml-1 p-1 rounded-full text-white/30 hover:text-white/60 hover:bg-white/10 transition-all cursor-pointer"
+      >
+        <X size={14} />
+      </motion.button>
+    </motion.div>
+  );
+}
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -158,6 +228,7 @@ export default function FranchiseSearchResultsDesktop() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [showFranchiseView, setShowFranchiseView] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [undoItem, setUndoItem] = useState<Franchise | null>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -203,11 +274,27 @@ export default function FranchiseSearchResultsDesktop() {
   }, []);
 
   const toggleDismiss = useCallback((id: number) => {
+    const franchise = franchises.find((f) => f.id === id);
     setDismissed((prev) => {
       const next = new Set(prev);
       next.add(id);
       return next;
     });
+    if (franchise) setUndoItem(franchise);
+  }, []);
+
+  const handleUndo = useCallback(() => {
+    if (!undoItem) return;
+    setDismissed((prev) => {
+      const next = new Set(prev);
+      next.delete(undoItem.id);
+      return next;
+    });
+    setUndoItem(null);
+  }, [undoItem]);
+
+  const handleUndoDismiss = useCallback(() => {
+    setUndoItem(null);
   }, []);
 
   const handleMarkerClick = useCallback((id: number) => {
@@ -825,6 +912,8 @@ export default function FranchiseSearchResultsDesktop() {
                           <motion.div
                             key={`card-${f.id}`}
                             variants={fadeUp}
+                            layout
+                            exit={{ opacity: 0, scale: 0.85, x: -30, transition: { duration: 0.35, ease: "easeInOut" } }}
                             onMouseEnter={() => setHoveredCard(f.id)}
                             onMouseLeave={() => setHoveredCard(null)}
                             onClick={() => handleMarkerClick(f.id)}
@@ -1061,6 +1150,18 @@ export default function FranchiseSearchResultsDesktop() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Undo Snackbar */}
+      <AnimatePresence>
+        {undoItem && (
+          <UndoSnackbar
+            key={undoItem.id}
+            franchise={undoItem}
+            onUndo={handleUndo}
+            onDismiss={handleUndoDismiss}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
