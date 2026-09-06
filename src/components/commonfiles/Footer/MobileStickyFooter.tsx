@@ -20,11 +20,8 @@ export default function MobileStickyFooter({
   activeTab = "explore",
   onTabChange,
 }: MobileStickyFooterProps) {
-  // const navigate = useNavigate();
   const location = useLocation();
   const pathParts = location.pathname.split("/").filter(Boolean);
-  // const themeMode = pathParts[0] || "dark";
-  // const viewMode = pathParts[1] || "mobile";
   const currentPathPage = pathParts[2];
   
   const [currentTab, setCurrentTab] = useState(currentPathPage || activeTab);
@@ -39,8 +36,6 @@ export default function MobileStickyFooter({
     setTapEffect(tab);
     setTimeout(() => setTapEffect(null), 400);
     
-    // Navigate to the proper route (Disabled for demo)
-    // navigate(`/${themeMode}/${viewMode}/${tab}`);
     
     if (onTabChange) {
       onTabChange(tab);
@@ -76,7 +71,6 @@ export default function MobileStickyFooter({
 
           return (
             <div key={item.id} className="flex-1 flex items-stretch relative min-w-0">
-              {/* Vertical divider */}
               {index > 0 && (
                 <div className="self-stretch flex items-center py-2.5 shrink-0 -ml-[0.5px]">
                   <div className="w-[1px] h-6 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent opacity-60" />
@@ -98,10 +92,8 @@ export default function MobileStickyFooter({
                   overflow-hidden
                 "
               >
-                {/* Centered Top Golden Indicator Bar with Downward Shadow / Glow Effect */}
                 {isActive && (
                   <div className="absolute top-0 inset-x-0 flex justify-center pointer-events-none z-20">
-                    {/* Soft downward radiating golden shadow beam */}
                     <div className="absolute -top-1 w-16 h-10 bg-gradient-to-b from-[#d4af37]/35 via-[#d4af37]/10 to-transparent blur-md rounded-full pointer-events-none" />
                     <motion.div
                       layoutId="activeTopBar"
@@ -120,7 +112,6 @@ export default function MobileStickyFooter({
                   </div>
                 )}
 
-                {/* Tap micro ripple */}
                 <AnimatePresence>
                   {isTapped && (
                     <motion.span
@@ -133,7 +124,6 @@ export default function MobileStickyFooter({
                   )}
                 </AnimatePresence>
 
-                {/* Icon Container */}
                 <motion.div
                   animate={
                     isActive
@@ -165,7 +155,6 @@ export default function MobileStickyFooter({
                     }
                   `}
                 >
-                  {/* Item 1: CREMP Logo */}
                   {item.id === "home" && (
                     <div className="w-full h-full flex items-center justify-center">
                       <img
@@ -186,7 +175,6 @@ export default function MobileStickyFooter({
                     </div>
                   )}
 
-                  {/* Item 2: Explore (Video Frame + Search Glass) */}
                   {item.id === "explore" && (
                     <svg
                       width="100%"
@@ -230,7 +218,6 @@ export default function MobileStickyFooter({
                     </svg>
                   )}
 
-                  {/* Item 3: Saved (Heart) */}
                   {item.id === "saved" && (
                     <svg
                       width="100%"
@@ -251,7 +238,6 @@ export default function MobileStickyFooter({
                     </svg>
                   )}
 
-                  {/* Item 4: Hire Broker (User Profile + Badge) */}
                   {item.id === "hire-broker" && (
                     <svg
                       width="100%"
@@ -297,7 +283,6 @@ export default function MobileStickyFooter({
                     </svg>
                   )}
 
-                  {/* Item 5: Hand Picked (Star Badge) */}
                   {item.id === "hand-picked" && (
                     <svg
                       width="100%"
@@ -327,7 +312,6 @@ export default function MobileStickyFooter({
                     </svg>
                   )}
 
-                  {/* Item 6: Post Requirement (Document + Plus) */}
                   {item.id === "post-requirement" && (
                     <svg
                       width="100%"
@@ -369,7 +353,6 @@ export default function MobileStickyFooter({
                   )}
                 </motion.div>
 
-                {/* Text Label */}
                 <span
                   className={`
                     block w-full text-center leading-tight whitespace-pre-wrap relative z-10

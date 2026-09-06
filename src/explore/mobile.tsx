@@ -186,15 +186,13 @@ const VideoSearchHeader = ({
                   <div className="flex flex-col bg-white py-1.5">
                     {(() => {
                       const allowedTopics = ["Commercial Properties", "Hire a Broker", "Business Opportunities"];
-                      // Only include videos related to the allowed topics
                       const relatedVideos = sampleVideos.filter(v => 
                         allowedTopics.some(topic => v.title.toLowerCase().includes(topic.toLowerCase()))
                       );
                       
-                      // Filter by user search query
                       const filtered = relatedVideos.filter(v => 
                         v.title.toLowerCase().includes(searchQuery.toLowerCase())
-                      ).slice(0, 6); // Max 6 suggestions
+                      ).slice(0, 6);
                       
                       if (filtered.length === 0) {
                         return (
@@ -209,7 +207,7 @@ const VideoSearchHeader = ({
                           key={video.id}
                           className="w-full text-left px-4 py-2.5 hover:bg-[#f8f9fa] active:bg-[#f1f5f9] transition-colors"
                           onMouseDown={(e) => {
-                            e.preventDefault(); // Prevent blur
+                            e.preventDefault();
                             setSearchQuery(video.title);
                             setIsSearchFocused(false);
                             setVisibleCount(ITEMS_PER_PAGE);
@@ -323,7 +321,6 @@ const SponsoredAdCard = ({ spanClass, cardVariants }: { spanClass: string, cardV
         </div>
       )}
 
-      {/* Gradient for text visibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 pointer-events-none z-[5]" />
 
       <div className="absolute bottom-1 left-0 w-full p-3 z-10 pointer-events-none flex flex-col items-start text-left">

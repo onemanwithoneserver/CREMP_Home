@@ -328,14 +328,12 @@ export default function BuySearchResultsDesktop() {
               borderBottom: "1px solid rgba(11,27,66,0.08)",
             }}
           >
-            {/* Sticky Category Filter (Left) */}
             <div className="flex-1 flex items-center px-5 overflow-hidden gap-3">
               <div className="flex items-center gap-1.5 text-[#0b1b42]/30 shrink-0">
                 <Filter size={13} strokeWidth={2} />
                 <span className="text-[9.5px] uppercase tracking-[0.12em] font-bold">Filter</span>
               </div>
 
-              {/* Vertical divider */}
               <div className="w-px h-5 bg-[#0b1b42]/10 shrink-0" />
 
               <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
@@ -362,10 +360,8 @@ export default function BuySearchResultsDesktop() {
               </div>
             </div>
 
-            {/* Vertical divider */}
             <div className="w-px h-7 my-auto bg-[#0b1b42]/[0.08] shrink-0" />
 
-            {/* Search Bar (Right) */}
             <div className="w-[380px] shrink-0 flex items-center px-4 relative">
               <div className="w-full relative">
                 <div
@@ -376,7 +372,6 @@ export default function BuySearchResultsDesktop() {
                     boxShadow: "inset 0 1px 3px rgba(11,27,66,0.04)",
                   }}
                 >
-                  {/* Gold glow on focus */}
                   <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isSearchFocused ? "opacity-100" : "opacity-0"}`}
                     style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.25), inset 0 0 0 1px rgba(212,175,55,0.15)" }}
                   />

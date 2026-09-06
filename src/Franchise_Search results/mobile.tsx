@@ -24,7 +24,6 @@ import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTab
 import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
 import { useNavigate, useLocation } from "react-router-dom";
 
-/* ───── Undo Snackbar ───── */
 function UndoSnackbar({
   franchise,
   onUndo,
@@ -51,7 +50,6 @@ function UndoSnackbar({
         backdropFilter: "blur(20px)",
       }}
     >
-      {/* Progress bar */}
       <motion.div
         className="absolute bottom-0 left-0 h-[3px] rounded-b-xl"
         style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
@@ -326,7 +324,6 @@ export default function FranchiseSearchResultsMobile() {
 
   return (
     <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
-      {/* Sticky Header Tabs */}
       <div className="sticky top-[53px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
       </div>
@@ -454,7 +451,6 @@ export default function FranchiseSearchResultsMobile() {
               </AnimatePresence>
             </div>
 
-            {/* Sticky Category Filter */}
             <div className="w-full relative bg-[#f8f9fc] border-t border-[#0b1b42]/[0.08] flex items-center">
               {showStickyLeft && (
                 <button
@@ -897,20 +893,17 @@ export default function FranchiseSearchResultsMobile() {
             });
 
             grouped.forEach((items, category) => {
-              // Category heading — franchise_home style
               renderItems.push(
                 <div key={`heading-${category}`} className="col-span-6 mt-6 mb-2 px-1">
                   <h2 className="text-[17px] font-semibold text-[#0a1128] tracking-tight">{category}</h2>
                 </div>
               );
 
-              // Full-row cards: swipeable horizontal carousel
               const fullRowItems = items.slice(0, 1);
               const halfRowItems = items.slice(1, 3);
               const thirdRowItems = items.slice(3);
 
               if (fullRowItems.length > 0) {
-                // Combine all full-row eligible items into a swipeable strip
                 const swipeItems = [...fullRowItems, ...halfRowItems];
                 renderItems.push(
                   <div key={`swipe-${category}`} className="col-span-6 relative -mx-2 px-2 overflow-hidden">
@@ -936,11 +929,9 @@ export default function FranchiseSearchResultsMobile() {
                             )}
                             style={{ background: "white" }}
                           >
-                            {/* Hero image */}
                             <div className="relative w-full h-[170px] overflow-hidden bg-gray-50">
                               <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
                               <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-[#0a1128]/10" />
-                              {/* Transparent icons */}
                               <div className="absolute top-3 right-3 flex items-center gap-3.5">
                                 <motion.button
                                   whileTap={{ scale: 1.3 }}
@@ -965,16 +956,13 @@ export default function FranchiseSearchResultsMobile() {
                                   <X className="w-[22px] h-[22px] text-red-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
                                 </motion.button>
                               </div>
-                              {/* ROI overlay bottom-left */}
                               <div className="absolute bottom-3 left-3">
                                 <span className="text-[14px] font-semibold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{f.roi}</span>
                               </div>
-                              {/* Investment overlay bottom-right */}
                               <div className="absolute bottom-3 right-3">
                                 <span className="text-[11px] font-semibold text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.investment}</span>
                               </div>
                             </div>
-                            {/* Content */}
                             <div className="px-3.5 py-3 flex items-center justify-between gap-2">
                               <div className="min-w-0 flex-1">
                                 <h3 className="font-semibold text-[16px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
@@ -1000,7 +988,6 @@ export default function FranchiseSearchResultsMobile() {
                 );
               }
 
-              // Third-row compact grid cards
               if (thirdRowItems.length > 0) {
                 thirdRowItems.forEach((f) => {
                   const isActive = activeCard === f.id || selectedMarker === f.id;
@@ -1019,11 +1006,9 @@ export default function FranchiseSearchResultsMobile() {
                       )}
                       style={{ background: "white" }}
                     >
-                      {/* Cover image */}
                       <div className="relative w-full h-[80px] overflow-hidden bg-gray-50">
                         <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/40 to-transparent" />
-                        {/* Transparent icons */}
                         <div className="absolute top-1.5 right-1.5 flex items-center gap-2">
                           <motion.button
                             whileTap={{ scale: 1.3 }}
@@ -1049,7 +1034,6 @@ export default function FranchiseSearchResultsMobile() {
                           </motion.button>
                         </div>
                       </div>
-                      {/* Content */}
                       <div className="px-2 pt-1.5 pb-2 flex flex-col items-center text-center flex-1">
                         <h3 className="font-semibold text-[11px] leading-tight truncate w-full text-[#0a1128]">
                           {f.name}
@@ -1075,7 +1059,6 @@ export default function FranchiseSearchResultsMobile() {
         )}
       </div>
 
-      {/* Undo Snackbar */}
       <AnimatePresence>
         {undoItem && (
           <UndoSnackbar

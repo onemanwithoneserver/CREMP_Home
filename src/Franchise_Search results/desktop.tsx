@@ -18,7 +18,6 @@ import { franchises, getMeta, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 
-/* ───── Undo Snackbar ───── */
 function UndoSnackbar({
   franchise,
   onUndo,
@@ -45,7 +44,6 @@ function UndoSnackbar({
         backdropFilter: "blur(20px)",
       }}
     >
-      {/* Progress bar */}
       <motion.div
         className="absolute bottom-0 left-0 h-[3px] rounded-b-xl"
         style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
@@ -413,14 +411,12 @@ export default function FranchiseSearchResultsDesktop() {
               borderBottom: "1px solid rgba(11,27,66,0.08)",
             }}
           >
-            {/* Sticky Category Filter (Left) */}
             <div className="flex-1 flex items-center px-5 overflow-hidden gap-3">
               <div className="flex items-center gap-1.5 text-[#0b1b42]/30 shrink-0">
                 <Filter size={13} strokeWidth={2} />
                 <span className="text-[9.5px] uppercase tracking-[0.12em] font-bold">Filter</span>
               </div>
 
-              {/* Vertical divider */}
               <div className="w-px h-5 bg-[#0b1b42]/10 shrink-0" />
 
               <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
@@ -447,10 +443,8 @@ export default function FranchiseSearchResultsDesktop() {
               </div>
             </div>
 
-            {/* Vertical divider */}
             <div className="w-px h-7 my-auto bg-[#0b1b42]/[0.08] shrink-0" />
 
-            {/* Search Bar (Right) */}
             <div className="w-[380px] shrink-0 flex items-center px-4 relative">
               <div className="w-full relative">
                 <div
@@ -461,7 +455,6 @@ export default function FranchiseSearchResultsDesktop() {
                     boxShadow: "inset 0 1px 3px rgba(11,27,66,0.04)",
                   }}
                 >
-                  {/* Gold glow on focus */}
                   <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isSearchFocused ? "opacity-100" : "opacity-0"}`}
                     style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.25), inset 0 0 0 1px rgba(212,175,55,0.15)" }}
                   />
@@ -898,7 +891,6 @@ export default function FranchiseSearchResultsDesktop() {
                     });
 
                     grouped.forEach((items, category) => {
-                      // Category heading
                       renderItems.push(
                         <div key={`heading-${category}`} className="col-span-6 mt-7 mb-3 px-1">
                           <h2 className="text-[19px] font-semibold text-[#0a1128] tracking-tight">{category}</h2>
@@ -935,12 +927,10 @@ export default function FranchiseSearchResultsDesktop() {
                           >
                             {isFullRow && (
                               <div className="relative z-[2] flex-1 flex flex-col bg-white">
-                                {/* Full-width hero image */}
                                 <div className="relative w-full h-[220px] overflow-hidden bg-[#f5f5f5]">
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                                   
-                                  {/* Transparent icons - top right */}
                                   <div className="absolute top-4 right-4 flex items-center gap-4">
                                     <motion.button
                                       whileTap={{ scale: 1.3 }}
@@ -967,7 +957,6 @@ export default function FranchiseSearchResultsDesktop() {
                                     </motion.button>
                                   </div>
                                   
-                                  {/* Overlay content */}
                                   <div className="absolute bottom-4 left-5">
                                     <span className="text-[18px] font-semibold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">{f.roi}</span>
                                   </div>
@@ -976,7 +965,6 @@ export default function FranchiseSearchResultsDesktop() {
                                   </div>
                                 </div>
                                 
-                                {/* Content below image */}
                                 <div className="px-5 pt-4 pb-5 flex items-center justify-between gap-4">
                                   <div className="min-w-0 flex-1">
                                     <h3 className={clsx(
@@ -1004,7 +992,6 @@ export default function FranchiseSearchResultsDesktop() {
 
                             {isHalfRow && (
                               <div className="relative z-[2] flex-1 flex flex-col bg-white h-full">
-                                {/* Cover image */}
                                 <div className="relative w-full h-[160px] overflow-hidden bg-[#f5f5f5]">
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[70px] bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
@@ -1074,7 +1061,6 @@ export default function FranchiseSearchResultsDesktop() {
 
                             {isThirdRow && (
                               <div className="relative z-[2] flex-1 flex flex-col bg-white h-full">
-                                {/* Cover image */}
                                 <div className="relative w-full h-[120px] overflow-hidden bg-[#f5f5f5]">
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[50px] bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
@@ -1154,7 +1140,6 @@ export default function FranchiseSearchResultsDesktop() {
         </AnimatePresence>
       </div>
 
-      {/* Undo Snackbar */}
       <AnimatePresence>
         {undoItem && (
           <UndoSnackbar

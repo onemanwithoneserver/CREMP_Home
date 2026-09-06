@@ -130,7 +130,6 @@ const ExploreSearchBar = ({
         </div>
       </div>
 
-      {/* Suggestions dropdown */}
       <AnimatePresence>
         {isSearchFocused && (
           <motion.div

@@ -187,7 +187,6 @@ export default function BuySearchResultsMobile() {
 
   return (
     <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
-      {/* Sticky Header Tabs */}
       <div className="sticky top-[53px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
       </div>
@@ -265,7 +264,6 @@ export default function BuySearchResultsMobile() {
               </div>
             </div>
 
-            {/* Sticky Category Filter */}
             <div className="w-full relative bg-[#f8f9fc] border-t border-[#0b1b42]/[0.08] flex items-center">
               {showStickyLeft && (
                 <button
@@ -586,7 +584,6 @@ export default function BuySearchResultsMobile() {
                   transition={{ type: "spring", damping: 28, stiffness: 260 }}
                   className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-white/95 backdrop-blur-md rounded-t-[4px] shadow-[0_-4px_20px_rgba(10,17,40,0.1)] border-t border-[#0b1b42]/[0.06] flex flex-col max-h-[70vh]"
                 >
-                  {/* Handle bar */}
                   <div 
                     className="w-full flex items-center justify-center py-1.5 cursor-pointer active:bg-gray-50 transition-colors shrink-0"
                     onClick={() => setIsCarouselOpen(false)}
@@ -594,7 +591,6 @@ export default function BuySearchResultsMobile() {
                     <div className="w-8 h-[3px] rounded-full bg-[#0b1b42]/15" />
                   </div>
                   
-                  {/* Scrollable card row */}
                   <div className="w-full overflow-x-auto flex gap-2 px-3 pb-4 pt-0.5 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
                     {(() => {
                       const items: React.ReactNode[] = [];
@@ -622,12 +618,10 @@ export default function BuySearchResultsMobile() {
                                 )}
                                 style={{ background: "white" }}
                               >
-                                {/* Image */}
                                 <div className="relative w-full h-[130px] overflow-hidden bg-gray-50">
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
                                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-[#0a1128]/10" />
                                   
-                                  {/* Bookmark */}
                                   <div className="absolute top-2 right-2">
                                     <motion.button
                                       whileTap={{ scale: 1.3 }}
@@ -643,18 +637,15 @@ export default function BuySearchResultsMobile() {
                                     </motion.button>
                                   </div>
                                   
-                                  {/* Price overlay */}
                                   <div className="absolute bottom-2 left-2.5">
                                     <span className="text-[13px] font-semibold text-emerald-400 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.price}</span>
                                   </div>
                                   
-                                  {/* Area overlay */}
                                   <div className="absolute bottom-2 right-2.5">
                                     <span className="text-[10px] font-semibold text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{f.area}</span>
                                   </div>
                                 </div>
                                 
-                                {/* Content */}
                                 <div className="px-2.5 py-2 flex items-center justify-between gap-1.5">
                                   <div className="min-w-0 flex-1">
                                     <h3 className="font-semibold text-[14px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
@@ -678,7 +669,6 @@ export default function BuySearchResultsMobile() {
                           bigCount = 4;
                           groupType = 'small';
                         } else {
-                          // Dynamic small card clusters: 1st place has 2 cards, 2nd place has 3 cards, 3rd+ place has 4 cards
                           const targetCount = smallGroupIndex === 0 ? 2 : smallGroupIndex === 1 ? 3 : 4;
                           const smallItems = filtered.slice(i, i + targetCount);
                           if (smallItems.length === 0) break;
@@ -709,7 +699,6 @@ export default function BuySearchResultsMobile() {
                                       <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
                                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/40 to-transparent" />
                                       
-                                      {/* Compact icons */}
                                       <div className="absolute top-1 right-1 flex items-center gap-1">
                                         <motion.button
                                           whileTap={{ scale: 1.3 }}

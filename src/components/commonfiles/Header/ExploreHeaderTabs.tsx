@@ -95,7 +95,6 @@ export default function ExploreHeaderTabs({
           "linear-gradient(180deg, #0d1f4b 0%, #0b1b42 100%)",
       }}
     >
-      {/* Top gold accent line */}
       <div
         className="absolute top-0 left-0 w-full h-[1px] z-20"
         style={{
@@ -104,7 +103,6 @@ export default function ExploreHeaderTabs({
         }}
       />
 
-      {/* Ambient floating particles */}
       <motion.div
         className="absolute w-1 h-1 rounded-full bg-[#d4af37]/20 pointer-events-none z-0"
         animate={{
@@ -155,7 +153,6 @@ export default function ExploreHeaderTabs({
                   : undefined,
             }}
           >
-            {/* Active background radial glow */}
             <AnimatePresence>
               {isActive && (
                 <motion.div
@@ -177,7 +174,6 @@ export default function ExploreHeaderTabs({
               )}
             </AnimatePresence>
 
-            {/* Press ripple effect */}
             <AnimatePresence>
               {isPressed && (
                 <motion.div
@@ -194,7 +190,6 @@ export default function ExploreHeaderTabs({
               )}
             </AnimatePresence>
 
-            {/* Icon with gradient background pill */}
             <motion.div
               animate={{
                 scale: isActive ? 1 : 0.85,
@@ -204,7 +199,6 @@ export default function ExploreHeaderTabs({
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="relative z-10 flex items-center justify-center"
             >
-              {/* Icon glow when active */}
               {isActive && (
                 <motion.div
                   className="absolute inset-[-4px] rounded-full"
@@ -222,10 +216,9 @@ export default function ExploreHeaderTabs({
               </div>
             </motion.div>
 
-            {/* Label with staggered entrance */}
             <motion.div
               animate={{
-                opacity: 1, // Removed inactive fade to keep it visible
+                opacity: 1,
                 x: isActive ? 0 : -1,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -234,7 +227,7 @@ export default function ExploreHeaderTabs({
               <motion.span
                 className="font-bold tracking-wide"
                 animate={{
-                  color: isActive ? "#d4af37" : "#e2e8f0", // Very light gray when inactive
+                  color: isActive ? "#d4af37" : "#e2e8f0",
                   letterSpacing: isActive ? "0.06em" : "0.04em",
                 }}
                 transition={{ duration: 0.3 }}
@@ -250,8 +243,8 @@ export default function ExploreHeaderTabs({
                 <motion.span
                   className="font-semibold"
                   animate={{
-                    color: isActive ? "#d4af37" : "#cbd5e1", // Light gray when inactive
-                    opacity: isActive ? 0.9 : 0.85, // Much higher opacity when inactive
+                    color: isActive ? "#d4af37" : "#cbd5e1",
+                    opacity: isActive ? 0.9 : 0.85,
                   }}
                   transition={{ duration: 0.3, delay: 0.05 }}
                   style={{
@@ -266,7 +259,6 @@ export default function ExploreHeaderTabs({
               )}
             </motion.div>
 
-            {/* Active underline indicator with glow */}
             <AnimatePresence>
               {isActive && (
                 <motion.div
@@ -289,7 +281,6 @@ export default function ExploreHeaderTabs({
               )}
             </AnimatePresence>
 
-            {/* Shimmer sweep on active tab */}
             {isActive && (
               <motion.div
                 className="absolute inset-0 z-5 pointer-events-none overflow-hidden"
@@ -316,7 +307,6 @@ export default function ExploreHeaderTabs({
         );
       })}
 
-      {/* Bottom border gradient */}
       <div
         className="absolute bottom-0 left-0 w-full h-[1px] z-20"
         style={{
