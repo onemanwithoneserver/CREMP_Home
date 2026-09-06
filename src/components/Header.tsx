@@ -43,7 +43,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "buy-search-results": "Buy Search Results",
   login: "Login",
   "create-account": "Create Account",
-  explore: "Explore",
+  explore: "Video Hub",
 };
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
   .filter(

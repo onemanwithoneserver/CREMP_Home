@@ -213,91 +213,123 @@ export default function FranchiseSearchResultsMobile() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0b1b42] shadow-[0_4px_20px_rgba(0,0,0,0.2)] py-2 px-4"
+            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0b1b42] shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex flex-col"
           >
-            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                placeholder="Search franchise, industry, or location..."
-                className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  onMouseDown={(e) => e.preventDefault()}
-                  className="shrink-0 p-1 mr-1 text-[#0b1b42]/40 hover:text-[#0b1b42] active:scale-95 transition-all rounded-full hover:bg-gray-100 flex items-center justify-center cursor-pointer"
-                  aria-label="Clear search"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              )}
-              <div className="flex gap-1 shrink-0 ml-1">
-                <button
-                  onClick={() => setShowMap(!showMap)}
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
-                  style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
-                >
-                  <Map className="h-[14px] w-[14px]" />
-                </button>
-                <div
-                  className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
-                  style={{ background: "rgb(11, 27, 66)" }}
-                >
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)", transform: "translateX(200%)" }} />
-                  <Search className="h-[14px] w-[14px] relative z-10" />
+            <div className="py-2 px-4 relative">
+              <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  placeholder="Search franchise, industry, or location..."
+                  className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    onMouseDown={(e) => e.preventDefault()}
+                    className="shrink-0 p-1 mr-1 text-[#0b1b42]/40 hover:text-[#0b1b42] active:scale-95 transition-all rounded-full hover:bg-gray-100 flex items-center justify-center cursor-pointer"
+                    aria-label="Clear search"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
+                <div className="flex gap-1 shrink-0 ml-1">
+                  <button
+                    onClick={() => setShowMap(!showMap)}
+                    className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white transition-all duration-200"
+                    style={{ background: "linear-gradient(135deg, rgb(191, 149, 63), rgb(212, 175, 55))" }}
+                  >
+                    <Map className="h-[14px] w-[14px]" />
+                  </button>
+                  <div
+                    className="w-8 h-8 flex items-center justify-center rounded-[4px] text-white relative overflow-hidden shrink-0"
+                    style={{ background: "rgb(11, 27, 66)" }}
+                  >
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)", transform: "translateX(200%)" }} />
+                    <Search className="h-[14px] w-[14px] relative z-10" />
+                  </div>
                 </div>
               </div>
+
+              <AnimatePresence>
+                {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                    transition={spring}
+                    className="absolute top-full left-4 right-4 mt-2 rounded-[4px] overflow-hidden z-[100] shadow-2xl bg-white border border-[#0b1b42]/[0.08]"
+                  >
+                    <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
+                      {suggestions.length > 0 ? (
+                        suggestions.map((f, i) => (
+                          <motion.div
+                            key={f.id}
+                            initial={{ opacity: 0, x: -6 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              setSearchQuery(f.name);
+                              setIsSearchFocused(false);
+                            }}
+                            className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
+                          >
+                            <div className="w-8 h-8 rounded bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
+                              <Store size={13} strokeWidth={1.5} />
+                            </div>
+                            <div className="flex flex-col min-w-0">
+                              <span className="truncate font-semibold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
+                              <span className="text-[9px] font-medium text-[#0b1b42]/35 flex items-center gap-0.5 mt-0.5">
+                                <MapPin size={8} strokeWidth={2} />
+                                <span className="truncate">{f.location}</span>
+                              </span>
+                            </div>
+                          </motion.div>
+                        ))
+                      ) : (
+                        <div className="p-3 text-center text-[10px] text-[#0b1b42]/35 font-medium">No franchises found</div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            <AnimatePresence>
-              {isSearchFocused && (searchQuery || suggestions.length > 0) && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.97 }}
-                  transition={spring}
-                  className="absolute top-full left-4 right-4 mt-2 rounded-[4px] overflow-hidden z-[100] shadow-2xl bg-white border border-[#0b1b42]/[0.08]"
-                >
-                  <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
-                    {suggestions.length > 0 ? (
-                      suggestions.map((f, i) => (
-                        <motion.div
-                          key={f.id}
-                          initial={{ opacity: 0, x: -6 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.03 }}
-                          whileTap={{ scale: 0.97 }}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                            setSearchQuery(f.name);
-                            setIsSearchFocused(false);
-                          }}
-                          className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
-                        >
-                          <div className="w-8 h-8 rounded bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
-                            <Store size={13} strokeWidth={1.5} />
-                          </div>
-                          <div className="flex flex-col min-w-0">
-                            <span className="truncate font-semibold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
-                            <span className="text-[9px] font-medium text-[#0b1b42]/35 flex items-center gap-0.5 mt-0.5">
-                              <MapPin size={8} strokeWidth={2} />
-                              <span className="truncate">{f.location}</span>
-                            </span>
-                          </div>
-                        </motion.div>
-                      ))
-                    ) : (
-                      <div className="p-3 text-center text-[10px] text-[#0b1b42]/35 font-medium">No franchises found</div>
+            {/* Sticky Category Filter */}
+            <div className="w-full overflow-x-auto scrollbar-hide px-3 py-1.5 flex items-center gap-2 border-t border-[#0b1b42]/[0.08] bg-white/95 backdrop-blur-md">
+              <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
+                <Filter size={12} />
+                <span className="text-[8px] uppercase tracking-widest font-bold">
+                  Filter:
+                </span>
+              </div>
+
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
+                      isActive
+                        ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_8px_rgba(212,175,55,0.15)]"
+                        : "bg-white text-[#0b1b42]/70 border-[#0b1b42]/10 hover:bg-[#0b1b42]/[0.02]"
+                    }`}
+                  >
+                    <span>{cat}</span>
+                    {isActive && (
+                      <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
                     )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  </button>
+                );
+              })}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -618,8 +650,8 @@ export default function FranchiseSearchResultsMobile() {
                           <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-amber-50 transition-all">
                             <Bookmark className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-[#0b1b42]/20")} />
                           </motion.button>
-                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-[#0b1b42]/[0.04] text-[#0b1b42]/25 hover:text-[#0b1b42] transition-all">
-                            <X className="w-3.5 h-3.5" />
+                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-red-50 text-red-500 hover:text-red-600 transition-all">
+                            <X className="w-3.5 h-3.5 text-red-500" />
                           </motion.button>
                         </div>
                       </div>
@@ -733,7 +765,7 @@ export default function FranchiseSearchResultsMobile() {
                                   onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
                                   className="p-0"
                                 >
-                                  <X className="w-[22px] h-[22px] text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                                  <X className="w-[22px] h-[22px] text-red-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
                                 </motion.button>
                               </div>
                               {/* ROI overlay bottom-left */}
@@ -816,7 +848,7 @@ export default function FranchiseSearchResultsMobile() {
                             onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
                             className="p-0"
                           >
-                            <X className="w-3.5 h-3.5 text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
+                            <X className="w-3.5 h-3.5 text-red-500 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
                           </motion.button>
                         </div>
                       </div>

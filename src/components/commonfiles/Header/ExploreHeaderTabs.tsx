@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
+import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 
 export interface ExploreHeaderTabsProps {
   activeTab: "explore" | "commercial" | "business";
@@ -9,25 +10,18 @@ export interface ExploreHeaderTabsProps {
 const tabs = [
   {
     id: "explore" as const,
-    label: "Explore",
-    sublabel: undefined,
+    label: "Video",
+    sublabel: "Hub",
     gradient: "from-emerald-400 to-teal-500",
     glowColor: "rgba(52,211,153,0.25)",
     icon: (active: boolean) => (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={active ? "#d4af37" : "#ffffff"}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        <path d="M2 12h20" />
-      </svg>
+      <VideoLibraryOutlinedIcon
+        sx={{
+          fontSize: 20,
+          color: active ? "#d4af37" : "#ffffff",
+          transition: "color 0.3s ease",
+        }}
+      />
     ),
   },
   {
