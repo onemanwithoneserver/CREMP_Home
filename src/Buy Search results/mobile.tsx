@@ -591,7 +591,7 @@ export default function BuySearchResultsMobile() {
                     <div className="w-8 h-[3px] rounded-full bg-[#0b1b42]/15" />
                   </div>
                   
-                  <div className="w-full overflow-x-auto flex gap-2 px-3 pb-2 pt-0.5 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
+                  <div className="w-full overflow-x-auto flex gap-3 px-4 scroll-px-4 pb-2 pt-0.5 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
                     {(() => {
                       const items: React.ReactNode[] = [];
                       let i = 0;
