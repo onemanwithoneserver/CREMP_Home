@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 
 import BuildingBox from "../BuildingBox";
 import LandBox from "../LandBox";
@@ -7,18 +7,19 @@ import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFoo
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
 import { useNavigate } from "react-router-dom";
 import {
-  Heart,
+  Eye,
   MapPin,
   Search,
   Building2,
   Map,
-  Eye,
   ArrowLeft,
   Filter,
   ChevronLeft,
   ChevronRight,
   ChevronDown,
   Layers,
+  Bookmark,
+  X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
@@ -148,9 +149,7 @@ export default function BuySearchResultsMobile() {
     return () => observer.disconnect();
   }, []);
 
-  const handleViewProperty = useCallback((property: Property) => {
-    setSelectedPropertyForView(property);
-  }, []);
+
 
 
 
@@ -161,6 +160,10 @@ export default function BuySearchResultsMobile() {
       return next;
     });
   };
+
+  const handleViewProperty = useCallback((property: Property) => {
+    setSelectedPropertyForView(property);
+  }, []);
 
   const handleCardTap = (id: number) => {
     setActiveCard(activeCard === id ? null : id);
@@ -509,10 +512,10 @@ export default function BuySearchResultsMobile() {
         {showMap && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "100%", opacity: 1 }}
+            animate={{ height: "130vh", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring" as const, stiffness: 280, damping: 28 }}
-            className="w-full flex-1 relative bg-gradient-to-br from-[#f4f6f9] via-[#eef1f6] to-[#e8ecf2] overflow-hidden border-b border-[#0b1b42]/[0.05]"
+            className="w-full relative bg-gradient-to-br from-[#f4f6f9] via-[#eef1f6] to-[#e8ecf2] overflow-hidden border-b border-[#0b1b42]/[0.05]"
           >
             <svg className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -582,79 +585,156 @@ export default function BuySearchResultsMobile() {
                   animate={{ y: 0 }}
                   exit={{ y: "100%" }}
                   transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="absolute bottom-0 left-0 right-0 z-40 w-full bg-white/80 backdrop-blur-md rounded-t-[20px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] border-t border-white/50 pt-1"
+                  className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-[#f8f9fc]/95 backdrop-blur-md rounded-t-[20px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] border-t border-white/50 pt-1 flex flex-col max-h-[75vh]"
                 >
                   <div 
-                    className="w-full flex flex-col items-center justify-center py-2 cursor-pointer active:bg-gray-100/50 transition-colors rounded-t-[20px]"
+                    className="w-full flex flex-col items-center justify-center py-2 cursor-pointer active:bg-gray-100/50 transition-colors rounded-t-[20px] shrink-0"
                     onClick={() => setIsCarouselOpen(false)}
                   >
                     <div className="w-10 h-1.5 rounded-full bg-gray-300" />
                     <ChevronDown size={18} className="text-gray-400 mt-1" strokeWidth={2.5} />
                   </div>
-                  <div className="w-full overflow-x-auto flex gap-3 px-4 pb-6 pt-1 snap-x scrollbar-hide" style={{ scrollSnapType: 'x mandatory' }}>
-                    {filtered.map((f) => {
-                      const isActive = activeCard === f.id || selectedMarker === f.id;
-                      return (
-                        <motion.div
-                          key={`hcard-${f.id}`}
-                          whileTap={{ scale: 0.97 }}
-                          onClick={() => handleCardTap(f.id)}
-                          className={clsx(
-                            "snap-center shrink-0 w-[65vw] max-w-[260px] relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 flex flex-col select-none",
-                            isActive
-                              ? "shadow-[0_8px_30px_rgba(10,17,40,0.15)] ring-2 ring-[#d4af37]/40"
-                              : "shadow-[0_4px_12px_rgba(10,17,40,0.08)] hover:shadow-[0_6px_16px_rgba(10,17,40,0.12)]",
-                          )}
-                          style={{ background: "white" }}
-                        >
-                          <div className="relative w-full h-[120px] overflow-hidden bg-gray-50">
-                            <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/70 via-transparent to-[#0a1128]/20" />
-                            
-                            <div className="absolute top-3 right-3 flex items-center gap-3.5">
-                              <motion.button
-                                whileTap={{ scale: 1.3 }}
-                                onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                className="p-0"
+                  
+                  <div className="w-full overflow-x-auto flex gap-3 px-4 pb-6 pt-1 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
+                    {(() => {
+                      const items: React.ReactNode[] = [];
+                      let i = 0;
+                      let groupType: 'big' | 'small' = 'big';
+                      let bigCount = 1; // first group: 1 big, then 4 big, then 4 big...
+
+                      while (i < filtered.length) {
+                        if (groupType === 'big') {
+                          // Render big cards
+                          const count = bigCount;
+                          for (let j = 0; j < count && i < filtered.length; j++, i++) {
+                            const f = filtered[i];
+                            const isActive = activeCard === f.id || selectedMarker === f.id;
+                            items.push(
+                              <motion.div
+                                key={`bcard-${f.id}`}
+                                whileTap={{ scale: 0.97 }}
+                                onClick={() => handleCardTap(f.id)}
+                                className={clsx(
+                                  "snap-start shrink-0 w-[70vw] max-w-[280px] relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 flex flex-col select-none",
+                                  isActive
+                                    ? "shadow-[0_8px_30px_rgba(10,17,40,0.15)] ring-2 ring-[#d4af37]/40"
+                                    : "shadow-[0_4px_12px_rgba(10,17,40,0.08)] hover:shadow-[0_6px_16px_rgba(10,17,40,0.12)]",
+                                )}
+                                style={{ background: "white" }}
                               >
-                                <Heart
-                                  className={clsx(
-                                    "w-[22px] h-[22px] transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
-                                    favorites.has(f.id) ? "fill-red-500 text-red-500" : "text-white/90"
-                                  )}
-                                />
-                              </motion.button>
+                                <div className="relative w-full h-[140px] overflow-hidden bg-gray-50">
+                                  <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/70 via-transparent to-[#0a1128]/20" />
+                                  
+                                  <div className="absolute top-3 right-3 flex items-center gap-3.5">
+                                    <motion.button
+                                      whileTap={{ scale: 1.3 }}
+                                      onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                      className="p-0"
+                                    >
+                                      <Bookmark
+                                        className={clsx(
+                                          "w-[22px] h-[22px] transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
+                                          favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-white/90"
+                                        )}
+                                      />
+                                    </motion.button>
+                                  </div>
+                                  
+                                  <div className="absolute bottom-3 left-3">
+                                    <span className="text-[15px] font-bold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{f.price}</span>
+                                  </div>
+                                  
+                                  <div className="absolute bottom-3 right-3">
+                                    <span className="text-[12px] font-semibold text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.area}</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="px-3 py-3 flex items-center justify-between gap-2">
+                                  <div className="min-w-0 flex-1">
+                                    <h3 className="font-bold text-[16px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
+                                    <span className="text-[12px] text-[#0a1128]/50 flex items-center gap-1 mt-1 font-medium">
+                                      <MapPin size={11} className="text-[#c69a54]" />
+                                      {f.location}
+                                    </span>
+                                  </div>
+                                  <motion.button
+                                    whileTap={{ scale: 0.9 }}
+                                    onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
+                                    className="w-10 h-10 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
+                                    title="View Details"
+                                  >
+                                    <Eye size={18} strokeWidth={2} className="text-white" />
+                                  </motion.button>
+                                </div>
+                              </motion.div>
+                            );
+                          }
+                          bigCount = 4; // subsequent big groups are 4
+                          groupType = 'small';
+                        } else {
+                          // Render a 2x2 grid of small cards as one snap item
+                          const smallItems = filtered.slice(i, i + 4);
+                          if (smallItems.length === 0) break;
+                          items.push(
+                            <div key={`sgrid-${i}`} className="snap-start shrink-0 grid grid-cols-2 gap-2 self-stretch">
+                              {smallItems.map((f) => {
+                                const isActive = activeCard === f.id || selectedMarker === f.id;
+                                return (
+                                  <motion.div
+                                    key={`scard-${f.id}`}
+                                    whileTap={{ scale: 0.97 }}
+                                    onClick={() => handleCardTap(f.id)}
+                                    className={clsx(
+                                      "w-[120px] relative cursor-pointer rounded overflow-hidden transition-all duration-300 flex flex-col select-none border border-[#0b1b42]/[0.08]",
+                                      isActive
+                                        ? "shadow-[0_4px_16px_rgba(10,17,40,0.12)] ring-1 ring-[#d4af37]/40"
+                                        : "shadow-[0_2px_8px_rgba(10,17,40,0.06)] hover:shadow-[0_4px_12px_rgba(10,17,40,0.1)]",
+                                    )}
+                                    style={{ background: "white" }}
+                                  >
+                                    <div className="relative w-full h-[70px] overflow-hidden bg-gray-50">
+                                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
+                                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/50 to-transparent" />
+                                      
+                                      <div className="absolute top-1.5 right-1.5 flex items-center gap-1.5">
+                                        <motion.button
+                                          whileTap={{ scale: 1.3 }}
+                                          onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                          className="p-0"
+                                        >
+                                          <Bookmark
+                                            className={clsx(
+                                              "w-3.5 h-3.5 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]",
+                                              favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-white/90"
+                                            )}
+                                          />
+                                        </motion.button>
+                                        <motion.button
+                                          whileTap={{ scale: 1.3 }}
+                                          onClick={(e) => { e.stopPropagation(); }}
+                                          className="p-0"
+                                        >
+                                          <X className="w-3.5 h-3.5 text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]" />
+                                        </motion.button>
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="px-2 py-1.5 flex flex-col items-center justify-center bg-white">
+                                      <h3 className="font-bold text-[10px] leading-tight text-[#0a1128] truncate text-center w-full">{f.name}</h3>
+                                      <p className="text-[9px] text-gray-500 font-medium mt-0.5">{f.price}</p>
+                                    </div>
+                                  </motion.div>
+                                );
+                              })}
                             </div>
-                            
-                            <div className="absolute bottom-3 left-3">
-                              <span className="text-[15px] font-bold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{f.price}</span>
-                            </div>
-                            
-                            <div className="absolute bottom-3 right-3">
-                              <span className="text-[12px] font-semibold text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.area}</span>
-                            </div>
-                          </div>
-                          
-                          <div className="px-3 py-2.5 flex items-center justify-between gap-2">
-                            <div className="min-w-0 flex-1">
-                              <h3 className="font-bold text-[16px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
-                              <span className="text-[12px] text-[#0a1128]/50 flex items-center gap-1 mt-1 font-medium">
-                                <MapPin size={11} className="text-[#c69a54]" />
-                                {f.location}
-                              </span>
-                            </div>
-                            <motion.button
-                              whileTap={{ scale: 0.9 }}
-                              onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
-                              className="w-10 h-10 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
-                              title="View Details"
-                            >
-                              <Eye size={18} strokeWidth={2} className="text-white" />
-                            </motion.button>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
+                          );
+                          i += smallItems.length;
+                          groupType = 'big';
+                        }
+                      }
+                      return items;
+                    })()}
                   </div>
                 </motion.div>
               ) : (
@@ -664,7 +744,7 @@ export default function BuySearchResultsMobile() {
                   exit={{ scale: 0, opacity: 0 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsCarouselOpen(true)}
-                  className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 px-5 py-3 rounded-full bg-[#0b1b42] text-white flex items-center gap-2 shadow-xl border border-white/10"
+                  className="fixed bottom-[88px] left-0 z-40 px-4 py-2.5 rounded-r-[4px] bg-[#0b1b42] text-white flex items-center gap-2 shadow-[4px_4px_15px_rgba(0,0,0,0.2)] border border-white/10 border-l-0"
                 >
                   <Layers size={18} />
                   <span className="text-[11px] font-bold tracking-wide uppercase">Properties</span>
