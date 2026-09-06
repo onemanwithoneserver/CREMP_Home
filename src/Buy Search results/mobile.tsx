@@ -782,15 +782,30 @@ export default function BuySearchResultsMobile() {
                 </motion.div>
               ) : (
                 <motion.button
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  whileTap={{ scale: 0.9 }}
+                  initial={{ x: -60, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -60, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                  whileTap={{ scale: 0.92 }}
                   onClick={() => setIsCarouselOpen(true)}
-                  className="fixed bottom-[88px] left-0 z-40 px-4 py-2.5 rounded-r-[4px] bg-[#0b1b42] text-white flex items-center gap-2 shadow-[4px_4px_15px_rgba(0,0,0,0.2)] border border-white/10 border-l-0"
+                  className="fixed bottom-[88px] left-0 z-40 rounded-r-[20px] overflow-hidden border border-white/10 border-l-0 shadow-[4px_4px_20px_rgba(11,27,66,0.3)]"
                 >
-                  <Layers size={18} />
-                  <span className="text-[11px] font-bold tracking-wide uppercase">Listings</span>
+                  <div className="relative px-4 py-2.5 flex items-center gap-2.5 bg-gradient-to-r from-[#0b1b42] to-[#142550]">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent"
+                      animate={{ x: ["-100%", "200%"] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+                    />
+                    <div className="relative">
+                      <Layers size={16} className="text-[#d4af37]" />
+                      <motion.div
+                        className="absolute -inset-1.5 rounded-full border border-[#d4af37]/30"
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    </div>
+                    <span className="text-[11px] font-semibold tracking-wider uppercase text-white/90 relative">Listings</span>
+                  </div>
                 </motion.button>
               )}
             </AnimatePresence>
