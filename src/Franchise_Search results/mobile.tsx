@@ -9,9 +9,11 @@ import {
   Minimize,
   X,
   Eye,
-  ArrowLeft,
   Filter,
   Undo2,
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
@@ -153,7 +155,44 @@ export default function FranchiseSearchResultsMobile() {
   const [showFranchiseView, setShowFranchiseView] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [undoItem, setUndoItem] = useState<Franchise | null>(null);
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const stickyScrollRef = useRef<HTMLDivElement | null>(null);
+  const mainScrollRef = useRef<HTMLDivElement | null>(null);
+
+  const [showStickyLeft, setShowStickyLeft] = useState(false);
+  const [showStickyRight, setShowStickyRight] = useState(true);
+  const [showMainLeft, setShowMainLeft] = useState(false);
+  const [showMainRight, setShowMainRight] = useState(true);
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = useMemo(() => {
+    return ["All", ...Array.from(new Set(franchises.map((f) => f.category)))];
+  }, []);
+
+  const checkScroll = (ref: React.RefObject<HTMLDivElement | null>, setLeft: (val: boolean) => void, setRight: (val: boolean) => void) => {
+    if (ref.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = ref.current;
+      setLeft(scrollLeft > 0);
+      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 1);
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight);
+      checkScroll(mainScrollRef, setShowMainLeft, setShowMainRight);
+    };
+    setTimeout(handleResize, 100);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [categories, isSticky]);
+
+  const handleScroll = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      ref.current.scrollBy({ left: direction === 'left' ? -150 : 150, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -219,12 +258,6 @@ export default function FranchiseSearchResultsMobile() {
     );
     return searchQuery ? m : m.slice(0, 3);
   }, [searchQuery]);
-
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const categories = useMemo(() => {
-    return ["All", ...Array.from(new Set(franchises.map((f) => f.category)))];
-  }, []);
 
   const filtered = useMemo(
     () => franchises.filter((f) => {
@@ -387,33 +420,55 @@ export default function FranchiseSearchResultsMobile() {
             </div>
 
             {/* Sticky Category Filter */}
-            <div className="w-full overflow-x-auto scrollbar-hide px-3 py-1.5 flex items-center gap-2 border-t border-[#0b1b42]/[0.08] bg-white/95 backdrop-blur-md">
-              <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
-                <Filter size={12} />
-                <span className="text-[8px] uppercase tracking-widest font-bold">
-                  Filter:
-                </span>
-              </div>
+            <div className="w-full relative bg-[#f8f9fc] border-t border-[#0b1b42]/[0.08] flex items-center">
+              {showStickyLeft && (
+                <button
+                  onClick={() => handleScroll(stickyScrollRef, 'left')}
+                  className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+                >
+                  <ChevronLeft size={18} strokeWidth={2.5} />
+                </button>
+              )}
+              <div 
+                ref={stickyScrollRef} 
+                onScroll={() => checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight)}
+                className="w-full overflow-x-auto scrollbar-hide px-4 py-2 flex items-center gap-2 relative"
+              >
+                <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
+                  <Filter size={12} strokeWidth={2.5} />
+                  <span className="text-[9px] uppercase tracking-widest font-bold">
+                    Filter:
+                  </span>
+                </div>
 
-              {categories.map((cat) => {
-                const isActive = activeCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
-                      isActive
-                        ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/40 shadow-[0_2px_8px_rgba(212,175,55,0.15)]"
-                        : "bg-white text-[#0b1b42]/70 border-[#0b1b42]/10 hover:bg-[#0b1b42]/[0.02]"
-                    }`}
-                  >
-                    <span>{cat}</span>
-                    {isActive && (
-                      <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
-                    )}
-                  </button>
-                );
-              })}
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                        isActive
+                          ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
+                          : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      <span>{cat}</span>
+                      {isActive && (
+                        <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+              {showStickyRight && (
+                <button
+                  onClick={() => handleScroll(stickyScrollRef, 'right')}
+                  className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+                >
+                  <ChevronRight size={18} strokeWidth={2.5} />
+                </button>
+              )}
             </div>
           </motion.div>
         )}
@@ -565,35 +620,57 @@ export default function FranchiseSearchResultsMobile() {
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto scrollbar-hide px-3 py-2 sm:py-2.5 flex items-center gap-2 border-b border-[#0b1b42]/[0.06] bg-white/95 backdrop-blur-md">
-        <div className="flex items-center gap-1.5 mr-1 text-[#0b1b42]/40 shrink-0">
-          <Filter size={12} />
-          <span className="text-[8px] uppercase tracking-widest font-bold">
-            Filter:
-          </span>
-        </div>
+      <div className="w-full relative bg-[#f8f9fc] border-b border-[#0b1b42]/[0.08] flex items-center">
+        {showMainLeft && (
+          <button
+            onClick={() => handleScroll(mainScrollRef, 'left')}
+            className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+          >
+            <ChevronLeft size={18} strokeWidth={2.5} />
+          </button>
+        )}
+        <div 
+          ref={mainScrollRef} 
+          onScroll={() => checkScroll(mainScrollRef, setShowMainLeft, setShowMainRight)}
+          className="w-full overflow-x-auto scrollbar-hide px-4 py-2.5 flex items-center gap-2 relative"
+        >
+          <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
+            <Filter size={12} strokeWidth={2.5} />
+            <span className="text-[9px] uppercase tracking-widest font-bold">
+              Filter:
+            </span>
+          </div>
 
-        {categories.map((cat) => {
-          const isActive = activeCategory === cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat);
-              }}
-              className={`shrink-0 relative px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[4px] text-[10px] sm:text-[11px] font-semibold tracking-normal transition-all border flex flex-col items-center justify-center ${
-                isActive
-                  ? "bg-white dark:bg-[#0b1b42] text-[#b38728] dark:text-[#d4af37] border-[#d4af37] shadow-[0_2px_8px_rgba(212,175,55,0.2)]"
-                  : "bg-white dark:bg-[#0b1b42] text-[#0b1b42]/70 dark:text-gray-300 border-gray-200 dark:border-white/10"
-              }`}
-            >
-              <span>{cat}</span>
-              {isActive && (
-                <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
-              )}
-            </button>
-          );
-        })}
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat);
+                }}
+                className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                  isActive
+                    ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
+                    : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                <span>{cat}</span>
+                {isActive && (
+                  <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+        {showMainRight && (
+          <button
+            onClick={() => handleScroll(mainScrollRef, 'right')}
+            className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+          >
+            <ChevronRight size={18} strokeWidth={2.5} />
+          </button>
+        )}
       </div>
 
       <div ref={sentinelRef} className="w-full h-[1px]" />

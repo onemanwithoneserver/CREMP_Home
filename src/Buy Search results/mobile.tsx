@@ -18,6 +18,9 @@ import {
   ArrowRight,
   Eye,
   ArrowLeft,
+  Filter,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
@@ -78,14 +81,51 @@ export default function BuySearchResultsMobile() {
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const stickyScrollRef = useRef<HTMLDivElement | null>(null);
+  const mainScrollRef = useRef<HTMLDivElement | null>(null);
+
+  const [showStickyLeft, setShowStickyLeft] = useState(false);
+  const [showStickyRight, setShowStickyRight] = useState(true);
+  const [showMainLeft, setShowMainLeft] = useState(false);
+  const [showMainRight, setShowMainRight] = useState(true);
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = useMemo(() => {
+    return ["All", ...Array.from(new Set(properties.map((p) => p.category)))];
+  }, []);
+
+  const checkScroll = (ref: React.RefObject<HTMLDivElement | null>, setLeft: (val: boolean) => void, setRight: (val: boolean) => void) => {
+    if (ref.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = ref.current;
+      setLeft(scrollLeft > 0);
+      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 1);
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight);
+      checkScroll(mainScrollRef, setShowMainLeft, setShowMainRight);
+    };
+    setTimeout(handleResize, 100);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [categories, isSticky]);
+
+  const handleScroll = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      ref.current.scrollBy({ left: direction === 'left' ? -150 : 150, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSticky(entry.boundingClientRect.top <= 56);
+        setIsSticky(entry.boundingClientRect.top <= 97);
       },
-      { threshold: [1], rootMargin: "-57px 0px 0px 0px" }
+      { threshold: [1], rootMargin: "-98px 0px 0px 0px" }
     );
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
@@ -127,10 +167,11 @@ export default function BuySearchResultsMobile() {
 
   const filtered = useMemo(
     () => properties.filter((f) => {
+      if (activeCategory !== "All" && f.category !== activeCategory) return false;
       const q = searchQuery.toLowerCase();
       return !searchQuery || f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q) || f.category.toLowerCase().includes(q);
     }),
-    [searchQuery],
+    [searchQuery, activeCategory],
   );
 
   return (
@@ -181,9 +222,9 @@ export default function BuySearchResultsMobile() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[56px] left-0 right-0 z-50 bg-[#0a1128]/95 backdrop-blur-md shadow-md py-2 px-4"
+            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0a1128]/95 backdrop-blur-md shadow-md py-2 px-4 flex flex-col"
           >
-            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
+            <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md mb-2">
               <input
                 type="text"
                 value={searchQuery}
@@ -210,6 +251,67 @@ export default function BuySearchResultsMobile() {
                 </div>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isSticky && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-[113px] left-0 right-0 z-40 bg-[#f8f9fc] border-b border-[#0b1b42]/[0.08] shadow-sm flex items-center"
+          >
+            {showStickyLeft && (
+              <button
+                onClick={() => handleScroll(stickyScrollRef, 'left')}
+                className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+              >
+                <ChevronLeft size={18} strokeWidth={2.5} />
+              </button>
+            )}
+            <div 
+              ref={stickyScrollRef} 
+              onScroll={() => checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight)}
+              className="w-full overflow-x-auto scrollbar-hide px-4 py-2 flex items-center gap-2 relative"
+            >
+              <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
+                <Filter size={12} strokeWidth={2.5} />
+                <span className="text-[9px] uppercase tracking-widest font-bold">
+                  Filter:
+                </span>
+              </div>
+
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                      isActive
+                        ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
+                        : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span>{cat}</span>
+                    {isActive && (
+                      <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            {showStickyRight && (
+              <button
+                onClick={() => handleScroll(stickyScrollRef, 'right')}
+                className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+              >
+                <ChevronRight size={18} strokeWidth={2.5} />
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -344,6 +446,59 @@ export default function BuySearchResultsMobile() {
             </AnimatePresence>
           </motion.div>
         </div>
+      </div>
+
+      <div className="w-full relative bg-[#f8f9fc] border-b border-[#0b1b42]/[0.08] flex items-center">
+        {showMainLeft && (
+          <button
+            onClick={() => handleScroll(mainScrollRef, 'left')}
+            className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+          >
+            <ChevronLeft size={18} strokeWidth={2.5} />
+          </button>
+        )}
+        <div 
+          ref={mainScrollRef} 
+          onScroll={() => checkScroll(mainScrollRef, setShowMainLeft, setShowMainRight)}
+          className="w-full overflow-x-auto scrollbar-hide px-4 py-2.5 flex items-center gap-2 relative"
+        >
+          <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
+            <Filter size={12} strokeWidth={2.5} />
+            <span className="text-[9px] uppercase tracking-widest font-bold">
+              Filter:
+            </span>
+          </div>
+
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat);
+                }}
+                className={`shrink-0 relative px-4 py-1.5 rounded-[4px] text-[11px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center ${
+                  isActive
+                    ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
+                    : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                <span>{cat}</span>
+                {isActive && (
+                  <span className="absolute bottom-1 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-[#d4af37]" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+        {showMainRight && (
+          <button
+            onClick={() => handleScroll(mainScrollRef, 'right')}
+            className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+          >
+            <ChevronRight size={18} strokeWidth={2.5} />
+          </button>
+        )}
       </div>
 
       <div ref={sentinelRef} className="w-full h-[1px]" />

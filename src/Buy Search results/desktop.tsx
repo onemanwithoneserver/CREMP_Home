@@ -16,6 +16,7 @@ import {
   Clock,
   Sparkles,
   Ruler,
+  Filter,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import clsx from "clsx";
@@ -214,6 +215,12 @@ export default function BuySearchResultsDesktop() {
     setSelectedPropertyForView(property);
   }, []);
 
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = useMemo(() => {
+    return ["All", ...Array.from(new Set(properties.map((p) => p.category)))];
+  }, []);
+
   const handleLoadMore = useCallback(() => {
     setIsLoadingMore(true);
     setTimeout(() => {
@@ -253,15 +260,19 @@ export default function BuySearchResultsDesktop() {
   const displayProperties = searchQuery.trim() ? matchingProperties : matchingProperties.slice(0, 4);
 
   const filtered = useMemo(() => {
-    if (!searchQuery.trim()) return properties;
     const q = searchQuery.toLowerCase().trim();
     return properties.filter(
-      (f) =>
-        f.name.toLowerCase().includes(q) ||
-        f.location.toLowerCase().includes(q) ||
-        f.category.toLowerCase().includes(q),
+      (f) => {
+        if (activeCategory !== "All" && f.category !== activeCategory) return false;
+        if (!q) return true;
+        return (
+          f.name.toLowerCase().includes(q) ||
+          f.location.toLowerCase().includes(q) ||
+          f.category.toLowerCase().includes(q)
+        );
+      }
     );
-  }, [searchQuery]);
+  }, [searchQuery, activeCategory]);
 
   const handleHeroMouseMove = (e: React.MouseEvent) => {
     if (!heroRef.current) return;
@@ -310,81 +321,140 @@ export default function BuySearchResultsDesktop() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -50, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed top-[53px] left-0 right-0 z-[999] bg-[#0a1128]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)] py-1.5 px-6 flex items-center justify-center border-b border-[#0b1b42]/40"
+            className="fixed top-[53px] left-0 right-0 z-[999] flex flex-row h-[52px]"
+            style={{
+              background: "rgba(255,255,255,0.97)",
+              backdropFilter: "blur(20px)",
+              borderBottom: "1px solid rgba(11,27,66,0.08)",
+            }}
           >
-            <div className="w-full max-w-[640px] relative">
-              <div className="relative w-full bg-white rounded flex items-center p-1 shadow-md">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                  placeholder="Search property type, area, or location..."
-                  className="flex-1 bg-transparent border-none outline-none text-[13.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1 pl-3"
-                />
-                <button
-                  className="shrink-0 w-8 h-8 flex items-center justify-center rounded text-white transition-all relative overflow-hidden"
-                  style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
-                >
-                  <Search className="h-3.5 w-3.5 relative z-10" />
-                </button>
+            {/* Sticky Category Filter (Left) */}
+            <div className="flex-1 flex items-center px-5 overflow-hidden gap-3">
+              <div className="flex items-center gap-1.5 text-[#0b1b42]/30 shrink-0">
+                <Filter size={13} strokeWidth={2} />
+                <span className="text-[9.5px] uppercase tracking-[0.12em] font-bold">Filter</span>
               </div>
 
-              <AnimatePresence>
-                {isSearchFocused && (searchQuery || displayProperties.length > 0) && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="absolute top-[calc(100%+8px)] left-0 w-full rounded shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[1000]"
-                    style={{
-                      background: "rgba(255,255,255,0.99)",
-                      backdropFilter: "blur(28px)",
-                      border: "1px solid rgba(11,27,66,0.08)",
-                    }}
-                  >
-                    <div className="px-3 pt-2.5 pb-1.5 border-b border-[#0b1b42]/[0.04]">
-                      <span className="text-[10px] font-bold text-[#0b1b42]/30 uppercase tracking-[0.1em]">Suggestions</span>
-                    </div>
-                    <div className="overflow-y-auto p-1.5 max-h-[260px] scrollbar-hide flex flex-col gap-1">
-                      {displayProperties.length > 0 ? (
-                        displayProperties.map((p, i) => {
-                          const pMeta = getMeta(p.category);
-                          const PIcon = pMeta.icon;
-                          return (
-                            <motion.div
-                              key={p.id}
-                              initial={{ opacity: 0, y: 4 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: i * 0.03 }}
-                              onClick={() => setSearchQuery(p.name)}
-                              className="px-3 py-2.5 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 group border border-transparent hover:border-[#0b1b42]/[0.05]"
-                            >
-                              <div className="w-9 h-9 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm bg-white">
-                                <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
-                              </div>
-                              <div className="flex flex-col min-w-0 justify-center flex-1">
-                                <span className="truncate font-semibold text-[13px] leading-tight tracking-tight text-[#0a1128]">{p.name}</span>
-                                <span className="text-[10px] font-medium text-[#0b1b42]/40 flex items-center gap-1 mt-0.5">
-                                  <MapPin size={9} strokeWidth={2} />
-                                  <span className="truncate">{p.location}</span>
-                                </span>
-                              </div>
-                              <div className={clsx("flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold shrink-0", pMeta.bg, pMeta.text)}>
-                                <PIcon size={11} strokeWidth={2.5} />
-                              </div>
-                            </motion.div>
-                          );
-                        })
-                      ) : (
-                        <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No properties found</div>
+              {/* Vertical divider */}
+              <div className="w-px h-5 bg-[#0b1b42]/10 shrink-0" />
+
+              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat;
+                  return (
+                    <motion.button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      whileTap={{ scale: 0.94 }}
+                      className={`shrink-0 relative px-3.5 py-1 rounded-[4px] text-[11px] font-semibold tracking-tight transition-all duration-200 border cursor-pointer ${
+                        isActive
+                          ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/30 shadow-[0_2px_10px_rgba(10,17,40,0.18)]"
+                          : "bg-white text-[#0b1b42]/70 border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:text-[#0b1b42]"
+                      }`}
+                    >
+                      {cat}
+                      {isActive && (
+                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
                       )}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Vertical divider */}
+            <div className="w-px h-7 my-auto bg-[#0b1b42]/[0.08] shrink-0" />
+
+            {/* Search Bar (Right) */}
+            <div className="w-[380px] shrink-0 flex items-center px-4 relative">
+              <div className="w-full relative">
+                <div
+                  className="relative w-full flex items-center rounded-[4px] overflow-hidden transition-all duration-200"
+                  style={{
+                    background: "#f4f6fb",
+                    border: "1px solid rgba(11,27,66,0.09)",
+                    boxShadow: "inset 0 1px 3px rgba(11,27,66,0.04)",
+                  }}
+                >
+                  {/* Gold glow on focus */}
+                  <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isSearchFocused ? "opacity-100" : "opacity-0"}`}
+                    style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.25), inset 0 0 0 1px rgba(212,175,55,0.15)" }}
+                  />
+                  <Search size={14} strokeWidth={2} className="ml-3 text-[#0b1b42]/30 shrink-0" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                    placeholder="Search by property type, location, or keyword..."
+                    className="flex-1 bg-transparent border-none outline-none text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/30 py-[7px] px-2.5"
+                  />
+                  <motion.button
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="shrink-0 w-7 h-7 mr-1 flex items-center justify-center rounded-[3px] text-white transition-all relative overflow-hidden"
+                    style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+                  >
+                    <Search className="h-3 w-3 relative z-10" />
+                  </motion.button>
+                </div>
+
+                <AnimatePresence>
+                  {isSearchFocused && (searchQuery || displayProperties.length > 0) && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="absolute top-[calc(100%+8px)] left-0 w-full rounded shadow-[0_20px_60px_rgba(0,0,0,0.25)] overflow-hidden z-[1000]"
+                      style={{
+                        background: "rgba(255,255,255,0.99)",
+                        backdropFilter: "blur(28px)",
+                        border: "1px solid rgba(11,27,66,0.08)",
+                      }}
+                    >
+                      <div className="px-3 pt-2.5 pb-1.5 border-b border-[#0b1b42]/[0.04]">
+                        <span className="text-[10px] font-bold text-[#0b1b42]/30 uppercase tracking-[0.1em]">Suggestions</span>
+                      </div>
+                      <div className="overflow-y-auto p-1.5 max-h-[260px] scrollbar-hide flex flex-col gap-1">
+                        {displayProperties.length > 0 ? (
+                          displayProperties.map((p, i) => {
+                            const pMeta = getMeta(p.category);
+                            const PIcon = pMeta.icon;
+                            return (
+                              <motion.div
+                                key={p.id}
+                                initial={{ opacity: 0, y: 4 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.03 }}
+                                onClick={() => setSearchQuery(p.name)}
+                                className="px-3 py-2.5 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-3 transition-all duration-200 group border border-transparent hover:border-[#0b1b42]/[0.05]"
+                              >
+                                <div className="w-9 h-9 rounded overflow-hidden border border-[#0b1b42]/[0.06] shrink-0 shadow-sm bg-white">
+                                  <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
+                                </div>
+                                <div className="flex flex-col min-w-0 justify-center flex-1">
+                                  <span className="truncate font-semibold text-[13px] leading-tight tracking-tight text-[#0a1128]">{p.name}</span>
+                                  <span className="text-[10px] font-medium text-[#0b1b42]/40 flex items-center gap-1 mt-0.5">
+                                    <MapPin size={9} strokeWidth={2} />
+                                    <span className="truncate">{p.location}</span>
+                                  </span>
+                                </div>
+                                <div className={clsx("flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold shrink-0", pMeta.bg, pMeta.text)}>
+                                  <PIcon size={11} strokeWidth={2.5} />
+                                </div>
+                              </motion.div>
+                            );
+                          })
+                        ) : (
+                          <div className="p-4 col-span-full text-center text-xs text-[#0b1b42]/35">No properties found</div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
         )}
@@ -563,19 +633,29 @@ export default function BuySearchResultsDesktop() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center gap-2.5 mt-2.5 text-[9.5px]"
+              className="flex items-center gap-3 mt-4"
             >
-              <span className="text-white/50 font-medium">Popular:</span>
-              <div className="flex items-center gap-1.5">
-                {["Office Space", "Retail", "Warehouse", "Co-working", "+ More"].map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => setSearchQuery(tag === "+ More" ? "" : tag)}
-                    className="px-2.5 py-1 rounded border border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white transition-all font-medium backdrop-blur-sm"
-                  >
-                    {tag}
-                  </button>
-                ))}
+              <div className="flex items-center gap-1.5 text-white/50 shrink-0">
+                <Filter size={14} />
+                <span className="text-[10px] uppercase tracking-widest font-bold">Filter:</span>
+              </div>
+              <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className={`shrink-0 relative px-3.5 py-1.5 rounded-[4px] text-[11px] font-medium transition-all border flex flex-col items-center justify-center cursor-pointer ${
+                        isActive
+                          ? "bg-white text-[#0a1128] border-white shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
+                          : "border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white backdrop-blur-sm"
+                      }`}
+                    >
+                      <span>{cat}</span>
+                    </button>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
