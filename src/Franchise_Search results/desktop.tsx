@@ -411,12 +411,8 @@ export default function FranchiseSearchResultsDesktop() {
               background: "rgba(255,255,255,0.97)",
               backdropFilter: "blur(20px)",
               borderBottom: "1px solid rgba(11,27,66,0.08)",
-              boxShadow: "0 4px 24px rgba(10,17,40,0.10), 0 1px 0 rgba(212,175,55,0.12)",
             }}
           >
-            {/* Gold accent top border */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent pointer-events-none" />
-
             {/* Sticky Category Filter (Left) */}
             <div className="flex-1 flex items-center px-5 overflow-hidden gap-3">
               <div className="flex items-center gap-1.5 text-[#0b1b42]/30 shrink-0">
