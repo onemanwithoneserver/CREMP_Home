@@ -333,13 +333,7 @@ export default function SiteHeader({ currentPage = "/", isMobile }: SiteHeaderPr
                 >
                   <Menu size={16} strokeWidth={2.5} />
                 </button>
-                <a href="#" className="flex items-center gap-1.5 shrink-0">
-                  <img src={logoLight} alt="CREMP Logo" className="h-7 w-auto dark:hidden drop-shadow-sm" />
-                  <img src={logo} alt="CREMP Logo" className="hidden h-7 w-auto dark:block drop-shadow-md" />
-                  <div className="flex flex-col justify-center">
-                    <CrempTextLogo className="h-5 w-auto text-[#0a1128] dark:text-white" />
-                  </div>
-                </a>
+
               </div>
               <div className="flex items-center gap-2">
                 <div className="relative">
