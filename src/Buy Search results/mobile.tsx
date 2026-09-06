@@ -18,7 +18,7 @@ import {
   ChevronRight,
   Layers,
   Bookmark,
-  ChevronDown,
+  X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
@@ -635,7 +635,7 @@ export default function BuySearchResultsMobile() {
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/70 via-[#0a1128]/10 to-transparent" />
                                   
-                                  <motion.div className="absolute top-1.5 right-1.5" whileHover={{ scale: 1.1 }}>
+                                  <div className="absolute top-1.5 right-1.5 flex items-center gap-1">
                                     <motion.button
                                       whileTap={{ scale: 1.4, rotate: 15 }}
                                       onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
@@ -648,7 +648,14 @@ export default function BuySearchResultsMobile() {
                                         )}
                                       />
                                     </motion.button>
-                                  </motion.div>
+                                    <motion.button
+                                      whileTap={{ scale: 1.3 }}
+                                      onClick={(e) => { e.stopPropagation(); setIsCarouselOpen(false); }}
+                                      className="p-0.5"
+                                    >
+                                      <X className="w-3.5 h-3.5 text-red-400 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" />
+                                    </motion.button>
+                                  </div>
                                   
                                   <div className="absolute bottom-1.5 left-2 right-2 flex items-end justify-between">
                                     <span className="text-[12px] font-semibold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">{f.price}</span>
@@ -737,6 +744,13 @@ export default function BuySearchResultsMobile() {
                                               favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-white/80"
                                             )}
                                           />
+                                        </motion.button>
+                                        <motion.button
+                                          whileTap={{ scale: 1.3 }}
+                                          onClick={(e) => { e.stopPropagation(); setIsCarouselOpen(false); }}
+                                          className="p-0.5"
+                                        >
+                                          <X className="w-2.5 h-2.5 text-red-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]" />
                                         </motion.button>
                                       </div>
 
@@ -849,11 +863,11 @@ export default function BuySearchResultsMobile() {
                             <span className="text-[10px] font-semibold text-white">View Details</span>
                           </motion.button>
                           <motion.button
-                            whileTap={{ scale: 0.9 }}
+                            whileTap={{ scale: 0.85 }}
                             onClick={() => setSelectedMarker(null)}
-                            className="w-7 h-7 rounded-[4px] border border-[#0b1b42]/10 flex items-center justify-center bg-white"
+                            className="w-7 h-7 rounded-full flex items-center justify-center bg-red-50 border border-red-100"
                           >
-                            <ChevronDown size={14} className="text-[#0b1b42]/40" />
+                            <X size={13} strokeWidth={2.5} className="text-red-500" />
                           </motion.button>
                         </div>
                       </div>
