@@ -37,54 +37,6 @@ export default function FooterMobile() {
           </div>
         </div>
         <div className="flex flex-col mt-2">
-          <AccordionItem
-            title="Quick Links"
-            isOpen={openSection === "quick"}
-            onToggle={() => toggleSection("quick")}
-          >
-            <div className="flex flex-col gap-2 py-1 pl-2">
-              {quickLinks.map((link) => (
-                <a key={link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-[#d4af37] transition-colors w-fit underline decoration-dotted decoration-gray-400/40 underline-offset-[6px] hover:decoration-[#d4af37]">
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </AccordionItem>
-          <AccordionItem
-            title="Resources"
-            isOpen={openSection === "resources"}
-            onToggle={() => toggleSection("resources")}
-          >
-            <div className="flex flex-col gap-2 py-1 pl-2">
-              {resources.map((link) => (
-                <a key={link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-[#d4af37] transition-colors w-fit underline decoration-dotted decoration-gray-400/40 underline-offset-[6px] hover:decoration-[#d4af37]">
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </AccordionItem>
-          <AccordionItem
-            title="Contact Us"
-            isOpen={openSection === "contact"}
-            onToggle={() => toggleSection("contact")}
-          >
-            <div className="flex flex-col gap-3 py-1 pl-2">
-              <div className="flex items-start gap-3">
-                <MapPin size={14} className="text-[#d4af37] shrink-0 mt-0.5" />
-                <p className="text-[11px] text-gray-400 leading-relaxed text-left">
-                  123 Business Avenue, Suite 500<br />Mumbai, Maharashtra 400001<br />India
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={14} className="text-[#d4af37] shrink-0" />
-                <p className="text-[11px] text-gray-400 text-left">+91 98765 43210</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail size={14} className="text-[#d4af37] shrink-0" />
-                <p className="text-[11px] text-gray-400 text-left">contact@cremp.com</p>
-              </div>
-            </div>
-          </AccordionItem>
         </div>
         <div className="flex flex-col items-center gap-4 mt-2 pt-6 border-t border-white/10 text-center">
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] font-semibold text-gray-500">

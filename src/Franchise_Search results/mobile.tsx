@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import {
-  Heart,
+  Bookmark,
   MapPin,
   Search,
   Store,
@@ -75,6 +75,7 @@ export default function FranchiseSearchResultsMobile() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
+  const [dismissed, setDismissed] = useState<Set<number>>(new Set());
   const [showMap, setShowMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -114,6 +115,14 @@ export default function FranchiseSearchResultsMobile() {
     });
   };
 
+  const toggleDismiss = (id: number) => {
+    setDismissed((prev) => {
+      const next = new Set(prev);
+      next.add(id); // Usually dismiss is one-way from the feed, but we can toggle
+      return next;
+    });
+  };
+
   const handleCardTap = (id: number) => {
     setActiveCard(activeCard === id ? null : id);
     setSelectedMarker(id);
@@ -128,10 +137,11 @@ export default function FranchiseSearchResultsMobile() {
 
   const filtered = useMemo(
     () => franchises.filter((f) => {
+      if (dismissed.has(f.id)) return false;
       const q = searchQuery.toLowerCase();
       return !searchQuery || f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q) || f.category.toLowerCase().includes(q);
     }),
-    [searchQuery],
+    [searchQuery, dismissed],
   );
 
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -266,7 +276,7 @@ export default function FranchiseSearchResultsMobile() {
                             <Store size={13} strokeWidth={1.5} />
                           </div>
                           <div className="flex flex-col min-w-0">
-                            <span className="truncate font-bold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
+                            <span className="truncate font-semibold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
                             <span className="text-[9px] font-medium text-[#0b1b42]/35 flex items-center gap-0.5 mt-0.5">
                               <MapPin size={8} strokeWidth={2} />
                               <span className="truncate">{f.location}</span>
@@ -319,13 +329,13 @@ export default function FranchiseSearchResultsMobile() {
               className="inline-flex items-center gap-1.5 mb-2 pb-1 border-b border-[#d4af37]/40"
             >
               <Store size={12} className="text-[#d4af37]" strokeWidth={2} />
-              <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
+              <span className="text-[9px] font-semibold text-[#d4af37] uppercase tracking-[0.1em]">Franchise Discovery</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight"
+              className="text-white font-semibold text-[24px] leading-[1.1] tracking-tight"
             >
               Find your perfect<br />
               <span className="text-[#d4af37]">franchise</span> opportunity.
@@ -412,7 +422,7 @@ export default function FranchiseSearchResultsMobile() {
                             <Store size={13} strokeWidth={1.5} />
                           </div>
                           <div className="flex flex-col min-w-0">
-                            <span className="truncate font-bold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
+                            <span className="truncate font-semibold text-[12px] leading-tight text-[#0a1128]">{f.name}</span>
                             <span className="text-[9px] font-medium text-[#0b1b42]/35 flex items-center gap-0.5 mt-0.5">
                               <MapPin size={8} strokeWidth={2} />
                               <span className="truncate">{f.location}</span>
@@ -559,7 +569,7 @@ export default function FranchiseSearchResultsMobile() {
                             <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                           </div>
                           <div className="min-w-0">
-                            <h3 className="font-extrabold text-[13px] leading-tight truncate text-[#0a1128]">{f.name}</h3>
+                            <h3 className="font-semibold text-[13px] leading-tight truncate text-[#0a1128]">{f.name}</h3>
                             <p className="text-[9px] text-[#0b1b42]/35 flex items-center gap-0.5 font-medium mt-0.5">
                               <MapPin className="w-2.5 h-2.5 shrink-0 text-[#d4af37]/60" />
                               <span className="truncate">{f.location}</span>
@@ -576,7 +586,7 @@ export default function FranchiseSearchResultsMobile() {
                         </div>
                       </div>
                       <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                        <span className="text-[10px] font-bold text-[#0b1b42]">INV. {f.investment}</span>
+                        <span className="text-[10px] font-semibold text-[#0b1b42]">INV. {f.investment}</span>
                         <span className="text-[10px] font-semibold text-emerald-500">{f.roi}</span>
                         <span className="text-[10px] font-medium text-blue-600 flex items-center gap-0.5">
                           <MapPin size={9} className="text-blue-500" />
@@ -592,22 +602,7 @@ export default function FranchiseSearchResultsMobile() {
                         >
                           <Eye size={14} strokeWidth={2.5} />
                         </motion.button>
-                        <motion.button
-                          whileTap={{ scale: 0.92 }}
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-1 text-[9px] font-bold px-3 py-1.5 rounded text-white shadow-sm border border-[#f9df9f]/30 whitespace-nowrap relative overflow-hidden group"
-                          style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
-                        >
-                          <motion.div
-                            className="absolute inset-0"
-                            style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)" }}
-                            animate={{ x: ["-100%", "200%"] }}
-                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
-                          />
-                          <span className="relative z-10 flex items-center gap-1">
-                            Enquire <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
-                          </span>
-                        </motion.button>
+
                       </div>
                     </div>
                   </motion.div>
@@ -626,7 +621,7 @@ export default function FranchiseSearchResultsMobile() {
           animate="show"
           className="grid grid-cols-6 gap-2 px-2 pb-2"
         >
-          {(() => {
+           {(() => {
             const renderItems: React.ReactNode[] = [];
             const grouped = new globalThis.Map<string, any[]>();
             filtered.slice(0, visibleCount).forEach((f) => {
@@ -635,227 +630,169 @@ export default function FranchiseSearchResultsMobile() {
             });
 
             grouped.forEach((items, category) => {
+              // Category heading — franchise_home style
               renderItems.push(
-                <div key={`heading-${category}`} className="col-span-6 mt-4 mb-1 px-1">
-                  <h2 className="text-[16px] font-semibold text-[#0a1128]">{category}</h2>
+                <div key={`heading-${category}`} className="col-span-6 mt-6 mb-2 px-1">
+                  <h2 className="text-[17px] font-semibold text-[#0a1128] tracking-tight">{category}</h2>
                 </div>
               );
 
-              items.forEach((f, index) => {
-                const isActive = activeCard === f.id || selectedMarker === f.id;
-                const isFullRow = index === 0;
-                const isHalfRow = index === 1 || index === 2;
-                const isThirdRow = index >= 3;
+              // Full-row cards: swipeable horizontal carousel
+              const fullRowItems = items.slice(0, 1);
+              const halfRowItems = items.slice(1, 3);
+              const thirdRowItems = items.slice(3);
 
+              if (fullRowItems.length > 0) {
+                // Combine all full-row eligible items into a swipeable strip
+                const swipeItems = [...fullRowItems, ...halfRowItems];
                 renderItems.push(
-                  <motion.div
-                key={`card-${f.id}`}
-                variants={cardVariant}
-                whileTap={{ scale: 0.975 }}
-                onClick={() => handleCardTap(f.id)}
-                layout
-                className={clsx(
-                  "relative cursor-pointer rounded transition-all duration-300 overflow-hidden border flex flex-col",
-                  isActive
-                    ? "bg-gradient-to-r from-[#0b1b42]/[0.02] to-white border-[#d4af37]/25 shadow-[0_8px_28px_rgba(11,27,66,0.07)]"
-                    : "bg-white border-[#0b1b42]/[0.05] shadow-sm hover:shadow-md",
-                  isFullRow ? "col-span-6" : isHalfRow ? "col-span-3" : "col-span-2"
-                )}
-              >
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[1]"
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "200%" }}
-                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 5, ease: "linear" }}
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.03), transparent)", width: "50%" }}
-                />
-                <motion.div
-                  initial={false}
-                  animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
-                  transition={{ type: "spring" as const, stiffness: 500, damping: 28 }}
-                  className="absolute left-0 top-2.5 bottom-2.5 w-[3px] origin-top z-[3]"
-                  style={{ background: "linear-gradient(to bottom, #d4af37, #f3cd52, #aa8922)" }}
-                />
-                
-                {isFullRow && (
-                  <div className="p-3 relative z-[2] flex-1 flex flex-col">
-                    <div className="flex gap-3">
-                      <motion.div
-                        animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-                        className="w-[100px] h-[100px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-white"
-                      >
-                        <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                      </motion.div>
-                      <div className="flex-1 min-w-0 flex flex-col justify-between">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="min-w-0">
-                            <h3 className={clsx(
-                              "font-semibold text-[16px] leading-tight truncate transition-colors duration-300",
-                              isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
-                            )}>
-                              {f.name}
-                            </h3>
-                            <p className="text-[12px] text-[#0b1b42]/50 font-medium mt-1 truncate">
-                              {f.category}
-                            </p>
-                          </div>
-                          <motion.button
-                            whileTap={{ scale: 1.4 }}
-                            onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                            className="p-1.5 shrink-0 -mt-0.5 -mr-1"
+                  <div key={`swipe-${category}`} className="col-span-6 relative -mx-2 px-2 overflow-hidden">
+                    <motion.div
+                      drag="x"
+                      dragConstraints={{ left: -(Math.max(0, swipeItems.length - 1) * 280), right: 0 }}
+                      dragElastic={0.12}
+                      dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
+                      className="flex gap-3 cursor-grab active:cursor-grabbing py-1"
+                    >
+                      {swipeItems.map((f) => {
+                        const isActive = activeCard === f.id || selectedMarker === f.id;
+                        return (
+                          <motion.div
+                            key={`swipe-card-${f.id}`}
+                            whileTap={{ scale: 0.97 }}
+                            onClick={() => handleCardTap(f.id)}
+                            className={clsx(
+                              "relative shrink-0 w-[75vw] max-w-[300px] rounded overflow-hidden transition-all duration-300 flex flex-col select-none",
+                              isActive
+                                ? "shadow-[0_8px_30px_rgba(10,17,40,0.15)] ring-1 ring-[#d4af37]/30"
+                                : "shadow-[0_4px_12px_rgba(10,17,40,0.08)] hover:shadow-[0_6px_16px_rgba(10,17,40,0.12)]",
+                            )}
+                            style={{ background: "white" }}
                           >
-                            <Heart
+                            {/* Hero image */}
+                            <div className="relative w-full h-[170px] overflow-hidden bg-gray-50">
+                              <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-[#0a1128]/10" />
+                              {/* Transparent icons */}
+                              <div className="absolute top-3 right-3 flex items-center gap-3.5">
+                                <motion.button
+                                  whileTap={{ scale: 1.3 }}
+                                  onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                  className="p-0"
+                                >
+                                  <Bookmark
+                                    className={clsx(
+                                      "w-[22px] h-[22px] transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
+                                      favorites.has(f.id)
+                                        ? "fill-red-500 text-red-500"
+                                        : "text-white/90",
+                                    )}
+                                  />
+                                </motion.button>
+                                <motion.button
+                                  title="Not Interested"
+                                  whileTap={{ scale: 1.3 }}
+                                  onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
+                                  className="p-0"
+                                >
+                                  <X className="w-[22px] h-[22px] text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                                </motion.button>
+                              </div>
+                              {/* ROI overlay bottom-left */}
+                              <div className="absolute bottom-3 left-3">
+                                <span className="text-[14px] font-semibold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{f.roi}</span>
+                              </div>
+                              {/* Investment overlay bottom-right */}
+                              <div className="absolute bottom-3 right-3">
+                                <span className="text-[11px] font-semibold text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.investment}</span>
+                              </div>
+                            </div>
+                            {/* Content */}
+                            <div className="px-3.5 py-3 flex items-center justify-between gap-2">
+                              <div className="min-w-0 flex-1">
+                                <h3 className="font-semibold text-[16px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
+                                <span className="text-[11px] text-[#0a1128]/45 flex items-center gap-1 mt-0.5 font-medium">
+                                  <MapPin size={10} className="text-[#c69a54]" />
+                                  {f.location}
+                                </span>
+                              </div>
+                              <motion.button
+                                whileTap={{ scale: 0.9 }}
+                                onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                                className="w-9 h-9 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
+                                title="View Details"
+                              >
+                                <Eye size={16} strokeWidth={2} className="text-white" />
+                              </motion.button>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                  </div>
+                );
+              }
+
+              // Third-row compact grid cards
+              if (thirdRowItems.length > 0) {
+                thirdRowItems.forEach((f) => {
+                  const isActive = activeCard === f.id || selectedMarker === f.id;
+                  renderItems.push(
+                    <motion.div
+                      key={`card-${f.id}`}
+                      variants={cardVariant}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => handleCardTap(f.id)}
+                      layout
+                      className={clsx(
+                        "relative cursor-pointer rounded transition-all duration-300 overflow-hidden flex flex-col col-span-2",
+                        isActive
+                          ? "shadow-[0_6px_20px_rgba(10,17,40,0.12)] ring-1 ring-[#d4af37]/25"
+                          : "shadow-[0_2px_8px_rgba(10,17,40,0.06)] hover:shadow-[0_4px_12px_rgba(10,17,40,0.1)]",
+                      )}
+                      style={{ background: "white" }}
+                    >
+                      {/* Cover image */}
+                      <div className="relative w-full h-[80px] overflow-hidden bg-gray-50">
+                        <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/40 to-transparent" />
+                        {/* Transparent icons */}
+                        <div className="absolute top-1.5 right-1.5 flex items-center gap-2">
+                          <motion.button
+                            whileTap={{ scale: 1.3 }}
+                            onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                            className="p-0"
+                          >
+                            <Bookmark
                               className={clsx(
-                                "w-4 h-4 transition-all duration-300",
+                                "w-3.5 h-3.5 transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]",
                                 favorites.has(f.id)
-                                  ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
-                                  : "text-[#0b1b42]/20",
+                                  ? "fill-red-500 text-red-500"
+                                  : "text-white/90",
                               )}
                             />
                           </motion.button>
+                          <motion.button
+                            title="Not Interested"
+                            whileTap={{ scale: 1.3 }}
+                            onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
+                            className="p-0"
+                          >
+                            <X className="w-3.5 h-3.5 text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
+                          </motion.button>
                         </div>
-                        <div className="flex items-center gap-2 mt-2 flex-wrap">
-                          <span className="text-[11px] font-semibold text-[#0b1b42]">INV. {f.investment}</span>
-                          <span className="text-[11px] font-semibold text-emerald-500">{f.roi}</span>
-                          <span className="text-[11px] font-medium text-blue-600 flex items-center gap-1">
-                            <MapPin size={10} className="text-blue-500" />
-                            {f.location}
-                          </span>
-                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-3 gap-2">
-                      <div className="flex items-center gap-1 flex-wrap min-w-0">
-                        <span className="px-2 py-1 rounded text-[10px] font-semibold border border-[#d4af37]/30 bg-[#d4af37]/10 text-[#d4af37]">
-                          Top Rated
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <motion.button
-                          whileTap={{ scale: 0.92 }}
-                          onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                          className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
-                          title="View Details"
-                        >
-                          <Eye size={16} strokeWidth={2.5} />
-                        </motion.button>
-                        <motion.button
-                          whileTap={{ scale: 0.92 }}
-                          className="shrink-0 flex items-center gap-0.5 text-[12px] font-semibold px-4 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap"
-                          style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
-                        >
-                          Enquire
-                        </motion.button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {isHalfRow && (
-                  <div className="p-3 relative z-[2] flex-1 flex flex-col h-full justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-3">
-                        <motion.div
-                          animate={isActive ? { scale: 1.05 } : { scale: 1 }}
-                          className="w-[60px] h-[60px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-white"
-                        >
-                          <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
-                        </motion.div>
-                        <motion.button
-                          whileTap={{ scale: 1.4 }}
-                          onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                          className="p-1 shrink-0 -mt-1 -mr-1"
-                        >
-                          <Heart
-                            className={clsx(
-                              "w-4 h-4 transition-all duration-300",
-                              favorites.has(f.id)
-                                ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
-                                : "text-[#0b1b42]/20",
-                            )}
-                          />
-                        </motion.button>
-                      </div>
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <h3 className={clsx(
-                          "font-semibold text-[14px] leading-tight truncate transition-colors duration-300",
-                          isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
-                        )}>
+                      {/* Content */}
+                      <div className="px-2 pt-1.5 pb-2 flex flex-col items-center text-center flex-1">
+                        <h3 className="font-semibold text-[11px] leading-tight truncate w-full text-[#0a1128]">
                           {f.name}
                         </h3>
-                        <p className="text-[11px] text-[#0b1b42]/50 font-medium mt-1 truncate">
-                          {f.category}
-                        </p>
+                        <span className="text-[9px] font-medium text-[#0a1128]/40 mt-0.5 truncate">{f.investment}</span>
                       </div>
-                      <div className="mt-3 flex flex-col gap-1">
-                        <span className="text-[12px] font-semibold text-[#0a1128]">
-                          INV. {f.investment}
-                        </span>
-                        <span className="text-[12px] font-semibold text-emerald-500">{f.roi}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-3 w-full flex items-center gap-2">
-                      <motion.button
-                        whileTap={{ scale: 0.92 }}
-                        onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                        className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm shrink-0"
-                        title="View Details"
-                      >
-                        <Eye size={15} strokeWidth={2.5} />
-                      </motion.button>
-                      <motion.button
-                        whileTap={{ scale: 0.95 }}
-                        className="flex-1 flex items-center justify-center gap-0.5 text-[11px] font-semibold px-3 py-1.5 rounded text-white border border-[#f9df9f]/40 whitespace-nowrap shadow-sm"
-                        style={{ background: "linear-gradient(90deg, #bf953f, #d4af37, #b38728)" }}
-                      >
-                        Enquire
-                      </motion.button>
-                    </div>
-                  </div>
-                )}
-
-                {isThirdRow && (
-                  <div className="p-2 relative z-[2] flex-1 flex flex-col items-center justify-center h-full">
-                    <div className="w-full flex justify-end absolute top-2 right-2">
-                      <motion.button
-                        whileTap={{ scale: 1.4 }}
-                        onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                        className="p-1 shrink-0 -mt-1 -mr-1"
-                      >
-                        <Heart
-                          className={clsx(
-                            "w-3.5 h-3.5 transition-all duration-300",
-                            favorites.has(f.id)
-                              ? "fill-red-500 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.4)]"
-                              : "text-[#0b1b42]/20",
-                          )}
-                        />
-                      </motion.button>
-                    </div>
-                    <motion.div
-                      animate={isActive ? { scale: 1.05 } : { scale: 1 }}
-                      className="w-[48px] h-[48px] rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-white mt-1 mb-2"
-                    >
-                      <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                     </motion.div>
-                    <div className="min-w-0 flex flex-col items-center text-center">
-                      <h3 className={clsx(
-                        "font-semibold text-[12px] leading-tight truncate transition-colors duration-300",
-                        isActive ? "text-[#0a1128]" : "text-[#0a1128]/90",
-                      )}>
-                        {f.name}
-                      </h3>
-                      <div className="mt-1 flex flex-col items-center justify-center z-10">
-                        <span className="text-[11px] font-semibold text-[#0a1128] truncate">{f.investment}</span>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#000000]/[0.04] to-transparent pointer-events-none rounded-b" />
-                  </div>
-                )}
-              </motion.div>
-                );
-              });
+                  );
+                });
+              }
             });
             return renderItems;
           })()}

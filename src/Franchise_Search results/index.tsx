@@ -16,7 +16,6 @@ export default function FranchiseSearchResults({ isMobile }: { isMobile?: boolea
         >
           <Mobile />
         </motion.div>
-        <SiteFooter isMobile={isMobile} />
       </div>
     );
   }
