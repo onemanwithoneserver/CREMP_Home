@@ -16,7 +16,6 @@ import {
   Filter,
   ChevronLeft,
   ChevronRight,
-  ChevronDown,
   Layers,
   Bookmark,
   X,
@@ -584,27 +583,28 @@ export default function BuySearchResultsMobile() {
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   exit={{ y: "100%" }}
-                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-[#f8f9fc]/95 backdrop-blur-md rounded-t-[20px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] border-t border-white/50 pt-1 flex flex-col max-h-[75vh]"
+                  transition={{ type: "spring", damping: 28, stiffness: 260 }}
+                  className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-white/95 backdrop-blur-md rounded-t-[4px] shadow-[0_-4px_20px_rgba(10,17,40,0.1)] border-t border-[#0b1b42]/[0.06] flex flex-col max-h-[70vh]"
                 >
+                  {/* Handle bar */}
                   <div 
-                    className="w-full flex flex-col items-center justify-center py-2 cursor-pointer active:bg-gray-100/50 transition-colors rounded-t-[20px] shrink-0"
+                    className="w-full flex items-center justify-center py-1.5 cursor-pointer active:bg-gray-50 transition-colors shrink-0"
                     onClick={() => setIsCarouselOpen(false)}
                   >
-                    <div className="w-10 h-1.5 rounded-full bg-gray-300" />
-                    <ChevronDown size={18} className="text-gray-400 mt-1" strokeWidth={2.5} />
+                    <div className="w-8 h-[3px] rounded-full bg-[#0b1b42]/15" />
                   </div>
                   
-                  <div className="w-full overflow-x-auto flex gap-3 px-4 pb-6 pt-1 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
+                  {/* Scrollable card row */}
+                  <div className="w-full overflow-x-auto flex gap-2 px-3 pb-4 pt-0.5 snap-x scrollbar-hide items-start" style={{ scrollSnapType: 'x mandatory' }}>
                     {(() => {
                       const items: React.ReactNode[] = [];
                       let i = 0;
                       let groupType: 'big' | 'small' = 'big';
-                      let bigCount = 1; // first group: 1 big, then 4 big, then 4 big...
+                      let bigCount = 1;
+                      let smallGroupIndex = 0;
 
                       while (i < filtered.length) {
                         if (groupType === 'big') {
-                          // Render big cards
                           const count = bigCount;
                           for (let j = 0; j < count && i < filtered.length; j++, i++) {
                             const f = filtered[i];
@@ -612,21 +612,23 @@ export default function BuySearchResultsMobile() {
                             items.push(
                               <motion.div
                                 key={`bcard-${f.id}`}
-                                whileTap={{ scale: 0.97 }}
+                                whileTap={{ scale: 0.98 }}
                                 onClick={() => handleCardTap(f.id)}
                                 className={clsx(
-                                  "snap-start shrink-0 w-[70vw] max-w-[280px] relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 flex flex-col select-none",
+                                  "snap-start shrink-0 w-[68vw] max-w-[260px] relative cursor-pointer rounded-[4px] overflow-hidden transition-all duration-200 flex flex-col select-none border",
                                   isActive
-                                    ? "shadow-[0_8px_30px_rgba(10,17,40,0.15)] ring-2 ring-[#d4af37]/40"
-                                    : "shadow-[0_4px_12px_rgba(10,17,40,0.08)] hover:shadow-[0_6px_16px_rgba(10,17,40,0.12)]",
+                                    ? "border-[#d4af37]/30 shadow-[0_4px_16px_rgba(10,17,40,0.1)]"
+                                    : "border-[#0b1b42]/[0.06] shadow-sm hover:shadow-md",
                                 )}
                                 style={{ background: "white" }}
                               >
-                                <div className="relative w-full h-[140px] overflow-hidden bg-gray-50">
+                                {/* Image */}
+                                <div className="relative w-full h-[130px] overflow-hidden bg-gray-50">
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
-                                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/70 via-transparent to-[#0a1128]/20" />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-[#0a1128]/10" />
                                   
-                                  <div className="absolute top-3 right-3 flex items-center gap-3.5">
+                                  {/* Bookmark */}
+                                  <div className="absolute top-2 right-2">
                                     <motion.button
                                       whileTap={{ scale: 1.3 }}
                                       onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
@@ -634,50 +636,60 @@ export default function BuySearchResultsMobile() {
                                     >
                                       <Bookmark
                                         className={clsx(
-                                          "w-[22px] h-[22px] transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
+                                          "w-5 h-5 transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]",
                                           favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-white/90"
                                         )}
                                       />
                                     </motion.button>
                                   </div>
                                   
-                                  <div className="absolute bottom-3 left-3">
-                                    <span className="text-[15px] font-bold text-emerald-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{f.price}</span>
+                                  {/* Price overlay */}
+                                  <div className="absolute bottom-2 left-2.5">
+                                    <span className="text-[13px] font-semibold text-emerald-400 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.price}</span>
                                   </div>
                                   
-                                  <div className="absolute bottom-3 right-3">
-                                    <span className="text-[12px] font-semibold text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{f.area}</span>
+                                  {/* Area overlay */}
+                                  <div className="absolute bottom-2 right-2.5">
+                                    <span className="text-[10px] font-semibold text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">{f.area}</span>
                                   </div>
                                 </div>
                                 
-                                <div className="px-3 py-3 flex items-center justify-between gap-2">
+                                {/* Content */}
+                                <div className="px-2.5 py-2 flex items-center justify-between gap-1.5">
                                   <div className="min-w-0 flex-1">
-                                    <h3 className="font-bold text-[16px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
-                                    <span className="text-[12px] text-[#0a1128]/50 flex items-center gap-1 mt-1 font-medium">
-                                      <MapPin size={11} className="text-[#c69a54]" />
+                                    <h3 className="font-semibold text-[14px] leading-snug text-[#0a1128] truncate">{f.name}</h3>
+                                    <span className="text-[10px] text-[#0a1128]/40 flex items-center gap-0.5 mt-0.5 font-medium">
+                                      <MapPin size={9} className="text-[#c69a54]" />
                                       {f.location}
                                     </span>
                                   </div>
                                   <motion.button
                                     whileTap={{ scale: 0.9 }}
                                     onClick={(e) => { e.stopPropagation(); handleViewProperty(f); }}
-                                    className="w-10 h-10 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
+                                    className="w-8 h-8 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-sm"
                                     title="View Details"
                                   >
-                                    <Eye size={18} strokeWidth={2} className="text-white" />
+                                    <Eye size={14} strokeWidth={2} className="text-white" />
                                   </motion.button>
                                 </div>
                               </motion.div>
                             );
                           }
-                          bigCount = 4; // subsequent big groups are 4
+                          bigCount = 4;
                           groupType = 'small';
                         } else {
-                          // Render a 2x2 grid of small cards as one snap item
-                          const smallItems = filtered.slice(i, i + 4);
+                          // Dynamic small card clusters: 1st place has 2 cards, 2nd place has 3 cards, 3rd+ place has 4 cards
+                          const targetCount = smallGroupIndex === 0 ? 2 : smallGroupIndex === 1 ? 3 : 4;
+                          const smallItems = filtered.slice(i, i + targetCount);
                           if (smallItems.length === 0) break;
                           items.push(
-                            <div key={`sgrid-${i}`} className="snap-start shrink-0 grid grid-cols-2 gap-2 self-stretch">
+                            <div
+                              key={`sgrid-${i}`}
+                              className={clsx(
+                                "snap-start shrink-0 grid gap-1.5 self-stretch",
+                                smallItems.length <= 2 ? "grid-cols-1" : "grid-cols-2"
+                              )}
+                            >
                               {smallItems.map((f) => {
                                 const isActive = activeCard === f.id || selectedMarker === f.id;
                                 return (
@@ -686,18 +698,19 @@ export default function BuySearchResultsMobile() {
                                     whileTap={{ scale: 0.97 }}
                                     onClick={() => handleCardTap(f.id)}
                                     className={clsx(
-                                      "w-[120px] relative cursor-pointer rounded overflow-hidden transition-all duration-300 flex flex-col select-none border border-[#0b1b42]/[0.08]",
+                                      "w-[110px] relative cursor-pointer rounded-[4px] overflow-hidden transition-all duration-200 flex flex-col select-none border",
                                       isActive
-                                        ? "shadow-[0_4px_16px_rgba(10,17,40,0.12)] ring-1 ring-[#d4af37]/40"
-                                        : "shadow-[0_2px_8px_rgba(10,17,40,0.06)] hover:shadow-[0_4px_12px_rgba(10,17,40,0.1)]",
+                                        ? "border-[#d4af37]/30 shadow-[0_2px_10px_rgba(10,17,40,0.1)]"
+                                        : "border-[#0b1b42]/[0.06] shadow-sm",
                                     )}
                                     style={{ background: "white" }}
                                   >
-                                    <div className="relative w-full h-[70px] overflow-hidden bg-gray-50">
+                                    <div className="relative w-full h-[62px] overflow-hidden bg-gray-50">
                                       <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
-                                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/50 to-transparent" />
+                                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/40 to-transparent" />
                                       
-                                      <div className="absolute top-1.5 right-1.5 flex items-center gap-1.5">
+                                      {/* Compact icons */}
+                                      <div className="absolute top-1 right-1 flex items-center gap-1">
                                         <motion.button
                                           whileTap={{ scale: 1.3 }}
                                           onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
@@ -705,8 +718,8 @@ export default function BuySearchResultsMobile() {
                                         >
                                           <Bookmark
                                             className={clsx(
-                                              "w-3.5 h-3.5 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]",
-                                              favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-white/90"
+                                              "w-3 h-3 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]",
+                                              favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-white/80"
                                             )}
                                           />
                                         </motion.button>
@@ -715,14 +728,14 @@ export default function BuySearchResultsMobile() {
                                           onClick={(e) => { e.stopPropagation(); }}
                                           className="p-0"
                                         >
-                                          <X className="w-3.5 h-3.5 text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]" />
+                                          <X className="w-3 h-3 text-red-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]" />
                                         </motion.button>
                                       </div>
                                     </div>
                                     
-                                    <div className="px-2 py-1.5 flex flex-col items-center justify-center bg-white">
-                                      <h3 className="font-bold text-[10px] leading-tight text-[#0a1128] truncate text-center w-full">{f.name}</h3>
-                                      <p className="text-[9px] text-gray-500 font-medium mt-0.5">{f.price}</p>
+                                    <div className="px-1.5 py-1 flex flex-col bg-white">
+                                      <h3 className="font-semibold text-[9px] leading-tight text-[#0a1128] truncate w-full">{f.name}</h3>
+                                      <p className="text-[8px] text-[#0b1b42]/40 font-medium mt-px">{f.price}</p>
                                     </div>
                                   </motion.div>
                                 );
@@ -730,6 +743,7 @@ export default function BuySearchResultsMobile() {
                             </div>
                           );
                           i += smallItems.length;
+                          smallGroupIndex++;
                           groupType = 'big';
                         }
                       }
