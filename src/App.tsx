@@ -25,6 +25,7 @@ import Login from "./Login";
 import CreateAccount from "./CreateAccount";
 import Explore from "./explore";
 import BuySearchResults from "./Buy Search results";
+import PostRequirementFlow from "./Post Requirement";
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -124,6 +125,10 @@ function App() {
               <Route
                 path="/:themeMode/:viewMode/explore"
                 element={<Explore isMobile={isMobile} />}
+              />
+              <Route
+                path="/:themeMode/:viewMode/post-requirement"
+                element={<PostRequirementFlow isMobile={isMobile} />}
               />
               <Route
                 path="*"
