@@ -27,6 +27,7 @@ import Explore from "./explore";
 import BuySearchResults from "./Buy Search results";
 import PostRequirementBuyer from "./Post Requirement/Buyer";
 import PostRequirementSeller from "./Post Requirement/Seller";
+import Profiles from "./Profiles";
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -134,6 +135,10 @@ function App() {
               <Route
                 path="/:themeMode/:viewMode/post-requirement-seller"
                 element={<PostRequirementSeller isMobile={isMobile} />}
+              />
+              <Route
+                path="/:themeMode/:viewMode/profiles"
+                element={<Profiles isMobile={isMobile} />}
               />
               <Route
                 path="*"

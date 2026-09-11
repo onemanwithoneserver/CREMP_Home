@@ -1,0 +1,16 @@
+import MyProfileMobile from "./mobile";
+
+interface MyProfileDesktopProps {
+  onEditProfile?: () => void;
+  onBack?: () => void;
+}
+
+export default function MyProfileDesktop({ onEditProfile, onBack }: MyProfileDesktopProps) {
+  return (
+    <div className="min-h-screen w-full bg-gray-50 flex justify-center bg-[#f8f9fa]">
+      <div className="w-full max-w-md bg-white min-h-screen shadow-[0_0_50px_rgba(0,0,0,0.05)] border-x border-gray-100">
+        <MyProfileMobile onEditProfile={onEditProfile} onBack={onBack} />
+      </div>
+    </div>
+  );
+}
