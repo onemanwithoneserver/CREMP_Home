@@ -20,7 +20,8 @@ export type Page =
   | "login"
   | "create-account"
   | "explore"
-  | "post-requirement";
+  | "post-requirement-buyer"
+  | "post-requirement-seller";
 export type ViewMode = "desktop" | "mobile";
 export interface HeaderProps {
   viewMode: ViewMode;
@@ -45,7 +46,8 @@ const PAGE_LABELS: Record<Page, string> = {
   login: "Login",
   "create-account": "Create Account",
   explore: "Video Hub",
-  "post-requirement": "Post Requirement",
+  "post-requirement-buyer": "Post Requirement (Buyer)",
+  "post-requirement-seller": "Post Requirement (Seller)",
 };
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
   .filter(

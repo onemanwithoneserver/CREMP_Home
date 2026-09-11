@@ -15,7 +15,6 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
   return (
     <div className="h-full min-h-screen w-full bg-white text-[#0a1128] font-sans flex flex-col">
       
-      {/* Header matching screenshot */}
       <div className="w-full bg-[#1b253b] text-white">
         <div className="flex flex-col">
           <div className="flex items-center p-4 relative">
@@ -43,7 +42,6 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
 
       <main className="flex-1 p-6 flex flex-col gap-8 pb-24">
         
-        {/* Requirement Type */}
         <div>
           <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">What are you looking for?</h3>
           <p className="text-[13px] text-gray-400 mb-5">Select the type of requirement you want to post.</p>
@@ -71,7 +69,6 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
           </div>
         </div>
 
-        {/* Requirement Name */}
         <div>
           <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">Requirement Name</h3>
           <input 
@@ -83,7 +80,6 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
           />
         </div>
 
-        {/* Property Category */}
         <div>
           <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">What type of property?</h3>
           <p className="text-[13px] text-gray-400 mb-5">Select the property category.</p>

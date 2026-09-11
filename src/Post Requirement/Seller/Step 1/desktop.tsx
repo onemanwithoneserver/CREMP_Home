@@ -13,7 +13,6 @@ export default function Step1Desktop({ onNext }: Step1DesktopProps) {
   return (
     <div className="h-full min-h-full w-full bg-white text-[#0a1128] font-sans flex flex-col items-center">
       
-      {/* Header */}
       <div className="w-full bg-[#1b253b] text-white">
         <div className="flex flex-col">
           <div className="flex items-center p-4 relative">
@@ -41,7 +40,6 @@ export default function Step1Desktop({ onNext }: Step1DesktopProps) {
 
       <main className="w-full max-w-2xl p-8 flex flex-col gap-8 mt-4 mb-10">
         
-        {/* Placeholder Content for Seller */}
         <div>
           <h3 className="text-[24px] font-bold mb-1 text-[#0a1128]">What are you selling?</h3>
           <p className="text-[14px] text-gray-400 mb-6">Select the type of property you want to list.</p>

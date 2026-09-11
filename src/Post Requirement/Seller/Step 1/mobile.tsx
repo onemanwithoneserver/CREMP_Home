@@ -13,7 +13,6 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
   return (
     <div className="h-full min-h-screen w-full bg-white text-[#0a1128] font-sans flex flex-col">
       
-      {/* Header */}
       <div className="w-full bg-[#1b253b] text-white">
         <div className="flex flex-col">
           <div className="flex items-center p-4 relative">
