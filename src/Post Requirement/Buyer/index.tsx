@@ -6,11 +6,11 @@ import Step4 from "./Step 4";
 import Step5 from "./Step 5";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface PostRequirementFlowProps {
+interface PostRequirementBuyerProps {
   isMobile: boolean;
 }
 
-export default function PostRequirementFlow({ isMobile }: PostRequirementFlowProps) {
+export default function PostRequirementBuyer({ isMobile }: PostRequirementBuyerProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 5));

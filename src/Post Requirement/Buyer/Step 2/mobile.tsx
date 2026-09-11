@@ -1,6 +1,6 @@
 import { useState } from "react";
-import StepHeader from "../components/StepHeader";
-import RequirementFooter from "../../components/commonfiles/Footer/RequirementFooter";
+import StepHeader from "../../components/StepHeader";
+import RequirementFooter from "../../../components/commonfiles/Footer/RequirementFooter";
 import { purposes, budgetRanges, sizeRanges } from "./data";
 
 interface Step2MobileProps {

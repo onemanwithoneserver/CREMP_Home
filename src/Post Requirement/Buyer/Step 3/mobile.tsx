@@ -1,6 +1,6 @@
 import { useState } from "react";
-import StepHeader from "../components/StepHeader";
-import RequirementFooter from "../../components/commonfiles/Footer/RequirementFooter";
+import StepHeader from "../../components/StepHeader";
+import RequirementFooter from "../../../components/commonfiles/Footer/RequirementFooter";
 import { locationOptions, timeframeOptions } from "./data";
 import { Map, MapPin, Clock, Calendar } from "lucide-react";
 

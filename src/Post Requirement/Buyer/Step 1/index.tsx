@@ -1,5 +1,5 @@
-import Step1Mobile from "./mobile";
 import Step1Desktop from "./desktop";
+import Step1Mobile from "./mobile";
 
 interface Step1Props {
   onNext: () => void;
@@ -7,5 +7,8 @@ interface Step1Props {
 }
 
 export default function Step1({ onNext, isMobile }: Step1Props) {
-  return isMobile ? <Step1Mobile onNext={onNext} /> : <Step1Desktop onNext={onNext} />;
+  if (isMobile) {
+    return <Step1Mobile onNext={onNext} />;
+  }
+  return <Step1Desktop onNext={onNext} />;
 }

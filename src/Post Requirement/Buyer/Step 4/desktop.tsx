@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StepHeader from "../components/StepHeader";
+import StepHeader from "../../components/StepHeader";
 import { projectStatuses, unitConditions, industryTypes, fundingSources } from "./data";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";

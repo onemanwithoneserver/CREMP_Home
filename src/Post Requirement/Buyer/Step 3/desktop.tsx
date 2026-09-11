@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StepHeader from "../components/StepHeader";
+import StepHeader from "../../components/StepHeader";
 import { locationOptions, timeframeOptions } from "./data";
 import { Map, MapPin, Clock, Calendar, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";

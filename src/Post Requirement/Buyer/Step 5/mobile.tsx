@@ -1,6 +1,6 @@
 import { useState } from "react";
-import StepHeader from "../components/StepHeader";
-import SubmitButton from "../components/SubmitButton";
+import StepHeader from "../../components/StepHeader";
+import SubmitButton from "../../components/SubmitButton";
 import { reviewData } from "./data";
 import { 
   Home, FileText, Target, Grid, Wallet, Layout, 
