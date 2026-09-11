@@ -20,30 +20,31 @@ export default function Step2Desktop({ onNext, onBack }: Step2DesktopProps) {
         <StepHeader currentStep={2} totalSteps={5} onBack={onBack} />
       </div>
 
-      <main className="w-full max-w-4xl p-10 flex flex-col gap-12 bg-white rounded-3xl shadow-sm mt-8 mb-10">
-        
+      <main className="w-full max-w-4xl p-8 flex flex-col gap-8 bg-white rounded-[4px] border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] mt-8 mb-10 relative">
+        <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+
         <div>
-          <h3 className="text-[24px] font-bold mb-2">Why are you looking?</h3>
-          <p className="text-[15px] text-gray-500 font-medium mb-6">Help us understand your purpose.</p>
-          <div className="flex gap-6">
+          <h3 className="text-[22px] font-bold mb-1 text-[#0a1128]">Why are you looking?</h3>
+          <p className="text-[12px] text-gray-500 font-medium mb-6 uppercase tracking-wider">Help us understand your purpose</p>
+          <div className="flex gap-4">
             {purposes.map((p) => {
               const isSelected = purpose === p;
               return (
                 <button
                   key={p}
                   onClick={() => setPurpose(p)}
-                  className={`flex-1 flex items-center gap-4 p-5 rounded-2xl border transition-all ${
-                    isSelected 
-                      ? "border-[#d4af37] bg-orange-50/30" 
-                      : "border-gray-200 hover:border-gray-300 bg-white"
+                  className={`flex-1 flex items-center gap-4 p-5 rounded-[4px] border transition-all duration-300 ${
+                    isSelected
+                      ? "border-[#d4af37] bg-orange-50/50 shadow-sm"
+                      : "border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300"
                   }`}
                 >
-                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                     isSelected ? "border-[#d4af37]" : "border-gray-300"
                   }`}>
                     {isSelected && <div className="w-3 h-3 rounded-full bg-[#d4af37]" />}
                   </div>
-                  <span className={`text-[16px] font-semibold ${isSelected ? "text-[#0a1128]" : "text-gray-600"}`}>
+                  <span className={`text-[15px] font-semibold ${isSelected ? "text-[#0a1128]" : "text-gray-600"}`}>
                     {p}
                   </span>
                 </button>
@@ -53,22 +54,22 @@ export default function Step2Desktop({ onNext, onBack }: Step2DesktopProps) {
         </div>
 
         <div>
-          <h3 className="text-[24px] font-bold mb-2">What's your budget range?</h3>
-          <p className="text-[15px] text-gray-500 font-medium mb-6">Select the total budget you have in mind.</p>
-          <div className="grid grid-cols-3 gap-4">
+          <h3 className="text-[22px] font-bold mb-1 text-[#0a1128]">What's your budget range?</h3>
+          <p className="text-[12px] text-gray-500 font-medium mb-6 uppercase tracking-wider">Select the total budget you have in mind</p>
+          <div className="grid grid-cols-3 gap-3">
             {budgetRanges.map((b) => {
               const isSelected = budget === b;
               return (
                 <button
                   key={b}
                   onClick={() => setBudget(b)}
-                  className={`p-5 rounded-2xl border text-center transition-all ${
-                    isSelected 
-                      ? "border-[#d4af37] bg-orange-50/30 text-[#0a1128] shadow-md shadow-[#d4af37]/10" 
-                      : "border-gray-200 hover:border-gray-300 bg-white text-gray-600"
+                  className={`p-5 rounded-[4px] border text-center transition-all duration-300 ${
+                    isSelected
+                      ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm"
+                      : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
                   }`}
                 >
-                  <span className="text-[15px] font-semibold">{b}</span>
+                  <span className="text-[14px] font-bold">{b}</span>
                 </button>
               );
             })}
@@ -76,22 +77,22 @@ export default function Step2Desktop({ onNext, onBack }: Step2DesktopProps) {
         </div>
 
         <div>
-          <h3 className="text-[24px] font-bold mb-2">What size are you looking for?</h3>
-          <p className="text-[15px] text-gray-500 font-medium mb-6">Select the approximate built-up area.</p>
-          <div className="grid grid-cols-3 gap-4">
+          <h3 className="text-[22px] font-bold mb-1 text-[#0a1128]">What size are you looking for?</h3>
+          <p className="text-[12px] text-gray-500 font-medium mb-6 uppercase tracking-wider">Select the approximate built-up area</p>
+          <div className="grid grid-cols-3 gap-3">
             {sizeRanges.map((s) => {
               const isSelected = size === s;
               return (
                 <button
                   key={s}
                   onClick={() => setSize(s)}
-                  className={`p-5 rounded-2xl border text-center transition-all ${
-                    isSelected 
-                      ? "border-[#d4af37] bg-orange-50/30 text-[#0a1128] shadow-md shadow-[#d4af37]/10" 
-                      : "border-gray-200 hover:border-gray-300 bg-white text-gray-600"
+                  className={`p-5 rounded-[4px] border text-center transition-all duration-300 ${
+                    isSelected
+                      ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm"
+                      : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
                   }`}
                 >
-                  <span className="text-[15px] font-semibold">{s}</span>
+                  <span className="text-[14px] font-bold">{s}</span>
                 </button>
               );
             })}
@@ -103,8 +104,8 @@ export default function Step2Desktop({ onNext, onBack }: Step2DesktopProps) {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={onNext}
-            className="px-8 py-4 rounded-xl text-white font-bold text-[16px] flex items-center gap-2 transition-all"
-            style={{ background: "linear-gradient(135deg, #d4af37 0%, #f3cd52 100%)", color: "#0a1128" }}
+            className="px-8 py-4 rounded-[4px] font-bold text-[15px] flex items-center gap-2 transition-all border border-[#d4af37]"
+            style={{ background: "linear-gradient(135deg, #d4af37 0%, #aa8922 100%)", color: "#ffffff" }}
           >
             Continue <ArrowRight size={18} />
           </motion.button>

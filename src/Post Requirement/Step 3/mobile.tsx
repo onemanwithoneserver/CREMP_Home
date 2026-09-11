@@ -28,34 +28,34 @@ export default function Step3Mobile({ onNext, onBack }: Step3MobileProps) {
     <div className="h-full min-h-full w-full bg-gray-50 text-[#0a1128] font-sans pb-32">
       <StepHeader currentStep={3} totalSteps={5} onBack={onBack} />
 
-      <main className="p-5 flex flex-col gap-8 bg-white pb-10">
-        
-        <div>
-          <h3 className="text-[20px] font-bold mb-1">Where are you looking?</h3>
-          <p className="text-[13px] text-gray-500 font-medium mb-4">Choose how you want to select the location</p>
-          <div className="flex flex-col gap-3">
+      <main className="p-4 flex flex-col gap-6">
+
+        <div className="bg-white rounded-[4px] border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-5">
+          <h3 className="text-[17px] font-bold mb-1 text-[#0a1128]">Where are you looking?</h3>
+          <p className="text-[11px] text-gray-500 font-medium mb-4 uppercase tracking-wider">Choose how you want to select the location</p>
+          <div className="flex flex-col gap-2.5">
             {locationOptions.map((opt) => {
               const isSelected = location === opt.id;
               return (
                 <button
                   key={opt.id}
                   onClick={() => setLocation(opt.id)}
-                  className={`flex items-center gap-4 p-4 rounded-2xl border transition-all text-left ${
-                    isSelected 
-                      ? "border-[#d4af37] bg-orange-50/30" 
-                      : "border-gray-200 bg-white"
+                  className={`flex items-center gap-4 p-3.5 rounded-[4px] border transition-all duration-300 text-left ${
+                    isSelected
+                      ? "border-[#d4af37] bg-orange-50/50 shadow-sm"
+                      : "border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300"
                   }`}
                 >
                   <div className="shrink-0 w-8 flex justify-center">
                     {getIcon(opt.id, isSelected)}
                   </div>
                   <div className="flex-1">
-                    <div className={`text-[15px] font-semibold mb-0.5 ${isSelected ? "text-[#0a1128]" : "text-gray-800"}`}>
+                    <div className={`text-[14px] font-bold mb-0.5 ${isSelected ? "text-[#0a1128]" : "text-gray-600"}`}>
                       {opt.title}
                     </div>
-                    <div className="text-[12px] text-gray-400">{opt.subtitle}</div>
+                    <div className="text-[11px] text-gray-500">{opt.subtitle}</div>
                   </div>
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
                     isSelected ? "border-[#d4af37]" : "border-gray-300"
                   }`}>
                     {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-[#d4af37]" />}
@@ -66,32 +66,32 @@ export default function Step3Mobile({ onNext, onBack }: Step3MobileProps) {
           </div>
         </div>
 
-        <div>
-          <h3 className="text-[20px] font-bold mb-1">Timeframe to Purchase?</h3>
-          <p className="text-[13px] text-gray-500 font-medium mb-4">Select your expected timeframe</p>
-          <div className="flex flex-col gap-3">
+        <div className="bg-white rounded-[4px] border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-5">
+          <h3 className="text-[17px] font-bold mb-1 text-[#0a1128]">Timeframe to Purchase?</h3>
+          <p className="text-[11px] text-gray-500 font-medium mb-4 uppercase tracking-wider">Select your expected timeframe</p>
+          <div className="flex flex-col gap-2.5">
             {timeframeOptions.map((opt) => {
               const isSelected = timeframe === opt.id;
               return (
                 <button
                   key={opt.id}
                   onClick={() => setTimeframe(opt.id)}
-                  className={`flex items-center gap-4 p-4 rounded-2xl border transition-all text-left ${
-                    isSelected 
-                      ? "border-[#d4af37] bg-orange-50/30" 
-                      : "border-gray-200 bg-white"
+                  className={`flex items-center gap-4 p-3.5 rounded-[4px] border transition-all duration-300 text-left ${
+                    isSelected
+                      ? "border-[#d4af37] bg-orange-50/50 shadow-sm"
+                      : "border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300"
                   }`}
                 >
                   <div className="shrink-0 w-8 flex justify-center">
                     {getIcon(opt.id, isSelected)}
                   </div>
                   <div className="flex-1">
-                    <div className={`text-[15px] font-semibold mb-0.5 ${isSelected ? "text-[#0a1128]" : "text-gray-800"}`}>
+                    <div className={`text-[14px] font-bold mb-0.5 ${isSelected ? "text-[#0a1128]" : "text-gray-600"}`}>
                       {opt.title}
                     </div>
-                    <div className="text-[12px] text-gray-400">{opt.subtitle}</div>
+                    <div className="text-[11px] text-gray-500">{opt.subtitle}</div>
                   </div>
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
                     isSelected ? "border-[#d4af37]" : "border-gray-300"
                   }`}>
                     {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-[#d4af37]" />}
