@@ -39,7 +39,8 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
     setExperience,
     clearAllFilters,
     activeFilterCount,
-  } = useBrokerFilters();
+  } = useBrokerFilters();
+
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 900);
     return () => clearTimeout(t);
@@ -67,7 +68,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
     return (
         <div
           className="w-full flex items-start justify-center bg-background text-gray-900 dark:text-primary transition-colors duration-300 overflow-hidden animate-in fade-in duration-500"
-          style={{ height: 'calc(100vh - 64px)', fontFamily: 'Outfit, sans-serif' }}
+          style={{ height: '100%', fontFamily: 'Outfit' }}
         >
         <div className="w-full h-full flex flex-col overflow-hidden relative">
 
@@ -210,11 +211,12 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
         </div>
       </div>
     );
-  }
+  }
+
   return (
     <div
       className="w-full flex flex-col items-center justify-start bg-background text-gray-900 dark:text-primary transition-colors duration-300 overflow-hidden animate-in fade-in duration-500"
-      style={{ height: 'calc(100vh - 64px)', fontFamily: 'Outfit, sans-serif' }}
+      style={{ height: '100%', fontFamily: 'Outfit' }}
     >
       <div
         className="w-[24.375rem] shrink-0 h-full flex flex-col overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.08)] dark:shadow-[0_0_40px_rgba(255,255,255,0.05)] relative"
