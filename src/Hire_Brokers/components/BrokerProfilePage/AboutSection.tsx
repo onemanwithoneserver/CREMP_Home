@@ -31,7 +31,7 @@ export function AboutSection({ broker, isDesktop }: AboutSectionProps) {
         
         <div>
           <SectionHeader title="About" />
-          <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl p-4 border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+          <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-[8px] p-4 border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
             <p className="text-[12.5px] text-[#3d4f6b] leading-relaxed font-medium mb-3 font-['Outfit',sans-serif]">
               {bio ? `${bio} ` : ''}
               With over {experienceYears}+ years in commercial real estate, {firstName} has closed {dealsClosed}+ deals across prime markets.
@@ -94,7 +94,7 @@ export function AboutSection({ broker, isDesktop }: AboutSectionProps) {
         {hasMetrics && isDesktop && (
           <div>
             <SectionHeader title="Key Metrics" action="View Details" />
-            <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+            <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-[8px] overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
               {keyMetrics.map((metric, index) => (
                 <div 
                   key={index} 
@@ -129,7 +129,7 @@ export function AboutSection({ broker, isDesktop }: AboutSectionProps) {
       {!isDesktop && hasMetrics && (
         <div className="mt-3">
           <SectionHeader title="Key Metrics" action="View Details" />
-          <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+          <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-[8px] overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
             {keyMetrics.slice(0, 4).map((metric, index) => (
               <div 
                 key={index} 

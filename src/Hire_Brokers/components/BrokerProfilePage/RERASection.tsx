@@ -12,7 +12,7 @@ export function RERASection({ broker, isDesktop }: RERASectionProps) {
   return (
     <div className={isDesktop ? 'px-5 py-4' : 'px-3 py-3.5'}>
       <SectionHeader title="RERA Verification" />
-      <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+      <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-[8px] overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
         <div className={`flex ${isDesktop ? 'items-center gap-5 px-5 py-4' : 'flex-col px-4 py-3.5 gap-2.5'}`}>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">

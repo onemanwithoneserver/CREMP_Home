@@ -188,7 +188,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
                     </p>
                   </div>
                 </div>
-                <button className="relative z-10 flex items-center justify-center font-bold px-7 py-3 text-[13px] rounded-[6px] tracking-wide shrink-0 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.35)] hover:-translate-y-0.5 border-none transition-all duration-300">
+                <button className="relative z-10 flex items-center justify-center font-bold px-7 py-3 text-[13px] rounded-[4px] tracking-wide shrink-0 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.35)] hover:-translate-y-0.5 border-none transition-all duration-300">
                   {ctaBanner.cta}
                 </button>
               </div>
@@ -289,7 +289,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
 
           
           {!isLoading && (
-            <div className="mt-5 rounded-[12px] bg-gradient-to-br from-[#0a1128] via-[#0f1b3d] to-[#1a3463] border border-[#d4af37]/20 shadow-[0_8px_30px_rgba(10,17,40,0.12)] px-5 py-5 relative overflow-hidden group">
+            <div className="mt-5 rounded-[8px] bg-gradient-to-br from-[#0a1128] via-[#0f1b3d] to-[#1a3463] border border-[#d4af37]/20 shadow-[0_8px_30px_rgba(10,17,40,0.12)] px-5 py-5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 blur-[40px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
               
               <div className="relative z-10 flex flex-col gap-3">
@@ -316,7 +316,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
                     </p>
                   </div>
                 </div>
-                <button className="mt-1 w-full flex items-center justify-center font-bold px-5 py-2.5 text-[13px] rounded-[6px] tracking-wide bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.35)] active:scale-[0.98] transition-all duration-300 border-none">
+                <button className="mt-1 w-full flex items-center justify-center font-bold px-5 py-2.5 text-[13px] rounded-[4px] tracking-wide bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.35)] active:scale-[0.98] transition-all duration-300 border-none">
                   {ctaBanner.cta}
                 </button>
               </div>

@@ -243,7 +243,7 @@ function FilterChip({
       aria-label={ariaLabel ?? label}
       onClick={onClick}
       className={`
-        inline-flex items-center justify-center px-3 py-[5px] rounded-[6px]
+        inline-flex items-center justify-center px-3 py-[5px] rounded-[4px]
         text-[12px] font-medium border min-h-[30px] min-w-[44px]
         transition-all duration-150 cursor-pointer
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#d4af37]/40
@@ -352,7 +352,7 @@ function FilterPanelContent({
                   aria-label={`${opt.label} expertise`}
                   onClick={() => onToggleSpecialty(opt.id)}
                   className={`
-                    flex flex-col items-center gap-1 py-2 px-1 rounded-[6px] border
+                    flex flex-col items-center gap-1 py-2 px-1 rounded-[4px] border
                     transition-all duration-150 text-center cursor-pointer min-h-[60px]
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/35 focus-visible:ring-offset-1
                     ${active
@@ -435,7 +435,7 @@ function FilterPanelContent({
                   aria-checked={active}
                   onClick={() => onSetSort(opt.id as BrokerSortOption)}
                   className={`
-                    flex items-center gap-3 py-2 px-2 w-full text-left rounded-[6px] min-h-[38px]
+                    flex items-center gap-3 py-2 px-2 w-full text-left rounded-[4px] min-h-[38px]
                     transition-all hover:bg-[#fafafa]
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/30 focus-visible:ring-inset
                     ${active ? 'bg-gradient-to-r from-[#d4af37]/[0.06] to-transparent' : ''}

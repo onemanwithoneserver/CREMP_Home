@@ -14,7 +14,7 @@ interface BrokerCardProps {
 function BrokerCardSkeleton({ isDesktop }: { isDesktop: boolean }) {
   return (
     <div
-      className={`bg-surface dark:bg-[#0b1b42] rounded-[8px] border border-black/5 dark:border-white/10 shadow-sm flex flex-col gap-3 ${
+      className={`bg-surface dark:bg-[#0b1b42] ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'} border border-black/5 dark:border-white/10 shadow-sm flex flex-col gap-3 ${
         isDesktop ? 'p-5' : 'p-4'
       }`}
     >
@@ -31,10 +31,10 @@ function BrokerCardSkeleton({ isDesktop }: { isDesktop: boolean }) {
         <div className="cb-skeleton h-5 w-20 rounded-full" />
         <div className="cb-skeleton h-5 w-14 rounded-full" />
       </div>
-      <div className="cb-skeleton h-10 w-full rounded-lg" />
+      <div className={`cb-skeleton h-10 w-full ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'}`} />
       <div className="flex gap-2">
-        <div className="cb-skeleton h-8 flex-1 rounded-lg" />
-        <div className="cb-skeleton h-8 flex-1 rounded-lg" />
+        <div className={`cb-skeleton h-8 flex-1 ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'}`} />
+        <div className={`cb-skeleton h-8 flex-1 ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'}`} />
       </div>
     </div>
   );
@@ -86,7 +86,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
   return (
     <motion.div
       whileHover={{ y: -4, scale: 1.01, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-      className={`bg-surface dark:bg-[#0b1b42] text-gray-900 dark:text-primary rounded-[8px] border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col relative overflow-hidden ${isDesktop ? 'p-5' : 'p-4'}`}
+      className={`bg-surface dark:bg-[#0b1b42] text-gray-900 dark:text-primary ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'} border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col relative overflow-hidden ${isDesktop ? 'p-5' : 'p-4'}`}
       role="article"
       aria-label={`Broker: ${broker.name}`}
     >

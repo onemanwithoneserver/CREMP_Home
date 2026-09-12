@@ -15,7 +15,7 @@ export function ProfileHeader({ broker, isDesktop }: ProfileHeaderProps) {
   const renderAvatar = (size: number) => (
     <div className="relative shrink-0">
       <div 
-        className="rounded-xl overflow-hidden flex items-center justify-center font-bold text-white ring-[2px] ring-white/[0.15] font-['Outfit',sans-serif]" 
+        className="rounded-[8px] overflow-hidden flex items-center justify-center font-bold text-white ring-[2px] ring-white/[0.15] font-['Outfit',sans-serif]" 
         style={{ 
           width: size, 
           height: size, 
@@ -106,7 +106,7 @@ export function ProfileHeader({ broker, isDesktop }: ProfileHeaderProps) {
             </div>
 
             <div className="shrink-0 w-44">
-              <div className="rounded-xl overflow-hidden border border-white/10 bg-white/5">
+              <div className="rounded-[8px] overflow-hidden border border-white/10 bg-white/5">
                 <div className="px-3 py-2 flex items-center justify-between border-b border-white/[0.08]">
                   <p className="text-[9px] font-bold text-white/80 tracking-[0.06em] font-['Outfit',sans-serif]">
                     SERVICEABLE LOCATIONS

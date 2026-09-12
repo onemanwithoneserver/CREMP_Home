@@ -31,7 +31,7 @@ export function ServiceableLocationsSection({ broker, isDesktop }: ServiceableLo
             return (
               <div
                 key={tier}
-                className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+                className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-[8px] overflow-hidden border border-[#0a1128]/5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
               >
                 <div className="flex items-center gap-2 px-3 py-2 border-b border-[#0a1128]/[0.04] bg-[#0a1128]/[0.016]">
                   <div
@@ -78,7 +78,7 @@ export function ServiceableLocationsSection({ broker, isDesktop }: ServiceableLo
 
         
         <div
-          className={`flex flex-col rounded-xl overflow-hidden border border-[#0a1128]/[0.06] bg-[#eef1f8] ${
+          className={`flex flex-col rounded-[8px] overflow-hidden border border-[#0a1128]/[0.06] bg-[#eef1f8] ${
             isDesktop ? 'flex-1' : 'w-full'
           }`}
         >

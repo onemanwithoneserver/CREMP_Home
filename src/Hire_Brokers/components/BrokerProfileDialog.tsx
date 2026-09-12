@@ -77,7 +77,7 @@ function DesktopDialog({ broker, onClose }: BrokerProfileDialogProps) {
         <div
           role="dialog"
           aria-modal="true"
-          className="w-full h-full bg-[#fafafb] dark:bg-background rounded-xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col"
+          className="w-full h-full bg-[#fafafb] dark:bg-background rounded-[8px] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col"
         >
           <BrokerProfilePage broker={broker} isDesktop />
         </div>

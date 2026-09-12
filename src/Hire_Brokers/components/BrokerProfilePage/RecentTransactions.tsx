@@ -28,7 +28,7 @@ export function RecentTransactionsSection({ broker, isDesktop }: RecentTransacti
         {transactions.map((tx, i) => (
           <div 
             key={i} 
-            className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl p-3 flex items-center gap-3 hover:shadow-md transition-shadow border border-[#0a1128]/5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+            className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-[8px] p-3 flex items-center gap-3 hover:shadow-md transition-shadow border border-[#0a1128]/5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
           >
             <div className={`w-8 h-8 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm text-white ${TRANSACTION_COLORS[tx.icon] || 'bg-gray-500'}`}>
               <span className="scale-90">
