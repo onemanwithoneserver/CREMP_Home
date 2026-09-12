@@ -1,5 +1,6 @@
 import { Target, Home, Clock, CheckSquare, Lock, Search, Menu } from "lucide-react";
 import { motion } from "framer-motion";
+import { formColors } from "../../components/colors";
 
 interface Step0MobileProps {
   onNext: () => void;
@@ -29,10 +30,10 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
         </button>
       </div>
 
-      <main className="flex-1 overflow-y-auto p-5 pb-32 flex flex-col">
+      <main className="flex-1 overflow-y-auto p-5 pb-24 flex flex-col justify-center">
         
         
-        <div className="flex items-start justify-between gap-4 mt-2 mb-6">
+        <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex-1">
             <h2 className="text-[22px] font-bold leading-tight mb-2 text-[#0a1128] dark:text-white">
               Can't Find the <br />
@@ -55,7 +56,7 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
         </div>
 
         
-        <div className="bg-white dark:bg-[#0b1b42] rounded border border-gray-100 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-5 mb-6">
+        <div className="bg-white dark:bg-[#0b1b42] rounded border border-gray-100 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-4 mb-4">
           <div className="flex flex-col gap-5">
             {benefits.map((item, idx) => {
               const Icon = item.icon;
@@ -67,8 +68,8 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
                   key={idx} 
                   className="flex items-center gap-4"
                 >
-                  <div className="w-8 h-8 rounded-full bg-[#d4af37]/10 flex items-center justify-center shrink-0">
-                    <Icon size={16} className="text-[#d4af37]" />
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${formColors[idx % formColors.length].solid}`}>
+                    <Icon size={16} className="text-white" />
                   </div>
                   <span className="text-[13px] font-bold text-[#0a1128] dark:text-white">
                     {item.text}
@@ -80,7 +81,7 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
         </div>
 
         
-        <div className="flex items-start gap-3 px-2 mb-6">
+        <div className="flex items-start gap-3 px-2 mb-4">
           <Lock size={16} className="text-gray-400 shrink-0 mt-0.5" />
           <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
             Your contact details will only be shared with relevant stakeholders who can help fulfill your requirement.

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Step0 from "./Step 0";
 import Step1 from "./Step 1";
 import Step2 from "./Step 2";
@@ -62,8 +62,16 @@ export default function PostRequirementBuyer({ isMobile }: PostRequirementBuyerP
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 5));
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [currentStep]);
+
   return (
-    <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#fafafb] dark:bg-[#060e24]">
+    <div ref={scrollRef} className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#fafafb] dark:bg-[#060e24]">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentStep}

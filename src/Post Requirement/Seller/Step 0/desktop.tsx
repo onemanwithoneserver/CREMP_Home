@@ -1,5 +1,6 @@
 import { Target, Home, Clock, CheckSquare, Lock, Search } from "lucide-react";
 import { motion } from "framer-motion";
+import { formColors } from "../../components/colors";
 
 interface Step0DesktopProps {
   onNext: () => void;
@@ -25,9 +26,9 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
         </div>
       </div>
 
-      <main className="flex-1 overflow-y-auto p-8 lg:p-12 pb-32 flex flex-col items-center">
+      <main className="flex-1 overflow-y-auto p-8 lg:p-12 pb-12 flex flex-col items-center justify-center">
         
-        <div className="max-w-3xl w-full flex flex-col md:flex-row items-center gap-12 mt-6 mb-12">
+        <div className="max-w-3xl w-full flex flex-col md:flex-row items-center gap-12 mb-6">
           
           <div className="flex-1">
             <h2 className="text-[30px] font-bold leading-tight mb-4 text-[#0a1128] dark:text-white">
@@ -53,7 +54,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
         </div>
 
         
-        <div className="w-full max-w-3xl bg-white dark:bg-[#0b1b42] rounded border border-gray-100 dark:border-white/10 shadow-lg p-8 mb-8">
+        <div className="w-full max-w-3xl bg-white dark:bg-[#0b1b42] rounded border border-gray-100 dark:border-white/10 shadow-lg p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((item, idx) => {
               const Icon = item.icon;
@@ -65,8 +66,8 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
                   key={idx} 
                   className="flex items-center gap-5"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#d4af37]/10 flex items-center justify-center shrink-0">
-                    <Icon size={20} className="text-[#d4af37]" />
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${formColors[idx % formColors.length].solid}`}>
+                    <Icon size={20} className="text-white" />
                   </div>
                   <span className="text-[15px] font-bold text-[#0a1128] dark:text-white">
                     {item.text}
@@ -78,7 +79,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
         </div>
 
         
-        <div className="flex items-start gap-4 px-4 mb-10 max-w-2xl text-center justify-center">
+        <div className="flex items-start gap-4 px-4 mb-6 max-w-2xl text-center justify-center">
           <Lock size={18} className="text-gray-400 shrink-0 mt-0.5" />
           <p className="text-[13px] text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
             Your contact details will only be shared with relevant stakeholders who can help fulfill your requirement.
