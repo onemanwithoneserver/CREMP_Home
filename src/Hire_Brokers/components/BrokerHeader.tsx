@@ -8,10 +8,10 @@ interface BrokerHeaderProps {
 export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
   return (
     <div className="w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] relative overflow-hidden shrink-0 border-b border-white/[0.05]">
-      {/* Decorative blurs */}
+      
       <div className="absolute top-0 right-0 w-72 h-72 bg-[#d4af37]/10 blur-[80px] -translate-y-1/3 translate-x-1/4 rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 blur-[60px] translate-y-1/3 -translate-x-1/4 rounded-full pointer-events-none" />
-      {/* Subtle grid overlay */}
+      
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay">
         <div
           className="absolute inset-0"
@@ -24,7 +24,7 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
       </div>
 
       <div className={`relative z-10 ${isDesktop ? 'px-8 py-6' : 'px-4 py-5'}`}>
-        {/* Title row */}
+        
         <div className="flex items-start justify-between gap-4 mb-1">
           <div>
             <h1
@@ -40,14 +40,14 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
             </h1>
           </div>
 
-          {/* Broker count chip (desktop only) */}
+          
           {isDesktop && (
             <div className="">
             </div>
           )}
         </div>
 
-        {/* Action cards */}
+        
         <div className={`grid gap-3 mt-4 ${isDesktop ? 'grid-cols-2 max-w-2xl' : 'grid-cols-2'}`}>
           {actionCards.map((card) => (
             <button

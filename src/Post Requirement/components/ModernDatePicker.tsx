@@ -31,7 +31,7 @@ export default function ModernDatePicker({ value, onChange, placeholder = "Selec
 
   const handleDateSelect = (day: number) => {
     const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
-    // Format YYYY-MM-DD
+
     const formatted = date.toISOString().split('T')[0];
     onChange(formatted);
     setIsOpen(false);

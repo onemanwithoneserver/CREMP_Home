@@ -7,7 +7,6 @@ import type { Step1Data } from "../index";
 
 import { ArrowLeft } from "lucide-react";
 
-// (Assuming imports and other code are above this block...)
 interface Step1DesktopProps {
   onNext: () => void;
   onBack?: () => void;
@@ -61,24 +60,24 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
   return (
     <div className="h-full min-h-full w-full bg-[#fafafb] dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col items-center overflow-y-auto scrollbar-hide">
       
-      {/* ── Hero Section ── */}
+      
       <div className="w-full relative overflow-hidden">
-        {/* Background gradient */}
+        
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1128] via-[#111d3a] to-[#0a1128]" />
         
-        {/* Decorative grid pattern */}
+        
         <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: `linear-gradient(rgba(212,175,55,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.3) 1px, transparent 1px)`,
           backgroundSize: '48px 48px',
         }} />
 
-        {/* Gold accent line at top */}
+        
         <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
 
-        {/* Radial glow */}
+        
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#d4af37]/[0.06] rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Back Button */}
+        
         {onBack && (
           <button 
             onClick={onBack}
@@ -91,13 +90,13 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
           </button>
         )}
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 py-14 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-8 py-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.08] border border-white/10 backdrop-blur-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.08] border border-white/10 backdrop-blur-sm mb-4">
               <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse" />
               <span className="text-[11px] font-semibold text-white/70 tracking-widest uppercase">Step 1 of 5</span>
             </div>
@@ -107,7 +106,7 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[36px] font-extrabold text-white leading-tight mb-3 tracking-tight"
+            className="text-[30px] font-extrabold text-white leading-tight mb-3 tracking-tight"
           >
             Post Your{" "}
             <span className="bg-gradient-to-r from-[#d4af37] to-[#f3cd52] bg-clip-text text-transparent">
@@ -126,21 +125,21 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
         </div>
       </div>
 
-      {/* ── Form Content ── */}
-      <main className="w-full max-w-3xl px-8 flex flex-col gap-10 -mt-4 mb-16 relative z-20">
+      
+      <main className="w-full max-w-3xl px-8 flex flex-col gap-6 -mt-4 mb-8 relative z-20">
         
-        {/* Card container */}
+        
         <motion.div 
-          className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-8 flex flex-col gap-10"
+          className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-6 flex flex-col gap-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
 
-          {/* Requirement Type */}
+          
           <motion.div {...fadeUp} transition={{ delay: 0.35 }}>
-            <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">What are you looking for?</h3>
-            <p className="text-[13px] text-gray-400 dark:text-white/40 mb-5 font-medium">Select the type of requirement you want to post.</p>
+            <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What are you looking for?</h3>
+            <p className="text-[13px] text-gray-400 dark:text-white/40 mb-3 font-medium">Select the type of requirement you want to post.</p>
             <div className="grid grid-cols-2 gap-3">
               {requirementTypes.map((type, i) => {
                 const isSelected = reqType === type.id;
@@ -176,10 +175,10 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
             </div>
           </motion.div>
 
-          {/* Requirement Name */}
+          
           <motion.div {...fadeUp} transition={{ delay: 0.45 }}>
-            <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">Requirement Name</h3>
-            <p className="text-[13px] text-gray-400 dark:text-white/40 mb-4 font-medium">Give a name to easily identify this requirement later.</p>
+            <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Requirement Name</h3>
+            <p className="text-[13px] text-gray-400 dark:text-white/40 mb-3 font-medium">Give a name to easily identify this requirement later.</p>
             <input 
               type="text" 
               placeholder="e.g. 2000 sqft retail space in Banjara Hills"
@@ -189,11 +188,11 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
             />
           </motion.div>
 
-          {/* Property Categories (for buy/lease) */}
+          
           {(reqType === "buy_property" || reqType === "lease_property") && (
             <motion.div {...fadeUp} transition={{ delay: 0.5 }}>
-              <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">What type of property?</h3>
-              <p className="text-[13px] text-gray-400 dark:text-white/40 mb-5 font-medium">Select the property category.</p>
+              <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What type of property?</h3>
+              <p className="text-[13px] text-gray-400 dark:text-white/40 mb-3 font-medium">Select the property category.</p>
               <div className="grid grid-cols-3 gap-3">
                 {propertyCategories.map((cat, i) => {
                   const isSelected = propCategory === cat.id;
@@ -230,11 +229,11 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
             </motion.div>
           )}
 
-          {/* Industry chips (for franchise/business) */}
+          
           {(reqType === "franchise_opportunity" || reqType === "buy_existing_business") && (
             <motion.div {...fadeUp} transition={{ delay: 0.5 }}>
-              <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">Select Industry</h3>
-              <p className="text-[13px] text-gray-400 dark:text-white/40 mb-5 font-medium">Select the industries you are interested in</p>
+              <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Select Industry</h3>
+              <p className="text-[13px] text-gray-400 dark:text-white/40 mb-3 font-medium">Select the industries you are interested in</p>
               <div className="flex flex-wrap gap-2.5">
                 {industries.map((ind, i) => {
                   const isSelected = selectedIndustries.includes(ind.id);
@@ -259,8 +258,8 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
             </motion.div>
           )}
 
-          {/* Error Message & Continue Button */}
-          <motion.div {...fadeUp} transition={{ delay: 0.6 }} className="pt-2 flex flex-col gap-4">
+          
+          <motion.div {...fadeUp} transition={{ delay: 0.6 }} className="pt-1 flex flex-col gap-3">
             <AnimatePresence>
               {error && (
                 <motion.div

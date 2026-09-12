@@ -58,16 +58,16 @@ export default function Step1Mobile({ onNext, onBack, step1Data, setStep1Data }:
   return (
     <div className="h-full min-h-full w-full bg-[#fafafb] dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden">
       
-      {/* ── Fixed Mobile Header ── */}
+      
       <MobileStepHeader currentStep={1} totalSteps={5} onBack={onBack} title="Post Your Requirement" />
 
-      {/* ── Scrollable Content ── */}
-      <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-8 p-5 pb-32">
+      
+      <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-5 p-4 pb-28">
         
-        {/* Requirement Type */}
+        
         <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-          <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What are you looking for?</h3>
-          <p className="text-[12px] text-gray-400 dark:text-white/40 mb-4 font-medium">Select the type of requirement you want to post.</p>
+          <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What are you looking for?</h3>
+          <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Select the type of requirement you want to post.</p>
           <div className="grid grid-cols-2 gap-3">
             {requirementTypes.map((type, i) => {
               const isSelected = reqType === type.id;
@@ -103,10 +103,10 @@ export default function Step1Mobile({ onNext, onBack, step1Data, setStep1Data }:
           </div>
         </motion.div>
 
-        {/* Requirement Name */}
+        
         <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
-          <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Requirement Name</h3>
-          <p className="text-[12px] text-gray-400 dark:text-white/40 mb-3 font-medium">Give a name to easily identify this.</p>
+          <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Requirement Name</h3>
+          <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Give a name to easily identify this.</p>
           <input 
             type="text" 
             placeholder="e.g. 2000 sqft retail space"
@@ -116,10 +116,10 @@ export default function Step1Mobile({ onNext, onBack, step1Data, setStep1Data }:
           />
         </motion.div>
 
-        {/* Property Categories (for buy/lease) */}
+        
         {(reqType === "buy_property" || reqType === "lease_property") && (
           <motion.div {...fadeUp} transition={{ delay: 0.25 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What type of property?</h3>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What type of property?</h3>
             <div className="grid grid-cols-2 gap-3 mt-4">
               {propertyCategories.map((cat, i) => {
                 const isSelected = propCategory === cat.id;
@@ -156,11 +156,11 @@ export default function Step1Mobile({ onNext, onBack, step1Data, setStep1Data }:
           </motion.div>
         )}
 
-        {/* Industry chips (for franchise/business) */}
+        
         {(reqType === "franchise_opportunity" || reqType === "buy_existing_business") && (
           <motion.div {...fadeUp} transition={{ delay: 0.25 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Select Industry</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-4 font-medium">Select industries of interest</p>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Select Industry</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Select industries of interest</p>
             <div className="flex flex-wrap gap-2">
               {industries.map((ind, i) => {
                 const isSelected = selectedIndustries.includes(ind.id);
@@ -187,9 +187,9 @@ export default function Step1Mobile({ onNext, onBack, step1Data, setStep1Data }:
 
       </main>
 
-      {/* ── Fixed Footer & Error ── */}
+      
       <div className="absolute bottom-0 left-0 right-0 z-30">
-        <div className="bg-gradient-to-t from-[#fafafb] dark:from-[#060e24] via-[#fafafb]/90 dark:via-[#060e24]/90 to-transparent pt-6 pb-5 px-5">
+        <div className="bg-gradient-to-t from-[#fafafb] dark:from-[#060e24] via-[#fafafb]/90 dark:via-[#060e24]/90 to-transparent pt-4 pb-4 px-4">
           <div className="flex flex-col gap-3">
             <AnimatePresence>
               {error && (

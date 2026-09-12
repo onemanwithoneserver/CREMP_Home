@@ -20,7 +20,7 @@ export default function BrokerSearch({
       className={`w-3/4 relative flex items-center bg-white dark:bg-[#0b1b42] dark:border-white/10 border border-black/[0.08] rounded-xl shadow-sm hover:border-[#d4af37]/50 focus-within:border-[#d4af37] focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.12)] transition-all ${className}`}
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Search Icon */}
+      
       <div className="pl-3.5 shrink-0 text-[#a0aabf]">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
           <circle cx="9" cy="9" r="6" />
@@ -38,7 +38,7 @@ export default function BrokerSearch({
         style={{ fontFamily: 'Outfit, sans-serif' }}
       />
 
-      {/* Clear button */}
+      
       {value && (
         <button
           onClick={() => onChange('')}

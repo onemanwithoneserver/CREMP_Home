@@ -1,6 +1,6 @@
 import type { Broker, BrokerSortOption } from '../types/broker.types';
 
-/** Returns true if broker experience falls within the selected range id */
+
 export function matchesExperienceRange(years: number, rangeId: string): boolean {
   switch (rangeId) {
     case '0-3': return years >= 0 && years <= 3;
@@ -11,7 +11,7 @@ export function matchesExperienceRange(years: number, rangeId: string): boolean 
   }
 }
 
-/** Parses a "2.8L" / "5.2M" shorthand sq-ft string into a comparable number */
+
 export function parseSqFt(value: string): number {
   const num = parseFloat(value);
   if (value.toUpperCase().endsWith('M')) return num * 1_000_000;
@@ -19,7 +19,7 @@ export function parseSqFt(value: string): number {
   return num;
 }
 
-/** Returns a sorted copy of brokers based on the selected sort option */
+
 export function sortBrokers(brokers: Broker[], option: BrokerSortOption): Broker[] {
   const copy = [...brokers];
   switch (option) {
@@ -39,12 +39,12 @@ export function sortBrokers(brokers: Broker[], option: BrokerSortOption): Broker
   }
 }
 
-/** Formats rating to one decimal place */
+
 export function formatRating(rating: number): string {
   return rating.toFixed(1);
 }
 
-/** Returns a human-readable experience label */
+
 export function formatExperience(years: number): string {
   return `${years}+ Yrs`;
 }

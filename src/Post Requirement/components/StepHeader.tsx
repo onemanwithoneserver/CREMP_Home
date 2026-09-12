@@ -12,31 +12,26 @@ const STEP_LABELS = ["Basics", "Details", "Location", "Preferences", "Review"];
 export default function StepHeader({ currentStep, totalSteps, onBack }: StepHeaderProps) {
   return (
     <div className="w-full">
-      {/* Navy gradient header */}
-      <div className="bg-gradient-to-r from-[#0a1128] via-[#111d3a] to-[#0a1128] px-6 py-4">
+      <div className="bg-gradient-to-r from-[#0a1128] via-[#111d3a] to-[#0a1128] px-6 py-3">
         <div className="max-w-4xl mx-auto">
-          {/* Top row: back + title */}
-          <div className="flex items-center gap-4 mb-5">
+          <div className="flex items-center gap-4 mb-4">
             {onBack && (
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onBack}
-                className="w-9 h-9 flex items-center justify-center rounded bg-white/10 backdrop-blur-sm border border-white/10 text-white/80 hover:bg-white/15 hover:text-white transition-all duration-200"
+                className="w-8 h-8 flex items-center justify-center rounded bg-white/10 backdrop-blur-sm border border-white/10 text-white/80 hover:bg-white/15 hover:text-white transition-all duration-200"
               >
-                <ArrowLeft size={18} />
+                <ArrowLeft size={16} />
               </motion.button>
             )}
-            <h2 className="text-[15px] font-bold text-white/90 tracking-wide font-['Outfit',sans-serif]">
+            <h2 className="text-[14px] font-bold text-white/90 tracking-wide font-['Outfit',sans-serif]">
               Step {currentStep} of {totalSteps}
             </h2>
           </div>
 
-          {/* Step indicator circles with connecting lines */}
           <div className="flex items-center justify-between relative">
-            {/* Background connecting line */}
             <div className="absolute top-4 left-4 right-4 h-[2px] bg-white/10" />
-            {/* Animated progress line */}
             <motion.div
               className="absolute top-4 left-4 h-[2px] bg-gradient-to-r from-[#d4af37] to-[#f3cd52]"
               initial={{ width: 0 }}
@@ -69,7 +64,7 @@ export default function StepHeader({ currentStep, totalSteps, onBack }: StepHead
                     {isCompleted ? <Check size={14} strokeWidth={3} /> : stepNum}
                   </motion.div>
                   <span
-                    className={`mt-2 text-[10px] font-semibold tracking-wider uppercase font-['Outfit',sans-serif] transition-colors duration-300 ${
+                    className={`mt-1.5 text-[10px] font-semibold tracking-wider uppercase font-['Outfit',sans-serif] transition-colors duration-300 ${
                       isActive
                         ? "text-white"
                         : isCompleted

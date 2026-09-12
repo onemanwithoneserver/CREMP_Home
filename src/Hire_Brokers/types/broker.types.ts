@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────
-// broker.types.ts — Shared type definitions
-// ─────────────────────────────────────────────
+
 
 export type BrokerSpecialty =
   | 'Office'
@@ -72,8 +70,7 @@ export interface Broker {
   experienceYears: number;
   phone?: string;
   whatsapp?: string;
-  bio?: string;
-  // Rich profile fields
+  bio?: string;
   dealValue?: string;
   enterpriseClients?: number;
   avgDealClosure?: string;

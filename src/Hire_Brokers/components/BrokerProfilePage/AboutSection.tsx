@@ -28,7 +28,7 @@ export function AboutSection({ broker, isDesktop }: AboutSectionProps) {
     <div className={isDesktop ? 'px-5 py-4' : 'px-3 py-3.5'}>
       <div className={isDesktop && hasMetrics ? 'grid grid-cols-2 gap-4' : ''}>
         
-        {/* --- About Column --- */}
+        
         <div>
           <SectionHeader title="About" />
           <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl p-4 border border-[#0a1128]/5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
@@ -90,7 +90,7 @@ export function AboutSection({ broker, isDesktop }: AboutSectionProps) {
           </div>
         </div>
 
-        {/* --- Key Metrics Column (Desktop) --- */}
+        
         {hasMetrics && isDesktop && (
           <div>
             <SectionHeader title="Key Metrics" action="View Details" />
@@ -125,7 +125,7 @@ export function AboutSection({ broker, isDesktop }: AboutSectionProps) {
         )}
       </div>
 
-      {/* --- Key Metrics (Mobile) --- */}
+      
       {!isDesktop && hasMetrics && (
         <div className="mt-3">
           <SectionHeader title="Key Metrics" action="View Details" />

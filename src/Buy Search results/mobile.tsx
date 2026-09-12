@@ -24,7 +24,6 @@ import clsx from "clsx";
 import { properties, getMeta, type Property } from "./data";
 import SearchImage from "./BuySearchResults.png";
 
-
 const spring = { type: "spring" as const, stiffness: 400, damping: 28 };
 
 function FloatingDot({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
@@ -146,10 +145,6 @@ export default function BuySearchResultsMobile() {
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
   }, []);
-
-
-
-
 
   const toggleFavorite = (id: number) => {
     setFavorites((prev) => {
@@ -902,7 +897,6 @@ export default function BuySearchResultsMobile() {
           </motion.div>
         )}
       </AnimatePresence>
-
 
       <MobileStickyFooter />
     </div>

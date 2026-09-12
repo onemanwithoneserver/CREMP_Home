@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import ModernSelect from "../../components/ModernSelect";
 
@@ -77,30 +76,30 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
         <StepHeader currentStep={2} totalSteps={5} onBack={onBack} />
       </div>
 
-      <main className="w-full max-w-3xl px-8 mt-8 mb-16">
+      <main className="w-full max-w-3xl px-8 mt-4 mb-8">
         <motion.div 
-          className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-8 flex flex-col gap-10 relative overflow-hidden"
+          className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-6 flex flex-col gap-6 relative overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Gold accent line */}
+          
           <div className="absolute top-0 inset-x-4 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
 
-          {/* Tentative Lease Month */}
+          
           {isLease && (
             <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-              <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">Tentative Lease Month</h3>
-              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-5 uppercase tracking-wider">Select the tentative month you wish to lease from</p>
+              <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Tentative Lease Month</h3>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-3 uppercase tracking-wider">Select the tentative month you wish to lease from</p>
               <ModernSelect value={leaseMonth} onChange={(val: string) => updateStep2Data("leaseMonth", val)} options={[{ value: "", label: "Select Month" }]}  />
             </motion.div>
           )}
 
-          {/* Purpose */}
+          
           {(isBuyOrSellProp || isLease) && (
             <motion.div {...fadeUp} transition={{ delay: 0.15 }}>
-              <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">Why are you looking?</h3>
-              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-5 uppercase tracking-wider">Help us understand your purpose</p>
+              <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Why are you looking?</h3>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-3 uppercase tracking-wider">Help us understand your purpose</p>
               <div className="flex gap-3">
                 {purposes.map((p) => {
                   const isSelected = purpose === p;
@@ -129,10 +128,10 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
             </motion.div>
           )}
 
-          {/* Budget */}
+          
           <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
-            <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">What's your budget range?</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-5 uppercase tracking-wider">Select the total budget you have in mind</p>
+            <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What's your budget range?</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-3 uppercase tracking-wider">Select the total budget you have in mind</p>
             <div className="grid grid-cols-3 gap-3">
               {budgetRanges.map((b, i) => {
                 const isSelected = budget === b;
@@ -156,11 +155,11 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
             </div>
           </motion.div>
 
-          {/* Size */}
+          
           {(isBuyOrSellProp || isLease) && !isCommercialPlot && (
             <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-              <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">What size are you looking for?</h3>
-              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-5 uppercase tracking-wider">Select the approximate built-up area</p>
+              <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What size are you looking for?</h3>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-3 uppercase tracking-wider">Select the approximate built-up area</p>
               <div className="grid grid-cols-3 gap-3">
                 {(isLease ? sizeRangesYards : sizeRanges).map((s, i) => {
                   const isSelected = size === s;
@@ -185,11 +184,11 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
             </motion.div>
           )}
 
-          {/* Daily Operations (Franchise) */}
+          
           {isFranchise && (
             <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-              <h3 className="text-[20px] font-bold mb-1 text-[#0a1128] dark:text-white">Daily Operations</h3>
-              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-5 uppercase tracking-wider">How active will you be in daily operations?</p>
+              <h3 className="text-[18px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Daily Operations</h3>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-3 uppercase tracking-wider">How active will you be in daily operations?</p>
               <div className="flex flex-col gap-3">
                 {dailyOperations.map((op) => {
                   const isSelected = dailyOp === op;
@@ -218,7 +217,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
             </motion.div>
           )}
 
-          {/* Summary bar */}
+          
           <motion.div {...fadeUp} transition={{ delay: 0.4 }} className="bg-[#0a1128]/[0.03] dark:bg-white/[0.04] rounded border border-[#0a1128]/6 dark:border-white/8 p-5 flex flex-col gap-2.5">
             <div className="flex justify-between items-center w-full">
               <div className="flex gap-4 items-center flex-wrap">
@@ -241,8 +240,8 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
             <div className="text-[13px] text-[#0a1128]/60 dark:text-white/50 font-medium">Locations: <span className="font-bold text-[#0a1128] dark:text-white">Anywhere in Hyderabad</span></div>
           </motion.div>
 
-          {/* Error Message & Continue */}
-          <div className="flex flex-col gap-4 pt-2">
+          
+          <div className="flex flex-col gap-3 pt-1">
             <AnimatePresence>
               {error && (
                 <motion.div

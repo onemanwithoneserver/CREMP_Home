@@ -28,7 +28,7 @@ export default function Step5Desktop({ onSubmit, onBack }: Step5DesktopProps) {
 
       <main className="w-full max-w-3xl px-8 flex flex-col gap-8 mt-10">
         
-        {/* Heading */}
+        
         <motion.div 
           className="text-center"
           initial={{ opacity: 0, y: 16 }}
@@ -42,7 +42,7 @@ export default function Step5Desktop({ onSubmit, onBack }: Step5DesktopProps) {
           <p className="text-[13px] text-gray-400 dark:text-white/40 font-semibold uppercase tracking-wider">Please review the details before submitting</p>
         </motion.div>
 
-        {/* Review card */}
+        
         <motion.div 
           className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] overflow-hidden relative"
           initial={{ opacity: 0, y: 20 }}
@@ -83,7 +83,7 @@ export default function Step5Desktop({ onSubmit, onBack }: Step5DesktopProps) {
             );
           })}
 
-          {/* Advanced Preferences */}
+          
           <div className="border-t border-[#0a1128]/5 dark:border-white/5 px-7 py-5 bg-[#0a1128]/[0.015] dark:bg-white/[0.02]">
             <button 
               onClick={() => setAdvancedOpen(!advancedOpen)}
@@ -118,7 +118,7 @@ export default function Step5Desktop({ onSubmit, onBack }: Step5DesktopProps) {
           </div>
         </motion.div>
 
-        {/* Submit */}
+        
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ export default function Step5Desktop({ onSubmit, onBack }: Step5DesktopProps) {
           <SubmitButton onSubmit={onSubmit} />
         </motion.div>
 
-        {/* Security footer */}
+        
         <motion.div 
           className="flex items-center gap-3 justify-center pb-4"
           initial={{ opacity: 0 }}

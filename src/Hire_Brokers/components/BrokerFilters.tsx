@@ -1,16 +1,8 @@
-/**
- * BrokerFilters.tsx
- * Desktop: right-side slide-in drawer (3/8 viewport)
- * Mobile:  bottom-sheet modal with drag-to-close
- * WCAG AA compliant — all interactive elements have focus-visible rings,
- * ARIA roles, labels, and aria-pressed / aria-expanded states.
- */
+
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import type { ActiveFilters, BrokerSortOption } from '../types/broker.types';
-import { sortOptions } from '../data/filtersData';
-
-// ─── Inline filter data (panel-specific) ──────────────────────────────────
+import { sortOptions } from '../data/filtersData';
 
 const locationOptions = [
   { id: 'Hyderabad', label: 'HITEC City' },
@@ -56,9 +48,7 @@ const experienceOptions = [
   { id: '10+',  label: '10+ Years'  },
 ];
 
-const QUICK_LOC_COUNT = 4;
-
-// ─── Props ─────────────────────────────────────────────────────────────────
+const QUICK_LOC_COUNT = 4;
 
 export interface BrokerFiltersProps {
   isOpen: boolean;
@@ -74,9 +64,7 @@ export interface BrokerFiltersProps {
   onSetExperience:   (e: string | null) => void;
   onSetSort:         (s: BrokerSortOption) => void;
   onReset:           () => void;
-}
-
-// ─── Animation hook ────────────────────────────────────────────────────────
+}
 
 function useAnimatedMount(isOpen: boolean, durationMs = 320) {
   const [mounted,  setMounted]  = useState(isOpen);
@@ -84,8 +72,7 @@ function useAnimatedMount(isOpen: boolean, durationMs = 320) {
 
   useEffect(() => {
     if (isOpen) {
-      setMounted(true);
-      // Double rAF ensures element is painted before CSS transition fires
+      setMounted(true);
       const raf1 = requestAnimationFrame(() => {
         const raf2 = requestAnimationFrame(() => setVisible(true));
         return () => cancelAnimationFrame(raf2);
@@ -99,9 +86,7 @@ function useAnimatedMount(isOpen: boolean, durationMs = 320) {
   }, [isOpen, durationMs]);
 
   return { mounted, visible };
-}
-
-// ─── Expertise icon sprites ────────────────────────────────────────────────
+}
 
 function ExpertiseIcon({ type, active }: { type: string; active: boolean }) {
   const s = { className: 'w-5 h-5', fill: 'none', strokeWidth: '1.5', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, stroke: active ? '#d4af37' : '#9ca3af' };
@@ -157,9 +142,7 @@ function ExpertiseIcon({ type, active }: { type: string; active: boolean }) {
     ),
   };
   return <>{map[type] ?? null}</>;
-}
-
-// ─── Section icons ─────────────────────────────────────────────────────────
+}
 
 const sectionIcons: Record<string, React.ReactNode> = {
   location: (
@@ -197,9 +180,7 @@ const sectionIcons: Record<string, React.ReactNode> = {
       <path d="M3 5h14M5 10h10M7 15h6"/>
     </svg>
   ),
-};
-
-// ─── Accordion ─────────────────────────────────────────────────────────────
+};
 
 function AccordionSection({
   id, label, isExpanded, onToggle, children,
@@ -247,9 +228,7 @@ function AccordionSection({
       </div>
     </div>
   );
-}
-
-// ─── Filter Chip ───────────────────────────────────────────────────────────
+}
 
 function FilterChip({
   label, active, onClick, ariaLabel,
@@ -309,13 +288,13 @@ function FilterPanelContent({
 
   return (
     <div className="flex flex-col h-full">
-      {/* ── Scrollable sections ── */}
+      
       <div
         className="flex-1 overflow-y-auto"
         style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(212,175,55,0.2) transparent' }}
       >
 
-        {/* Location */}
+        
         <AccordionSection id="location" label="Location" isExpanded={expanded.has('location')} onToggle={() => toggle('location')}>
           <div className="relative mb-3">
             <span aria-hidden className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af] pointer-events-none">
@@ -360,7 +339,7 @@ function FilterPanelContent({
           )}
         </AccordionSection>
 
-        {/* Property Expertise */}
+        
         <AccordionSection id="expertise" label="Property Expertise" isExpanded={expanded.has('expertise')} onToggle={() => toggle('expertise')}>
           <div className="grid grid-cols-4 gap-1.5" role="group" aria-label="Property Expertise options">
             {propertyExpertise.map((opt) => {
@@ -396,7 +375,7 @@ function FilterPanelContent({
           </div>
         </AccordionSection>
 
-        {/* Deal Type */}
+        
         <AccordionSection id="dealType" label="Deal Type" isExpanded={expanded.has('dealType')} onToggle={() => toggle('dealType')}>
           <div className="flex flex-wrap gap-2">
             {dealTypeOptions.map((opt) => (
@@ -411,7 +390,7 @@ function FilterPanelContent({
           </div>
         </AccordionSection>
 
-        {/* Deal Size Range */}
+        
         <AccordionSection id="dealSize" label="Deal Size Range" isExpanded={expanded.has('dealSize')} onToggle={() => toggle('dealSize')}>
           <div className="flex flex-wrap gap-2">
             {dealSizeOptions.map((opt) => (
@@ -426,7 +405,7 @@ function FilterPanelContent({
           </div>
         </AccordionSection>
 
-        {/* Experience */}
+        
         <AccordionSection id="experience" label="Experience" isExpanded={expanded.has('experience')} onToggle={() => toggle('experience')}>
           <div className="flex flex-wrap gap-2">
             {experienceOptions.map((opt) => {
@@ -444,7 +423,7 @@ function FilterPanelContent({
           </div>
         </AccordionSection>
 
-        {/* Sort By */}
+        
         <AccordionSection id="sort" label="Sort By" isExpanded={expanded.has('sort')} onToggle={() => toggle('sort')}>
           <div className="flex flex-col gap-0.5" role="radiogroup" aria-label="Sort brokers by">
             {sortOptions.map((opt) => {
@@ -484,7 +463,7 @@ function FilterPanelContent({
 
       </div>
 
-      {/* ── Footer ── */}
+      
       <div className="shrink-0 px-4 pt-3 pb-3.5 bg-gradient-to-b from-white to-[#fafafa] border-t border-black/[0.04] flex flex-row items-center gap-2">
         {isDesktop && (
           <button
@@ -512,15 +491,11 @@ function FilterPanelContent({
       </div>
     </div>
   );
-}
-
-// ─── Desktop Drawer ────────────────────────────────────────────────────────
+}
 
 function DesktopDrawer(props: BrokerFiltersProps) {
   const { isOpen, onClose, activeFilterCount, onReset } = props;
-  const { mounted, visible } = useAnimatedMount(isOpen, 300);
-
-  // ESC to close
+  const { mounted, visible } = useAnimatedMount(isOpen, 300);
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -532,7 +507,7 @@ function DesktopDrawer(props: BrokerFiltersProps) {
 
   return (
     <>
-      {/* Backdrop */}
+      
       <div
         role="presentation"
         aria-hidden="true"
@@ -541,7 +516,7 @@ function DesktopDrawer(props: BrokerFiltersProps) {
         onClick={onClose}
       />
 
-      {/* Drawer panel */}
+      
       <div
         role="dialog"
         aria-modal="true"
@@ -554,7 +529,7 @@ function DesktopDrawer(props: BrokerFiltersProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Drawer header */}
+        
         <div className="shrink-0 flex items-center justify-between px-4 py-3 border-b border-[#f0f1f3] bg-white dark:bg-[#0b1b42] dark:border-white/10">
           <div className="flex items-center gap-2">
             <span className="text-[#d4af37]">
@@ -595,16 +570,14 @@ function DesktopDrawer(props: BrokerFiltersProps) {
           </div>
         </div>
 
-        {/* Content */}
+        
         <div className="flex-1 overflow-hidden flex flex-col">
           <FilterPanelContent {...props} onClose={onClose} />
         </div>
       </div>
     </>
   );
-}
-
-// ─── Mobile Bottom Sheet ───────────────────────────────────────────────────
+}
 
 function MobileSheet(props: BrokerFiltersProps) {
   const { isOpen, onClose } = props;
@@ -643,7 +616,7 @@ function MobileSheet(props: BrokerFiltersProps) {
 
   return (
     <>
-      {/* Backdrop */}
+      
       <div
         role="presentation"
         aria-hidden="true"
@@ -652,7 +625,7 @@ function MobileSheet(props: BrokerFiltersProps) {
         onClick={onClose}
       />
 
-      {/* Sheet */}
+      
       <div
         ref={sheetRef}
         role="dialog"
@@ -669,7 +642,7 @@ function MobileSheet(props: BrokerFiltersProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Drag handle row */}
+        
         <div
           className="shrink-0 relative flex items-center justify-center pt-3 pb-2 touch-none select-none cursor-grab active:cursor-grabbing bg-white dark:bg-[#0b1b42] dark:border-white/10 border-b border-[#f0f1f3]"
           onTouchStart={handleTouchStart}
@@ -689,23 +662,19 @@ function MobileSheet(props: BrokerFiltersProps) {
           </button>
         </div>
 
-        {/* Content */}
+        
         <div className="flex-1 overflow-hidden flex flex-col">
           <FilterPanelContent {...props} onClose={onClose} />
         </div>
       </div>
     </>
   );
-}
-
-// ─── Main export ───────────────────────────────────────────────────────────
+}
 
 export default function BrokerFilters(props: BrokerFiltersProps) {
   if (props.isDesktop) return <DesktopDrawer {...props} />;
   return <MobileSheet {...props} />;
-}
-
-// ─── Active chips bar (used inline in CREMPBrokersPage) ───────────────────
+}
 
 export function ActiveFilterChips({
   filters,

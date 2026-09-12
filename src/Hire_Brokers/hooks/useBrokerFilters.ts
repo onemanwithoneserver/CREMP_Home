@@ -18,8 +18,7 @@ export function useBrokerFilters() {
   const [sortOption, setSortOption] = useState<BrokerSortOption>('relevance');
 
   const filteredBrokers = useMemo<Broker[]>(() => {
-    let result = brokersData.filter((broker) => {
-      // Search filter
+    let result = brokersData.filter((broker) => {
       if (filters.search.trim()) {
         const q = filters.search.toLowerCase();
         const matchesName = broker.name.toLowerCase().includes(q);
@@ -31,29 +30,21 @@ export function useBrokerFilters() {
         if (!matchesName && !matchesCompany && !matchesLocation && !matchesSpecialty) {
           return false;
         }
-      }
-
-      // Specialties filter
+      }
       if (filters.specialties.length > 0) {
         const hasSpecialty = filters.specialties.some((s) =>
           broker.specialties.includes(s as Broker['specialties'][number])
         );
         if (!hasSpecialty) return false;
-      }
-
-      // Location filter
+      }
       if (filters.locations.length > 0) {
         if (!filters.locations.includes(broker.cityArea)) return false;
-      }
-
-      // Experience filter
+      }
       if (filters.experience) {
         if (!matchesExperienceRange(broker.experienceYears, filters.experience)) {
           return false;
         }
-      }
-
-      // Rating filter
+      }
       if (filters.rating) {
         const minRating = parseFloat(filters.rating);
         if (broker.rating < minRating) return false;

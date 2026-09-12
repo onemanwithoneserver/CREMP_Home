@@ -28,14 +28,14 @@ export default function Step5Mobile({ onSubmit, onBack }: Step5MobileProps) {
   return (
     <div className="h-full min-h-full w-full bg-[#fafafb] dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden">
       
-      {/* ── Fixed Mobile Header ── */}
+      
       <MobileStepHeader currentStep={5} totalSteps={5} onBack={onBack} title="Review & Submit" />
 
-      {/* ── Scrollable Content ── */}
+      
       <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-6 p-5 pb-32">
         
         <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-          <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Review your requirement</h3>
+          <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Review your requirement</h3>
           <p className="text-[12px] text-gray-400 dark:text-white/40 font-medium">Please review the details before submitting</p>
         </motion.div>
 

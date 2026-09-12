@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import logo from "../../../Logo/CREMP.png";
 import logoLight from "../../../Logo/CREMP_Light.png";
 
-
 export interface MobileStickyFooterProps {
   activeTab?: "home" | "explore" | "saved" | "hire-broker" | "hand-picked" | "post-requirement" | string;
   onTabChange?: (tab: string) => void;

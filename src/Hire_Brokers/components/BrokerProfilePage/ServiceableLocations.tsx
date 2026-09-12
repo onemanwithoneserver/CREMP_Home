@@ -22,7 +22,7 @@ export function ServiceableLocationsSection({ broker, isDesktop }: ServiceableLo
       <SectionHeader title="Serviceable Locations" />
 
       <div className={`flex gap-3 ${isDesktop ? 'items-start' : 'flex-col'}`}>
-        {/* Tier location lists */}
+        
         <div className={`flex flex-col gap-2 ${isDesktop ? 'min-w-[220px] flex-none' : ''}`}>
           {(['most-active', 'moderately-active', 'based-on-request'] as const).map(tier => {
             const c = TIER_COLORS[tier];
@@ -76,13 +76,13 @@ export function ServiceableLocationsSection({ broker, isDesktop }: ServiceableLo
           })}
         </div>
 
-        {/* Inline map — always visible */}
+        
         <div
           className={`flex flex-col rounded-xl overflow-hidden border border-[#0a1128]/[0.06] bg-[#eef1f8] ${
             isDesktop ? 'flex-1' : 'w-full'
           }`}
         >
-          {/* Map canvas */}
+          
           <div className={`relative overflow-hidden ${isDesktop ? 'min-h-[200px] flex-1' : 'h-[180px]'}`}>
             <div
               className="absolute inset-0 transition-transform duration-300 origin-center bg-[linear-gradient(rgba(15,31,61,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,31,61,0.03)_1px,transparent_1px)] bg-[size:30px_30px]"
@@ -116,7 +116,7 @@ export function ServiceableLocationsSection({ broker, isDesktop }: ServiceableLo
               )}
             </div>
 
-            {/* Zoom controls */}
+            
             <div className="absolute top-2 right-2 flex flex-col gap-1 z-10">
               <button
                 type="button"
@@ -141,7 +141,7 @@ export function ServiceableLocationsSection({ broker, isDesktop }: ServiceableLo
             </div>
           </div>
 
-          {/* Legend */}
+          
           <div className="shrink-0 bg-white dark:bg-[#0b1b42] dark:border-white/10 border-t border-black/[0.06] px-3 py-2 flex flex-wrap gap-x-3 gap-y-1">
             {(Object.entries(TIER_COLORS) as [keyof typeof TIER_COLORS, typeof TIER_COLORS[keyof typeof TIER_COLORS]][]).map(([tier, c]) => (
               <div key={tier} className="flex items-center gap-1.5">

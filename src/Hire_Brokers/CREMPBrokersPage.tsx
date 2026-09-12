@@ -39,9 +39,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
     setExperience,
     clearAllFilters,
     activeFilterCount,
-  } = useBrokerFilters();
-
-  // Simulate initial data loading
+  } = useBrokerFilters();
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 900);
     return () => clearTimeout(t);
@@ -73,11 +71,11 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
         >
         <div className="w-full h-full flex flex-col overflow-hidden relative">
 
-        {/* Header */}
+        
         <BrokerHeader isDesktop />
 
         <div className="cb-sticky-bar px-4 py-1 flex items-center gap-3">
-          {/* Filter icon toggle */}
+          
           <button
             onClick={() => setFilterPanelOpen(true)}
             aria-label="Open filters"
@@ -102,7 +100,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
             onChange={setSearch}
             className="flex-1"
           />
-          {/* Map button — right of search field */}
+          
           <button
             onClick={() => setMapPanelOpen(true)}
             aria-label="Open map view"
@@ -121,12 +119,12 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
           </button>
         </div>
 
-        {/* Body: full-width grid */}
+        
         <div className="flex flex-1 overflow-hidden">
 
-          {/* Content */}
+          
           <main className="flex-1 overflow-y-auto cb-scroll-thin px-3 pb-2">
-            {/* Section heading */}
+            
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
               </div>
@@ -140,7 +138,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
               )}
             </div>
 
-            {/* Grid */}
+            
             {!isLoading && filteredBrokers.length === 0 ? (
               <EmptyState hasFilters={hasActiveFilters} onClearFilters={clearAllFilters} />
             ) : (
@@ -160,7 +158,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
               </div>
             )}
 
-            {/* CTA Banner */}
+            
             {!isLoading && (
               <div className="mt-8 mb-2 rounded-[8px] bg-gradient-to-br from-[#0a1128] to-[#1a3463] border border-white/10 px-8 py-6 flex items-center justify-between gap-6">
                 <div>
@@ -185,11 +183,11 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
           </main>
         </div>
 
-        {/* Desktop filter drawer */}
+        
         <BrokerFilters {...sharedFilterProps} isDesktop={true} />
-        {/* Desktop map drawer */}
+        
         <BrokerMapDrawer isOpen={mapPanelOpen} onClose={() => setMapPanelOpen(false)} isDesktop brokerCount={filteredBrokers.length} />
-        {/* ── Broker Profile dialog (desktop) ── */}
+        
         {selectedBroker && (
           <BrokerProfileDialog
             broker={selectedBroker}
@@ -200,9 +198,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
         </div>
       </div>
     );
-  }
-
-  // ── Mobile Layout ──────────────────────────────────────────
+  }
   return (
     <div
       className="w-full flex flex-col items-center justify-start bg-background text-gray-900 dark:text-primary transition-colors duration-300 overflow-hidden animate-in fade-in duration-500"
@@ -211,12 +207,12 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
       <div
         className="w-[24.375rem] shrink-0 h-full flex flex-col overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.08)] dark:shadow-[0_0_40px_rgba(255,255,255,0.05)] relative"
       >
-        {/* Header */}
+        
         <BrokerHeader isDesktop={false} />
 
-        {/* Sticky search + filter bar */}
+        
         <div className="cb-sticky-bar px-4 py-3 flex flex-col gap-2 shrink-0">
-          {/* Filter icon LEFT of search */}
+          
           <div className="flex items-center gap-2">
             <button
               onClick={() => setFilterPanelOpen(true)}
@@ -237,7 +233,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
               )}
             </button>
             <BrokerSearch value={filters.search} onChange={setSearch} className="flex-1" />
-            {/* Map button — right of search */}
+            
             <button
               onClick={() => setMapPanelOpen(true)}
               aria-label="Open map view"
@@ -255,9 +251,9 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
           </div>
         </div>
 
-        {/* Scrollable broker list */}
+        
         <div className="flex-1 overflow-y-auto cb-scroll-thin px-4 pb-4">
-        {/* Cards */}
+        
           {!isLoading && filteredBrokers.length === 0 ? (
             <EmptyState hasFilters={hasActiveFilters} onClearFilters={clearAllFilters} />
           ) : (
@@ -277,7 +273,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
             </div>
           )}
 
-          {/* CTA Banner */}
+          
           {!isLoading && (
             <div className="mt-5 rounded-[8px] bg-gradient-to-br from-[#0a1128] to-[#1a3463] border border-white/10 px-4 py-4">
               <div className="flex items-start gap-3">
@@ -308,11 +304,11 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
             </div>
           )}
         </div>
-        {/* Mobile filter bottom sheet */}
+        
         <BrokerFilters {...sharedFilterProps} isDesktop={false} />
-        {/* Mobile map bottom sheet */}
+        
         <BrokerMapDrawer isOpen={mapPanelOpen} onClose={() => setMapPanelOpen(false)} isDesktop={false} brokerCount={filteredBrokers.length} />
-        {/* ── Broker Profile dialog (mobile) ── */}
+        
         {selectedBroker && (
           <BrokerProfileDialog
             broker={selectedBroker}

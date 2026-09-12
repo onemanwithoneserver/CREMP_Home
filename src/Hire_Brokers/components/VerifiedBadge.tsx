@@ -14,7 +14,7 @@ export default function VerifiedBadge({ size = 'sm', className = '' }: VerifiedB
           : 'bg-emerald-50 text-emerald-700 border border-emerald-200 text-[9px] px-2 py-[2px]'
         } ${className}`}
     >
-      {/* Checkmark shield icon */}
+      
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"

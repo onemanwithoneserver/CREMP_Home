@@ -16,7 +16,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
   return (
     <div className="h-full min-h-screen w-full bg-[#f8f9fa] dark:bg-[#020817] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden">
       
-      {/* Top Header matching the design */}
+      
       <div className="bg-[#1a2b4c] text-white p-6 px-8 flex justify-between items-center shadow-md">
         <div>
           <h1 className="text-[24px] leading-tight">
@@ -30,7 +30,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
         <div className="max-w-3xl w-full flex flex-col md:flex-row items-center gap-12 mt-6 mb-12">
           
           <div className="flex-1">
-            <h2 className="text-[36px] font-bold leading-tight mb-4 text-[#0a1128] dark:text-white">
+            <h2 className="text-[30px] font-bold leading-tight mb-4 text-[#0a1128] dark:text-white">
               Want to reach <br />
               <span className="text-[#d4af37]">Active Buyers?</span>
             </h2>
@@ -40,7 +40,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
           </div>
 
           <div className="w-48 h-48 shrink-0 rounded-full bg-white dark:bg-white/5 flex items-center justify-center relative shadow-xl">
-             {/* Simple illustration using Lucide icons */}
+             
              <div className="absolute grid grid-cols-2 gap-2 opacity-20">
                <div className="w-8 h-16 bg-[#0a1128] dark:bg-white rounded-sm"></div>
                <div className="w-8 h-20 bg-[#0a1128] dark:bg-white rounded-sm"></div>
@@ -52,7 +52,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
 
         </div>
 
-        {/* Benefits Card */}
+        
         <div className="w-full max-w-3xl bg-white dark:bg-[#0b1b42] rounded border border-gray-100 dark:border-white/10 shadow-lg p-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((item, idx) => {
@@ -77,7 +77,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
           </div>
         </div>
 
-        {/* Lock Info */}
+        
         <div className="flex items-start gap-4 px-4 mb-10 max-w-2xl text-center justify-center">
           <Lock size={18} className="text-gray-400 shrink-0 mt-0.5" />
           <p className="text-[13px] text-gray-500 dark:text-gray-400 leading-relaxed font-medium">

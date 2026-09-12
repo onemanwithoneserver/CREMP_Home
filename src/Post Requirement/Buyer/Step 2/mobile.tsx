@@ -73,24 +73,24 @@ export default function Step2Mobile({ onNext, onBack, step1Data, step2Data, setS
   return (
     <div className="h-full min-h-full w-full bg-[#fafafb] dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden">
       
-      {/* ── Fixed Mobile Header ── */}
+      
       <MobileStepHeader currentStep={2} totalSteps={5} onBack={onBack} title="Requirement Details" />
 
-      {/* ── Scrollable Content ── */}
-      <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-8 p-5 pb-32">
+      
+      <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-5 p-4 pb-28">
 
         {isLease && (
           <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Tentative Lease Month</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-3 font-medium">Select the tentative month</p>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Tentative Lease Month</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Select the tentative month</p>
             <ModernSelect value={leaseMonth} onChange={(val: string) => updateStep2Data("leaseMonth", val)} options={[{ value: "", label: "Select Month" }]}  />
           </motion.div>
         )}
 
         {(isBuyOrSellProp || isLease) && (
           <motion.div {...fadeUp} transition={{ delay: 0.15 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Why are you looking?</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-3 font-medium">Help us understand your purpose</p>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Why are you looking?</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Help us understand your purpose</p>
             <div className="flex flex-col gap-2.5">
               {purposes.map((p) => {
                 const isSelected = purpose === p;
@@ -120,7 +120,7 @@ export default function Step2Mobile({ onNext, onBack, step1Data, step2Data, setS
         )}
 
         <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
-          <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What's your budget range?</h3>
+          <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What's your budget range?</h3>
           <div className="grid grid-cols-2 gap-3 mt-4">
             {budgetRanges.map((b, i) => {
               const isSelected = budget === b;
@@ -146,7 +146,7 @@ export default function Step2Mobile({ onNext, onBack, step1Data, step2Data, setS
 
         {(isBuyOrSellProp || isLease) && !isCommercialPlot && (
           <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What size are you looking for?</h3>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What size are you looking for?</h3>
             <div className="grid grid-cols-2 gap-3 mt-4">
               {(isLease ? sizeRangesYards : sizeRanges).map((s, i) => {
                 const isSelected = size === s;
@@ -173,8 +173,8 @@ export default function Step2Mobile({ onNext, onBack, step1Data, step2Data, setS
 
         {isFranchise && (
           <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Daily Operations</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-3 font-medium">How active will you be in daily operations?</p>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Daily Operations</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">How active will you be in daily operations?</p>
             <div className="flex flex-col gap-2.5">
               {dailyOperations.map((op) => {
                 const isSelected = dailyOp === op;
@@ -223,9 +223,9 @@ export default function Step2Mobile({ onNext, onBack, step1Data, step2Data, setS
 
       </main>
 
-      {/* ── Fixed Footer & Error ── */}
+      
       <div className="absolute bottom-0 left-0 right-0 z-30">
-        <div className="bg-gradient-to-t from-[#fafafb] dark:from-[#060e24] via-[#fafafb]/90 dark:via-[#060e24]/90 to-transparent pt-6 pb-5 px-5">
+        <div className="bg-gradient-to-t from-[#fafafb] dark:from-[#060e24] via-[#fafafb]/90 dark:via-[#060e24]/90 to-transparent pt-4 pb-4 px-4">
           <div className="flex flex-col gap-3">
             <AnimatePresence>
               {error && (

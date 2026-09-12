@@ -6,7 +6,7 @@ interface EmptyStateProps {
 export default function EmptyState({ hasFilters, onClearFilters }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
-      {/* Icon */}
+      
       <div className="w-16 h-16 bg-[#fafafb] dark:bg-background rounded-2xl border border-black/[0.05] flex items-center justify-center mb-4">
         <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
           <circle cx="18" cy="18" r="11" stroke="#a0aabf" strokeWidth="2" />

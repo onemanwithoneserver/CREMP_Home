@@ -24,7 +24,7 @@ export function FullMapOverlay({ broker, isDesktop, onClose }: FullMapOverlayPro
           isDesktop ? 'm-[20px] rounded-[14px] shadow-[0_24px_60px_rgba(0,0,0,0.22)]' : 'm-0 rounded-none shadow-none'
         }`}
       >
-        {/* Header */}
+        
         <div className="flex items-center justify-between px-4 py-3 shrink-0 bg-white dark:bg-[#0b1b42] dark:border-white/10 border-b border-black/[0.06]">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#0a1128] to-[#1a3463] flex items-center justify-center shrink-0">
@@ -53,7 +53,7 @@ export function FullMapOverlay({ broker, isDesktop, onClose }: FullMapOverlayPro
           </button>
         </div>
 
-        {/* Map Area */}
+        
         <div className="flex-1 relative overflow-hidden">
           <div 
             className="absolute inset-0 transition-transform duration-300 origin-center bg-[#eef1f8] bg-[linear-gradient(rgba(15,31,61,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,31,61,0.03)_1px,transparent_1px)] bg-[size:36px_36px]" 
@@ -87,7 +87,7 @@ export function FullMapOverlay({ broker, isDesktop, onClose }: FullMapOverlayPro
             )}
           </div>
 
-          {/* Zoom Controls */}
+          
           <div className="absolute top-3 right-3 flex flex-col gap-1 z-10">
             <button 
               onClick={() => setZoom((z) => Math.min(z + 0.25, 2.5))} 
@@ -110,7 +110,7 @@ export function FullMapOverlay({ broker, isDesktop, onClose }: FullMapOverlayPro
           </div>
         </div>
 
-        {/* Footer Legend */}
+        
         <div className="shrink-0 bg-white dark:bg-[#0b1b42] dark:border-white/10 border-t border-black/[0.06] px-4 py-2.5 flex flex-wrap gap-3">
           {(Object.entries(TIER_COLORS) as [keyof typeof TIER_COLORS, typeof TIER_COLORS[keyof typeof TIER_COLORS]][]).map(([tier, c]) => (
             <div key={tier} className="flex items-center gap-1.5">

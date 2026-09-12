@@ -82,16 +82,16 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
   return (
     <div className="h-full min-h-full w-full bg-[#fafafb] dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden">
       
-      {/* ── Fixed Mobile Header ── */}
+      
       <MobileStepHeader currentStep={4} totalSteps={5} onBack={onBack} title="Additional Details" />
 
-      {/* ── Scrollable Content ── */}
-      <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-8 p-5 pb-32">
+      
+      <main className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-5 p-4 pb-28">
 
         {isFranchise && (
           <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Which profile best describes you?</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-3 font-medium">Select the profile that fits your background</p>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Which profile best describes you?</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Select the profile that fits your background</p>
             <ModernSelect value={profile} onChange={(val: string) => setProfile(val)} options={[{ value: "", label: "Select Profile" }, ...profileOptions.map(p => ({ value: p, label: p }))]} />
           </motion.div>
         )}
@@ -99,7 +99,7 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
         {(isBuyOrSellProp || isLease) && (
           <>
             <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What is your preferred project status?</h3>
+              <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What is your preferred project status?</h3>
               <div className="grid grid-cols-2 gap-3 mt-4">
                 {projectStatuses.map((s, i) => {
                   const isSelected = projectStatus === s;
@@ -129,7 +129,7 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
             </motion.div>
 
             <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
-              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What is your preferred unit condition?</h3>
+              <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What is your preferred unit condition?</h3>
               <div className="grid grid-cols-1 gap-3 mt-4">
                 {unitConditions.map((c, i) => {
                   const isSelected = unitCondition === c;
@@ -162,7 +162,7 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
 
         {isLease && (
           <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Which floor do you prefer?</h3>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Which floor do you prefer?</h3>
             <input 
               type="text" 
               placeholder="e.g. 1st Floor, Ground Floor, etc."
@@ -175,8 +175,8 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
 
         {isLease && (
           <motion.div {...fadeUp} transition={{ delay: 0.4 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Which industry type(s) apply to your business?</h3>
-            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-4 font-medium">Select multiple if applicable</p>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Which industry type(s) apply to your business?</h3>
+            <p className="text-[12px] text-gray-400 dark:text-white/40 mb-2 font-medium">Select multiple if applicable</p>
             <div className="flex flex-wrap gap-2">
               {industryTypes.map((ind) => {
                 const isSelected = selectedIndustries.includes(ind);
@@ -200,7 +200,7 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
 
         {isBuyOrSellProp && (
           <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What is your source of funding?</h3>
+            <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">What is your source of funding?</h3>
             <div className="grid grid-cols-2 gap-3 mt-4">
               {fundingSources.map((f, i) => {
                 const isSelected = funding === f;
@@ -231,7 +231,7 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
         )}
 
         <motion.div {...fadeUp} transition={{ delay: 0.5 }}>
-          <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Do you have any additional requirement notes?</h3>
+          <h3 className="text-[16px] font-bold mb-0.5 text-[#0a1128] dark:text-white">Do you have any additional requirement notes?</h3>
           <textarea 
             placeholder="Mention additional details here..."
             value={notes}
@@ -240,7 +240,7 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
           />
         </motion.div>
 
-        {/* Summary bar */}
+        
         <motion.div {...fadeUp} transition={{ delay: 0.6 }} className="bg-[#0a1128]/[0.03] dark:bg-white/[0.04] rounded border border-[#0a1128]/6 dark:border-white/8 p-4 flex flex-col gap-3">
           {(isFranchise || isBusiness) ? (
             <>
@@ -301,9 +301,9 @@ export default function Step4Mobile({ onNext, onBack, step1Data, step2Data, step
 
       </main>
 
-      {/* ── Fixed Footer & Error ── */}
+      
       <div className="absolute bottom-0 left-0 right-0 z-30">
-        <div className="bg-gradient-to-t from-[#fafafb] dark:from-[#060e24] via-[#fafafb]/90 dark:via-[#060e24]/90 to-transparent pt-6 pb-5 px-5">
+        <div className="bg-gradient-to-t from-[#fafafb] dark:from-[#060e24] via-[#fafafb]/90 dark:via-[#060e24]/90 to-transparent pt-4 pb-4 px-4">
           <div className="flex flex-col gap-3">
             <AnimatePresence>
               {error && (

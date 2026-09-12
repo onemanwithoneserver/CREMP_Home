@@ -1,21 +1,13 @@
-/**
- * BrokerMapDrawer.tsx
- * Desktop:  right-side slide-in drawer (same pattern as BrokerFilters)
- * Mobile:   bottom-sheet modal with drag-to-close
- */
 
-import { useState, useEffect, useRef } from 'react';
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+import { useState, useEffect, useRef } from 'react';
 
 export interface BrokerMapDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   isDesktop: boolean;
   brokerCount: number;
-}
-
-// ─── Animated mount hook (identical to BrokerFilters) ───────────────────────
+}
 
 function useAnimatedMount(isOpen: boolean, durationMs = 320) {
   const [mounted, setMounted] = useState(isOpen);
@@ -37,9 +29,7 @@ function useAnimatedMount(isOpen: boolean, durationMs = 320) {
   }, [isOpen, durationMs]);
 
   return { mounted, visible };
-}
-
-// ─── Map data ────────────────────────────────────────────────────────────────
+}
 
 const mapPins = [
   { x: 22, y: 30, label: 'HITEC City',       city: 'Hyderabad', price: '₹85L',   count: 12, active: true  },
@@ -59,9 +49,7 @@ const cityColors: Record<string, string> = {
   Delhi:     '#be185d',
   Chennai:   '#0369a1',
   Pune:      '#d97706',
-};
-
-// ─── City hierarchy (for searchable combobox) ────────────────────────────────
+};
 
 const cityHierarchy = [
   { city: 'Hyderabad', localities: ['Gachibowli', 'Madhapur', 'Kondapur', 'Hitech City'] },
@@ -75,17 +63,13 @@ interface CitySelection {
   city: string | null;
   locality: string | null;
   label: string;
-}
-
-// ─── City Combobox ────────────────────────────────────────────────────────────
+}
 
 function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v: CitySelection) => void }) {
   const [open, setOpen]   = useState(false);
   const [query, setQuery] = useState('');
   const containerRef      = useRef<HTMLDivElement>(null);
-  const inputRef          = useRef<HTMLInputElement>(null);
-
-  // Close on outside click
+  const inputRef          = useRef<HTMLInputElement>(null);
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -95,9 +79,7 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
-  // Auto-focus search input when opened
+  }, []);
   useEffect(() => {
     if (open && inputRef.current) inputRef.current.focus();
   }, [open]);
@@ -115,7 +97,7 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Trigger button */}
+      
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -137,13 +119,13 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
         </svg>
       </button>
 
-      {/* Dropdown */}
+      
       {open && (
         <div
           className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-[#0b1b42] dark:border-white/10 border border-[#e5e7eb] rounded-[4px] shadow-lg z-50 flex flex-col"
           style={{ maxHeight: 240 }}
         >
-          {/* Search input */}
+          
           <div className="p-2 border-b border-[#f0f1f3] shrink-0">
             <div className="relative">
               <svg viewBox="0 0 16 16" fill="none" stroke="#9ca3af" strokeWidth="1.5" strokeLinecap="round" className="w-3 h-3 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -161,9 +143,9 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
             </div>
           </div>
 
-          {/* Options list */}
+          
           <div className="overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
-            {/* All cities */}
+            
             <button
               type="button"
               onClick={() => select({ city: null, locality: null, label: 'All cities' })}
@@ -181,10 +163,10 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
               )}
             </button>
 
-            {/* City groups */}
+            
             {filtered.map((group) => (
               <div key={group.city}>
-                {/* City row */}
+                
                 <button
                   type="button"
                   onClick={() => select({ city: group.city, locality: null, label: group.city })}
@@ -199,7 +181,7 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
                     </svg>
                   )}
                 </button>
-                {/* Locality rows */}
+                
                 {group.localities.map((loc) => (
                   <button
                     key={loc}
@@ -230,9 +212,7 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
       )}
     </div>
   );
-}
-
-// ─── Map Panel Content ────────────────────────────────────────────────────────
+}
 
 function MapContent({ onClose }: { onClose: () => void }) {
   const [activePin, setActivePin]         = useState<number | null>(null);
@@ -253,7 +233,7 @@ function MapContent({ onClose }: { onClose: () => void }) {
   return (
     <div className="flex flex-col h-full" style={{ fontFamily: 'Outfit, sans-serif' }}>
 
-      {/* ── City combobox + Done ── */}
+      
       <div className="shrink-0 px-2.5 py-1.5 border-b border-[#f0f1f3] flex items-center gap-2 bg-white dark:bg-[#0b1b42] dark:border-white/10">
         <div className="flex-1 min-w-0">
           <CityComboBox value={citySelection} onChange={setCitySelection} />
@@ -268,10 +248,10 @@ function MapContent({ onClose }: { onClose: () => void }) {
         </button>
       </div>
 
-      {/* ── Map canvas ── */}
+      
       <div className="flex-1 relative overflow-hidden" style={{ background: 'linear-gradient(160deg,#e8edf5 0%,#dde4f0 40%,#e4e9f2 100%)' }}>
 
-        {/* Scalable canvas */}
+        
         <div
           className="absolute inset-0 transition-transform duration-300"
           style={{
@@ -279,31 +259,31 @@ function MapContent({ onClose }: { onClose: () => void }) {
             transformOrigin: 'center center',
           }}
         >
-          {/* Grid overlay */}
+          
           <div className="absolute inset-0 pointer-events-none" style={{
             backgroundImage: 'linear-gradient(rgba(10,17,40,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(10,17,40,0.04) 1px,transparent 1px)',
             backgroundSize: '40px 40px',
           }} />
 
-          {/* Road / territory SVG */}
+          
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.18 }}>
-            {/* Major highways */}
+            
             <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="#0a1128" strokeWidth="2.5" strokeDasharray="0" />
             <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="#0a1128" strokeWidth="2.5" />
-            {/* Secondary roads */}
+            
             <line x1="0%" y1="25%" x2="100%" y2="72%" stroke="#0a1128" strokeWidth="1.4" />
             <line x1="0%" y1="75%" x2="100%" y2="28%" stroke="#0a1128" strokeWidth="1.4" />
             <line x1="20%" y1="0%" x2="80%" y2="100%" stroke="#0a1128" strokeWidth="0.9" />
             <line x1="80%" y1="0%" x2="20%" y2="100%" stroke="#0a1128" strokeWidth="0.9" />
-            {/* Ring roads */}
+            
             <circle cx="50%" cy="50%" r="90"  stroke="#0a1128" strokeWidth="1.4" fill="none" />
             <circle cx="50%" cy="50%" r="170" stroke="#0a1128" strokeWidth="1"   fill="none" />
             <circle cx="50%" cy="50%" r="240" stroke="#0a1128" strokeWidth="0.6" fill="none" strokeDasharray="6 4" />
-            {/* Zone fills */}
+            
             <circle cx="50%" cy="50%" r="80" fill="rgba(10,17,40,0.025)" />
           </svg>
 
-          {/* Pins */}
+          
           {visiblePins.map((pin) => {
             const idx = mapPins.indexOf(pin);
             const isActive = activePin === idx;
@@ -316,7 +296,7 @@ function MapContent({ onClose }: { onClose: () => void }) {
                 className="absolute flex flex-col items-center focus-visible:outline-none"
                 style={{ left: `${pin.x}%`, top: `${pin.y}%`, transform: 'translate(-50%,-100%)', zIndex: isActive ? 20 : 2 }}
               >
-                {/* Price bubble */}
+                
                 <div
                   className="px-2.5 py-[4px] text-[11px] font-bold whitespace-nowrap transition-all duration-200"
                   style={{
@@ -332,11 +312,11 @@ function MapContent({ onClose }: { onClose: () => void }) {
                   {pin.price}
                   {isActive && <span className="ml-1 opacity-70 text-[9px]">· {pin.count}</span>}
                 </div>
-                {/* Teardrop stem */}
+                
                 <svg width="10" height="7" viewBox="0 0 10 7" className="transition-all duration-200" style={{ marginTop: -1 }}>
                   <polygon points="0,0 10,0 5,7" fill={isActive ? color : '#0a1128'} opacity={isActive ? 1 : 0.55} />
                 </svg>
-                {/* Dot */}
+                
                 <div
                   className="w-2 h-2 rounded-full transition-all duration-200"
                   style={{
@@ -351,7 +331,7 @@ function MapContent({ onClose }: { onClose: () => void }) {
           })}
         </div>
 
-        {/* Zoom controls */}
+        
         <div className="absolute top-3 right-3 flex flex-col gap-1 z-10">
           <button
             onClick={() => setZoom((z) => Math.min(z + 0.25, 2.5))}
@@ -383,13 +363,13 @@ function MapContent({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        {/* Active pin detail card */}
+        
         {activePin !== null && (
           <div
             className="absolute bottom-3 left-3 right-3 rounded-[4px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.18)] border border-black/[0.05]"
             style={{ animation: 'cb-slide-up 0.2s ease', zIndex: 20 }}
           >
-            {/* Dark header strip */}
+            
             <div
               className="flex items-center justify-between px-3.5 py-2.5"
               style={{ background: `linear-gradient(135deg,${cityColors[mapPins[activePin].city] ?? '#0a1128'} 0%,${cityColors[mapPins[activePin].city] ?? '#0a1128'}cc 100%)` }}
@@ -407,7 +387,7 @@ function MapContent({ onClose }: { onClose: () => void }) {
                 {mapPins[activePin].city}
               </span>
             </div>
-            {/* Info row */}
+            
             <div className="bg-white dark:bg-[#0b1b42] dark:border-white/10 flex items-center justify-between px-3.5 py-2.5">
               <div>
                 <p className="text-[11px] text-[#637089] font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -425,7 +405,7 @@ function MapContent({ onClose }: { onClose: () => void }) {
         )}
       </div>
 
-      {/* ── Quick stats strip ── */}
+      
       <div className="shrink-0 px-3 py-1.5 border-t border-[#f0f1f3] bg-white dark:bg-[#0b1b42] dark:border-white/10 grid grid-cols-3 gap-2">
         {[
           { label: 'Active Cities', value: cityHierarchy.length.toString() },
@@ -441,9 +421,7 @@ function MapContent({ onClose }: { onClose: () => void }) {
 
     </div>
   );
-}
-
-// ─── Desktop Drawer ───────────────────────────────────────────────────────────
+}
 
 function DesktopMapDrawer({ isOpen, onClose }: BrokerMapDrawerProps) {
   const { mounted, visible } = useAnimatedMount(isOpen, 300);
@@ -459,7 +437,7 @@ function DesktopMapDrawer({ isOpen, onClose }: BrokerMapDrawerProps) {
 
   return (
     <>
-      {/* Backdrop */}
+      
       <div
         role="presentation"
         aria-hidden="true"
@@ -468,7 +446,7 @@ function DesktopMapDrawer({ isOpen, onClose }: BrokerMapDrawerProps) {
         onClick={onClose}
       />
 
-      {/* Drawer panel */}
+      
       <div
         role="dialog"
         aria-modal="true"
@@ -481,7 +459,7 @@ function DesktopMapDrawer({ isOpen, onClose }: BrokerMapDrawerProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Header — close button only */}
+        
         <div className="shrink-0 flex items-center justify-end px-3 py-2 border-b border-[#f0f1f3] bg-white dark:bg-[#0b1b42] dark:border-white/10">
           <button
             type="button"
@@ -495,16 +473,14 @@ function DesktopMapDrawer({ isOpen, onClose }: BrokerMapDrawerProps) {
           </button>
         </div>
 
-        {/* Content */}
+        
         <div className="flex-1 overflow-hidden flex flex-col">
           <MapContent onClose={onClose} />
         </div>
       </div>
     </>
   );
-}
-
-// ─── Mobile Bottom Sheet ──────────────────────────────────────────────────────
+}
 
 function MobileMapSheet({ isOpen, onClose }: BrokerMapDrawerProps) {
   const { mounted, visible } = useAnimatedMount(isOpen, 340);
@@ -565,7 +541,7 @@ function MobileMapSheet({ isOpen, onClose }: BrokerMapDrawerProps) {
           transition: 'transform 320ms cubic-bezier(0.32, 0.72, 0, 1)',
         }}
       >
-        {/* Drag handle row */}
+        
         <div
           className="shrink-0 relative flex items-center justify-center pt-3 pb-2 touch-none select-none cursor-grab active:cursor-grabbing bg-white dark:bg-[#0b1b42] dark:border-white/10 border-b border-[#f0f1f3]"
           onTouchStart={handleTouchStart}
@@ -585,16 +561,14 @@ function MobileMapSheet({ isOpen, onClose }: BrokerMapDrawerProps) {
           </button>
         </div>
 
-        {/* Content */}
+        
         <div className="flex-1 overflow-hidden flex flex-col">
           <MapContent onClose={onClose} />
         </div>
       </div>
     </>
   );
-}
-
-// ─── Public export ────────────────────────────────────────────────────────────
+}
 
 export default function BrokerMapDrawer(props: BrokerMapDrawerProps) {
   return props.isDesktop

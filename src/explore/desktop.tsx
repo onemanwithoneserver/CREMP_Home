@@ -573,13 +573,10 @@ export default function ExploreDesktop() {
                         
                         <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-[0.07] pointer-events-none" style={{ background: "radial-gradient(circle, #d4af37, transparent 70%)" }} />
 
-
-
                         
                         <h2 className="text-[20px] lg:text-[24px] font-bold text-white leading-[1.25] group-hover:text-[#d4af37] transition-colors duration-300 line-clamp-3">
                           How to Build a Personal Brand That Attracts Clients
                         </h2>
-
 
                       </div>
                     </motion.div>

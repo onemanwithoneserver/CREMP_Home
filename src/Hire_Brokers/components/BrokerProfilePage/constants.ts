@@ -1,8 +1,6 @@
-// ─── Fallback defaults ────────────────────────────────────────────────────────
-export const DEFAULT_DEAL_TYPES = ['Sale', 'Leasing', 'Investment'];
-export const DEFAULT_WORKS_WITH = ['Corporate Clients', 'HNI Investors', 'NRI Buyers'];
 
-// ─── Map tier colours/labels ──────────────────────────────────────────────────
+export const DEFAULT_DEAL_TYPES = ['Sale', 'Leasing', 'Investment'];
+export const DEFAULT_WORKS_WITH = ['Corporate Clients', 'HNI Investors', 'NRI Buyers'];
 export const TIER_COLORS = {
   'most-active':       { dot: '#0a1128', label: 'Most Active' },
   'moderately-active': { dot: '#3b82f6', label: 'Moderately Active' },
