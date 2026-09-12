@@ -255,7 +255,8 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
           )}
 
           
-          <motion.div {...fadeUp} transition={{ delay: 0.6 }} className="pt-1 flex flex-col gap-3">
+          </motion.div>
+        <div className="sticky bottom-0 mt-auto pt-4 pb-8 w-full bg-[#fafafb] dark:bg-[#060e24] z-50 flex flex-col gap-3">
             <AnimatePresence>
               {error && (
                 <motion.div
@@ -282,8 +283,7 @@ export default function Step1Desktop({ onNext, onBack, step1Data, setStep1Data }
                 <ArrowRight size={14} className="text-[#d4af37]" />
               </div>
             </motion.button>
-          </motion.div>
-        </motion.div>
+          </div>
       </main>
     </div>
   );

@@ -76,7 +76,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
         <StepHeader currentStep={2} totalSteps={5} onBack={onBack} />
       </div>
 
-      <main className="w-full max-w-3xl px-8 mt-4 mb-8">
+      <main className="w-full max-w-3xl px-8 mt-4 mb-0 flex flex-col flex-1">
         <motion.div 
           className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-6 flex flex-col gap-6 relative overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
@@ -241,8 +241,9 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
           </motion.div>
 
           
-          <div className="flex flex-col gap-3 pt-1">
-            <AnimatePresence>
+          </motion.div>
+        <div className="sticky bottom-0 mt-auto pt-4 pb-8 w-full bg-[#fafafb] dark:bg-[#060e24] z-50 flex flex-col gap-3">
+          <AnimatePresence>
               {error && (
                 <motion.div
                   initial={{ opacity: 0, y: -10, height: 0 }}
@@ -255,13 +256,11 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
                 </motion.div>
               )}
             </AnimatePresence>
-            
-            <div className="flex justify-end">
-              <motion.button
+          <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleNext}
-                className="px-8 py-4 rounded font-bold text-[14px] flex items-center gap-2 transition-all text-white shadow-[0_8px_24px_rgba(10,17,40,0.2)]"
+                className="w-full py-4 rounded font-bold text-[15px] flex items-center justify-center gap-2 transition-all text-white shadow-[0_8px_24px_rgba(10,17,40,0.2)]"
                 style={{ background: "linear-gradient(135deg, #0a1128 0%, #1a3463 100%)" }}
               >
                 Continue
@@ -269,9 +268,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, set
                   <ArrowRight size={14} className="text-[#d4af37]" />
                 </div>
               </motion.button>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </main>
     </div>
   );
