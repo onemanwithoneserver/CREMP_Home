@@ -93,17 +93,34 @@ export function CommercialExpertise({ broker, isDesktop }: CommercialExpertisePr
   );
 }
 
+const EXPERTISE_COLORS: Record<string, string> = {
+  Office: 'bg-blue-500',
+  Retail: 'bg-purple-500',
+  Industrial: 'bg-orange-500',
+  Warehouse: 'bg-amber-600',
+  Land: 'bg-emerald-500',
+  Investment: 'bg-green-500',
+  Leasing: 'bg-indigo-500',
+  'Co-working': 'bg-pink-500',
+  'Mixed Use': 'bg-teal-500',
+  Residential: 'bg-sky-500',
+};
+
 function ExpertiseChip({ exp, isDesktop }: { exp: string; isDesktop: boolean }) {
+  const colorClass = EXPERTISE_COLORS[exp] || 'bg-gray-500';
+  
   return (
     <div
-      className={`flex flex-col items-center gap-1.5 shrink-0 rounded-[6px] bg-[#0a1128]/[0.03] border border-[#0a1128]/[0.07] ${
-        isDesktop ? 'px-[12px] py-[10px] min-w-[64px]' : 'px-[10px] py-[8px] min-w-[56px]'
+      className={`flex flex-col items-center gap-2 shrink-0 rounded-[4px] bg-white dark:bg-[#111e3b] shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-black/5 dark:border-white/10 transition-transform hover:-translate-y-0.5 ${
+        isDesktop ? 'px-[12px] py-[12px] min-w-[72px]' : 'px-[10px] py-[10px] min-w-[64px]'
       }`}
     >
-      <span className="text-[#4d6080]">
-        {EXPERTISE_SVG[exp] ?? EXPERTISE_SVG.Office}
-      </span>
-      <span className="text-[9.5px] font-semibold leading-tight text-center whitespace-nowrap text-[#3b4d67] font-['Outfit',sans-serif]">
+      <div className={`w-8 h-8 flex items-center justify-center rounded-[4px] shadow-sm text-white ${colorClass}`}>
+        <span className="scale-90">
+          {EXPERTISE_SVG[exp] ?? EXPERTISE_SVG.Office}
+        </span>
+      </div>
+      <span className="text-[10px] font-semibold leading-tight text-center whitespace-nowrap text-[#3b4d67] dark:text-gray-300 font-['Outfit',sans-serif]">
         {exp}
       </span>
     </div>

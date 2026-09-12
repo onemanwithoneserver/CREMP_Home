@@ -7,6 +7,15 @@ interface RecentTransactionsSectionProps {
   isDesktop: boolean;
 }
 
+const TRANSACTION_COLORS: Record<string, string> = {
+  office: 'bg-blue-500',
+  retail: 'bg-purple-500',
+  land: 'bg-emerald-500',
+  investment: 'bg-green-500',
+  warehouse: 'bg-amber-600',
+  mixed: 'bg-teal-500',
+};
+
 export function RecentTransactionsSection({ broker, isDesktop }: RecentTransactionsSectionProps) {
   const transactions = broker.recentTransactions ?? [];
   
@@ -21,8 +30,8 @@ export function RecentTransactionsSection({ broker, isDesktop }: RecentTransacti
             key={i} 
             className="bg-white dark:bg-[#0b1b42] dark:border-white/10 rounded-xl p-3 flex items-center gap-3 hover:shadow-md transition-shadow border border-[#0a1128]/5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
           >
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-[#1a3463]/[0.08]">
-              <span className="text-[#1a3463]">
+            <div className={`w-8 h-8 rounded-[4px] flex items-center justify-center shrink-0 shadow-sm text-white ${TRANSACTION_COLORS[tx.icon] || 'bg-gray-500'}`}>
+              <span className="scale-90">
                 {TRANSACTION_SVG[tx.icon] ?? TRANSACTION_SVG.office}
               </span>
             </div>
