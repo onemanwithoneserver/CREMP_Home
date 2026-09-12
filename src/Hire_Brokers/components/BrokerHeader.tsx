@@ -27,13 +27,13 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
 
       {isDesktop ? (
         <div 
-          className="absolute inset-0 z-0 overflow-hidden pointer-events-none transition-all duration-500"
+          className="absolute inset-y-0 right-0 w-[550px] z-0 overflow-hidden pointer-events-none transition-all duration-500"
           style={{
-            maskImage: "linear-gradient(to right, transparent 0%, black 50%)",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 50%)",
+            maskImage: "linear-gradient(to right, transparent 0%, black 25%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)",
           }}
         >
-          <img src={headerImage} alt="" className="w-full h-full object-cover object-[center_30%] opacity-90 mix-blend-screen" />
+          <img src={headerImage} alt="" className="w-full h-full object-cover object-right opacity-90 mix-blend-screen" />
         </div>
       ) : (
         <div 
