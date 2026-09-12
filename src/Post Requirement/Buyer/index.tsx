@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Step0 from "./Step 0";
 import Step1 from "./Step 1";
 import Step2 from "./Step 2";
 import Step3 from "./Step 3";
@@ -34,7 +35,7 @@ export interface Step1Data {
 }
 
 export default function PostRequirementBuyer({ isMobile }: PostRequirementBuyerProps) {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [step1Data, setStep1Data] = useState<Step1Data>({
     reqType: "buy_property",
     reqName: "",
@@ -59,10 +60,10 @@ export default function PostRequirementBuyer({ isMobile }: PostRequirementBuyerP
   });
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 5));
-  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
+  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
 
   return (
-    <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-gray-50">
+    <div className="relative w-full h-full overflow-y-auto scrollbar-hide bg-[#fafafb] dark:bg-[#060e24]">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentStep}
@@ -72,9 +73,16 @@ export default function PostRequirementBuyer({ isMobile }: PostRequirementBuyerP
           transition={{ duration: 0.2 }}
           className="w-full min-h-screen"
         >
+          {currentStep === 0 && (
+            <Step0 
+              onNext={nextStep} 
+              isMobile={isMobile} 
+            />
+          )}
           {currentStep === 1 && (
             <Step1 
               onNext={nextStep} 
+              onBack={prevStep}
               isMobile={isMobile} 
               step1Data={step1Data} 
               setStep1Data={setStep1Data} 
@@ -96,7 +104,7 @@ export default function PostRequirementBuyer({ isMobile }: PostRequirementBuyerP
             <Step5 
               onSubmit={() => {
                 alert("Requirement Submitted!");
-                setCurrentStep(1);
+                setCurrentStep(0);
               }} 
               onBack={prevStep} 
               isMobile={isMobile}

@@ -28,13 +28,17 @@ export default function SubmitButton({ onSubmit }: SubmitButtonProps) {
           width: status === "launching" ? 64 : "100%",
           height: status === "launching" ? 64 : 64,
           borderRadius: status === "launching" ? 32 : 16,
-          backgroundColor: status === "success" ? "#10b981" : "#d4af37",
+          backgroundColor: status === "success" ? "#10b981" : "#0a1128",
         }}
         transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
-        className="relative flex items-center justify-center overflow-hidden text-white font-bold text-[18px] shadow-xl shadow-[#d4af37]/20"
+        className="relative flex items-center justify-center overflow-hidden text-white font-bold text-[18px] font-['Outfit',sans-serif]"
         style={{
-          background: status === "idle" ? "linear-gradient(135deg, #d4af37 0%, #f3cd52 100%)" : undefined,
-          color: status === "idle" ? "#0a1128" : "white"
+          background: status === "idle" ? "linear-gradient(135deg, #0a1128 0%, #1a3463 50%, #0a1128 100%)" : undefined,
+          boxShadow: status === "idle" 
+            ? "0 8px 32px rgba(10,17,40,0.3), 0 0 0 1px rgba(212,175,55,0.15)" 
+            : status === "success"
+            ? "0 8px 32px rgba(16,185,129,0.3)"
+            : "0 8px 24px rgba(10,17,40,0.4)",
         }}
       >
         <AnimatePresence mode="wait">
@@ -46,7 +50,8 @@ export default function SubmitButton({ onSubmit }: SubmitButtonProps) {
               exit={{ opacity: 0, y: 10 }}
               className="flex items-center gap-3"
             >
-              Submit Requirement <Rocket size={20} className="ml-1" />
+              <span className="text-white">Submit Requirement</span>
+              <Rocket size={20} className="text-[#d4af37]" />
             </motion.div>
           )}
 
@@ -58,7 +63,7 @@ export default function SubmitButton({ onSubmit }: SubmitButtonProps) {
               transition={{ duration: 1.5, ease: "easeInOut" }}
               className="absolute"
             >
-              <Building2 size={28} className="text-white drop-shadow-md" />
+              <Building2 size={28} className="text-[#d4af37] drop-shadow-md" />
             </motion.div>
           )}
 
@@ -78,7 +83,7 @@ export default function SubmitButton({ onSubmit }: SubmitButtonProps) {
 
         {status === "launching" && (
           <motion.div 
-            className="absolute bottom-[-10px] w-6 h-6 bg-white/40 rounded-full blur-md"
+            className="absolute bottom-[-10px] w-6 h-6 bg-[#d4af37]/40 rounded-full blur-md"
             animate={{ scale: [1, 3, 0], opacity: [0.8, 0], y: [0, 20] }}
             transition={{ duration: 0.8, repeat: Infinity }}
           />

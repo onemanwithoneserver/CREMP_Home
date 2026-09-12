@@ -1,9 +1,11 @@
 import { useState } from "react";
+import ModernSelect from "../../components/ModernSelect";
+
 import StepHeader from "../../components/StepHeader";
 import { projectStatuses, unitConditions, industryTypes, fundingSources, profileOptions } from "./data";
 import { requirementTypes, propertyCategories, industries } from "../Step 1/data";
-import { motion } from "framer-motion";
-import { ArrowRight, Building, Layers, Clock, MapPin } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Building, Layers, Clock, MapPin, AlertCircle } from "lucide-react";
 import type { Step1Data, Step2Data, Step3Data } from "../index";
 
 interface Step4DesktopProps {
@@ -14,7 +16,13 @@ interface Step4DesktopProps {
   step3Data: Step3Data;
 }
 
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+};
+
 export default function Step4Desktop({ onNext, onBack, step1Data, step2Data, step3Data }: Step4DesktopProps) {
+  const [error, setError] = useState<string | null>(null);
   const [projectStatus, setProjectStatus] = useState("");
   const [unitCondition, setUnitCondition] = useState("");
   const [floor, setFloor] = useState("");
@@ -50,227 +58,269 @@ export default function Step4Desktop({ onNext, onBack, step1Data, step2Data, ste
      locationsText = "-";
   }
 
+  const handleNext = () => {
+    if (isFranchise && !profile) {
+      setError("Please select a profile that describes you.");
+      return;
+    }
+    if ((isBuyOrSellProp || isLease) && (!projectStatus || !unitCondition)) {
+      setError("Please select project status and unit condition.");
+      return;
+    }
+    if (isLease && selectedIndustries.length === 0) {
+      setError("Please select at least one industry type.");
+      return;
+    }
+    if (isBuyOrSellProp && !funding) {
+      setError("Please select a source of funding.");
+      return;
+    }
+    setError(null);
+    onNext();
+  };
+
   return (
-    <div className="h-full min-h-full w-full bg-gray-50 text-[#0a1128] font-sans flex flex-col items-center">
+    <div className="h-full min-h-full w-full bg-[#fafafb] dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col items-center overflow-y-auto scrollbar-hide">
       <div className="w-full">
         <StepHeader currentStep={4} totalSteps={5} onBack={onBack} />
       </div>
 
-      <main className="w-full max-w-4xl p-8 flex flex-col gap-8 bg-white rounded-[4px] border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] mt-8 mb-10 relative">
-        <div className="absolute top-0 inset-x-1 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+      <main className="w-full max-w-3xl px-8 mt-8 mb-16">
+        <motion.div 
+          className="bg-white dark:bg-[#0b1b42] rounded border border-[#0a1128]/8 dark:border-white/10 shadow-[0_4px_24px_rgba(10,17,40,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] p-8 flex flex-col gap-10 relative overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="absolute top-0 inset-x-4 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
 
-        {isFranchise && (
-          <div>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">Which profile best describes you?</h3>
-            <p className="text-[12px] text-gray-500 font-medium mb-4 uppercase tracking-wider">Select the profile that fits your background</p>
-            <select
-              value={profile}
-              onChange={(e) => setProfile(e.target.value)}
-              className="w-full p-4 rounded-[4px] border border-gray-200 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[15px] font-medium"
-            >
-              <option value="" disabled>Select Profile</option>
-              {profileOptions.map(p => <option key={p} value={p}>{p}</option>)}
-            </select>
-          </div>
-        )}
+          {/* Profile (Franchise) */}
+          {isFranchise && (
+            <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
+              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Which profile best describes you?</h3>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 font-semibold mb-4 uppercase tracking-wider">Select the profile that fits your background</p>
+              <ModernSelect value={profile} onChange={(val: string) => setProfile(val)} options={[{ value: "", label: "Select Profile" }, ...profileOptions.map(p => ({ value: p, label: p }))]} />
+            </motion.div>
+          )}
 
-        {(isBuyOrSellProp || isLease) && (
-          <div className="grid grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">What is your preferred project status?</h3>
-              <div className="flex flex-col gap-3 mt-4">
-                <div className="flex gap-3">
-                  {projectStatuses.map((s) => (
+          {/* Project Status & Unit Condition */}
+          {(isBuyOrSellProp || isLease) && (
+            <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="grid grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Preferred project status?</h3>
+                <div className="flex flex-col gap-2.5 mt-4">
+                  <div className="flex gap-3">
+                    {projectStatuses.map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => setProjectStatus(s)}
+                        className={`flex-1 flex items-center justify-between p-4 rounded border-2 transition-all duration-300 ${
+                          projectStatus === s 
+                            ? "border-[#d4af37] bg-[#d4af37]/[0.05] dark:bg-[#d4af37]/[0.08] text-[#0a1128] dark:text-white shadow-[0_0_0_3px_rgba(212,175,55,0.12)]" 
+                            : "border-[#0a1128]/8 dark:border-white/10 bg-white dark:bg-[#0b1b42] text-gray-500 dark:text-white/50 hover:border-[#0a1128]/15 dark:hover:border-white/20"
+                        }`}
+                      >
+                        <span className="text-[13px] font-bold">{s}</span>
+                        <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
+                          projectStatus === s ? "border-[#d4af37]" : "border-gray-300 dark:border-white/20"
+                        }`}>
+                          {projectStatus === s && <div className="w-2 h-2 rounded-full bg-[#d4af37]" />}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Preferred unit condition?</h3>
+                <div className="grid grid-cols-2 gap-2.5 mt-4">
+                  {unitConditions.map((c) => (
                     <button
-                      key={s}
-                      onClick={() => setProjectStatus(s)}
-                      className={`flex-1 flex items-center justify-between p-4 rounded-[4px] border transition-all duration-300 ${
-                        projectStatus === s 
-                          ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm" 
-                          : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+                      key={c}
+                      onClick={() => setUnitCondition(c)}
+                      className={`flex items-center justify-between p-4 rounded border-2 transition-all duration-300 ${
+                        unitCondition === c 
+                          ? "border-[#d4af37] bg-[#d4af37]/[0.05] dark:bg-[#d4af37]/[0.08] text-[#0a1128] dark:text-white shadow-[0_0_0_3px_rgba(212,175,55,0.12)]" 
+                          : "border-[#0a1128]/8 dark:border-white/10 bg-white dark:bg-[#0b1b42] text-gray-500 dark:text-white/50 hover:border-[#0a1128]/15 dark:hover:border-white/20"
                       }`}
                     >
-                      <span className="text-[13px] font-bold">{s}</span>
+                      <span className="text-[13px] font-bold">{c}</span>
                       <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
-                        projectStatus === s ? "border-[#d4af37]" : "border-gray-300"
+                        unitCondition === c ? "border-[#d4af37]" : "border-gray-300 dark:border-white/20"
                       }`}>
-                        {projectStatus === s && <div className="w-2 h-2 rounded-full bg-[#d4af37]" />}
+                        {unitCondition === c && <div className="w-2 h-2 rounded-full bg-[#d4af37]" />}
                       </div>
                     </button>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
+          )}
 
-            <div>
-              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">What is your preferred unit condition?</h3>
-              <div className="grid grid-cols-2 gap-3 mt-4">
-                {unitConditions.map((c) => (
+          {/* Floor (Lease) */}
+          {isLease && (
+            <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
+              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Which floor do you prefer?</h3>
+              <input 
+                type="text" 
+                placeholder="e.g. 1st Floor, Ground Floor, etc."
+                value={floor}
+                onChange={(e) => setFloor(e.target.value)}
+                className="w-full mt-3 p-4 rounded border-2 border-[#0a1128]/8 dark:border-white/10 bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white text-[14px] outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 transition-all duration-300 placeholder:text-gray-300 dark:placeholder:text-white/25 font-medium"
+              />
+            </motion.div>
+          )}
+
+          {/* Industry Types (Lease) */}
+          {isLease && (
+            <motion.div {...fadeUp} transition={{ delay: 0.25 }}>
+              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Which industry type(s) apply?</h3>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 font-bold mb-4 uppercase tracking-wider">(Select Multiple)</p>
+              <div className="flex flex-wrap gap-2.5">
+                {industryTypes.map((ind) => {
+                  const isSelected = selectedIndustries.includes(ind);
+                  return (
+                    <button
+                      key={ind}
+                      onClick={() => toggleIndustry(ind)}
+                      className={`px-4 py-2.5 rounded-full border-2 text-[12px] font-bold transition-all duration-300 ${
+                        isSelected 
+                          ? "border-[#d4af37] bg-[#d4af37]/10 dark:bg-[#d4af37]/15 text-[#d4af37] shadow-[0_0_0_3px_rgba(212,175,55,0.1)]" 
+                          : "border-[#0a1128]/8 dark:border-white/10 bg-white dark:bg-[#0b1b42] text-gray-500 dark:text-white/50 hover:border-[#0a1128]/15 dark:hover:border-white/20"
+                      }`}
+                    >
+                      {ind}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Funding Source */}
+          {isBuyOrSellProp && (
+            <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
+              <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">What is your source of funding?</h3>
+              <div className="flex gap-3 mt-4 w-1/2">
+                {fundingSources.map((f) => (
                   <button
-                    key={c}
-                    onClick={() => setUnitCondition(c)}
-                    className={`flex items-center justify-between p-4 rounded-[4px] border transition-all duration-300 ${
-                      unitCondition === c 
-                        ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm" 
-                        : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+                    key={f}
+                    onClick={() => setFunding(f)}
+                    className={`flex-1 flex items-center justify-between p-4 rounded border-2 transition-all duration-300 ${
+                      funding === f 
+                        ? "border-[#d4af37] bg-[#d4af37]/[0.05] dark:bg-[#d4af37]/[0.08] text-[#0a1128] dark:text-white shadow-[0_0_0_3px_rgba(212,175,55,0.12)]" 
+                        : "border-[#0a1128]/8 dark:border-white/10 bg-white dark:bg-[#0b1b42] text-gray-500 dark:text-white/50 hover:border-[#0a1128]/15 dark:hover:border-white/20"
                     }`}
                   >
-                    <span className="text-[13px] font-bold">{c}</span>
+                    <span className="text-[13px] font-bold">{f}</span>
                     <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
-                      unitCondition === c ? "border-[#d4af37]" : "border-gray-300"
+                      funding === f ? "border-[#d4af37]" : "border-gray-300 dark:border-white/20"
                     }`}>
-                      {unitCondition === c && <div className="w-2 h-2 rounded-full bg-[#d4af37]" />}
+                      {funding === f && <div className="w-2 h-2 rounded-full bg-[#d4af37]" />}
                     </div>
                   </button>
                 ))}
               </div>
-            </div>
-          </div>
-        )}
-
-        {isLease && (
-          <div>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">Which floor do you prefer?</h3>
-            <input 
-              type="text" 
-              placeholder="e.g. 1st Floor, Ground Floor, etc."
-              value={floor}
-              onChange={(e) => setFloor(e.target.value)}
-              className="w-full mt-2 p-4 rounded-[4px] border border-gray-200 bg-white text-[#0a1128] text-[15px] outline-none focus:border-[#d4af37] transition-colors placeholder:text-gray-400"
-            />
-          </div>
-        )}
-
-        {isLease && (
-          <div>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">Which industry type(s) apply to your business?</h3>
-            <p className="text-[12px] text-gray-500 font-bold mb-4 uppercase tracking-wider">(Select Multiple)</p>
-            <div className="flex flex-wrap gap-2.5">
-              {industryTypes.map((ind) => {
-                const isSelected = selectedIndustries.includes(ind);
-                return (
-                  <button
-                    key={ind}
-                    onClick={() => toggleIndustry(ind)}
-                    className={`px-4 py-2.5 rounded-[4px] border text-[13px] font-bold transition-all duration-300 ${
-                      isSelected 
-                        ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm" 
-                        : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-800"
-                    }`}
-                  >
-                    {ind}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {isBuyOrSellProp && (
-          <div>
-            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">What is your source of funding?</h3>
-            <div className="flex gap-3 mt-4 w-1/2">
-              {fundingSources.map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFunding(f)}
-                  className={`flex-1 flex items-center justify-between p-4 rounded-[4px] border transition-all duration-300 ${
-                    funding === f 
-                      ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm" 
-                      : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <span className="text-[13px] font-bold">{f}</span>
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
-                    funding === f ? "border-[#d4af37]" : "border-gray-300"
-                  }`}>
-                    {funding === f && <div className="w-2 h-2 rounded-full bg-[#d4af37]" />}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div>
-          <h3 className="text-[18px] font-bold mb-1 text-[#0a1128]">Do you have any additional requirement notes?</h3>
-          <textarea 
-            placeholder="Mention additional details here so that your requirement will be matched accurately"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="w-full mt-2 p-4 rounded-[4px] border border-gray-200 bg-white text-[#0a1128] text-[15px] outline-none focus:border-[#d4af37] transition-colors min-h-[120px] resize-y placeholder:text-gray-400"
-          />
-        </div>
-
-        <div className="bg-indigo-50/50 rounded-[12px] border border-indigo-100 p-5 flex flex-col gap-3 mt-4">
-          {(isFranchise || isBusiness) ? (
-            <>
-              <div className="flex justify-between items-center w-full">
-                <div className="flex gap-4 items-center flex-wrap">
-                  <div className="flex gap-2 items-center text-indigo-900">
-                    <Icon1 size={18} /> 
-                    <span className="text-[15px] font-semibold">{label1}</span>
-                  </div>
-                  <div className="w-[1px] h-5 bg-indigo-200 hidden sm:block"></div>
-                  <div className="flex gap-2 items-center text-indigo-900">
-                    <Layers size={18} />
-                    <span className="text-[15px] font-semibold">{indObj?.label || "Industry"}</span>
-                  </div>
-                </div>
-                <button onClick={onBack} className="text-indigo-600 font-bold text-[14px] hover:underline">Edit</button>
-              </div>
-              <div className="text-[14px] text-indigo-900/70 font-medium mt-1">
-                Budget: <span className="font-bold text-indigo-900">{step2Data.budget || "-"}</span>
-              </div>
-              <div className="text-[14px] text-indigo-900/70 font-medium">
-                Locations: <span className="font-bold text-indigo-900">{locationsText}</span>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex justify-between items-start w-full">
-                <div className="flex flex-col gap-2 w-full">
-                  <div className="flex gap-3 items-center flex-wrap">
-                    <div className="flex gap-2 items-center text-indigo-900">
-                      <Icon1 size={16} /> 
-                      <span className="text-[14px] font-semibold">{label1}</span>
-                    </div>
-                    <div className="w-[1px] h-4 bg-indigo-200"></div>
-                    <div className="flex gap-2 items-center text-indigo-900">
-                      <Clock size={16} />
-                      <span className="text-[14px] font-semibold">{isLease ? (step2Data.leaseMonth || "No Month") : (step2Data.purpose || "No Purpose")}</span>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 items-center text-indigo-900">
-                    <MapPin size={16} />
-                    <span className="text-[14px] font-semibold">{catObj?.label || "Category"}</span>
-                  </div>
-                </div>
-                <button onClick={onBack} className="text-indigo-600 font-bold text-[14px] hover:underline shrink-0">Edit</button>
-              </div>
-              <div className="text-[14px] text-indigo-900/70 font-medium mt-2">
-                Budget: <span className="font-bold text-indigo-900">{step2Data.budget || "-"}</span>
-                {step2Data.size && <span className="mx-2">•</span>}
-                {step2Data.size && <span>Size: <span className="font-bold text-indigo-900">{step2Data.size}</span></span>}
-              </div>
-              <div className="text-[14px] text-indigo-900/70 font-medium">
-                Locations: <span className="font-bold text-indigo-900">{locationsText}</span>
-              </div>
-            </>
+            </motion.div>
           )}
-        </div>
 
-        <div className="pt-4 flex justify-end">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={onNext}
-            className="px-8 py-4 rounded-[4px] font-bold text-[15px] flex items-center gap-2 transition-all border border-[#d4af37]"
-            style={{ background: "linear-gradient(135deg, #d4af37 0%, #aa8922 100%)", color: "#ffffff" }}
-          >
-            Continue <ArrowRight size={18} />
-          </motion.button>
-        </div>
+          {/* Notes */}
+          <motion.div {...fadeUp} transition={{ delay: 0.35 }}>
+            <h3 className="text-[18px] font-bold mb-1 text-[#0a1128] dark:text-white">Any additional requirement notes?</h3>
+            <textarea 
+              placeholder="Mention additional details here so that your requirement will be matched accurately"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full mt-3 p-4 rounded border-2 border-[#0a1128]/8 dark:border-white/10 bg-white dark:bg-[#0b1b42] text-[#0a1128] dark:text-white text-[14px] outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20 transition-all duration-300 min-h-[140px] resize-y placeholder:text-gray-300 dark:placeholder:text-white/25 font-medium"
+            />
+          </motion.div>
+
+          {/* Summary bar */}
+          <motion.div {...fadeUp} transition={{ delay: 0.4 }} className="bg-[#0a1128]/[0.03] dark:bg-white/[0.04] rounded border border-[#0a1128]/6 dark:border-white/8 p-5 flex flex-col gap-2.5">
+            {(isFranchise || isBusiness) ? (
+              <>
+                <div className="flex justify-between items-center w-full">
+                  <div className="flex gap-4 items-center flex-wrap">
+                    <div className="flex gap-2 items-center text-[#0a1128] dark:text-white">
+                      <div className="w-7 h-7 rounded-sm bg-[#d4af37]/10 flex items-center justify-center"><Icon1 size={14} className="text-[#d4af37]" /></div>
+                      <span className="text-[13px] font-semibold">{label1}</span>
+                    </div>
+                    <div className="w-[1px] h-4 bg-[#0a1128]/10 dark:bg-white/10 hidden sm:block" />
+                    <div className="flex gap-2 items-center text-[#0a1128] dark:text-white">
+                      <div className="w-7 h-7 rounded-sm bg-[#d4af37]/10 flex items-center justify-center"><Layers size={14} className="text-[#d4af37]" /></div>
+                      <span className="text-[13px] font-semibold">{indObj?.label || "Industry"}</span>
+                    </div>
+                  </div>
+                  <button onClick={onBack} className="text-[#d4af37] font-bold text-[12px] hover:underline">Edit</button>
+                </div>
+                <div className="text-[13px] text-[#0a1128]/60 dark:text-white/50 font-medium">Budget: <span className="font-bold text-[#0a1128] dark:text-white">{step2Data.budget || "-"}</span></div>
+                <div className="text-[13px] text-[#0a1128]/60 dark:text-white/50 font-medium">Locations: <span className="font-bold text-[#0a1128] dark:text-white">{locationsText}</span></div>
+              </>
+            ) : (
+              <>
+                <div className="flex justify-between items-start w-full">
+                  <div className="flex flex-col gap-2 w-full">
+                    <div className="flex gap-3 items-center flex-wrap">
+                      <div className="flex gap-2 items-center text-[#0a1128] dark:text-white">
+                        <div className="w-7 h-7 rounded-sm bg-[#d4af37]/10 flex items-center justify-center"><Icon1 size={14} className="text-[#d4af37]" /></div>
+                        <span className="text-[13px] font-semibold">{label1}</span>
+                      </div>
+                      <div className="w-[1px] h-4 bg-[#0a1128]/10 dark:bg-white/10" />
+                      <div className="flex gap-2 items-center text-[#0a1128] dark:text-white">
+                        <div className="w-7 h-7 rounded-sm bg-[#d4af37]/10 flex items-center justify-center"><Clock size={14} className="text-[#d4af37]" /></div>
+                        <span className="text-[13px] font-semibold">{isLease ? (step2Data.leaseMonth || "No Month") : (step2Data.purpose || "No Purpose")}</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 items-center text-[#0a1128] dark:text-white">
+                      <div className="w-7 h-7 rounded-sm bg-[#d4af37]/10 flex items-center justify-center"><MapPin size={14} className="text-[#d4af37]" /></div>
+                      <span className="text-[13px] font-semibold">{catObj?.label || "Category"}</span>
+                    </div>
+                  </div>
+                  <button onClick={onBack} className="text-[#d4af37] font-bold text-[12px] hover:underline shrink-0">Edit</button>
+                </div>
+                <div className="text-[13px] text-[#0a1128]/60 dark:text-white/50 font-medium mt-1">
+                  Budget: <span className="font-bold text-[#0a1128] dark:text-white">{step2Data.budget || "-"}</span>
+                  {step2Data.size && <span className="mx-2">•</span>}
+                  {step2Data.size && <span>Size: <span className="font-bold text-[#0a1128] dark:text-white">{step2Data.size}</span></span>}
+                </div>
+                <div className="text-[13px] text-[#0a1128]/60 dark:text-white/50 font-medium">Locations: <span className="font-bold text-[#0a1128] dark:text-white">{locationsText}</span></div>
+              </>
+            )}
+          </motion.div>
+
+          {/* Error Message & Continue */}
+          <div className="flex flex-col gap-4 pt-2">
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{ opacity: 0, y: -10, height: 0 }}
+                  className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 px-4 py-3 rounded flex items-center gap-3"
+                >
+                  <AlertCircle size={18} className="shrink-0" />
+                  <span className="text-[13px] font-semibold">{error}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <div className="flex justify-end">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleNext}
+                className="px-8 py-4 rounded font-bold text-[14px] flex items-center gap-2 transition-all text-white shadow-[0_8px_24px_rgba(10,17,40,0.2)]"
+                style={{ background: "linear-gradient(135deg, #0a1128 0%, #1a3463 100%)" }}
+              >
+                Continue
+                <div className="w-6 h-6 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                  <ArrowRight size={14} className="text-[#d4af37]" />
+                </div>
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
       </main>
     </div>
   );
