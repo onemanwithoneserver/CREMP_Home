@@ -1,23 +1,24 @@
-import { useState } from "react";
+
 import StepHeader from "../../components/StepHeader";
 import { purposes, budgetRanges, sizeRanges, sizeRangesYards, months, dailyOperations } from "./data";
 import { requirementTypes, propertyCategories, industries } from "../Step 1/data";
 import { motion } from "framer-motion";
 import { ArrowRight, Layers, Building } from "lucide-react";
-import type { Step1Data } from "../index";
+import type { Step1Data, Step2Data } from "../index";
 
 interface Step2DesktopProps {
   onNext: () => void;
   onBack: () => void;
   step1Data: Step1Data;
+  step2Data: Step2Data;
+  setStep2Data: React.Dispatch<React.SetStateAction<Step2Data>>;
 }
 
-export default function Step2Desktop({ onNext, onBack, step1Data }: Step2DesktopProps) {
-  const [purpose, setPurpose] = useState("");
-  const [budget, setBudget] = useState("");
-  const [size, setSize] = useState("");
-  const [leaseMonth, setLeaseMonth] = useState("");
-  const [dailyOp, setDailyOp] = useState("");
+export default function Step2Desktop({ onNext, onBack, step1Data, step2Data, setStep2Data }: Step2DesktopProps) {
+  const { purpose, budget, size, leaseMonth, dailyOp } = step2Data;
+  const updateStep2Data = (field: keyof Step2Data, value: string) => {
+    setStep2Data(prev => ({ ...prev, [field]: value }));
+  };
   
   const { reqType, propCategory, selectedIndustries } = step1Data;
 
@@ -51,7 +52,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data }: Step2Desktop
             <p className="text-[12px] text-gray-500 font-medium mb-6 uppercase tracking-wider">Select the tentative month you wish to lease from</p>
             <select
               value={leaseMonth}
-              onChange={(e) => setLeaseMonth(e.target.value)}
+              onChange={(e) => updateStep2Data("leaseMonth", e.target.value)}
               className="w-full p-4 rounded-[8px] border-2 border-gray-100 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[15px] font-medium"
             >
               <option value="" disabled>Select Month</option>
@@ -70,7 +71,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data }: Step2Desktop
                 return (
                   <button
                     key={p}
-                    onClick={() => setPurpose(p)}
+                    onClick={() => updateStep2Data("purpose", p)}
                     className={`flex-1 flex items-center gap-4 p-5 rounded-[4px] border transition-all duration-300 ${
                       isSelected
                         ? "border-[#d4af37] bg-orange-50/50 shadow-sm"
@@ -101,7 +102,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data }: Step2Desktop
               return (
                 <button
                   key={b}
-                  onClick={() => setBudget(b)}
+                  onClick={() => updateStep2Data("budget", b)}
                   className={`p-5 rounded-[4px] border text-center transition-all duration-300 ${
                     isSelected
                       ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm"
@@ -125,7 +126,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data }: Step2Desktop
                 return (
                   <button
                     key={s}
-                    onClick={() => setSize(s)}
+                    onClick={() => updateStep2Data("size", s)}
                     className={`p-5 rounded-[4px] border text-center transition-all duration-300 ${
                       isSelected
                         ? "border-[#d4af37] bg-orange-50/50 text-[#0a1128] shadow-sm"
@@ -150,7 +151,7 @@ export default function Step2Desktop({ onNext, onBack, step1Data }: Step2Desktop
                 return (
                   <button
                     key={op}
-                    onClick={() => setDailyOp(op)}
+                    onClick={() => updateStep2Data("dailyOp", op)}
                     className={`flex items-center gap-4 p-5 rounded-[4px] border transition-all duration-300 ${
                       isSelected
                         ? "border-[#d4af37] bg-orange-50/50 shadow-sm"

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Step1 from "./Step 1";
 import Step2 from "./Step 2";
@@ -9,6 +8,14 @@ import { AnimatePresence, motion } from "framer-motion";
 
 interface PostRequirementSellerProps {
   isMobile: boolean;
+}
+
+export interface Step2Data {
+  purpose: string;
+  budget: string;
+  size: string;
+  leaseMonth: string;
+  dailyOp: string;
 }
 
 export interface Step1Data {
@@ -25,6 +32,14 @@ export default function PostRequirementSeller({ isMobile }: PostRequirementSelle
     reqName: "",
     propCategory: "retail_space",
     selectedIndustries: [],
+  });
+
+  const [step2Data, setStep2Data] = useState<Step2Data>({
+    purpose: "",
+    budget: "",
+    size: "",
+    leaseMonth: "",
+    dailyOp: "",
   });
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 5));
@@ -55,9 +70,11 @@ export default function PostRequirementSeller({ isMobile }: PostRequirementSelle
               onBack={prevStep} 
               isMobile={isMobile} 
               step1Data={step1Data}
+              step2Data={step2Data}
+              setStep2Data={setStep2Data}
             />
           )}
-          {currentStep === 3 && <Step3 onNext={nextStep} onBack={prevStep} isMobile={isMobile} />}
+          {currentStep === 3 && <Step3 onNext={nextStep} onBack={prevStep} isMobile={isMobile} step1Data={step1Data} step2Data={step2Data} />}
           {currentStep === 4 && <Step4 onNext={nextStep} onBack={prevStep} isMobile={isMobile} />}
           {currentStep === 5 && (
             <Step5 
