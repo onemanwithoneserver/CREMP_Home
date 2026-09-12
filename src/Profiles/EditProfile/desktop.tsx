@@ -9,7 +9,7 @@ interface EditProfileDesktopProps {
   onSave?: () => void;
 }
 
-export default function EditProfileDesktop({ onBack, onSave }: EditProfileDesktopProps) {
+export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) {
   const [formData, setFormData] = useState<EditProfileFormData>(initialFormData);
   const [errors, setErrors] = useState<Partial<Record<keyof EditProfileFormData, string>>>({});
 

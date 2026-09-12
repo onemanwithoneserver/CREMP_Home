@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Step1 from "./Step 1";
 import Step2 from "./Step 2";
@@ -10,8 +11,21 @@ interface PostRequirementSellerProps {
   isMobile: boolean;
 }
 
+export interface Step1Data {
+  reqType: string;
+  reqName: string;
+  propCategory: string;
+  selectedIndustries: string[];
+}
+
 export default function PostRequirementSeller({ isMobile }: PostRequirementSellerProps) {
   const [currentStep, setCurrentStep] = useState(1);
+  const [step1Data, setStep1Data] = useState<Step1Data>({
+    reqType: "sell_property",
+    reqName: "",
+    propCategory: "retail_space",
+    selectedIndustries: [],
+  });
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 5));
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
@@ -27,8 +41,22 @@ export default function PostRequirementSeller({ isMobile }: PostRequirementSelle
           transition={{ duration: 0.2 }}
           className="w-full min-h-screen"
         >
-          {currentStep === 1 && <Step1 onNext={nextStep} isMobile={isMobile} />}
-          {currentStep === 2 && <Step2 onNext={nextStep} onBack={prevStep} isMobile={isMobile} />}
+          {currentStep === 1 && (
+            <Step1 
+              onNext={nextStep} 
+              isMobile={isMobile}
+              step1Data={step1Data}
+              setStep1Data={setStep1Data}
+            />
+          )}
+          {currentStep === 2 && (
+            <Step2 
+              onNext={nextStep} 
+              onBack={prevStep} 
+              isMobile={isMobile} 
+              step1Data={step1Data}
+            />
+          )}
           {currentStep === 3 && <Step3 onNext={nextStep} onBack={prevStep} isMobile={isMobile} />}
           {currentStep === 4 && <Step4 onNext={nextStep} onBack={prevStep} isMobile={isMobile} />}
           {currentStep === 5 && (

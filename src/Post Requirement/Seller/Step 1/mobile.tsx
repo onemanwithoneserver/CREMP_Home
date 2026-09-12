@@ -1,22 +1,26 @@
-import { useState } from "react";
+
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { requirementTypes, propertyCategories, industries } from "./data";
 
+import type { Step1Data } from "../index";
+
 interface Step1MobileProps {
   onNext: () => void;
+  step1Data: Step1Data;
+  setStep1Data: (data: Step1Data | ((prev: Step1Data) => Step1Data)) => void;
 }
 
-export default function Step1Mobile({ onNext }: Step1MobileProps) {
-  const [reqType, setReqType] = useState<string>("sell_property");
-  const [reqName, setReqName] = useState("");
-  const [propCategory, setPropCategory] = useState<string>("retail_space");
-  const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
+export default function Step1Mobile({ onNext, step1Data, setStep1Data }: Step1MobileProps) {
+  const { reqType, reqName, propCategory, selectedIndustries } = step1Data;
 
   const toggleIndustry = (id: string) => {
-    setSelectedIndustries((prev) => 
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
+    setStep1Data((prev) => ({
+      ...prev,
+      selectedIndustries: prev.selectedIndustries.includes(id) 
+        ? prev.selectedIndustries.filter((i) => i !== id) 
+        : [...prev.selectedIndustries, id]
+    }));
   };
 
   return (
@@ -59,7 +63,7 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
               return (
                 <button
                   key={type.id}
-                  onClick={() => setReqType(type.id)}
+                  onClick={() => setStep1Data((prev) => ({ ...prev, reqType: type.id }))}
                   className={`flex flex-col items-center justify-center gap-3 p-4 rounded-[10px] border-2 transition-all duration-300 ${
                     isSelected
                       ? "border-[#d4af37] bg-orange-50/20 shadow-sm"
@@ -82,7 +86,7 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
             type="text" 
             placeholder="Enter a name for this requirement"
             value={reqName}
-            onChange={(e) => setReqName(e.target.value)}
+            onChange={(e) => setStep1Data((prev) => ({ ...prev, reqName: e.target.value }))}
             className="w-full p-4 rounded-[8px] border-2 border-gray-100 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[14px] placeholder:text-gray-400 mt-2 font-medium"
           />
         </div>
@@ -98,7 +102,7 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
                 return (
                   <button
                     key={cat.id}
-                    onClick={() => setPropCategory(cat.id)}
+                    onClick={() => setStep1Data((prev) => ({ ...prev, propCategory: cat.id }))}
                     className={`flex flex-col items-center justify-center gap-3 p-4 rounded-[10px] border-2 transition-all duration-300 ${
                       isSelected
                         ? "border-[#d4af37] bg-orange-50/20 shadow-sm"

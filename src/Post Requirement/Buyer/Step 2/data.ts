@@ -17,3 +17,23 @@ export const sizeRanges = [
   "10000+ sft",
   "Custom",
 ];
+
+export const sizeRangesYards = [
+  "Under 100 Sq Yards",
+  "100 - 300 Sq Yards",
+  "300 - 500 Sq Yards",
+  "500 - 1000 Sq Yards",
+  "1000+ Sq Yards",
+  "Custom",
+];
+
+export const months = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+export const dailyOperations = [
+  "Full-time active involvement",
+  "Part-time involvement",
+  "Passive investor only"
+];

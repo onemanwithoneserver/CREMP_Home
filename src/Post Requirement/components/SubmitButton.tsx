@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Rocket, Check, Building2 } from "lucide-react";
 
 interface SubmitButtonProps {
