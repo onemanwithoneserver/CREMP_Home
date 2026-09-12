@@ -161,7 +161,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
 
             
             {!isLoading && (
-              <div className="mt-8 mb-2 rounded-[12px] bg-gradient-to-br from-[#0a1128] via-[#0f1b3d] to-[#1a3463] border border-[#d4af37]/20 shadow-[0_8px_30px_rgba(10,17,40,0.12)] px-8 py-7 flex items-center justify-between gap-6 relative overflow-hidden group">
+              <div className="mt-8 mb-2 rounded-[8px] bg-gradient-to-br from-[#0a1128] via-[#0f1b3d] to-[#1a3463] border border-[#d4af37]/20 shadow-[0_8px_30px_rgba(10,17,40,0.12)] px-8 py-7 flex items-center justify-between gap-6 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 blur-[60px] rounded-full translate-x-1/3 -translate-y-1/2 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#d4af37]/5 blur-[40px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
                 

@@ -58,7 +58,7 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
               Find{' '}
-              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] to-[#b38728] animate-[cb-shimmer_3s_infinite_linear]" style={{ backgroundSize: "200% auto" }}>
+              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] animate-[cb-shimmer_3s_infinite_linear]" style={{ backgroundSize: "200% auto" }}>
                 CREMP Brokers
               </span>
             </h1>
