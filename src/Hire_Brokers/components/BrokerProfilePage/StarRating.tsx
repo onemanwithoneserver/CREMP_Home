@@ -18,14 +18,14 @@ export function StarRating({ rating, size = 'sm' }: StarRatingProps) {
           <svg 
             key={i} 
             viewBox="0 0 16 16" 
-            className={`${sz} ${filled || half ? 'text-[#a16207]' : 'text-[#6b7280]'}`} 
+            className={`${sz} ${filled || half ? 'text-[#d4af37]' : 'text-[#6b7280]'}`} 
             fill="currentColor"
           >
             {half ? (
               <>
                 <defs>
                   <linearGradient id={`hg-${i}-${size}`} x1="0" x2="1">
-                    <stop offset="50%" stopColor="#a16207" />
+                    <stop offset="50%" stopColor="#d4af37" />
                     <stop offset="50%" stopColor="#6b7280" />
                   </linearGradient>
                 </defs>

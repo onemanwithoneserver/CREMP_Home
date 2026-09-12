@@ -53,14 +53,14 @@ function RatingStars({ rating }: { rating: number }) {
           <svg
             key={i}
             viewBox="0 0 16 16"
-            className={`w-3 h-3 cb-star ${filled || half ? 'text-[#a16207]' : 'text-[#6b7280]'}`}
+            className={`w-3 h-3 cb-star ${filled || half ? 'text-[#d4af37]' : 'text-[#6b7280]'}`}
             fill="currentColor"
           >
             {half ? (
               <>
                 <defs>
                   <linearGradient id={`half-${i}`} x1="0" x2="1" y1="0" y2="0">
-                    <stop offset="50%" stopColor="#a16207" />
+                    <stop offset="50%" stopColor="#d4af37" />
                     <stop offset="50%" stopColor="#6b7280" />
                   </linearGradient>
                 </defs>
