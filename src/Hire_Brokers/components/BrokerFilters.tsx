@@ -131,14 +131,82 @@ const sectionIcons: Record<string, React.ReactNode> = {
   sort: <ArrowUpDown size={16} strokeWidth={1.9} />,
 };
 
+interface SectionTheme {
+  headerGradient: string;
+  bodyGradient: string;
+  iconColor: string;
+  chevronColor: string;
+  pillBg: string;
+  glow: string;
+}
+
+const SECTION_THEMES: Record<string, SectionTheme> = {
+  location: {
+    headerGradient: 'bg-gradient-to-r from-sky-500/15 via-blue-500/[0.05] to-transparent dark:from-sky-500/20 dark:via-blue-500/[0.06]',
+    bodyGradient: 'bg-gradient-to-b from-sky-500/[0.04] via-transparent to-transparent',
+    iconColor: 'text-sky-500 dark:text-sky-400',
+    chevronColor: 'text-sky-500 dark:text-sky-400',
+    pillBg: 'bg-sky-500',
+    glow: 'shadow-[inset_2px_0_0_0_#0ea5e9]',
+  },
+  expertise: {
+    headerGradient: 'bg-gradient-to-r from-[#d4af37]/20 via-[#bf953f]/[0.06] to-transparent dark:from-[#d4af37]/25 dark:via-[#bf953f]/[0.08]',
+    bodyGradient: 'bg-gradient-to-b from-[#d4af37]/[0.05] via-transparent to-transparent',
+    iconColor: 'text-[#d4af37]',
+    chevronColor: 'text-[#d4af37]',
+    pillBg: 'bg-[#d4af37]',
+    glow: 'shadow-[inset_2px_0_0_0_#d4af37]',
+  },
+  dealType: {
+    headerGradient: 'bg-gradient-to-r from-emerald-500/15 via-teal-500/[0.05] to-transparent dark:from-emerald-500/20 dark:via-teal-500/[0.06]',
+    bodyGradient: 'bg-gradient-to-b from-emerald-500/[0.04] via-transparent to-transparent',
+    iconColor: 'text-emerald-500 dark:text-emerald-400',
+    chevronColor: 'text-emerald-500 dark:text-emerald-400',
+    pillBg: 'bg-emerald-500',
+    glow: 'shadow-[inset_2px_0_0_0_#10b981]',
+  },
+  dealSize: {
+    headerGradient: 'bg-gradient-to-r from-purple-500/15 via-indigo-500/[0.05] to-transparent dark:from-purple-500/20 dark:via-indigo-500/[0.06]',
+    bodyGradient: 'bg-gradient-to-b from-purple-500/[0.04] via-transparent to-transparent',
+    iconColor: 'text-purple-500 dark:text-purple-400',
+    chevronColor: 'text-purple-500 dark:text-purple-400',
+    pillBg: 'bg-purple-500',
+    glow: 'shadow-[inset_2px_0_0_0_#a855f7]',
+  },
+  experience: {
+    headerGradient: 'bg-gradient-to-r from-amber-500/15 via-orange-500/[0.05] to-transparent dark:from-amber-500/20 dark:via-orange-500/[0.06]',
+    bodyGradient: 'bg-gradient-to-b from-amber-500/[0.04] via-transparent to-transparent',
+    iconColor: 'text-amber-500 dark:text-amber-400',
+    chevronColor: 'text-amber-500 dark:text-amber-400',
+    pillBg: 'bg-amber-500',
+    glow: 'shadow-[inset_2px_0_0_0_#f59e0b]',
+  },
+  sort: {
+    headerGradient: 'bg-gradient-to-r from-rose-500/15 via-pink-500/[0.05] to-transparent dark:from-rose-500/20 dark:via-pink-500/[0.06]',
+    bodyGradient: 'bg-gradient-to-b from-rose-500/[0.04] via-transparent to-transparent',
+    iconColor: 'text-rose-500 dark:text-rose-400',
+    chevronColor: 'text-rose-500 dark:text-rose-400',
+    pillBg: 'bg-rose-500',
+    glow: 'shadow-[inset_2px_0_0_0_#f43f5e]',
+  },
+};
+
 function AccordionSection({
   id, label, isExpanded, onToggle, children,
 }: {
   id: string; label: string; isExpanded: boolean;
   onToggle: () => void; children: React.ReactNode;
 }) {
+  const theme = SECTION_THEMES[id] ?? SECTION_THEMES.expertise;
+
   return (
-    <div className="border-b border-black/[0.05] dark:border-white/[0.08]" role="region" aria-labelledby={`fs-${id}`}>
+    <div
+      className={`border-b border-black/[0.05] dark:border-white/[0.08] transition-colors duration-200 ${
+        isExpanded ? theme.bodyGradient : ''
+      }`}
+      role="region"
+      aria-labelledby={`fs-${id}`}
+    >
       <button
         id={`fs-${id}`}
         type="button"
@@ -147,18 +215,27 @@ function AccordionSection({
         onClick={onToggle}
         className={`w-full flex items-center justify-between px-4 py-2.5 text-left
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#d4af37]/30
-          transition-all
+          transition-all duration-200 relative
           ${isExpanded
-            ? 'bg-gradient-to-r from-[#d4af37]/10 via-[#d4af37]/[0.02] to-transparent'
+            ? `${theme.headerGradient} ${theme.glow}`
             : 'hover:bg-black/[0.02] dark:hover:bg-white/[0.03]'
           }`}
         style={{ fontFamily: 'Outfit, sans-serif' }}
       >
         <span className="flex items-center gap-2.5">
-          <span className={`transition-colors ${isExpanded ? 'text-[#d4af37]' : 'text-[#637089] dark:text-gray-400'}`}>
+          <span
+            className={`w-1 h-3.5 rounded-full transition-all duration-200 ${
+              isExpanded ? `${theme.pillBg} opacity-100 scale-100` : 'opacity-0 scale-50'
+            }`}
+          />
+          <span className={`transition-colors duration-200 ${isExpanded ? theme.iconColor : 'text-[#637089] dark:text-gray-400'}`}>
             {sectionIcons[id]}
           </span>
-          <span className="text-[13px] font-bold text-[#0a1128] dark:text-white tracking-tight">{label}</span>
+          <span className={`text-[13px] tracking-tight transition-colors duration-200 ${
+            isExpanded ? 'font-bold text-[#0a1128] dark:text-white' : 'font-semibold text-gray-700 dark:text-gray-300'
+          }`}>
+            {label}
+          </span>
         </span>
         <span
           aria-hidden
@@ -167,8 +244,8 @@ function AccordionSection({
           <ChevronDown
             size={15}
             strokeWidth={2.2}
-            className={`transition-transform duration-250 ease-out ${
-              isExpanded ? 'rotate-180 text-[#d4af37]' : 'text-[#9ca3af] dark:text-gray-500'
+            className={`transition-all duration-250 ease-out ${
+              isExpanded ? `rotate-180 ${theme.chevronColor}` : 'text-[#9ca3af] dark:text-gray-500'
             }`}
           />
         </span>
@@ -413,28 +490,29 @@ function FilterPanelContent({
       </div>
 
       {/* Footer / CTA Bar */}
-      <div className="shrink-0 px-4 py-3 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-md border-t border-black/[0.06] dark:border-white/10 flex items-center gap-2.5">
-        {isDesktop && (
-          <button
-            type="button"
-            onClick={() => { onReset(); onClose(); }}
-            className="
-              flex-1 py-2.5 rounded-[4px] border border-black/[0.08] dark:border-white/15 bg-black/[0.02] dark:bg-white/[0.04]
-              text-[12.5px] font-bold text-gray-700 dark:text-gray-300
-              hover:border-[#d4af37]/50 hover:text-[#d4af37] dark:hover:text-[#d4af37] active:scale-[0.99] transition-all
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/25 focus-visible:ring-offset-1
-              flex items-center justify-center gap-1.5
-            "
-            style={{ fontFamily: 'Outfit, sans-serif' }}
-          >
-            <RotateCcw size={13} strokeWidth={2} />
-            Reset
-          </button>
-        )}
+      <div className={`shrink-0 px-4 py-3 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-md border-t border-black/[0.06] dark:border-white/10 flex items-center gap-2.5 ${
+        isDesktop ? '' : 'justify-between'
+      }`}>
+        <button
+          type="button"
+          onClick={() => { onReset(); if (isDesktop) onClose(); }}
+          className={
+            isDesktop
+              ? "flex-1 py-2.5 rounded-[4px] border border-black/[0.08] dark:border-white/15 bg-black/[0.02] dark:bg-white/[0.04] text-[12.5px] font-bold text-gray-700 dark:text-gray-300 hover:border-[#d4af37]/50 hover:text-[#d4af37] dark:hover:text-[#d4af37] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5"
+              : "text-[12px] font-bold text-[#637089] dark:text-gray-400 hover:text-[#d4af37] dark:hover:text-[#d4af37] flex items-center gap-1.5 transition-colors px-1 py-1"
+          }
+          style={{ fontFamily: 'Outfit, sans-serif' }}
+        >
+          <RotateCcw size={13} strokeWidth={2} />
+          Reset
+        </button>
         <button
           type="button"
           onClick={onClose}
-          className="flex-[2] py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white text-[13px] font-bold tracking-wide shadow-[0_0_20px_rgba(212,175,55,0.25)] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] active:scale-[0.99] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 focus-visible:ring-offset-2 flex items-center justify-center gap-1.5"
+          className={`
+            py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] hover:from-[#d4af37] hover:via-[#bf953f] hover:to-[#a67c00] text-white text-[13px] font-bold tracking-wide shadow-[0_0_20px_rgba(212,175,55,0.25)] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] active:scale-[0.99] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 focus-visible:ring-offset-2 flex items-center justify-center gap-1.5
+            ${isDesktop ? 'flex-[2]' : 'px-6 ml-auto w-auto min-w-[120px]'}
+          `}
           style={{ fontFamily: 'Outfit, sans-serif' }}
         >
           <Check size={14} strokeWidth={2.5} />
