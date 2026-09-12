@@ -98,8 +98,8 @@ export function BottomCTABar({ broker, isDesktop }: BottomCTABarProps) {
           type="button"
           onClick={() => setContacted(!contacted)}
           aria-label={contacted ? 'Requirement sent' : 'Send requirement'}
-          className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl text-[12px] md:text-[13px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 transition-all duration-300 font-['Outfit',sans-serif] px-3 md:px-4 py-2 shrink-0 whitespace-nowrap ${
-            contacted
+          className={`flex-1 md:flex-none md:w-56 md:ml-auto flex items-center justify-center gap-1.5 rounded-xl text-[12px] md:text-[13px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 transition-all duration-300 font-['Outfit',sans-serif] px-3 md:px-4 py-2 shrink-0 whitespace-nowrap ${
+            contacted
               ? 'bg-[#059669]/[0.08] text-[#047857] border-[1.5px] border-[#059669]/[0.22]'
               : 'bg-gradient-to-br from-[#0a1128] to-[#1a3463] text-white border-[1.5px] border-transparent shadow-[0_4px_14px_rgba(10,17,40,0.25)]'
           }`}
@@ -126,7 +126,7 @@ export function BottomCTABar({ broker, isDesktop }: BottomCTABarProps) {
           <button
             type="button"
             onClick={() => setShowSchedule(true)}
-            className="flex-1 flex items-center justify-center gap-1.5 rounded-xl text-[12px] md:text-[13px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 transition-all duration-200 hover:bg-[#d4af37]/10 font-['Outfit',sans-serif] bg-[#d4af37]/[0.07] border-[1.5px] border-[#d4af37]/[0.3] px-3 md:px-4 py-2 shrink-0 whitespace-nowrap text-[#8a6b22]"
+            className="flex-1 md:flex-none md:w-56 flex items-center justify-center gap-1.5 rounded-xl text-[12px] md:text-[13px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 transition-all duration-200 hover:bg-[#d4af37]/10 font-['Outfit',sans-serif] bg-[#d4af37]/[0.07] border-[1.5px] border-[#d4af37]/[0.3] px-3 md:px-4 py-2 shrink-0 whitespace-nowrap text-[#8a6b22]"
           >
             <svg viewBox="0 0 16 16" fill="none" stroke="#8a6b22" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
               <rect x="2" y="2" width="12" height="12" rx="1" />

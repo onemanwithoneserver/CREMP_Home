@@ -51,9 +51,11 @@ export function ProfileHeader({ broker, isDesktop }: ProfileHeaderProps) {
               <h1 className="text-[1.35rem] font-bold text-white leading-tight mb-1.5 font-['Outfit',sans-serif] flex items-center gap-2">
                 <span className="inline-block">{broker.name}</span>
                 {broker.isVerified && (
-                  <svg viewBox="0 0 16 16" fill="#d4af37" className="w-5 h-5 shrink-0">
-                    <path fillRule="evenodd" d="M8 1.25a.75.75 0 00-.454.152L2.546 4.8A.75.75 0 002.25 5.4v4.85a.75.75 0 00.296.6l5 3.75a.75.75 0 00.908 0l5-3.75a.75.75 0 00.296-.6V5.4a.75.75 0 00-.296-.6L8.454 1.402A.75.75 0 008 1.25Zm2.78 5.47a.75.75 0 00-1.06-1.06L7.25 8.13 6.28 7.16a.75.75 0 00-1.06 1.06l1.5 1.5a.75.75 0 001.06 0l3-3Z" clipRule="evenodd" />
-                  </svg>
+                  <span className="inline-flex items-center justify-center text-[#0095f6]" title="Verified">
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[22px] h-[22px] shrink-0">
+                      <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                    </svg>
+                  </span>
                 )}
               </h1>
               
@@ -137,9 +139,11 @@ export function ProfileHeader({ broker, isDesktop }: ProfileHeaderProps) {
                     {broker.name}
                   </h1>
                   {broker.isVerified && (
-                    <svg viewBox="0 0 16 16" fill="#d4af37" className="w-4 h-4 shrink-0">
-                      <path fillRule="evenodd" d="M8 1.25a.75.75 0 00-.454.152L2.546 4.8A.75.75 0 002.25 5.4v4.85a.75.75 0 00.296.6l5 3.75a.75.75 0 00.908 0l5-3.75a.75.75 0 00.296-.6V5.4a.75.75 0 00-.296-.6L8.454 1.402A.75.75 0 008 1.25Zm2.78 5.47a.75.75 0 00-1.06-1.06L7.25 8.13 6.28 7.16a.75.75 0 00-1.06 1.06l1.5 1.5a.75.75 0 001.06 0l3-3Z" clipRule="evenodd" />
-                    </svg>
+                    <span className="inline-flex items-center justify-center text-[#0095f6]" title="Verified">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] shrink-0">
+                        <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                      </svg>
+                    </span>
                   )}
                 </div>
                 <p className="text-white/80 text-[11.5px] font-semibold mt-0.5 font-['Outfit',sans-serif]">
