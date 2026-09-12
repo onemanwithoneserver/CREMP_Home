@@ -98,14 +98,14 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
           <BrokerSearch
             value={filters.search}
             onChange={setSearch}
-            className="flex-1"
+            className="flex-1 max-w-[480px]"
           />
           
           <button
             onClick={() => setMapPanelOpen(true)}
             aria-label="Open map view"
             title="View brokers on map"
-            className={`shrink-0 flex items-center gap-1.5 text-[11px] font-semibold rounded-lg px-3 py-[7px] border transition-colors shadow-sm whitespace-nowrap
+            className={`shrink-0 ml-auto flex items-center gap-1.5 text-[11px] font-semibold rounded-lg px-3 py-[7px] border transition-colors shadow-sm whitespace-nowrap
               ${mapPanelOpen
                 ? 'bg-[#0a1128] text-[#d4af37] border-[#0a1128]'
                 : 'bg-white dark:bg-[#0b1b42] dark:border-white/10 text-[#0a1128] dark:text-white border-black/[0.08] hover:text-[#d4af37] hover:border-[#d4af37]/40'

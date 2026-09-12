@@ -17,7 +17,7 @@ export default function BrokerSearch({
 
   return (
     <div
-      className={`w-3/4 relative flex items-center bg-white dark:bg-[#0b1b42] dark:border-white/10 border border-black/[0.08] rounded-xl shadow-sm hover:border-[#d4af37]/50 focus-within:border-[#d4af37] focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.12)] transition-all ${className}`}
+      className={`w-full relative flex items-center bg-white dark:bg-[#0b1b42] dark:border-white/10 border border-black/[0.08] rounded-xl shadow-sm hover:border-[#d4af37]/50 focus-within:border-[#d4af37] focus-within:shadow-[0_0_0_3px_rgba(212,175,55,0.12)] transition-all ${className}`}
       onClick={() => inputRef.current?.focus()}
     >
       
