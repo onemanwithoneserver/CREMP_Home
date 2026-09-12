@@ -28,6 +28,9 @@ import BuySearchResults from "./Buy Search results";
 import PostRequirementBuyer from "./Post Requirement/Buyer";
 import PostRequirementSeller from "./Post Requirement/Seller";
 import Profiles from "./Profiles";
+import SellerDashboard from "./dashboard/seller";
+import BuyerDashboard from "./dashboard/buyer";
+
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -139,6 +142,14 @@ function App() {
               <Route
                 path="/:themeMode/:viewMode/profiles"
                 element={<Profiles isMobile={isMobile} />}
+              />
+              <Route
+                path="/:themeMode/:viewMode/dashboard-seller/*"
+                element={<SellerDashboard />}
+              />
+              <Route
+                path="/:themeMode/:viewMode/dashboard-buyer/*"
+                element={<BuyerDashboard />}
               />
               <Route
                 path="*"
