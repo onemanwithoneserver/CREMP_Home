@@ -144,7 +144,7 @@ function CityComboBox({ value, onChange }: { value: CitySelection; onChange: (v:
           </div>
 
           
-          <div className="overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
+          <div className="overflow-y-auto scrollbar-hide">
             
             <button
               type="button"

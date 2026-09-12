@@ -123,7 +123,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
         <div className="flex flex-1 overflow-hidden">
 
           
-          <main className="flex-1 overflow-y-auto cb-scroll-thin px-3 pb-2">
+          <main className="flex-1 overflow-y-auto scrollbar-hide px-3 pb-2">
             
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">

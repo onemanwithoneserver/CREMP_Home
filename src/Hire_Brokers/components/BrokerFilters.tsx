@@ -290,8 +290,7 @@ function FilterPanelContent({
     <div className="flex flex-col h-full">
       
       <div
-        className="flex-1 overflow-y-auto"
-        style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(212,175,55,0.2) transparent' }}
+        className="flex-1 overflow-y-auto scrollbar-hide"
       >
 
         
