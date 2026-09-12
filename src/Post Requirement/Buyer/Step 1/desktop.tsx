@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { requirementTypes, propertyCategories } from "./data";
+import { requirementTypes, propertyCategories, industries } from "./data";
 
 interface Step1DesktopProps {
   onNext: () => void;
@@ -11,6 +11,13 @@ export default function Step1Desktop({ onNext }: Step1DesktopProps) {
   const [reqType, setReqType] = useState<string>("buy_property");
   const [reqName, setReqName] = useState("");
   const [propCategory, setPropCategory] = useState<string>("retail_space");
+  const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
+
+  const toggleIndustry = (id: string) => {
+    setSelectedIndustries((prev) => 
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
 
   return (
     <div className="h-full min-h-full w-full bg-white text-[#0a1128] font-sans flex flex-col items-center">
@@ -80,32 +87,60 @@ export default function Step1Desktop({ onNext }: Step1DesktopProps) {
           />
         </div>
 
-        <div>
-          <h3 className="text-[24px] font-bold mb-1 text-[#0a1128]">What type of property?</h3>
-          <p className="text-[14px] text-gray-400 mb-6">Select the property category.</p>
-          <div className="grid grid-cols-3 gap-4">
-            {propertyCategories.map((cat) => {
-              const isSelected = propCategory === cat.id;
-              const Icon = cat.icon;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setPropCategory(cat.id)}
-                  className={`flex flex-col items-center justify-center gap-3 p-6 rounded-[12px] border-2 transition-all duration-300 ${
-                    isSelected
-                      ? "border-[#d4af37] bg-orange-50/20 shadow-sm"
-                      : "border-gray-100 bg-white hover:border-gray-200"
-                  }`}
-                >
-                  <Icon size={28} className={isSelected ? "text-red-500" : "text-[#1b253b]"} strokeWidth={1.5} />
-                  <span className="text-[13px] font-bold text-[#1b253b] text-center leading-tight mt-1">
-                    {cat.label}
-                  </span>
-                </button>
-              );
-            })}
+        {(reqType === "buy_property" || reqType === "lease_property") && (
+          <div>
+            <h3 className="text-[24px] font-bold mb-1 text-[#0a1128]">What type of property?</h3>
+            <p className="text-[14px] text-gray-400 mb-6">Select the property category.</p>
+            <div className="grid grid-cols-3 gap-4">
+              {propertyCategories.map((cat) => {
+                const isSelected = propCategory === cat.id;
+                const Icon = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setPropCategory(cat.id)}
+                    className={`flex flex-col items-center justify-center gap-3 p-6 rounded-[12px] border-2 transition-all duration-300 ${
+                      isSelected
+                        ? "border-[#d4af37] bg-orange-50/20 shadow-sm"
+                        : "border-gray-100 bg-white hover:border-gray-200"
+                    }`}
+                  >
+                    <Icon size={28} className={isSelected ? "text-red-500" : "text-[#1b253b]"} strokeWidth={1.5} />
+                    <span className="text-[13px] font-bold text-[#1b253b] text-center leading-tight mt-1">
+                      {cat.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
+
+        {(reqType === "franchise_opportunity" || reqType === "buy_existing_business") && (
+          <div>
+            <h3 className="text-[24px] font-bold mb-1 text-[#0a1128]">Select Industry</h3>
+            <p className="text-[14px] text-gray-400 mb-6">Select the industries you are interested in</p>
+            <div className="flex flex-wrap gap-3">
+              {industries.map((ind) => {
+                const isSelected = selectedIndustries.includes(ind.id);
+                return (
+                  <button
+                    key={ind.id}
+                    onClick={() => toggleIndustry(ind.id)}
+                    className={`px-4 py-2 rounded-[8px] border-2 transition-all duration-300 text-[14px] font-medium ${
+                      isSelected
+                        ? "border-[#d4af37] bg-orange-50/20 text-[#d4af37] shadow-sm"
+                        : "border-gray-100 bg-white text-[#1b253b] hover:border-gray-200"
+                    }`}
+                  >
+                    {ind.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
 
         <div className="pt-4">
           <motion.button

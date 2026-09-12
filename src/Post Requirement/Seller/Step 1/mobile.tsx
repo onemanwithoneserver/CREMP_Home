@@ -1,14 +1,23 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { propertyTypes } from "./data";
+import { requirementTypes, propertyCategories, industries } from "./data";
 
 interface Step1MobileProps {
   onNext: () => void;
 }
 
 export default function Step1Mobile({ onNext }: Step1MobileProps) {
-  const [propType, setPropType] = useState<string>("commercial");
+  const [reqType, setReqType] = useState<string>("sell_property");
+  const [reqName, setReqName] = useState("");
+  const [propCategory, setPropCategory] = useState<string>("retail_space");
+  const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
+
+  const toggleIndustry = (id: string) => {
+    setSelectedIndustries((prev) => 
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
 
   return (
     <div className="h-full min-h-screen w-full bg-white text-[#0a1128] font-sans flex flex-col">
@@ -42,15 +51,15 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
         
         <div>
           <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">What are you selling?</h3>
-          <p className="text-[13px] text-gray-400 mb-5">Select the type of property you want to list.</p>
+          <p className="text-[13px] text-gray-400 mb-5">Select the type of requirement you want to list.</p>
           <div className="grid grid-cols-2 gap-3">
-            {propertyTypes.map((type) => {
-              const isSelected = propType === type.id;
+            {requirementTypes.map((type) => {
+              const isSelected = reqType === type.id;
               const Icon = type.icon;
               return (
                 <button
                   key={type.id}
-                  onClick={() => setPropType(type.id)}
+                  onClick={() => setReqType(type.id)}
                   className={`flex flex-col items-center justify-center gap-3 p-4 rounded-[10px] border-2 transition-all duration-300 ${
                     isSelected
                       ? "border-[#d4af37] bg-orange-50/20 shadow-sm"
@@ -66,6 +75,71 @@ export default function Step1Mobile({ onNext }: Step1MobileProps) {
             })}
           </div>
         </div>
+
+        <div>
+          <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">Requirement Name</h3>
+          <input 
+            type="text" 
+            placeholder="Enter a name for this requirement"
+            value={reqName}
+            onChange={(e) => setReqName(e.target.value)}
+            className="w-full p-4 rounded-[8px] border-2 border-gray-100 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[14px] placeholder:text-gray-400 mt-2 font-medium"
+          />
+        </div>
+
+        {(reqType === "sell_property" || reqType === "lease_property") && (
+          <div>
+            <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">What type of property?</h3>
+            <p className="text-[13px] text-gray-400 mb-5">Select the property category.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {propertyCategories.map((cat) => {
+                const isSelected = propCategory === cat.id;
+                const Icon = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setPropCategory(cat.id)}
+                    className={`flex flex-col items-center justify-center gap-3 p-4 rounded-[10px] border-2 transition-all duration-300 ${
+                      isSelected
+                        ? "border-[#d4af37] bg-orange-50/20 shadow-sm"
+                        : "border-gray-100 bg-white"
+                    }`}
+                  >
+                    <Icon size={24} className={isSelected ? "text-red-500" : "text-[#1b253b]"} strokeWidth={1.5} />
+                    <span className="text-[12px] font-bold text-[#1b253b] text-center leading-tight mt-1">
+                      {cat.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {(reqType === "franchise_opportunity" || reqType === "sell_existing_business") && (
+          <div>
+            <h3 className="text-[20px] font-bold mb-1 text-[#0a1128]">Select Industry</h3>
+            <p className="text-[13px] text-gray-400 mb-5">Select the industries you are interested in</p>
+            <div className="flex flex-wrap gap-2">
+              {industries.map((ind) => {
+                const isSelected = selectedIndustries.includes(ind.id);
+                return (
+                  <button
+                    key={ind.id}
+                    onClick={() => toggleIndustry(ind.id)}
+                    className={`px-4 py-2.5 rounded-[8px] border transition-all duration-300 text-[13px] font-medium ${
+                      isSelected
+                        ? "border-[#d4af37] bg-orange-50/20 text-[#d4af37]"
+                        : "border-gray-200 bg-white text-[#4a5568]"
+                    }`}
+                  >
+                    {ind.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
       </main>
 

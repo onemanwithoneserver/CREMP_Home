@@ -14,3 +14,18 @@ export const propertyCategories = [
   { id: "warehouse", label: "Warehouse", icon: Warehouse },
   { id: "others", label: "Others", icon: MoreHorizontal },
 ];
+
+export const industries = [
+  { id: "food_beverage", label: "Food & Beverage" },
+  { id: "retail_fashion", label: "Retail & Fashion" },
+  { id: "education_training", label: "Education & Training" },
+  { id: "healthcare_pharma", label: "Healthcare & Pharma" },
+  { id: "information_technology", label: "Information Technology" },
+  { id: "automotive", label: "Automotive" },
+  { id: "fitness_wellness", label: "Fitness & Wellness" },
+  { id: "banking_finance", label: "Banking & Finance" },
+  { id: "logistics_supply_chain", label: "Logistics & Supply Chain" },
+  { id: "manufacturing", label: "Manufacturing" },
+  { id: "real_estate", label: "Real Estate" },
+  { id: "other", label: "Other" },
+];
