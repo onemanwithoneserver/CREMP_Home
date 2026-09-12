@@ -160,22 +160,34 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
 
             
             {!isLoading && (
-              <div className="mt-8 mb-2 rounded-[8px] bg-gradient-to-br from-[#0a1128] to-[#1a3463] border border-white/10 px-8 py-6 flex items-center justify-between gap-6">
-                <div>
-                  <h3
-                    className="text-white text-[15px] font-bold leading-tight"
-                    style={{ fontFamily: 'Outfit, sans-serif' }}
-                  >
-                    {ctaBanner.heading}
-                  </h3>
-                  <p
-                    className="text-white/60 text-[12px] font-light mt-1 max-w-[320px]"
-                    style={{ fontFamily: 'Outfit, sans-serif' }}
-                  >
-                    {ctaBanner.subHeading}
-                  </p>
+              <div className="mt-8 mb-2 rounded-[12px] bg-gradient-to-br from-[#0a1128] via-[#0f1b3d] to-[#1a3463] border border-[#d4af37]/20 shadow-[0_8px_30px_rgba(10,17,40,0.12)] px-8 py-7 flex items-center justify-between gap-6 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 blur-[60px] rounded-full translate-x-1/3 -translate-y-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#d4af37]/5 blur-[40px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
+                
+                <div className="relative z-10 flex items-center gap-5">
+                  <div className="w-12 h-12 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/30 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:scale-110 transition-transform duration-300">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      <path d="M11 8v2m0 0v2m0-2h2m-2 0H9" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-white text-[18px] font-bold leading-tight tracking-wide"
+                      style={{ fontFamily: 'Outfit, sans-serif' }}
+                    >
+                      {ctaBanner.heading}
+                    </h3>
+                    <p
+                      className="text-white/70 text-[13px] font-light mt-1.5 max-w-[340px]"
+                      style={{ fontFamily: 'Outfit, sans-serif' }}
+                    >
+                      {ctaBanner.subHeading}
+                    </p>
+                  </div>
                 </div>
-                <button className="cb-btn-primary px-6 py-3 text-[13px] shrink-0">
+                <button className="relative z-10 flex items-center justify-center font-bold px-7 py-3 text-[13px] rounded-[6px] tracking-wide shrink-0 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.35)] hover:-translate-y-0.5 border-none transition-all duration-300">
                   {ctaBanner.cta}
                 </button>
               </div>
@@ -275,31 +287,36 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
 
           
           {!isLoading && (
-            <div className="mt-5 rounded-[8px] bg-gradient-to-br from-[#0a1128] to-[#1a3463] border border-white/10 px-4 py-4">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" className="w-4 h-4">
-                    <circle cx="10" cy="10" r="8" />
-                    <path d="M10 6v4M10 14h.01" />
-                  </svg>
+            <div className="mt-5 rounded-[12px] bg-gradient-to-br from-[#0a1128] via-[#0f1b3d] to-[#1a3463] border border-[#d4af37]/20 shadow-[0_8px_30px_rgba(10,17,40,0.12)] px-5 py-5 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 blur-[40px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+              
+              <div className="relative z-10 flex flex-col gap-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/30 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:scale-110 transition-transform duration-300 mt-0.5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      <path d="M11 8v2m0 0v2m0-2h2m-2 0H9" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3
+                      className="text-white text-[15px] font-bold leading-tight tracking-wide"
+                      style={{ fontFamily: 'Outfit, sans-serif' }}
+                    >
+                      {ctaBanner.heading}
+                    </h3>
+                    <p
+                      className="text-white/70 text-[12px] font-light mt-1.5 leading-snug"
+                      style={{ fontFamily: 'Outfit, sans-serif' }}
+                    >
+                      {ctaBanner.subHeading}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3
-                    className="text-white text-[13px] font-bold leading-tight"
-                    style={{ fontFamily: 'Outfit, sans-serif' }}
-                  >
-                    {ctaBanner.heading}
-                  </h3>
-                  <p
-                    className="text-white/55 text-[11px] font-light mt-0.5 leading-snug"
-                    style={{ fontFamily: 'Outfit, sans-serif' }}
-                  >
-                    {ctaBanner.subHeading}
-                  </p>
-                  <button className="mt-2.5 cb-btn-primary px-4 py-2 text-[12px]">
-                    {ctaBanner.cta}
-                  </button>
-                </div>
+                <button className="mt-1 w-full flex items-center justify-center font-bold px-5 py-2.5 text-[13px] rounded-[6px] tracking-wide bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.35)] active:scale-[0.98] transition-all duration-300 border-none">
+                  {ctaBanner.cta}
+                </button>
               </div>
             </div>
           )}
