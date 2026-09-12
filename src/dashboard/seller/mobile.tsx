@@ -25,7 +25,7 @@ export default function SellerDashboardMobile() {
             className="flex items-center gap-4 mb-10 pb-8 border-b border-white/10"
           >
             <div className="relative">
-              <div className="w-16 h-16 rounded-full border border-[#d4af37] flex items-center justify-center bg-black/40 shadow-[0_0_15px_rgba(212,175,55,0.15)] backdrop-blur-md">
+              <div className="w-16 h-16 rounded-full border border-[#d4af37] flex items-center justify-center bg-black/40 shadow-[0_0_12px_rgba(212,175,55,0.3)] backdrop-blur-md relative after:absolute after:-inset-1 after:rounded-full after:border after:border-[#d4af37]/30 after:animate-pulse">
                 <sellerProfile.avatarIcon className="text-[#d4af37]" size={28} />
               </div>
             </div>
@@ -53,7 +53,12 @@ export default function SellerDashboardMobile() {
                   {section.category}
                 </h3>
                 <div className="flex flex-col gap-1 relative">
-                  <div className="absolute left-[-16px] top-0 bottom-0 w-[1px] bg-white/5" />
+                  <div className="absolute left-[-16px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#d4af37]/40 to-transparent" />
+                  <motion.div
+                    className="absolute left-[-17px] w-[3px] h-8 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_10px_#ffd700]"
+                    animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: sIdx * 0.5 }}
+                  />
                   
                   {section.items.map((item) => {
                     const isActive = activeItem === item.id;
@@ -64,18 +69,18 @@ export default function SellerDashboardMobile() {
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setActiveItem(item.id)}
                         className={`flex items-center justify-between p-3 rounded-[4px] transition-all duration-300 relative group overflow-hidden ${
-                          isActive ? "bg-white/5" : "bg-transparent"
+                          isActive ? "bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/5" : "bg-transparent border border-transparent"
                         }`}
                       >
                         {isActive && (
                           <motion.div 
                             layoutId="activeIndicator"
-                            className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-3/4 bg-[#d4af37] rounded-r-full shadow-[0_0_10px_#d4af37]"
+                            className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-3/4 bg-gradient-to-b from-[#d4af37]/50 via-[#d4af37] to-[#d4af37]/50 rounded-r-full shadow-[0_0_16px_#d4af37]"
                           />
                         )}
                         <div className="flex items-center gap-4 relative z-10">
-                          <div className={`w-8 h-8 rounded-[4px] flex items-center justify-center transition-colors ${
-                            isActive ? "text-[#d4af37]" : "text-gray-400 group-hover:text-white"
+                          <div className={`w-8 h-8 rounded-[4px] flex items-center justify-center transition-colors shadow-sm ${
+                            isActive ? "text-[#d4af37] bg-gradient-to-br from-[#d4af37]/15 to-transparent border border-[#d4af37]/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" : "text-gray-400 group-hover:text-white bg-white/5"
                           }`}>
                             <item.icon size={18} strokeWidth={isActive ? 2.5 : 2} />
                           </div>

@@ -1,4 +1,5 @@
 import { actionCards } from '../data/marketplaceData';
+import { motion } from 'framer-motion';
 
 
 interface BrokerHeaderProps {
@@ -34,7 +35,7 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
               Find{' '}
-              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] to-[#b38728]">
+              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] to-[#b38728] animate-[cb-shimmer_3s_infinite_linear]" style={{ backgroundSize: "200% auto" }}>
                 CREMP Brokers
               </span>
             </h1>
@@ -50,12 +51,17 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
         
         <div className={`grid gap-3 mt-4 ${isDesktop ? 'grid-cols-2 max-w-2xl' : 'grid-cols-2'}`}>
           {actionCards.map((card) => (
-            <button
+            <motion.button
               key={card.id}
-              className={`bg-gradient-to-br ${card.gradient} rounded-xl border border-white/10 text-left transition-all
-                hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * Number(card.id), type: "spring", stiffness: 300, damping: 25 }}
+              className={`bg-gradient-to-br ${card.gradient} rounded-[4px] border border-white/10 text-left transition-all relative overflow-hidden group
+                hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] hover:-translate-y-1 active:translate-y-0 hover:border-white/20
                 ${isDesktop ? 'px-5 py-4' : 'px-3.5 py-3'}`}
             >
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300" />
+              <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 blur-xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="flex items-start gap-2">
                 <span className={isDesktop ? 'text-xl' : 'text-base'}>{card.icon}</span>
                 <div className="min-w-0">
@@ -85,7 +91,7 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
                   </p>
                 </div>
               </div>
-            </button>
+            </motion.button>
           ))}
         </div>
 

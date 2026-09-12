@@ -12,7 +12,12 @@ export default function SellerDashboardDesktop() {
         
         <aside className="w-[300px] h-full flex flex-col bg-white/80 dark:bg-[#0b1b42]/80 backdrop-blur-xl border-r border-gray-200/50 dark:border-white/10 shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-10 shrink-0 relative">
           
-          <div className="absolute right-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#d4af37]/30 to-transparent" />
+          <div className="absolute right-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#d4af37]/40 to-transparent" />
+          <motion.div
+             className="absolute right-[-1px] w-[3px] h-16 rounded-full bg-gradient-to-b from-transparent via-[#ffd700] to-transparent shadow-[0_0_12px_#ffd700]"
+             animate={{ top: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
+             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
 
           <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">
             
@@ -55,7 +60,7 @@ export default function SellerDashboardDesktop() {
                           whileTap={{ scale: 0.99 }}
                           onClick={() => setActiveItem(item.id)}
                           className={`flex items-center justify-between p-2.5 rounded-[4px] transition-all duration-300 relative group overflow-hidden ${
-                            isActive ? "bg-gray-100/80 dark:bg-white/5" : "bg-transparent dark:hover:bg-white/5"
+                            isActive ? "bg-gray-100/80 dark:bg-white/10 backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.1)] border border-white/5" : "bg-transparent hover:bg-gray-50 dark:hover:bg-white/5 border border-transparent"
                           }`}
                         >
                           {isActive && (
@@ -65,13 +70,13 @@ export default function SellerDashboardDesktop() {
                             />
                           )}
                           <div className="flex items-center gap-3.5 relative z-10">
-                            <div className={`w-8 h-8 rounded-[4px] flex items-center justify-center transition-colors ${
+                            <motion.div whileHover={{ scale: 1.08, rotate: 4 }} className={`w-8 h-8 rounded-[4px] flex items-center justify-center transition-colors ${
                               isActive 
                                 ? "text-[#d4af37] bg-white dark:bg-black/20 shadow-sm" 
                                 : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
                             }`}>
                               <item.icon size={16} strokeWidth={isActive ? 2.5 : 2} />
-                            </div>
+                            </motion.div>
                             <div className="flex flex-col items-start text-left">
                               <span className={`text-[13px] font-semibold transition-colors ${
                                 isActive ? "text-[#0a1128] dark:text-white" : "text-gray-600 dark:text-gray-400 group-hover:text-[#0a1128] dark:group-hover:text-gray-200"
@@ -95,7 +100,7 @@ export default function SellerDashboardDesktop() {
         <main className="flex-1 p-8 overflow-y-auto relative bg-transparent">
           <motion.div 
             key={activeItem}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, scale: 0.98, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             className="w-full max-w-5xl mx-auto h-full min-h-[600px] border border-gray-200/50 dark:border-white/5 rounded-xl bg-white/50 dark:bg-[#0b1b42]/30 backdrop-blur-sm shadow-sm flex flex-col items-center justify-center"

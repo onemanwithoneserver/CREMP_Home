@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import type { Broker } from '../types/broker.types';
 import VerifiedBadge from './VerifiedBadge';
 import BrokerStats from './BrokerStats';
@@ -83,14 +84,16 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
   if (isLoading) return <BrokerCardSkeleton isDesktop={isDesktop} />;
 
   return (
-    <div
-      className={`bg-surface dark:bg-[#0b1b42] text-gray-900 dark:text-primary rounded-[8px] border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col ${isDesktop ? 'p-5' : 'p-4'}`}
+    <motion.div
+      whileHover={{ y: -4, scale: 1.01, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+      className={`bg-surface dark:bg-[#0b1b42] text-gray-900 dark:text-primary rounded-[8px] border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col relative overflow-hidden ${isDesktop ? 'p-5' : 'p-4'}`}
       role="article"
       aria-label={`Broker: ${broker.name}`}
     >
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="flex items-start gap-3 mb-3">
         <div
-          className={`shrink-0 rounded-full overflow-hidden flex items-center justify-center font-bold text-white cb-avatar-ring font-['Outfit',sans-serif] tracking-[0.05em] ${
+          className={`shrink-0 rounded-full overflow-hidden flex items-center justify-center font-bold text-white cb-avatar-ring relative after:absolute after:inset-[-4px] after:rounded-full after:border after:border-[#d4af37]/30 group-hover:after:border-[#d4af37]/60 group-hover:after:shadow-[0_0_12px_rgba(212,175,55,0.4)] after:transition-all after:duration-300 font-['Outfit',sans-serif] tracking-[0.05em] ${
             isDesktop ? 'w-[48px] h-[48px] text-[15px]' : 'w-[44px] h-[44px] text-[13px]'
           }`}
           style={{
@@ -153,7 +156,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
 
       <div className="flex flex-wrap gap-1.5 mb-3">
         {broker.specialties.map((s) => (
-          <span key={s} className="cb-tag">
+          <span key={s} className="cb-tag hover:bg-[#d4af37]/10 hover:text-[#b8903c] transition-colors cursor-default">
             {s}
           </span>
         ))}
@@ -171,18 +174,18 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
       <div className="flex gap-2 mt-auto pt-1">
         <button
           onClick={() => onViewProfile?.(broker)}
-          className={`cb-btn-outline flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'}`}
+          className={`cb-btn-outline flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'} hover:scale-[1.02] active:scale-[0.98] transition-transform`}
           aria-label={`View profile of ${broker.name}`}
         >
           View Profile
         </button>
         <button
-          className={`cb-btn-primary flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'}`}
+          className={`cb-btn-primary flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'} hover:scale-[1.02] active:scale-[0.98] transition-transform`}
           aria-label={`Send requirement to ${broker.name}`}
         >
           Send Requirement
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
