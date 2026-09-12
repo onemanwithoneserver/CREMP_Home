@@ -145,11 +145,11 @@ function App() {
               />
               <Route
                 path="/:themeMode/:viewMode/dashboard-seller/*"
-                element={<SellerDashboard />}
+                element={<SellerDashboard isMobile={isMobile} />}
               />
               <Route
                 path="/:themeMode/:viewMode/dashboard-buyer/*"
-                element={<BuyerDashboard />}
+                element={<BuyerDashboard isMobile={isMobile} />}
               />
               <Route
                 path="*"
