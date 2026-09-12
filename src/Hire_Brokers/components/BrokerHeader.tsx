@@ -1,5 +1,6 @@
 import { actionCards } from '../data/marketplaceData';
 import { motion } from 'framer-motion';
+import headerImage from '../assets/hire_broker_header.jpg';
 
 
 interface BrokerHeaderProps {
@@ -24,7 +25,29 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
         />
       </div>
 
-      <div className={`relative z-10 ${isDesktop ? 'px-8 py-6' : 'px-4 py-5'}`}>
+      {isDesktop ? (
+        <div 
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none transition-all duration-500"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, black 50%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 50%)",
+          }}
+        >
+          <img src={headerImage} alt="" className="w-full h-full object-cover object-[center_30%] opacity-90 mix-blend-screen" />
+        </div>
+      ) : (
+        <div 
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+          style={{
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+          }}
+        >
+          <img src={headerImage} alt="" className="w-full h-full object-cover object-[center_30%] opacity-[0.45]" />
+        </div>
+      )}
+
+      <div className={`relative z-10 ${isDesktop ? 'px-8 py-10' : 'px-4 py-8'}`}>
         
         <div className="flex items-start justify-between gap-4 mb-1">
           <div>
