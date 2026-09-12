@@ -1,25 +1,24 @@
-import { useState } from "react";
 import StepHeader from "../../components/StepHeader";
 import { locationOptions, timeframeOptions } from "./data";
 import { requirementTypes, propertyCategories, industries } from "../Step 1/data";
 import { Map, MapPin, Clock, Calendar, ArrowRight, Building, Layers } from "lucide-react";
 import { motion } from "framer-motion";
-import type { Step1Data, Step2Data } from "../index";
+import type { Step1Data, Step2Data, Step3Data } from "../index";
 
 interface Step3DesktopProps {
   onNext: () => void;
   onBack: () => void;
   step1Data: Step1Data;
   step2Data: Step2Data;
+  step3Data: Step3Data;
+  setStep3Data: React.Dispatch<React.SetStateAction<Step3Data>>;
 }
 
-export default function Step3Desktop({ onNext, onBack, step1Data, step2Data }: Step3DesktopProps) {
-  const [location, setLocation] = useState("");
-  const [selectedZone, setSelectedZone] = useState("");
-  const [selectedCircle, setSelectedCircle] = useState("");
-
-  const [timeframe, setTimeframe] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
+export default function Step3Desktop({ onNext, onBack, step1Data, step2Data, step3Data, setStep3Data }: Step3DesktopProps) {
+  const { location, selectedZone, selectedCircle, timeframe, selectedDate } = step3Data;
+  const updateStep3Data = (field: keyof Step3Data, value: string) => {
+    setStep3Data(prev => ({ ...prev, [field]: value }));
+  };
 
   const getIcon = (id: string, isSelected: boolean) => {
     const iconClass = isSelected ? "text-[#d4af37]" : "text-gray-400";
@@ -77,7 +76,7 @@ export default function Step3Desktop({ onNext, onBack, step1Data, step2Data }: S
               return (
                 <button
                   key={opt.id}
-                  onClick={() => setLocation(opt.id)}
+                  onClick={() => updateStep3Data("location", opt.id)}
                   className={`flex items-center gap-5 p-5 rounded-[4px] border transition-all duration-300 text-left ${
                     isSelected
                       ? "border-[#d4af37] bg-orange-50/50 shadow-sm"
@@ -114,8 +113,8 @@ export default function Step3Desktop({ onNext, onBack, step1Data, step2Data }: S
                 <select 
                   value={selectedZone}
                   onChange={(e) => {
-                    setSelectedZone(e.target.value);
-                    setSelectedCircle("");
+                    updateStep3Data("selectedZone", e.target.value);
+                    updateStep3Data("selectedCircle", "");
                   }}
                   className="w-full p-4 rounded-[8px] border border-gray-200 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[14px]"
                 >
@@ -129,7 +128,7 @@ export default function Step3Desktop({ onNext, onBack, step1Data, step2Data }: S
                 <label className="text-[13px] font-bold text-[#0a1128] mb-2 block">Select Circle</label>
                 <select 
                   value={selectedCircle}
-                  onChange={(e) => setSelectedCircle(e.target.value)}
+                  onChange={(e) => updateStep3Data("selectedCircle", e.target.value)}
                   disabled={!selectedZone}
                   className="w-full p-4 rounded-[8px] border border-gray-200 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[14px] disabled:bg-gray-50 disabled:text-gray-400"
                 >
@@ -152,7 +151,7 @@ export default function Step3Desktop({ onNext, onBack, step1Data, step2Data }: S
               return (
                 <button
                   key={opt.id}
-                  onClick={() => setTimeframe(opt.id)}
+                  onClick={() => updateStep3Data("timeframe", opt.id)}
                   className={`flex items-center gap-5 p-5 rounded-[4px] border transition-all duration-300 text-left ${
                     isSelected
                       ? "border-[#d4af37] bg-orange-50/50 shadow-sm"
@@ -189,7 +188,7 @@ export default function Step3Desktop({ onNext, onBack, step1Data, step2Data }: S
                 <input 
                   type="date"
                   value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
+                  onChange={(e) => updateStep3Data("selectedDate", e.target.value)}
                   className="w-full p-4 rounded-[8px] border border-gray-200 bg-white focus:outline-none focus:border-[#d4af37] transition-colors text-[14px]"
                 />
               </div>

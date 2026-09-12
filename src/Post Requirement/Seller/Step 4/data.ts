@@ -20,3 +20,5 @@ export const industryTypes = [
 ];
 
 export const fundingSources = ["Self funding only", "With Bank loan"];
+
+export const profileOptions = ["I am an employee", "Homemaker", "Retired", "Student"];

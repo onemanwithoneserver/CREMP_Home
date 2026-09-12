@@ -10,6 +10,14 @@ interface PostRequirementSellerProps {
   isMobile: boolean;
 }
 
+export interface Step3Data {
+  location: string;
+  selectedZone: string;
+  selectedCircle: string;
+  timeframe: string;
+  selectedDate: string;
+}
+
 export interface Step2Data {
   purpose: string;
   budget: string;
@@ -32,6 +40,14 @@ export default function PostRequirementSeller({ isMobile }: PostRequirementSelle
     reqName: "",
     propCategory: "retail_space",
     selectedIndustries: [],
+  });
+
+  const [step3Data, setStep3Data] = useState<Step3Data>({
+    location: "",
+    selectedZone: "",
+    selectedCircle: "",
+    timeframe: "",
+    selectedDate: "",
   });
 
   const [step2Data, setStep2Data] = useState<Step2Data>({
@@ -74,8 +90,8 @@ export default function PostRequirementSeller({ isMobile }: PostRequirementSelle
               setStep2Data={setStep2Data}
             />
           )}
-          {currentStep === 3 && <Step3 onNext={nextStep} onBack={prevStep} isMobile={isMobile} step1Data={step1Data} step2Data={step2Data} />}
-          {currentStep === 4 && <Step4 onNext={nextStep} onBack={prevStep} isMobile={isMobile} />}
+          {currentStep === 3 && <Step3 onNext={nextStep} onBack={prevStep} isMobile={isMobile} step1Data={step1Data} step2Data={step2Data} step3Data={step3Data} setStep3Data={setStep3Data} />}
+          {currentStep === 4 && <Step4 onNext={nextStep} onBack={prevStep} isMobile={isMobile} step1Data={step1Data} step2Data={step2Data} step3Data={step3Data} />}
           {currentStep === 5 && (
             <Step5 
               onSubmit={() => {
