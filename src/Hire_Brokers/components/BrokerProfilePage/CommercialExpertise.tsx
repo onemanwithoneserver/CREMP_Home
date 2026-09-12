@@ -111,7 +111,7 @@ function ExpertiseChip({ exp, isDesktop }: { exp: string; isDesktop: boolean }) 
   
   return (
     <div
-      className={`flex flex-col items-center gap-2 shrink-0 rounded-[4px] bg-white dark:bg-[#111e3b] shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-black/5 dark:border-white/10 transition-transform hover:-translate-y-0.5 ${
+      className={`flex flex-col items-center gap-2 shrink-0 rounded-[4px] transition-transform hover:-translate-y-0.5 ${
         isDesktop ? 'px-[12px] py-[12px] min-w-[72px]' : 'px-[10px] py-[10px] min-w-[64px]'
       }`}
     >
