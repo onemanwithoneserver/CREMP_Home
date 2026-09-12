@@ -252,7 +252,7 @@ export default function CREMPBrokersPage({ viewMode = 'desktop' }: CREMPBrokersP
         </div>
 
         
-        <div className="flex-1 overflow-y-auto cb-scroll-thin px-4 pb-4">
+        <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-4">
         
           {!isLoading && filteredBrokers.length === 0 ? (
             <EmptyState hasFilters={hasActiveFilters} onClearFilters={clearAllFilters} />
