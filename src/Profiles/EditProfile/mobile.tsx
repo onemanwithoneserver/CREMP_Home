@@ -36,7 +36,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
 
   return (
     <div className="min-h-screen w-full bg-gray-50 flex flex-col font-sans pb-24">
-      {/* Header section */}
+      
       <div className="bg-[#1b253b] w-full pt-6 pb-20 px-6 relative rounded-b-3xl">
         <div className="flex justify-between items-center w-full mb-6">
           <button 
@@ -59,7 +59,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
 
       <div className="px-6 -mt-12 flex flex-col gap-6 z-10">
         
-        {/* Profile Info Header Card */}
+        
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -76,7 +76,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
           </div>
         </motion.div>
 
-        {/* Personal Information */}
+        
         <div className="bg-white rounded-[20px] p-5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col gap-5">
           <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
             <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center text-[#d4af37]">
@@ -125,7 +125,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
           </div>
         </div>
 
-        {/* Identity & Authentication */}
+        
         <div className="bg-white rounded-[20px] p-5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col gap-5">
           <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
             <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center text-[#d4af37]">
@@ -192,7 +192,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
           </div>
         </div>
 
-        {/* Role & Business Details */}
+        
         <div className="bg-white rounded-[20px] p-5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col gap-5">
           <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
             <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center text-[#d4af37]">
@@ -271,7 +271,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
 
       </div>
 
-      {/* Fixed Save Button */}
+      
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100 z-50">
         <button
           onClick={handleSave}

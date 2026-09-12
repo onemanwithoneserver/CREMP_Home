@@ -38,7 +38,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
     <div className="min-h-screen w-full bg-gray-50 flex flex-col items-center py-12 px-6 font-sans">
       <div className="w-full max-w-5xl flex flex-col md:flex-row gap-8">
         
-        {/* Left Column - Sticky Profile Overview */}
+        
         <div className="w-full md:w-1/3 flex flex-col gap-6">
           <div className="sticky top-24 flex flex-col gap-6">
             <motion.div 
@@ -70,10 +70,10 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
           </div>
         </div>
 
-        {/* Right Column - Form Fields */}
+        
         <div className="w-full md:w-2/3 flex flex-col gap-6">
           
-          {/* Personal Information */}
+          
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -129,7 +129,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
             </div>
           </motion.div>
 
-          {/* Identity & Authentication */}
+          
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -198,7 +198,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
             </div>
           </motion.div>
 
-          {/* Role & Business Details */}
+          
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

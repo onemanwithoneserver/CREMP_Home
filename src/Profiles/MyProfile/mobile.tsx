@@ -10,7 +10,7 @@ interface MyProfileMobileProps {
 export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobileProps) {
   return (
     <div className="min-h-screen w-full bg-gray-50 flex flex-col font-sans">
-      {/* Header section (Navy blue) */}
+      
       <div className="bg-[#1b253b] w-full pt-6 pb-20 px-6 relative rounded-b-3xl">
         <div className="flex justify-between items-center w-full mb-6">
           <button 
@@ -20,7 +20,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
             <ChevronLeft size={20} />
           </button>
           
-          {/* Logo Placeholder */}
+          
           <div className="w-12 h-14 border border-[#d4af37] flex flex-col justify-center items-center rounded-sm">
              <div className="w-8 h-8 border border-[#d4af37] flex items-center justify-center text-[#d4af37] font-bold text-xl">
                C
@@ -32,10 +32,10 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
         <p className="text-gray-300 text-sm">Manage your account information</p>
       </div>
 
-      {/* Main Content Area overlapping the header */}
+      
       <div className="px-6 -mt-12 flex flex-col gap-6 pb-12 z-10">
         
-        {/* Profile Card */}
+        
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -71,7 +71,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           </button>
         </motion.div>
 
-        {/* Contact Information */}
+        
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-8 h-8 rounded-full bg-[#1b253b] flex items-center justify-center text-white">
@@ -109,7 +109,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           </div>
         </div>
 
-        {/* Account */}
+        
         <div className="flex flex-col gap-3 mt-2">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-8 h-8 rounded-full bg-[#1b253b] flex items-center justify-center text-white">
@@ -132,7 +132,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           </button>
         </div>
 
-        {/* Security Banner */}
+        
         <div className="bg-orange-50/50 rounded-[20px] p-5 flex items-center gap-4 border border-orange-100/50 mt-2">
           <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#d4af37] shadow-sm shrink-0">
             <ShieldCheck size={24} />

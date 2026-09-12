@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 import { sellerProfile, sellerNavItems } from "./data";
 
 export default function SellerDashboardDesktop() {
