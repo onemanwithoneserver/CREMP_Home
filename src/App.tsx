@@ -30,6 +30,7 @@ import PostRequirementSeller from "./Post Requirement/Seller";
 import Profiles from "./Profiles";
 import SellerDashboard from "./dashboard/seller";
 import BuyerDashboard from "./dashboard/buyer";
+import { CREMPBrokersPage } from "./Hire_Brokers";
 
 function App() {
   const location = useLocation();
@@ -138,6 +139,10 @@ function App() {
               <Route
                 path="/:themeMode/:viewMode/post-requirement-seller"
                 element={<PostRequirementSeller isMobile={isMobile} />}
+              />
+              <Route
+                path="/:themeMode/:viewMode/hire-brokers"
+                element={<CREMPBrokersPage viewMode={viewMode} />}
               />
               <Route
                 path="/:themeMode/:viewMode/profiles"

@@ -24,7 +24,8 @@ export type Page =
   | "post-requirement-seller"
   | "dashboard-seller"
   | "dashboard-buyer"
-  | "profiles";
+  | "profiles"
+  | "hire-brokers";
 export type ViewMode = "desktop" | "mobile";
 export interface HeaderProps {
   viewMode: ViewMode;
@@ -54,6 +55,7 @@ const PAGE_LABELS: Record<Page, string> = {
   "dashboard-seller": "Seller Dashboard",
   "dashboard-buyer": "Buyer Dashboard",
   profiles: "Profiles",
+  "hire-brokers": "Hire Brokers",
 };
 const PAGE_OPTIONS = (Object.keys(PAGE_LABELS) as Page[])
   .filter(
@@ -259,7 +261,7 @@ export default function Header({
                   id={`mobile-menu-${menuId}`}
                   role="menu"
                   aria-label="Navigation Menu"
-                  className="absolute right-0 mt-2 w-36 bg-white dark:bg-cremp-surface rounded border border-cremp-border shadow-elevation-3 overflow-hidden z-50 animate-fade-in-down"
+                  className="absolute right-0 mt-2 w-36 bg-white dark:bg-cremp-surface rounded border border-cremp-border shadow-elevation-3 overflow-y-auto max-h-[60vh] scrollbar-thin z-50 animate-fade-in-down"
                 >
                   {(Object.keys(PAGE_LABELS) as Page[]).map((p) => {
                     const isActive = activePage === p;
