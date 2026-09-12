@@ -26,7 +26,7 @@ export default function Step0Desktop({ onNext }: Step0DesktopProps) {
         </div>
       </div>
 
-      <main className="flex-1 overflow-y-auto p-8 lg:p-12 pb-12 flex flex-col items-center justify-center">
+      <main className="flex-1 overflow-hidden p-8 lg:p-12 pb-12 flex flex-col items-center justify-center">
         
         <div className="max-w-3xl w-full flex flex-col md:flex-row items-center gap-12 mb-6">
           

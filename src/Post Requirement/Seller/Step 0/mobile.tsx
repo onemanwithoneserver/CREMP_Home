@@ -1,6 +1,7 @@
 import { Target, Home, Clock, CheckSquare, Lock, Search, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { formColors } from "../../components/colors";
+import MobileStickyFooter from "../../../components/commonfiles/Footer/MobileStickyFooter";
 
 interface Step0MobileProps {
   onNext: () => void;
@@ -15,7 +16,7 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
   ];
 
   return (
-    <div className="h-full min-h-screen w-full bg-white dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden">
+    <div className="h-[100dvh] w-full bg-white dark:bg-[#060e24] text-[#0a1128] dark:text-white font-['Outfit',sans-serif] flex flex-col relative overflow-hidden pb-[70px]">
       
       
       <div className="bg-[#1a2b4c] text-white p-4 flex justify-between items-center shadow-md">
@@ -30,7 +31,7 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
         </button>
       </div>
 
-      <main className="flex-1 overflow-y-auto p-5 pb-24 flex flex-col justify-center">
+      <main className="flex-1 overflow-y-auto px-4 pt-4 flex flex-col justify-between">
         
         
         <div className="flex items-start justify-between gap-4 mb-4">
@@ -88,20 +89,18 @@ export default function Step0Mobile({ onNext }: Step0MobileProps) {
           </p>
         </div>
 
+        <div className="pt-2">
+          <motion.button
+            whileTap={{ scale: 0.98 }}
+            onClick={onNext}
+            className="w-full py-4 rounded font-bold text-[15px] flex items-center justify-center shadow-lg"
+            style={{ background: "linear-gradient(135deg, #c5a034 0%, #dcae3a 100%)", color: "#ffffff" }}
+          >
+            Post My Requirement
+          </motion.button>
+        </div>
       </main>
-
-      
-      <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-white dark:from-[#060e24] via-white/90 dark:via-[#060e24]/90 to-transparent">
-        <motion.button
-          whileTap={{ scale: 0.98 }}
-          onClick={onNext}
-          className="w-full py-4 rounded font-bold text-[15px] flex items-center justify-center shadow-lg"
-          style={{ background: "linear-gradient(135deg, #c5a034 0%, #dcae3a 100%)", color: "#ffffff" }}
-        >
-          Post My Requirement
-        </motion.button>
-      </div>
-      
+      <MobileStickyFooter activeTab="post-requirement" />
     </div>
   );
 }
