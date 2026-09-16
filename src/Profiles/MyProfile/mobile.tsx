@@ -66,7 +66,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
         >
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-14 h-14 rounded-full bg-[#0b1b42] text-[#d4af37] flex items-center justify-center text-xl font-bold border-2 border-[#d4af37]/60 shadow-md shadow-[#d4af37]/10">
+              <div className="w-14 h-14 rounded-full bg-[#0b1b42] text-[#d4af37] flex items-center justify-center text-xl font-semibold border-2 border-[#d4af37]/60 shadow-md shadow-[#d4af37]/10">
                 A
               </div>
               <button
@@ -79,10 +79,10 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
             </div>
 
             <div className="flex flex-col">
-              <h2 className="text-lg font-bold text-[#0a1128] dark:text-white tracking-tight">{myProfileData.name}</h2>
+              <h2 className="text-lg font-semibold text-[#0a1128] dark:text-white tracking-tight">{myProfileData.name}</h2>
               <div className="mt-0.5 flex items-center gap-1.5 px-2.5 py-0.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/60 rounded-[2px] w-fit">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">{myProfileData.status}</span>
+                <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">{myProfileData.status}</span>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
         </motion.div>
         <motion.div variants={item} className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-white/60 dark:bg-[#d4af37]/5 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#d4af37] shadow-sm backdrop-blur-xl">
+            <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-white/60 dark:bg-[#d4af37]/5 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-widest text-[#d4af37] shadow-sm backdrop-blur-xl">
               Contact
             </span>
           </div>
@@ -120,8 +120,8 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
                   <Mail size={16} />
                 </motion.div>
                 <div className="flex flex-col">
-                  <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Email Address</span>
-                  <span className="text-[14px] font-bold text-[#0a1128] dark:text-white">{myProfileData.email}</span>
+                  <span className="text-[9px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Email Address</span>
+                  <span className="text-[14px] font-semibold text-[#0a1128] dark:text-white">{myProfileData.email}</span>
                 </div>
               </div>
               <ChevronRightIcon />
@@ -141,8 +141,8 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
                   <Phone size={16} />
                 </motion.div>
                 <div className="flex flex-col">
-                  <span className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Mobile Number</span>
-                  <span className="text-[14px] font-bold text-[#0a1128] dark:text-white">{myProfileData.mobile}</span>
+                  <span className="text-[9px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Mobile Number</span>
+                  <span className="text-[14px] font-semibold text-[#0a1128] dark:text-white">{myProfileData.mobile}</span>
                 </div>
               </div>
               <ChevronRightIcon />
@@ -151,7 +151,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
         </motion.div>
         <motion.div variants={item} className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-white/60 dark:bg-[#d4af37]/5 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#d4af37] shadow-sm backdrop-blur-xl">
+            <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-white/60 dark:bg-[#d4af37]/5 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-widest text-[#d4af37] shadow-sm backdrop-blur-xl">
               Account
             </span>
           </div>
@@ -167,7 +167,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
                 <LogOut size={16} />
               </div>
               <div className="flex flex-col items-start">
-                <span className="text-[14px] font-bold text-rose-600 dark:text-rose-400">Logout</span>
+                <span className="text-[14px] font-semibold text-rose-600 dark:text-rose-400">Logout</span>
                 <span className="text-[10px] text-gray-500 dark:text-gray-400">Sign out from your account</span>
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
             <ShieldCheck size={20} />
           </div>
           <div className="flex flex-col z-10">
-            <span className="text-[13px] font-bold text-white">Your account is secure</span>
+            <span className="text-[13px] font-semibold text-white">Your account is secure</span>
             <span className="text-[11px] text-gray-400 leading-snug mt-0.5">Data protected with industry-standard security.</span>
           </div>
         </motion.div>
