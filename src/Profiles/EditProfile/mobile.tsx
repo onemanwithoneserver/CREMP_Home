@@ -61,7 +61,6 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
       animate="show"
       className="min-h-screen w-full bg-white dark:bg-[#050b14] flex flex-col font-sans pb-20"
     >
-      {/* Header */}
       <div className="bg-gradient-to-br from-[#0b1b42] via-[#121c33] to-[#0b1b42] w-full pt-5 pb-16 px-5 relative overflow-hidden">
         <div className="absolute top-[-10%] right-[-5%] w-56 h-56 bg-[#d4af37]/8 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#d4af37]/5 rounded-full blur-[60px] pointer-events-none" />
@@ -90,8 +89,6 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
       </div>
 
       <div className="px-4 -mt-10 flex flex-col gap-4 z-10">
-        
-        {/* Profile Preview Card */}
         <motion.div 
           variants={item}
           className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] w-full flex items-center gap-3"
@@ -106,8 +103,6 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
             </div>
           </div>
         </motion.div>
-
-        {/* Personal Information */}
         <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
@@ -164,8 +159,6 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
             />
           </div>
         </motion.div>
-
-        {/* Identity & Authentication */}
         <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white shadow-sm shadow-emerald-500/20">
@@ -233,8 +226,6 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
             </div>
           </div>
         </motion.div>
-
-        {/* Role & Business Details */}
         <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-sm shadow-violet-500/20">
@@ -314,12 +305,10 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
         </motion.div>
 
       </div>
-
-      {/* Fixed Save Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-3 bg-white/95 dark:bg-[#121c33]/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 z-50">
+      <div className="fixed bottom-0 left-0 right-0 p-3 bg-white/95 dark:bg-[#121c33]/95 backdrop-blur-md  z-50 flex justify-center">
         <button
           onClick={handleSave}
-          className="w-full py-3.5 rounded-[4px] font-bold text-[14px] flex items-center justify-center gap-2 transition-all bg-[#0b1b42] text-white hover:bg-[#121928] shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30"
+          className="w-full max-w-[280px] py-3.5 rounded-[4px] font-bold text-[14px] flex items-center justify-center gap-2 transition-all bg-[#0b1b42] text-white hover:bg-[#121928] shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30"
         >
           <CheckCircle2 size={16} className="text-[#d4af37]" /> Save Changes
         </button>

@@ -33,9 +33,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
       animate="show"
       className="min-h-screen w-full flex flex-col font-sans bg-white dark:bg-[#050b14]"
     >
-      {/* Header */}
       <div className="bg-gradient-to-br from-[#0b1b42] via-[#121c33] to-[#0b1b42] w-full pt-5 pb-16 px-5 relative overflow-hidden">
-        {/* Ambient glow blobs */}
         <div className="absolute top-[-10%] right-[-5%] w-56 h-56 bg-[#d4af37]/8 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#d4af37]/5 rounded-full blur-[60px] pointer-events-none" />
 
@@ -61,11 +59,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           />
         </div>
       </div>
-
-      {/* Content */}
       <div className="px-4 -mt-10 flex flex-col gap-4 pb-8 z-10">
-
-        {/* Profile Card */}
         <motion.div
           variants={item}
           className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] w-full flex items-center justify-between"
@@ -103,8 +97,6 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
             <Edit size={16} />
           </motion.button>
         </motion.div>
-
-        {/* Contact Information Section */}
         <motion.div variants={item} className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-white/60 dark:bg-[#d4af37]/5 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#d4af37] shadow-sm backdrop-blur-xl">
@@ -157,8 +149,6 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
             </motion.div>
           </div>
         </motion.div>
-
-        {/* Account Section */}
         <motion.div variants={item} className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="flex w-fit items-center gap-1.5 rounded-[2px] border border-[#d4af37]/20 bg-white/60 dark:bg-[#d4af37]/5 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#d4af37] shadow-sm backdrop-blur-xl">
@@ -184,8 +174,6 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
             <ChevronRightIcon />
           </motion.button>
         </motion.div>
-
-        {/* Security Banner */}
         <motion.div
           variants={item}
           className="bg-[#0b1b42] border border-white/5 rounded-[4px] p-4 flex items-center gap-3 shadow-sm relative overflow-hidden"

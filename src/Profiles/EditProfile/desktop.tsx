@@ -61,8 +61,6 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
       className="min-h-screen w-full bg-gray-50 dark:bg-[#050b14] flex flex-col items-center py-10 px-6 font-sans"
     >
       <div className="w-full max-w-5xl flex flex-col md:flex-row gap-6">
-        
-        {/* Left Sidebar */}
         <div className="w-full md:w-1/3 flex flex-col gap-5">
           <div className="sticky top-20 flex flex-col gap-5">
             <motion.div 
@@ -86,18 +84,14 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
               
               <button
                 onClick={handleSave}
-                className="w-full mt-2 py-3.5 rounded-[4px] font-bold text-[14px] flex items-center justify-center gap-2 transition-all bg-[#0b1b42] text-white hover:bg-[#121928] shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30"
+                className="w-full max-w-[240px] mt-2 py-3.5 rounded-[4px] font-bold text-[14px] flex items-center justify-center gap-2 transition-all bg-[#0b1b42] text-white hover:bg-[#121928] shadow-md shadow-[#0a1128]/25 border border-[#d4af37]/30"
               >
                 <CheckCircle2 size={16} className="text-[#d4af37]" /> Save Changes
               </button>
             </motion.div>
           </div>
         </div>
-
-        {/* Right Content */}
         <div className="w-full md:w-2/3 flex flex-col gap-5">
-          
-          {/* Personal Information */}
           <motion.div 
             variants={item}
             className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-5"
@@ -159,8 +153,6 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
               </div>
             </div>
           </motion.div>
-
-          {/* Identity & Authentication */}
           <motion.div 
             variants={item}
             className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-5"
@@ -226,8 +218,6 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
               </div>
             </div>
           </motion.div>
-
-          {/* Role & Business Details */}
           <motion.div 
             variants={item}
             className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-5 mb-8"

@@ -323,8 +323,6 @@ function FilterPanelContent({
     <div className="flex flex-col h-full bg-white dark:bg-[#0b1b42]">
       
       <div className="flex-1 overflow-y-auto scrollbar-hide">
-        
-        {/* Location Section */}
         <AccordionSection id="location" label="Location" isExpanded={expanded.has('location')} onToggle={() => toggle('location')}>
           <div className="relative mb-3">
             <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af] dark:text-gray-500 pointer-events-none" />
@@ -364,8 +362,6 @@ function FilterPanelContent({
             </button>
           )}
         </AccordionSection>
-
-        {/* Property Expertise Section */}
         <AccordionSection id="expertise" label="Property Expertise" isExpanded={expanded.has('expertise')} onToggle={() => toggle('expertise')}>
           <div className="grid grid-cols-4 gap-1.5" role="group" aria-label="Property Expertise options">
             {propertyExpertise.map((opt) => {
@@ -400,8 +396,6 @@ function FilterPanelContent({
             })}
           </div>
         </AccordionSection>
-
-        {/* Deal Type Section */}
         <AccordionSection id="dealType" label="Deal Type" isExpanded={expanded.has('dealType')} onToggle={() => toggle('dealType')}>
           <div className="flex flex-wrap gap-2">
             {dealTypeOptions.map((opt) => (
@@ -415,8 +409,6 @@ function FilterPanelContent({
             ))}
           </div>
         </AccordionSection>
-
-        {/* Deal Size Section */}
         <AccordionSection id="dealSize" label="Deal Size Range" isExpanded={expanded.has('dealSize')} onToggle={() => toggle('dealSize')}>
           <div className="flex flex-wrap gap-2">
             {dealSizeOptions.map((opt) => (
@@ -430,8 +422,6 @@ function FilterPanelContent({
             ))}
           </div>
         </AccordionSection>
-
-        {/* Experience Section */}
         <AccordionSection id="experience" label="Experience" isExpanded={expanded.has('experience')} onToggle={() => toggle('experience')}>
           <div className="flex flex-wrap gap-2">
             {experienceOptions.map((opt) => {
@@ -448,8 +438,6 @@ function FilterPanelContent({
             })}
           </div>
         </AccordionSection>
-
-        {/* Sort By Section */}
         <AccordionSection id="sort" label="Sort By" isExpanded={expanded.has('sort')} onToggle={() => toggle('sort')}>
           <div className="flex flex-col gap-1" role="radiogroup" aria-label="Sort brokers by">
             {sortOptions.map((opt) => {
@@ -488,8 +476,6 @@ function FilterPanelContent({
         </AccordionSection>
 
       </div>
-
-      {/* Footer / CTA Bar */}
       <div className={`shrink-0 px-4 py-3 bg-white/95 dark:bg-[#0b1b42]/95 backdrop-blur-md border-t border-black/[0.06] dark:border-white/10 flex items-center gap-2.5 ${
         isDesktop ? '' : 'justify-between'
       }`}>
@@ -557,7 +543,6 @@ function DesktopDrawer(props: BrokerFiltersProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Drawer Header */}
         <div className="shrink-0 flex items-center justify-between px-5 py-3.5 border-b border-black/[0.06] dark:border-white/10 bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-md">
           <div className="flex items-center gap-2.5">
             <span className="w-1 h-4 rounded-full bg-gradient-to-b from-[#bf953f] via-[#d4af37] to-[#b38728] shrink-0" />
@@ -661,7 +646,6 @@ function MobileSheet(props: BrokerFiltersProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Mobile Drag Header */}
         <div
           className="shrink-0 relative flex items-center justify-center pt-3 pb-2 touch-none select-none cursor-grab active:cursor-grabbing bg-white/90 dark:bg-[#0b1b42]/90 backdrop-blur-md border-b border-black/[0.05] dark:border-white/[0.08]"
           onTouchStart={handleTouchStart}
