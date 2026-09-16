@@ -94,7 +94,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
         {/* Profile Preview Card */}
         <motion.div 
           variants={item}
-          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-sm border border-gray-100 dark:border-gray-800 w-full flex items-center gap-3"
+          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] w-full flex items-center gap-3"
         >
           <div className="w-14 h-14 rounded-full bg-[#0b1b42] text-[#d4af37] flex items-center justify-center text-xl font-bold border-2 border-[#d4af37]/60 shadow-md shadow-[#d4af37]/10 shrink-0">
             A
@@ -108,7 +108,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
         </motion.div>
 
         {/* Personal Information */}
-        <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col gap-4">
+        <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
               <User size={14} />
@@ -166,7 +166,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
         </motion.div>
 
         {/* Identity & Authentication */}
-        <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col gap-4">
+        <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white shadow-sm shadow-emerald-500/20">
               <ShieldCheck size={14} />
@@ -235,7 +235,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
         </motion.div>
 
         {/* Role & Business Details */}
-        <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col gap-4">
+        <motion.div variants={item} className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
             <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-sm shadow-violet-500/20">
               <Briefcase size={14} />

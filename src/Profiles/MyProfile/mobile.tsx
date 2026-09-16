@@ -68,7 +68,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
         {/* Profile Card */}
         <motion.div
           variants={item}
-          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-sm border border-gray-100 dark:border-gray-800 w-full flex items-center justify-between"
+          className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] w-full flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -113,7 +113,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           </div>
           <h3 className="text-base font-semibold text-[#0a1128] dark:text-white tracking-tight">Contact Information</h3>
 
-          <div className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col divide-y divide-gray-100 dark:divide-gray-800">
+          <div className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col divide-y divide-gray-100 dark:divide-gray-800">
             <motion.div
               whileHover={{ x: 3 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -170,7 +170,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           <motion.button
             whileHover={{ x: 3 }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-3.5 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between w-full hover:border-rose-200 dark:hover:border-rose-800/60 transition-colors duration-300"
+            className="bg-white/95 dark:bg-[#121c33] backdrop-blur-md rounded-[4px] p-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex items-center justify-between w-full hover:border-rose-200 dark:hover:border-rose-800/60 transition-colors duration-300"
           >
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-[4px] bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-white shadow-sm shadow-rose-500/20 shrink-0">

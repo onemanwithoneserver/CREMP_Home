@@ -67,7 +67,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
           <div className="sticky top-20 flex flex-col gap-5">
             <motion.div 
               variants={item}
-              className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center gap-3"
+              className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col items-center text-center gap-3"
             >
               <div className="w-24 h-24 mt-2 rounded-full bg-gradient-to-br from-[#0b1b42] to-[#121c33] text-[#d4af37] flex items-center justify-center text-4xl font-black border-4 border-[#d4af37]/30 shadow-xl shadow-[#d4af37]/10 relative group hover:border-[#d4af37]/60 transition-colors duration-500">
                 A
@@ -100,7 +100,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
           {/* Personal Information */}
           <motion.div 
             variants={item}
-            className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col gap-5"
+            className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-5"
           >
             <div className="flex items-center gap-2.5 border-b border-gray-100 dark:border-gray-800 pb-3">
               <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white shadow-sm shadow-orange-500/20">
@@ -163,7 +163,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
           {/* Identity & Authentication */}
           <motion.div 
             variants={item}
-            className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col gap-5"
+            className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-5"
           >
             <div className="flex items-center gap-2.5 border-b border-gray-100 dark:border-gray-800 pb-3">
               <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white shadow-sm shadow-emerald-500/20">
@@ -230,7 +230,7 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
           {/* Role & Business Details */}
           <motion.div 
             variants={item}
-            className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col gap-5 mb-8"
+            className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col gap-5 mb-8"
           >
             <div className="flex items-center gap-2.5 border-b border-gray-100 dark:border-gray-800 pb-3">
               <div className="w-7 h-7 rounded-[4px] bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-sm shadow-violet-500/20">
