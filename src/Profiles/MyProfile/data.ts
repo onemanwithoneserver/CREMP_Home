@@ -1,7 +1,7 @@
 export const myProfileData = {
-  name: "admin",
+  name: "Your Name",
   role: "Buyer • Individual",
   status: "Active Member",
-  email: "admin@gmail.com",
-  mobile: "+91 9191919494092155",
+  email: "your.email@example.com",
+  mobile: "+91 00000 00000",
 };

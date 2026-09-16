@@ -16,9 +16,9 @@ export interface EditProfileFormData {
 }
 
 export const initialFormData: EditProfileFormData = {
-  fullName: "admin",
-  email: "admin@gmail.com",
-  mobile: "+91 9191919494092155",
+  fullName: "",
+  email: "",
+  mobile: "",
   panNumber: "",
   nameAsPan: "",
   dob: "",

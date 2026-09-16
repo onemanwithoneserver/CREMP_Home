@@ -39,7 +39,7 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
         <div className="absolute top-[-10%] right-[-5%] w-56 h-56 bg-[#d4af37]/8 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#d4af37]/5 rounded-full blur-[60px] pointer-events-none" />
 
-        <div className="flex justify-between items-center w-full mb-5 relative z-10">
+        <div className="flex justify-between items-center w-full mb-6 relative z-10">
           <button
             onClick={onBack}
             className="w-9 h-9 rounded-[4px] bg-white/8 border border-white/10 flex items-center justify-center text-white hover:bg-white/15 transition-colors duration-200"
@@ -47,16 +47,19 @@ export default function MyProfileMobile({ onEditProfile, onBack }: MyProfileMobi
           >
             <ChevronLeft size={18} />
           </button>
+        </div>
 
+        <div className="flex items-center justify-between gap-4 relative z-10">
+          <div className="flex flex-col">
+            <h1 className="text-white text-2xl font-semibold tracking-tight">My Profile</h1>
+            <p className="text-gray-400 text-xs mt-0.5 max-w-[200px]">Manage your account information</p>
+          </div>
           <img
             src={crempLogo}
             alt="CREMP Logo"
-            className="h-9 w-auto object-contain"
+            className="h-12 w-auto object-contain drop-shadow-lg"
           />
         </div>
-
-        <h1 className="text-white text-2xl font-semibold tracking-tight relative z-10">My Profile</h1>
-        <p className="text-gray-400 text-xs mt-1 relative z-10">Manage your account information</p>
       </div>
 
       {/* Content */}

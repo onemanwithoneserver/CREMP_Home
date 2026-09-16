@@ -66,7 +66,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
         <div className="absolute top-[-10%] right-[-5%] w-56 h-56 bg-[#d4af37]/8 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#d4af37]/5 rounded-full blur-[60px] pointer-events-none" />
 
-        <div className="flex justify-between items-center w-full mb-5 relative z-10">
+        <div className="flex justify-between items-center w-full mb-6 relative z-10">
           <button 
             onClick={onBack}
             className="w-9 h-9 rounded-[4px] bg-white/8 border border-white/10 flex items-center justify-center text-white hover:bg-white/15 transition-colors duration-200"
@@ -74,16 +74,19 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
           >
             <ChevronLeft size={18} />
           </button>
-          
+        </div>
+        
+        <div className="flex items-center justify-between gap-4 relative z-10">
+          <div className="flex flex-col">
+            <h1 className="text-white text-2xl font-semibold tracking-tight">Edit Profile</h1>
+            <p className="text-gray-400 text-xs mt-0.5 max-w-[200px]">Update your personal and business details</p>
+          </div>
           <img
             src={crempLogo}
             alt="CREMP Logo"
-            className="h-9 w-auto object-contain"
+            className="h-12 w-auto object-contain drop-shadow-lg"
           />
         </div>
-        
-        <h1 className="text-white text-2xl font-semibold tracking-tight relative z-10">Edit Profile</h1>
-        <p className="text-gray-400 text-xs mt-1 relative z-10">Update your personal and business details</p>
       </div>
 
       <div className="px-4 -mt-10 flex flex-col gap-4 z-10">
@@ -97,7 +100,7 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
             A
           </div>
           <div className="flex flex-col">
-            <h2 className="text-lg font-bold text-[#0a1128] dark:text-white tracking-tight">{formData.fullName}</h2>
+            <h2 className="text-lg font-bold text-[#0a1128] dark:text-white tracking-tight">{formData.fullName || "Your Name"}</h2>
             <div className="mt-0.5 flex items-center gap-1 px-2.5 py-0.5 bg-[#0b1b42]/5 dark:bg-[#d4af37]/10 border border-[#0a1128]/10 dark:border-[#d4af37]/30 rounded-[2px] w-fit">
               <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-widest">{formData.userType} • {formData.role}</span>
             </div>
@@ -116,11 +119,12 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
           <div className="flex flex-col gap-1">
             <label className="text-[12px] font-bold text-[#0a1128] dark:text-white">Full Name <span className="text-rose-500">*</span></label>
             <input 
-              type="text" 
+              type="text"
+              placeholder="Enter your full name"
               value={formData.fullName}
               onChange={(e) => handleChange("fullName", e.target.value)}
               className={clsx(
-                "w-full px-3.5 py-2.5 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium",
+                "w-full px-3.5 py-2.5 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium placeholder:text-gray-400",
                 errors.fullName 
                   ? "border-rose-500 bg-rose-50 dark:bg-rose-950/20 focus:border-rose-500" 
                   : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0b1b42]/50 focus:border-[#d4af37] text-[#0a1128] dark:text-white"
@@ -132,10 +136,11 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
             <label className="text-[12px] font-bold text-[#0a1128] dark:text-white">Email Address <span className="text-rose-500">*</span></label>
             <input 
               type="email" 
+              placeholder="Enter your email address"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
               className={clsx(
-                "w-full px-3.5 py-2.5 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium",
+                "w-full px-3.5 py-2.5 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium placeholder:text-gray-400",
                 errors.email 
                   ? "border-rose-500 bg-rose-50 dark:bg-rose-950/20 focus:border-rose-500" 
                   : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0b1b42]/50 focus:border-[#d4af37] text-[#0a1128] dark:text-white"
@@ -147,10 +152,11 @@ export default function EditProfileMobile({ onBack, onSave }: EditProfileMobileP
             <label className="text-[12px] font-bold text-[#0a1128] dark:text-white">Mobile Number <span className="text-rose-500">*</span></label>
             <input 
               type="tel" 
+              placeholder="Enter your mobile number"
               value={formData.mobile}
               onChange={(e) => handleChange("mobile", e.target.value)}
               className={clsx(
-                "w-full px-3.5 py-2.5 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium",
+                "w-full px-3.5 py-2.5 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium placeholder:text-gray-400",
                 errors.mobile 
                   ? "border-rose-500 bg-rose-50 dark:bg-rose-950/20 focus:border-rose-500" 
                   : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0b1b42]/50 focus:border-[#d4af37] text-[#0a1128] dark:text-white"

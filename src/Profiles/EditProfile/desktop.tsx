@@ -3,7 +3,6 @@ import { Lock, Camera, CheckCircle2, User, ShieldCheck, Briefcase } from "lucide
 import { rolesData, initialFormData, type EditProfileFormData } from "./data";
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import crempLogo from "../../Logo/CREMP_Light.png";
 
 const container = {
   hidden: { opacity: 0 },
@@ -70,24 +69,20 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
               variants={item}
               className="bg-white dark:bg-[#121c33] rounded-[4px] p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center gap-3"
             >
-              <img
-                src={crempLogo}
-                alt="CREMP Logo"
-                className="h-8 w-auto object-contain mb-1"
-              />
-              <div className="w-20 h-20 rounded-full bg-[#0b1b42] text-[#d4af37] flex items-center justify-center text-3xl font-bold border-3 border-[#d4af37]/60 shadow-lg shadow-[#d4af37]/10">
+              <div className="w-24 h-24 mt-2 rounded-full bg-gradient-to-br from-[#0b1b42] to-[#121c33] text-[#d4af37] flex items-center justify-center text-4xl font-black border-4 border-[#d4af37]/30 shadow-xl shadow-[#d4af37]/10 relative group hover:border-[#d4af37]/60 transition-colors duration-500">
                 A
+                <div className="absolute inset-0 rounded-full border border-[#d4af37]/20 m-1" />
               </div>
-              <div className="flex flex-col items-center">
-                <h2 className="text-xl font-bold text-[#0a1128] dark:text-white tracking-tight">{formData.fullName || "Your Name"}</h2>
-                <div className="mt-1.5 flex items-center gap-1 px-3 py-1 bg-[#0b1b42]/5 dark:bg-[#d4af37]/10 border border-[#0a1128]/10 dark:border-[#d4af37]/30 rounded-[2px]">
-                  <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-widest">{formData.userType} • {formData.role}</span>
+              <div className="flex flex-col items-center mt-2">
+                <h2 className="text-2xl font-black text-[#0a1128] dark:text-white tracking-tight">{formData.fullName || "Your Name"}</h2>
+                <div className="mt-2 flex items-center gap-1 px-4 py-1.5 bg-gradient-to-r from-[#d4af37]/10 to-[#bf953f]/10 border border-[#d4af37]/20 rounded-full shadow-sm">
+                  <span className="text-[10px] font-bold text-[#b8942b] dark:text-[#d4af37] uppercase tracking-widest">{formData.userType} • {formData.role}</span>
                 </div>
               </div>
               
-              <div className="w-full h-px bg-gray-100 dark:bg-gray-800 my-1"></div>
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent my-3"></div>
               
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Update your personal information, authentication details, and business settings.</p>
+              <p className="text-[13px] text-gray-500 dark:text-gray-400 leading-relaxed max-w-[220px]">Update your personal information, authentication details, and business settings.</p>
               
               <button
                 onClick={handleSave}
@@ -117,11 +112,12 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
             <div className="flex flex-col gap-1">
               <label className="text-[12px] font-bold text-[#0a1128] dark:text-white">Full Name <span className="text-rose-500">*</span></label>
               <input 
-                type="text" 
+                type="text"
+                placeholder="Enter your full name"
                 value={formData.fullName}
                 onChange={(e) => handleChange("fullName", e.target.value)}
                 className={clsx(
-                  "w-full px-4 py-3 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium",
+                  "w-full px-4 py-3 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium placeholder:text-gray-400",
                   errors.fullName 
                     ? "border-rose-500 bg-rose-50 dark:bg-rose-950/20 focus:border-rose-500" 
                     : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0b1b42]/50 focus:border-[#d4af37] text-[#0a1128] dark:text-white"
@@ -134,10 +130,11 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
                 <label className="text-[12px] font-bold text-[#0a1128] dark:text-white">Email Address <span className="text-rose-500">*</span></label>
                 <input 
                   type="email" 
+                  placeholder="Enter your email address"
                   value={formData.email}
                   onChange={(e) => handleChange("email", e.target.value)}
                   className={clsx(
-                    "w-full px-4 py-3 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium",
+                    "w-full px-4 py-3 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium placeholder:text-gray-400",
                     errors.email 
                       ? "border-rose-500 bg-rose-50 dark:bg-rose-950/20 focus:border-rose-500" 
                       : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0b1b42]/50 focus:border-[#d4af37] text-[#0a1128] dark:text-white"
@@ -149,10 +146,11 @@ export default function EditProfileDesktop({ onSave }: EditProfileDesktopProps) 
                 <label className="text-[12px] font-bold text-[#0a1128] dark:text-white">Mobile Number <span className="text-rose-500">*</span></label>
                 <input 
                   type="tel" 
+                  placeholder="Enter your mobile number"
                   value={formData.mobile}
                   onChange={(e) => handleChange("mobile", e.target.value)}
                   className={clsx(
-                    "w-full px-4 py-3 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium",
+                    "w-full px-4 py-3 rounded-[4px] border focus:outline-none transition-colors text-[13px] font-medium placeholder:text-gray-400",
                     errors.mobile 
                       ? "border-rose-500 bg-rose-50 dark:bg-rose-950/20 focus:border-rose-500" 
                       : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0b1b42]/50 focus:border-[#d4af37] text-[#0a1128] dark:text-white"
