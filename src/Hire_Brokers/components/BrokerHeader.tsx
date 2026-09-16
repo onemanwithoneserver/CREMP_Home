@@ -11,8 +11,16 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
   return (
     <div className="w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] relative overflow-hidden shrink-0 border-b border-white/[0.05]">
       
-      <div className="absolute top-0 right-0 w-72 h-72 bg-[#d4af37]/10 blur-[80px] -translate-y-1/3 translate-x-1/4 rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 blur-[60px] translate-y-1/3 -translate-x-1/4 rounded-full pointer-events-none" />
+      <motion.div
+        animate={{ x: [-20, 20, -20], y: [-15, 25, -15], scale: [1, 1.15, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 right-0 w-80 h-80 bg-[#d4af37]/15 blur-[90px] -translate-y-1/3 translate-x-1/4 rounded-full pointer-events-none"
+      />
+      <motion.div
+        animate={{ x: [15, -25, 15], y: [20, -15, 20], scale: [1, 1.2, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/10 blur-[80px] translate-y-1/3 -translate-x-1/4 rounded-full pointer-events-none"
+      />
       
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay">
         <div
@@ -51,7 +59,10 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
         
         <div className="flex items-start justify-between gap-4 mb-1">
           <div>
-            <h1
+            <motion.h1
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
               className={`font-extralight text-white tracking-wide m-0 leading-tight ${
                 isDesktop ? 'text-[1.6rem]' : 'text-[1.25rem]'
               }`}
@@ -61,7 +72,7 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
               <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] animate-[cb-shimmer_3s_infinite_linear]" style={{ backgroundSize: "200% auto" }}>
                 CREMP Brokers
               </span>
-            </h1>
+            </motion.h1>
           </div>
 
           
@@ -73,14 +84,16 @@ export default function BrokerHeader({ isDesktop }: BrokerHeaderProps) {
 
         
         <div className={`grid gap-3 mt-4 ${isDesktop ? 'grid-cols-2 max-w-2xl' : 'grid-cols-2'}`}>
-          {actionCards.map((card) => (
+          {actionCards.map((card, idx) => (
             <motion.button
               key={card.id}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * Number(card.id), type: "spring", stiffness: 300, damping: 25 }}
-              className={`bg-gradient-to-br ${card.gradient} rounded-[4px] border border-white/10 text-left transition-all relative overflow-hidden group
-                hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] hover:-translate-y-1 active:translate-y-0 hover:border-white/20
+              whileHover={{ y: -2, scale: 1.015 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ delay: 0.1 * idx, duration: 0.3 }}
+              className={`bg-gradient-to-br ${card.gradient} rounded-[4px] border border-white/10 text-left transition-shadow relative overflow-hidden group
+                hover:shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:border-[#d4af37]/40
                 ${isDesktop ? 'px-5 py-4' : 'px-3.5 py-3'}`}
             >
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300" />

@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface BrokerSearchProps {
   value: string;
@@ -39,17 +40,27 @@ export default function BrokerSearch({
       />
 
       
-      {value && (
-        <button
-          onClick={() => onChange('')}
-          aria-label="Clear search"
-          className="mr-3 shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-black/[0.06] text-[#637089] hover:bg-black/[0.1] transition-colors"
-        >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-2.5 h-2.5">
-            <path d="M4 4l8 8M12 4l-8 8" />
-          </svg>
-        </button>
-      )}
+      <AnimatePresence>
+        {value && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onChange('');
+            }}
+            aria-label="Clear search"
+            className="mr-3 shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-black/[0.06] dark:bg-white/10 text-[#637089] dark:text-white hover:bg-black/[0.1] transition-colors cursor-pointer"
+          >
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-2.5 h-2.5">
+              <path d="M4 4l8 8M12 4l-8 8" />
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

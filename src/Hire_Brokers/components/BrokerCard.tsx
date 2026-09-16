@@ -8,6 +8,7 @@ interface BrokerCardProps {
   broker: Broker;
   isDesktop: boolean;
   isLoading?: boolean;
+  index?: number;
   onViewProfile?: (broker: Broker) => void;
 }
 
@@ -79,26 +80,33 @@ function RatingStars({ rating }: { rating: number }) {
   );
 }
 
-export default function BrokerCard({ broker, isDesktop, isLoading = false, onViewProfile }: BrokerCardProps) {
+export default function BrokerCard({ broker, isDesktop, isLoading = false, index = 0, onViewProfile }: BrokerCardProps) {
   const [imgError, setImgError] = useState(false);
   if (isLoading) return <BrokerCardSkeleton isDesktop={isDesktop} />;
 
   return (
     <motion.div
-      whileHover={{ y: -4, scale: 1.01, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-      className={`bg-surface dark:bg-[#0b1b42] text-gray-900 dark:text-primary ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'} border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col relative overflow-hidden ${isDesktop ? 'p-5' : 'p-4'}`}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.35, ease: "easeOut", delay: Math.min(index * 0.04, 0.32) }}
+      whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+      className={`bg-surface dark:bg-[#0b1b42] text-gray-900 dark:text-primary ${isDesktop ? 'rounded-[8px]' : 'rounded-[4px]'} border border-black/5 dark:border-white/10 shadow-sm hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:border-[#d4af37]/35 transition-all duration-300 group flex flex-col relative overflow-hidden ${isDesktop ? 'p-5' : 'p-4'}`}
       role="article"
       aria-label={`Broker: ${broker.name}`}
     >
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       <div className="flex items-start gap-3 mb-3">
-        <div
-          className={`shrink-0 rounded-full overflow-hidden flex items-center justify-center font-bold text-white cb-avatar-ring relative after:absolute after:inset-[-4px] after:rounded-full after:border after:border-[#d4af37]/30 group-hover:after:border-[#d4af37]/60 group-hover:after:shadow-[0_0_12px_rgba(212,175,55,0.4)] after:transition-all after:duration-300 font-['Outfit',sans-serif] tracking-[0.05em] ${
+        <motion.div
+          whileHover={{ scale: 1.06 }}
+          transition={{ duration: 0.2 }}
+          className={`shrink-0 rounded-full overflow-hidden flex items-center justify-center font-bold text-white cb-avatar-ring relative after:absolute after:inset-[-4px] after:rounded-full after:border after:border-[#d4af37]/30 group-hover:after:border-[#d4af37]/60 group-hover:after:shadow-[0_0_12px_rgba(212,175,55,0.4)] after:transition-all after:duration-300 font-['Outfit',sans-serif] tracking-[0.05em] cursor-pointer ${
             isDesktop ? 'w-[48px] h-[48px] text-[15px]' : 'w-[44px] h-[44px] text-[13px]'
           }`}
           style={{
             background: `linear-gradient(135deg, ${broker.avatarColor} 0%, ${broker.avatarColor}cc 100%)`
           }}
+          onClick={() => onViewProfile?.(broker)}
         >
           {broker.avatarUrl && !imgError ? (
             <img
@@ -110,14 +118,15 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
           ) : (
             broker.avatarInitials
           )}
-        </div>
+        </motion.div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 flex-wrap">
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 flex-wrap">
                 <h3
-                  className={`font-bold text-[#0a1128] dark:text-white dark:text-white leading-tight truncate font-['Outfit',sans-serif] ${
+                  onClick={() => onViewProfile?.(broker)}
+                  className={`font-bold text-[#0a1128] dark:text-white leading-tight truncate font-['Outfit',sans-serif] cursor-pointer hover:text-[#d4af37] transition-colors ${
                     isDesktop ? 'text-[14px]' : 'text-[13px]'
                   }`}
                 >
@@ -126,7 +135,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
                 {broker.isVerified && <VerifiedBadge size="sm" />}
               </div>
               <p
-                className={`text-[#637089] font-medium truncate leading-tight mt-0.5 font-['Outfit',sans-serif] ${
+                className={`text-[#637089] dark:text-gray-400 font-medium truncate leading-tight mt-0.5 font-['Outfit',sans-serif] ${
                   isDesktop ? 'text-[12px]' : 'text-[11px]'
                 }`}
               >
@@ -135,7 +144,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
             </div>
 
             <div className="flex items-center gap-1 shrink-0">
-              <span className="text-[13px] font-bold text-[#0a1128] dark:text-white dark:text-white font-['Outfit',sans-serif]">
+              <span className="text-[13px] font-bold text-[#0a1128] dark:text-white font-['Outfit',sans-serif]">
                 {broker.rating.toFixed(1)}
               </span>
               <RatingStars rating={broker.rating} />
@@ -147,7 +156,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
               <path d="M8 1.5C5.79 1.5 4 3.29 4 5.5c0 3 4 9 4 9s4-6 4-9c0-2.21-1.79-4-4-4z" />
               <circle cx="8" cy="5.5" r="1.5" />
             </svg>
-            <span className="text-[10px] text-[#637089] font-medium leading-tight font-['Outfit',sans-serif]">
+            <span className="text-[10px] text-[#637089] dark:text-gray-400 font-medium leading-tight font-['Outfit',sans-serif]">
               {broker.location}
             </span>
           </div>
@@ -156,7 +165,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
 
       <div className="flex flex-wrap gap-1.5 mb-3">
         {broker.specialties.map((s) => (
-          <span key={s} className="cb-tag hover:bg-[#d4af37]/10 hover:text-[#b8903c] transition-colors cursor-default">
+          <span key={s} className="cb-tag hover:bg-[#d4af37]/15 hover:border-[#d4af37]/40 hover:text-[#b8903c] dark:hover:text-[#d4af37] transition-all cursor-default">
             {s}
           </span>
         ))}
@@ -172,19 +181,23 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false, onVie
       </div>
 
       <div className="flex gap-2 mt-auto pt-1">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onViewProfile?.(broker)}
-          className={`cb-btn-outline flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'} hover:scale-[1.02] active:scale-[0.98] transition-transform`}
+          className={`cb-btn-outline flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'} transition-all`}
           aria-label={`View profile of ${broker.name}`}
         >
           View Profile
-        </button>
-        <button
-          className={`cb-btn-primary flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'} hover:scale-[1.02] active:scale-[0.98] transition-transform`}
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className={`cb-btn-primary flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'} transition-all`}
           aria-label={`Send requirement to ${broker.name}`}
         >
           Send Requirement
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );
