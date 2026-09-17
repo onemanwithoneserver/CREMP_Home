@@ -123,10 +123,11 @@ export default function MediaGalleryDesktop() {
                         key={item.id}
                         layout
                         variants={fadeScaleUp}
-                        whileHover={{ y: -5, scale: 1.02 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        initial="hidden"
+                        animate="show"
+                        exit={{ opacity: 0, scale: 0.9 }}
                         className={clsx(
-                          "relative break-inside-avoid rounded-[4px] overflow-hidden group shadow-md hover:shadow-2xl bg-gray-900 border border-black/5 dark:border-white/10 cursor-pointer transform-gpu transition-all duration-300",
+                          "relative break-inside-avoid rounded-[4px] overflow-hidden group shadow-md hover:shadow-2xl bg-gray-900 border border-black/5 dark:border-white/10 cursor-pointer transform-gpu transition-all duration-500",
                           heightClass
                         )}
                       >
