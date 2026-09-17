@@ -842,10 +842,10 @@ export default function FranchiseSearchResultsMobile() {
                           <motion.button
                             whileTap={{ scale: 0.92 }}
                             onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                            className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+                            className="w-7 h-7 flex items-center justify-center rounded-full bg-[#0b1b42] text-white hover:bg-[#1a2b5e] transition-all shadow-sm"
                             title="View Details"
                           >
-                            <Eye size={14} strokeWidth={2.5} />
+                            <Eye size={13} strokeWidth={2} />
                           </motion.button>
                         </div>
                       </div>
@@ -930,14 +930,14 @@ export default function FranchiseSearchResultsMobile() {
                             <div className="relative w-full h-[170px] overflow-hidden bg-gray-50">
                               <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
                               <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-[#0a1128]/10" />
-                              <div className="absolute top-3 right-3 flex items-center">
+                              <div className="absolute top-2.5 right-2.5 flex items-center">
                                 <motion.button
                                   whileTap={{ scale: 0.9 }}
                                   onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                  className="w-9 h-9 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
+                                  className="w-7 h-7 rounded-full bg-[#0b1b42]/70 hover:bg-[#0b1b42] backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm"
                                   title="View Details"
                                 >
-                                  <Eye size={16} strokeWidth={2} className="text-white" />
+                                  <Eye size={13} strokeWidth={2} className="text-white" />
                                 </motion.button>
                               </div>
                               <div className="absolute bottom-3 left-3">
@@ -1014,10 +1014,10 @@ export default function FranchiseSearchResultsMobile() {
                           <motion.button
                             whileTap={{ scale: 0.9 }}
                             onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                            className="p-0"
+                            className="w-5 h-5 rounded-full bg-[#0b1b42]/70 hover:bg-[#0b1b42] backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm"
                             title="View Details"
                           >
-                            <Eye size={14} strokeWidth={2} className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
+                            <Eye size={10} strokeWidth={2} className="text-white" />
                           </motion.button>
                         </div>
                       </div>

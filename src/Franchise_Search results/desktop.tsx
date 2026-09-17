@@ -203,10 +203,10 @@ function MapPopup({
             onClick={(e) => { e.stopPropagation(); onView(); }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-8 h-8 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-[#0b1b42] text-white hover:bg-[#1a2b5e] transition-all shadow-sm"
             title="View Details"
           >
-            <Eye size={16} strokeWidth={2.5} />
+            <Eye size={15} strokeWidth={2} />
           </motion.button>
 
       </div>
@@ -931,14 +931,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                                   
-                                  <div className="absolute top-4 right-4 flex items-center">
+                                  <div className="absolute top-3.5 right-3.5 flex items-center">
                                     <motion.button
                                       whileTap={{ scale: 0.92 }}
                                       onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                      className="w-11 h-11 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md hover:bg-[#1a2b5e] transition-colors"
+                                      className="w-8 h-8 rounded-full bg-[#0b1b42]/70 hover:bg-[#0b1b42] backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm transition-all"
                                       title="View Details"
                                     >
-                                      <Eye size={18} strokeWidth={2} className="text-white" />
+                                      <Eye size={15} strokeWidth={2} className="text-white" />
                                     </motion.button>
                                   </div>
                                   
@@ -998,14 +998,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[70px] bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
                                   
-                                  <div className="absolute top-3 right-3 flex items-center">
+                                  <div className="absolute top-2.5 right-2.5 flex items-center">
                                     <motion.button
                                       whileTap={{ scale: 0.92 }}
                                       onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                      className="p-0 hover:scale-110 transition-transform"
+                                      className="w-7 h-7 rounded-full bg-[#0b1b42]/70 hover:bg-[#0b1b42] backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm transition-all"
                                       title="View Details"
                                     >
-                                      <Eye size={20} strokeWidth={2} className="text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.6)]" />
+                                      <Eye size={13} strokeWidth={2} className="text-white" />
                                     </motion.button>
                                   </div>
                                   
@@ -1067,14 +1067,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[50px] bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                                   
-                                  <div className="absolute top-2.5 right-2.5 flex items-center">
+                                  <div className="absolute top-2 right-2 flex items-center">
                                     <motion.button
                                       whileTap={{ scale: 0.92 }}
                                       onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                      className="p-0 hover:scale-110 transition-transform"
+                                      className="w-6 h-6 rounded-full bg-[#0b1b42]/70 hover:bg-[#0b1b42] backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm transition-all"
                                       title="View Details"
                                     >
-                                      <Eye size={18} strokeWidth={2} className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]" />
+                                      <Eye size={11} strokeWidth={2} className="text-white" />
                                     </motion.button>
                                   </div>
                                 </div>
