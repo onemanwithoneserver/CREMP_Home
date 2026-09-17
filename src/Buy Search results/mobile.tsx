@@ -3,7 +3,6 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import BuildingBox from "../BuildingBox";
 import LandBox from "../LandBox";
 import AllBuildingBox from "../AllBuildingBox";
-import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
 import { useNavigate } from "react-router-dom";
 import {
@@ -180,7 +179,7 @@ export default function BuySearchResultsMobile() {
   );
 
   return (
-    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-6">
       <div className="sticky top-[53px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
       </div>
@@ -897,8 +896,6 @@ export default function BuySearchResultsMobile() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <MobileStickyFooter />
     </div>
   );
 }

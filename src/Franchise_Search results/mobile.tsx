@@ -21,7 +21,6 @@ import { franchises, getMeta, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
-import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function UndoSnackbar({
@@ -323,7 +322,7 @@ export default function FranchiseSearchResultsMobile() {
   }, [handleLoadMore, isLoadingMore, visibleCount, filtered.length]);
 
   return (
-    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-6">
       <div className="sticky top-[53px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
       </div>
@@ -1069,8 +1068,6 @@ export default function FranchiseSearchResultsMobile() {
           />
         )}
       </AnimatePresence>
-
-      <MobileStickyFooter />
     </div>
   );
 }

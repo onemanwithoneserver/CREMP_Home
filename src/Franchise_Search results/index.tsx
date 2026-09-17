@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Desktop from "./desktop";
 import Mobile from "./mobile";
 import SiteHeader from "../components/commonfiles/Header/headerdesktop";
-import SiteFooter from "../components/commonfiles/Footer/footerdesktop";
+
 export default function FranchiseSearchResults({ isMobile }: { isMobile?: boolean }) {
   if (isMobile) {
     return (
@@ -30,7 +30,6 @@ export default function FranchiseSearchResults({ isMobile }: { isMobile?: boolea
       >
         <Desktop />
       </motion.div>
-      <SiteFooter />
     </div>
   );
 }
