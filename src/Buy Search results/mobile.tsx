@@ -225,7 +225,10 @@ export default function BuySearchResultsMobile() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[97px] left-0 right-0 z-50 bg-[#0b1b42] shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex flex-col"
+            className="fixed top-[97px] left-0 right-0 z-50 shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex flex-col"
+            style={{
+              background: "linear-gradient(135deg, rgb(10, 17, 40) 0%, rgb(11, 27, 66) 35%, rgb(19, 34, 84) 65%, rgb(13, 26, 58) 100%)",
+            }}
           >
             <div className="py-2 px-4 relative">
               <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-md">
@@ -248,13 +251,58 @@ export default function BuySearchResultsMobile() {
                   </div>
                 </div>
               </div>
+
+              <AnimatePresence>
+                {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                    transition={spring}
+                    className="absolute top-full left-4 right-4 mt-2 rounded-[4px] overflow-hidden z-[100] shadow-2xl bg-white border border-[#0b1b42]/[0.08]"
+                  >
+                    <div className="overflow-y-auto p-1 max-h-[240px] scrollbar-hide">
+                      {suggestions.length > 0 ? (
+                        suggestions.map((f, i) => (
+                          <motion.div
+                            key={f.id}
+                            initial={{ opacity: 0, x: -6 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              setSearchQuery(f.name);
+                              setIsSearchFocused(false);
+                            }}
+                            className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
+                          >
+                            <div className="w-8 h-8 rounded bg-[#0b1b42]/[0.03] group-hover:bg-[#d4af37]/10 flex items-center justify-center text-[#0b1b42]/25 group-hover:text-[#d4af37] shrink-0 border border-[#0b1b42]/[0.04] transition-all duration-300">
+                              <Building2 size={13} strokeWidth={1.5} />
+                            </div>
+                            <div className="flex flex-col min-w-0">
+                              <span className="truncate font-bold text-[12px] leading-tight text-[#0a1128] group-hover:text-[#d4af37] transition-colors">{f.name}</span>
+                              <span className="text-[9px] font-medium text-[#0b1b42]/35 flex items-center gap-0.5 mt-0.5">
+                                <MapPin size={8} strokeWidth={2} />
+                                <span className="truncate">{f.location}</span>
+                              </span>
+                            </div>
+                          </motion.div>
+                        ))
+                      ) : (
+                        <div className="p-3 text-center text-[10px] text-[#0b1b42]/35 font-medium">No listings found</div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            <div className="w-full relative bg-[#f8f9fc] border-t border-[#0b1b42]/[0.08] flex items-center">
+            <div className="w-full relative bg-black/20 border-t border-white/[0.08] flex items-center">
               {showStickyLeft && (
                 <button
                   onClick={() => handleScroll(stickyScrollRef, 'left')}
-                  className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+                  className="absolute left-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-r from-[#0a1128] via-[#0a1128] to-transparent text-white/70 hover:text-white transition-colors"
                 >
                   <ChevronLeft size={18} strokeWidth={2.5} />
                 </button>
@@ -264,9 +312,9 @@ export default function BuySearchResultsMobile() {
                 onScroll={() => checkScroll(stickyScrollRef, setShowStickyLeft, setShowStickyRight)}
                 className="w-full overflow-x-auto scrollbar-hide px-4 py-2 flex items-center gap-2 relative"
               >
-                <div className="flex items-center gap-1 mr-1 text-[#0b1b42]/40 shrink-0 font-medium">
-                  <Filter size={12} strokeWidth={2.5} />
-                  <span className="text-[9px] uppercase tracking-widest font-bold">
+                <div className="flex items-center gap-1 mr-1 text-white/40 shrink-0 font-medium">
+                  <Filter size={12} strokeWidth={2.5} className="text-[#d4af37]" />
+                  <span className="text-[9px] uppercase tracking-widest font-bold text-white/60">
                     Filter:
                   </span>
                 </div>
@@ -280,8 +328,8 @@ export default function BuySearchResultsMobile() {
                       onClick={() => handleSelectCategory(cat)}
                       className={`shrink-0 relative px-3 py-1 rounded-[4px] text-[10px] font-semibold tracking-normal transition-all flex flex-col items-center justify-center cursor-pointer ${
                         isActive
-                          ? "bg-[#0b1b42] text-[#d4af37] shadow-[0_2px_8px_rgba(11,27,66,0.15)]"
-                          : "bg-white text-[#0b1b42]/70 border border-gray-200 hover:bg-gray-50"
+                          ? "bg-[#0b1b42] text-[#d4af37] border border-[#d4af37]/40 shadow-[0_2px_8px_rgba(212,175,55,0.25)]"
+                          : "bg-white/[0.06] text-white/70 border border-white/10 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       <span>{cat}</span>
@@ -295,7 +343,7 @@ export default function BuySearchResultsMobile() {
               {showStickyRight && (
                 <button
                   onClick={() => handleScroll(stickyScrollRef, 'right')}
-                  className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#f8f9fc] via-[#f8f9fc] to-transparent text-[#0b1b42] hover:bg-gray-100 transition-colors"
+                  className="absolute right-0 top-0 bottom-0 z-10 w-8 flex items-center justify-center bg-gradient-to-l from-[#0a1128] via-[#0a1128] to-transparent text-white/70 hover:text-white transition-colors"
                 >
                   <ChevronRight size={18} strokeWidth={2.5} />
                 </button>

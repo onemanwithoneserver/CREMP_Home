@@ -406,18 +406,19 @@ export default function FranchiseSearchResultsDesktop() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed top-[53px] left-0 right-0 z-[999] flex flex-row h-[52px]"
             style={{
-              background: "rgba(255,255,255,0.97)",
+              background: "linear-gradient(135deg, rgb(10, 17, 40) 0%, rgb(11, 27, 66) 35%, rgb(19, 34, 84) 65%, rgb(13, 26, 58) 100%)",
               backdropFilter: "blur(20px)",
-              borderBottom: "1px solid rgba(11,27,66,0.08)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
             }}
           >
             <div className="flex-1 flex items-center px-5 overflow-hidden gap-3">
-              <div className="flex items-center gap-1.5 text-[#0b1b42]/30 shrink-0">
-                <Filter size={13} strokeWidth={2} />
-                <span className="text-[9.5px] uppercase tracking-[0.12em] font-bold">Filter</span>
+              <div className="flex items-center gap-1.5 text-white/50 shrink-0">
+                <Filter size={13} strokeWidth={2} className="text-[#d4af37]" />
+                <span className="text-[9.5px] uppercase tracking-[0.12em] font-bold text-white/70">Filter</span>
               </div>
 
-              <div className="w-px h-5 bg-[#0b1b42]/10 shrink-0" />
+              <div className="w-px h-5 bg-white/10 shrink-0" />
 
               <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
                 {categories.map((cat) => {
@@ -429,13 +430,13 @@ export default function FranchiseSearchResultsDesktop() {
                       whileTap={{ scale: 0.94 }}
                       className={`shrink-0 relative px-3.5 py-1 rounded-[4px] text-[11px] font-semibold tracking-tight transition-all duration-200 border cursor-pointer ${
                         isActive
-                          ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/30 shadow-[0_2px_10px_rgba(10,17,40,0.18)]"
-                          : "bg-white text-[#0b1b42]/70 border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:text-[#0b1b42]"
+                          ? "bg-[#0b1b42] text-[#d4af37] border-[#d4af37]/50 shadow-[0_2px_10px_rgba(212,175,55,0.25)]"
+                          : "bg-white/[0.06] text-white/70 border-white/10 hover:border-white/20 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       {cat}
                       {isActive && (
-                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_4px_rgba(212,175,55,0.6)]" />
+                        <span className="absolute bottom-0.5 inset-x-0 mx-auto w-4 h-[2px] rounded-full bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_0_6px_rgba(212,175,55,0.7)]" />
                       )}
                     </motion.button>
                   );
@@ -443,22 +444,22 @@ export default function FranchiseSearchResultsDesktop() {
               </div>
             </div>
 
-            <div className="w-px h-7 my-auto bg-[#0b1b42]/[0.08] shrink-0" />
+            <div className="w-px h-7 my-auto bg-white/10 shrink-0" />
 
             <div className="w-[380px] shrink-0 flex items-center px-4 relative">
               <div className="w-full relative">
                 <div
                   className="relative w-full flex items-center rounded-[4px] overflow-hidden transition-all duration-200"
                   style={{
-                    background: "#f4f6fb",
-                    border: "1px solid rgba(11,27,66,0.09)",
-                    boxShadow: "inset 0 1px 3px rgba(11,27,66,0.04)",
+                    background: "rgba(255, 255, 255, 0.07)",
+                    border: "1px solid rgba(255, 255, 255, 0.12)",
+                    boxShadow: "inset 0 1px 3px rgba(0, 0, 0, 0.2)",
                   }}
                 >
                   <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isSearchFocused ? "opacity-100" : "opacity-0"}`}
-                    style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.25), inset 0 0 0 1px rgba(212,175,55,0.15)" }}
+                    style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.35), inset 0 0 0 1px rgba(212,175,55,0.2)" }}
                   />
-                  <Search size={14} strokeWidth={2} className="ml-3 text-[#0b1b42]/30 shrink-0" />
+                  <Search size={14} strokeWidth={2} className="ml-3 text-white/40 shrink-0" />
                   <input
                     type="text"
                     value={searchQuery}
@@ -466,15 +467,15 @@ export default function FranchiseSearchResultsDesktop() {
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                     placeholder="Search franchise, industry, or location..."
-                    className="flex-1 bg-transparent border-none outline-none text-[12.5px] font-medium text-[#0a1128] placeholder-[#0b1b42]/30 py-[7px] px-2.5"
+                    className="flex-1 bg-transparent border-none outline-none text-[12.5px] font-medium text-white placeholder-white/35 py-[7px] px-2.5"
                   />
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className="shrink-0 w-7 h-7 mr-1 flex items-center justify-center rounded-[3px] text-white transition-all relative overflow-hidden"
-                    style={{ background: "linear-gradient(135deg, #0a1128, #0b1b42)" }}
+                    className="shrink-0 w-7 h-7 mr-1 flex items-center justify-center rounded-[3px] text-[#0b1b42] transition-all relative overflow-hidden"
+                    style={{ background: "linear-gradient(135deg, #d4af37, #bf953f)" }}
                   >
-                    <Search className="h-3 w-3 relative z-10" />
+                    <Search className="h-3 w-3 relative z-10 text-[#0b1b42]" />
                   </motion.button>
                 </div>
 
@@ -513,9 +514,9 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                                 </div>
                                 <div className="flex flex-col min-w-0 justify-center flex-1">
-                                  <span className="truncate font-semibold text-[13px] leading-tight tracking-tight text-[#0a1128]">{f.name}</span>
+                                  <span className="truncate font-semibold text-[13px] leading-tight tracking-tight text-[#0a1128] group-hover:text-[#d4af37] transition-colors">{f.name}</span>
                                   <span className="text-[10px] font-medium text-[#0b1b42]/40 flex items-center gap-1 mt-0.5">
-                                    <MapPin size={9} strokeWidth={2} />
+                                    <MapPin size={9} strokeWidth={2} className="text-[#d4af37]" />
                                     <span className="truncate">{f.location}</span>
                                   </span>
                                 </div>
