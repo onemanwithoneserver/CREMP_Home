@@ -465,7 +465,6 @@ export default function FranchiseSearchResultsDesktop() {
                   <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isStickySearchFocused ? "opacity-100" : "opacity-0"}`}
                     style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.35), inset 0 0 0 1px rgba(212,175,55,0.2)" }}
                   />
-                  <Search size={14} strokeWidth={2} className="ml-3 text-white/40 shrink-0" />
                   <input
                     type="text"
                     value={searchQuery}
