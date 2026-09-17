@@ -4,6 +4,8 @@ import BuildingBox from "../BuildingBox";
 import LandBox from "../LandBox";
 import AllBuildingBox from "../AllBuildingBox";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
+import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
+import SiteFooter from "../components/commonfiles/Footer/footerdesktop";
 import { useNavigate } from "react-router-dom";
 import {
   Eye,
@@ -956,6 +958,12 @@ export default function BuySearchResultsMobile() {
           </motion.div>
         )}
       </AnimatePresence>
+      <div className="mt-8 pb-16">
+        <SiteFooter isMobile={true} />
+      </div>
+      <div className="fixed bottom-0 left-0 right-0 z-50">
+        <MobileStickyFooter />
+      </div>
     </div>
   );
 }

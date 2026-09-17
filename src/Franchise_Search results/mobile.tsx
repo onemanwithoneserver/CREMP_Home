@@ -22,6 +22,7 @@ import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
 import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
+import SiteFooter from "../components/commonfiles/Footer/footerdesktop";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function UndoSnackbar({
@@ -1073,6 +1074,9 @@ export default function FranchiseSearchResultsMobile() {
           />
         )}
       </AnimatePresence>
+      <div className="mt-8 pb-16">
+        <SiteFooter isMobile={true} />
+      </div>
       <div className="fixed bottom-0 left-0 right-0 z-50">
         <MobileStickyFooter />
       </div>
