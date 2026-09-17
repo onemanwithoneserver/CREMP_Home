@@ -68,7 +68,7 @@ export default function SellerDashboardMobile() {
 
       <div className="flex-1 -mt-6 relative z-10 px-4 pb-24">
         <div className="flex flex-col gap-5">
-          {sellerNavItems.map((section, sIdx) => (
+          {sellerNavItems.map((section) => (
             <motion.div
               key={section.category}
               variants={item}

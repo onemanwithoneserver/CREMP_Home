@@ -21,6 +21,7 @@ import { franchises, getMeta, type Franchise } from "./data";
 import FranchiseHome from "../Franchise_Home";
 import SearchImage from "./SearchResults.png";
 import ExploreHeaderTabs from "../components/commonfiles/Header/ExploreHeaderTabs";
+import MobileStickyFooter from "../components/commonfiles/Footer/MobileStickyFooter";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function UndoSnackbar({
@@ -145,7 +146,8 @@ export default function FranchiseSearchResultsMobile() {
   const [dismissed, setDismissed] = useState<Set<number>>(new Set());
   const [showMap, setShowMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isStickySearchFocused, setIsStickySearchFocused] = useState(false);
+  const [isHeroSearchFocused, setIsHeroSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(6);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
@@ -229,7 +231,13 @@ export default function FranchiseSearchResultsMobile() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSticky(entry.boundingClientRect.top <= 97);
+        const sticky = entry.boundingClientRect.top <= 97;
+        setIsSticky(sticky);
+        if (sticky) {
+          setIsHeroSearchFocused(false);
+        } else {
+          setIsStickySearchFocused(false);
+        }
       },
       { threshold: [1], rootMargin: "-98px 0px 0px 0px" }
     );
@@ -322,7 +330,7 @@ export default function FranchiseSearchResultsMobile() {
   }, [handleLoadMore, isLoadingMore, visibleCount, filtered.length]);
 
   return (
-    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-6">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
       <div className="sticky top-[53px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
       </div>
@@ -373,8 +381,11 @@ export default function FranchiseSearchResultsMobile() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  onFocus={() => {
+                    setIsHeroSearchFocused(false);
+                    setIsStickySearchFocused(true);
+                  }}
+                  onBlur={() => setTimeout(() => setIsStickySearchFocused(false), 200)}
                   placeholder="Search franchise, industry, or location..."
                   className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
                 />
@@ -408,7 +419,7 @@ export default function FranchiseSearchResultsMobile() {
               </div>
 
               <AnimatePresence>
-                {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+                {isSticky && isStickySearchFocused && (searchQuery || suggestions.length > 0) && (
                   <motion.div
                     initial={{ opacity: 0, y: -6, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -428,7 +439,7 @@ export default function FranchiseSearchResultsMobile() {
                             onMouseDown={(e) => {
                               e.preventDefault();
                               setSearchQuery(f.name);
-                              setIsSearchFocused(false);
+                              setIsStickySearchFocused(false);
                             }}
                             className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
                           >
@@ -563,7 +574,7 @@ export default function FranchiseSearchResultsMobile() {
           >
             <div className={clsx(
               "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
-              isSearchFocused ? "opacity-100" : "opacity-0",
+              !isSticky && isHeroSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
 
             <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
@@ -571,8 +582,11 @@ export default function FranchiseSearchResultsMobile() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                onFocus={() => {
+                  setIsStickySearchFocused(false);
+                  setIsHeroSearchFocused(true);
+                }}
+                onBlur={() => setTimeout(() => setIsHeroSearchFocused(false), 200)}
                 placeholder="Search franchise, industry, or location..."
                 className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
               />
@@ -607,7 +621,7 @@ export default function FranchiseSearchResultsMobile() {
             </div>
 
             <AnimatePresence>
-              {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+              {!isSticky && isHeroSearchFocused && (searchQuery || suggestions.length > 0) && (
                 <motion.div
                   initial={{ opacity: 0, y: -6, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -627,7 +641,7 @@ export default function FranchiseSearchResultsMobile() {
                           onMouseDown={(e) => {
                             e.preventDefault();
                             setSearchQuery(f.name);
-                            setIsSearchFocused(false);
+                            setIsHeroSearchFocused(false);
                           }}
                           className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
                         >
@@ -1059,6 +1073,9 @@ export default function FranchiseSearchResultsMobile() {
           />
         )}
       </AnimatePresence>
+      <div className="fixed bottom-0 left-0 right-0 z-50">
+        <MobileStickyFooter />
+      </div>
     </div>
   );
 }

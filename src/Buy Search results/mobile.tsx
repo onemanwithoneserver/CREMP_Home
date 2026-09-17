@@ -55,7 +55,8 @@ export default function BuySearchResultsMobile() {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [showMap] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isStickySearchFocused, setIsStickySearchFocused] = useState(false);
+  const [isHeroSearchFocused, setIsHeroSearchFocused] = useState(false);
   const [isCarouselOpen, setIsCarouselOpen] = useState(true);
 
   const [selectedPropertyForView, setSelectedPropertyForView] = useState<Property | null>(null);
@@ -75,35 +76,34 @@ export default function BuySearchResultsMobile() {
     return ["All", ...Array.from(new Set(properties.map((p) => p.category)))];
   }, []);
 
-  const checkScroll = (ref: React.RefObject<HTMLDivElement | null>, setLeft: (val: boolean) => void, setRight: (val: boolean) => void) => {
+  const checkScroll = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    setLeft: (val: boolean) => void,
+    setRight: (val: boolean) => void
+  ) => {
     if (ref.current) {
       const { scrollLeft, scrollWidth, clientWidth } = ref.current;
-      setLeft(scrollLeft > 2);
-      setRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth - 2);
+      setLeft(scrollLeft > 10);
+      setRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
 
   const centerCategoryTab = (
-    ref: React.RefObject<HTMLDivElement | null>,
+    scrollRef: React.RefObject<HTMLDivElement | null>,
     cat: string,
     setLeft: (val: boolean) => void,
     setRight: (val: boolean) => void
   ) => {
-    const container = ref.current;
-    if (!container) return;
-    const targetBtn = container.querySelector<HTMLButtonElement>(`[data-category="${CSS.escape(cat)}"]`);
-    if (targetBtn) {
-      const containerWidth = container.clientWidth;
-      const btnLeft = targetBtn.offsetLeft;
-      const btnWidth = targetBtn.clientWidth;
-      const scrollTarget = btnLeft - (containerWidth / 2) + (btnWidth / 2);
-      container.scrollTo({
-        left: Math.max(0, scrollTarget),
-        behavior: 'smooth',
-      });
-      setTimeout(() => {
-        checkScroll(ref, setLeft, setRight);
-      }, 350);
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const activeBtn = container.querySelector(`[data-category="${cat}"]`) as HTMLElement;
+    if (activeBtn) {
+      const containerWidth = container.offsetWidth;
+      const btnLeft = activeBtn.offsetLeft;
+      const btnWidth = activeBtn.offsetWidth;
+      const targetScroll = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+      container.scrollTo({ left: targetScroll, behavior: 'smooth' });
+      setTimeout(() => checkScroll(scrollRef, setLeft, setRight), 300);
     }
   };
 
@@ -137,7 +137,13 @@ export default function BuySearchResultsMobile() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSticky(entry.boundingClientRect.top <= 97);
+        const sticky = entry.boundingClientRect.top <= 97;
+        setIsSticky(sticky);
+        if (sticky) {
+          setIsHeroSearchFocused(false);
+        } else {
+          setIsStickySearchFocused(false);
+        }
       },
       { threshold: [1], rootMargin: "-98px 0px 0px 0px" }
     );
@@ -179,7 +185,7 @@ export default function BuySearchResultsMobile() {
   );
 
   return (
-    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-6">
+    <div className="flex flex-col w-full min-h-[calc(100vh-56px)] bg-[#fafbfd] font-sans transition-colors duration-300 relative pb-20">
       <div className="sticky top-[53px] z-40 w-full shadow-md">
         <ExploreHeaderTabs activeTab={exploreTab} onChange={handleTabChange} />
       </div>
@@ -236,8 +242,11 @@ export default function BuySearchResultsMobile() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  onFocus={() => {
+                    setIsHeroSearchFocused(false);
+                    setIsStickySearchFocused(true);
+                  }}
+                  onBlur={() => setTimeout(() => setIsStickySearchFocused(false), 200)}
                   placeholder="Search by property type, location, or keyword..."
                   className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
                 />
@@ -253,7 +262,7 @@ export default function BuySearchResultsMobile() {
               </div>
 
               <AnimatePresence>
-                {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+                {isSticky && isStickySearchFocused && (searchQuery || suggestions.length > 0) && (
                   <motion.div
                     initial={{ opacity: 0, y: -6, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -273,7 +282,7 @@ export default function BuySearchResultsMobile() {
                             onMouseDown={(e) => {
                               e.preventDefault();
                               setSearchQuery(f.name);
-                              setIsSearchFocused(false);
+                              setIsStickySearchFocused(false);
                             }}
                             className="px-3 py-2 hover:bg-[#0b1b42]/[0.03] cursor-pointer rounded flex items-center gap-2.5 transition-all duration-200 mx-0.5 my-0.5 group"
                           >
@@ -408,7 +417,7 @@ export default function BuySearchResultsMobile() {
           >
             <div className={clsx(
               "absolute -inset-[1px] rounded-[4px] transition-opacity duration-500",
-              isSearchFocused ? "opacity-100" : "opacity-0",
+              !isSticky && isHeroSearchFocused ? "opacity-100" : "opacity-0",
             )} style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }} />
 
             <div className="relative w-full bg-white rounded-[4px] flex items-center p-1 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
@@ -416,8 +425,11 @@ export default function BuySearchResultsMobile() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                onFocus={() => {
+                  setIsStickySearchFocused(false);
+                  setIsHeroSearchFocused(true);
+                }}
+                onBlur={() => setTimeout(() => setIsHeroSearchFocused(false), 200)}
                 placeholder="Search by property type, location, or keyword..."
                 className="flex-1 bg-transparent border-none outline-none font-medium text-[#0a1128] text-[12px] py-1 pl-3 placeholder-[#0b1b42]/40"
               />
@@ -443,7 +455,7 @@ export default function BuySearchResultsMobile() {
             </div>
 
             <AnimatePresence>
-              {isSearchFocused && (searchQuery || suggestions.length > 0) && (
+              {!isSticky && isHeroSearchFocused && (searchQuery || suggestions.length > 0) && (
                 <motion.div
                   initial={{ opacity: 0, y: -6, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -221,7 +221,8 @@ export default function FranchiseSearchResultsDesktop() {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [dismissed, setDismissed] = useState<Set<number>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isStickySearchFocused, setIsStickySearchFocused] = useState(false);
+  const [isHeroSearchFocused, setIsHeroSearchFocused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(15);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [showFranchiseView, setShowFranchiseView] = useState(false);
@@ -237,8 +238,13 @@ export default function FranchiseSearchResultsDesktop() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-
-        setIsScrolled(!entry.isIntersecting);
+        const scrolled = !entry.isIntersecting;
+        setIsScrolled(scrolled);
+        if (scrolled) {
+          setIsHeroSearchFocused(false);
+        } else {
+          setIsStickySearchFocused(false);
+        }
       },
       {
         threshold: 0,
@@ -456,7 +462,7 @@ export default function FranchiseSearchResultsDesktop() {
                     boxShadow: "inset 0 1px 3px rgba(0, 0, 0, 0.2)",
                   }}
                 >
-                  <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isSearchFocused ? "opacity-100" : "opacity-0"}`}
+                  <div className={`absolute inset-0 rounded-[4px] transition-opacity duration-300 pointer-events-none ${isStickySearchFocused ? "opacity-100" : "opacity-0"}`}
                     style={{ boxShadow: "0 0 0 2px rgba(212,175,55,0.35), inset 0 0 0 1px rgba(212,175,55,0.2)" }}
                   />
                   <Search size={14} strokeWidth={2} className="ml-3 text-white/40 shrink-0" />
@@ -464,8 +470,11 @@ export default function FranchiseSearchResultsDesktop() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                    onFocus={() => {
+                      setIsHeroSearchFocused(false);
+                      setIsStickySearchFocused(true);
+                    }}
+                    onBlur={() => setTimeout(() => setIsStickySearchFocused(false), 200)}
                     placeholder="Search franchise, industry, or location..."
                     className="flex-1 bg-transparent border-none outline-none text-[12.5px] font-medium text-white placeholder-white/35 py-[7px] px-2.5"
                   />
@@ -480,7 +489,7 @@ export default function FranchiseSearchResultsDesktop() {
                 </div>
 
                 <AnimatePresence>
-                  {isSearchFocused && (searchQuery || displayFranchises.length > 0) && (
+                  {isScrolled && isStickySearchFocused && (searchQuery || displayFranchises.length > 0) && (
                     <motion.div
                       initial={{ opacity: 0, y: -6, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -623,7 +632,7 @@ export default function FranchiseSearchResultsDesktop() {
               <div
                 className={clsx(
                   "absolute -inset-[1.5px] rounded transition-opacity duration-500",
-                  isSearchFocused ? "opacity-100" : "opacity-0",
+                  !isScrolled && isHeroSearchFocused ? "opacity-100" : "opacity-0",
                 )}
                 style={{ background: "linear-gradient(90deg, #d4af37, #f3cd52, #d4af37)" }}
               />
@@ -632,8 +641,11 @@ export default function FranchiseSearchResultsDesktop() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  onFocus={() => {
+                    setIsStickySearchFocused(false);
+                    setIsHeroSearchFocused(true);
+                  }}
+                  onBlur={() => setTimeout(() => setIsHeroSearchFocused(false), 200)}
                   placeholder="Search franchise, industry, or location..."
                   className="flex-1 bg-transparent border-none outline-none text-[14px] font-medium text-[#0a1128] placeholder-[#0b1b42]/35 py-1.5 pl-3.5"
                 />
@@ -654,7 +666,7 @@ export default function FranchiseSearchResultsDesktop() {
               </div>
 
               <AnimatePresence>
-                {isSearchFocused && (searchQuery || displayFranchises.length > 0) && (
+                {!isScrolled && isHeroSearchFocused && (searchQuery || displayFranchises.length > 0) && (
                   <motion.div
                     initial={{ opacity: 0, y: -6, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}

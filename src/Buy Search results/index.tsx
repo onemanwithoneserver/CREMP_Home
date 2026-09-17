@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Desktop from "./desktop";
 import Mobile from "./mobile";
 import SiteHeader from "../components/commonfiles/Header/headerdesktop";
+import SiteFooter from "../components/commonfiles/Footer/footerdesktop";
 
 export default function BuySearchResults({ isMobile }: { isMobile?: boolean }) {
   if (isMobile) {
@@ -16,6 +17,7 @@ export default function BuySearchResults({ isMobile }: { isMobile?: boolean }) {
         >
           <Mobile />
         </motion.div>
+        <SiteFooter isMobile={isMobile} />
       </div>
     );
   }
