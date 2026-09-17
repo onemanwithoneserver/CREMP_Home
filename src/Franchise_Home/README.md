@@ -13,7 +13,7 @@ Adhering to these limits ensures that the UI components remain symmetrical and d
 | **Hero Image/Video** | 1280x720px | 2560x1440px | **1920x1080px (16:9)** | Video: max 30s, under 10MB. WebP for images. |
 | **Brand Logo** | 200x200px | 800x800px | **400x400px (1:1)** | Must be transparent PNG or SVG. |
 
-## 2. Franchise Models (with Staff Dialog)
+## 2. Franchise Models
 
 | Element | Min Limits | Max Limits | Recommended | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -26,7 +26,7 @@ Adhering to these limits ensures that the UI components remain symmetrical and d
 | **Staff Experience** | 4 chars (0 Yr) | 15 chars (10+ Years) | **~8 chars** | E.g., "2+ Years", "0-1 Years". |
 | **Staff Remarks** | 5 words / 30 chars | 20 words / 120 chars | **8 - 12 words** | Short description of responsibilities. |
 
-## 3. Investment Breakdown (Revenue & ROI)
+## 3. Investment Breakdown
 
 | Element | Min Limits | Max Limits | Recommended | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -44,7 +44,7 @@ Adhering to these limits ensures that the UI components remain symmetrical and d
 | **Partner Attributes (Text)** | 10 words / 60 chars | 25 words / 150 chars | **15 - 20 words** | Descriptions of who makes a good partner. |
 | **Section Image** | 800x600px | 1920x1080px | **1200x900px (4:3)** | Often a lifestyle or handshake image. |
 
-## 5. Support Sessions (Full Cycle Support)
+## 5. Support Sessions
 
 | Element | Min Limits | Max Limits | Recommended | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -59,7 +59,7 @@ Adhering to these limits ensures that the UI components remain symmetrical and d
 | **Story Paragraphs** | 40 words / 250 chars | 150 words / 800 chars | **80 - 100 words** | Narrative about the brand history. |
 | **Story Images (Inline)** | 800x600px | 1920x1080px | **1200x800px (3:2)** | Historical or milestone photos. |
 
-## 7. Leadership (with Leader Dialog)
+## 7. Leadership
 
 | Element | Min Limits | Max Limits | Recommended | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -87,7 +87,7 @@ Adhering to these limits ensures that the UI components remain symmetrical and d
 | **Map Image / Graphic** | 1000x600px | 2560x1440px | **1920x1080px (16:9)** | Used if the map is a static image. |
 | **Location Data (Text)**| 1 word / 4 chars | 4 words / 30 chars | **1 - 2 words** | City or Region name (e.g., "New York"). |
 
-## 10. Everything You Need to Know (FAQ / Terms)
+## 10. Everything You Need to Know
 
 | Element | Min Limits | Max Limits | Recommended | Notes |
 | :--- | :--- | :--- | :--- | :--- |
