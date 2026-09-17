@@ -838,12 +838,14 @@ export default function FranchiseSearchResultsMobile() {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-0.5 shrink-0 ml-1">
-                          <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-amber-50 transition-all">
-                            <Bookmark className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-[#0b1b42]/20")} />
-                          </motion.button>
-                          <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-red-50 text-red-500 hover:text-red-600 transition-all">
-                            <X className="w-3.5 h-3.5 text-red-500" />
+                        <div className="flex items-center shrink-0 ml-1">
+                          <motion.button
+                            whileTap={{ scale: 0.92 }}
+                            onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                            className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
+                            title="View Details"
+                          >
+                            <Eye size={14} strokeWidth={2.5} />
                           </motion.button>
                         </div>
                       </div>
@@ -855,16 +857,13 @@ export default function FranchiseSearchResultsMobile() {
                           {f.location}
                         </span>
                       </div>
-                      <div className="flex justify-end gap-2 mt-2">
-                        <motion.button
-                          whileTap={{ scale: 0.92 }}
-                          onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                          className="w-7 h-7 flex items-center justify-center rounded bg-[#0b1b42]/[0.04] border border-[#0b1b42]/[0.06] text-[#0b1b42]/70 hover:bg-[#0b1b42] hover:text-white transition-all shadow-sm"
-                          title="View Details"
-                        >
-                          <Eye size={14} strokeWidth={2.5} />
+                      <div className="flex items-center justify-end gap-1.5 mt-2">
+                        <motion.button whileTap={{ scale: 1.4 }} onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }} className="p-1 rounded hover:bg-amber-50 transition-all" title="Save">
+                          <Bookmark className={clsx("w-3.5 h-3.5 transition-all duration-300", favorites.has(f.id) ? "fill-[#d4af37] text-[#d4af37]" : "text-[#0b1b42]/40")} />
                         </motion.button>
-
+                        <motion.button whileTap={{ scale: 0.85, rotate: 90 }} onClick={(e) => { e.stopPropagation(); setSelectedMarker(null); }} className="p-1 rounded hover:bg-red-50 text-red-500 hover:text-red-600 transition-all" title="Close">
+                          <X className="w-3.5 h-3.5 text-red-500" />
+                        </motion.button>
                       </div>
                     </div>
                   </motion.div>
@@ -931,28 +930,14 @@ export default function FranchiseSearchResultsMobile() {
                             <div className="relative w-full h-[170px] overflow-hidden bg-gray-50">
                               <img src={f.logo} alt={f.name} className="w-full h-full object-cover" draggable={false} />
                               <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/60 via-transparent to-[#0a1128]/10" />
-                              <div className="absolute top-3 right-3 flex items-center gap-3.5">
+                              <div className="absolute top-3 right-3 flex items-center">
                                 <motion.button
-                                  whileTap={{ scale: 1.3 }}
-                                  onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                  className="p-0"
+                                  whileTap={{ scale: 0.9 }}
+                                  onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                                  className="w-9 h-9 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
+                                  title="View Details"
                                 >
-                                  <Bookmark
-                                    className={clsx(
-                                      "w-[22px] h-[22px] transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
-                                      favorites.has(f.id)
-                                        ? "fill-[#d4af37] text-[#d4af37]"
-                                        : "text-white/90",
-                                    )}
-                                  />
-                                </motion.button>
-                                <motion.button
-                                  title="Not Interested"
-                                  whileTap={{ scale: 1.3 }}
-                                  onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
-                                  className="p-0"
-                                >
-                                  <X className="w-[22px] h-[22px] text-red-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                                  <Eye size={16} strokeWidth={2} className="text-white" />
                                 </motion.button>
                               </div>
                               <div className="absolute bottom-3 left-3">
@@ -970,14 +955,31 @@ export default function FranchiseSearchResultsMobile() {
                                   {f.location}
                                 </span>
                               </div>
-                              <motion.button
-                                whileTap={{ scale: 0.9 }}
-                                onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                className="w-9 h-9 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md"
-                                title="View Details"
-                              >
-                                <Eye size={16} strokeWidth={2} className="text-white" />
-                              </motion.button>
+                              <div className="flex items-center gap-3 shrink-0">
+                                <motion.button
+                                  whileTap={{ scale: 1.3 }}
+                                  onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                  className="p-0"
+                                  title="Save"
+                                >
+                                  <Bookmark
+                                    className={clsx(
+                                      "w-[20px] h-[20px] transition-all duration-300",
+                                      favorites.has(f.id)
+                                        ? "fill-[#d4af37] text-[#d4af37]"
+                                        : "text-[#0a1128]/40 hover:text-[#0a1128]",
+                                    )}
+                                  />
+                                </motion.button>
+                                <motion.button
+                                  title="Not Interested"
+                                  whileTap={{ scale: 1.3 }}
+                                  onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
+                                  className="p-0"
+                                >
+                                  <X className="w-[20px] h-[20px] text-red-500 hover:text-red-600 transition-colors" />
+                                </motion.button>
+                              </div>
                             </div>
                           </motion.div>
                         );
@@ -1008,28 +1010,14 @@ export default function FranchiseSearchResultsMobile() {
                       <div className="relative w-full h-[80px] overflow-hidden bg-gray-50">
                         <img src={f.logo} alt={f.name} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/40 to-transparent" />
-                        <div className="absolute top-1.5 right-1.5 flex items-center gap-2">
+                        <div className="absolute top-1.5 right-1.5 flex items-center">
                           <motion.button
-                            whileTap={{ scale: 1.3 }}
-                            onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
                             className="p-0"
+                            title="View Details"
                           >
-                            <Bookmark
-                              className={clsx(
-                                "w-3.5 h-3.5 transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]",
-                                favorites.has(f.id)
-                                  ? "fill-[#d4af37] text-[#d4af37]"
-                                  : "text-white/90",
-                              )}
-                            />
-                          </motion.button>
-                          <motion.button
-                            title="Not Interested"
-                            whileTap={{ scale: 1.3 }}
-                            onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
-                            className="p-0"
-                          >
-                            <X className="w-3.5 h-3.5 text-red-500 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
+                            <Eye size={14} strokeWidth={2} className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
                           </motion.button>
                         </div>
                       </div>

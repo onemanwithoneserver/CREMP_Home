@@ -931,29 +931,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                                   
-                                  <div className="absolute top-4 right-4 flex items-center gap-4">
+                                  <div className="absolute top-4 right-4 flex items-center">
                                     <motion.button
-                                      whileTap={{ scale: 1.3 }}
-                                      onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
-                                      className="p-0 transition-transform hover:scale-110"
-                                      title="Save"
+                                      whileTap={{ scale: 0.92 }}
+                                      onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
+                                      className="w-11 h-11 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md hover:bg-[#1a2b5e] transition-colors"
+                                      title="View Details"
                                     >
-                                      <Bookmark
-                                        className={clsx(
-                                          "w-6 h-6 transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]",
-                                          favorites.has(f.id)
-                                            ? "fill-[#d4af37] text-[#d4af37]"
-                                            : "text-white",
-                                        )}
-                                      />
-                                    </motion.button>
-                                    <motion.button
-                                      title="Not Interested"
-                                      whileTap={{ scale: 1.3 }}
-                                      onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
-                                      className="p-0 transition-transform hover:scale-110"
-                                    >
-                                      <X className="w-6 h-6 text-red-500 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] transition-colors" />
+                                      <Eye size={18} strokeWidth={2} className="text-white" />
                                     </motion.button>
                                   </div>
                                   
@@ -978,14 +963,31 @@ export default function FranchiseSearchResultsDesktop() {
                                       <span className="text-[14px] font-medium text-[#686868] truncate">{f.location}</span>
                                     </div>
                                   </div>
-                                  <motion.button
-                                    whileTap={{ scale: 0.92 }}
-                                    onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                    className="w-11 h-11 rounded-full bg-[#0b1b42] flex items-center justify-center shrink-0 shadow-md hover:bg-[#1a2b5e] transition-colors"
-                                    title="View Details"
-                                  >
-                                    <Eye size={18} strokeWidth={2} className="text-white" />
-                                  </motion.button>
+                                  <div className="flex items-center gap-4 shrink-0">
+                                    <motion.button
+                                      whileTap={{ scale: 1.3 }}
+                                      onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                      className="p-0 transition-transform hover:scale-110"
+                                      title="Save"
+                                    >
+                                      <Bookmark
+                                        className={clsx(
+                                          "w-6 h-6 transition-all duration-300",
+                                          favorites.has(f.id)
+                                            ? "fill-[#d4af37] text-[#d4af37]"
+                                            : "text-[#1a1a2e]/40 hover:text-[#1a1a2e]",
+                                        )}
+                                      />
+                                    </motion.button>
+                                    <motion.button
+                                      title="Not Interested"
+                                      whileTap={{ scale: 1.3 }}
+                                      onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
+                                      className="p-0 transition-transform hover:scale-110"
+                                    >
+                                      <X className="w-6 h-6 text-red-500 hover:text-red-600 transition-colors" />
+                                    </motion.button>
+                                  </div>
                                 </div>
                               </div>
                             )}
@@ -996,29 +998,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[70px] bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
                                   
-                                  <div className="absolute top-3 right-3 flex items-center gap-3">
+                                  <div className="absolute top-3 right-3 flex items-center">
                                     <motion.button
-                                      whileTap={{ scale: 1.3 }}
-                                      onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                      whileTap={{ scale: 0.92 }}
+                                      onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
                                       className="p-0 hover:scale-110 transition-transform"
-                                      title="Save"
+                                      title="View Details"
                                     >
-                                      <Bookmark
-                                        className={clsx(
-                                          "w-5 h-5 transition-all duration-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.6)]",
-                                          favorites.has(f.id)
-                                            ? "fill-[#d4af37] text-[#d4af37]"
-                                            : "text-white",
-                                        )}
-                                      />
-                                    </motion.button>
-                                    <motion.button
-                                      title="Not Interested"
-                                      whileTap={{ scale: 1.3 }}
-                                      onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
-                                      className="p-0 hover:scale-110 transition-transform"
-                                    >
-                                      <X className="w-5 h-5 text-red-500 drop-shadow-[0_2px_5px_rgba(0,0,0,0.6)] transition-colors" />
+                                      <Eye size={20} strokeWidth={2} className="text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.6)]" />
                                     </motion.button>
                                   </div>
                                   
@@ -1045,14 +1032,29 @@ export default function FranchiseSearchResultsDesktop() {
                                     </div>
                                   </div>
                                   
-                                  <div className="flex justify-end">
+                                  <div className="flex items-center justify-end gap-3">
                                     <motion.button
-                                      whileTap={{ scale: 0.92 }}
-                                      onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
-                                      className="p-0"
-                                      title="View Details"
+                                      whileTap={{ scale: 1.3 }}
+                                      onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                      className="p-0 hover:scale-110 transition-transform"
+                                      title="Save"
                                     >
-                                      <Eye size={20} strokeWidth={2} className="text-[#3d3d3d]/50 hover:text-[#1a1a2e] transition-colors" />
+                                      <Bookmark
+                                        className={clsx(
+                                          "w-5 h-5 transition-all duration-300",
+                                          favorites.has(f.id)
+                                            ? "fill-[#d4af37] text-[#d4af37]"
+                                            : "text-[#3d3d3d]/50 hover:text-[#1a1a2e]",
+                                        )}
+                                      />
+                                    </motion.button>
+                                    <motion.button
+                                      title="Not Interested"
+                                      whileTap={{ scale: 1.3 }}
+                                      onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
+                                      className="p-0 hover:scale-110 transition-transform"
+                                    >
+                                      <X className="w-5 h-5 text-red-500 hover:text-red-600 transition-colors" />
                                     </motion.button>
                                   </div>
                                 </div>
@@ -1065,29 +1067,14 @@ export default function FranchiseSearchResultsDesktop() {
                                   <img src={f.logo} alt={f.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                   <div className="absolute inset-x-0 bottom-0 h-[50px] bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                                   
-                                  <div className="absolute top-2.5 right-2.5 flex items-center gap-2.5">
+                                  <div className="absolute top-2.5 right-2.5 flex items-center">
                                     <motion.button
-                                      whileTap={{ scale: 1.3 }}
-                                      onClick={(e) => { e.stopPropagation(); toggleFavorite(f.id); }}
+                                      whileTap={{ scale: 0.92 }}
+                                      onClick={(e) => { e.stopPropagation(); setShowFranchiseView(true); }}
                                       className="p-0 hover:scale-110 transition-transform"
-                                      title="Save"
+                                      title="View Details"
                                     >
-                                      <Bookmark
-                                        className={clsx(
-                                          "w-4 h-4 transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]",
-                                          favorites.has(f.id)
-                                            ? "fill-[#d4af37] text-[#d4af37]"
-                                            : "text-white",
-                                        )}
-                                      />
-                                    </motion.button>
-                                    <motion.button
-                                      title="Not Interested"
-                                      whileTap={{ scale: 1.3 }}
-                                      onClick={(e) => { e.stopPropagation(); toggleDismiss(f.id); }}
-                                      className="p-0 hover:scale-110 transition-transform"
-                                    >
-                                      <X className="w-4 h-4 text-red-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] transition-colors" />
+                                      <Eye size={18} strokeWidth={2} className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]" />
                                     </motion.button>
                                   </div>
                                 </div>
